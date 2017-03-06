@@ -65,7 +65,7 @@ $MYCALL=strtoupper($callsign);
     <meta name="Description" content="ircDDBGateway Configuration">
     <meta name="KeyWords" content="ircDDBGateway,D-Star,ircDDB,Pi-Star,Blackwood,Wales,DL5DI">
     <title><?php echo "$MYCALL" ?> Hotspot Configuration Dashboard</title>
-    <LINK REL="stylesheet" type="text/css" href="css/ircddb.css">
+    <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
     <script>
 	function submitform()
 	{
@@ -86,6 +86,7 @@ $MYCALL=strtoupper($callsign);
 	function resizeIframe(obj) {
 	  obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
 	}
+	setTimeout(function() {window.location=window.location;},2000);
     </script>
 </head>
 <body>
@@ -1005,7 +1006,8 @@ while (!feof($dextraFile)) {
 fclose($dextraFile);
 
 ?>
-    </select>
+    </select><input name="confDefRef" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
+            onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
     <select name="confDefRefLtr">
         <option selected><?php echo substr($configs['reflector1'], 7);?></option>
         <option>A</option>
