@@ -86,7 +86,6 @@ $MYCALL=strtoupper($callsign);
 	function resizeIframe(obj) {
 	  obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
 	}
-	setTimeout(function() {window.location=window.location;},2000);
     </script>
 </head>
 <body>
