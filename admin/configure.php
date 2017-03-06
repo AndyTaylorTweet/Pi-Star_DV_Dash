@@ -105,6 +105,7 @@ $MYCALL=strtoupper($callsign);
 if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 //HTML output starts here 
 ?>
+    <script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>
     <b>Gateway Hardware Information</b>
     <table>
     <tr>
