@@ -975,7 +975,11 @@ else:
     </tr>
     <tr>
     <td align="left"><a class=tooltip2 href="#">Default Reflector:<span><b>Default Refelctor</b>Used for setting the<br />default reflector.</span></a></td>
-    <td align="left" colspan="1"><select name="confDefRef">
+    <td align="left" colspan="1"><select name="confDefRef"
+	onchange="if (this.options[this.selectedIndex].value == 'customOption') {
+	  toggleField(this,this.nextSibling);
+	  this.selectedIndex='0';
+	  } ">
 <?php
 $dcsFile = fopen("/usr/local/etc/DCS_Hosts.txt", "r");
 $dplusFile = fopen("/usr/local/etc/DPlus_Hosts.txt", "r");
