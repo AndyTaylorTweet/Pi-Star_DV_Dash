@@ -87,6 +87,7 @@ $MYCALL=strtoupper($callsign);
 	  obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
 	}
     </script>
+    <script type="text/javascript" src="/functions.js"></script>
 </head>
 <body>
 <div class="container">
