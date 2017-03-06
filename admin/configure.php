@@ -987,7 +987,7 @@ $dextraFile = fopen("/usr/local/etc/DExtra_Hosts.txt", "r");
 
 // echo "  <option selected>".substr($configs['reflector1'], 0, 6)."</option>\n";
 echo "    <option value=\"".substr($configs['reflector1'], 0, 6)."\" selected>".substr($configs['reflector1'], 0, 6)."</option>\n";
-echo "    <option value=\"customOption\">Text Entry</option>";
+echo "    <option value=\"customOption\">Text Entry</option>\n";
 
 while (!feof($dcsFile)) {
 	$dcsLine = fgets($dcsFile);
