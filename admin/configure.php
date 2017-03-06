@@ -1013,7 +1013,7 @@ fclose($dextraFile);
     </select><input name="confDefRef" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
             onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
     <select name="confDefRefLtr">
-        <option selected><?php echo substr($configs['reflector1'], 7);?></option>
+	<?php echo "  <option value=\"".substr($configs['reflector1'], 7)."\" selected>".substr($configs['reflector1'], 7)."</option>\n"; ?>
         <option>A</option>
         <option>B</option>
         <option>C</option>
