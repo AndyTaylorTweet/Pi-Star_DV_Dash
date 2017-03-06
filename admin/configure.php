@@ -990,26 +990,24 @@ echo "    <option value=\"".substr($configs['reflector1'], 0, 6)."\" selected>".
 echo "    <option value=\"customOption\">Text Entry</option>";
 
 while (!feof($dcsFile)) {
-        $dcsLine = fgets($dcsFile);
-        if (strpos($dcsLine, 'DCS') !== FALSE && strpos($dcsLine, '#') === FALSE)
-                echo "  <option>".substr($dcsLine, 0, 6)."</option>\n";
+	$dcsLine = fgets($dcsFile);
+	if (strpos($dcsLine, 'DCS') !== FALSE && strpos($dcsLine, '#') === FALSE)
+		echo "	<option value=\"".substr($dcsLine, 0, 6)."\">".substr($dcsLine, 0, 6)."</option>\n";
 }
 fclose($dcsFile);
-
 while (!feof($dplusFile)) {
-        $dplusLine = fgets($dplusFile);
-        if (strpos($dplusLine, 'REF') !== FALSE && strpos($dplusLine, '#') === FALSE)
-                echo "  <option>".substr($dplusLine, 0, 6)."</option>\n";
+	$dplusLine = fgets($dplusFile);
+	if (strpos($dplusLine, 'REF') !== FALSE && strpos($dplusLine, '#') === FALSE)
+		echo "	<option value=\"".substr($dplusLine, 0, 6)."\">".substr($dplusLine, 0, 6)."</option>\n";
 }
 fclose($dplusFile);
-
 while (!feof($dextraFile)) {
-        $dextraLine = fgets($dextraFile);
-        if (strpos($dextraLine, 'XRF') !== FALSE && strpos($dextraLine, '#') === FALSE)
-                echo "  <option>".substr($dextraLine, 0, 6)."</option>\n";
+	$dextraLine = fgets($dextraFile);
+	if (strpos($dextraLine, 'XRF') !== FALSE && strpos($dextraLine, '#') === FALSE)
+		echo "	<option value=\"".substr($dextraLine, 0, 6)."\">".substr($dextraLine, 0, 6)."</option>\n";
 }
 fclose($dextraFile);
-
+												   
 ?>
     </select><input name="confDefRef" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
             onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
