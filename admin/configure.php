@@ -208,7 +208,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the ircDDBGateway Defaut Reflector
 	if (empty($_POST['confDefRef']) != TRUE ) {
 	  if (strtoupper(stristr(escapeshellcmd($_POST['confDefRef'])), strtoupper(escapeshellcmd($_POST['confCallsign']))) != TRUE ) {
-	    $rollconfDefRef = 'sudo sed -i "/reflector1=/c\\reflector1='.strtoupper(escapeshellcmd($_POST['confDefRef'])).' '.escapeshellcmd($_POST['confDefRefLtr']).'" /etc/ircddbgateway';
+	    if (strlen($_POST['confDefRef']) != 7) {
+		$targetRef = strtoupper(escapeshellcmd(str_pad($_POST['confDefRef'], 7, " ")));
+	        } else {
+		$targetRef = strtoupper(escapeshellcmd($_POST['confDefRef']));
+	        }
+	    $rollconfDefRef = 'sudo sed -i "/reflector1=/c\\reflector1='.$targetRef.escapeshellcmd($_POST['confDefRefLtr']).'" /etc/ircddbgateway';
 	    system($rollconfDefRef);
 	    }
 	  }
