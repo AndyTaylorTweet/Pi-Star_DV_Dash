@@ -17,7 +17,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     $handle = fopen('/var/log/pi-star/pi-star_update.log', 'rb');
     if (isset($_SESSION['offset'])) {
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
-      $_SESSION['offset'] += strlen($data);
       echo nl2br($data);
       }
     else {
