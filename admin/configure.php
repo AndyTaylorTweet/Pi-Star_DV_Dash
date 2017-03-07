@@ -56,14 +56,17 @@ $MYCALL=strtoupper($callsign);
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-    <meta name="robots" content="index">
-    <meta name="robots" content="follow">
-    <meta name="language" content="English">
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <?php echo "<meta name=\"GENERATOR\" content=\"$progname $rev\">\n"; ?>
-    <meta name="Author" content="Andrew Taylor (MW0MWZ)">
-    <meta name="Description" content="ircDDBGateway Configuration">
-    <meta name="KeyWords" content="ircDDBGateway,D-Star,ircDDB,Pi-Star,Blackwood,Wales,DL5DI">
+    <meta name="robots" content="index" />
+    <meta name="robots" content="follow" />
+    <meta name="language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <?php echo "<meta name=\"GENERATOR\" content=\"$progname $rev\" />\n"; ?>
+    <meta name="Author" content="Andrew Taylor (MW0MWZ)" />
+    <meta name="Description" content="ircDDBGateway Configuration" />
+    <meta name="KeyWords" content="ircDDBGateway,D-Star,ircDDB,Pi-Star,Blackwood,Wales,DL5DI" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL" ?> Hotspot Configuration Dashboard</title>
     <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
     <script>
