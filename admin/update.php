@@ -22,7 +22,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php" || $_SERVER["PHP_SELF"] == "/adm
    exit();
    }
   else {
-    system('sudo nohup rm -rf /var/log/pi-star/pi-star_update.log &');
+    system('sudo nohup rm -rf /var/log/pi-star/pi-star_update.log');
+    system('sudo touch /var/log/pi-star/pi-star_update.log');
     system('sudo /usr/local/sbin/pistar-update &');
     }
  unset($_SESSION['offset']);
