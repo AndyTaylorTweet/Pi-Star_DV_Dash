@@ -14,7 +14,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   if (isset($_GET['ajax'])) {
     session_start();
-    $handle = fopen('/private/var/log/system.log', 'rb');
+    $handle = fopen('/var/log/pi-star/pi-star_update.log', 'rb');
     if (isset($_SESSION['offset'])) {
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
       echo nl2br($data);
