@@ -62,10 +62,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   
   // tell php to automatically flush after every output
   // including lines of output produced by shell commands
-  disable_ob();
+  //disable_ob();
 
   $command = 'ping -c4 www.yahoo.com';
-  system($command);
+  echo "<pre>".system($command)."</pre>\n";
 
   ?>
 
