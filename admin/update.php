@@ -3,11 +3,6 @@
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   // Sanity Check Passed.
-  require_once('config/ircddblocal.php');
-  $MYCALL=strtoupper($callsign);
-  //Load the pistar-release file
-  $pistarReleaseConfig = '/etc/pistar-release';
-  $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
   header('Cache-Control: no-cache');
   
 ?>
@@ -24,14 +19,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title><?php echo "$MYCALL" ?> Hotspot Update Dashboard</title>
+    <title>Hotspot Update Dashboard</title>
     <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
     <script type="text/javascript" src="/jquery.min.js"></script>
   </head>
   <body>
   <div class="container">
   <div id="header">
-  <div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?></div>
   <h1>Pi-Star Digital Voice Update</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
