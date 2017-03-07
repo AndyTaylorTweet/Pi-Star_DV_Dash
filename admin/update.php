@@ -38,8 +38,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   </p>
   </div>
   <div id="contentwide">
-  <table>
-    <tr><td>
+  <table width="100%">
+    <tr>
 
   <?php
     
@@ -53,7 +53,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   }
   
   function runStreamingCommand($cmd){
-    echo "\nrunning $cmd\n";
+    echo <th>running $cmd</th></tr>\n<tr><td>\n";
     system($cmd);
   }
 
