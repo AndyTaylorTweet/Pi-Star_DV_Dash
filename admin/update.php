@@ -1,6 +1,6 @@
 <?php
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/update.php" || $_SERVER["PHP_SELF"] == "/admin/update.php?ajax") {
   system('sudo /usr/local/sbin/pistar-update > /var/log/pi-star/pi-star_update.log 2>/var/log/pi-star/pi-star_update.log &');
 
   // Sanity Check Passed.
