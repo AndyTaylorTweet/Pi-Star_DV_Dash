@@ -69,7 +69,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <div id="contentwide">
   <table width="100%">
   <tr><th>Update Running</th></tr>
-  <tr><td align="left"><div id="tail">Starting update...<br></div></td></tr>
+  <tr><td align="left"><div id="tail">Starting update, please wait...<br></div></td></tr>
   </table>
   </div>
   <div id="footer">
