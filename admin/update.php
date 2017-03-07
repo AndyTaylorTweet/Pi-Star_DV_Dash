@@ -6,28 +6,26 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   header('Cache-Control: no-cache');
   session_start();
 
-  if (!isset($_GET)) { system('sudo /bin/ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log &'); }	
-	
   if (isset($_GET['ajax'])) {
-  
-  $handle = fopen('/var/log/pi-star/pi-star_update.log', 'r');
-  if (isset($_SESSION['offset'])) {
-	  fseek($handle,   $_SESSION['offset']);
-   
-  // echo nl2br($data);
-  while (($buffer = fgets($handle, 4096)) !== false) {
+    $handle = fopen('/var/log/pi-star/pi-star_update.log', 'r');
+    if (isset($_SESSION['offset'])) {
+      fseek($handle, $_SESSION['offset']);
+      // echo nl2br($data);
+      while (($buffer = fgets($handle, 4096)) !== false) {
         echo nl2br($buffer);
-    }
-    if (!feof($handle)) {
+        }
+      if (!feof($handle)) {
         echo "Error: unexpected fgets() fail\n";
-    }
-  }
- fseek($handle, 0, SEEK_END); 
- $_SESSION['offset'] = ftell($handle);
-
-  exit();
-  }
-  unset($_SESSION['offset']);
+        }
+      }
+   fseek($handle, 0, SEEK_END); 
+   $_SESSION['offset'] = ftell($handle);
+   exit();
+   }
+   else {
+     system('sudo /bin/ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log &');
+     }
+ unset($_SESSION['offset']);
   
 ?>
   <!doctype html>
