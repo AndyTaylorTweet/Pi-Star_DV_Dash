@@ -4,6 +4,32 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
+  ini_set("log_errors", 1);
+  ini_set("error_log", "./php-error1.log");
+  error_log( "Hello, errors!" );
+
+  session_start();
+
+  if (isset($_GET['ajax'])) {
+  
+  $handle = fopen('/var/log/messages', 'r');
+  if (isset($_SESSION['offset'])) {
+	  fseek($handle,   $_SESSION['offset']);
+   
+  // echo nl2br($data);
+  while (($buffer = fgets($handle, 4096)) !== false) {
+        echo nl2br($buffer);
+    }
+    if (!feof($handle)) {
+        echo "Error: unexpected fgets() fail\n";
+    }
+  }
+ fseek($handle, 0, SEEK_END); 
+ $_SESSION['offset'] = ftell($handle);
+
+  exit();
+  } 
+  unset($_SESSION['offset']);
   
 ?>
   <!doctype html>
@@ -21,7 +47,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Hotspot Update Dashboard</title>
     <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
-    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
+    <script>
+    $(function() {
+      $.repeat(1000, function() {
+        $.get('/admin/update.php?ajax', function(data) {
+          $('#tail').append(data);
+        });
+      });
+    });
+    </script>
   </head>
   <body>
   <div class="container">
@@ -35,29 +71,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   </div>
   <div id="contentwide">
   <table width="100%">
-  <?php
-    
-  $cmd = 'ping -c4 www.yahoo.com';
-  
-  function setupStreaming() {
-    // Turn off output buffering
-    ini_set('output_buffering', 'off');
-    // Turn off PHP output compression
-    ini_set('zlib.output_compression', false);
-  }
-  
-  function runStreamingCommand($cmd){
-    echo "  <tr>\n  <th>$cmd</th></tr>\n  <tr><td align=\"left\">\n";
-    echo "  <pre>\n";
-    system($cmd);
-    echo "  </pre>\n";
-    echo "  </td></tr>\n";
-  }
-
-  setupStreaming();
-  runStreamingCommand($cmd);
-
-  ?>
+    <tr>
+      <td>
+        <div id="tail">Starting update...</div>
+      </td>
+    </tr>
   </table>
   </div>
   <div id="footer">
