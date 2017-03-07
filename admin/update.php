@@ -1,7 +1,7 @@
 <?php
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
-  if (!isset($_GET)) { system('sudo /usr/local/sbin/pistar-update > /var/log/pi-star/pi-star_update.log &'); }
+  system('sudo /usr/local/sbin/pistar-update > /var/log/pi-star/pi-star_update.log 2>/var/log/pi-star/pi-star_update.log &');
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
