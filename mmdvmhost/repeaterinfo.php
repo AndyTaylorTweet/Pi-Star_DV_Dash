@@ -73,8 +73,8 @@ $testMMDVModeDSTAR = getConfigItem("D-Star Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeDSTAR == 1 ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">D-Star Network</th></tr>\n";
-echo "<tr><th>APRS</th><td style=\"background: #ffffff;\">".substr($configs[aprsHostname], 0, 16)."</td></tr>\n";
-echo "<tr><th>IRC</th><td style=\"background: #ffffff;\">".substr($configs[ircddbHostname], 0 ,16)."</td></tr>\n";
+echo "<tr><th>APRS</th><td style=\"background: #ffffff;\">".substr($configs['aprsHostname'], 0, 16)."</td></tr>\n";
+echo "<tr><th>IRC</th><td style=\"background: #ffffff;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
 echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesMMDVM, "D-Star")."</td></tr>\n";
 echo "</table>\n<br />\n";
 }
