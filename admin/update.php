@@ -23,7 +23,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
    exit();
    }
    else {
-     system('sudo /bin/ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log &');
+     system('sudo /usr/local/sbin/pistar-update > /var/log/pi-star/pi-star_update.log &');
      }
  unset($_SESSION['offset']);
   
