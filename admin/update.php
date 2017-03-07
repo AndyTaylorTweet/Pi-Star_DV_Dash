@@ -21,7 +21,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php" || $_SERVER["PHP_SELF"] == "/adm
    $_SESSION['offset'] = ftell($handle);
    exit();
    }
-  else { system('nohup sudo /usr/local/sbin/pistar-update > /var/log/pi-star/pi-star_update.log 2>/var/log/pi-star/pi-star_update.log &'); }
+  else { system('nohup sudo /usr/local/sbin/pistar-update > /var/log/pi-star/pi-star_update.log 2>>/var/log/pi-star/pi-star_update.log &'); }
  unset($_SESSION['offset']);
   
 ?>
