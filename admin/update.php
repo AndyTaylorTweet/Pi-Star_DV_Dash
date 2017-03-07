@@ -24,16 +24,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL" ?> Hotspot Update Dashboard</title>
     <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
+    <script type="text/javascript" src="/jquery.min.js"></script>
   </head>
   <body>
   <div class="container">
   <div id="header">
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?></div>
-  <h1>Pi-Star Digital Voice Configuration Page</h1>
+  <h1>Pi-Star Digital Voice Update</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
     <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
-    <a href="javascript:factoryReset();" alt="Factory Reset" style="color: #ffffff;">Factory Reset</a>
+    <a href="/admin/configure.php" alt="Configuration" style="color: #ffffff;">Config</a>
   </p>
   </div>
   <div id="contentwide">
