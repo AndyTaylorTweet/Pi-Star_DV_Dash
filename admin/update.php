@@ -19,9 +19,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
       $_SESSION['offset'] += strlen($data);
       echo $data;
-      } else {
-   fseek($handle, 0, SEEK_END); 
-   $_SESSION['offset'] = ftell($handle);
+      }
+   else {
+     fseek($handle, 0, SEEK_END); 
+     $_SESSION['offset'] = ftell($handle);
+     }
    exit();
    }
  unset($_SESSION['offset']);
