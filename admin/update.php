@@ -47,11 +47,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   }
   
   function runStreamingCommand($cmd){
-    echo "<tr>\n<th>$cmd</th></tr>\n<tr><td align=\"left\">\n";
-    echo "<pre>\n";
+    echo "  <tr>\n  <th>$cmd</th></tr>\n  <tr><td align=\"left\">\n";
+    echo "  <pre>\n";
     system($cmd);
-    echo "</pre>\n";
-    echo "\n</td></tr>";
+    echo "  </pre>\n";
+    echo "  </td></tr>\n";
   }
 
   setupStreaming();
