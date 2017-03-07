@@ -3,8 +3,8 @@
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   if (!isset($_GET['ajax'])) {
-    system('sudo touch /var/log/pi-star/pi-star_update.log');
-    system('sudo echo "" > /var/log/pi-star/pi-star_update.log');
+    system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
+    system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
     system('sudo /usr/local/sbin/pistar-update > /dev/null 2>&1 &');
     }
 
