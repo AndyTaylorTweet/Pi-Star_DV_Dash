@@ -25,7 +25,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   exit();
   }
-  else {exec(sudo ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log);}
+  else { exec('sudo ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log'); }
   unset($_SESSION['offset']);
   
 ?>
