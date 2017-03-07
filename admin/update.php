@@ -39,8 +39,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   </div>
   <div id="contentwide">
   <table width="100%">
-    <tr>
-
   <?php
     
   $cmd = 'ping -c4 www.yahoo.com';
@@ -53,16 +51,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   }
   
   function runStreamingCommand($cmd){
-    echo "<th>running $cmd</th></tr>\n<tr><td>\n";
+    echo "<tr>\n<th>running $cmd</th></tr>\n<tr><td>\n";
     system($cmd);
+    echo "\n</td></tr>";
   }
 
   setupStreaming();
   runStreamingCommand($cmd);
 
   ?>
-      </td></tr>
-    </table>
+  </table>
   </div>
   <div id="footer">
   Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
