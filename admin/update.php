@@ -13,17 +13,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   session_start();
 
   if (isset($_GET['ajax'])) {
-    $handle = fopen('/var/log/pi-star/pi-star_update.log', 'r');
+    session_start();
+    $handle = fopen('/var/log/pi-star/pi-star_update.log', 'rb');
     if (isset($_SESSION['offset'])) {
-      fseek($handle, $_SESSION['offset']);
-      // echo nl2br($data);
-      while (($buffer = fgets($handle, 4096)) !== false) {
-        echo nl2br($buffer);
-        }
-      if (!feof($handle)) {
-        echo "Error: unexpected fgets() fail\n";
-        }
-      }
+      $data = stream_get_contents($handle, -1, $_SESSION['offset']);
+      $_SESSION['offset'] += strlen($data);
+      echo $data;
+      } else {
    fseek($handle, 0, SEEK_END); 
    $_SESSION['offset'] = ftell($handle);
    exit();
