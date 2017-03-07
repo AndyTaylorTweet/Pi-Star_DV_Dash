@@ -4,15 +4,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
-  ini_set("log_errors", 1);
-  ini_set("error_log", "./php-error1.log");
-  error_log( "Hello, errors!" );
-
   session_start();
 
   if (isset($_GET['ajax'])) {
   
-  $handle = fopen('/var/log/messages', 'r');
+  $handle = fopen('/var/log/pi-star/Links.log', 'r');
   if (isset($_SESSION['offset'])) {
 	  fseek($handle,   $_SESSION['offset']);
    
