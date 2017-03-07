@@ -40,23 +40,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <div id="contentwide">
 
 
-  <script type="text/javascript">
 
-  $(document).ready(function(){
-    $("#msgid").html("This is Hello World by JQuery");
-    $.get('tail -f /var/log/messages', function (data) {
-      $('#result').html(data);
-      });
-    });
-
-  </script>
-
-This is Hello World by HTML
-
-<div id="msgid">
-</div>
-<div id="result">
-</div>  
     
     
 
