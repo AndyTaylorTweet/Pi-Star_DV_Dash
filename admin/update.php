@@ -6,6 +6,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   header('Cache-Control: no-cache');
   session_start();
 
+  if (!isset($_GET['ajax'])) { { exec('sudo ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log'); }	
+	
   if (isset($_GET['ajax'])) {
   
   $handle = fopen('/var/log/pi-star/pi-star_update.log', 'r');
@@ -25,7 +27,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   exit();
   }
-  else { exec('sudo ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log'); }
   unset($_SESSION['offset']);
   
 ?>
