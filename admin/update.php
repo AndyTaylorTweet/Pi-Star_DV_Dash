@@ -39,10 +39,35 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   </div>
   <div id="contentwide">
 
+  <?php
+  function disable_ob() {
+    // Turn off output buffering
+    ini_set('output_buffering', 'off');
+    // Turn off PHP output compression
+    ini_set('zlib.output_compression', false);
+    // Implicitly flush the buffer(s)
+    ini_set('implicit_flush', true);
+    ob_implicit_flush(true);
+    // Clear, and turn off output buffering
+    while (ob_get_level() > 0) {
+        // Get the curent level
+        $level = ob_get_level();
+        // End the buffering
+        ob_end_clean();
+        // If the current level has not changed, abort
+        if (ob_get_level() == $level) break;
+    }
+  }
+  
+  
+  // tell php to automatically flush after every output
+  // including lines of output produced by shell commands
+  disable_ob();
 
+  $command = 'ping -c4 www.yahoo.com';
+  system($command);
 
-    
-    
+  ?>
 
   </div>
   <div id="footer">
