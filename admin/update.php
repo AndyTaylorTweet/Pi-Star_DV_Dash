@@ -38,6 +38,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   </p>
   </div>
   <div id="contentwide">
+  <table>
+    <tr><td>
 
   <?php
     
@@ -59,7 +61,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   runStreamingCommand($cmd);
 
   ?>
-
+      </td></tr>
+    </table>
   </div>
   <div id="footer">
   Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
