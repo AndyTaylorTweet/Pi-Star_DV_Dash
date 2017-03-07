@@ -6,7 +6,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   header('Cache-Control: no-cache');
   session_start();
 
-  if (!isset($_GET)) { exec('sudo ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log'); }	
+  if (!isset($_GET)) { system('sudo ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log'); }	
 	
   if (isset($_GET['ajax'])) {
   
