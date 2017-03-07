@@ -18,7 +18,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     if (isset($_SESSION['offset'])) {
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
       $_SESSION['offset'] += strlen($data);
-      echo $data;
+      echo nl2br($data);
       }
     else {
       fseek($handle, 0, SEEK_END);
