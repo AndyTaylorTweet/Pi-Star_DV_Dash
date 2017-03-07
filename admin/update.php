@@ -8,7 +8,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   if (isset($_GET['ajax'])) {
   
-  $handle = fopen('/var/log/pi-star/Links.log', 'r');
+  $handle = fopen('/var/log/pi-star/pi-star_update.log', 'r');
   if (isset($_SESSION['offset'])) {
 	  fseek($handle,   $_SESSION['offset']);
    
@@ -24,7 +24,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
  $_SESSION['offset'] = ftell($handle);
 
   exit();
-  } 
+  }
+  else {exec(sudo ping -c4 www.yahoo.com > /var/log/pi-star/pi-star_update.log);}
   unset($_SESSION['offset']);
   
 ?>
@@ -67,11 +68,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   </div>
   <div id="contentwide">
   <table width="100%">
-    <tr>
-      <td>
-        <div id="tail">Starting update...</div>
-      </td>
-    </tr>
+  <tr><th>Update Running</th></tr>
+  <tr><td><div id="tail">Starting update...</div></td></tr>
   </table>
   </div>
   <div id="footer">
