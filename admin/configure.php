@@ -62,8 +62,8 @@ $MYCALL=strtoupper($callsign);
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <?php echo "<meta name=\"GENERATOR\" content=\"$progname $rev\" />\n"; ?>
     <meta name="Author" content="Andrew Taylor (MW0MWZ)" />
-    <meta name="Description" content="ircDDBGateway Configuration" />
-    <meta name="KeyWords" content="ircDDBGateway,D-Star,ircDDB,Pi-Star,Blackwood,Wales,DL5DI" />
+    <meta name="Description" content="Pi-Star Configuration" />
+    <meta name="KeyWords" content="Pi-Star, MW0MWZ" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
