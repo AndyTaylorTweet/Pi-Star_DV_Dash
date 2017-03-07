@@ -8,6 +8,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   //Load the pistar-release file
   $pistarReleaseConfig = '/etc/pistar-release';
   $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
+
+  header('Content-Type: text/event-stream');
+  header('Cache-Control: no-cache');
+  
 ?>
   <!doctype html>
   <html xmlns="http://www.w3.org/1999/xhtml"xmlns:v="urn:schemas-microsoft-com:vml">
