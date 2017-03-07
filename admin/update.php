@@ -1,6 +1,13 @@
 <?php
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/update.php" || $_SERVER["PHP_SELF"] == "/admin/update.php?ajax") {
+if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
+
+  if (!isset($_GET['ajax'])) {
+    system('sudo touch /var/log/pi-star/pi-star_update.log');
+    system('sudo echo "" > /var/log/pi-star/pi-star_update.log');
+    system('sudo nohup /usr/local/sbin/pistar-update /dev/null 2>&1 &');
+    }
+
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
   session_start();
@@ -21,11 +28,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php" || $_SERVER["PHP_SELF"] == "/adm
    $_SESSION['offset'] = ftell($handle);
    exit();
    }
-  else {
-    system('sudo nohup rm -rf /var/log/pi-star/pi-star_update.log');
-    system('sudo touch /var/log/pi-star/pi-star_update.log');
-    system('sudo nohup /usr/local/sbin/pistar-update &');
-    }
  unset($_SESSION['offset']);
   
 ?>
