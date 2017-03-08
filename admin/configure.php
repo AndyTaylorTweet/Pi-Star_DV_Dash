@@ -6,6 +6,7 @@ if ($cpuTemp >= 50) { $cpuTempHTML = "<td bgcolor=\"#fa0\">".$cpuTemp."&degC</td
 if ($cpuTemp >= 69) { $cpuTempHTML = "<td bgcolor=\"#f00\">".$cpuTemp."&degC</td>\n"; }
 
 // Pull in some config
+require_once('config/version.php');
 require_once('config/ircddblocal.php');
 $cpuLoad = sys_getloadavg();
 
@@ -50,7 +51,7 @@ $configysfgateway = parse_ini_file($ysfgatewayConfigFile, true);
 
 
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
-$rev="20170126";
+$rev=$version;
 $MYCALL=strtoupper($callsign);
 ?>
 <!doctype html>
@@ -95,7 +96,7 @@ $MYCALL=strtoupper($callsign);
 <body>
 <div class="container">
 <div id="header">
-<div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?></div>
+<div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?>/<?php echo $version; ?></div>
 <h1>Pi-Star Digital Voice Configuration Page</h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
  <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
