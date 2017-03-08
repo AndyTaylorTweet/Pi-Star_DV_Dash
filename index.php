@@ -1,4 +1,5 @@
 <?php
+require_once('config/version.php');
 require_once('config/ircddblocal.php');
 $configs = array();
 if ($configfile = fopen($gatewayConfigPath,'r')) {
@@ -11,7 +12,7 @@ if ($configfile = fopen($gatewayConfigPath,'r')) {
 
 }
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
-$rev="20170127";
+$rev=$version;
 $MYCALL=strtoupper($callsign);
 
 //Load the Pi-Star Release file
@@ -39,7 +40,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <body>
 <div class="container">
 <div id="header">
-<div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?></div>
+<div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?>/<?php echo $version; ?></div>
 <h1>Pi-Star Digital Voice Node Dashboard for <?php echo $MYCALL; ?></h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
  <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
