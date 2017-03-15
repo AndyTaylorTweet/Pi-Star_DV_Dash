@@ -913,7 +913,7 @@ else:
     <td align="left"><a class=tooltip2 href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
     <td align="left" colspan="2"><select name="confHardware">
                 <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyAMA0') { echo ' selected';}?> value="DVM-RPI">DV-Mega RPi Radio</option>
-                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyACM0' && $configdstar[dvmegaVariant] >= 1 ) { echo ' selected';}?> value="DVM-USB">DV-Mega USB Radio</option>
+                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyACM0' && $configdstar[dvmegaVariant] >= 1 ) { echo ' selected';}?> value="DVM-USB">ZUM / DV-Mega USB Radio</option>
                 <option<?php if ($configdstar['dvmegaVariant'] === '0') { echo ' selected';}?> value="DVM-GMSK">Bluestack / DV-Mega USB GMSK Modem</option>
                 <option<?php if ($configdstar['modemType'] === 'DV-RPTR V1') { echo ' selected';}?> value="DV-RPTR1">DV-RPTR V1</option>
                 <option<?php if ($configdstar['modemType'] === 'DV-RPTR V2') { echo ' selected';}?> value="DV-RPTR2">DV-RPTR V2</option>
