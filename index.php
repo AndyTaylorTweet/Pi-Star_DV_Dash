@@ -41,7 +41,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <div class="container">
 <div id="header">
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?>/<?php echo $version; ?></div>
-<h1>Pi-Star Digital Voice Node Dashboard for <?php echo $MYCALL; ?></h1>
+<h1>Pi-Star Digital Voice Dashboard for <?php echo $MYCALL; ?></h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
  <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
  <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
