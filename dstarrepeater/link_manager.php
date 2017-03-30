@@ -4,7 +4,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 if (!empty($_POST)):
 if (preg_match('/[^A-Z]/',$_POST["Link"])) { unset ($_POST["Link"]);}
 if ($_POST["Link"] == "LINK") {
-	if (preg_match('/[^A-Za-z0-9]/',$_POST["RefName"])) { unset ($_POST["RefName"]);}
+	if (preg_match('/[^A-Za-z0-9 ]/',$_POST["RefName"])) { unset ($_POST["RefName"]);}
 	if (preg_match('/[^A-Z]/',$_POST["Letter"])) { unset ($_POST["Letter"]);}
 	if (preg_match('/[^A-Z0-9 ]/',$_POST["Module"])) { unset ($_POST["Module"]);}
 	}
@@ -23,7 +23,6 @@ else {
 	$module = $_POST["Module"];
 
         if (strlen($module) != 8) {							//Fix the length of the module information
-		$module = str_replace(" ", "". $module);				//Remove whitespace
 		$moduleFixedCs = strlen($module) - 1;                                   //Length of the string, -1
                 $moduleFixedBand = substr($module, -1);                                 //Single Band Letter in the 8th position
                 $moduleFixedCallPad = str_pad(substr($module, 0, $moduleFixedCs), 7);   //Pad the callsign area to 7 chars
