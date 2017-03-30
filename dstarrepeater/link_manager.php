@@ -22,8 +22,9 @@ else {
 	$targetRef = strtoupper($targetRef);
 	$module = $_POST["Module"];
 
-        if (strlen($module) != 8) {                                                     //Fix the length of the module information
-                $moduleFixedCs= strlen($module) - 1;                                    //Length of the string, -1
+        if (strlen($module) != 8) {							//Fix the length of the module information
+		$module = str_replace(" ", "". $module);				//Remove whitespace
+		$moduleFixedCs = strlen($module) - 1;                                   //Length of the string, -1
                 $moduleFixedBand = substr($module, -1);                                 //Single Band Letter in the 8th position
                 $moduleFixedCallPad = str_pad(substr($module, 0, $moduleFixedCs), 7);   //Pad the callsign area to 7 chars
                 $module = $moduleFixedCallPad.$moduleFixedBand;                         //Re add the band information
