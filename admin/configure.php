@@ -143,6 +143,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
 	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
 	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
+	system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
@@ -693,6 +694,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
 	system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		//PiStar-UPnP Service
 	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
+	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
 
 	// Start Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
 	system('sudo systemctl start cron.service > /dev/null 2>/dev/null &');			//Cron
