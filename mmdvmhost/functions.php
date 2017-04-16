@@ -276,7 +276,7 @@ function getLastHeard($logLines) {
 	$heardList = getHeardList($logLines);
 	$counter = 0;
 	foreach ($heardList as $listElem) {
-		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || (startsWith($listElem[1], "DMR")) ) {
+		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || (startsWith($listElem[1], "DMR")) ) {
 			if(!(array_search($listElem[2]."#".$listElem[1].$listElem[3], $heardCalls) > -1)) {
 				array_push($heardCalls, $listElem[2]."#".$listElem[1].$listElem[3]);
 				array_push($lastHeard, $listElem);
