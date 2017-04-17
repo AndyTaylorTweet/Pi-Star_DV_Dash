@@ -450,7 +450,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	
 	// Set Talker Alias Option
 	if (empty($_POST['dmrTalkerAlias']) != TRUE ) {
-	  $configmmdvm['DMR Network']['EmbeddedLCOnly'] = escapeshellcmd($_POST['dmrTalkerAlias']);
+	  $configmmdvm['DMR']['EmbeddedLCOnly'] = escapeshellcmd($_POST['dmrTalkerAlias']);
 	}
 
 	// Set MMDVM Hang Time
