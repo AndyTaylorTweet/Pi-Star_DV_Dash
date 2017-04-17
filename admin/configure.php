@@ -447,6 +447,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['DMR Network']['Password'] = $dmrMasterHostArr[1];
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
 	}
+	
+	// Set Talker Alias Option
+	if (empty($_POST['dmrTalkerAlias']) != TRUE ) {
+	  $configmmdvm['DMR Network']['EmbeddedLCOnly'] = escapeshellcmd($_POST['dmrTalkerAlias']);
+	}
 
 	// Set MMDVM Hang Time
 	if (empty($_POST['hangTime']) != TRUE ) {
@@ -964,6 +969,12 @@ else:
 		else {echo "<option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
 	} ?>
     </select></td>
+    </tr>
+    <tr>
+    <td align="left"><a class=tooltip2 href="#">DMR Talker Alias:<span><b>DMR Talker Alias</b>Set your DMR Talker Alias here</span></a></td>
+    <td align="left">
+    <input type="radio" name="dmrTalkerAlias" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked';} ?>>Enabled
+    <input type="radio" name="dmrTalkerAlias" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked';} ?>>Disabled</td>
     </tr>
     </table>
     <input type="button" value="Apply Changes" onclick="submitform()" /><br />
