@@ -120,7 +120,7 @@ $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode not enabled.
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">P25 Network</th></tr>\n";
-echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesMMDVM, "P25")."</td></tr>\n";
+echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
 echo "</table>\n<br />\n";
 }
 ?>
