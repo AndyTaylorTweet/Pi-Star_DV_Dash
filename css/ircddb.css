@@ -23,7 +23,7 @@ body, font {
 
 #nav {
     display: inline-block;
-    max-width: 160px;
+    width: 160px;
     min-height: 500px;
     background: #242d31;
     font-weight: normal;
