@@ -113,7 +113,7 @@ function getYSFGatewayLog() {
 	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".date("Y-m-d").".log")) {
 		if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
 			while ($logLine = fgets($log)) {
-				if (startsWith($logLine,"D:")) {
+				if (startsWith($logLine,"M:")) {
 					array_push($logLines, $logLine);
 				}
 			}
