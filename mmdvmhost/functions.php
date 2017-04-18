@@ -123,6 +123,22 @@ function getYSFGatewayLog() {
 	return $logLines;
 }
 
+function getP25GatewayLog() {
+	// Open Logfile and copy loglines into LogLines-Array()
+	$logLines = array();
+	if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".date("Y-m-d").".log")) {
+		if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
+			while ($logLine = fgets($log)) {
+				if (startsWith($logLine,"M:")) {
+					array_push($logLines, $logLine);
+				}
+			}
+			fclose($log);
+		}
+	}
+	return $logLines;
+}
+
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // M: 2016-04-29 00:15:00.013 D-Star, received network header from DG9VH   /ZEIT to CQCQCQ   via DCS002 S
