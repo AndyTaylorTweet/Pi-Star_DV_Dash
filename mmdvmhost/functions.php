@@ -500,6 +500,32 @@ function getActualLink($logLines, $mode) {
             break;
          }
 
+    case "P25":
+	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
+	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+	// M: 2017-04-17 14:00:24.530 Linked at startup to reflector 10100
+	// M: 2017-04-17 14:00:42.170 Unlinked from reflector 10100 by W1MSG
+	// M: 2017-04-17 14:00:42.171 Linked to reflector 10200 by W1MSG
+	if (isProcessRunning("P25Gateway")) {
+	    foreach($logLines as $logLine) {
+               $to = "";
+               if (strpos($logLine,"Linked to")) {
+                  $to = substr($logLine, 47, 5);
+               }
+               if (strpos($logLine,"Linked at startup to")) {
+                  $to = substr($logLine, 58, 5);
+               }
+               if ($to !== "") {
+                  return "Linked to: ".$to;
+               }
+               if (strpos($logLine,"Starting P25Gateway")) {
+                  $to = "not linked";
+               }
+               if (strpos($logLine,"Unlinked")) {
+                  $to = "not linked";
+               }
+	}
+	break;		
 	}
 	return "something went wrong!";
 }
