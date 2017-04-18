@@ -265,10 +265,15 @@ function getHeardList($logLines) {
 				$ber = $ts2ber;
 				break;
 			case "YSF":
-                $duration = $ysfduration;
-                $loss = $ysfloss;
-                $ber = $ysfber;
-                break;
+                		$duration = $ysfduration;
+                		$loss = $ysfloss;
+                		$ber = $ysfber;
+                		break;
+			case "P25":
+                		$duration = $p25duration;
+                		$loss = $p25loss;
+                		$ber = $p25ber;
+                		break;
 		}
 		
 		// Callsign or ID should be less than 11 chars long, otherwise it could be errorneous
