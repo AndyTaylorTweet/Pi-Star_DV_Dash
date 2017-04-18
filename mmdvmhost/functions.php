@@ -484,7 +484,7 @@ function getActualLink($logLines, $mode) {
                   $to = substr($logLine, 51, 5);
                }
                if ($to !== "") {
-                  return "linked to: ".$to;
+                  return "Linked to: ".$to;
                }
                if (strpos($logLine,"Starting YSFGateway")) {
                   $to = "not linked";
