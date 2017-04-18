@@ -493,10 +493,10 @@ function getActualLink($logLines, $mode) {
                   $to = -1;
                }
             }
-            return $to;
+            return "Not Linked";
             break;
          } else {
-            return -2;
+            return "something went wrong!";
             break;
          }
 
