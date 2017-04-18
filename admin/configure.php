@@ -286,9 +286,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['selectedAPRSHost']) != TRUE ) {
 	  $rollAPRSHost = 'sudo sed -i "/aprsHostname=/c\\aprsHostname='.escapeshellcmd($_POST['selectedAPRSHost']).'" /etc/ircddbgateway';
 	  system($rollAPRSHost);
-	  $rollAPRSHostYSF = 'sudo sed -i "/Server=/c\\Server='.escapeshellcmd($_POST['selectedAPRSHost']).'" /etc/ysfgateway';
-	  system($rollAPRSHostYSF);
-
+	  $configysfgateway['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  }
 
 	// Set the Frequency for Duplex
