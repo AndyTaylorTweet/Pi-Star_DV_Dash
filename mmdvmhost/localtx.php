@@ -22,7 +22,7 @@ $counter = 0;
 $i = 0;
 for ($i = 0; $i < count($localTXList); $i++) {
 		$listElem = $localTXList[$i];
-		if ($listElem[5] == "RF" && ($listElem[1]=="D-Star" || startsWith($listElem[1], "DMR") || $listElem[1]=="YSF") || $listElem[1]=="P25")) {
+		if ($listElem[5] == "RF" && ($listElem[1]=="D-Star" || startsWith($listElem[1], "DMR") || $listElem[1]=="YSF" || $listElem[1]=="P25")) {
 			if ($counter <= 19) { //last 20 calls
 			echo"<tr>";
 			echo"<td align=\"left\">$listElem[0]</td>";
