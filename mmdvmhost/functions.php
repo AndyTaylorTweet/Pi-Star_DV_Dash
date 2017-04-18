@@ -524,6 +524,7 @@ function getActualLink($logLines, $mode) {
                if (strpos($logLine,"Unlinked")) {
                   $to = "not linked";
                }
+	    }
 	}
 	break;		
 	}
