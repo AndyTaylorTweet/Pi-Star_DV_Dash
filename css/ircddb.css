@@ -22,26 +22,26 @@ body, font {
 }
 
 #nav {
-    float: left;
+    display: inline-block;
     max-width: 160px;
     min-height: 500px;
     background: #242d31;
     font-weight: normal;
     margin: 0px;
     padding: 5px 5px 5px 5px;
+    vertical-align:top;
 }
 
 #content {
-    margin-left: 165px;
+    display: inline-block;
+    margin-top: 0px;
+    width: 638px;
     min-height: 500px;
     color: #000000;
     background: #ffffff;
     padding: 5px 5px 5px 5px;
-    overflow: hidden;
-/*
-    position: fixed;
-    bottom: 0;
-*/
+    overflow: hidden; 
+    vertical-align:top;
 }
 
 #contentwide {
