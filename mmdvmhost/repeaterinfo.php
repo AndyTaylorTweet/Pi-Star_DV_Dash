@@ -58,6 +58,18 @@ if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
         elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'DMR') {
                 echo "<td style=\"background:#f93;\">Listening DMR</td>";
                 }
+        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'YSF') {
+                echo "<td style=\"background:#4aa361;\">RX YSF</td>";
+                }
+        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'YSF') {
+                echo "<td style=\"background:#ff9;\">Listening YSF</td>";
+                }
+        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
+                echo "<td style=\"background:#4aa361;\">RX P25</td>";
+                }
+        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
+                echo "<td style=\"background:#f9f;\">Listening P25</td>";
+                }
         else {
                 echo "<td>".getActualMode($lastHeard, $mmdvmconfigs)."</td>";
                 }
