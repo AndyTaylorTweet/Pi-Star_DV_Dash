@@ -128,6 +128,14 @@ function getYSFGatewayLog() {
 // M: 2016-04-29 00:15:00.013 D-Star, received network header from DG9VH   /ZEIT to CQCQCQ   via DCS002 S
 // M: 2016-04-29 19:43:21.839 DMR Slot 2, received network voice header from DL1ESZ to TG 9
 // M: 2016-04-30 14:57:43.072 DMR Slot 2, received RF voice header from DG9VH to 5000
+// M: 2017-04-18 08:00:41.977 P25, received RF transmission from MW0MWZ to TG 10200
+// M: 2017-04-18 08:00:42.131 Debug: P25RX: pos/neg/centre/threshold 106 -105 0 106
+// M: 2017-04-18 08:00:42.135 Debug: P25RX: sync found in Ldu pos/centre/threshold 3986 9 104
+// M: 2017-04-18 08:00:42.312 Debug: P25RX: pos/neg/centre/threshold 267 -222 22 245
+// M: 2017-04-18 08:00:42.316 Debug: P25RX: sync found in Ldu pos/centre/threshold 3986 10 112
+// M: 2017-04-18 08:00:42.337 P25, received RF end of transmission, 0.4 seconds, BER: 0.0%
+// M: 2017-04-18 08:00:43.728 P25, received network transmission from 10999 to TG 10200
+// M: 2017-04-18 08:00:45.172 P25, network end of transmission, 1.8 seconds, 0% packet loss
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
 	$heardList = array();
@@ -210,6 +218,11 @@ function getHeardList($logLines) {
 						$ysfduration = $duration;
 						$ysfloss = $loss;
 						$ysfber = $ber;
+						break;
+					case "P25":
+						$p25duration = $duration;
+						$p25loss = $loss;
+						$p25ber = $ber;
 						break;
 				}
 			}
