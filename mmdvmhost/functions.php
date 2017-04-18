@@ -493,7 +493,7 @@ function getActualLink($logLines, $mode) {
                   $to = -1;
                }
             }
-            return -1;
+            return $to;
             break;
          } else {
             return -2;
