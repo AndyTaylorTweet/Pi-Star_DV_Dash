@@ -112,6 +112,7 @@ $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfig
 if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">YSF Network</th></tr>\n";
+echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualReflector($reverseLogLinesMMDVM, "YSF"), -10)."</td></tr>\n";
 echo "</table>\n<br />\n";
 }
 
@@ -119,6 +120,7 @@ $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode not enabled.
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">P25 Network</th></tr>\n";
+echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualReflector($reverseLogLinesMMDVM, "P25"), -10)."</td></tr>\n";
 echo "</table>\n<br />\n";
 }
 ?>
