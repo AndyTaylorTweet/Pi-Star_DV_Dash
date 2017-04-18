@@ -43,6 +43,18 @@ function getYSFGatewayConfig() {
 	return $conf;
 }
 
+function getP25GatewayConfig() {
+	// loads MMDVM.ini into array for further use
+	$conf = array();
+	if ($configs = fopen(P25GATEWAYINIPATH."/".P25GATEWAYINIFILENAME, 'r')) {
+		while ($config = fgets($configs)) {
+			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+		}
+		fclose($configs);
+	}
+	return $conf;
+}
+
 function getCallsign($mmdvmconfigs) {
 	// returns Callsign from MMDVM-config
 	return getConfigItem("General", "Callsign", $mmdvmconfigs);
