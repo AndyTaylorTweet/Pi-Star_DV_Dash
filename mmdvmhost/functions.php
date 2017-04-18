@@ -496,7 +496,7 @@ function getActualLink($logLines, $mode) {
             return "not linked";
             break;
          } else {
-            return "something went wrong!";
+            return "Service Not Started";
             break;
          }
 
@@ -528,7 +528,7 @@ function getActualLink($logLines, $mode) {
 	}
 	break;		
 	}
-	return "something went wrong!";
+	return "Service Not Started";
 }
 
 function getActualReflector($logLines, $mode) {
