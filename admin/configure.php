@@ -337,7 +337,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollBEACONTEXT = 'sudo sed -i "/beaconText=/c\\beaconText='.$confRPT1.'" /etc/dstarrepeater';
 	  $rollDVVARIANT = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant='.$confDVVariant.'" /etc/dstarrepeater';
 	  $rollIRCrepeaterBand1 = 'sudo sed -i "/repeaterBand1=/c\\repeaterBand1='.$confIRCrepeaterBand1.'" /etc/ircddbgateway';
-	  $rollIRCrepeaterCall1 = 'sudo sed -i "/repeaterCall1=/c\\repeaterCall1='.strtoupper(escapeshellcmd($_POST['confCallsign'])).'" /etc/ircddbgateway';
+	  $rollIRCrepeaterCall1 = 'sudo sed -i "/repeaterCall1=/c\\repeaterCall1='.$newCallsignUpper.'" /etc/ircddbgateway';
 
 	  system($rollRPT1);
 	  system($rollRPT2);
@@ -393,12 +393,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollBEACONTEXT = 'sudo sed -i "/beaconText=/c\\beaconText='.$confRPT1.'" /etc/dstarrepeater';
 	  $rollDVVARIANT = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant='.$confDVVariant.'" /etc/dstarrepeater';
 	  $rollIRCrepeaterBand1 = 'sudo sed -i "/repeaterBand1=/c\\repeaterBand1='.$confIRCrepeaterBand1.'" /etc/ircddbgateway';
+	  $rollIRCrepeaterCall1 = 'sudo sed -i "/repeaterCall1=/c\\repeaterCall1='.$newCallsignUpper.'" /etc/ircddbgateway';
 
 	  system($rollRPT1);
 	  system($rollRPT2);
 	  system($rollBEACONTEXT);
 	  system($rollDVVARIANT);
 	  system($rollIRCrepeaterBand1);
+	  system($rollIRCrepeaterCall1);
 	  }
 
 	// Set Callsign
