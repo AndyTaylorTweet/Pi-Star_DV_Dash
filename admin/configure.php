@@ -305,11 +305,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
+	  $configmmdvm['General']['Duplex'] = 1;
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
 	  system($rollFREQdvmegaRx);
 	  system($rollFREQdvmegaTx);
-
+	  
 	// Set RPT1 and RPT2
 	  if ($newFREQ >= 1240000000 && $newFREQ <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A"; $confDVVariant = 0;
@@ -361,6 +362,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
+	  $configmmdvm['General']['Duplex'] = 0;
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
 	  system($rollFREQdvmegaRx);
