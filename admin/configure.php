@@ -305,7 +305,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
-	  $configmmdvm['General']['Duplex'] = 1;
+	  
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
 	  system($rollFREQdvmegaRx);
@@ -362,7 +362,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
-	  $configmmdvm['General']['Duplex'] = 0;
+	  
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
 	  system($rollFREQdvmegaRx);
@@ -436,9 +436,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['trxMode']) != TRUE ) {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
 	    $configmmdvm['Info']['RXFrequency'] = $configmmdvm['Info']['TXFrequency'] - 1;
+	    $configmmdvm['General']['Duplex'] = 1;
 	    }
 	  if ($configmmdvm['Info']['RXFrequency'] !== $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "SIMPLEX" ) {
 	    $configmmdvm['Info']['RXFrequency'] = $configmmdvm['Info']['TXFrequency'];
+            $configmmdvm['General']['Duplex'] = 0;
 	    }
 	  }
 
