@@ -14,6 +14,18 @@ if ($configfile = fopen($gatewayConfigPath,'r')) {
         }
 
 }
+
+$configdstar = array();
+if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
+        while ($line1 = fgets($configdstarfile)) {
+		if (strpos($line1, '=') !== false) {
+                	list($key1,$value1) = split("=",$line1);
+                	$value1 = trim(str_replace('"','',$value1));
+                	if (strlen($value1) > 0)
+                	$configdstar[$key1] = $value1;
+		}
+        }
+}
 ?>
 
 <table>
