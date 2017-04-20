@@ -97,8 +97,8 @@ if ( $testMMDVModeDSTAR == 1 ) { //Hide the D-Star Reflector information when D-
 echo "<br />\n";
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">D-Star Repeater</th></tr>\n";
-echo "<tr><th>RPT1</th><td style=\"background: #ffffff;\">".$configs['gatewayCallsign']." ".$configs['repeaterBand1']."</td></tr>\n";
-echo "<tr><th>RPT2</th><td style=\"background: #ffffff;\">".$configs['gatewayCallsign']." G</td></tr>\n";
+echo "<tr><th>RPT1</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configdstar['callsign'])."</td></tr>\n";
+echo "<tr><th>RPT2</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configdstar['gateway'])." G</td></tr>\n";
 echo "<tr><th colspan=\"2\">D-Star Network</th></tr>\n";
 echo "<tr><th>APRS</th><td style=\"background: #ffffff;\">".substr($configs['aprsHostname'], 0, 16)."</td></tr>\n";
 echo "<tr><th>IRC</th><td style=\"background: #ffffff;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
