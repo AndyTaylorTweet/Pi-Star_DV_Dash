@@ -80,7 +80,7 @@ if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
 </table>
 
 <?php
-$testMMDVModeDSTAR = getConfigItem("D-Star Network", "Enable", $mmdvmconfigs);
+$testMMDVModeDSTAR = getConfigItem("D-Star", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeDSTAR == 1 ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
 echo "<br />\n";
 echo "<table>\n";
