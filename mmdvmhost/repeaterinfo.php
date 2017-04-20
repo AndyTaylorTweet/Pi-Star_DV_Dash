@@ -84,6 +84,9 @@ $testMMDVModeDSTAR = getConfigItem("D-Star Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeDSTAR == 1 ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
 echo "<br />\n";
 echo "<table>\n";
+echo "<tr><th colspan=\"2\">D-Star Repeater</th></tr>\n";
+echo "<tr><th>RPT1</th><td style=\"background: #ffffff;\">".$configs['gatewayCallsign']."</td></tr>\n";
+echo "<tr><th>RPT1</th><td style=\"background: #ffffff;\">".$configs['repeaterCall1'].$configs['repeaterBand1']."</td></tr>\n";
 echo "<tr><th colspan=\"2\">D-Star Network</th></tr>\n";
 echo "<tr><th>APRS</th><td style=\"background: #ffffff;\">".substr($configs['aprsHostname'], 0, 16)."</td></tr>\n";
 echo "<tr><th>IRC</th><td style=\"background: #ffffff;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
