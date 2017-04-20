@@ -78,23 +78,24 @@ if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
 <tr><th>Tx</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $mmdvmconfigs)); ?></td></tr>
 <tr><th>Rx</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $mmdvmconfigs)); ?></td></tr>
 </table>
-<br />
 
 <?php
 $testMMDVModeDSTAR = getConfigItem("D-Star Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeDSTAR == 1 ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
+echo "<br />\n";
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">D-Star Network</th></tr>\n";
 echo "<tr><th>APRS</th><td style=\"background: #ffffff;\">".substr($configs['aprsHostname'], 0, 16)."</td></tr>\n";
 echo "<tr><th>IRC</th><td style=\"background: #ffffff;\">".substr($configs['ircddbHostname'], 0 ,16)."</td></tr>\n";
 echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesMMDVM, "D-Star")."</td></tr>\n";
-echo "</table>\n<br />\n";
+echo "</table>\n";
 }
 
 $testMMDVModeDMR = getConfigItem("DMR", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeDMR == 1 ) { //Hide the DMR information when DMR mode not enabled.
 $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
 if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
+echo "<br />\n";
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">DMR Master</th></tr>\n";
 if (getEnabled("DMR Network", $mmdvmconfigs) == 1) { echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost."</td></tr>\n"; } else { echo "<tr><td colspan=\"2\" style=\"background:#606060; color:#b0b0b0;\">No DMR Network</td></tr>\n"; }
@@ -105,22 +106,24 @@ if (getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == 1) { echo "<tr><td s
 echo "<tr><th>TS2</th>";
 if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) == 1) { echo "<td style=\"background:#0b0;\">enabled</td></tr>\n"; } else { echo "<td style=\"background:#606060; color:#b0b0b0;\">disabled</td></tr>\n"; }
 if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) == 1) { echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"; }
-echo "</table>\n<br />\n";
+echo "</table>\n";
 }
 
 $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
+echo "<br />\n";
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">YSF Network</th></tr>\n";
 echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesYSFGateway, "YSF")."</td></tr>\n";
-echo "</table>\n<br />\n";
+echo "</table>\n";
 }
 
 $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode not enabled.
+echo "<br />\n";
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">P25 Network</th></tr>\n";
 echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
-echo "</table>\n<br />\n";
+echo "</table>\n";
 }
 ?>
