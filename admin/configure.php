@@ -937,11 +937,23 @@ else:
                 <option<?php if ($configdstar['modemType'] === 'DVAP') { echo ' selected';}?> value="DVAP">DVAP</option>
     </select></td>
     </tr>
+    <tr>
     <td align="left"><a class=tooltip2 href="#">Node Type:<span><b>Node Lock</b>Set the public / private<br />node type. Public should<br />only be used with the correct<br />licence.</span></a></td>
     <td align="left" colspan="2">
     <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked';} ?>>Private
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked';} ?>>Public</td>
     </tr>
+    <tr>
+    <td align="left"><a class=tooltip2 href="#">Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
+    <td style="text-align: left;"><select name="systemTimezone">
+<?php
+  $txList = explode(PHP_EOL, system('timedatectl list-timezones'));
+    foreach ($txList as $timeZone) {
+      echo "      <option value=".$timeZone."</option>\n";
+    }
+?>
+    </select></td>
+    </tr>	
     </table>
     <input type="button" value="Apply Changes" onclick="submitform()" /><br />
 <br />
