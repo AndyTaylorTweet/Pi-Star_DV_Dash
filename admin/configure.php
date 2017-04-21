@@ -710,6 +710,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
 	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
 
+	// Set the system timezone
+	$rollTimeZone = 'sudo timedatectl '.set-timezone escapeshellcmd($_POST['systemTimezone'];
+	system($rollTimeZone);
+									
 	// Start Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
 	system('sudo systemctl start cron.service > /dev/null 2>/dev/null &');			//Cron
 
@@ -944,7 +948,7 @@ else:
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked';} ?>>Public</td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
+    <td align="left"><a class=tooltip2 href="#">System Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
     <td style="text-align: left;" colspan="2"><select name="systemTimezone">
 <?php
   exec('timedatectl list-timezones', $tzList);
