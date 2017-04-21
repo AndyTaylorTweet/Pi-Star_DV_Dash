@@ -9,7 +9,7 @@ $localTXList = $lastHeard;
 <b>Last 20 calls that accessed this Gateway</b>
   <table>
     <tr>
-      <th><a class="tooltip" href="#">Time (UTC)<span><b>Time in UTC time zone</b></span></a></th>
+      <th><a class="tooltip" href="#">Time (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#">Mode<span><b>Transmitted Mode</b></span></a></th>
       <th><a class="tooltip" href="#">Callsign<span><b>Callsign</b></span></a></th>
       <th><a class="tooltip" href="#">Target<span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
@@ -24,8 +24,14 @@ for ($i = 0; $i < count($localTXList); $i++) {
 		$listElem = $localTXList[$i];
 		if ($listElem[5] == "RF" && ($listElem[1]=="D-Star" || startsWith($listElem[1], "DMR") || $listElem[1]=="YSF" || $listElem[1]=="P25")) {
 			if ($counter <= 19) { //last 20 calls
+				$utc_time = $listElem[0];
+                        	$utc_tz =  new DateTimeZone('UTC');
+                        	$local_tz = new DateTimeZone(date_default_timezone_get ());
+                        	$dt = new DateTime($utc_time, $utc_tz);
+                        	$dt->setTimeZone($local_tz);
+                        	$local_time = $dt->format('Y-m-d H:i:s');
 			echo"<tr>";
-			echo"<td align=\"left\">$listElem[0]</td>";
+			echo"<td align=\"left\">$local_time</td>";
 			echo"<td align=\"left\">$listElem[1]</td>";
 			if ($listElem[3] && $listElem[3] != '    ' ) {
 				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
