@@ -26,7 +26,7 @@ if (exec('grep "CCS link" '.$linkLogPath.' | wc -l') >=1) {
     <th><a class=tooltip href="#">Linked to<span><b>Actual link status</b></span></a></th>
     <th><a class=tooltip href="#">Protocol<span><b>Protocol</b></span></a></th>
     <th><a class=tooltip href="#">Direction<span><b>Direction</b>incoming or outgoing</span></a></th>
-    <th><a class=tooltip href="#">Last Change (UTC)<span><b>Timestamp of last change</b>UTC</span></a></th>
+    <th><a class=tooltip href="#">Last Change (<?php echo date('T')?>)<span><b>Timestamp of last change</b><?php echo date('T')?></span></a></th>
     </tr>
 <?php
 
@@ -36,7 +36,13 @@ if (exec('grep "CCS link" '.$linkLogPath.' | wc -l') >=1) {
 	while ($linkLine = fgets($linkLog)) {
 // 2013-02-27 19:49:27: CCS link - Rptr: DB0LJ  B Remote: DL5DI    Dir: Incoming
            if(preg_match_all('/^(.{19}).*(C[A-Za-z]*).*Rptr: (.{8}).*Remote: (.{8}).*Dir: (.{8})$/',$linkLine,$linx) > 0){
-                $linkDate = $linx[1][0];
+		$utc_time = $linx[1][0];
+                $utc_tz =  new DateTimeZone('UTC');
+                $local_tz = new DateTimeZone(date_default_timezone_get ());
+                $dt = new DateTime($utc_time, $utc_tz);
+                $dt->setTimeZone($local_tz);
+                $local_time = $dt->format('Y-m-d H:i:s');
+		$linkDate = $local_time;
                 $linkType = $linx[2][0];
                 $linkRptr = $linx[3][0];
                 $linkRem = $linx[4][0];
