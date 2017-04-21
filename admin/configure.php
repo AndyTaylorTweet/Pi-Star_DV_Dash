@@ -950,7 +950,7 @@ else:
   exec('timedatectl list-timezones', $tzList);
   exec('cat /etc/timezone', $tzCurrent);
     foreach ($tzList as $timeZone) {
-      if ($timeZone == $tzCurrent[1]) { echo "      <option selected value=\"".$timeZone."\">".$timeZone."</option>\n"; }
+      if ($timeZone == $tzCurrent[0]) { echo "      <option selected value=\"".$timeZone."\">".$timeZone."</option>\n"; }
       else { echo "      <option value=\"".$timeZone."\">".$timeZone."</option>\n"; }
     }
 ?>
