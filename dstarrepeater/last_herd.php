@@ -17,12 +17,12 @@ $MYCALL=strtoupper($callsign);
     <b>Last 20 calls heard via this Gateway</b>
     <table>
     <tr>
-    <th><a class=tooltip href="#">Date & Time (UTC)</a></th>
+    <th><a class=tooltip href="#">Date &amp; Time (<?php echo date('T')?>)</a></th>
     <th><a class=tooltip href="#">Call</a></th>
     <th><a class=tooltip href="#">Your Call</a></th>
     <th><a class=tooltip href="#">Repeater 1</a></th>
     <th><a class=tooltip href="#">Repeater 2</a></th>
-    </th>
+    </tr>
 <?php
 // Headers.log sample:
 // 0000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
@@ -45,7 +45,13 @@ $MYCALL=strtoupper($callsign);
                 $YourCall = str_replace(' ', '&nbsp;', substr($linx[3][0],0,8));
                 $Rpt1 = str_replace(' ', '&nbsp;', substr($linx[4][0],0,8));
                 $Rpt2 = str_replace(' ', '&nbsp;', substr($linx[5][0],0,8));
-		print "<td align=left>$QSODate</td>";
+		    $utc_time = $QSODate;
+                    $utc_tz =  new DateTimeZone('UTC');
+                    $local_tz = new DateTimeZone(date_default_timezone_get ());
+                    $dt = new DateTime($utc_time, $utc_tz);
+                    $dt->setTimeZone($local_tz);
+                    $local_time = $dt->format('Y-m-d H:i:s');
+		print "<td align=left>$local_time</td>";
 		print "<td align=left width=180><a href=\"http://www.qrz.com/db/$MyCall\" target=\"_blank\" alt=\"Lookup Callsign\">$MyCall</a>";
 		if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
                 print "<td align=left width=100>$YourCall</td>";
