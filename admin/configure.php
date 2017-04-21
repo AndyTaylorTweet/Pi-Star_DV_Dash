@@ -711,7 +711,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
 
 	// Set the system timezone
-	$rollTimeZone = 'sudo timedatectl '.set-timezone escapeshellcmd($_POST['systemTimezone'];
+	$rollTimeZone = 'sudo timedatectl set-timezone '.escapeshellcmd($_POST['systemTimezone']);
 	system($rollTimeZone);
 									
 	// Start Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
