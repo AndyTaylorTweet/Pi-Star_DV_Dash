@@ -947,7 +947,7 @@ else:
     <td align="left"><a class=tooltip2 href="#">Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
     <td style="text-align: left;" colspan="2"><select name="systemTimezone">
 <?php
-  $txList = explode("\n", system('timedatectl list-timezones'));
+  $txList = array(explode("\n", system('timedatectl list-timezones')));
     foreach ($txList as $timeZone) {
       echo "      <option value=\"".$timeZone."\">".$timeZone."</option>\n";
     }
