@@ -25,7 +25,7 @@ $MYCALL=strtoupper($callsign);
     <th><a class=tooltip href="#">Linked to<span><b>linked destination</b></span></a></th>
     <th><a class=tooltip href="#">Mode<span><b>Mode or Protocol used</b></span></a></th>
     <th><a class=tooltip href="#">Direction<span><b>Direction</b>incoming or outgoing</span></a></th>
-    <th><a class=tooltip href="#">Last Change (UTC)<span><b>Timestamp of last change</b>UTC</span></a></th>
+    <th><a class=tooltip href="#">Last Change (<?php echo date('T')?>)<span><b>Timestamp of last change</b><?php echo date('T')?></span></a></th>
     </tr>
 
 <?php
@@ -80,7 +80,13 @@ $MYCALL=strtoupper($callsign);
 			    print "<td>".str_replace(' ', '&nbsp;', substr($linkRefl,0,8))."</td>";
 			    print "<td>$protocol</td>";
 			    print "<td>Outgoing</td>";
-			    print "<td>$linkDate</td>";
+				$utc_time = $linkDate;
+                        	$utc_tz =  new DateTimeZone('UTC');
+                        	$local_tz = new DateTimeZone(date_default_timezone_get ());
+                        	$dt = new DateTime($utc_time, $utc_tz);
+                        	$dt->setTimeZone($local_tz);
+                        	$local_time = $dt->format('Y-m-d H:i:s');
+			    print "<td>$local_time</td>";
 			    print "</tr>\n";
                     	    $tr = 0;
 			}
@@ -118,7 +124,13 @@ $MYCALL=strtoupper($callsign);
 			    print "<td>".str_replace(' ', '&nbsp;', substr($linkRefl,0,8))."</td>";
 			    print "<td>$protocol</td>";
 			    print "<td>Incoming</td>";
-			    print "<td>$linkDate</td>";
+				$utc_time = $linkDate;
+                        	$utc_tz =  new DateTimeZone('UTC');
+                        	$local_tz = new DateTimeZone(date_default_timezone_get ());
+                        	$dt = new DateTime($utc_time, $utc_tz);
+                        	$dt->setTimeZone($local_tz);
+                        	$local_time = $dt->format('Y-m-d H:i:s');
+			    print "<td>$local_time</td>";
 			    print "</tr>\n";
                     	    $tr = 0;
             		}
