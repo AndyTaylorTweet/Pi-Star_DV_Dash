@@ -36,12 +36,12 @@ if (exec('grep "CCS link" '.$linkLogPath.' | wc -l') >=1) {
 	while ($linkLine = fgets($linkLog)) {
 // 2013-02-27 19:49:27: CCS link - Rptr: DB0LJ  B Remote: DL5DI    Dir: Incoming
            if(preg_match_all('/^(.{19}).*(C[A-Za-z]*).*Rptr: (.{8}).*Remote: (.{8}).*Dir: (.{8})$/',$linkLine,$linx) > 0){
-		$utc_time = $linx[1][0];
-                $utc_tz =  new DateTimeZone('UTC');
-                $local_tz = new DateTimeZone(date_default_timezone_get ());
-                $dt = new DateTime($utc_time, $utc_tz);
-                $dt->setTimeZone($local_tz);
-                $local_time = $dt->format('Y-m-d H:i:s');
+		  $utc_time = $linx[1][0];
+                  $utc_tz =  new DateTimeZone('UTC');
+                  $local_tz = new DateTimeZone(date_default_timezone_get ());
+                  $dt = new DateTime($utc_time, $utc_tz);
+                  $dt->setTimeZone($local_tz);
+                  $local_time = $dt->format('Y-m-d H:i:s');
 		$linkDate = $local_time;
                 $linkType = $linx[2][0];
                 $linkRptr = $linx[3][0];
