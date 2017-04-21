@@ -948,9 +948,10 @@ else:
     <td style="text-align: left;" colspan="2"><select name="systemTimezone">
 <?php
   exec('timedatectl list-timezones', $tzList);
-  //$tzList = array(explode("\n", system('timedatectl list-timezones')));
+  exec('cat /etc/timezone', $tzCurrent);
     foreach ($tzList as $timeZone) {
-      echo "      <option value=\"".$timeZone."\">".$timeZone."</option>\n";
+      if ($timeZone == $tzCurrent[1]) { echo "      <option selected value=\"".$timeZone."\">".$timeZone."</option>\n"; }
+      else { echo "      <option value=\"".$timeZone."\">".$timeZone."</option>\n"; }
     }
 ?>
     </select></td>
