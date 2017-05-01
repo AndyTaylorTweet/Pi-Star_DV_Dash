@@ -65,6 +65,11 @@ body, font {
     -webkit-border-radius: 0 0 10px 10px;
 }
 
+#tail {
+   height: 400px;
+   overflow-y: scroll;
+}
+
 table {
     vertical-align: middle;
     text-align: center;
