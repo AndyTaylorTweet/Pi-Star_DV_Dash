@@ -66,8 +66,10 @@ body, font {
 }
 
 #tail {
-   height: 400px;
-   overflow-y: scroll;
+    height: 400px;
+    overflow-y: scroll;
+    color: #00ff00;
+    background: #000000;
 }
 
 table {
