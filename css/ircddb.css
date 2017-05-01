@@ -67,7 +67,7 @@ body, font {
 
 #tail {
     height: 450px;
-    width: 810px;
+    width: 800px;
     overflow-y: scroll;
     overflow-x: scroll;
     color: #00ff00;
