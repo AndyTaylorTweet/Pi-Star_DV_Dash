@@ -107,8 +107,8 @@ function showMode($mode, $mmdvmconfigs) {
 function getMMDVMLog() {
 	// Open Logfile and copy loglines into LogLines-Array()
 	$logLines = array();
-	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log")) {
-		if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
+	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+		if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
 			while ($logLine = fgets($log)) {
 				if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
 					array_push($logLines, $logLine);
@@ -123,8 +123,8 @@ function getMMDVMLog() {
 function getYSFGatewayLog() {
 	// Open Logfile and copy loglines into LogLines-Array()
 	$logLines = array();
-	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".date("Y-m-d").".log")) {
-		if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
+	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+		if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
 			while ($logLine = fgets($log)) {
 				if (startsWith($logLine,"M:")) {
 					array_push($logLines, $logLine);
@@ -139,8 +139,8 @@ function getYSFGatewayLog() {
 function getP25GatewayLog() {
 	// Open Logfile and copy loglines into LogLines-Array()
 	$logLines = array();
-	if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".date("Y-m-d").".log")) {
-		if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
+	if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+		if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
 			while ($logLine = fgets($log)) {
 				if (startsWith($logLine,"M:")) {
 					array_push($logLines, $logLine);
