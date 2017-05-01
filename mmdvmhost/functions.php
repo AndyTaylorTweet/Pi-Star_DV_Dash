@@ -121,7 +121,7 @@ function getMMDVMLog() {
 		}
 	}
 	return $logLines;
-	date_default_timezone_set($localTz);
+	date_default_timezone_set("$localTz");
 }
 
 function getYSFGatewayLog() {
