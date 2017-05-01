@@ -108,13 +108,15 @@ function showMode($mode, $mmdvmconfigs) {
 function getMMDVMLog() {
 	// Open Logfile and copy loglines into LogLines-Array()
 	$logLines = array();
-	if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
-		while ($logLine = fgets($log)) {
-			if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
-				array_push($logLines, $logLine);
+	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log")) {
+		if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
+			while ($logLine = fgets($log)) {
+				if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
+					array_push($logLines, $logLine);
+				}
 			}
+			fclose($log);
 		}
-		fclose($log);
 	}
 	return $logLines;
 }
