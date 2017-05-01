@@ -50,6 +50,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
       $.repeat(1000, function() {
         $.get('/admin/update.php?ajax', function(data) {
           $('#tail').append(data);
+          var objDiv = document.getElementById("tail");
+          objDiv.scrollTop = objDiv.scrollHeight;
         });
       });
     });
