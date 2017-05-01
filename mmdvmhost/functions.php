@@ -1,5 +1,4 @@
 <?php
-
 function getMMDVMHostVersion() {
 	// returns creation-time of MMDVMHost as version-number
 	$filename = MMDVMHOSTPATH."/MMDVMHost";
@@ -106,6 +105,8 @@ function showMode($mode, $mmdvmconfigs) {
 }
 
 function getMMDVMLog() {
+	$localTz = date_default_timezone_get();
+	date_default_timezone_set('UTC');
 	// Open Logfile and copy loglines into LogLines-Array()
 	$logLines = array();
 	$datePlus1 = strtotime("+1 day");
@@ -120,6 +121,7 @@ function getMMDVMLog() {
 		}
 	}
 	return $logLines;
+	date_default_timezone_set($localTz);
 }
 
 function getYSFGatewayLog() {
