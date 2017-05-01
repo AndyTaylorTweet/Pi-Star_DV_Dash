@@ -109,17 +109,7 @@ function getMMDVMLog() {
 	// Open Logfile and copy loglines into LogLines-Array()
 	$logLines = array();
 	$datePlus1 = strtotime("+1 day");
-	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".datePlus1("Y-m-d").".log")) {
-		if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".datePlus1("Y-m-d").".log", 'r')) {
-			while ($logLine = fgets($log)) {
-				if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
-					array_push($logLines, $logLine);
-				}
-			}
-			fclose($log);
-		}
-	}
-	else if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log")) {
+	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log")) {
 		if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".date("Y-m-d").".log", 'r')) {
 			while ($logLine = fgets($log)) {
 				if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
