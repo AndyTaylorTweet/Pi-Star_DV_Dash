@@ -67,7 +67,9 @@ body, font {
 
 #tail {
     height: 450px;
+    width: 810px;
     overflow-y: scroll;
+    overflow-x: scroll;
     color: #00ff00;
     background: #000000;
 }
