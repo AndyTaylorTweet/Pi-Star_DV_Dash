@@ -35,6 +35,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <title><?php echo "$MYCALL" ?> Hotspot Dashboard</title>
     <link rel="stylesheet" type="text/css" media="screen and (min-width: 820px)" href="css/ircddb.css" />
     <link rel="stylesheet" type="text/css" media="screen and (max-width: 819px)" href="css/mini_ircddb.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 800px)" href="css/mini_ircddb.css" />
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/functions.js"></script>
 </head>
