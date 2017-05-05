@@ -37,6 +37,7 @@ body, font {
     background: #ffffff;
     padding: 5px 5px 5px 5px;
     overflow: hidden;
+    font-size: 9px;
 }
 
 #contentwide {
@@ -44,6 +45,7 @@ body, font {
     background: #ffffff;
     padding: 5px 5px 5px 5px;
     overflow: hidden;
+    font-size: 9px;
 }
 
 #footer {
