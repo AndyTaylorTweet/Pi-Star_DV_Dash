@@ -33,7 +33,8 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <meta name="Description" content="Pi-Star Dashboard" />
     <meta name="KeyWords" content="MW0MWZ,MMDVMHost,ircDDBGateway,D-Star,ircDDB,Pi-Star,Blackwood,Wales,DL5DI,DG9VH" />
     <title><?php echo "$MYCALL" ?> Hotspot Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (min-device-width: 820px)" href="css/ircddb.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 819px)" href="css/mini_ircddb.css" />
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/functions.js"></script>
 </head>
