@@ -22,10 +22,10 @@ body, font {
 }
 
 #nav {
-    display: inline-block;
+    display: none;
     width: 160px;
     min-height: 500px;
-    background: #ff0000;
+    background: #242d31;
     font-weight: normal;
     margin: 0px;
     padding: 5px 5px 5px 5px;
@@ -33,15 +33,10 @@ body, font {
 }
 
 #content {
-    display: inline-block;
-    margin-top: 0px;
-    width: 635px;
-    min-height: 500px;
     color: #000000;
     background: #ffffff;
     padding: 5px 5px 5px 5px;
-    overflow: hidden; 
-    vertical-align:top;
+    overflow: hidden;
 }
 
 #contentwide {
