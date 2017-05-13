@@ -49,7 +49,7 @@ function CheckSSID(ssid) {
 }
 
 function CheckPSK(psk) {
-	if(psk.value.length < 8) { 
+	if(psk.value.length > 0 && psk.value.length < 8) {
 		psk.style.background='#FFD0D0';
 		document.getElementById('Save').disabled = true;
 	} else {
