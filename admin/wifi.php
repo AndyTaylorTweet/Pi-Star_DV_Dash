@@ -141,8 +141,8 @@ Signal Level : ' . $strSignalLevel . '<br />
 <form method="POST" action="'.$_SERVER['PHP_SELF'].'?page=wpa_conf" id="wpa_conf_form"><input type="hidden" id="Networks" name="Networks" /><div class="network" id="networkbox">';
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
 			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids.' <input type="button" value="Delete" onClick="DeleteNetwork('.$ssids.')" /></span><br />
-<span class="tableft" id="lssid0">SSID :</span><input type="text" id="ssid0" name="ssid'.$ssids.'" value="'.$ssid[$ssids].'" onkeyup="CheckSSID(this)" /><br />
-<span class="tableft" id="lpsk0">PSK :</span><input type="password" id="psk0" name="psk'.$ssids.'" value="'.$psk[$ssids].'" onkeyup="CheckPSK(this)" /><br /><br /></div>';
+<span class="tableft" id="lssid'.$ssids.'">SSID :</span><input type="text" id="ssid'.$ssids.'" name="ssid'.$ssids.'" value="'.$ssid[$ssids].'" onkeyup="CheckSSID(this)" /><br />
+<span class="tableft" id="lpsk'.$ssids.'">PSK :</span><input type="password" id="psk'.$ssids.'" name="psk'.$ssids.'" value="'.$psk[$ssids].'" onkeyup="CheckPSK(this)" /><br /><br /></div>';
 		}
 		$output .= '</div><div class="infobox"><input type="submit" value="Scan for Networks (10 secs)" name="Scan" /><input type="button" value="Add Network" onClick="AddNetwork();" /><input type="submit" value="Save (and connect)" name="SaveWPAPSKSettings" onmouseover="UpdateNetworks(this)" />
 </form></div>';
@@ -160,7 +160,8 @@ update_config=1
 			$network = '';
 			$ssid = escapeshellarg($_POST['ssid'.$x]);
 			$psk = escapeshellarg($_POST['psk'.$x]);
-			exec('wpa_passphrase '.$ssid.' '.$psk,$network);
+			if ($ssid && !$_POST['psk'.$x]) { exec('echo "network={\n\tssid=\"'.$ssid.'\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n}"',$network); }
+                        elseif ($ssid && $psk) { exec('wpa_passphrase '.$ssid.' '.$psk,$network); }
 			foreach($network as $b) {
 				$config .= "$b"."\n";
 			}
@@ -173,6 +174,7 @@ update_config=1
 				echo "<br />\n";
 				echo "Wifi Settings Updated Successfully\n";
 				system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0',$returnval);
+				header("Refresh:1");
 			} else {
 				echo "Wifi settings failed to be updated";
 			}
