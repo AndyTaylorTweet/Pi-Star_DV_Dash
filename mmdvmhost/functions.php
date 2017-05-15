@@ -339,9 +339,12 @@ function getLastHeard($logLines) {
 
 function getActualMode($metaLastHeard, $mmdvmconfigs) {
 	// returns mode of repeater actual working in
-	$listElem = $metaLastHeard[0];
-	$timestamp = new DateTime($listElem[0]);
-	$mode = $listElem[1];
+        $utc_tz =  new DateTimeZone('UTC');
+        $local_tz = new DateTimeZone(date_default_timezone_get ());
+        $listElem = $metaLastHeard[0];
+        $timestamp = new DateTime($listElem[0], $utc_tz);
+        $timestamp->setTimeZone($local_tz); 
+        $mode = $listElem[1];
 	if (startsWith($mode, "DMR")) {
 		$mode = "DMR";
 	}
