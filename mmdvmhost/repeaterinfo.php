@@ -55,8 +55,8 @@ if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
         if (getActualMode($lastHeard, $mmdvmconfigs) === 'idle') {
                 echo "<td style=\"background:#0b0; color:#030;\">Listening</td>";
                 }
-        elseif (getActualMode($lastHeard, $mmdvmconfigs) === null) {
-                echo "<td style=\"background:#606060; color:#b0b0b0;\">OFFLINE</td>";
+        elseif (getActualMode($lastHeard, $mmdvmconfigs) === NULL) {
+                exec ("pgrep MMDVMHost", $mmdvmhostpid); if (!empty($mmdvmhostpid)) { echo "<td style=\"background:#0b0; color:#030;\">Listening</td>"; } else { echo "<td style=\"background:#606060; color:#b0b0b0;\">OFFLINE</td>"; }
                 }
         elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'D-Star') {
                 echo "<td style=\"background:#4aa361;\">RX D-Star</td>";
