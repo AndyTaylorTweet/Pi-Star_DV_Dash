@@ -89,6 +89,10 @@ if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
 ?></tr>
 <tr><th>Tx</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $mmdvmconfigs)); ?></td></tr>
 <tr><th>Rx</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $mmdvmconfigs)); ?></td></tr>
+<?php
+if (getDVModemFirmware()) {
+echo '<tr><th>FW</th><td style="background: #ffffff;">'.getDVModemFirmware().'</td></tr>'."\n";
+} ?>
 </table>
 
 <?php
