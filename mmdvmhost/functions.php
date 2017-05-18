@@ -152,6 +152,35 @@ function getP25GatewayLog() {
 	return $logLines;
 }
 
+function getMMDVMLogInfo() {
+        $logLinesInfo = array();
+        if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+                if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
+                        while ($logLineInfo = fgets($log)) {
+                                if (startsWith($logLineInfo,"I:")) {
+                                        array_push($logLinesInfo, $logLineInfo);
+                                }
+                        }
+                        fclose($log);
+                }
+        }
+        return $logLinesInfo;
+}
+
+// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
+// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+// I: 2017-05-18 07:03:43.365 MMDVM protocol version: 1, description: DVMEGA HR3.14
+function getDVModemFirmware() {
+        $logLinesInfo = getMMDVMLogInfo();
+        $modemFirmware = "";
+        foreach ($logLinesInfo as $logLine) {
+                if(strpos($logLine,"MMDVM protocol version")) {
+                        $modemFirmware = substr($logLine, 67, 15);
+                }
+        }
+        return $modemFirmware;
+}
+
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // M: 2016-04-29 00:15:00.013 D-Star, received network header from DG9VH   /ZEIT to CQCQCQ   via DCS002 S
