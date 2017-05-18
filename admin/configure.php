@@ -418,10 +418,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollTIMESERVERcall = 'sudo sed -i "/callsign=/c\\callsign='.$newCallsignUpper.'" /etc/timeserver';
 	  $rollSTARNETSERVERcall = 'sudo sed -i "/callsign=/c\\callsign='.$newCallsignUpper.'" /etc/starnetserver';
 	  $rollSTARNETSERVERirc = 'sudo sed -i "/ircddbUsername=/c\\ircddbUsername='.$newCallsignUpper.'" /etc/starnetserver';
+	  $rollP25GATEWAY = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/p25gateway';
 
 	  $configmmdvm['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['General']['Callsign'] = $newCallsignUpper;
-	  $configp25gateway['General']['Callsign'] = $newCallsignUpper;
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -430,9 +430,23 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollTIMESERVERcall);
 	  system($rollSTARNETSERVERcall);
 	  system($rollSTARNETSERVERirc);
+	  system($rollP25GATEWAY);
 
 	}
 
+	// Set the P25 Startup Host
+	if (empty($_POST['p25StartupHost']) != TRUE ) {
+	  $newP25StartupHost = strtoupper(escapeshellcmd($_POST['p25StartupHost']));
+	  $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway';
+	  system($rollP25Startup);
+	}
+	
+	// Set the YSF Startup Host
+	if (empty($_POST['ysfStartupHost']) != TRUE ) {
+	  $newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
+	  $configysfgateway['Network']['Startup'] = $newYSFStartupHost;
+	}
+	
 	// Set Duplex
 	if (empty($_POST['trxMode']) != TRUE ) {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
