@@ -992,7 +992,7 @@ else:
     </tr>
 <?php
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Dashboard Link:<span><b>BrandMeister Dashboard</b>Direct link to your BrandMeister Dashboard</span></a></td>
+    <td align="left"><a class=tooltip2 href="#">DMR Dashboard Link:<span><b>BrandMeister Dashboard</b>Direct link to your BrandMeister<br> Dashboard for this<br> node</span></a></td>
     <td style="text-align: left;"><a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'</a></td>
     </tr>'."\n";}
 ?>
