@@ -647,6 +647,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	echo "</table>\n";
 
 	// MMDVMHost config file wrangling
+	$mmdvmContent = "";
 	foreach($configmmdvm as $mmdvmSection=>$mmdvmValues) {
 		// UnBreak special cases
 		$mmdvmSection = str_replace("_", " ", $mmdvmSection);
@@ -681,6 +682,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
         // ysfgateway config file wrangling
+	$ysfgwContent = "";
         foreach($configysfgateway as $yfsgwSection=>$ysfgwValues) {
                 // UnBreak special cases
                 $yfsgwSection = str_replace("_", " ", $yfsgwSection);
