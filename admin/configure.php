@@ -98,7 +98,7 @@ $MYCALL=strtoupper($callsign);
 <body>
 <div class="container">
 <div id="header">
-<div style="font-size: 8px; text-align: right; padding-right: 8px;">V<?php echo $configPistarRelease['Pi-Star']['Version']?>/<?php echo $version; ?></div>
+<div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
 <h1>Pi-Star Digital Voice Configuration Page</h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
  <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
