@@ -48,7 +48,9 @@ $configmmdvm = parse_ini_file($mmdvmConfigFile, true);
 $ysfgatewayConfigFile = '/etc/ysfgateway';
 $configysfgateway = parse_ini_file($ysfgatewayConfigFile, true);
 
-
+//Load the p25gateway config file
+$p25gatewayConfigFile = '/etc/p25gateway';
+$configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
 
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
@@ -1127,6 +1129,62 @@ fclose($dextraFile);
     </table>
     <input type="button" value="Apply Changes" onclick="submitform()" /><br />
 <br /><?php } ?>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['System Fusion Network']['Enable'] == 1) {
+$ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
+    <b>Yaesu System Fusion Configuration</b>
+    <table>
+    <tr>
+    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    </tr>
+    <tr>
+    <td align="left"><a class=tooltip2 href="#">YSF Startup Host:<span><b>YSF Host</b>Set your prefered<br /> YSF Host here</span></a></td>
+    <td style="text-align: left;"><select name="ysfStartupHost">
+<?php
+        $testYSFHost = $configysfgateway['Network']['Startup'];
+        while (!feof($ysfHosts)) {
+                $ysfHostsLine = fgets($ysfHosts);
+                $ysfHost = preg_split('/;/', $ysfHostsLine);
+                if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
+                        if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected>$ysfHost[0] - $ysfHost[1] - $ysfHost[2]</option>\n"; }
+                        else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - $ysfHost[1] - $ysfHost[2]</option>\n"; }
+                }
+        }
+        fclose($ysfHosts);
+        ?>
+    </select></td>
+    </tr>
+    </table>
+    <input type="button" value="Apply Changes" onclick="submitform()" /><br />
+<br /><?php } ?>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) {
+$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
+    <b>P25 Configuration</b>
+    <table>
+    <tr>
+    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    </tr>
+    <tr>
+    <td align="left"><a class=tooltip2 href="#">P25 Startup Host:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
+    <td style="text-align: left;"><select name="p25StartupHost">
+<?php
+        $testP25Host = $configp25gateway['Network']['Startup'];
+        while (!feof($p25Hosts)) {
+                $p25HostsLine = fgets($p25Hosts);
+                $p25Host = preg_split('/\s+/', $p25HostsLine);
+                if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
+                        if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected>$p25Host[0] - $p25Host[1]</option>\n"; }
+                        else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
+                }
+        }
+        fclose($p25Hosts);
+        ?>
+    </select></td>
+    </tr>
+    </table>
+<input type="button" value="Apply Changes" onclick="submitform()" /><br />
+<br /><?php } ?>	
     <b>Firewall Configuration</b>
     <table>
     <tr>
