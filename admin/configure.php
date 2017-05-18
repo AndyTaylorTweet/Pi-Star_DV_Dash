@@ -1010,7 +1010,7 @@ else:
 <?php
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
     <td align="left"><a class=tooltip2 href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister<br> Dashboards</span></a></td>
-    <td style="text-align: left;"><a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new">Repeater Info</a> | <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new">Edit Repeater (Set TalkGroup)</a></td>
+    <td style="text-align: left;"><a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Repeater Info</a> | <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Edit Repeater (Set TalkGroup)</a></td>
     </tr>'."\n";}
 ?>
     <tr>
