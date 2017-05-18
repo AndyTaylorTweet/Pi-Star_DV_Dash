@@ -982,7 +982,7 @@ else:
                 $dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
                 if ((strpos($dmrMasterHost[0], '#') === FALSE ) && ($dmrMasterHost[0] != '')) {
-                        if ($testMMDVMdmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4]\" selected>$dmrMasterHost[0]</option>\n"; }
+                        if ($testMMDVMdmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4]\" selected>$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
                         else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4]\">$dmrMasterHost[0]</option>\n"; }
                 }
         }
@@ -990,6 +990,12 @@ else:
         ?>
     </select></td>
     </tr>
+<?php
+    if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
+    <td align="left"><a class=tooltip2 href="#">DMR Dashboard Link:<span><b>BrandMeister Dashboard</b>Direct link to your BrandMeister Dashboard</span></a></td>
+    <td style="text-align: left;"><a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'</a></td>
+    </tr>'."\n";}
+?>
     <tr>
     <td align="left"><a class=tooltip2 href="#">DMR Color Code:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
     <td style="text-align: left;"><select name="dmrColorCode">
