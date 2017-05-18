@@ -991,7 +991,7 @@ else:
     <th><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Master:<span><b>DMR Master</b>Set your prefered DMR master here</span></a></td>
+    <td align="left"><a class=tooltip2 href="#">DMR Master:<span><b>DMR Master</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost">
 <?php
         $testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
@@ -1009,7 +1009,7 @@ else:
     </tr>
 <?php
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
-    <td align="left"><a class=tooltip2 href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister<br> Dashboards</span></a></td>
+    <td align="left"><a class=tooltip2 href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
       <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> | 
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
