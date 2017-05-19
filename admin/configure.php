@@ -470,8 +470,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
 	  $configmmdvm['DMR Network']['Password'] = $dmrMasterHostArr[1];
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
+
+		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
+			$configmmdvm['DMR Network']['Options'] = "";
+		}
+		
+		// Set the DMR+ Options= line
+		if (substr($dmrMasterHostArr[3], 0, 4) == "DMR+") {
+			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
+				$configmmdvm['DMR Network']['Options'] = escapeshellcmd($_POST['dmrNetworkOptions']);
+			}
+			else { $configmmdvm['DMR Network']['Options'] = ""; }
+		}
 	}
-	
+		
 	// Set Talker Alias Option
 	if (empty($_POST['dmrTalkerAlias']) != TRUE ) {
 	  $configmmdvm['DMR']['EmbeddedLCOnly'] = escapeshellcmd($_POST['dmrTalkerAlias']);
