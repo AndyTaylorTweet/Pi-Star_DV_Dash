@@ -478,7 +478,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		// Set the DMR+ Options= line
 		if (substr($dmrMasterHostArr[3], 0, 4) == "DMR+") {
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
-				$configmmdvm['DMR Network']['Options'] = "$_POST['dmrNetworkOptions']";
+				$configmmdvm['DMR Network']['Options'] = '"'.$_POST['dmrNetworkOptions'].'"';
 			}
 			else { $configmmdvm['DMR Network']['Options'] = ""; }
 		}
