@@ -999,8 +999,8 @@ else:
                 $dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
                 if ((strpos($dmrMasterHost[0], '#') === FALSE ) && ($dmrMasterHost[0] != '')) {
-                        if ($testMMDVMdmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4]\" selected>$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
-                        else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4]\">$dmrMasterHost[0]</option>\n"; }
+                        if ($testMMDVMdmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected>$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
+                        else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\">$dmrMasterHost[0]</option>\n"; }
                 }
         }
         fclose($dmrMasterFile);
@@ -1013,6 +1013,12 @@ else:
     <td>
       <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> | 
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+    </td>
+    </tr>'."\n";}
+    if (substr($dmrMasterNow, 0, 4) == "DMR+") { echo '    <tr>
+    <td align="left"><a class=tooltip2 href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
+    <td align="left">
+    <input type="text" name="dmrNetworkOptions" size="75" maxlength="70" value="'.$configmmdvm['DMR Network']['Options'].'">
     </td>
     </tr>'."\n";}
 ?>
