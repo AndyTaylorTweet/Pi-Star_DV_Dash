@@ -164,6 +164,18 @@ function getMMDVMLogInfo() {
                         fclose($log);
                 }
         }
+        if (sizeof($logLinesInfo) < 1){
+                if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 82800).".log")) {
+                        if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 82800).".log", 'r')) {
+                                while ($logLineInfo = fgets($log)) {
+                                        if (startsWith($logLineInfo,"I:")) {
+                                                array_push($logLinesInfo, $logLineInfo);
+                                        }
+                                }
+                                fclose($log);
+                        }
+                }
+        }
         return $logLinesInfo;
 }
 
