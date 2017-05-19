@@ -483,6 +483,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			else { $configmmdvm['DMR Network']['Options'] = ""; }
 		}
 	}
+	if (empty($_POST['dmrMasterHost']) == TRUE ) {
+		$configmmdvm['DMR Network']['Options'] = "";
+	}
 		
 	// Set Talker Alias Option
 	if (empty($_POST['dmrTalkerAlias']) != TRUE ) {
