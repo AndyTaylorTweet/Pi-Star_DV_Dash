@@ -224,12 +224,12 @@ function getDVModemFirmware() {
         $modemFirmware = "";
         foreach ($logLinesInfo as $logLine) {
                 if(strpos($logLine,"MMDVM protocol version")) {
-			if strpos($logLine, 'DVMEGA') {
-                        	$modemFirmware = substr($logLine, 67, 15);
-			}
-			if strpos($logLine, 'MMDVM_HS') {
-				$modemFirmware = "Zum Libre ".substr($logLine, 84, 8);
-			}
+			//if strpos($logLine, 'DVMEGA') {
+                        //	$modemFirmware = substr($logLine, 67, 15);
+			//}
+			//if strpos($logLine, 'MMDVM_HS') {
+			//	$modemFirmware = "Zum Libre ".substr($logLine, 84, 8);
+			//}
                 }
         }
         return $modemFirmware;
