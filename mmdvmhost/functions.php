@@ -218,12 +218,18 @@ function getMMDVMLogInfo() {
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // I: 2017-05-18 07:03:43.365 MMDVM protocol version: 1, description: DVMEGA HR3.14
+// I: 2017-05-20 19:36:19.575 MMDVM protocol version: 1, description: MMDVM_HS-ADF7021 20170414 (D-Star/DMR/YSF/P25) (Build: 20:16:25 May 20 2017)
 function getDVModemFirmware() {
         $logLinesInfo = getMMDVMLogInfo();
         $modemFirmware = "";
         foreach ($logLinesInfo as $logLine) {
                 if(strpos($logLine,"MMDVM protocol version")) {
-                        $modemFirmware = substr($logLine, 67, 15);
+			if strpos($logLine, 'DVMEGA') {
+                        	$modemFirmware = substr($logLine, 67, 15);
+			}
+			if strpos($logLine, 'MMDVM_HS') {
+				$modemFirmware = "Zum Libre ".substr($logLine, 84, 8);
+			}
                 }
         }
         return $modemFirmware;
