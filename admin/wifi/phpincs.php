@@ -71,6 +71,9 @@ function ConvertToSecurity($security) {
 		case "[ESS]":
 			return "None";
 		break;
+		default:
+			return $security;
+		break;
 	}
 }
 
