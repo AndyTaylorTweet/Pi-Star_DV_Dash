@@ -57,7 +57,7 @@ switch($page) {
 				$strBitrate = $result[1];
 				preg_match('/Tx-Power=([0-9]+ dBm)/i',$strWlan0,$result);
 				$strTxPower = $result[1];
-				preg_match('/ESSID:\"([a-zA-Z0-9_\s]+)\"/i',$strWlan0,$result);
+				preg_match('/ESSID:\"([a-zA-Z0-9-_\s]+)\"/i',$strWlan0,$result);
 				$strSSID = str_replace('"','',$result[1]);
 				preg_match('/Link Quality=([0-9]+\/[0-9]+)/i',$strWlan0,$result);
 				$strLinkQuality = $result[1];
