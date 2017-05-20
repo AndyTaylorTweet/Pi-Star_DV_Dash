@@ -53,8 +53,8 @@ switch($page) {
 				$strTxBytes = $result[1];
 				preg_match('/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result);
 				$strBSSID = $result[1];
-				preg_match('/Bit Rate=([0-9\.]+ Mb\/s)/i',$strWlan0,$result);
-				$strBitrate = $result[1];
+				preg_match('/Bit Rate([=:0-9\.]+ Mb\/s)/i',$strWlan0,$result);
+                                $strBitrate = str_replace(':', '', str_replace('=', '', $result[1]));
 				preg_match('/Tx-Power=([0-9]+ dBm)/i',$strWlan0,$result);
 				$strTxPower = $result[1];
 				preg_match('/ESSID:\"([a-zA-Z0-9-_\s]+)\"/i',$strWlan0,$result);
