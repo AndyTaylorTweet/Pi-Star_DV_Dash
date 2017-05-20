@@ -108,9 +108,9 @@ Transferred Bytes : ' . $strTxBytes . '<br />
 Connected To : ' . $strSSID . '<br />
 AP Mac Address : ' . $strBSSID . '<br />
 <br />
-Bitrate : ' . $strBitrate . '<br />
-Transmit Power : ' . $strTxPower .'<br />
-<br />
+Bitrate : ' . $strBitrate . '<br />';
+if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; }
+echo '<br />
 Link Quality : ' . $strLinkQuality . '<br />
 Signal Level : ' . $strSignalLevel . '<br />
 <br />
