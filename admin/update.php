@@ -41,7 +41,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>Pi-Star - Update</title>
+    <title>Hotspot Update Dashboard</title>
     <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
@@ -60,11 +60,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <body>
   <div class="container">
   <div id="header">
-  <h1>Pi-Star Digital Voice - System Update</h1>
+  <h1>Pi-Star Digital Voice Update</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
     <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
-    <a href="/admin/power.php" alt="Power Control" style="color: #ffffff;">Power</a> |
     <a href="/admin/configure.php" alt="Configuration" style="color: #ffffff;">Config</a>
   </p>
   </div>
