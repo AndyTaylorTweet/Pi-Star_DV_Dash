@@ -63,8 +63,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
     <th colspan="2">Power Control</th>
   </tr>
   <tr>
-    <td align="center"><input type="image" src="/images/reboot.png" name="action" value="reboot" /></td>
-    <td align="center"><input type="image"  src="/images/shutdown.png" name="action" value="shutdown" /></td>
+    <td align="center">Reboot<br /><input type="image" src="/images/reboot.png" name="action" value="reboot" /></td>
+    <td align="center">Shutdown<br /><input type="image"  src="/images/shutdown.png" name="action" value="shutdown" /></td>
   </tr>
   </table>
   </form>
