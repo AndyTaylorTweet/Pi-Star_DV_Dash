@@ -28,6 +28,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
     <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
+    <a href="/admin/power.php" alt="Power Control" style="color: #ffffff;">Power</a> |
     <a href="/admin/configure.php" alt="Configuration" style="color: #ffffff;">Config</a>
   </p>
   </div>
