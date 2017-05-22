@@ -153,11 +153,19 @@ Signal Level : ' . $strSignalLevel . '<br />
 	echo '<script type="text/Javascript">UpdateNetworks()</script>';
 
 	if(isset($_POST['SaveWPAPSKSettings'])) {
-		$config = 'ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-';
+		$x = 0;
+		$errorCount = 0;
+		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n\n";
 		$networks = $_POST['Networks'];
+
+		// Error Checking
+		for($x = 0; $x < $networks; $x++) {
+			if (escapeshellarg($_POST['ssid'.$x]) != $_POST['ssid'.$x]) { echo "SSID: ".$_POST['ssid'.$x]." Contains invalid Charicters<br />\n"; $errorCount++; }
+			if (escapeshellarg($_POST['psk'.$x]) != $_POST['psk'.$x]) { echo "PSK: ".$_POST['psk'.$x]." Contains invalid Charicters<br />\n"; $errorCount++; }
+		}
+	if ($errorCount == 0) {
+
+		$x = 0;
 		for($x = 0; $x < $networks; $x++) {
 			$network = '';
 			$ssid = escapeshellarg($_POST['ssid'.$x]);
@@ -181,6 +189,7 @@ update_config=1
 				echo "Wifi settings failed to be updated";
 			}
 		}
+	}
 
 	} elseif(isset($_POST['Scan'])) {
 		$return = '';
