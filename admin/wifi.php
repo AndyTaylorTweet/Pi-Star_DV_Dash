@@ -111,7 +111,7 @@ Connected To : ' . $strSSID . '<br />
 AP Mac Address : ' . $strBSSID . '<br />
 <br />
 Bitrate : ' . $strBitrate . '<br />';
-if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; }
+if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; } else { echo "<br />\n"; }
 echo '<br />
 Link Quality : ' . $strLinkQuality . '<br />
 Signal Level : ' . $strSignalLevel . '<br />
@@ -178,6 +178,10 @@ update_config=1
 				system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0',$returnval);
 				header("Refresh:1");
 			} else {
+				for($x = 0; $x < $networks; $x++) {
+					if (escapeshellarg($_POST['ssid'.$x]) != $_POST['ssid'.$x]) { echo $_POST['ssid'.$x]." Failed sanity check<br />\n"; }
+					if (escapeshellarg($_POST['psk'.$x]) != $_POST['psk'.$x]) { echo $_POST['psk'.$x]." Failed sanity check<br />\n"; }
+				}
 				echo "Wifi settings failed to be updated";
 			}
 		}
