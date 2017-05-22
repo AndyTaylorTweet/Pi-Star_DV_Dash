@@ -1060,7 +1060,7 @@ else:
     | (Default: Enabled)
     </td></tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Dump Talker Alias:<span><b>DMR DumpTAData</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
+    <td align="left"><a class=tooltip2 href="#">DMR DumpTAData:<span><b>DMR DumpTAData</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
     <td align="left">
     <input type="radio" name="dmrDumpTAData" value="1"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked';} ?>>Enabled
     <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked';} ?>>Disabled
