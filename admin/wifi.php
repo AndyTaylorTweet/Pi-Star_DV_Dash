@@ -180,12 +180,6 @@ update_config=1
 			} else {
 				echo "Wifi settings failed to be updated";
 			}
-			$networks = $_POST['Networks'];
-				$x = 0;
-				for($x = 0; $x < $networks; $x++) {
-					if (escapeshellarg($_POST['ssid'.$x]) != $_POST['ssid'.$x]) { echo "SSID: ".$_POST['ssid'.$x]." Failed sanity check<br />\n"; }
-					if (escapeshellarg($_POST['psk'.$x]) != $_POST['psk'.$x]) { echo "PSK: ".$_POST['psk'.$x]." Failed sanity check<br />\n"; }
-				}
 		}
 
 	} elseif(isset($_POST['Scan'])) {
