@@ -489,8 +489,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 		
 	// Set Talker Alias Option
-	if (empty($_POST['dmrTalkerAlias']) != TRUE ) {
-	  $configmmdvm['DMR']['EmbeddedLCOnly'] = escapeshellcmd($_POST['dmrTalkerAlias']);
+	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
+	  $configmmdvm['DMR']['EmbeddedLCOnly'] = escapeshellcmd($_POST['dmrEmbeddedLCOnly']);
+	}
+	
+	// Set Dump TA Data Option for GPS support
+	if (empty($_POST['dmrDumpTAData']) != TRUE ) {
+	  $configmmdvm['DMR']['DumpTAData'] = escapeshellcmd($_POST['dmrDumpTAData']);
 	}
 
 	// Set MMDVM Hang Time
@@ -1048,10 +1053,16 @@ else:
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Talker Alias:<span><b>DMR Talker Alias</b>Set your DMR Talker Alias here</span></a></td>
+    <td align="left"><a class=tooltip2 href="#">DMR EmbeddedLCOnly:<span><b>DMR EmbeddedLCOnly</b>Set EmbeddedLCOnly to ON<br />to help reduce problems<br />with some DMR Radios</span></a></td>
     <td align="left">
-    <input type="radio" name="dmrTalkerAlias" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked';} ?>>Enabled
-    <input type="radio" name="dmrTalkerAlias" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked';} ?>>Disabled</td>
+    <input type="radio" name="dmrEmbeddedLCOnly" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked';} ?>>Enabled
+    <input type="radio" name="dmrEmbeddedLCOnly" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked';} ?>>Disabled</td>
+    </tr>
+    <tr>
+    <td align="left"><a class=tooltip2 href="#">DMR Dump Talker Alias:<span><b>DMR Talker Alias</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
+    <td align="left">
+    <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked';} ?>>Enabled
+    <input type="radio" name="dmrDumpTAData" value="1"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked';} ?>>Disabled</td>
     </tr>
     </table>
     <input type="button" value="Apply Changes" onclick="submitform()" /><br />
