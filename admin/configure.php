@@ -1057,14 +1057,12 @@ else:
     <td align="left">
     <input type="radio" name="dmrEmbeddedLCOnly" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked';} ?>>Enabled
     <input type="radio" name="dmrEmbeddedLCOnly" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked';} ?>>Disabled
-    | (Default: Enabled)
     </td></tr>
     <tr>
     <td align="left"><a class=tooltip2 href="#">DMR DumpTAData:<span><b>DMR DumpTAData</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
     <td align="left">
     <input type="radio" name="dmrDumpTAData" value="1"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked';} ?>>Enabled
     <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked';} ?>>Disabled
-    | (Default: Enabled)
     </td></tr>
     </table>
     <input type="button" value="Apply Changes" onclick="submitform()" /><br />
