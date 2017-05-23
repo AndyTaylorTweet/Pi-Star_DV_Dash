@@ -92,6 +92,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
         };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
+          $output = "Uploading your Config data\n";
 
           $target_dir = "/tmp/config_restore/";
           shell_exec("sudo rm -rf $target_dir 2>&1");
