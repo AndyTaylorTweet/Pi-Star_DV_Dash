@@ -158,14 +158,6 @@ Signal Level : ' . $strSignalLevel . '<br />
 		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n\n";
 		$networks = $_POST['Networks'];
 
-		// Error Checking
-		for($x = 0; $x < $networks; $x++) {
-			//if (escapeshellarg($_POST['ssid'.$x]) != $_POST['ssid'.$x]) { echo "SSID: ".$_POST['ssid'.$x]." invalid<br />\n"; $errorCount++; }
-			//if (escapeshellarg($_POST['psk'.$x]) != $_POST['psk'.$x]) { echo "PSK: ".$_POST['psk'.$x]." invalid<br />\n"; $errorCount++; }
-			//echo "escapeshellarg($_POST['ssid'.$x] $_POST['ssid'.$x]<br />\n";
-		}
-	if ($errorCount == 0) {
-
 		$x = 0;
 		for($x = 0; $x < $networks; $x++) {
 			$network = '';
@@ -189,7 +181,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 			} else {
 				echo "Wifi settings failed to be updated";
 			}
-		}
+
 	}
 
 	} elseif(isset($_POST['Scan'])) {
