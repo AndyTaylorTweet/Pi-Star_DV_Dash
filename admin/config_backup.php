@@ -72,13 +72,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
             header('Content-Disposition: attachment; filename="'.basename($backupZip).'"');
+            header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Length: ' . filesize($backupZip));
+            ob_clean();
+            flush();
             readfile($backupZip);
-            fclose($backupZip);
-            exit 1;
+            exit;
           }
 
         };
