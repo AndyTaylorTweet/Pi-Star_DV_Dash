@@ -67,6 +67,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= "Starting download\n";
           
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
+          
+          if (file_exists($backupZip)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($backupZip).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($backupZip));
+            readfile($backupZip);
+          }
+          
           };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
