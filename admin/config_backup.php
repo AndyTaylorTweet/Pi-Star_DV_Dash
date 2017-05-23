@@ -93,11 +93,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
 
-          $target_dir = "/tmp/config_restore";
-          $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-          $uploadOk = 1;
+          $target_dir = "/tmp/config_restore/";
           $output .= shell_exec("sudo rm -rf $target_dir 2>&1");
           $output .= shell_exec("sudo mkdir $target_dir 2>&1");
+          $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+          $uploadOk = 1;
           
           $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
           // Check if image file is a actual image or fake image
