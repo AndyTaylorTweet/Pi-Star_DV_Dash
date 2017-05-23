@@ -108,35 +108,30 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		          if($mime_type == $type) {
 			          $okay = true;
 			          break;
-		          } 
-	          }
-          }
-          
-          $continue = strtolower($name[1]) == 'zip' ? true : false;
+			  }
+		  }
+	  }
+		$continue = strtolower($name[1]) == 'zip' ? true : false;
 	        if(!$continue) {
 		        $output .= "The file you are trying to upload is not a .zip file. Please try again.";
 	        }
+		$target_path = $target_dir.$filename;
           
-          $target_path = $target_dir.$filename;
-          
-          if(move_uploaded_file($source, $target_path)) {
-		        $zip = new ZipArchive();
+		if(move_uploaded_file($source, $target_path)) {
+			$zip = new ZipArchive();
 		        $x = $zip->open($target_path);
 		        if ($x === true) {
 			        $zip->extractTo("/home/var/yoursite/httpdocs/"); // change this to the correct site path
 			        $zip->close();
-	
 			        unlink($target_path);
 		        }
 		        $output .= "Your .zip file was uploaded and unpacked.";
-	          } else {	
-		          $output .= "There was a problem with the upload. Please try again.";
-	          }
-          }
-  }
-          echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
-            
-          };
+		}
+		else {
+			$output .= "There was a problem with the upload. Please try again.";
+		}
+	  echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
+  };
 
   echo "</table>\n";
   } else { ?>
