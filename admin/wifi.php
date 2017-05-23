@@ -158,7 +158,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 		$networks = $_POST['Networks'];
 
 		//Reworked WiFi Starts Here
-		system('sudo mount -o remount,rw');
+		//system('sudo mount -o remount,rw');
 		for($x = 0; $x < $networks; $x++) {
 			$network = '';
 			$ssid = $_POST['ssid'.$x];
@@ -166,7 +166,8 @@ Signal Level : ' . $strSignalLevel . '<br />
 			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"$psk\"\n\tpsk=\"$psk\"\n}\n\n"; }
 		}
-		exec("sudo echo '$config' > /etc/wpa_supplicant/wpa_supplicant.conf");
+		exec("echo '$config' > /tmp/wifidata",$return);
+		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf',$returnval);
 		//echo "Wifi Settings Updated Successfully\n";
 		//system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		//header("Refresh:1");
