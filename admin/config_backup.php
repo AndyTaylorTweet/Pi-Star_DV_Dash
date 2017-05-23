@@ -96,7 +96,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 
   echo "</table>\n";
   } else { ?>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">>
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
   <table width="100%">
   <tr>
     <th colspan="2">Backup / Restore</th>
