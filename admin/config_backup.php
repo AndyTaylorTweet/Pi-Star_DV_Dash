@@ -44,10 +44,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <table width="100%">
   <?php
         if ( escapeshellcmd($_POST["action"]) == "backup" ) {
-                echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n"
+                echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n";
                 };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
-                echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n"
+                echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
                 };
   ?>
   </table>
