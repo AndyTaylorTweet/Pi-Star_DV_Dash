@@ -116,7 +116,6 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
         echo '<div id="cssConnects">'."\n";
 	include 'dstarrepeater/css_connections.php';			// dstarrepeater gateway config
 	echo '</div>'."\n";
-	echo "<br />\n";
 	}
 
 	echo '<script type="text/javascript">'."\n";
@@ -161,7 +160,6 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		}
 
 	include 'dstarrepeater/css_connections.php';			// css links
-	echo "<br />\n";
 
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLh(){'."\n";
