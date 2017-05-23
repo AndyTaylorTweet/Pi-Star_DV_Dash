@@ -6,7 +6,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 //Load the Version Info
 require_once('config/version.php');
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
   session_start();
