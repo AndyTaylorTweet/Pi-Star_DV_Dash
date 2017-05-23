@@ -167,10 +167,10 @@ Signal Level : ' . $strSignalLevel . '<br />
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"$psk\"\n\tpsk=\"$psk\"\n}\n\n"; }
 		}
 		system('sudo echo '.$config.' > /etc/wpa_supplicant/wpa_supplicant.conf');
-		//echo "Wifi Settings Updated Successfully\n";
-		//system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
-		//header("Refresh:1");
-		echo $config;
+		echo "Wifi Settings Updated Successfully\n";
+		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+		header("Refresh:1");
+
 		
 //		$x = 0;
 //		for($x = 0; $x < $networks; $x++) {
