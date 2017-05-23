@@ -165,40 +165,12 @@ Signal Level : ' . $strSignalLevel . '<br />
 			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n}\n\n"; }
 		}
-		//exec("echo '$config' > /tmp/wifidata");
-		file_put_contents('/tmp/wifidata', escapeshellarg($config));
+		file_put_contents('/tmp/wifidata', $config);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf');
 		echo "Wifi Settings Updated Successfully\n";
 		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		header("Refresh:1");
-
-		
-//		$x = 0;
-//		for($x = 0; $x < $networks; $x++) {
-//			$network = '';
-//			$ssid = escapeshellarg($_POST['ssid'.$x]);
-//			$psk = escapeshellarg($_POST['psk'.$x]);
-//			if ($ssid && !$_POST['psk'.$x]) { exec('echo "network={\n\tssid=\"'.$ssid.'\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n}"',$network); }
-//                        elseif ($ssid && $psk) { exec('wpa_passphrase '.$ssid.' '.$psk,$network); }
-//			foreach($network as $b) {
-//				$config .= "$b"."\n";
-//			}
-//		}
-//		if (strpos($config, 'Passphrase must be 8..63 characters') !== false) { echo "Wifi settings failed to be updated due to invalid PSK"; }
-//		else {
-//			exec("echo '$config' > /tmp/wifidata",$return);
-//			system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf',$returnval);
-//			if($returnval == 0) {
-//				echo "<br />\n";
-//				echo "Wifi Settings Updated Successfully\n";
-//				system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0',$returnval);
-//				header("Refresh:1");
-//			} else {
-//				echo "Wifi settings failed to be updated";
-//			}
-//
-//		}
-
+	
 	} elseif(isset($_POST['Scan'])) {
 		$return = '';
 		exec('ifconfig wlan0 | grep -i running | wc -l',$test);
