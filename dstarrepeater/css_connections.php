@@ -17,8 +17,6 @@ $MYCALL=strtoupper($callsign);
 <?php
 if (exec('grep "CCS link" '.$linkLogPath.' | wc -l') >=1) {
 ?>
-<br />
-
     <b>Active CCS Connections</b>
     <table>
     <tr>
