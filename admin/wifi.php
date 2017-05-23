@@ -166,7 +166,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"'.$ssid.'\"\n\tkey_mgmt=NONE\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"'.$ssid.'\"\n\tpsk=\"'.$psk.'\"\n}\n\n"; }
 		}
-		exec ("echo '$config' > /etc/wpa_supplicant/wpa_supplicant.conf");
+		exec("echo '$config' > /etc/wpa_supplicant/wpa_supplicant.conf");
 		echo "Wifi Settings Updated Successfully\n";
 		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		header("Refresh:1");
@@ -196,7 +196,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 //				echo "Wifi settings failed to be updated";
 //			}
 //
-//	}
+//		}
 
 	} elseif(isset($_POST['Scan'])) {
 		$return = '';
