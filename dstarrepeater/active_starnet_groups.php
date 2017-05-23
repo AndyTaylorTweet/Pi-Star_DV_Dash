@@ -48,7 +48,7 @@ $MYCALL=strtoupper($callsign);
 	}
     }
 ?>
-    </table>
+    </table><br />
 
 <?php
 	$groupsx = array();
@@ -82,7 +82,6 @@ $MYCALL=strtoupper($callsign);
 
 	if ($active >= 1) {
 
-	echo "<br />\n";
 	echo "<b>Active Starnet Group Members</b>\n";
 	echo "<table>\n";
 	echo "<tr>\n";
@@ -119,7 +118,7 @@ $MYCALL=strtoupper($callsign);
 		    }
 		}
 	    }
-	echo "</table>\n";
+	echo "</table>\n<br />\n";
 	}
 
 ?>
