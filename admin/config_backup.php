@@ -46,7 +46,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
         if ( escapeshellcmd($_POST["action"]) == "download" ) {
           echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n";
 
-          $output = "";
+          $output = "Finding config files to be backed up\n";
           $backupDir = "/tmp/config_backup";
           $backupZip = "/tmp/config_backup.zip";
           
@@ -62,7 +62,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
+          $output .= "Compressing backup files\n";
           $output .= shell_exec("sudo zip $backupZip $backupDir/* 2>&1");
+          $output .= "Starting download\n";
           
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
           };
