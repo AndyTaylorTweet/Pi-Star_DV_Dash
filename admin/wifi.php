@@ -158,7 +158,6 @@ Signal Level : ' . $strSignalLevel . '<br />
 		$networks = $_POST['Networks'];
 
 		//Reworked WiFi Starts Here
-		//system('sudo mount -o remount,rw');
 		for($x = 0; $x < $networks; $x++) {
 			$network = '';
 			$ssid = $_POST['ssid'.$x];
@@ -168,9 +167,9 @@ Signal Level : ' . $strSignalLevel . '<br />
 		}
 		exec("echo '$config' > /tmp/wifidata",$return);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf',$returnval);
-		//echo "Wifi Settings Updated Successfully\n";
-		//system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
-		//header("Refresh:1");
+		echo "Wifi Settings Updated Successfully\n";
+		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+		header("Refresh:1");
 
 		
 //		$x = 0;
