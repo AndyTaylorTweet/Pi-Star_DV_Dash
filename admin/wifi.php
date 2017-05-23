@@ -153,7 +153,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 	echo '<script type="text/Javascript">UpdateNetworks()</script>';
 
 	if(isset($_POST['SaveWPAPSKSettings'])) {
-		$x = 0;
+		//$x = 0;
 		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n\n";
 		$networks = $_POST['Networks'];
 
