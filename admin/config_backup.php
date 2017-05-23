@@ -24,7 +24,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>Pi-Star Power Control</title>
+    <title>Pi-Star Config Backup</title>
     <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
   </head>
   <body>
