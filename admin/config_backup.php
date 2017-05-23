@@ -68,7 +68,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
           
-          shell_exec("sleep 3");
           if (file_exists($backupZip)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
@@ -78,6 +77,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             header('Pragma: public');
             header('Content-Length: ' . filesize($backupZip));
             readfile($backupZip);
+            exit;
           }
           
           };
