@@ -196,7 +196,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 //				echo "Wifi settings failed to be updated";
 //			}
 //
-	}
+//	}
 
 	} elseif(isset($_POST['Scan'])) {
 		$return = '';
