@@ -59,7 +59,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   </tr>
   <tr>
     <td align="center">Download Configuration<br /><input type="image" src="/images/download.png" name="action" value="download" /></td>
-    <td align="center">Upload Configuration<br /><input type="image"  src="/images/upload.png" name="action" value="upload" /></td>
+    <td align="center">Restore Configuration<br /><input type="image"  src="/images/restore.png" name="action" value="restore" /></td>
   </tr>
   </table>
   </form>
