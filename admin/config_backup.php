@@ -98,24 +98,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo mkdir $target_dir 2>&1");
           $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
           $uploadOk = 1;
-          
           $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-          // Check if image file is a actual image or fake image
-          if(isset($_POST["submit"])) {
-              $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-              if($check !== false) {
-                  $output .= "File is an image - " . $check["mime"] . ".";
-                  $uploadOk = 1;
-              } else {
-                  $output .= "File is not an image.";
-                  $uploadOk = 0;
-              }
-          }
-          // Check if file already exists
-          if (file_exists($target_file)) {
-              $output .= "Sorry, file already exists.";
-              $uploadOk = 0;
-          }
+
           // Check file size
           if ($_FILES["fileToUpload"]["size"] > 10000) {
               $output .= "Sorry, your file is too large.";
