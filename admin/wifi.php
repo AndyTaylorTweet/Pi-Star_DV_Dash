@@ -133,7 +133,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 				$arrssid = explode("=",$a);
 				$ssid[] = str_replace('"','',$arrssid[1]);
 			}
-			if(preg_match('/\psk/i',$a)) {
+			if(preg_match('/psk/i',$a)) {
 				$arrpsk = explode("=",$a);
 				$psk[] = str_replace('"','',$arrpsk[1]);
 			}
