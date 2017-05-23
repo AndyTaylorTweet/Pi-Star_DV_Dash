@@ -43,7 +43,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 <?php if (!empty($_POST)) { ?>
   <table width="100%">
   <?php
-        if ( escapeshellcmd($_POST["action"]) == "backup" ) {
+        if ( escapeshellcmd($_POST["action"]) == "download" ) {
           $backupDir = "/tmp/config_backup";
           $backupZip = "/tmp/config_backup.zip";
           $output .= shell_exec("sudo rm -rf $backupDir 2>&1");
