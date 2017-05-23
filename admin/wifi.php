@@ -163,8 +163,8 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$network = '';
 			$ssid = $_POST['ssid'.$x];
 			$psk = $_POST['psk'.$x];
-			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"'.$ssid.'\"\n\tkey_mgmt=NONE\n}\n\n"; }
-			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"'.$ssid.'\"\n\tpsk=\"'.$psk.'\"\n}\n\n"; }
+			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"'.$ssid.'\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n}\n\n"; }
+			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"'.$ssid.'\"\n\t#psk=\"'.$psk.'\"\n\tpsk=\"'.$psk.'\"\n}\n\n"; }
 		}
 		exec("echo '$config' > /etc/wpa_supplicant/wpa_supplicant.conf");
 		echo "Wifi Settings Updated Successfully\n";
