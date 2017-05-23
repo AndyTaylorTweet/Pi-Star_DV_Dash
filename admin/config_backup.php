@@ -121,7 +121,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			$zip = new ZipArchive();
 		        $x = $zip->open($target_path);
 		        if ($x === true) {
-			        $zip->extractTo("/home/var/yoursite/httpdocs/"); // change this to the correct site path
+			        $zip->extractTo($target_dir); // change this to the correct site path
 			        $zip->close();
 			        unlink($target_path);
 		        }
