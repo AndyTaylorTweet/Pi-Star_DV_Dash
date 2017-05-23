@@ -96,7 +96,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 
           $target_dir = "/tmp/config_restore/";
           shell_exec("sudo rm -rf $target_dir 2>&1");
-          shell_exec("sudo mkdir $target_dir 2>&1");
+          shell_exec("mkdir $target_dir 2>&1");
           if($_FILES["fileToUpload"]["name"]) {
                   $filename = $_FILES["fileToUpload"]["name"];
 	  	  $source = $_FILES["fileToUpload"]["tmp_name"];
