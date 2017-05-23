@@ -45,9 +45,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <?php
         if ( escapeshellcmd($_POST["action"]) == "download" ) {
           echo "<tr><th colspan="2">Config Backup</th></tr>\n";
-          echo "<tr><td><pre>$output</pre></td</tr>\n";
+
+          $output = "";
           $backupDir = "/tmp/config_backup";
           $backupZip = "/tmp/config_backup.zip";
+          
           $output .= shell_exec("sudo rm -rf $backupZip 2>&1");
           $output .= shell_exec("sudo rm -rf $backupDir 2>&1");
           $output .= shell_exec("sudo mkdir $backupDir 2>&1");
@@ -61,6 +63,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
           $output .= shell_exec("sudo zip $backupZip $backupDir/* 2>&1");
+          
+          echo "<tr><td><pre>$output</pre></td</tr>\n";
           };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
