@@ -32,12 +32,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <div id="header">
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
   <h1>Pi-Star Digital Voice - Config Backup / Restore</h1>
-  <p style="padding-right: 5px; text-align: right; color: #ffffff;">
+  <div style="padding-right: 5px; text-align: right; color: #ffffff;">
+    <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
+    <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
+    <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
+  </div>
+  <div style="padding-right: 5px; padding-bottom: 3px; text-align: right; color: #ffffff;">
     <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
     <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
     <a href="/admin/update.php" alt="System Update" style="color: #ffffff;">Update</a> |
     <a href="/admin/configure.php" alt="Configuration" style="color: #ffffff;">Config</a>
-  </p>
+  </div>
   </div>
   <div id="contentwide">
 <?php if (!empty($_POST)) { ?>
