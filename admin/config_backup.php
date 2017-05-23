@@ -69,9 +69,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
           
           if (file_exists($backupZip)) {
+            $utc_time = gdate();
+            $utc_tz =  new DateTimeZone('UTC');
+            $local_tz = new DateTimeZone(date_default_timezone_get ());
+            $dt = new DateTime($utc_time, $utc_tz);
+            $dt->setTimeZone($local_tz);
+            $local_time = $dt->format('Y-m-d H:i:s');
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename($backupZip).'"');
+            header('Content-Disposition: attachment; filename="Pi-Star_Backup_'.$local_time.'.zip"');
             header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
