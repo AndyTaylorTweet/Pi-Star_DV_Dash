@@ -46,21 +46,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
         if ( escapeshellcmd($_POST["action"]) == "backup" ) {
           $backupDir = "/tmp/config_backup";
           $backupZip = "/tmp/config_backup.zip";
+          $output .= shell_exec("sudo rm -rf $backupDir 2>&1");
+          $output .= shell_exec("sudo mkdir $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
+          $output .= shell_exec("sudo zip $backupZip $backupDir/* 2>&1");
           echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n";
-          echo "<tr><td>";
-          exec("sudo rm -rf $backupDir");
-          exec("sudo mkdir $backupDir");
-          exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir");
-          exec("sudo cp /etc/ircddbgateway $backupDir");
-          exec("sudo cp /etc/mmdvmhost $backupDir");
-          exec("sudo cp /etc/dstarrepeater $backupDir");
-          exec("sudo cp /etc/p25gateway $backupDir");
-          exec("sudo cp /etc/ysfgateway $backupDir");
-          exec("sudo cp /etc/starnetserver $backupDir");
-          exec("sudo cp /etc/timeserver $backupDir");
-          exec("sudo cp /etc/dstar-radio.* $backupDir");
-          exec("sudo zip $backupZip $backupDir/*");
-          echo "</td</tr>\n";
+          echo "<tr><td><pre>$output</pre></td</tr>\n";
           };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
