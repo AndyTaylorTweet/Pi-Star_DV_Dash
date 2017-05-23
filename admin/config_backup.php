@@ -98,8 +98,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           shell_exec("sudo rm -rf $target_dir 2>&1");
           shell_exec("sudo mkdir $target_dir 2>&1");
           if($_FILES["fileToUpload"]["name"]) {
-            $filename = $_FILES["fileToUpload"]["name"];
-	          $source = $_FILES["fileToUpload"]["tmp_name"];
+                  $filename = $_FILES["fileToUpload"]["name"];
+	  	  $source = $_FILES["fileToUpload"]["tmp_name"];
 	          $type = $_FILES["fileToUpload"]["type"];
 	
 	          $name = explode(".", $filename);
@@ -133,7 +133,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		          $output .= "There was a problem with the upload. Please try again.";
 	          }
           }
-          
+  }
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
             
           };
