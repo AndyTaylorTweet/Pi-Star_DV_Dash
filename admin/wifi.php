@@ -133,7 +133,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 				$arrssid = explode("=",$a);
 				$ssid[] = str_replace('"','',$arrssid[1]);
 			}
-			if(preg_match('/\#psk/i',$a)) {
+			if(preg_match('/\psk/i',$a)) {
 				$arrpsk = explode("=",$a);
 				$psk[] = str_replace('"','',$arrpsk[1]);
 			}
@@ -162,8 +162,8 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$network = '';
 			$ssid = escapeshellcmd($_POST['ssid'.$x]);
 			$psk = escapeshellcmd($_POST['psk'.$x]);
-			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n}\n\n"; }
-			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"$psk\"\n\tpsk=\"$psk\"\n}\n\n"; }
+			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n}\n\n"; }
+			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n}\n\n"; }
 		}
 		exec("echo '$config' > /tmp/wifidata",$return);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf',$returnval);
