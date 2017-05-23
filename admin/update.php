@@ -1,4 +1,9 @@
 <?php
+//Load the Pi-Star Release file
+$pistarReleaseConfig = '/etc/pistar-release';
+$configPistarRelease = array();
+$configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
+
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
