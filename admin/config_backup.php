@@ -40,11 +40,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   </p>
   </div>
   <div id="contentwide">
-<?php if (!empty($_POST)) { ?>
-  <table width="100%">
-  <?php
+<?php if (!empty($_POST)) {
+  echo '<table width="100%">'."\n";
+
         if ( escapeshellcmd($_POST["action"]) == "download" ) {
-          echo "<tr><th colspan="2">Config Backup</th></tr>\n";
+          echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n";
 
           $output = "";
           $backupDir = "/tmp/config_backup";
@@ -64,14 +64,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
           $output .= shell_exec("sudo zip $backupZip $backupDir/* 2>&1");
           
-          echo "<tr><td><pre>$output</pre></td</tr>\n";
+          echo "<tr><td><pre>$output</pre></td></tr>\n";
           };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
           };
-  ?>
-  </table>
-<?php } else { ?>
+
+  echo "</table>\n";
+  } else { ?>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
   <table width="100%">
   <tr>
