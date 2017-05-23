@@ -165,6 +165,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n}\n\n"; }
 		}
+		echo $config."<br />\n";
 		exec("echo '$config' > /tmp/wifidata");
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf');
 		echo "Wifi Settings Updated Successfully\n";
