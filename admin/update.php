@@ -67,7 +67,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <body>
   <div class="container">
   <div id="header">
-  <h1>Pi-Star Digital Voice Update</h1>
+  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
+  <h1>Pi-Star Digital Voice - Software Updater</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
     <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
