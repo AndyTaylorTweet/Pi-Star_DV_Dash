@@ -166,10 +166,10 @@ Signal Level : ' . $strSignalLevel . '<br />
 			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"$psk\"\n\tpsk=\"$psk\"\n}\n\n"; }
 		}
-		system('sudo echo '.$config.' > /etc/wpa_supplicant/wpa_supplicant.conf');
-		echo "Wifi Settings Updated Successfully\n";
-		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
-		header("Refresh:1");
+		system('sudo echo "$config" > /etc/wpa_supplicant/wpa_supplicant.conf');
+		//echo "Wifi Settings Updated Successfully\n";
+		//system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+		//header("Refresh:1");
 
 		
 //		$x = 0;
