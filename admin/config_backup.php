@@ -77,8 +77,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             header('Pragma: public');
             header('Content-Length: ' . filesize($backupZip));
             readfile($backupZip);
-            exit;
           }
+          header_remove();
           
           };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
