@@ -190,8 +190,10 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	//We dont know what mode we are in - fail...
 	echo "<H1>No Mode Defined...</H1>\n";
 	echo "<p>I don't know what mode I am in, you probaly just need to configure me.</p>\n";
-	echo "<p>You will be re-directed to the configuration portal in 5 secs</p>\n";
-	echo '<script type="text/javascript">setTimeout(function() { window.location="/admin/configure.php";},5000);</script>'."\n";
+	echo "<p>You will be re-directed to the configuration portal in 10 secs</p>\n";
+	echo "<p>In the mean time, you might want to register on the support<br />\n";
+	echo "page here: <a href=\"https://www.facebook.com/groups/pistar/\" target=\"_new\">https://www.facebook.com/groups/pistar/</a></p>\n";
+	echo '<script type="text/javascript">setTimeout(function() { window.location="/admin/configure.php";},10000);</script>'."\n";
 }
 ?>
 </div>
