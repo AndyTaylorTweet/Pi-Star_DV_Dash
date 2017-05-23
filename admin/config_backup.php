@@ -42,13 +42,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <div id="contentwide">
 <?php if (!empty($_POST)) { ?>
   <table width="100%">
-  <tr><th colspan="2">Config Backup</th></tr>
   <?php
         if ( escapeshellcmd($_POST["action"]) == "backup" ) {
-                
+                echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n"
                 };
-        if ( escapeshellcmd($_POST["action"]) == "shutdown" ) {
-                
+        if ( escapeshellcmd($_POST["action"]) == "restore" ) {
+                echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n"
                 };
   ?>
   </table>
