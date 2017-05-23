@@ -74,10 +74,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             $local_tz = new DateTimeZone(date_default_timezone_get ());
             $dt = new DateTime($utc_time, $utc_tz);
             $dt->setTimeZone($local_tz);
-            $local_time = $dt->format('Y-m-d H:i:s');
+            $local_time = $dt->format('Y-m-d');
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename='.basename("Pi-Star.zip"));
+            header('Content-Disposition: attachment; filename='.basename("Pi-Star_Config_$local_time.zip"));
             header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
