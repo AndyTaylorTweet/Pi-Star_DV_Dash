@@ -97,30 +97,41 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $target_dir = "/tmp/config_restore/";
           shell_exec("sudo rm -rf $target_dir 2>&1");
           shell_exec("sudo mkdir $target_dir 2>&1");
-          $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-          $uploadOk = 1;
-          $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-          // Check file size
-          if ($_FILES["fileToUpload"]["size"] > 10000) {
-              $output .= "Sorry, your file is too large.";
-              $uploadOk = 0;
+          if($_FILES["fileToUpload"]["name"]) {
+            $filename = $_FILES["fileToUpload"]["name"];
+	          $source = $_FILES["fileToUpload"]["tmp_name"];
+	          $type = $_FILES["fileToUpload"]["type"];
+	
+	          $name = explode(".", $filename);
+	          $accepted_types = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
+	          foreach($accepted_types as $mime_type) {
+		          if($mime_type == $type) {
+			          $okay = true;
+			          break;
+		          } 
+	          }
           }
-          // Allow certain file formats
-          if($imageFileType != "zip") {
-              $output .= "Sorry, only ZIP files are allowed.";
-              $uploadOk = 0;
-          }
-          // Check if $uploadOk is set to 0 by an error
-          if ($uploadOk == 0) {
-              $output .= "Sorry, your file was not uploaded.";
-          // if everything is ok, try to upload file
-          } else {
-              if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                  $output .= "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-              } else {
-                  $output .= "Sorry, there was an error uploading your file.";
-              }
+          
+          $continue = strtolower($name[1]) == 'zip' ? true : false;
+	        if(!$continue) {
+		        $output .= "The file you are trying to upload is not a .zip file. Please try again.";
+	        }
+          
+          $target_path = $target_dir.$filename;
+          
+          if(move_uploaded_file($source, $target_path)) {
+		        $zip = new ZipArchive();
+		        $x = $zip->open($target_path);
+		        if ($x === true) {
+			        $zip->extractTo("/home/var/yoursite/httpdocs/"); // change this to the correct site path
+			        $zip->close();
+	
+			        unlink($target_path);
+		        }
+		        $output .= "Your .zip file was uploaded and unpacked.";
+	          } else {	
+		          $output .= "There was a problem with the upload. Please try again.";
+	          }
           }
           
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
