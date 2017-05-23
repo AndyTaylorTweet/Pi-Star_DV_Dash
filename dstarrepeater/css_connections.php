@@ -59,7 +59,7 @@ if (exec('grep "CCS link" '.$linkLogPath.' | wc -l') >=1) {
 	fclose($linkLog);
     }
 
-    print "</table>\n";
+    print "</table>\n<br />\n";
 }
 
         $stn_is_set = 0;
