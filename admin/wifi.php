@@ -160,8 +160,8 @@ Signal Level : ' . $strSignalLevel . '<br />
 		//Reworked WiFi Starts Here
 		for($x = 0; $x < $networks; $x++) {
 			$network = '';
-			$ssid = escapeshellcmd($_POST['ssid'.$x]);
-			$psk = escapeshellcmd($_POST['psk'.$x]);
+			$ssid = "$_POST['ssid'.$x]";
+			$psk = "$_POST['psk'.$x]";
 			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n}\n\n"; }
 		}
