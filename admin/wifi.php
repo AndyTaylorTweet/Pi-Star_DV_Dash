@@ -162,7 +162,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 		for($x = 0; $x < $networks; $x++) {
 			//if (escapeshellarg($_POST['ssid'.$x]) != $_POST['ssid'.$x]) { echo "SSID: ".$_POST['ssid'.$x]." invalid<br />\n"; $errorCount++; }
 			//if (escapeshellarg($_POST['psk'.$x]) != $_POST['psk'.$x]) { echo "PSK: ".$_POST['psk'.$x]." invalid<br />\n"; $errorCount++; }
-			echo escapeshellarg($_POST['ssid'.$x]." ".$_POST['ssid'.$x];
+			//echo escapeshellarg($_POST['ssid'.$x]." ".$_POST['ssid'.$x];
 		}
 	if ($errorCount == 0) {
 
