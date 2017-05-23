@@ -44,11 +44,27 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <table width="100%">
   <?php
         if ( escapeshellcmd($_POST["action"]) == "backup" ) {
-                echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n";
-                };
+          $backupDir = "/tmp/config_backup";
+          $backupZip = "/tmp/config_backup.zip";
+          echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n";
+          echo "<tr><td>";
+          exec("sudo rm -rf $backupDir");
+          exec("sudo mkdir $backupDir");
+          exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir");
+          exec("sudo cp /etc/ircddbgateway $backupDir");
+          exec("sudo cp /etc/mmdvmhost $backupDir");
+          exec("sudo cp /etc/dstarrepeater $backupDir");
+          exec("sudo cp /etc/p25gateway $backupDir");
+          exec("sudo cp /etc/ysfgateway $backupDir");
+          exec("sudo cp /etc/starnetserver $backupDir");
+          exec("sudo cp /etc/timeserver $backupDir");
+          exec("sudo cp /etc/dstar-radio.* $backupDir");
+          exec("sudo zip $backupZip $backupDir/*");
+          echo "</td</tr>\n";
+          };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
-                echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
-                };
+          echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
+          };
   ?>
   </table>
 <?php } else { ?>
