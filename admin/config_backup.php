@@ -58,8 +58,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     <th colspan="2">Backup / Restore</th>
   </tr>
   <tr>
-    <td align="center" width="50%">Backup<br /><input type="button" name="action" value="backup" /></td>
-    <td align="center">Restore<br /><input type="button"  name="action" value="restore" /></td>
+    <td align="center">Download Configuration<br /><input type="image" src="/images/download.png" name="action" value="download" /></td>
+    <td align="center">Upload Configuration<br /><input type="image"  src="/images/upload.png" name="action" value="upload" /></td>
   </tr>
   </table>
   </form>
