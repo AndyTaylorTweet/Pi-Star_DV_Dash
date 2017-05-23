@@ -102,9 +102,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     <th colspan="2">Backup / Restore</th>
   </tr>
   <tr>
-    <td align="center">Download Configuration<br /><input type="image" src="/images/download.png" name="action" value="download" /></td>
+    <td align="center" width="50%">Download Configuration<br /><input type="image" src="/images/download.png" name="action" value="download" /></td>
     <td align="center">Restore Configuration<br /><input type="image"  src="/images/restore.png" name="action" value="restore" /><br />
-    Select image to upload: <input type="file" name="fileToUpload" id="fileToUpload"></td>
+    <input type="file" name="fileToUpload" id="fileToUpload"></td>
   </tr>
   </table>
   </form>
