@@ -280,6 +280,8 @@ function getHeardList($logLines) {
 			continue;
 		} else if(strpos($logLine,"network watchdog has expired")) {
                         continue;
+		} else if(strpos($logLine, 27, 6) == "0000: ") {
+                        continue;	
 		}
 
 		if(strpos($logLine,"end of") || strpos($logLine,"watchdog has expired") || strpos($logLine,"ended RF data") || strpos($logLine,"ended network")) {
