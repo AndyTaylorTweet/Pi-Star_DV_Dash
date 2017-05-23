@@ -159,7 +159,15 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		echo "<br />\n";
 		}
 
-	include 'dstarrepeater/css_connections.php';			// css links
+	echo '<script type="text/javascript">'."\n";
+        echo 'function reloadcssConnections(){'."\n";
+        echo '  $("#cssConnects").load("/dstarrepeater/css_connections.php");'."\n";
+        echo '}'."\n";
+        echo 'setInterval(function(){reloadcssConnections()}, 15000);'."\n";
+        echo '</script>'."\n";
+        echo '<div id="cssConnects">'."\n";
+	include 'dstarrepeater/css_connections.php';			// dstarrepeater gateway config
+	echo '</div>'."\n";
 
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLh(){'."\n";
