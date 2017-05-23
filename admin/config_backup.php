@@ -78,8 +78,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             header('Content-Length: ' . filesize($backupZip));
             readfile($backupZip);
             fclose($backupZip);
+            exit 1;
           }
-          header_remove();
+
         };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
