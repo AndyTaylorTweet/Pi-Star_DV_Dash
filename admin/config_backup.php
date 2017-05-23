@@ -64,7 +64,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
           $output .= shell_exec("sudo zip $backupZip $backupDir/* 2>&1");
           
-          echo "<tr><td><pre>$output</pre></td></tr>\n";
+          echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
           };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
