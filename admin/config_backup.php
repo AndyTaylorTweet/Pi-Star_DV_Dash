@@ -126,6 +126,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			        unlink($target_path);
 		        }
 		        $output .= "Your .zip file was uploaded and unpacked.";
+			// Stop the services
+			// Make the disk Writable
+			// Overwrite the configs
+			// Make the disk Read-Only
+			// Start the services
+			// Party like its 1999
 		}
 		else {
 			$output .= "There was a problem with the upload. Please try again.";
