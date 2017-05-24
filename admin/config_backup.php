@@ -141,7 +141,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			system('sudo mount -o remount,rw /');
 			
 			// Overwrite the configs
-			//$output .= shell_exec("sudo mv -f $target_dirwpa_supplicant.conf /etc/");
+			$output .= shell_exec("sudo mv -v -f $target_dirwpa_supplicant.conf /etc/wpa_supplicant/");
 			//$output .= shell_exec("sudo mv -f $target_dir* /etc/");
 			
 			// Make the disk Read-Only
