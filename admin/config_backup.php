@@ -114,7 +114,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	  }
 		$continue = strtolower($name[1]) == 'zip' ? true : false;
 	        if(!$continue) {
-		        $output .= "The file you are trying to upload is not a .zip file. Please try again.";
+		        $output .= "The file you are trying to upload is not a .zip file. Please try again.\n";
 	        }
 		$target_path = $target_dir.$filename;
           
@@ -126,7 +126,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			        $zip->close();
 			        unlink($target_path);
 		        }
-		        $output .= "Your .zip file was uploaded and unpacked.";
+		        $output .= "Your .zip file was uploaded and unpacked.\n";
 			// Stop the DV Services
 			system('sudo systemctl stop cron.service > /dev/null 2>/dev/null &');			//Cron
 			system('sudo systemctl stop dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
