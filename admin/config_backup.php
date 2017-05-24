@@ -130,37 +130,41 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			$output .= "Stopping Services.\n";
 			
 			// Stop the DV Services
-			shell_exec('sudo systemctl stop cron.service 2>&1')."\n";		//Cron
-			shell_exec('sudo systemctl stop dstarrepeater.service 2>&1')."\n";	//D-Star Radio Service
-			shell_exec('sudo systemctl stop mmdvmhost.service 2>&1')."\n";		//MMDVMHost Radio Service
-			shell_exec('sudo systemctl stop ircddbgateway.service 2>&1')."\n";	//ircDDBGateway Service
-			shell_exec('sudo systemctl stop timeserver.service 2>&1')."\n";		//Time Server Service
-			shell_exec('sudo systemctl stop pistar-watchdog.service 2>&1')."\n";	//PiStar-Watchdog Service
-			shell_exec('sudo systemctl stop ysfgateway.service 2>&1')."\n";		//YSFGateway
-			shell_exec('sudo systemctl stop p25gateway.service 2>&1')."\n";		//P25Gateway
+			shell_exec('sudo systemctl stop cron.service 2>&1');		//Cron
+			shell_exec('sudo systemctl stop dstarrepeater.service 2>&1');	//D-Star Radio Service
+			shell_exec('sudo systemctl stop mmdvmhost.service 2>&1');	//MMDVMHost Radio Service
+			shell_exec('sudo systemctl stop ircddbgateway.service 2>&1');	//ircDDBGateway Service
+			shell_exec('sudo systemctl stop timeserver.service 2>&1');	//Time Server Service
+			shell_exec('sudo systemctl stop pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
+			shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
+			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
 			
 			// Make the disk Writable
-			shell_exec('sudo mount -o remount,rw / 2>&1')."\n";
+			shell_exec('sudo mount -o remount,rw / 2>&1');
 			
 			// Overwrite the configs
 			$output .= "Writing new Config\n";
+			$output .= shell_exec("sudo rm -f /etc/dstar-radio.* 2>&1")."\n";
 			$output .= shell_exec("sudo mv -v -f /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
-			//$output .= shell_exec("sudo mv -f /tmp/config_restore/* /etc/ 2>&1")."\n";
+			$output .= shell_exec("sudo mv -f /tmp/config_restore/* /etc/ 2>&1")."\n";
 			
 			// Make the disk Read-Only
 			shell_exec('sudo mount -o remount,ro / 2>&1');
 			
 			// Start the services
 			$output .= "Starting Services.\n";
-			shell_exec('sudo systemctl start dstarrepeater.service 2>&1')."\n";	//D-Star Radio Service
-			shell_exec('sudo systemctl start mmdvmhost.service 2>&1')."\n";		//MMDVMHost Radio Service
-			shell_exec('sudo systemctl start ircddbgateway.service 2>&1')."\n";	//ircDDBGateway Service
-			shell_exec('sudo systemctl start timeserver.service 2>&1')."\n";	//Time Server Service
-			shell_exec('sudo systemctl start pistar-watchdog.service 2>&1')."\n";	//PiStar-Watchdog Service
-			shell_exec('sudo systemctl start pistar-upnp.service 2>&1')."\n";	//PiStar-UPnP Service
-			shell_exec('sudo systemctl start ysfgateway.service 2>&1')."\n";	//YSFGateway
-			shell_exec('sudo systemctl start p25gateway.service 2>&1')."\n";	//P25Gateway
-			shell_exec('sudo systemctl start cron.service 2>&1')."\n";		//Cron
+			shell_exec('sudo systemctl start dstarrepeater.service 2>&1');		//D-Star Radio Service
+			shell_exec('sudo systemctl start mmdvmhost.service 2>&1');		//MMDVMHost Radio Service
+			shell_exec('sudo systemctl start ircddbgateway.service 2>&1');		//ircDDBGateway Service
+			shell_exec('sudo systemctl start timeserver.service 2>&1');		//Time Server Service
+			shell_exec('sudo systemctl start pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
+			shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
+			shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
+			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
+			shell_exec('sudo systemctl start cron.service 2>&1');			//Cron
+			
+			// Remove config_restore directory
+			shell_exec("sudo rm -f $target_dir 2>&1");
 			
 			// Complete
 			$output .= "Configuration Restore Complete.\n";
