@@ -164,7 +164,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start cron.service 2>&1');			//Cron
 			
 			// Remove config_restore directory
-			shell_exec("sudo rm -f $target_dir 2>&1");
+			shell_exec("sudo rm -f /tmp/config_restore 2>&1");
 			
 			// Complete
 			$output .= "Configuration Restore Complete.\n";
