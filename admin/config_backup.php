@@ -35,6 +35,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
     <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
+    <a href="/admin/power.php" alt="Power Control" style="color: #ffffff;">Power</a> |
     <a href="/admin/update.php" alt="System Update" style="color: #ffffff;">Update</a> |
     <a href="/admin/configure.php" alt="Configuration" style="color: #ffffff;">Config</a>
   </p>
@@ -126,12 +127,38 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			        unlink($target_path);
 		        }
 		        $output .= "Your .zip file was uploaded and unpacked.";
-			// Stop the services
+			// Stop the DV Services
+			system('sudo systemctl stop cron.service > /dev/null 2>/dev/null &');			//Cron
+			system('sudo systemctl stop dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
+			system('sudo systemctl stop mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
+			system('sudo systemctl stop ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
+			system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
+			system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
+			system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
+			system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
+			
 			// Make the disk Writable
+			system('sudo mount -o remount,rw /');
+			
 			// Overwrite the configs
+			//$output .= shell_exec("sudo mv -f $target_dirwpa_supplicant.conf /etc/");
+			//$output .= shell_exec("sudo mv -f $target_dir* /etc/");
+			
 			// Make the disk Read-Only
+			system('sudo mount -o remount,ro /');
+			
 			// Start the services
-			// Party like its 1999
+			system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
+			system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
+			system('sudo systemctl start ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
+			system('sudo systemctl start timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
+			system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
+			system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		//PiStar-UPnP Service
+			system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
+			system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
+			system('sudo systemctl start cron.service > /dev/null 2>/dev/null &');			//Cron
+			
+			// Complete
 		}
 		else {
 			$output .= "There was a problem with the upload. Please try again.";
