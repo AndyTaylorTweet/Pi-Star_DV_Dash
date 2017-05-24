@@ -33,7 +33,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <meta name="Description" content="Pi-Star Dashboard" />
     <meta name="KeyWords" content="MW0MWZ,MMDVMHost,ircDDBGateway,D-Star,ircDDB,Pi-Star,Blackwood,Wales,DL5DI,DG9VH" />
     <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
     <title><?php echo "$MYCALL" ?> Hotspot Dashboard</title>
