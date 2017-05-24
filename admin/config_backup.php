@@ -128,35 +128,35 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		        }
 		        $output .= "Your .zip file was uploaded and unpacked.\n";
 			// Stop the DV Services
-			$output .= shell_exec('sudo systemctl stop cron.service')."\n";			//Cron
-			$output .= shell_exec('sudo systemctl stop dstarrepeater.service')."\n";	//D-Star Radio Service
-			$output .= shell_exec('sudo systemctl stop mmdvmhost.service')."\n";		//MMDVMHost Radio Service
-			$output .= shell_exec('sudo systemctl stop ircddbgateway.service')."\n";	//ircDDBGateway Service
-			$output .= shell_exec('sudo systemctl stop timeserver.service')."\n";		//Time Server Service
-			$output .= shell_exec('sudo systemctl stop pistar-watchdog.service')."\n";	//PiStar-Watchdog Service
-			$output .= shell_exec('sudo systemctl stop ysfgateway.service')."\n";		//YSFGateway
-			$output .= shell_exec('sudo systemctl stop p25gateway.service')."\n";		//P25Gateway
+			$output .= shell_exec('sudo systemctl stop cron.service 2>&1')."\n";			//Cron
+			$output .= shell_exec('sudo systemctl stop dstarrepeater.service 2>&1')."\n";	//D-Star Radio Service
+			$output .= shell_exec('sudo systemctl stop mmdvmhost.service 2>&1')."\n";		//MMDVMHost Radio Service
+			$output .= shell_exec('sudo systemctl stop ircddbgateway.service 2>&1')."\n";	//ircDDBGateway Service
+			$output .= shell_exec('sudo systemctl stop timeserver.service 2>&1')."\n";		//Time Server Service
+			$output .= shell_exec('sudo systemctl stop pistar-watchdog.service 2>&1')."\n";	//PiStar-Watchdog Service
+			$output .= shell_exec('sudo systemctl stop ysfgateway.service 2>&1')."\n";		//YSFGateway
+			$output .= shell_exec('sudo systemctl stop p25gateway.service 2>&1')."\n";		//P25Gateway
 			
 			// Make the disk Writable
-			system('sudo mount -o remount,rw /');
+			$output .= shell_exec('sudo mount -o remount,rw / 2>&1')."\n";
 			
 			// Overwrite the configs
-			$output .= shell_exec("sudo mv -v -f $target_dirwpa_supplicant.conf /etc/wpa_supplicant/");
+			$output .= shell_exec("sudo mv -v -f $target_dirwpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
 			//$output .= shell_exec("sudo mv -f $target_dir* /etc/");
 			
 			// Make the disk Read-Only
-			system('sudo mount -o remount,ro /');
+			$output .= shell_exec('sudo mount -o remount,ro / 2>&1');
 			
 			// Start the services
-			system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
-			system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
-			system('sudo systemctl start ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
-			system('sudo systemctl start timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
-			system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
-			system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		//PiStar-UPnP Service
-			system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
-			system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
-			system('sudo systemctl start cron.service > /dev/null 2>/dev/null &');			//Cron
+			$output .= shell_exec('sudo systemctl start dstarrepeater.service 2>&1')."\n";		//D-Star Radio Service
+			$output .= shell_exec('sudo systemctl start mmdvmhost.service 2>&1')."\n";		//MMDVMHost Radio Service
+			$output .= shell_exec('sudo systemctl start ircddbgateway.service 2>&1')."\n";		//ircDDBGateway Service
+			$output .= shell_exec('sudo systemctl start timeserver.service 2>&1')."\n";		//Time Server Service
+			$output .= shell_exec('sudo systemctl start pistar-watchdog.service 2>&1')."\n";	//PiStar-Watchdog Service
+			$output .= shell_exec('sudo systemctl start pistar-upnp.service 2>&1')."\n";		//PiStar-UPnP Service
+			$output .= shell_exec('sudo systemctl start ysfgateway.service 2>&1')."\n";		//YSFGateway
+			$output .= shell_exec('sudo systemctl start p25gateway.service 2>&1')."\n";		//P25Gateway
+			$output .= shell_exec('sudo systemctl start cron.service 2>&1')."\n";			//Cron
 			
 			// Complete
 		}
