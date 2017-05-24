@@ -315,17 +315,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollFREQdvmegaTx);
 	  
 	// Set RPT1 and RPT2
-	  if ($newFREQ >= 1240000000 && $newFREQ <= 1300000000) {
+	  if ($newFREQtx >= 1240000000 && $newFREQtx <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A"; $confDVVariant = 0;
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
 		}
-	  if ($newFREQ >= 420000000 && $newFREQ <= 450000000) {
+	  if ($newFREQtx >= 420000000 && $newFREQtx <= 450000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."B"; $confDVVariant = 2;
 		$confIRCrepeaterBand1 = "B";
 		$configmmdvm['D-Star']['Module'] = "B";
 		}
-	  if ($newFREQ >= 144000000 && $newFREQ <= 148000000) {
+	  if ($newFREQtx >= 144000000 && $newFREQtx <= 148000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."C"; $confDVVariant = 3;
 		$confIRCrepeaterBand1 = "C";
 		$configmmdvm['D-Star']['Module'] = "C";
