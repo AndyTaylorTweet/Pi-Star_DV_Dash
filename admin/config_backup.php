@@ -128,14 +128,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		        }
 		        $output .= "Your .zip file was uploaded and unpacked.\n";
 			// Stop the DV Services
-			system('sudo systemctl stop cron.service > /dev/null 2>/dev/null &');			//Cron
-			system('sudo systemctl stop dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
-			system('sudo systemctl stop mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
-			system('sudo systemctl stop ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
-			system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
-			system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
-			system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
-			system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
+			$output .= shell_exec('sudo systemctl stop cron.service')."\n";			//Cron
+			$output .= shell_exec('sudo systemctl stop dstarrepeater.service')."\n";	//D-Star Radio Service
+			$output .= shell_exec('sudo systemctl stop mmdvmhost.service')."\n";		//MMDVMHost Radio Service
+			$output .= shell_exec('sudo systemctl stop ircddbgateway.service')."\n";	//ircDDBGateway Service
+			$output .= shell_exec('sudo systemctl stop timeserver.service')."\n";		//Time Server Service
+			$output .= shell_exec('sudo systemctl stop pistar-watchdog.service')."\n";	//PiStar-Watchdog Service
+			$output .= shell_exec('sudo systemctl stop ysfgateway.service')."\n";		//YSFGateway
+			$output .= shell_exec('sudo systemctl stop p25gateway.service')."\n";		//P25Gateway
 			
 			// Make the disk Writable
 			system('sudo mount -o remount,rw /');
