@@ -172,11 +172,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  // Make the root filesystem read-only
           system('sudo mount -o remount,ro /');
-	  //echo "<br />\n<br />\n</div>\n
-	  //<div id=\"footer\">\nPi-Star web config, &copy\; Andy Taylor (MW0MWZ) 2014-".echo date("Y").".<br />\n
-	  //Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistar/\" target=\"_new\">here for the Support Group</a><br />\n
-	  //Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.mw0mwz.co.uk/pi-star/\" target=\"_blank\">here</a>.<br />
-	  //<br />\n</div>\n</div>\n</body>\n</html>\n";
+	  echo "<br />\n</div>\n";
+          echo "<div id=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistar/\" target=\"_new\">here for the Support Group</a><br />\n";
+          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.mw0mwz.co.uk/pi-star/\" target=\"_blank\">here</a>.<br />\n";
+          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
 	  die();
 	  }
 
