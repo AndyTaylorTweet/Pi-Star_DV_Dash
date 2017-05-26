@@ -105,6 +105,7 @@ $MYCALL=strtoupper($callsign);
  <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
  <a href="/admin/power.php" alt="Power Control" style="color: #ffffff;">Power</a> |
  <a href="/admin/update.php" alt="Software Update" style="color: #ffffff;">Update</a> |
+ <a href="/admin/config_backup.php" alt="Backup and Restore" style="color: #ffffff;">Backup/Restore</a> |
  <a href="javascript:factoryReset();" alt="Factory Reset" style="color: #ffffff;">Factory Reset</a>
 </p>
 </div>
