@@ -190,6 +190,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     	<input type="file" name="fileToUpload" id="fileToUpload">
     </td>
   </tr>
+  <tr>
+  <td colspan="2" align="justify">
+	  This backup and restore tool, will backup your config files to a Zip file, and allow you to restore them later<br />
+	  either to this Pi-Star or another one.<br />
+	  System Passwords / Dashboard passwords are NOT backed up / restored.<br />
+	  Wireless Configuration IS backed up and restored<br />
+	  <br />
+	  <h2>WARNING: Editing the files outside of Pi-Star *could* have un-desireable side effects</h2>
+  </td>
+  </tr>
   </table>
   </form>
 <?php } ?>
