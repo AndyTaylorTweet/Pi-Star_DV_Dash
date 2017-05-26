@@ -199,6 +199,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		  <li>System Passwords / Dashboard passwords are NOT backed up / restored.</li>
 		  <li>Wireless Configuration IS backed up and restored</li>
 	  </ul>
+	  <br />
 	  <h2>WARNING:</h2>
 	  Editing the files outside of Pi-Star *could* have un-desireable side effects.
   </td>
