@@ -200,7 +200,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		  <li>Wireless Configuration IS backed up and restored</li>
 	  </ul>
 	  <br />
-	  <h2>WARNING:</h2>
+	  <b>WARNING:</b><br />
 	  Editing the files outside of Pi-Star *could* have un-desireable side effects.
   </td>
   </tr>
