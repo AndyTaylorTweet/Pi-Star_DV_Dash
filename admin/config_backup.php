@@ -79,7 +79,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             $local_time = $dt->format('d-M-Y');
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename='.basename("Pi-Star_Config_$local_time.zip"));
+            header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
             header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
