@@ -196,8 +196,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	  This backup and restore tool, will backup your config files to a Zip file, and allow you to restore them later<br />
 	  either to this Pi-Star or another one.<br />
 	  <ul>
-		  <li>System Passwords / Dashboard passwords are NOT backed up / restored.</li>
-		  <li>Wireless Configuration IS backed up and restored</li>
+		  <li>System Passwords / Dashboard passwords are NOT backed up / restored.
+		  <li>Wireless Configuration IS backed up and restored
 	  </ul>
 	  <br />
 	  <b>WARNING:</b><br />
