@@ -74,7 +74,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   <tr>
     <td align="center">
       Reboot<br />
-      <button style="border: none;" name="action" value="reboot"><img src="/images/reboot.png" border="0" /></button>
+      <button style="border: none; background: none;" name="action" value="reboot"><img src="/images/reboot.png" border="0" /></button>
     </td>
     <td align="center">
       Shutdown<br />
