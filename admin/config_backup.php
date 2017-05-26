@@ -184,11 +184,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <tr>
     <td align="center" width="50%">Download Configuration<br />
 	<!-- <input type="image" src="/images/download.png" name="action" value="download" /> -->
-	<div style="background:url(/images/download.png) no-repeat; cursor:pointer; width: 300px; height: 300px; border: none;"><input type="submit" name="action" value="download" /></div>
+	<button name="action" value="download"><img src="/images/download.png" /></button>
     </td>
     <td align="center">Restore Configuration<br />
 	<!-- <input type="image"  src="/images/restore.png" name="action" value="restore" /><br /> -->
-	<div><input type="submit" name="action" value="restore" /></div>
+	<button name="action" value="restore"><img src="/images/restore.png" /></button>
     	<input type="file" name="fileToUpload" id="fileToUpload">
     </td>
   </tr>
