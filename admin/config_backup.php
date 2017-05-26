@@ -193,15 +193,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <tr>
   <td colspan="2" align="justify">
 	  <br />
+	  <b>WARNING:</b><br />
+	  Editing the files outside of Pi-Star *could* have un-desireable side effects.<br />
+	  <br />
 	  This backup and restore tool, will backup your config files to a Zip file, and allow you to restore them later<br />
 	  either to this Pi-Star or another one.<br />
 	  <ul>
 		  <li>System Passwords / Dashboard passwords are NOT backed up / restored.
 		  <li>Wireless Configuration IS backed up and restored
 	  </ul>
-	  <br />
-	  <b>WARNING:</b><br />
-	  Editing the files outside of Pi-Star *could* have un-desireable side effects.
   </td>
   </tr>
   </table>
