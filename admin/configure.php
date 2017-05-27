@@ -992,13 +992,13 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
     <td align="left" colspan="2"><select name="confHardware">
-                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyAMA0') { echo ' selected';}?> value="DVM-RPI">DV-Mega RPi Radio</option>
-                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyACM0' && $configdstar['dvmegaVariant'] >= 1 ) { echo ' selected';}?> value="DVM-USB">Zum Board / DV-Mega USB Radio / DV-Mega USB GMSK Node (Old Firmware)</option>
-                <option<?php if ($configdstar['dvmegaVariant'] === '0') { echo ' selected';}?> value="DVM-GMSK">Blue-DV / Bluestack / DV-Mega USB GMSK Node (New Firmware)</option>
-                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V1') { echo ' selected';}?> value="DV-RPTR1">DV-RPTR V1</option>
-                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V2') { echo ' selected';}?> value="DV-RPTR2">DV-RPTR V2</option>
-                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V3') { echo ' selected';}?> value="DV-RPTR3">DV-RPTR V3</option>
-                <option<?php if ($configdstar['modemType'] === 'DVAP') { echo ' selected';}?> value="DVAP">DVAP</option>
+                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyAMA0') { echo ' selected="selected"';}?> value="DVM-RPI">DV-Mega RPi Radio</option>
+                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyACM0' && $configdstar['dvmegaVariant'] >= 1 ) { echo ' selected="selected"';}?> value="DVM-USB">Zum Board / DV-Mega USB Radio / DV-Mega USB GMSK Node (Old Firmware)</option>
+                <option<?php if ($configdstar['dvmegaVariant'] === '0') { echo ' selected="selected"';}?> value="DVM-GMSK">Blue-DV / Bluestack / DV-Mega USB GMSK Node (New Firmware)</option>
+                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V1') { echo ' selected="selected"';}?> value="DV-RPTR1">DV-RPTR V1</option>
+                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V2') { echo ' selected="selected"';}?> value="DV-RPTR2">DV-RPTR V2</option>
+                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V3') { echo ' selected="selected"';}?> value="DV-RPTR3">DV-RPTR V3</option>
+                <option<?php if ($configdstar['modemType'] === 'DVAP') { echo ' selected="selected"';}?> value="DVAP">DVAP</option>
     </select></td>
     </tr>
     <tr>
@@ -1014,7 +1014,7 @@ else:
   exec('timedatectl list-timezones', $tzList);
   exec('cat /etc/timezone', $tzCurrent);
     foreach ($tzList as $timeZone) {
-      if ($timeZone == $tzCurrent[0]) { echo "      <option selected value=\"".$timeZone."\">".$timeZone."</option>\n"; }
+      if ($timeZone == $tzCurrent[0]) { echo "      <option selected=\"selected\" value=\"".$timeZone."\">".$timeZone."</option>\n"; }
       else { echo "      <option value=\"".$timeZone."\">".$timeZone."</option>\n"; }
     }
 ?>
@@ -1067,7 +1067,7 @@ else:
     <td align="left"><a class="tooltip2" href="#">DMR Color Code:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
     <td style="text-align: left;"><select name="dmrColorCode">
 	<?php for ($dmrColorCodeInput = 1; $dmrColorCodeInput <= 15; $dmrColorCodeInput++) {
-		if ($configmmdvm['DMR']['ColorCode'] == $dmrColorCodeInput) { echo "<option selected value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
+		if ($configmmdvm['DMR']['ColorCode'] == $dmrColorCodeInput) { echo "<option selected=\"selected\" value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
 		else {echo "<option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
 	} ?>
     </select></td>
@@ -1119,8 +1119,7 @@ $dcsFile = fopen("/usr/local/etc/DCS_Hosts.txt", "r");
 $dplusFile = fopen("/usr/local/etc/DPlus_Hosts.txt", "r");
 $dextraFile = fopen("/usr/local/etc/DExtra_Hosts.txt", "r");
 
-// echo "  <option selected>".substr($configs['reflector1'], 0, 6)."</option>\n";
-echo "    <option value=\"".substr($configs['reflector1'], 0, 6)."\" selected>".substr($configs['reflector1'], 0, 6)."</option>\n";
+echo "    <option value=\"".substr($configs['reflector1'], 0, 6)."\" selected=\"selected\">".substr($configs['reflector1'], 0, 6)."</option>\n";
 echo "    <option value=\"customOption\">Text Entry</option>\n";
 
 while (!feof($dcsFile)) {
@@ -1150,7 +1149,7 @@ fclose($dextraFile);
     </select><input name="confDefRef" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
             onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
     <select name="confDefRefLtr">
-	<?php echo "  <option value=\"".substr($configs['reflector1'], 7)."\" selected>".substr($configs['reflector1'], 7)."</option>\n"; ?>
+	<?php echo "  <option value=\"".substr($configs['reflector1'], 7)."\" selected=\"selected\">".substr($configs['reflector1'], 7)."</option>\n"; ?>
         <option>A</option>
         <option>B</option>
         <option>C</option>
@@ -1193,7 +1192,7 @@ fclose($dextraFile);
                 $aprsHostFileLine = fgets($aprsHostFile);
                 $aprsHost = preg_split('/:/', $aprsHostFileLine);
                 if ((strpos($aprsHost[0], ';') === FALSE ) && ($aprsHost[0] != '')) {
-                        if ($testAPSRHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected>$aprsHost[0]</option>\n"; }
+                        if ($testAPSRHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected=\"selected\">$aprsHost[0]</option>\n"; }
                         else { echo "      <option value=\"$aprsHost[0]\">$aprsHost[0]</option>\n"; }
                 }
         }
@@ -1221,7 +1220,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
                 if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
-                        if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected>$ysfHost[0] - $ysfHost[1] - $ysfHost[2]</option>\n"; }
+                        if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - $ysfHost[1] - $ysfHost[2]</option>\n"; }
                         else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - $ysfHost[1] - $ysfHost[2]</option>\n"; }
                 }
         }
@@ -1249,7 +1248,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
                 $p25HostsLine = fgets($p25Hosts);
                 $p25Host = preg_split('/\s+/', $p25HostsLine);
                 if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
-                        if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected>$p25Host[0] - $p25Host[1]</option>\n"; }
+                        if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
                         else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
                 }
         }
