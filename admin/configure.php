@@ -76,11 +76,11 @@ $MYCALL=strtoupper($callsign);
     <script type="text/javascript">
 	function submitform()
 	{
-	  document.config.submit();
+	  document.getElementById("config").submit();
 	}
 	function submitPassform()
 	{
-	  document.adminPassForm.submit();
+	  document.getElementById("adminPassForm").submit();
 	}
 	function factoryReset()
 	{
@@ -789,7 +789,7 @@ else:
 	<div><input type="hidden" name="factoryReset" value="1" /></div>
 </form>
 
-<form name="config" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+<form id="config" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <b>Control Software</b>
     <table>
     <tr>
@@ -1326,7 +1326,7 @@ echo '
 
 <br />
     <b>Remote Access Password</b>
-    <form name="adminPassForm" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+    <form id="adminPassForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <table>
     <tr><th width="200">User</th><th colspan="3">Password</th></tr>
     <tr>
