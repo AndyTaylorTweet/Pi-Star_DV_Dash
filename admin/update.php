@@ -70,11 +70,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
   <h1>Pi-Star Digital Voice - Software Updater</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
-    <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
-    <a href="/admin/power.php" alt="Power Control" style="color: #ffffff;">Power</a> |
-    <a href="/admin/config_backup.php" alt="Backup and Restore" style="color: #ffffff;">Backup/Restore</a> |
-    <a href="/admin/configure.php" alt="Configuration" style="color: #ffffff;">Config</a>
+    <a href="/" style="color: #ffffff;">Dashboard</a> |
+    <a href="/admin/" style="color: #ffffff;">Admin</a> |
+    <a href="/admin/power.php" style="color: #ffffff;">Power</a> |
+    <a href="/admin/config_backup.php" style="color: #ffffff;">Backup/Restore</a> |
+    <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
   </p>
   </div>
   <div id="contentwide">
