@@ -785,7 +785,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 else:
 	// Output the HTML Form here
 ?>
-<form name="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<form id="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<div><input type="hidden" name="factoryReset" value="1"></div>
 </form>
 
