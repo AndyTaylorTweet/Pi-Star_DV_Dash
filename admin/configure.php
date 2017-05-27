@@ -933,7 +933,7 @@ else:
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
     <?php } ?>
-    <b>General Configuration</b>
+	<div><b>General Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
@@ -1025,7 +1025,7 @@ else:
 <br />
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
-    <b>DMR Configuration</b>
+	<div><b>DMR Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
@@ -1089,7 +1089,7 @@ else:
 <?php } ?>
 
 <?php if (file_exists('/etc/dstar-radio.dstarrepeater') || $configmmdvm['D-Star']['Enable'] == 1) { ?>
-    <b>D-Star Configuration</b>
+	<div><b>D-Star Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
@@ -1234,7 +1234,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) {
 $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
-    <b>P25 Configuration</b>
+	<div><b>P25 Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
@@ -1260,7 +1260,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
 <?php } ?>	
-    <b>Firewall Configuration</b>
+	<div><b>Firewall Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
@@ -1323,7 +1323,7 @@ echo '
     </td></tr></table>'; } ?>
 
 <br />
-    <b>Remote Access Password</b>
+	<div><b>Remote Access Password</b></div>
     <form id="adminPassForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <table>
     <tr><th width="200">User</th><th colspan="3">Password</th></tr>
