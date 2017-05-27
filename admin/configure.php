@@ -1220,7 +1220,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
                 if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
-                        if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - $ysfHost[1] - $ysfHost[2]</option>\n"; }
+                        if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">htmlspecialchars($ysfHost[0]) - htmlspecialchars($ysfHost[1]) - htmlspecialchars($ysfHost[2])</option>\n"; }
                         else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - $ysfHost[1] - $ysfHost[2]</option>\n"; }
                 }
         }
