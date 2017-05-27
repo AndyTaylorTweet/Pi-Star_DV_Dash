@@ -47,8 +47,8 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
 <h1>Pi-Star Digital Voice Dashboard for <?php echo $MYCALL; ?></h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
- <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
- <a href="/admin/" alt="Administration" style="color: #ffffff;">Admin</a> |
+ <a href="/" style="color: #ffffff;">Dashboard</a> |
+ <a href="/admin/" style="color: #ffffff;">Admin</a> |
 <?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
   echo ' <a href="/admin/power.php" style="color: #ffffff;">Power</a> |'."\n";
   echo ' <a href="/admin/update.php" style="color: #ffffff;">Update</a> |'."\n";
