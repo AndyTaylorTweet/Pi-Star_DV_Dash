@@ -951,17 +951,17 @@ else:
     </tr><?php } ?>
 <?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
 	echo "    <tr>\n";
-	echo "    <td align=\"left\"><a class=tooltip2 href=\"#\">Radio Frequency:<span><b>Radio Frequency</b>This is the Frequency your<br />Pi-Star is on</span></a></td>\n";
+	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">Radio Frequency:<span><b>Radio Frequency</b>This is the Frequency your<br />Pi-Star is on</span></a></td>\n";
 	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQ\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
 	else {
 	echo "    <tr>\n";
-	echo "    <td align=\"left\"><a class=tooltip2 href=\"#\">Radio Frequency RX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will listen on</span></a></td>\n";
+	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">Radio Frequency RX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will listen on</span></a></td>\n";
 	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQrx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	echo "    <tr>\n";
-	echo "    <td align=\"left\"><a class=tooltip2 href=\"#\">Radio Frequency TX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will transmit on</span></a></td>\n";
+	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">Radio Frequency TX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will transmit on</span></a></td>\n";
 	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQtx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['TXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
@@ -1028,7 +1028,7 @@ else:
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
-    <th><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Master:<span><b>DMR Master</b>Set your prefered DMR<br /> master here</span></a></td>
