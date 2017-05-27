@@ -1040,7 +1040,7 @@ else:
                 $dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
                 if ((strpos($dmrMasterHost[0], '#') === FALSE ) && ($dmrMasterHost[0] != '')) {
-                        if ($testMMDVMdmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected>$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
+                        if ($testMMDVMdmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected=\"selected\" />$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
                         else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\">$dmrMasterHost[0]</option>\n"; }
                 }
         }
@@ -1147,7 +1147,7 @@ fclose($dextraFile);
 												   
 ?>
     </select><input name="confDefRef" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
-            onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+            onblur="if(this.value==''){toggleField(this,this.previousSibling);}" />
     <select name="confDefRefLtr">
 	<?php echo "  <option value=\"".substr($configs['reflector1'], 7)."\" selected=\"selected\">".substr($configs['reflector1'], 7)."</option>\n"; ?>
         <option>A</option>
