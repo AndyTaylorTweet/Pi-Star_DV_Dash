@@ -17,9 +17,9 @@ $MYCALL=strtoupper($callsign);
 <?php
 $cpuLoad = sys_getloadavg();
 $cpuTemp = exec('awk \'{printf("%.1f\n",$1/1e3)}\' /sys/class/thermal/thermal_zone0/temp');
-if ($cpuTemp < 50) { $cpuTempHTML = "<td bgcolor=\"#1d1\">".$cpuTemp."&degC</td>\n"; }
-if ($cpuTemp >= 50) { $cpuTempHTML = "<td bgcolor=\"#fa0\">".$cpuTemp."&degC</td>\n"; }
-if ($cpuTemp >= 69) { $cpuTempHTML = "<td bgcolor=\"#f00\">".$cpuTemp."&degC</td>\n"; }
+if ($cpuTemp < 50) { $cpuTempHTML = "<td bgcolor=\"#1d1\">".$cpuTemp."&deg;C</td>\n"; }
+if ($cpuTemp >= 50) { $cpuTempHTML = "<td bgcolor=\"#fa0\">".$cpuTemp."&deg;C</td>\n"; }
+if ($cpuTemp >= 69) { $cpuTempHTML = "<td bgcolor=\"#f00\">".$cpuTemp."&deg;C</td>\n"; }
 ?>
 <b>Gateway Hardware Information</b>
 <table>
