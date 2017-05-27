@@ -109,6 +109,8 @@ while (!feof($dplusFile)) {
 	$dplusLine = fgets($dplusFile);
 	if (strpos($dplusLine, 'REF') !== FALSE && strpos($dplusLine, '#') === FALSE)
 		echo "	<option value=\"".substr($dplusLine, 0, 6)."\">".substr($dplusLine, 0, 6)."</option>\n";
+	if (strpos($dplusLine, 'XRF') !== FALSE && strpos($dplusLine, '#') === FALSE)
+		echo "	<option value=\"".substr($dplusLine, 0, 6)."\">".substr($dplusLine, 0, 6)."</option>\n";
 }
 fclose($dplusFile);
 
