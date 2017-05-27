@@ -786,7 +786,7 @@ else:
 	// Output the HTML Form here
 ?>
 <form id="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-	<div><input type="hidden" name="factoryReset" value="1"></div>
+	<div><input type="hidden" name="factoryReset" value="1" /></div>
 </form>
 
 <form name="config" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
