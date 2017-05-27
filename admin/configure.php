@@ -984,7 +984,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">URL:<span><b>Gateway URL</b>The URL used to access<br />this dashboard</span></a></td>
-    <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>"></td>
+    <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>" /></td>
     <td width="300">
     <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com') !== FALSE) {echo ' checked="checked"';} ?> />Auto
     <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com') == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
@@ -1021,8 +1021,7 @@ else:
     </select></td>
     </tr>	
     </table>
-	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /></div>
-<br />
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
 	<div><b>DMR Configuration</b></div>
@@ -1105,7 +1104,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">ircDDBGateway Password:<span><b>Gateway Password</b>Used for any kind of remote<br />access to this system</span></a></td>
-    <td align="left" colspan="2"><input type="password" name="confPassword" size="30" maxlength="30" value="<?php echo $configs['remotePassword'] ?>"></td>
+    <td align="left" colspan="2"><input type="password" name="confPassword" size="30" maxlength="30" value="<?php echo $configs['remotePassword'] ?>" /></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Default Reflector:<span><b>Default Refelctor</b>Used for setting the<br />default reflector.</span></a></td>
