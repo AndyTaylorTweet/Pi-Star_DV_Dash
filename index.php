@@ -53,7 +53,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
   echo ' <a href="/admin/power.php" style="color: #ffffff;">Power</a> |'."\n";
   echo ' <a href="/admin/update.php" style="color: #ffffff;">Update</a> |'."\n";
   } ?>
- <a href="/admin/configure.php" alt="Configuration" style="color: #ffffff;">Config</a>
+ <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
 </p>
 </div>
 
