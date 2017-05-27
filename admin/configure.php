@@ -793,11 +793,11 @@ else:
 	<div><b>Control Software</b></div>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
-    <th><a class=tooltip href="#">Value<span><b>Value</b>The current value from<br />the configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
+    <th><a class="tooltip" href="#">Value<span><b>Value</b>The current value from<br />the configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Controller Software:<span><b>Radio Control Software</b>Choose the software used<br />to control the DV Radio Module<br />PLease note that DV Mega hardware<br />will require a firmware upgrade.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Controller Software:<span><b>Radio Control Software</b>Choose the software used<br />to control the DV Radio Module<br />PLease note that DV Mega hardware<br />will require a firmware upgrade.</span></a></td>
     <?php
 	if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"controllerSoft\" value=\"DSTAR\" onclick=\"alert('After applying your Configuration Settings, you will need to powercycle your Pi.');\" />DStarRepeater <input type=\"radio\" name=\"controllerSoft\" value=\"MMDVM\" checked>MMDVMHost (DV-Mega Minimum Firmware 3.07 Required)</td>\n";
@@ -811,7 +811,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Controller Mode:<span><b>TRX Mode</b>Choose the mode type<br />Simplex node or<br />Duplex repeater.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Controller Mode:<span><b>TRX Mode</b>Choose the mode type<br />Simplex node or<br />Duplex repeater.</span></a></td>
     <?php
 	if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency']) {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\" checked>Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\">Duplex Repeater</td>\n";
@@ -828,11 +828,11 @@ else:
     <b>MMDVMHost Configuration</b>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
     <th><a class=tooltip href="#">Value<span><b>Value</b>The current value from<br />the configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Mode Enable:<span><b>DMR Mode Enable</b>Turn on DMR Features</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Mode Enable:<span><b>DMR Mode Enable</b>Turn on DMR Features</span></a></td>
     <?php
 	$testMMDVModeDMR = $configmmdvm['DMR']['Enable'];
 	if ( $testMMDVModeDMR == 1 ) {
@@ -844,7 +844,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Network:<span><b>DMR Network</b>Turn on DMR Network</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Network:<span><b>DMR Network</b>Turn on DMR Network</span></a></td>
     <?php
 	$testMMDVModeDMRnet = $configmmdvm['DMR Network']['Enable'];
 	if ( $testMMDVModeDMRnet == 1 ) {
@@ -856,7 +856,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">D-Star Mode Enable:<span><b>D-Star Mode Enable</b>Turn on D-Star Features</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">D-Star Mode Enable:<span><b>D-Star Mode Enable</b>Turn on D-Star Features</span></a></td>
     <?php
 	$testMMDVModeDSTAR = $configmmdvm['D-Star']['Enable'];
 	if ( $testMMDVModeDSTAR == 1 ) {
@@ -868,7 +868,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">D-Star Network:<span><b>D-Star Network</b>Turn on D-Star Network</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">D-Star Network:<span><b>D-Star Network</b>Turn on D-Star Network</span></a></td>
     <?php
 	$testMMDVModeDSTARnet = $configmmdvm['D-Star Network']['Enable'];
 	if ( $testMMDVModeDSTARnet == 1 ) {
@@ -880,7 +880,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Fusion Mode Enable:<span><b>Fusion Mode Enable</b>Turn on Fusion Features</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Fusion Mode Enable:<span><b>Fusion Mode Enable</b>Turn on Fusion Features</span></a></td>
     <?php
 	$testMMDVModeFUSION = $configmmdvm['System Fusion']['Enable'];
 	if ( $testMMDVModeFUSION == 1 ) {
@@ -892,7 +892,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Fusion Network:<span><b>Fusion Network</b>Turn on Fusion Network</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Fusion Network:<span><b>Fusion Network</b>Turn on Fusion Network</span></a></td>
     <?php
 	$testMMDVModeFUSIONnet = $configmmdvm['System Fusion Network']['Enable'];
 	if ( $testMMDVModeFUSIONnet == 1 ) {
@@ -904,7 +904,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">P25 Mode Enable:<span><b>P25 Mode Enable</b>Turn on P25 Features</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">P25 Mode Enable:<span><b>P25 Mode Enable</b>Turn on P25 Features</span></a></td>
     <?php
         $testMMDVModeP25 = $configmmdvm['P25']['Enable'];
         if ( $testMMDVModeP25 == 1 ) {
@@ -916,7 +916,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">P25 Network:<span><b>P25 Network</b>Turn on P25 Network</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">P25 Network:<span><b>P25 Network</b>Turn on P25 Network</span></a></td>
     <?php
         $testMMDVModeP25net = $configmmdvm['P25 Network']['Enable'];
         if ( $testMMDVModeP25net == 1 ) {
@@ -928,7 +928,7 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Mode Hangtime:<span><b>Mode Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Mode Hangtime:<span><b>Mode Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
     <td align="left"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>"> in seconds (20 secs works well)</td>
     </tr>
     </table>
@@ -938,17 +938,17 @@ else:
     <b>General Configuration</b>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Node Callsign:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Node Callsign:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confCallsign" size="13" maxlength="6" value="<?php echo $configs['gatewayCallsign'] ?>"></td>
     </tr>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">CCS7/DMR ID:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">CCS7/DMR ID:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
     <td align="left" colspan="2"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php echo $configmmdvm['DMR']['Id']; ?>"></td>
     </tr><?php } ?>
 <?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
@@ -969,30 +969,30 @@ else:
 	}
 ?>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Latitude:<span><b>Gateway Latitude</b>This is the latitude where the<br />gateway is located (positive<br />number for North, negative<br />number for South)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Latitude:<span><b>Gateway Latitude</b>This is the latitude where the<br />gateway is located (positive<br />number for North, negative<br />number for South)</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confLatitude" size="13" maxlength="9" value="<?php echo $configs['latitude'] ?>">degrees (positive value for North, negative for South)</td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Longitude:<span><b>Gateway Longitude</b>This is the longitude where the<br />gateway is located (positive<br />number for East, negative<br />number for West)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Longitude:<span><b>Gateway Longitude</b>This is the longitude where the<br />gateway is located (positive<br />number for East, negative<br />number for West)</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confLongitude" size="13" maxlength="9" value="<?php echo $configs['longitude'] ?>">degrees (positive value for East, negative for West)</td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Town:<span><b>Gateway Town</b>The town where the gateway<br />is located</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Town:<span><b>Gateway Town</b>The town where the gateway<br />is located</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confDesc1" size="30" maxlength="30" value="<?php echo $configs['description1'] ?>"></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Country:<span><b>Gateway Country</b>The country where the gateway<br />is located</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Country:<span><b>Gateway Country</b>The country where the gateway<br />is located</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confDesc2" size="30" maxlength="30" value="<?php echo $configs['description2'] ?>"></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">URL:<span><b>Gateway URL</b>The URL used to access<br />this dashboard</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">URL:<span><b>Gateway URL</b>The URL used to access<br />this dashboard</span></a></td>
     <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>"></td>
     <td width="300">
     <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com') !== FALSE) {echo ' checked';} ?>>Auto
     <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com') == FALSE) {echo ' checked';} ?>>Manual</td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
     <td align="left" colspan="2"><select name="confHardware">
                 <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyAMA0') { echo ' selected';}?> value="DVM-RPI">DV-Mega RPi Radio</option>
                 <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyACM0' && $configdstar[dvmegaVariant] >= 1 ) { echo ' selected';}?> value="DVM-USB">Zum Board / DV-Mega USB Radio / DV-Mega USB GMSK Node (Old Firmware)</option>
@@ -1004,13 +1004,13 @@ else:
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Node Type:<span><b>Node Lock</b>Set the public / private<br />node type. Public should<br />only be used with the correct<br />licence.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Node Type:<span><b>Node Lock</b>Set the public / private<br />node type. Public should<br />only be used with the correct<br />licence.</span></a></td>
     <td align="left" colspan="2">
     <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked';} ?>>Private
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked';} ?>>Public</td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">System Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">System Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
     <td style="text-align: left;" colspan="2"><select name="systemTimezone">
 <?php
   exec('timedatectl list-timezones', $tzList);
@@ -1030,11 +1030,11 @@ else:
     <b>DMR Configuration</b>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
     <th><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Master:<span><b>DMR Master</b>Set your prefered DMR<br /> master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Master:<span><b>DMR Master</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost">
 <?php
         $testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
@@ -1052,21 +1052,21 @@ else:
     </tr>
 <?php
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
-    <td align="left"><a class=tooltip2 href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
       <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> | 
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>'."\n";}
     if (substr($dmrMasterNow, 0, 4) == "DMR+") { echo '    <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
     <td align="left">
     Options=<input type="text" name="dmrNetworkOptions" size="75" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'">
     </td>
     </tr>'."\n";}
 ?>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR Color Code:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Color Code:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
     <td style="text-align: left;"><select name="dmrColorCode">
 	<?php for ($dmrColorCodeInput = 1; $dmrColorCodeInput <= 15; $dmrColorCodeInput++) {
 		if ($configmmdvm['DMR']['ColorCode'] == $dmrColorCodeInput) { echo "<option selected value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
@@ -1075,13 +1075,13 @@ else:
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR EmbeddedLCOnly:<span><b>DMR EmbeddedLCOnly</b>Set EmbeddedLCOnly to ON<br />to help reduce problems<br />with some DMR Radios</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR EmbeddedLCOnly:<span><b>DMR EmbeddedLCOnly</b>Set EmbeddedLCOnly to ON<br />to help reduce problems<br />with some DMR Radios</span></a></td>
     <td align="left">
     <input type="radio" name="dmrEmbeddedLCOnly" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked';} ?>>Enabled
     <input type="radio" name="dmrEmbeddedLCOnly" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked';} ?>>Disabled
     </td></tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">DMR DumpTAData:<span><b>DMR DumpTAData</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR DumpTAData:<span><b>DMR DumpTAData</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
     <td align="left">
     <input type="radio" name="dmrDumpTAData" value="1"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked';} ?>>Enabled
     <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked';} ?>>Disabled
@@ -1094,23 +1094,23 @@ else:
     <b>D-Star Configuration</b>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">RPT1 Callsign:<span><b>RPT1 Callsign</b>This is the RPT1 field for your radio</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">RPT1 Callsign:<span><b>RPT1 Callsign</b>This is the RPT1 field for your radio</span></a></td>
     <td align="left" colspan="2"><?php echo str_replace(' ', '&nbsp;', $configdstar['callsign']) ?></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">RPT2 Callsign:<span><b>RPT2 Callsign</b>This is the RPT2 field for your radio</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">RPT2 Callsign:<span><b>RPT2 Callsign</b>This is the RPT2 field for your radio</span></a></td>
     <td align="left" colspan="2"><?php echo str_replace(' ', '&nbsp;', $configdstar['gateway']) ?></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">ircDDBGateway Password:<span><b>Gateway Password</b>Used for any kind of remote<br />access to this system</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">ircDDBGateway Password:<span><b>Gateway Password</b>Used for any kind of remote<br />access to this system</span></a></td>
     <td align="left" colspan="2"><input type="password" name="confPassword" size="30" maxlength="30" value="<?php echo $configs['remotePassword'] ?>"></td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Default Reflector:<span><b>Default Refelctor</b>Used for setting the<br />default reflector.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Default Reflector:<span><b>Default Refelctor</b>Used for setting the<br />default reflector.</span></a></td>
     <td align="left" colspan="1"><select name="confDefRef"
 	onchange="if (this.options[this.selectedIndex].value == 'customOption') {
 	  toggleField(this,this.nextSibling);
@@ -1186,7 +1186,7 @@ fclose($dextraFile);
     <input type="radio" name="confDefRefAuto" value="OFF"<?php if ($configs['atStartup1'] == '0') {echo ' checked';} ?>>Manual</td>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">APRS Host:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">APRS Host:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
 <?php
         $testAPSRHost = $configs['aprsHostname'];
@@ -1211,11 +1211,11 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <b>Yaesu System Fusion Configuration</b>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">YSF Startup Host:<span><b>YSF Host</b>Set your prefered<br /> YSF Host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">YSF Startup Host:<span><b>YSF Host</b>Set your prefered<br /> YSF Host here</span></a></td>
     <td style="text-align: left;"><select name="ysfStartupHost">
 <?php
         $testYSFHost = $configysfgateway['Network']['Startup'];
@@ -1239,11 +1239,11 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <b>P25 Configuration</b>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">P25 Startup Host:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">P25 Startup Host:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
     <td style="text-align: left;"><select name="p25StartupHost">
 <?php
         $testP25Host = $configp25gateway['Network']['Startup'];
@@ -1265,11 +1265,11 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <b>Firewall Configuration</b>
     <table>
     <tr>
-    <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class=tooltip href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">Dashboard Access:<span><b>Dashboard Access</b>Do you want the dashboard access<br />to be publicly available? This<br />modifies the uPNP firewall<br />Configuration.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Dashboard Access:<span><b>Dashboard Access</b>Do you want the dashboard access<br />to be publicly available? This<br />modifies the uPNP firewall<br />Configuration.</span></a></td>
     <?php
 	$testPrvPubDash = exec('sudo sed -n 32p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubDash, 0, 1) === '#') {
@@ -1281,7 +1281,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">ircDDBGateway Remote:<span><b>ircDDBGateway Remote Access</b>Do you want the ircDDBGateway<br />remote controll access to be<br />publicly available? This modifies<br />the uPNP firewall Configuration.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">ircDDBGateway Remote:<span><b>ircDDBGateway Remote Access</b>Do you want the ircDDBGateway<br />remote controll access to be<br />publicly available? This modifies<br />the uPNP firewall Configuration.</span></a></td>
     <?php
 	$testPrvPubIRC = exec('sudo sed -n 33p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubIRC, 0, 1) === '#') {
@@ -1293,7 +1293,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     ?>
     </tr>
     <tr>
-    <td align="left"><a class=tooltip2 href="#">SSH Access:<span><b>SSH Access</b>Do you want access to be<br />publicly available over SSH (used<br />for support issues)? This modifies<br />the uPNP firewall Configuration.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">SSH Access:<span><b>SSH Access</b>Do you want access to be<br />publicly available over SSH (used<br />for support issues)? This modifies<br />the uPNP firewall Configuration.</span></a></td>
     <?php
 	$testPrvPubSSH = exec('sudo sed -n 31p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubSSH, 0, 1) === '#') {
