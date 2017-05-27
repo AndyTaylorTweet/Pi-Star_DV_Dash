@@ -72,7 +72,7 @@ $MYCALL=strtoupper($callsign);
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL" ?> Hotspot Configuration Dashboard</title>
-    <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
+    <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
     <script>
 	function submitform()
 	{
