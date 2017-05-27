@@ -800,13 +800,13 @@ else:
     <td align="left"><a class="tooltip2" href="#">Controller Software:<span><b>Radio Control Software</b>Choose the software used<br />to control the DV Radio Module<br />PLease note that DV Mega hardware<br />will require a firmware upgrade.</span></a></td>
     <?php
 	if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"controllerSoft\" value=\"DSTAR\" onclick=\"alert('After applying your Configuration Settings, you will need to powercycle your Pi.');\" />DStarRepeater <input type=\"radio\" name=\"controllerSoft\" value=\"MMDVM\" checked>MMDVMHost (DV-Mega Minimum Firmware 3.07 Required)</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"controllerSoft\" value=\"DSTAR\" onclick=\"alert('After applying your Configuration Settings, you will need to powercycle your Pi.');\" />DStarRepeater <input type=\"radio\" name=\"controllerSoft\" value=\"MMDVM\" checked="checked" />MMDVMHost (DV-Mega Minimum Firmware 3.07 Required)</td>\n";
 		}
 	elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"controllerSoft\" value=\"DSTAR\" checked>DStarRepeater <input type=\"radio\" name=\"controllerSoft\" value=\"MMDVM\" onclick=\"alert('After applying your Configuration Settings, you will need to powercycle your Pi.');\" />MMDVMHost (DV-Mega Minimum Firmware 3.07 Required)</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"controllerSoft\" value=\"DSTAR\" checked="checked" />DStarRepeater <input type=\"radio\" name=\"controllerSoft\" value=\"MMDVM\" onclick=\"alert('After applying your Configuration Settings, you will need to powercycle your Pi.');\" />MMDVMHost (DV-Mega Minimum Firmware 3.07 Required)</td>\n";
 	}
 	else { // Not set - default to MMDVMHost
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"controllerSoft\" value=\"DSTAR\" onclick=\"alert('After applying your Configuration Settings, you will need to powercycle your Pi.');\" />DStarRepeater <input type=\"radio\" name=\"controllerSoft\" value=\"MMDVM\" checked />MMDVMHost (DV-Mega Minimum Firmware 3.07 Required)</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"controllerSoft\" value=\"DSTAR\" onclick=\"alert('After applying your Configuration Settings, you will need to powercycle your Pi.');\" />DStarRepeater <input type=\"radio\" name=\"controllerSoft\" value=\"MMDVM\" checked="checked" />MMDVMHost (DV-Mega Minimum Firmware 3.07 Required)</td>\n";
 	}
     ?>
     </tr>
@@ -814,10 +814,10 @@ else:
     <td align="left"><a class="tooltip2" href="#">Controller Mode:<span><b>TRX Mode</b>Choose the mode type<br />Simplex node or<br />Duplex repeater.</span></a></td>
     <?php
 	if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency']) {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\" checked />Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\" />Duplex Repeater</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\" checked="checked" />Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\" />Duplex Repeater</td>\n";
 		}
 	else {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\" />Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\" checked />Duplex Repeater</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\" />Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\" checked="checked" />Duplex Repeater</td>\n";
 		}
     ?>
     </tr>
@@ -836,10 +836,10 @@ else:
     <?php
 	$testMMDVModeDMR = $configmmdvm['DMR']['Enable'];
 	if ( $testMMDVModeDMR == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"OFF\">OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"OFF\" />OFF</td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"OFF\" checked>OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"OFF\" checked="checked" />OFF</td>\n";
 	}
     ?>
     </tr>
@@ -848,10 +848,10 @@ else:
     <?php
 	$testMMDVModeDMRnet = $configmmdvm['DMR Network']['Enable'];
 	if ( $testMMDVModeDMRnet == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"OFF\">OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"OFF\" />OFF</td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"OFF\" checked>OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"OFF\" checked="checked" />OFF</td>\n";
 	}
     ?>
     </tr>
@@ -860,10 +860,10 @@ else:
     <?php
 	$testMMDVModeDSTAR = $configmmdvm['D-Star']['Enable'];
 	if ( $testMMDVModeDSTAR == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"OFF\">OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"OFF\" />OFF</td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"OFF\" checked>OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"OFF\" checked="checked" />OFF</td>\n";
 	}
     ?>
     </tr>
@@ -872,10 +872,10 @@ else:
     <?php
 	$testMMDVModeDSTARnet = $configmmdvm['D-Star Network']['Enable'];
 	if ( $testMMDVModeDSTARnet == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"OFF\">OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"OFF\" />OFF</td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"OFF\" checked>OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"OFF\" checked="checked" />OFF</td>\n";
 	}
     ?>
     </tr>
@@ -884,10 +884,10 @@ else:
     <?php
 	$testMMDVModeFUSION = $configmmdvm['System Fusion']['Enable'];
 	if ( $testMMDVModeFUSION == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"OFF\">OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"OFF\" />OFF</td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"OFF\" checked>OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"OFF\" checked="checked" />OFF</td>\n";
 	}
     ?>
     </tr>
@@ -896,10 +896,10 @@ else:
     <?php
 	$testMMDVModeFUSIONnet = $configmmdvm['System Fusion Network']['Enable'];
 	if ( $testMMDVModeFUSIONnet == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"OFF\">OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"OFF\" />OFF</td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"OFF\" checked>OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"OFF\" checked="checked" />OFF</td>\n";
 	}
     ?>
     </tr>
@@ -908,10 +908,10 @@ else:
     <?php
         $testMMDVModeP25 = $configmmdvm['P25']['Enable'];
         if ( $testMMDVModeP25 == 1 ) {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25on\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeP25on\" value=\"OFF\">OFF</td>\n";
+                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25on\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeP25on\" value=\"OFF\" />OFF</td>\n";
                 }
         else {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25on\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeP25on\" value=\"OFF\" checked>OFF</td>\n";
+                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25on\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeP25on\" value=\"OFF\" checked="checked" />OFF</td>\n";
         }
     ?>
     </tr>
@@ -920,10 +920,10 @@ else:
     <?php
         $testMMDVModeP25net = $configmmdvm['P25 Network']['Enable'];
         if ( $testMMDVModeP25net == 1 ) {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"ON\" checked>ON <input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"OFF\">OFF</td>\n";
+                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"ON\" checked="checked" />ON <input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"OFF\" />OFF</td>\n";
                 }
         else {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"ON\">ON <input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"OFF\" checked>OFF</td>\n";
+                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"OFF\" checked="checked" />OFF</td>\n";
         }
     ?>
     </tr>
@@ -988,8 +988,8 @@ else:
     <td align="left"><a class="tooltip2" href="#">URL:<span><b>Gateway URL</b>The URL used to access<br />this dashboard</span></a></td>
     <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>"></td>
     <td width="300">
-    <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com') !== FALSE) {echo ' checked';} ?>>Auto
-    <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com') == FALSE) {echo ' checked';} ?>>Manual</td>
+    <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com') !== FALSE) {echo ' checked="checked"';} ?> />Auto
+    <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com') == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
@@ -1006,8 +1006,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">Node Type:<span><b>Node Lock</b>Set the public / private<br />node type. Public should<br />only be used with the correct<br />licence.</span></a></td>
     <td align="left" colspan="2">
-    <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked';} ?>>Private
-    <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked';} ?>>Public</td>
+    <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />Private
+    <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">System Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
@@ -1077,14 +1077,14 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR EmbeddedLCOnly:<span><b>DMR EmbeddedLCOnly</b>Set EmbeddedLCOnly to ON<br />to help reduce problems<br />with some DMR Radios</span></a></td>
     <td align="left">
-    <input type="radio" name="dmrEmbeddedLCOnly" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked';} ?>>Enabled
-    <input type="radio" name="dmrEmbeddedLCOnly" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked';} ?>>Disabled
+    <input type="radio" name="dmrEmbeddedLCOnly" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked="checked"';} ?> />Enabled
+    <input type="radio" name="dmrEmbeddedLCOnly" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked="checked"';} ?> />Disabled
     </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR DumpTAData:<span><b>DMR DumpTAData</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
     <td align="left">
-    <input type="radio" name="dmrDumpTAData" value="1"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked';} ?>>Enabled
-    <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked';} ?>>Disabled
+    <input type="radio" name="dmrDumpTAData" value="1"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked="checked"';} ?> />Enabled
+    <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked="checked"';} ?> />Disabled
     </td></tr>
     </table>
     <input type="button" value="Apply Changes" onclick="submitform()" /><br />
@@ -1182,8 +1182,8 @@ fclose($dextraFile);
     </select>
     </td>
     <td width="300">
-    <input type="radio" name="confDefRefAuto" value="ON"<?php if ($configs['atStartup1'] == '1') {echo ' checked';} ?>>Startup
-    <input type="radio" name="confDefRefAuto" value="OFF"<?php if ($configs['atStartup1'] == '0') {echo ' checked';} ?>>Manual</td>
+    <input type="radio" name="confDefRefAuto" value="ON"<?php if ($configs['atStartup1'] == '1') {echo ' checked="checked"';} ?> />Startup
+    <input type="radio" name="confDefRefAuto" value="OFF"<?php if ($configs['atStartup1'] == '0') {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">APRS Host:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
@@ -1273,10 +1273,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <?php
 	$testPrvPubDash = exec('sudo sed -n 32p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubDash, 0, 1) === '#') {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"dashAccess\" value=\"PRV\" checked>Private <input type=\"radio\" name=\"dashAccess\" value=\"PUB\">Public</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"dashAccess\" value=\"PRV\" checked="checked" />Private <input type=\"radio\" name=\"dashAccess\" value=\"PUB\" />Public</td>\n";
 		}
 	else {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"dashAccess\" value=\"PRV\">Private <input type=\"radio\" name=\"dashAccess\" value=\"PUB\" checked>Public</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"dashAccess\" value=\"PRV\" />Private <input type=\"radio\" name=\"dashAccess\" value=\"PUB\" checked="checked" />Public</td>\n";
 	}
     ?>
     </tr>
@@ -1285,10 +1285,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <?php
 	$testPrvPubIRC = exec('sudo sed -n 33p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubIRC, 0, 1) === '#') {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"ircRCAccess\" value=\"PRV\" checked>Private <input type=\"radio\" name=\"ircRCAccess\" value=\"PUB\">Public</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"ircRCAccess\" value=\"PRV\" checked="checked" />Private <input type=\"radio\" name=\"ircRCAccess\" value=\"PUB\" />Public</td>\n";
 		}
 	else {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"ircRCAccess\" value=\"PRV\">Private <input type=\"radio\" name=\"ircRCAccess\" value=\"PUB\" checked>Public</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"ircRCAccess\" value=\"PRV\" />Private <input type=\"radio\" name=\"ircRCAccess\" value=\"PUB\" checked="checked" />Public</td>\n";
 	}
     ?>
     </tr>
@@ -1297,10 +1297,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <?php
 	$testPrvPubSSH = exec('sudo sed -n 31p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubSSH, 0, 1) === '#') {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"sshAccess\" value=\"PRV\" checked>Private <input type=\"radio\" name=\"sshAccess\" value=\"PUB\">Public</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"sshAccess\" value=\"PRV\" checked="checked" />Private <input type=\"radio\" name=\"sshAccess\" value=\"PUB\" />Public</td>\n";
 		}
 	else {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"sshAccess\" value=\"PRV\">Private <input type=\"radio\" name=\"sshAccess\" value=\"PUB\" checked>Public</td>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"sshAccess\" value=\"PRV\" />Private <input type=\"radio\" name=\"sshAccess\" value=\"PUB\" checked="checked" />Public</td>\n";
 	}
     ?>
     </tr>
