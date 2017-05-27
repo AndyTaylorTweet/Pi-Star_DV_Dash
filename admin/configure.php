@@ -822,7 +822,7 @@ else:
     ?>
     </tr>
     </table>
-    <input type="button" value="Apply Changes" onclick="submitform()" /><br />
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /></div>
 <br />
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost')) { ?>
     <b>MMDVMHost Configuration</b>
@@ -932,7 +932,7 @@ else:
     <td align="left"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>"> in seconds (20 secs works well)</td>
     </tr>
     </table>
-    <input type="button" value="Apply Changes" onclick="submitform()" /><br />
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /></div>
 <br />
     <?php } ?>
     <b>General Configuration</b>
@@ -1023,7 +1023,7 @@ else:
     </select></td>
     </tr>	
     </table>
-    <input type="button" value="Apply Changes" onclick="submitform()" /><br />
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /></div>
 <br />
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
@@ -1087,8 +1087,8 @@ else:
     <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked="checked"';} ?> />Disabled
     </td></tr>
     </table>
-    <input type="button" value="Apply Changes" onclick="submitform()" /><br />
-<br /><?php } ?>
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
 
 <?php if (file_exists('/etc/dstar-radio.dstarrepeater') || $configmmdvm['D-Star']['Enable'] == 1) { ?>
     <b>D-Star Configuration</b>
@@ -1204,8 +1204,8 @@ fclose($dextraFile);
     </select></td>
     </tr>
     </table>
-    <input type="button" value="Apply Changes" onclick="submitform()" /><br />
-<br /><?php } ?>
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['System Fusion Network']['Enable'] == 1) {
 $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <b>Yaesu System Fusion Configuration</b>
@@ -1232,8 +1232,8 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </select></td>
     </tr>
     </table>
-    <input type="button" value="Apply Changes" onclick="submitform()" /><br />
-<br /><?php } ?>
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) {
 $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <b>P25 Configuration</b>
@@ -1260,8 +1260,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     </select></td>
     </tr>
     </table>
-<input type="button" value="Apply Changes" onclick="submitform()" /><br />
-<br /><?php } ?>	
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+<?php } ?>	
     <b>Firewall Configuration</b>
     <table>
     <tr>
@@ -1305,7 +1305,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     ?>
     </tr>
     </table>
-    <input type="button" value="Apply Changes" onclick="submitform()" />
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /></div>
     </form>
 
 <?php
