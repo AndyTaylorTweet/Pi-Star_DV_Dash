@@ -822,14 +822,13 @@ else:
     ?>
     </tr>
     </table>
-	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /></div>
-<br />
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost')) { ?>
-    <b>MMDVMHost Configuration</b>
+	<div><b>MMDVMHost Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
-    <th><a class=tooltip href="#">Value<span><b>Value</b>The current value from<br />the configuration files</span></a></th>
+    <th><a class="tooltip" href="#">Value<span><b>Value</b>The current value from<br />the configuration files</span></a></th>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Mode Enable:<span><b>DMR Mode Enable</b>Turn on DMR Features</span></a></td>
@@ -929,11 +928,10 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Mode Hangtime:<span><b>Mode Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
-    <td align="left"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>"> in seconds (20 secs works well)</td>
+    <td align="left"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (20 secs works well)</td>
     </tr>
     </table>
-	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /></div>
-<br />
+	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
     <?php } ?>
     <b>General Configuration</b>
     <table>
@@ -943,28 +941,28 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Node Callsign:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confCallsign" size="13" maxlength="6" value="<?php echo $configs['gatewayCallsign'] ?>"></td>
+    <td align="left" colspan="2"><input type="text" name="confCallsign" size="13" maxlength="6" value="<?php echo $configs['gatewayCallsign'] ?>" /></td>
     </tr>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">CCS7/DMR ID:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php echo $configmmdvm['DMR']['Id']; ?>"></td>
+    <td align="left" colspan="2"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php echo $configmmdvm['DMR']['Id']; ?>" /></td>
     </tr><?php } ?>
 <?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
 	echo "    <tr>\n";
 	echo "    <td align=\"left\"><a class=tooltip2 href=\"#\">Radio Frequency:<span><b>Radio Frequency</b>This is the Frequency your<br />Pi-Star is on</span></a></td>\n";
-	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQ\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\">MHz</td>\n";
+	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQ\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
 	else {
 	echo "    <tr>\n";
 	echo "    <td align=\"left\"><a class=tooltip2 href=\"#\">Radio Frequency RX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will listen on</span></a></td>\n";
-	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQrx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\">MHz</td>\n";
+	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQrx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	echo "    <tr>\n";
 	echo "    <td align=\"left\"><a class=tooltip2 href=\"#\">Radio Frequency TX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will transmit on</span></a></td>\n";
-	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQtx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['TXFrequency'], 0, '.', '.')."\">MHz</td>\n";
+	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQtx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['TXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
 ?>
