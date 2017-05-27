@@ -102,7 +102,7 @@ $MYCALL=strtoupper($callsign);
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
 <h1>Pi-Star Digital Voice - Configuration</h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
- <a href="/" alt="Dashboard" style="color: #ffffff;">Dashboard</a> |
+ <a href="/" style="color: #ffffff;">Dashboard</a> |
  <a href="/admin/" style="color: #ffffff;">Admin</a> |
  <a href="/admin/power.php" style="color: #ffffff;">Power</a> |
  <a href="/admin/update.php" style="color: #ffffff;">Update</a> |
@@ -119,11 +119,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
     <b>Gateway Hardware Information</b>
     <table>
     <tr>
-    <th width="16.66%"><a class=tooltip href="#">Hostname<span><b>Hostname</b>The name of host<br />running the Pi-Star Software.</span></a></th>
-    <th width="16.66%"><a class=tooltip href="#">Kernel<span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</span></a></th>
-    <th><a class=tooltip href="#">Platform<span><b>Pi-Hardware Revision</b>This shows you the revision<br />of your Pi.</span></a></th>
-    <th><a class=tooltip href="#">CPU Load<span><b>CPU Load</b>This is the standard Linux<br />system load indicator.</span></a></th>
-    <th><a class=tooltip href="#">CPU Temp<span><b>CPU Temp</b></span></a></th>
+    <th width="16.66%"><a class="tooltip" href="#">Hostname<span><b>Hostname</b>The name of host<br />running the Pi-Star Software.</span></a></th>
+    <th width="16.66%"><a class="tooltip" href="#">Kernel<span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</span></a></th>
+    <th><a class="tooltip" href="#">Platform<span><b>Pi-Hardware Revision</b>This shows you the revision<br />of your Pi.</span></a></th>
+    <th><a class="tooltip" href="#">CPU Load<span><b>CPU Load</b>This is the standard Linux<br />system load indicator.</span></a></th>
+    <th><a class="tooltip" href="#">CPU Temp<span><b>CPU Temp</b></span></a></th>
     </tr>
     <tr>
     <td><?php echo php_uname('n');?></td>
@@ -785,8 +785,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 else:
 	// Output the HTML Form here
 ?>
-<form name="factoryReset" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
-	<input type="hidden" name="factoryReset" value="1">
+<form name="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+	<div><input type="hidden" name="factoryReset" value="1"></div>
 </form>
 
 <form name="config" action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
