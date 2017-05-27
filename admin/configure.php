@@ -790,7 +790,7 @@ else:
 </form>
 
 <form id="config" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <b>Control Software</b>
+	<div><b>Control Software</b></div>
     <table>
     <tr>
     <th width="200"><a class=tooltip href="#">Setting<span><b>Setting</b></span></a></th>
@@ -814,10 +814,10 @@ else:
     <td align="left"><a class=tooltip2 href="#">Controller Mode:<span><b>TRX Mode</b>Choose the mode type<br />Simplex node or<br />Duplex repeater.</span></a></td>
     <?php
 	if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency']) {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\" checked>Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\">Duplex Repeater</td></tr>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\" checked>Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\">Duplex Repeater</td>\n";
 		}
 	else {
-		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\">Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\" checked>Duplex Repeater</td></tr>\n";
+		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"trxMode\" value=\"SIMPLEX\">Simplex Node <input type=\"radio\" name=\"trxMode\" value=\"DUPLEX\" checked>Duplex Repeater</td>\n";
 		}
     ?>
     </tr>
@@ -1331,7 +1331,7 @@ echo '
     <tr><th width="200">User</th><th colspan="3">Password</th></tr>
     <tr>
     <td align="left"><b>pi-star</b></td>
-    <td align="left"><input type="password" name="adminPassword" size="30" value""></td>
+    <td align="left"><input type="password" name="adminPassword" size="30" value="" /></td>
     <td align="right"><input type="button" value="Set Password" onclick="submitPassform()" /></td>
     </tr>
     <tr><td colspan="3"><B>WARNING: </B>This changes the passowrd for this admin page<br />AND the "pi-star" SSH account</td></tr>
