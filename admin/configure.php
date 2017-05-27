@@ -1204,7 +1204,7 @@ fclose($dextraFile);
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['System Fusion Network']['Enable'] == 1) {
 $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
-    <b>Yaesu System Fusion Configuration</b>
+	<div><b>Yaesu System Fusion Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
@@ -1317,7 +1317,7 @@ echo '
 <br />
     <b>Wireless Configuration</b>
     <table><tr><td>
-    <iframe frameborder="0" scrolling="auto" name="wifi" src="wifi.php?page=wlan0_info" width="100%" onload="resizeIframe(this)">If you can see this message, your browser does not support iFrames, however if you would like to see the content please click <A HREF="wifi.php?page=wlan0_info">here</a>.</iframe>
+    <iframe frameborder="0" scrolling="auto" name="wifi" src="wifi.php?page=wlan0_info" width="100%" onload="resizeIframe(this)">If you can see this message, your browser does not support iFrames, however if you would like to see the content please click <a href="wifi.php?page=wlan0_info">here</a>.</iframe>
     </td></tr></table>'; } ?>
 
 <br />
@@ -1330,7 +1330,7 @@ echo '
     <td align="left"><input type="password" name="adminPassword" size="30" value="" /></td>
     <td align="right"><input type="button" value="Set Password" onclick="submitPassform()" /></td>
     </tr>
-    <tr><td colspan="3"><B>WARNING: </B>This changes the passowrd for this admin page<br />AND the "pi-star" SSH account</td></tr>
+    <tr><td colspan="3"><b>WARNING:</b> This changes the passowrd for this admin page<br />AND the "pi-star" SSH account</td></tr>
     </table>
     </form>
 <?php endif; ?>
