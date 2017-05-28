@@ -10,15 +10,17 @@
 # Language      ircddbgateway           timeserver
 # Displayed     config                  config
 #######################################################################
-English_UK      0                       0
-English_US      1                       1
-German          2                       2
-Danish          3                       0
-French          4                       3
-Italian         5                       0
-Polish          6                       0
-Spanish         7                       0
-Swedish         8                       4
-Dutch           9                       0
-Norwegian       10                      0
-Portuguese      11                      0
+English (UK)    0                       0
+Deutsch         1                       4
+Dansk           2                       0
+Francais        3                       6
+Italiano        4                       0
+Polski          5                       0
+English (US)    6                       2
+Espanol         7                       9
+Svenska         8                       8
+Nederlands (NL) 9                       7
+Nederlands (BE) 10                      7
+Norsk           11                      10
+Portugues       12                      11
+#######################################################################
