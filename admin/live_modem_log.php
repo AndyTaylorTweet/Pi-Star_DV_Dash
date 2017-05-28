@@ -15,7 +15,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 
   if (isset($_GET['ajax'])) {
     //session_start();
-    $handle = fopen('/var/log/pi-star/MMDVM-2017-05-28.log', 'rb');
+    $dateNow = gmdate('Y-M-D', time());
+    if (file_exists('/etc/dstar-radio.mmdvmhost')) {
+      $logfile = "/var/log/pi-star/MMDVM-".$dateNow.".log";
+    }
+    elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
+      $logfile = "/var/log/pi-star/DStarRepeater-".$dateNow.".log";
+    }
+    
+    $handle = fopen($logfile, 'rb');
     if (isset($_SESSION['offset'])) {
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
       $_SESSION['offset'] += strlen($data);
@@ -62,7 +70,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
   <div class="container">
   <div id="header">
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-  <h1>Pi-Star Digital Voice - Software Updater</h1>
+  <h1>Pi-Star Digital Voice - Live Modem Log</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" style="color: #ffffff;">Dashboard</a> |
     <a href="/admin/" style="color: #ffffff;">Admin</a> |
