@@ -1223,7 +1223,7 @@ fclose($dextraFile);
                 $ircLanguageFileLine = fgets($ircLanguageFile);
                 $ircLanguage = preg_split('/;/', $ircLanguageFileLine);
                 if ((strpos($ircLanguage[0], '#') === FALSE ) && ($ircLanguage[0] != '')) {
-                        if ($testIrcLanguage == $ircLanguage[0]) { echo "      <option value=\"$ircLanguage[1],$ircLanguage[2]\" selected=\"selected\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
+                        if ($testIrcLanguage == $ircLanguage[1]) { echo "      <option value=\"$ircLanguage[1],$ircLanguage[2]\" selected=\"selected\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
                         else { echo "      <option value=\"$ircLanguage[1],$ircLanguage[2]\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
                 }
         }
