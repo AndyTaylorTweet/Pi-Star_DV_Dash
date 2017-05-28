@@ -1208,14 +1208,14 @@ fclose($dextraFile);
 <?php
         $testIrcLanguage = "0";
 	$ircLanguageFile = fopen("/var/www/dashboard/config/ircddbgateway_languages.inc", "r");									   
-        while (!feof($ircLanguageFile)) {
+//        while (!feof($ircLanguageFile)) {
 //                $ircLanguageFileLine = fgets($ircLanguageFile);
 //                $ircLanguage = preg_split('/;/', $ircLanguageFileLine);
 //                if ((strpos($ircLanguage[0], '#') === FALSE ) && ($ircLanguage[0] != '')) {
 //                        if ($testIrcLanguage == $ircLanguage[0]) { echo "      <option value=\"$ircLanguage[0]\" selected=\"selected\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
 //                        else { echo "      <option value=\"$ircLanguage[0]\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
 //                }
-        }
+//        }
         fclose($ircLanguageFile);
         ?>
     </select></td>
