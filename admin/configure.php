@@ -1000,8 +1000,8 @@ else:
     <td align="left"><a class="tooltip2" href="#">URL:<span><b>Gateway URL</b>The URL used to access<br />this dashboard</span></a></td>
     <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>" /></td>
     <td width="300">
-    <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com') !== FALSE) {echo ' checked="checked"';} ?> />Auto
-    <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com') == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
+    <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) !== FALSE) {echo ' checked="checked"';} ?> />Auto
+    <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com/db/'$configmmdvm['General']['Callsign']) == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
