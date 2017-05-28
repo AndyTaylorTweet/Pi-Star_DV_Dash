@@ -15,13 +15,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 
   if (isset($_GET['ajax'])) {
     //session_start();
-    $dateNow = gmdate('Y-M-D', time());
     if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-      //$logfile = "/var/log/pi-star/MMDVM-".$dateNow.".log";
-      $logfile = "/var/log/pi-star/MMDVM-2017-05-28.log";
+      $logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
     }
     elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
-      $logfile = "/var/log/pi-star/DStarRepeater-".$dateNow.".log";
+      $logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
     }
     
     $handle = fopen($logfile, 'rb');
