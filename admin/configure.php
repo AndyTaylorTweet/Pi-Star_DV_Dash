@@ -1216,7 +1216,7 @@ fclose($dextraFile);
     <td align="left"><a class="tooltip2" href="#">ircDDBGateway Language:<span><b>Language</b>Set your prefered<br /> language here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ircDDBGatewayAnnounceLanguage">
 <?php
-        $testIrcLanguage = "0";
+        $testIrcLanguage = $configs['language'];
 	if (is_readable("/var/www/dashboard/config/ircddbgateway_languages.inc")) {
 	  $ircLanguageFile = fopen("/var/www/dashboard/config/ircddbgateway_languages.inc", "r");									   
         while (!feof($ircLanguageFile)) {
