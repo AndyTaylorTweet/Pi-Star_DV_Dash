@@ -300,6 +300,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollAPRSHost);
 	  $configysfgateway['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  }
+	
+	// Set ircDDBGateway and TimeServer language
+	if (empty($_POST['ircDDBGatewayAnnounceLanguage']) != TRUE) {
+	  $ircDDBGatewayAnnounceLanguageArr = explode(',', escapeshellcmd($_POST['ircDDBGatewayAnnounceLanguage']));
+	  $rollIrcDDBGatewayLang = 'sudo sed -i "/language=/c\\language='.escapeshellcmd($ircDDBGatewayAnnounceLanguageArr[0]).'" /etc/ircddbgateway';
+	  $rollTimeserverLang = 'sudo sed -i "/language=/c\\language='.escapeshellcmd($ircDDBGatewayAnnounceLanguageArr[1]).'" /etc/timeserver';
+	  system($rollIrcDDBGatewayLang);
+	  system($rollTimeserverLang);
+	}
 
 	// Set the Frequency for Duplex
 	if (empty($_POST['confFREQtx']) != TRUE && empty($_POST['confFREQrx']) != TRUE ) {
@@ -1214,8 +1223,8 @@ fclose($dextraFile);
                 $ircLanguageFileLine = fgets($ircLanguageFile);
                 $ircLanguage = preg_split('/;/', $ircLanguageFileLine);
                 if ((strpos($ircLanguage[0], '#') === FALSE ) && ($ircLanguage[0] != '')) {
-                        if ($testIrcLanguage == $ircLanguage[0]) { echo "      <option value=\"$ircLanguage[0]\" selected=\"selected\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
-                        else { echo "      <option value=\"$ircLanguage[0]\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
+                        if ($testIrcLanguage == $ircLanguage[0]) { echo "      <option value=\"$ircLanguage[1],$ircLanguage[2]\" selected=\"selected\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
+                        else { echo "      <option value=\"$ircLanguage[1],$ircLanguage[2]\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
                 }
         }
           fclose($ircLanguageFile);
