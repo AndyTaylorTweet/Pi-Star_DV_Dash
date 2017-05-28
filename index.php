@@ -50,6 +50,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
  <a href="/" style="color: #ffffff;">Dashboard</a> |
  <a href="/admin/" style="color: #ffffff;">Admin</a> |
 <?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+  echo ' <a href="/admin/live_modem_log.php" style="color: #ffffff;">Live Logs</a> |'."\n";
   echo ' <a href="/admin/power.php" style="color: #ffffff;">Power</a> |'."\n";
   echo ' <a href="/admin/update.php" style="color: #ffffff;">Update</a> |'."\n";
   } ?>
