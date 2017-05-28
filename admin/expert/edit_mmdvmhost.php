@@ -62,11 +62,11 @@ echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
 		echo "<h3>$section</h3>\n";
 		//keep the section as hidden text so we can update once the form submitted
-		echo "<input type='hidden' value='$section' name='$section' />\n";
+		echo "<input type=\"hidden\" value=\"$section\" name=\"$section\" />\n";
 		//print all other values as input fields, so can edit. 
 		//note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
-			echo "$key: <input type='text' name='{$section}[$key]' value='$value' /><br />\n";
+			echo "$key: <input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /><br />\n";
 		}
 		echo '<input type="submit" value="Save Changes" />'."\n";
 		echo "<br />\n";
