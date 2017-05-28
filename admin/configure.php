@@ -1201,7 +1201,6 @@ fclose($dextraFile);
         ?>
     </select></td>
     </tr>
-
     <tr>
     <td align="left"><a class="tooltip2" href="#">ircDDBGateway Language:<span><b>Language</b>Set your prefered<br /> language here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ircDDBGatewayAnnounceLanguage">
@@ -1209,22 +1208,19 @@ fclose($dextraFile);
         $testIrcLanguage = "0";
 	if (is_readable("/var/www/dashboard/config/ircddbgateway_languages.inc")) {
 	  $ircLanguageFile = fopen("/var/www/dashboard/config/ircddbgateway_languages.inc", "r");									   
-//        while (!feof($ircLanguageFile)) {
-//                $ircLanguageFileLine = fgets($ircLanguageFile);
-//                $ircLanguage = preg_split('/;/', $ircLanguageFileLine);
-//                if ((strpos($ircLanguage[0], '#') === FALSE ) && ($ircLanguage[0] != '')) {
-//                        if ($testIrcLanguage == $ircLanguage[0]) { echo "      <option value=\"$ircLanguage[0]\" selected=\"selected\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
-//                        else { echo "      <option value=\"$ircLanguage[0]\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
-//                }
-//        }
-
+        while (!feof($ircLanguageFile)) {
+                $ircLanguageFileLine = fgets($ircLanguageFile);
+                $ircLanguage = preg_split('/;/', $ircLanguageFileLine);
+                if ((strpos($ircLanguage[0], '#') === FALSE ) && ($ircLanguage[0] != '')) {
+                        if ($testIrcLanguage == $ircLanguage[0]) { echo "      <option value=\"$ircLanguage[0]\" selected=\"selected\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
+                        else { echo "      <option value=\"$ircLanguage[0]\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
+                }
+        }
           fclose($ircLanguageFile);
 	}
         ?>
     </select></td>
     </tr>
-	    
-	    
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
