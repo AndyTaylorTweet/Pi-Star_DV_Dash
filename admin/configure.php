@@ -1203,11 +1203,11 @@ fclose($dextraFile);
     </tr>
 
     <tr>
-    <td align="left"><a class="tooltip2" href="#">ircDDBGateway Announce Language:<span><b>Language</b>Set your prefered<br /> language here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">ircDDBGateway Language:<span><b>Language</b>Set your prefered<br /> language here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ircDDBGatewayAnnounceLanguage">
 <?php
-//        $testIrcLanguage = "0";
-//	$ircLanguageFile = "/var/www/dashboard/config/ircddbgateway_languages.inc";											   
+        $testIrcLanguage = "0";
+	$ircLanguageFile = "/var/www/dashboard/config/ircddbgateway_languages.inc";											   
 //        while (!feof($ircLanguageFile)) {
 //                $ircLanguageFileLine = fgets($ircLanguageFile);
 //                $ircLanguage = preg_split('/;/', $ircLanguageFileLine);
@@ -1216,7 +1216,7 @@ fclose($dextraFile);
 //                        else { echo "      <option value=\"$ircLanguage[0]\">".htmlspecialchars($ircLanguage[0])."</option>\n"; }
 //                }
 //        }
-//        fclose($ircLanguageFile);
+        fclose($ircLanguageFile);
         ?>
     </select></td>
     </tr>
