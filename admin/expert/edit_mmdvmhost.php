@@ -71,7 +71,7 @@ echo '<form action="" method="post">'."\n";
 		//print all other values as input fields, so can edit. 
 		//note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
-			echo "$key: <input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /><br />\n";
+			echo "$key: <input type=\"text\" size=\"35\" name=\"{$section}[$key]\" value=\"$value\" /><br />\n";
 		}
 		echo '<input type="submit" value="Save Changes" />'."\n";
 		echo "<br />\n";
