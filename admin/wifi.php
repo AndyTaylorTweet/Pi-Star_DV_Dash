@@ -4,9 +4,9 @@ $output = $return = 0;
 $page = $_GET['page'];
 
 
-echo '<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml"xmlns:v="urn:schemas-microsoft-com:vml">
-<html>
+echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <LINK REL="stylesheet" type="text/css" href="css/ircddb.css"></LINK>
 <LINK REL="stylesheet" type="text/css" href="wifi/styles.css"></LINK>
