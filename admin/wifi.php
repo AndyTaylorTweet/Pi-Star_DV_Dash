@@ -217,7 +217,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 
 
 echo '
-<div style="height: 15px; border-bottom: 1px solid #ffffff;"></div>
+<div style="height: 15px; border-bottom: 1px solid #ffffff;">.</div>
 </body>
 </html>';
 ?>
