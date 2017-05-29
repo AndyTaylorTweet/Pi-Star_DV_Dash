@@ -129,7 +129,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 		$ssid = array();
 		$psk = array();
 		foreach($return as $a) {
-			if(preg_match('/ssid/i',$a) && !preg_match('/scan_ssid/i',$a)) {
+			if(preg_match('/SSID/i',$a) && !preg_match('/scan_ssid/i',$a)) {
 				$arrssid = explode("=",$a);
 				$ssid[] = str_replace('"','',$arrssid[1]);
 			}
