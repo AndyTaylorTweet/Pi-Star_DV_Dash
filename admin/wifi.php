@@ -168,6 +168,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$network = '';
 			$ssid = $_POST['ssid'.$x];
 			$psk = $_POST['psk'.$x];
+			$priority = 100 - $x;
 			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tscan_ssid=1\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tscan_ssid=1\n}\n\n"; }
 		}
