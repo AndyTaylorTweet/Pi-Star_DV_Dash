@@ -20,7 +20,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <script type="text/Javascript" src="wifi/functions.js"></script>
 <title>WiFi Configuration Portal</title>
 </head>
-<body>';
+<body>'."\n";
 switch($page) {
 	case "wlan0_info":
 		//Declare a pile of variables
