@@ -21,7 +21,6 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <title>WiFi Configuration Portal</title>
 </head>
 <body>'."\n";
-$Networks = 0;
 switch($page) {
 	case "wlan0_info":
 		//Declare a pile of variables
