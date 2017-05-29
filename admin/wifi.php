@@ -153,7 +153,6 @@ Signal Level : ' . $strSignalLevel . '<br />
 	echo '<script type="text/Javascript">UpdateNetworks()</script>';
 
 	if(isset($_POST['SaveWPAPSKSettings'])) {
-		//$x = 0;
 		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n\n";
 		$networks = $_POST['Networks'];
 
@@ -162,13 +161,13 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$network = '';
 			$ssid = $_POST['ssid'.$x];
 			$psk = $_POST['psk'.$x];
-			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n}\n\n"; }
-			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n}\n\n"; }
+			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tid_str=1\n}\n\n"; }
+			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tid_str=1\n}\n\n"; }
 		}
 		file_put_contents('/tmp/wifidata', $config);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf');
 		echo "Wifi Settings Updated Successfully\n";
-		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+		system('sudo wpa_cli reconfigure && sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		header("Refresh:1");
 	
 	} elseif(isset($_POST['Scan'])) {
