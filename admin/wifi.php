@@ -8,8 +8,8 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<LINK REL="stylesheet" type="text/css" href="css/ircddb.css"></LINK>
-<LINK REL="stylesheet" type="text/css" href="wifi/styles.css"></LINK>
+<link rel="stylesheet" type="text/css" href="css/ircddb.css" />
+<link rel="stylesheet" type="text/css" href="wifi/styles.css" />
 <script type="text/Javascript" src="wifi/functions.js"></script>
 <title>WiFi Configuration Portal</title>
 </head>
