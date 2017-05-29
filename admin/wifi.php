@@ -102,8 +102,8 @@ switch($page) {
 <form action="'.$_SERVER['PHP_SELF'].'?page=wlan0_info" method="post">
 <!-- <input type="submit" value="ifdown wlan0" name="ifdown_wlan0" /> -->
 <!-- <input type="submit" value="ifup wlan0" name="ifup_wlan0" /> -->
-<input type="submit" value="reset wlan0" name="reset_wlan0" />
 <input type="button" value="Refresh" onclick="document.location.reload(true)" />
+<input type="submit" value="reset wlan0" name="Reset WiFi Adapter" />
 <input type="button" value="Configure WiFi" name="wpa_conf" onclick="document.location=\'?page=\'+this.name" />
 </form>
 <div class="infoheader">Wireless Information and Statistics</div>
