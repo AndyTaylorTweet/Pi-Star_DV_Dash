@@ -153,14 +153,14 @@ Signal Level : ' . $strSignalLevel . '<br />
 
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
 			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids."\n";
-			$output .= '<input type="button" value="Delete" onClick="DeleteNetwork('.$ssids.')" /><br />'."\n";
+			$output .= '<input type="button" value="Delete" onclick="DeleteNetwork('.$ssids.')" /><br />'."\n";
 			$output .= '<span class="tableft" id="lssid'.$ssids.'">SSID :</span><input type="text" id="ssid'.$ssids.'" name="ssid'.$ssids.'" value="'.$ssid[$ssids].'" onkeyup="CheckSSID(this)" /><br />'."\n";
 			$output .= '<span class="tableft" id="lpsk'.$ssids.'">PSK :</span><input type="password" id="psk'.$ssids.'" name="psk'.$ssids.'" value="'.$psk[$ssids].'" onkeyup="CheckPSK(this)" /><br /><br /></div>'."\n";
 		}
 		$output .= '</div>'."\n";
 		$output .= '<div class="infobox">'."\n";
 		$output .= '<input type="submit" value="Scan for Networks (10 secs)" name="Scan" />'."\n";
-		$output .= '<input type="button" value="Add Network" onClick="AddNetwork();" />'."\n";
+		$output .= '<input type="button" value="Add Network" onclick="AddNetwork();" />'."\n";
 		$output .= '<input type="submit" value="Save (and connect)" name="SaveWPAPSKSettings" onmouseover="UpdateNetworks(this)" />'."\n";
 		$output .= '</div>'."\n";
 		$output .= '</form>'."\n";
@@ -211,7 +211,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$ssid = $arrNetwork[4];
 
 			echo '<tr>';
-			echo '<td style="text-align: left;"><input type="button" value="Connect" onClick="AddScanned(\''.$ssid.'\')" /></td>';
+			echo '<td style="text-align: left;"><input type="button" value="Connect" onclick="AddScanned(\''.$ssid.'\')" /></td>';
 			echo '<td style="text-align: left;">'.$ssid.'</td>';
 			echo '<td style="text-align: left;">Channel '.$channel.'</td>';
 			echo '<td>'.$signal.'</td>';
