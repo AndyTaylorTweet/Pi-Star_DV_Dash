@@ -162,8 +162,9 @@ Signal Level : ' . $strSignalLevel . '<br />
 		$output .= '<input type="submit" value="Scan for Networks (10 secs)" name="Scan" />'."\n";
 		$output .= '<input type="button" value="Add Network" onClick="AddNetwork();" />'."\n";
 		$output .= '<input type="submit" value="Save (and connect)" name="SaveWPAPSKSettings" onmouseover="UpdateNetworks(this)" />'."\n";
-		$output .= '</form>'."\n";
 		$output .= '</div>'."\n";
+		$output .= '</form>'."\n";
+
 
 	echo $output;
 	echo '<script type="text/Javascript">UpdateNetworks()</script>';
