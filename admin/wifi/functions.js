@@ -45,8 +45,14 @@ function CheckSSID(ssid) {
 		ssid.style.background='#FFD0D0';
 		document.getElementById('Save').disabled = true;
 	} else {
-		ssid.style.background='#D0FFD0'
-		document.getElementById('Save').disabled = false;
+		if(ssid.match(/^[a-z0-9]+$/i)){
+			ssid.style.background='#D0FFD0'
+			document.getElementById('Save').disabled = false;
+		}
+		else {
+			ssid.style.background='#FFD0D0';
+			document.getElementById('Save').disabled = true;
+		}
 	}
 }
 
