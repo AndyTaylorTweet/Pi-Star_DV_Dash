@@ -217,7 +217,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 
 
 echo '
-<div style="display; none;">.</div>
+<div style="display: none;">.</div>
 </body>
 </html>';
 ?>
