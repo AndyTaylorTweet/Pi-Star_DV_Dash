@@ -209,6 +209,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 
 
 echo '
+<br />
 </body>
 </html>';
 ?>
