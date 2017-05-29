@@ -45,7 +45,7 @@ function CheckSSID(ssid) {
 		ssid.style.background='#FFD0D0';
 		document.getElementById('Save').disabled = true;
 	} else {
-		if(ssid.match(/^[a-z0-9]+$/i)){
+		if(ssid.value.match(/^[a-z0-9]+$/i)){
 			ssid.style.background='#D0FFD0'
 			document.getElementById('Save').disabled = false;
 		}
