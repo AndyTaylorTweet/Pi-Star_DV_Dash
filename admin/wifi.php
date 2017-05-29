@@ -161,8 +161,8 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$network = '';
 			$ssid = $_POST['ssid'.$x];
 			$psk = $_POST['psk'.$x];
-			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tid_str=1\n}\n\n"; }
-			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tid_str=1\n}\n\n"; }
+			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tscan_ssid=1\n}\n\n"; }
+			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tscan_ssid=1\n}\n\n"; }
 		}
 		file_put_contents('/tmp/wifidata', $config);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf');
