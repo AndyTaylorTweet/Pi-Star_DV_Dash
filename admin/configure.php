@@ -523,12 +523,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		
 	// Set Talker Alias Option
 	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
-	  $configmmdvm['DMR']['EmbeddedLCOnly'] = escapeshellcmd($_POST['dmrEmbeddedLCOnly']);
+	  if (escapeshellcmd($_POST['dmrEmbeddedLCOnly']) == 'ON' ) { $configmmdvm['DMR']['EmbeddedLCOnly'] = "1"; }
+	  if (escapeshellcmd($_POST['dmrEmbeddedLCOnly']) == 'OFF' ) { $configmmdvm['DMR']['EmbeddedLCOnly'] = "0"; }
 	}
 	
 	// Set Dump TA Data Option for GPS support
 	if (empty($_POST['dmrDumpTAData']) != TRUE ) {
-	  $configmmdvm['DMR']['DumpTAData'] = escapeshellcmd($_POST['dmrDumpTAData']);
+	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'ON' ) { $configmmdvm['DMR']['DumpTAData'] = "1"; }
+	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'OFF' ) { $configmmdvm['DMR']['DumpTAData'] = "0"; }
 	}
 
 	// Set MMDVM Hang Time
@@ -1088,14 +1090,14 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR EmbeddedLCOnly:<span><b>DMR EmbeddedLCOnly</b>Set EmbeddedLCOnly to ON<br />to help reduce problems<br />with some DMR Radios</span></a></td>
     <td align="left">
-    <input type="radio" name="dmrEmbeddedLCOnly" value="1"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked="checked"';} ?> />Enabled
-    <input type="radio" name="dmrEmbeddedLCOnly" value="0"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked="checked"';} ?> />Disabled
+    <input type="radio" name="dmrEmbeddedLCOnly" value="ON"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) {echo ' checked="checked"';} ?> />Enabled
+    <input type="radio" name="dmrEmbeddedLCOnly" value="OFF"<?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 0) {echo ' checked="checked"';} ?> />Disabled
     </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR DumpTAData:<span><b>DMR DumpTAData</b>Turn on for extended<br />message support, including<br />GPS.</span></a></td>
     <td align="left">
-    <input type="radio" name="dmrDumpTAData" value="1"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked="checked"';} ?> />Enabled
-    <input type="radio" name="dmrDumpTAData" value="0"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked="checked"';} ?> />Disabled
+    <input type="radio" name="dmrDumpTAData" value="ON"<?php if ($configmmdvm['DMR']['DumpTAData'] == 1) {echo ' checked="checked"';} ?> />Enabled
+    <input type="radio" name="dmrDumpTAData" value="OFF"<?php if ($configmmdvm['DMR']['DumpTAData'] == 0) {echo ' checked="checked"';} ?> />Disabled
     </td></tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
