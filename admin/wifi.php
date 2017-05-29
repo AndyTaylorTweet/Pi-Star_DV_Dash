@@ -21,6 +21,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <title>WiFi Configuration Portal</title>
 </head>
 <body>'."\n";
+$Networks = 0;
 switch($page) {
 	case "wlan0_info":
 		//Declare a pile of variables
@@ -184,7 +185,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 
 		//Reworked WiFi Starts Here
 		for($x = 0; $x < $networks; $x++) {
-			$network = '';
+			//$network = '';
 			$ssid = $_POST['ssid'.$x];
 			$psk = $_POST['psk'.$x];
 			$priority = 100 - $x;
