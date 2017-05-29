@@ -95,7 +95,7 @@ switch($page) {
 			}
 		}
 		elseif(isset($_POST['reset_wlan0'])) {
-			exec('sudo wpa_cli reconfigure wlan0 && sudo wpa_cli scan',$test);
+			exec('sudo wpa_cli reconfigure wlan0 && sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0 && sudo wpa_cli scan',$test);
 			echo 'WiFi Interface reset';
 		}
 		
