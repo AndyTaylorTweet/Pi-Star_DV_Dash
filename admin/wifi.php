@@ -182,7 +182,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 	echo '<script type="text/Javascript">UpdateNetworks()</script>';
 
 	if(isset($_POST['SaveWPAPSKSettings'])) {
-		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n\n";
+		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\nap_scan=1\nfast_reauth=1\n\n";
 		$networks = $_POST['Networks'];
 
 		//Reworked WiFi Starts Here
@@ -191,8 +191,8 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$ssid = $_POST['ssid'.$x];
 			$psk = $_POST['psk'.$x];
 			$priority = 100 - $x;
-			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tscan_ssid=1\n\tpriority=$priority\n}\n\n"; }
-			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tscan_ssid=1\n\tpriority=$priority\n}\n\n"; }
+			if ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
+			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
 		}
 		file_put_contents('/tmp/wifidata', $config);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf');
