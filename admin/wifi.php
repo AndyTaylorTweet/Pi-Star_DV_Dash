@@ -99,7 +99,7 @@ switch($page) {
 			echo '<script>window.location.href=\'wifi.php?page=wlan0_info\';</script>';
 		}
 		
-	echo '<script>setTimeout(function () { location.reload(1); }, 5000);</script>
+	echo '<script>setTimeout(function () { location.reload(1); }, 15000);</script>
 <div class="infobox">
 <form action="'.$_SERVER['PHP_SELF'].'?page=wlan0_info" method="post">
 <!-- <input type="submit" value="ifdown wlan0" name="ifdown_wlan0" /> -->
