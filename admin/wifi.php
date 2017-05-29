@@ -152,12 +152,18 @@ Signal Level : ' . $strSignalLevel . '<br />
 <div class="network" id="networkbox">';
 
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
-			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids.' <input type="button" value="Delete" onClick="DeleteNetwork('.$ssids.')" /><br />
-<span class="tableft" id="lssid'.$ssids.'">SSID :</span><input type="text" id="ssid'.$ssids.'" name="ssid'.$ssids.'" value="'.$ssid[$ssids].'" onkeyup="CheckSSID(this)" /><br />
-<span class="tableft" id="lpsk'.$ssids.'">PSK :</span><input type="password" id="psk'.$ssids.'" name="psk'.$ssids.'" value="'.$psk[$ssids].'" onkeyup="CheckPSK(this)" /><br /><br /></div>';
+			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids."\n";
+			$output .= '<input type="button" value="Delete" onClick="DeleteNetwork('.$ssids.')" /><br />'."\n";
+			$output .= '<span class="tableft" id="lssid'.$ssids.'">SSID :</span><input type="text" id="ssid'.$ssids.'" name="ssid'.$ssids.'" value="'.$ssid[$ssids].'" onkeyup="CheckSSID(this)" /><br />'."\n";
+			$output .= '<span class="tableft" id="lpsk'.$ssids.'">PSK :</span><input type="password" id="psk'.$ssids.'" name="psk'.$ssids.'" value="'.$psk[$ssids].'" onkeyup="CheckPSK(this)" /><br /><br /></div>'."\n";
 		}
-		$output .= '</div><div class="infobox"><input type="submit" value="Scan for Networks (10 secs)" name="Scan" /><input type="button" value="Add Network" onClick="AddNetwork();" /><input type="submit" value="Save (and connect)" name="SaveWPAPSKSettings" onmouseover="UpdateNetworks(this)" />
-</form></div>';
+		$output .= '</div>'."\n";
+		$output .= '<div class="infobox">'."\n";
+		$output .= '<input type="submit" value="Scan for Networks (10 secs)" name="Scan" />'."\n";
+		$output .= '<input type="button" value="Add Network" onClick="AddNetwork();" />'."\n";
+		$output .= '<input type="submit" value="Save (and connect)" name="SaveWPAPSKSettings" onmouseover="UpdateNetworks(this)" />'."\n";
+		$output .= '</form>'."\n";
+		$output .= '</div>'."\n";
 
 	echo $output;
 	echo '<script type="text/Javascript">UpdateNetworks()</script>';
