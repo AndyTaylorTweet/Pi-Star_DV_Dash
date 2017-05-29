@@ -72,28 +72,37 @@ switch($page) {
                                 $strSignalLevel = $result[1]; }
                                 if (preg_match('/Signal Level=([0-9]+\/[0-9]+)/i',$strWlan0,$result)) {
                                 $strSignalLevel = $result[1]; }
-		} else {
+		}
+		else {
 			$strStatus = '<span style="color:red">Interface is down</span>';
 		}
 		if(isset($_POST['ifdown_wlan0'])) {
 			exec('ifconfig wlan0 | grep -i running | wc -l',$test);
 			if($test[0] == 1) {
 				exec('sudo ifdown wlan0',$return);
-			} else {
+			} 
+			else {
 				echo 'Interface already down';
 			}
-		} elseif(isset($_POST['ifup_wlan0'])) {
+		} 
+		elseif(isset($_POST['ifup_wlan0'])) {
 			exec('ifconfig wlan0 | grep -i running | wc -l',$test);
 			if($test[0] == 0) {
 				exec('sudo ifup wlan0',$return);
-			} else {
+			} 
+			else {
 				echo 'Interface already up';
 			}
 		}
+		elseif(isset($_POST['reset_wlan0'])) {
+			exec('sudo wpa_cli reconfigure wlan0 && sudo wpa_cli scan');
+		}
+		
 	echo '<div class="infobox">
 <form action="'.$_SERVER['PHP_SELF'].'?page=wlan0_info" method="post">
-<input type="submit" value="ifdown wlan0" name="ifdown_wlan0" />
-<input type="submit" value="ifup wlan0" name="ifup_wlan0" />
+<!-- <input type="submit" value="ifdown wlan0" name="ifdown_wlan0" /> -->
+<!-- <input type="submit" value="ifup wlan0" name="ifup_wlan0" /> -->
+<input type="submit" value="reset wlan0" name="reset_wlan0" />
 <input type="button" value="Refresh" onclick="document.location.reload(true)" />
 <input type="button" value="Configure WiFi" name="wpa_conf" onclick="document.location=\'?page=\'+this.name" />
 </form>
