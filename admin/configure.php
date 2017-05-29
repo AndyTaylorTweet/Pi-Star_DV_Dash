@@ -92,7 +92,7 @@ $MYCALL=strtoupper($callsign);
 	    }
 	}
 	function resizeIframe(obj) {
-	  var numpix = parseInt(obj.contentWindow.document.body.scrollHeight, 10) + 20;
+	  var numpix = parseInt(obj.contentWindow.document.body.scrollHeight, 10);
 	  obj.style.height = numpix + 'px';
 	}
     </script>
