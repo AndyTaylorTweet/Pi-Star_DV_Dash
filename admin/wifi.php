@@ -147,7 +147,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 		}
 		$numSSIDs = count($ssid);
 		$output = '<input type="button" value="WiFi Info" name="wlan0_info" onclick="document.location=\'?page=\'+this.name" /><br />
-<form method="POST" action="'.$_SERVER['PHP_SELF'].'?page=wpa_conf" id="wpa_conf_form"><input type="hidden" id="Networks" name="Networks" /><div class="network" id="networkbox">';
+<form method="post" action="'.$_SERVER['PHP_SELF'].'?page=wpa_conf" id="wpa_conf_form"><input type="hidden" id="Networks" name="Networks" /><div class="network" id="networkbox">';
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
 			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids.' <input type="button" value="Delete" onClick="DeleteNetwork('.$ssids.')" /></span><br />
 <span class="tableft" id="lssid'.$ssids.'">SSID :</span><input type="text" id="ssid'.$ssids.'" name="ssid'.$ssids.'" value="'.$ssid[$ssids].'" onkeyup="CheckSSID(this)" /><br />
