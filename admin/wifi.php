@@ -185,7 +185,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 		file_put_contents('/tmp/wifidata', $config);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf');
 		echo "Wifi Settings Updated Successfully\n";
-		system('sudo wpa_cli reconfigure && sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		header("Refresh:1");
 	
 	} elseif(isset($_POST['Scan'])) {
