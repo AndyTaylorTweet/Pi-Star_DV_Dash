@@ -25,7 +25,7 @@ function AddScanned(network) {
 	existing = document.getElementById("networkbox").getElementsByTagName('div').length;
         var Networks = document.getElementById('Networks').value;
 	if(existing != 0) {
-	        Networks++;
+	        document.getElementById('Networks').value = Networks;
 	}
         //document.getElementById('Networks').value=Networks;
         document.getElementById('networkbox').innerHTML += '<div id="Networkbox'+Networks+'" class="Networkboxes">Network '+Networks+'<input type="button" value="Delete" /><br /> \
@@ -36,6 +36,8 @@ function AddScanned(network) {
 		Networks++
 		document.getElementById('Networks').value = Networks;
 	}
+	document.getElementById('Networks').value = Networks;
+	Networks++
 }
 
 function CheckSSID(ssid) {
