@@ -6,6 +6,9 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 //Load the Version Info
 require_once('config/version.php');
 
+session_unset();
+session_destroy();
+
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 
