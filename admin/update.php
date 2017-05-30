@@ -56,8 +56,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     $(function() {
       $.repeat(1000, function() {
         $.get('/admin/update.php?ajax', function(data) {
-          $('#tailUpdate').append(data);
-          var objDiv = document.getElementById("tailUpdate");
+          $('#tail').append(data);
+          var objDiv = document.getElementById("tail");
           objDiv.scrollTop = objDiv.scrollHeight;
         });
       });
@@ -80,7 +80,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <div id="contentwide">
   <table width="100%">
   <tr><th>Update Running</th></tr>
-  <tr><td align="left"><div id="tailUpdate">Starting update, please wait...<br></div></td></tr>
+  <tr><td align="left"><div id="tail">Starting update, please wait...<br></div></td></tr>
   </table>
   </div>
   <div id="footer">
