@@ -18,6 +18,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
   session_start();
+  $_SESSION = array();
 
   if (isset($_GET['ajax'])) {
     //session_start();
