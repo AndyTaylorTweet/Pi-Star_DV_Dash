@@ -11,8 +11,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
+  $lifetime=30;
+  session_set_cookie_params($lifetime);
   session_start();
-  $_SESSION = array();
 
   if (isset($_GET['ajax'])) {
     //session_start();
