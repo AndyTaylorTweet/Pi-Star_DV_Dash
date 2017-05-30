@@ -8,16 +8,19 @@ require_once('config/version.php');
 
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
+
+  if (!isset($_GET['ajax'])) {
+    system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
+    system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
+    system('sudo /usr/local/sbin/pistar-update > /dev/null 2>&1 &');
+    }
+
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
   session_start();
-  $_SESSION = array();
-  
-  system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
-  system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
-  system('sudo /usr/local/sbin/pistar-update > /dev/null 2>&1 &');
 
   if (isset($_GET['ajax'])) {
+    //session_start();
     $handle = fopen('/var/log/pi-star/pi-star_update.log', 'rb');
     if (isset($_SESSION['offset'])) {
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
@@ -46,7 +49,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>Hotspot Update Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
+    <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
     <script>
