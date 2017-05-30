@@ -8,19 +8,15 @@ require_once('config/version.php');
 
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
-
-  if (!isset($_GET['ajax'])) {
-    system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
-    system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
-    system('sudo /usr/local/sbin/pistar-update > /dev/null 2>&1 &');
-    }
-
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
   session_start();
 
   if (isset($_GET['ajax'])) {
-    //session_start();
+    system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
+    system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
+    system('sudo /usr/local/sbin/pistar-update > /dev/null 2>&1 &');
+    
     $handle = fopen('/var/log/pi-star/pi-star_update.log', 'rb');
     if (isset($_SESSION['offset'])) {
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
