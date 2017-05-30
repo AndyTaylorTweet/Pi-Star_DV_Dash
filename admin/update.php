@@ -11,6 +11,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
   session_start();
+  $_SESSION = array();
 
   if (isset($_GET['ajax'])) {
     system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
