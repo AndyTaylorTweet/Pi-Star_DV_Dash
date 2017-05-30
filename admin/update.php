@@ -12,7 +12,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   if (!isset($_GET['ajax'])) {
     system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
     system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
-    system('sleep 2');
     system('sudo /usr/local/sbin/pistar-update > /dev/null 2>&1 &');
     }
 
@@ -50,15 +49,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>Hotspot Update Dashboard</title>
-    <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
+    <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
     <script>
     $(function() {
       $.repeat(1000, function() {
         $.get('/admin/update.php?ajax', function(data) {
-          $('#tail').append(data);
-          var objDiv = document.getElementById("tail");
+          $('#tailUpdate').append(data);
+          var objDiv = document.getElementById("tailUpdate");
           objDiv.scrollTop = objDiv.scrollHeight;
         });
       });
@@ -81,7 +80,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <div id="contentwide">
   <table width="100%">
   <tr><th>Update Running</th></tr>
-  <tr><td align="left"><div id="tail">Starting update, please wait...<br></div></td></tr>
+  <tr><td align="left"><div id="tailUpdate">Starting update, please wait...<br></div></td></tr>
   </table>
   </div>
   <div id="footer">
