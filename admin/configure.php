@@ -1010,7 +1010,7 @@ else:
     <td align="left" colspan="2"><select name="confHardware">
                 <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyAMA0') { echo ' selected="selected"';}?> value="DVM-RPI">DV-Mega RPi Radio</option>
                 <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyACM0' && $configdstar['dvmegaVariant'] >= 1 ) { echo ' selected="selected"';}?> value="DVM-USB">Zum Board / DV-Mega USB Radio / DV-Mega USB GMSK Node (Old Firmware)</option>
-                <option<?php if ($configdstar['dvmegaVariant'] === '0') { echo ' selected="selected"';}?> value="DVM-GMSK">Blue-DV / Bluestack / DV-Mega USB GMSK Node (New Firmware)</option>
+                <option<?php if ($configdstar['dvmegaVariant'] === '0') { echo ' selected="selected"';}?> value="DVM-GMSK">Bluestack / DV-Mega USB GMSK Node (New Firmware)</option>
                 <option<?php if ($configdstar['modemType'] === 'DV-RPTR V1') { echo ' selected="selected"';}?> value="DV-RPTR1">DV-RPTR V1</option>
                 <option<?php if ($configdstar['modemType'] === 'DV-RPTR V2') { echo ' selected="selected"';}?> value="DV-RPTR2">DV-RPTR V2</option>
                 <option<?php if ($configdstar['modemType'] === 'DV-RPTR V3') { echo ' selected="selected"';}?> value="DV-RPTR3">DV-RPTR V3</option>
