@@ -1263,6 +1263,24 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
         ?>
     </select></td>
     </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">APRS Host:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
+    <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
+<?php
+        $testAPSRHost = $configs['aprsHostname'];
+    	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
+        while (!feof($aprsHostFile)) {
+                $aprsHostFileLine = fgets($aprsHostFile);
+                $aprsHost = preg_split('/:/', $aprsHostFileLine);
+                if ((strpos($aprsHost[0], ';') === FALSE ) && ($aprsHost[0] != '')) {
+                        if ($testAPSRHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected=\"selected\">$aprsHost[0]</option>\n"; }
+                        else { echo "      <option value=\"$aprsHost[0]\">$aprsHost[0]</option>\n"; }
+                }
+        }
+        fclose($aprsHostFile);
+        ?>
+    </select></td>
+    </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
