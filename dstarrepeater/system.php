@@ -24,11 +24,11 @@ if ($cpuTemp >= 69) { $cpuTempHTML = "<td bgcolor=\"#f00\">".$cpuTemp."&deg;C</t
 <b>Gateway Hardware Information</b>
 <table>
   <tr>
-    <th><a class=tooltip href="#">Hostname<span><b>Hostname</b></span></a></th>
-    <th><a class=tooltip href="#">Kernel<span><b>Release</b></span></a></th>
-    <th colspan="2"><a class=tooltip href="#">Platform<span><b>Architecture</b></span></a></th>
-    <th><a class=tooltip href="#">CPU Load<span><b>CPU Load</b></span></a></th>
-    <th><a class=tooltip href="#">CPU Temp<span><b>CPU Temp</b></span></a></th>
+    <th><a class="tooltip" href="#">Hostname<span><b>Hostname</b></span></a></th>
+    <th><a class="tooltip" href="#">Kernel<span><b>Release</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Platform<span><b>Architecture</b></span></a></th>
+    <th><a class="tooltip" href="#">CPU Load<span><b>CPU Load</b></span></a></th>
+    <th><a class="tooltip" href="#">CPU Temp<span><b>CPU Temp</b></span></a></th>
   </tr>
   <tr>
     <td><?php echo php_uname('n');?></td>
