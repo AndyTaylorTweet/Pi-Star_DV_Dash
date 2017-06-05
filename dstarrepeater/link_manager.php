@@ -157,7 +157,7 @@ fclose($dextraFile);
     </select>
     </td>
     <td>
-        <input type="radio" name="Link" value="LINK" checked />Link
+        <input type="radio" name="Link" value="LINK" selected="selected" />Link
         <input type="radio" name="Link" value="UNLINK" />UnLink
     </td>
     <td>
