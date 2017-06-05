@@ -68,7 +68,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   ?>
   </table>
 <?php } else { ?>
-  <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
   <table width="100%">
   <tr>
     <th colspan="2">Power Control</th>
@@ -76,11 +76,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   <tr>
     <td align="center">
       Reboot<br />
-      <button style="border: none; background: none;" name="action" value="reboot"><img src="/images/reboot.png" border="0" /></button>
+      <button style="border: none; background: none;" name="action" value="reboot"><img src="/images/reboot.png" border="0" alt="Reboot" /></button>
     </td>
     <td align="center">
       Shutdown<br />
-      <button style="border: none; background: none;" name="action" value="shutdown"><img src="/images/shutdown.png" border="0" /></button>
+      <button style="border: none; background: none;" name="action" value="shutdown"><img src="/images/shutdown.png" border="0" alt="Shutdown" /></button>
     </td>
   </tr>
   </table>
