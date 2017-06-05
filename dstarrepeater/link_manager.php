@@ -34,19 +34,19 @@ else {
 
 	if ($module != $targetRef && $_POST["Link"] == "LINK") {	// Sanity check that we are not connecting to ourself
 		echo "<b>D-Star Link Manager</b>\n";
-		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></a></th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($linkCommand);
 		echo "</td></tr>\n</table>\n";
 		}
 	if ($module == $targetRef && $_POST["Link"] == "LINK") {	// Sanity Check Failed
 		echo "<b>D-Star Link Manager</b>\n";
-		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></a></th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo "Cannot link to myself - Aborting link request!";
 		echo "</td></tr>\n</table>\n";
 		}
 	if ($_POST["Link"] == "UNLINK") {				// Allow Unlink no matter what
 		echo "<b>D-Star Link Manager</b>\n";
-		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></a></th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 		echo exec($unlinkCommand);
 		echo "</td></tr>\n</table>\n";
 		}
