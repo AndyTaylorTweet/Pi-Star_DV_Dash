@@ -17,15 +17,15 @@ $MYCALL=strtoupper($callsign);
     <b>D-Star Link Information</b>
     <table>
     <tr>
-    <th><a class=tooltip href="#">Radio<span><b>Radio Module</b></span></a></th>
-    <th><a class=tooltip href="#">Default<span><b>Default Link Destination</b></span></a></th>
-    <th><a class=tooltip href="#">Auto<span><b>AutoLink</b>- green: enabled<br />- red: disabled</span></a></th>
-    <th><a class=tooltip href="#">Timer<span><b>Reset/Restart Timer</b></span></a></th>
-    <th><a class=tooltip href="#">Link<span><b>Link-Status</b>- green: enabled<br />- red: disabled</span></a></th>
-    <th><a class=tooltip href="#">Linked to<span><b>linked destination</b></span></a></th>
-    <th><a class=tooltip href="#">Mode<span><b>Mode or Protocol used</b></span></a></th>
-    <th><a class=tooltip href="#">Direction<span><b>Direction</b>incoming or outgoing</span></a></th>
-    <th><a class=tooltip href="#">Last Change (<?php echo date('T')?>)<span><b>Timestamp of last change</b><?php echo date('T')?></span></a></th>
+    <th><a class="tooltip" href="#">Radio<span><b>Radio Module</b></span></a></th>
+    <th><a class="tooltip" href="#">Default<span><b>Default Link Destination</b></span></a></th>
+    <th><a class="tooltip" href="#">Auto<span><b>AutoLink</b>- green: enabled<br />- red: disabled</span></a></th>
+    <th><a class="tooltip" href="#">Timer<span><b>Reset/Restart Timer</b></span></a></th>
+    <th><a class="tooltip" href="#">Link<span><b>Link-Status</b>- green: enabled<br />- red: disabled</span></a></th>
+    <th><a class="tooltip" href="#">Linked to<span><b>linked destination</b></span></a></th>
+    <th><a class="tooltip" href="#">Mode<span><b>Mode or Protocol used</b></span></a></th>
+    <th><a class="tooltip" href="#">Direction<span><b>Direction</b>incoming or outgoing</span></a></th>
+    <th><a class="tooltip" href="#">Last Change (<?php echo date('T')?>)<span><b>Timestamp of last change</b><?php echo date('T')?></span></a></th>
     </tr>
 
 <?php
