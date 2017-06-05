@@ -152,6 +152,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			$output .= shell_exec("sudo mv -v -f /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
 			$output .= shell_exec("sudo mv -v -f /tmp/config_restore/* /etc/ 2>&1")."\n";
 			
+			//Restore the Timezone Config
+                        $timeZone = shell_exec('grep date /var/www/dashboard/config/config.php | grep -o "\'.*\'" | sed "s/\'//g"');
+                        $timeZone = preg_replace( "/\r|\n/", "", $timeZone);                    //Remove the linebreaks
+                        shell_exec('sudo timedatectl set-timezone '.$timeZone.' 2>&1');
+
 			// Make the disk Read-Only
 			shell_exec('sudo mount -o remount,ro / 2>&1');
 			
