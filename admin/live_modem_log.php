@@ -56,7 +56,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
-    <script>
+    <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
         $.get('/admin/live_modem_log.php?ajax', function(data) {
@@ -84,7 +84,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
   <div id="contentwide">
   <table width="100%">
   <tr><th>Live Modem Log</th></tr>
-  <tr><td align="left"><div id="tail">Starting logging, please wait...<br></div></td></tr>
+  <tr><td align="left"><div id="tail">Starting logging, please wait...<br /></div></td></tr>
   </table>
   </div>
   <div id="footer">
