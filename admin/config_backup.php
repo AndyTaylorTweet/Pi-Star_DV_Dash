@@ -191,11 +191,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   </tr>
   <tr>
     <td align="center" valign="top" width="50%">Download Configuration<br />
-	<button style="border: none; background: none;" name="action" value="download"><img src="/images/download.png" border="0" /></button>
+	<button style="border: none; background: none;" name="action" value="download"><img src="/images/download.png" border="0" alt="Download Config" /></button>
     </td>
     <td align="center" valign="top">Restore Configuration<br />
-	<button style="border: none; background: none;" name="action" value="restore"><img src="/images/restore.png" border="0" /></button><br />
-    	<input type="file" name="fileToUpload" id="fileToUpload">
+	<button style="border: none; background: none;" name="action" value="restore"><img src="/images/restore.png" border="0" alt="Restore Config" /></button><br />
+    	<input type="file" name="fileToUpload" id="fileToUpload" />
     </td>
   </tr>
   <tr>
@@ -207,8 +207,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	  This backup and restore tool, will backup your config files to a Zip file, and allow you to restore them later<br />
 	  either to this Pi-Star or another one.<br />
 	  <ul>
-		  <li>System Passwords / Dashboard passwords are NOT backed up / restored.
-		  <li>Wireless Configuration IS backed up and restored
+		  <li>System Passwords / Dashboard passwords are NOT backed up / restored.</li>
+		  <li>Wireless Configuration IS backed up and restored</li>
 	  </ul>
   </td>
   </tr>
