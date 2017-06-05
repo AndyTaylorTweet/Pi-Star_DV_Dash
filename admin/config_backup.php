@@ -11,8 +11,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   header('Cache-Control: no-cache');
   session_start();
 ?>
-  <!doctype html>
-  <html xmlns="http://www.w3.org/1999/xhtml"xmlns:v="urn:schemas-microsoft-com:vml">
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" lang="en">
   <head>
     <meta name="robots" content="index" />
     <meta name="robots" content="follow" />
@@ -25,7 +26,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star Config Backup</title>
-    <LINK REL="stylesheet" type="text/css" href="css/ircddb.css" />
+    <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
   </head>
   <body>
   <div class="container">
