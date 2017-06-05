@@ -95,7 +95,7 @@ $dcsFile = fopen("/usr/local/etc/DCS_Hosts.txt", "r");
 $dplusFile = fopen("/usr/local/etc/DPlus_Hosts.txt", "r");
 $dextraFile = fopen("/usr/local/etc/DExtra_Hosts.txt", "r");
 
-//echo "    <option value=\"".substr($configs['reflector1'], 0, 6)."\" selected=\"selected\">".substr($configs['reflector1'], 0, 6)."</option>\n";
+echo "    <option value=\"".substr($configs['reflector1'], 0, 6)."\" selected=\"selected\">".substr($configs['reflector1'], 0, 6)."</option>\n";
 echo "    <option value=\"customOption\">Text Entry</option>\n";
 
 while (!feof($dcsFile)) {
