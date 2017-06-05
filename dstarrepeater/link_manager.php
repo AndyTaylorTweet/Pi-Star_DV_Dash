@@ -34,19 +34,19 @@ else {
 
 	if ($module != $targetRef && $_POST["Link"] == "LINK") {	// Sanity check that we are not connecting to ourself
 		echo "<b>D-Star Link Manager</b>\n";
-		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></a></th></tr>\n<tr><td>";
 		echo exec($linkCommand);
 		echo "</td></tr>\n</table>\n";
 		}
 	if ($module == $targetRef && $_POST["Link"] == "LINK") {	// Sanity Check Failed
 		echo "<b>D-Star Link Manager</b>\n";
-		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></a></th></tr>\n<tr><td>";
 		echo "Cannot link to myself - Aborting link request!";
 		echo "</td></tr>\n</table>\n";
 		}
 	if ($_POST["Link"] == "UNLINK") {				// Allow Unlink no matter what
 		echo "<b>D-Star Link Manager</b>\n";
-		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></th></tr>\n<tr><td>";
+		echo "<table>\n<tr><th><a class=\"tooltip\" href=\"#\">Command Output<span><b>Command Output</b></span></a></th></tr>\n<tr><td>";
 		echo exec($unlinkCommand);
 		echo "</td></tr>\n</table>\n";
 		}
@@ -60,10 +60,10 @@ else: ?>
 <form action="http://<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 <table>
   <tr>
-    <th width="150"><a class="tooltip" href="#">Radio Module<span><b>Radio Module</b></span></th>
-    <th width="180"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></th>
-    <th width="150"><a class="tooltip" href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></th>
-    <th><a class="tooltip" href="#">Action<span><b>Action</b></span></th>
+    <th width="150"><a class="tooltip" href="#">Radio Module<span><b>Radio Module</b></span></a></th>
+    <th width="180"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
+    <th width="150"><a class="tooltip" href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></a></th>
+    <th><a class="tooltip" href="#">Action<span><b>Action</b></span></a></th>
   </tr>
   <tr>
     <td>
