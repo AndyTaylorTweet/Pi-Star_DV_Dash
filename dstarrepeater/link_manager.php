@@ -63,7 +63,7 @@ else: ?>
     <th width="150"><a class="tooltip" href="#">Radio Module<span><b>Radio Module</b></span></th>
     <th width="180"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></th>
     <th width="150"><a class="tooltip" href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></th>
-    <th><a class=tooltip href="#">Action<span><b>Action</b></span></th>
+    <th><a class="tooltip" href="#">Action<span><b>Action</b></span></th>
   </tr>
   <tr>
     <td>
