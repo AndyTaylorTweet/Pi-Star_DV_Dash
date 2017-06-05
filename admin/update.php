@@ -53,9 +53,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Hotspot Update Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-    <script src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
-    <script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
+    <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
         $.get('/admin/update.php?ajax', function(data) {
@@ -83,7 +83,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   <div id="contentwide">
   <table width="100%">
   <tr><th>Update Running</th></tr>
-  <tr><td align="left"><div id="tail">Starting update, please wait...<br></div></td></tr>
+  <tr><td align="left"><div id="tail">Starting update, please wait...<br /></div></td></tr>
   </table>
   </div>
   <div id="footer">
