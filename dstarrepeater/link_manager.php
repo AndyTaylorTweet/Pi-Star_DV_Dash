@@ -125,7 +125,7 @@ fclose($dextraFile);
 
 ?>
     </select><input name="RefName" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
-            onblur="if(this.value==''){toggleField(this,this.previousSibling);}">
+            onblur="if(this.value==''){toggleField(this,this.previousSibling);}" />
     <select name="Letter">
 	<?php echo "  <option value=\"".substr($configs['reflector1'], 7)."\" selected=\"selected\">".substr($configs['reflector1'], 7)."</option>\n"; ?>
 	<option>A</option>
@@ -157,11 +157,11 @@ fclose($dextraFile);
     </select>
     </td>
     <td>
-        <input type="radio" name="Link" value="LINK" checked>Link
-        <input type="radio" name="Link" value="UNLINK">UnLink
+        <input type="radio" name="Link" value="LINK" checked />Link
+        <input type="radio" name="Link" value="UNLINK" />UnLink
     </td>
     <td>
-    <input type="submit" value="Request Change">
+    <input type="submit" value="Request Change" />
     </td>
   </tr>
 </table>
