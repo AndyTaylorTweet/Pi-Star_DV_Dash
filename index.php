@@ -67,6 +67,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 	echo '  $("#sysInfo").load("/dstarrepeater/system.php");'."\n";
 	echo '}'."\n";
 	echo 'setInterval(function(){reloadSysInfo()}, 15000);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="sysInfo">'."\n";
 	include 'dstarrepeater/system.php';				// Basic System Info
@@ -103,6 +104,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php");'."\n";
 		echo '}'."\n";
 		echo 'setInterval(function(){reloadrefLinks()}, 2500);'."\n";
+		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
 		echo '<div id="refLinks">'."\n";
 		include 'dstarrepeater/active_reflector_links.php';	// dstarrepeater gateway config
@@ -118,6 +120,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
         echo '  $("#cssConnects").load("/dstarrepeater/css_connections.php");'."\n";
         echo '}'."\n";
         echo 'setInterval(function(){reloadcssConnections()}, 15000);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
         echo '</script>'."\n";
         echo '<div id="cssConnects">'."\n";
 	include 'dstarrepeater/css_connections.php';			// dstarrepeater gateway config
@@ -129,6 +132,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '  $("#lastHerd").load("/mmdvmhost/lh.php");'."\n";
 	echo '}'."\n";
 	echo 'setInterval(function(){reloadLastHerd()}, 1500);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="lastHerd">'."\n";
 	include 'mmdvmhost/lh.php';					// MMDVMDash Last Herd
@@ -140,6 +144,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '  $("#localTxs").load("/mmdvmhost/localtx.php");'."\n";
 	echo '}'."\n";
 	echo 'setInterval(function(){reloadLocalTx()}, 1500);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="localTxs">'."\n";
 	include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
@@ -154,6 +159,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php");'."\n";
 	echo '}'."\n";
 	echo 'setInterval(function(){reloadrefLinks()}, 2500);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
         echo '<br />'."\n";
 	echo '<div id="refLinks">'."\n";
@@ -170,6 +176,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
         echo '  $("#cssConnects").load("/dstarrepeater/css_connections.php");'."\n";
         echo '}'."\n";
         echo 'setInterval(function(){reloadcssConnections()}, 15000);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
         echo '</script>'."\n";
         echo '<div id="cssConnects">'."\n";
 	include 'dstarrepeater/css_connections.php';			// dstarrepeater gateway config
@@ -180,6 +187,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '  $("#lh").load("/dstarrepeater/last_herd.php");'."\n";
 	echo '}'."\n";
 	echo 'setInterval(function(){reloadLh()}, 2000);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="lh">'."\n";
 	include 'dstarrepeater/last_herd.php';				//dstarrepeater Last Herd
@@ -191,6 +199,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '  $("#localTx").load("/dstarrepeater/local_tx.php");'."\n";
 	echo '}'."\n";
 	echo 'setInterval(function(){reloadLocalTx()}, 3000);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="localTx">'."\n";
 	include 'dstarrepeater/local_tx.php';				//dstarrepeater Local Transmissions
