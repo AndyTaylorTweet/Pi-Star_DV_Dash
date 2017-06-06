@@ -85,6 +85,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '  $("#repeaterInfo").load("/mmdvmhost/repeaterinfo.php");'."\n";
 	echo '}'."\n";
 	echo 'setInterval(function(){reloadRepeaterInfo()}, 1000);'."\n";
+	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="repeaterInfo">'."\n";
 	include 'mmdvmhost/repeaterinfo.php';				// MMDVMDash Repeater Info
