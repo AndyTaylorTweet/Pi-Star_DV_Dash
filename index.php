@@ -40,6 +40,9 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <?php include_once "config/browserdetect.php"; ?>    
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/functions.js"></script>
+    <script type="text/javascript">
+      $.ajaxSetup({ cache: false });
+    </script>
 </head>
 <body>
 <div class="container">
