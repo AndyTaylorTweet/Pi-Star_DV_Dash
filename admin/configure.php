@@ -476,10 +476,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	
 	// Set P25 NAC
 	if (empty($_POST['p25nac']) != TRUE ) {
-	  $p25nacNew = strtolower($_POST['p25nac']);
-	  //if (preg_match( '/[a-f0-9]{1,3}/', $p25nacNew) {
-	  //  $configmmdvm['P25']['NAC'] = $p25nacNew;
-	  //}
+	  $p25nacNew = strtolower(escapeshellcmd($_POST['p25nac']));
+	  if (preg_match('/[a-f0-9]{3}/', $p25nacNew)) {
+	    $configmmdvm['P25']['NAC'] = $p25nacNew;
+	  }
 	}	
 	
 	// Set the YSF Startup Host
