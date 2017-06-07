@@ -145,7 +145,7 @@ echo "<br />\n";
 echo "<table>\n";
 if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
 	echo "<tr><th colspan=\"2\">P25 Radio</th></tr>\n";
-	echo "<tr><td>NAC</td><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
+	echo "<tr><th>NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
 }
 echo "<tr><th colspan=\"2\">P25 Network</th></tr>\n";
 echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
