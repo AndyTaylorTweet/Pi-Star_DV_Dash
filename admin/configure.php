@@ -1312,7 +1312,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
 <?php if ($configmmdvm['P25']['NAC']) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">P25 NAC:<span><b>P25 NAC</b>Set your NAC<br /> code here</span></a></td>
-    <td><input type="text" name="p25nac" size="3" maxlength="3" value="<?php echo $configmmdvm['P25']['NAC'] ?>" /></td>
+    <td align="left"><input type="text" name="p25nac" size="30" maxlength="3" value="<?php echo $configmmdvm['P25']['NAC'];?>" /></td>
     </tr>
 <?php } ?>
     </table>
