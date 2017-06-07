@@ -157,6 +157,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
                         $timeZone = shell_exec('grep date /var/www/dashboard/config/config.php | grep -o "\'.*\'" | sed "s/\'//g"');
                         $timeZone = preg_replace( "/\r|\n/", "", $timeZone);                    //Remove the linebreaks
                         shell_exec('sudo timedatectl set-timezone '.$timeZone.' 2>&1');
+			
+			//Restore ircDDGBateway Link Manager Password
+			$ircRemotePassword = shell_exec('grep remotePassword /etc/ircddbgateway | awk -F\'=\' \'{print $2}\'');
+			shell_exec('sudo sed -i "/password=/c\\password='.$ircRemotePassword.'" /root/.Remote\ Control');
 
 			// Make the disk Read-Only
 			shell_exec('sudo mount -o remount,ro / 2>&1');
