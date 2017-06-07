@@ -474,6 +474,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollP25Startup);
 	}
 	
+	// Set P25 NAC
+	if (empty($_POST['p25nac']) != TRUE ) {
+	  if (preg_match( '/[a-f0-9]{1,3}/', strtolower($_POST['p25nac']))) {
+	    $configmmdvm['P25']['NAC'] = preg_match( '/[a-f0-9]{1,3}/', strtolower($_POST['p25nac']))
+	  }
+	}	
+	
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
 	  $newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
