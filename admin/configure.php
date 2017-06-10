@@ -307,7 +307,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollAPRSHost);
 	  $configysfgateway['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  }
-	
+
 	// Set ircDDBGateway and TimeServer language
 	if (empty($_POST['ircDDBGatewayAnnounceLanguage']) != TRUE) {
 	  $ircDDBGatewayAnnounceLanguageArr = explode(',', escapeshellcmd($_POST['ircDDBGatewayAnnounceLanguage']));
@@ -334,31 +334,25 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
-	  
+
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
 	  system($rollFREQdvmegaRx);
 	  system($rollFREQdvmegaTx);
-	  
+
 	// Set RPT1 and RPT2
 	  if ($newFREQtx >= 1240000000 && $newFREQtx <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
-		if ( $confHardware != 'DVM-USB' ) { $confDVVariant = 0; }
-		if ( $confHardware == 'DVM-USB' ) { $confDVVariant = 1; }
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
 		}
 	  if ($newFREQtx >= 420000000 && $newFREQtx <= 450000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."B";
-		if ( $confHardware != 'DVM-USB' ) { $confDVVariant = 2; }
-		if ( $confHardware == 'DVM-USB' ) { $confDVVariant = 1; }
 		$confIRCrepeaterBand1 = "B";
 		$configmmdvm['D-Star']['Module'] = "B";
 		}
 	  if ($newFREQtx >= 144000000 && $newFREQtx <= 148000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."C";
-		if ( $confHardware != 'DVM-USB' ) { $confDVVariant = 3; }
-		if ( $confHardware == 'DVM-USB' ) { $confDVVariant = 1; }
 		$confIRCrepeaterBand1 = "C";
 		$configmmdvm['D-Star']['Module'] = "C";
 		}
@@ -398,7 +392,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
-	  
+
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
 	  system($rollFREQdvmegaRx);
@@ -407,22 +401,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set RPT1 and RPT2
 	  if ($newFREQ >= 1240000000 && $newFREQ <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
-		if ( $confHardware != 'DVM-USB' ) { $confDVVariant = 0; }
-		if ( $confHardware == 'DVM-USB' ) { $confDVVariant = 1; }
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
 		}
 	  if ($newFREQ >= 420000000 && $newFREQ <= 450000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."B";
-		if ( $confHardware != 'DVM-USB' ) { $confDVVariant = 2; }
-		if ( $confHardware == 'DVM-USB' ) { $confDVVariant = 1; }
 		$confIRCrepeaterBand1 = "B";
 		$configmmdvm['D-Star']['Module'] = "B";
 		}
 	  if ($newFREQ >= 144000000 && $newFREQ <= 148000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."C";
-		if ( $confHardware != 'DVM-USB' ) { $confDVVariant = 3; }
-		if ( $confHardware == 'DVM-USB' ) { $confDVVariant = 1; }
 		$confIRCrepeaterBand1 = "C";
 		$configmmdvm['D-Star']['Module'] = "C";
 		}
@@ -480,21 +468,21 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway';
 	  system($rollP25Startup);
 	}
-	
+
 	// Set P25 NAC
 	if (empty($_POST['p25nac']) != TRUE ) {
 	  $p25nacNew = strtolower(escapeshellcmd($_POST['p25nac']));
 	  if (preg_match('/[a-f0-9]{3}/', $p25nacNew)) {
 	    $configmmdvm['P25']['NAC'] = $p25nacNew;
 	  }
-	}	
-	
+	}
+
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
 	  $newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
 	  $configysfgateway['Network']['Startup'] = $newYSFStartupHost;
 	}
-	
+
 	// Set Duplex
 	if (empty($_POST['trxMode']) != TRUE ) {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
@@ -522,7 +510,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 			$configmmdvm['DMR Network']['Options'] = "";
 		}
-		
+
 		// Set the DMR+ Options= line
 		if (substr($dmrMasterHostArr[3], 0, 4) == "DMR+") {
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
@@ -535,13 +523,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['dmrMasterHost']) == TRUE ) {
 		$configmmdvm['DMR Network']['Options'] = "";
 	}
-		
+
 	// Set Talker Alias Option
 	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrEmbeddedLCOnly']) == 'ON' ) { $configmmdvm['DMR']['EmbeddedLCOnly'] = "1"; }
 	  if (escapeshellcmd($_POST['dmrEmbeddedLCOnly']) == 'OFF' ) { $configmmdvm['DMR']['EmbeddedLCOnly'] = "0"; }
 	}
-	
+
 	// Set Dump TA Data Option for GPS support
 	if (empty($_POST['dmrDumpTAData']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'ON' ) { $configmmdvm['DMR']['DumpTAData'] = "1"; }
@@ -557,24 +545,59 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the hardware type
 	if (empty($_POST['confHardware']) != TRUE ) {
 	$confHardware = escapeshellcmd($_POST['confHardware']);
+	$configModem['Modem']['Hardware'] = $confHardware;
 
-	  if ( $confHardware == 'DVM-RPI' ) {
+	  if ( $confHardware == 'dvmpis' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyAMA0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=2" /etc/dstarrepeater';
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	    system($rollModemType);
 	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
 	  }
 
-	  if ( $confHardware == 'DVM-USB' ) {
+	  if ( $confHardware == 'dvmpid' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
+	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyAMA0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=3" /etc/dstarrepeater';
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	    system($rollModemType);
+	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
+	  }
+
+	  if ( $confHardware == 'dvmuad' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyACM0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=3" /etc/dstarrepeater';
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	    system($rollModemType);
 	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
 	  }
 
-	  if ( $confHardware == 'DVM-GMSK' ) {
+	  if ( $confHardware == 'dvmbss' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
+	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyUSB0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=2" /etc/dstarrepeater';
+            $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
+	    system($rollModemType);
+	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
+	  }
+
+	  if ( $confHardware == 'dvmbsd' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
+	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyUSB0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=3" /etc/dstarrepeater';
+            $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
+	    system($rollModemType);
+	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
+	  }
+
+	  if ( $confHardware == 'dvmuagmsk' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyUSB0" /etc/dstarrepeater';
 	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=0" /etc/dstarrepeater';
@@ -584,7 +607,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaVariant);
 	  }
 
-	  if ( $confHardware == 'DV-RPTR1' ) {
+	  if ( $confHardware == 'dvmuagmsko' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
+	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyACM0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=0" /etc/dstarrepeater';
+            $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	    system($rollModemType);
+	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
+	  }
+
+	  if ( $confHardware == 'dvrptr1' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DV-RPTR V1" /etc/dstarrepeater';
 	    $rollDVRPTRPort = 'sudo sed -i "/dvrptr1Port=/c\\dvrptr1Port=/dev/ttyACM0" /etc/dstarrepeater';
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
@@ -592,7 +625,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVRPTRPort);
 	  }
 
-	  if ( $confHardware == 'DV-RPTR2' ) {
+	  if ( $confHardware == 'dvrptr2' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DV-RPTR V2" /etc/dstarrepeater';
 	    $rollDVRPTRPort = 'sudo sed -i "/dvrptr1Port=/c\\dvrptr1Port=/dev/ttyACM0" /etc/dstarrepeater';
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
@@ -600,7 +633,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVRPTRPort);
 	  }
 
-	  if ( $confHardware == 'DV-RPTR3' ) {
+	  if ( $confHardware == 'dvrptr3' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DV-RPTR V3" /etc/dstarrepeater';
 	    $rollDVRPTRPort = 'sudo sed -i "/dvrptr1Port=/c\\dvrptr1Port=/dev/ttyACM0" /etc/dstarrepeater';
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
@@ -608,10 +641,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVRPTRPort);
 	  }
 
-	  if ( $confHardware == 'DVAP' ) {
+	  if ( $confHardware == 'dvap' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVAP" /etc/dstarrepeater';
             $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
 	    system($rollModemType);
+	  }
+
+	  if ( $confHardware == 'zum' ) {
+            $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	  }
 	}
 
@@ -830,7 +867,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                     exec('sudo chown root:root $modemConfigFileMMDVMHost');			// Set the owner
                 }
         }
-	
+
 	// Start the DV Services
 	system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
 	system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
@@ -846,7 +883,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system($rollTimeZone);
 	$rollTimeZoneConfig = 'sudo sed -i "/date_default_timezone_set/c\\date_default_timezone_set(\''.escapeshellcmd($_POST['systemTimezone']).'\')\;" /var/www/dashboard/config/config.php';   
 	system($rollTimeZoneConfig);
-	
+
 	// Start Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
 	system('sudo systemctl start cron.service > /dev/null 2>/dev/null &');			//Cron
 
@@ -858,6 +895,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 else:
 	// Output the HTML Form here
+	if ((file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) && !$configModem['Modem']['Hardware']) { echo "<script type\"text/javascript\">\n\talert(\"WARNING:\\nThe Modem selection section has been updated,\\nPlease re-select your modem from the list.\")\n</script>\n"; }
 ?>
 <form id="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<div><input type="hidden" name="factoryReset" value="1" /></div>
@@ -1066,13 +1104,19 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
     <td align="left" colspan="2"><select name="confHardware">
-                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyAMA0') { echo ' selected="selected"';}?> value="DVM-RPI">DV-Mega RPi Radio</option>
-                <option<?php if ($configdstar['dvmegaPort'] === '/dev/ttyACM0' && $configdstar['dvmegaVariant'] >= 1 ) { echo ' selected="selected"';}?> value="DVM-USB">Zum Board / DV-Mega USB Radio / DV-Mega USB GMSK Node (Old Firmware)</option>
-                <option<?php if ($configdstar['dvmegaVariant'] === '0') { echo ' selected="selected"';}?> value="DVM-GMSK">Bluestack / DV-Mega USB GMSK Node (New Firmware)</option>
-                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V1') { echo ' selected="selected"';}?> value="DV-RPTR1">DV-RPTR V1</option>
-                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V2') { echo ' selected="selected"';}?> value="DV-RPTR2">DV-RPTR V2</option>
-                <option<?php if ($configdstar['modemType'] === 'DV-RPTR V3') { echo ' selected="selected"';}?> value="DV-RPTR3">DV-RPTR V3</option>
-                <option<?php if ($configdstar['modemType'] === 'DVAP') { echo ' selected="selected"';}?> value="DVAP">DVAP</option>
+		<option<?php if (!$configModem['Modem']['Hardware']) { echo ' selected="selected"';}?> value="">--</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpis') { echo ' selected="selected"';}?> value="dvmpis">DV-Mega Raspberry Pi Hat - Single Band (70cm)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpid') { echo ' selected="selected"';}?> value="dvmpid">DV-Mega Raspberry Pi Hat - Dual Band</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuad') { echo ' selected="selected"';}?> value="dvmuad">DV-Mega on Arduino USB - Dual Band</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsko') { echo ' selected="selected"';}?> value="dvmuagmsko">DV-Mega on Arduino USB - GMSK Node (Old Firmware)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsk') { echo ' selected="selected"';}?> value="dvmuagmsk">DV-Mega on Arduino USB - GMSK Node (New Firmware)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmbss') { echo ' selected="selected"';}?> value="dvmbss">DV-Mega on Bluestack USB - Single Band (70cm)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmbsd') { echo ' selected="selected"';}?> value="dvmbsd">DV-Mega on Bluestack USB - Dual Band</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr1') { echo ' selected="selected"';}?> value="dvrptr1">DV-RPTR V1</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr2') { echo ' selected="selected"';}?> value="dvrptr2">DV-RPTR V2</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr3') { echo ' selected="selected"';}?> value="dvrptr3">DV-RPTR V3</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvap') { echo ' selected="selected"';}?> value="dvap">DVAP</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">Zum Hardware</option>
     </select></td>
     </tr>
     <tr>
@@ -1093,7 +1137,7 @@ else:
     }
 ?>
     </select></td>
-    </tr>	
+    </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
@@ -1217,7 +1261,7 @@ while (!feof($dextraFile)) {
 		echo "	<option value=\"".substr($dextraLine, 0, 6)."\">".substr($dextraLine, 0, 6)."</option>\n";
 }
 fclose($dextraFile);
-												   
+
 ?>
     </select><input name="confDefRef" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
             onblur="if(this.value==''){toggleField(this,this.previousSibling);}" />
@@ -1279,7 +1323,7 @@ fclose($dextraFile);
 <?php
         $testIrcLanguage = $configs['language'];
 	if (is_readable("/var/www/dashboard/config/ircddbgateway_languages.inc")) {
-	  $ircLanguageFile = fopen("/var/www/dashboard/config/ircddbgateway_languages.inc", "r");									   
+	  $ircLanguageFile = fopen("/var/www/dashboard/config/ircddbgateway_languages.inc", "r");
         while (!feof($ircLanguageFile)) {
                 $ircLanguageFileLine = fgets($ircLanguageFile);
                 $ircLanguage = preg_split('/;/', $ircLanguageFileLine);
@@ -1375,7 +1419,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
 <?php } ?>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
-<?php } ?>	
+<?php } ?>
 	<div><b>Firewall Configuration</b></div>
     <table>
     <tr>
