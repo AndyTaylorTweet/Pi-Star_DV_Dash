@@ -1,9 +1,10 @@
 <?php
 // Get the CPU temp and colour the box accordingly...
-$cpuTemp = exec('awk \'{printf("%.1f\n",$1/1e3)}\' /sys/class/thermal/thermal_zone0/temp');
-if ($cpuTemp < 50) { $cpuTempHTML = "<td style=\"background: #1d1\">".$cpuTemp."&deg;C</td>\n"; }
-if ($cpuTemp >= 50) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTemp."&deg;C</td>\n"; }
-if ($cpuTemp >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp."&deg;C</td>\n"; }
+$cpuTempC = exec('awk \'{printf("%.1f\n",$1/1e3)}\' /sys/class/thermal/thermal_zone0/temp');
+$cpuTempF = round(+$cpuTempC * 9 / 5 + 32, 1);
+if ($cpuTempC < 50) { $cpuTempHTML = "<td style=\"background: #1d1\">".$cpuTempC."&deg;C / ".$cpuTempF."&deg;F</td>\n"; }
+if ($cpuTempC >= 50) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempC."&deg;C / ".$cpuTempF."&deg;F</td>\n"; }
+if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempC."&deg;C / ".$cpuTempF."&deg;F</td>\n"; }
 
 // Pull in some config
 require_once('config/version.php');
