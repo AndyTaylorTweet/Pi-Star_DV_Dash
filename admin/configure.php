@@ -120,18 +120,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 //HTML output starts here 
 ?>
     <b>Gateway Hardware Information</b>
-    <table>
+    <table style="table-layout: fixed;">
     <tr>
-    <th width="16.66%"><a class="tooltip" href="#">Hostname<span><b>Hostname</b>The name of host<br />running the Pi-Star Software.</span></a></th>
-    <th width="16.66%"><a class="tooltip" href="#">Kernel<span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</span></a></th>
-    <th><a class="tooltip" href="#">Platform<span><b>Pi-Hardware Revision</b>This shows you the revision<br />of your Pi.</span></a></th>
+    <th><a class="tooltip" href="#">Hostname<span><b>Hostname</b>The name of host<br />running the Pi-Star Software.</span></a></th>
+    <th><a class="tooltip" href="#">Kernel<span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Platform<span><b>Pi-Hardware Revision</b>This shows you the revision<br />of your Pi.</span></a></th>
     <th><a class="tooltip" href="#">CPU Load<span><b>CPU Load</b>This is the standard Linux<br />system load indicator.</span></a></th>
     <th><a class="tooltip" href="#">CPU Temp<span><b>CPU Temp</b></span></a></th>
     </tr>
     <tr>
     <td><?php echo php_uname('n');?></td>
     <td><?php echo php_uname('r');?></td>
-    <td><?php echo exec('platformDetect.sh');?></td>
+    <td colspan="2"><?php echo exec('platformDetect.sh');?></td>
     <td><?php echo $cpuLoad[0];?> / <?php echo $cpuLoad[1];?> / <?php echo $cpuLoad[2];?></td>
     <?php echo $cpuTempHTML; ?>
     </tr>
