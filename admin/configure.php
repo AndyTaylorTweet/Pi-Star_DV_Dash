@@ -53,6 +53,12 @@ $configysfgateway = parse_ini_file($ysfgatewayConfigFile, true);
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
 
+//load the modem config information
+$modemConfigFileDStarRepeater = '/etc/dstar-radio.dstarrepeater';
+$modemConfigFileMMDVMHost = '/etc/dstar-radio.mmdvmhost';
+if (fopen($modemConfigFileDStarRepeater,'r')) { $configModem = parse_ini_file($modemConfigFileDStarRepeater, true); }
+if (fopen($modemConfigFileMMDVMHost,'r')) { $configModem = parse_ini_file($modemConfigFileMMDVMHost, true); }
+
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
 $MYCALL=strtoupper($callsign);
@@ -782,6 +788,49 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		exec('sudo chown root:root /etc/ysfgateway');                   // Set the owner
 	}
 
+        // modem config file wrangling
+        $configModemContent = "";
+        foreach($configModem as $configModemSection=>$configModemValues) {
+                // UnBreak special cases
+                $configModemSection = str_replace("_", " ", $configModemSection);
+                $configModemContent .= "[".$configModemSection."]\n";
+                // append the values
+                foreach($configModemValues as $modemKey=>$modemValue) {
+                        $configModemContent .= $modemKey."=".$modemValue."\n";
+                        }
+                        $configModemContent .= "\n";
+                }
+
+        if (!$handleModemConfig = fopen('/tmp/sja7hFRkw4euG7.tmp', 'w')) {
+                return false;
+        }
+
+        if (!is_writable('/tmp/sja7hFRkw4euG7.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+	else {
+                $success = fwrite($handleModemConfig, $configModemContent);
+                fclose($handleModemConfig);
+                if (fopen($modemConfigFileDStarRepeater,'r')) {
+                    exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileDStarRepeater);        // Move the file back
+                    exec('sudo chmod 644 $modemConfigFileDStarRepeater');                         // Set the correct runtime permissions
+                    exec('sudo chown root:root $modemConfigFileDStarRepeater');                   // Set the owner
+                }
+                if (fopen($modemConfigFileMMDVMHost,'r')) {
+                    exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileMMDVMHost);        // Move the file back
+                    exec('sudo chmod 644 $modemConfigFileMMDVMHost');                         // Set the correct runtime permissions
+                    exec('sudo chown root:root $modemConfigFileMMDVMHost');                   // Set the owner
+                }
+        }
+	
 	// Start the DV Services
 	system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
 	system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
