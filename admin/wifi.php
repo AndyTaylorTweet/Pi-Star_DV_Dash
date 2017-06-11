@@ -17,7 +17,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <meta http-equiv="Expires" content="0" />
 <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
 <link rel="stylesheet" type="text/css" href="wifi/styles.css" />
-<script type="text/Javascript" src="wifi/functions.js?version=1.3"></script>
+<script type="text/Javascript" src="wifi/functions.js?version=1.4"></script>
 <title>WiFi Configuration Portal</title>
 </head>
 <body>'."\n";
