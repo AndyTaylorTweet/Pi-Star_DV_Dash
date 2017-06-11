@@ -37,7 +37,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
     <title><?php echo "$MYCALL" ?> Hotspot Dashboard</title>
-<?php include_once "config/browserdetect.php"; ?>    
+<?php include_once "config/browserdetect.php"; ?>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/functions.js"></script>
     <script type="text/javascript">
@@ -46,7 +46,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 </head>
 <body>
 <div class="container">
-<div id="header">
+<div class="header">
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
 <h1>Pi-Star Digital Voice Dashboard for <?php echo $MYCALL; ?></h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
@@ -64,7 +64,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <?php
 // Output some default features
 if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
-	echo '<div id="contentwide">'."\n";
+	echo '<div class="contentwide">'."\n";
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadSysInfo(){'."\n";
 	echo '  $("#sysInfo").load("/dstarrepeater/system.php");'."\n";
@@ -83,7 +83,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'mmdvmhost/tools.php';					// MMDVMDash Tools
 	include 'mmdvmhost/functions.php';				// MMDVMDash Functions
 
-	echo '<div id="nav">'."\n";					// Start the Side Menu
+	echo '<div class="nav">'."\n";					// Start the Side Menu
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadRepeaterInfo(){'."\n";
 	echo '  $("#repeaterInfo").load("/mmdvmhost/repeaterinfo.php");'."\n";
@@ -96,7 +96,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '</div>'."\n";
 	echo '</div>'."\n";
 
-	echo '<div id="content">'."\n";
+	echo '<div class="content">'."\n";
 
 	$testMMDVModeDSTARnet = getConfigItem("D-Star Network", "Enable", $mmdvmconfigs);
         if ( $testMMDVModeDSTARnet == 1 ) {				// If D-Star network is enabled, add these extra features.
@@ -155,7 +155,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 
 
 } elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
-        echo '<div id="contentwide">'."\n";
+        echo '<div class="contentwide">'."\n";
 	include 'dstarrepeater/gateway_software_config.php';		// dstarrepeater gateway config
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadrefLinks(){'."\n";
@@ -210,7 +210,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
         echo '<br />'."\n";
 
 } else {
-	echo '<div id="contentwide">'."\n";
+	echo '<div class="contentwide">'."\n";
 	//We dont know what mode we are in - fail...
 	echo "<H1>No Mode Defined...</H1>\n";
 	echo "<p>I don't know what mode I am in, you probaly just need to configure me.</p>\n";
@@ -222,7 +222,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 ?>
 </div>
 
-<div id="footer">
+<div class="footer">
 Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 ircDDBGateway Dashboard by Hans-J. Barthen (DL5DI),<br />
 MMDVMDash developed by Kim Huebel (DG9VH), <br />

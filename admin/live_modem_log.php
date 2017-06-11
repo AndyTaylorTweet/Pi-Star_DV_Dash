@@ -70,7 +70,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
   </head>
   <body>
   <div class="container">
-  <div id="header">
+  <div class="header">
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
   <h1>Pi-Star Digital Voice - Live Modem Log</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
@@ -81,13 +81,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
   </p>
   </div>
-  <div id="contentwide">
+  <div class="contentwide">
   <table width="100%">
   <tr><th>Live Modem Log</th></tr>
   <tr><td align="left"><div id="tail">Starting logging, please wait...<br /></div></td></tr>
   </table>
   </div>
-  <div id="footer">
+  <div class="footer">
   Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
   Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
   Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz.co.uk/pi-star/" target="_blank">here</a>.<br />

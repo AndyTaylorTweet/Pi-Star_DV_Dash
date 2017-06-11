@@ -107,7 +107,7 @@ $MYCALL=strtoupper($callsign);
 </head>
 <body>
 <div class="container">
-<div id="header">
+<div class="header">
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
 <h1>Pi-Star Digital Voice - Configuration</h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
@@ -119,7 +119,7 @@ $MYCALL=strtoupper($callsign);
  <a href="javascript:factoryReset();" style="color: #ffffff;">Factory Reset</a>
 </p>
 </div>
-<div id="contentwide">
+<div class="contentwide">
 <?php
 // Hardware Detail
 if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
@@ -184,7 +184,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  // Make the root filesystem read-only
           system('sudo mount -o remount,ro /');
 	  echo "<br />\n</div>\n";
-          echo "<div id=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
           echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistar/\" target=\"_new\">here for the Support Group</a><br />\n";
           echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.mw0mwz.co.uk/pi-star/\" target=\"_blank\">here</a>.<br />\n";
           echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
@@ -1449,7 +1449,7 @@ echo '
 <?php endif; ?>
 <br />
 </div>
-<div id="footer">
+<div class="footer">
 Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
 Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz.co.uk/pi-star/" target="_blank">here</a>.<br />
@@ -1463,7 +1463,7 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz
 <br />
 <br />
 </div>
-<div id="footer">
+<div class="footer">
 Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
 Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz.co.uk/pi-star/" target="_blank">here</a>.<br />
