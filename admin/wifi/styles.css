@@ -95,3 +95,9 @@ input[type=button],input[type=submit] {
 	float:left;
 	text-align:center;
 }
+
+.tail {
+	background-color: #dd4b39;
+	color: #dd4b39;
+	width:100%;
+}
