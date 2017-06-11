@@ -542,11 +542,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['General']['NetModeHang'] = escapeshellcmd($_POST['hangTime']);
 	}
 
-	// Set MMDVM CWId Timer
-	if (empty($_POST['MMDVMcwidTimer']) != TRUE ) {
-	  $configmmdvm['CW Id']['Time'] = escapeshellcmd($_POST['MMDVMcwidTimer']);
-	}
-
 	// Set the hardware type
 	if (empty($_POST['confHardware']) != TRUE ) {
 	$confHardware = escapeshellcmd($_POST['confHardware']);
@@ -706,12 +701,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['MMDVMModeP25']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModeP25']) == 'ON' )  { $configmmdvm['P25']['Enable'] = "1"; $configmmdvm['P25 Network']['Enable'] = "1"; }
           if (escapeshellcmd($_POST['MMDVMModeP25']) == 'OFF' ) { $configmmdvm['P25']['Enable'] = "0"; $configmmdvm['P25 Network']['Enable'] = "0"; }
-	}
-
-	// Set MMDVMHost CW ID TX
-	if (empty($_POST['MMDVMcwid']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMcwid']) == 'ON' )  { $configmmdvm['CW Id']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMcwid']) == 'OFF' ) { $configmmdvm['CW Id']['Enable'] = "0"; }
 	}
 
 	// Set MMDVMHost DMR Colour Code
@@ -926,7 +915,6 @@ else:
     <input type="hidden" name="MMDVMModeDSTAR" value="OFF" />
     <input type="hidden" name="MMDVMModeFUSION" value="OFF" />
     <input type="hidden" name="MMDVMModeP25" value="OFF" />
-    <input type="hidden" name="MMDVMcwid" value="OFF" />
 	<div><b>MMDVMHost Configuration</b></div>
     <table>
     <tr>
@@ -980,18 +968,6 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">Mode Hangtime:<span><b>Mode Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
     <td align="left" colspan="2"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (20 secs works well)</td>
-    </tr>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#">Transmit CW ID:<span><b>CW ID Enable</b>Turn on CW ID Feature</span></a></td>
-    <?php
-	if ( $configmmdvm['CW Id']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-cwid\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMcwid\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-cwid\"></label></div></td>\n";
-		}
-	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-cwid\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMcwid\" value=\"ON\" /><label for=\"toggle-cwid\"></label></div></td>\n";
-	}
-    ?>
-    <td align="left">TX every <input type="text" name="MMDVMcwidTimer" size="3" maxlength="2" value="<?php echo $configmmdvm['CW Id']['Time']; ?>" /> Mins (10 mins is a common requirement)</td>
     </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
