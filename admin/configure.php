@@ -1116,7 +1116,7 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr2') { echo ' selected="selected"';}?> value="dvrptr2">DV-RPTR V2</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr3') { echo ' selected="selected"';}?> value="dvrptr3">DV-RPTR V3</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvap') { echo ' selected="selected"';}?> value="dvap">DVAP</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">Zum Hardware</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / Zum</option>
     </select></td>
     </tr>
     <tr>
