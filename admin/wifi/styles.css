@@ -56,7 +56,7 @@ input[type=button],input[type=submit] {
 	width:100%;
 }
 
-#intinfo {
+.intinfo {
 	background-color: #d0d0d0;
 	color: #000000;
 	width: 49%;
@@ -68,7 +68,7 @@ input[type=button],input[type=submit] {
         border-bottom:1px solid;
 }
 
-#wifiinfo {
+.wifiinfo {
 	background-color: #d0d0d0;
 	color: #000000;
 	width: 49%;
