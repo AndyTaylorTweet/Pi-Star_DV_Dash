@@ -130,7 +130,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
     <tr>
     <th><a class="tooltip" href="#">Hostname<span><b>Hostname</b>The name of host<br />running the Pi-Star Software.</span></a></th>
     <th><a class="tooltip" href="#">Kernel<span><b>Release</b>This is the version<br />number of the Linux Kernel running<br />on this Raspberry Pi.</span></a></th>
-    <th colspan="2"><a class="tooltip" href="#">Platform<span><b>Pi-Hardware Revision</b>This shows you the revision<br />of your Pi.</span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Platform<span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
     <th><a class="tooltip" href="#">CPU Load<span><b>CPU Load</b>This is the standard Linux<br />system load indicator.</span></a></th>
     <th><a class="tooltip" href="#">CPU Temp<span><b>CPU Temp</b></span></a></th>
     </tr>
