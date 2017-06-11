@@ -239,7 +239,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 
 
 echo '
-<div class="textarea">.</div>
+<div class="infoheader">.</div>
 </body>
 </html>';
 ?>
