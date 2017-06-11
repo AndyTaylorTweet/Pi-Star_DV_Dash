@@ -59,7 +59,7 @@ input[type=button],input[type=submit] {
 #intinfo {
 	background-color: #d0d0d0;
 	color: #000000;
-	width: 392px;
+	width: 49%;
 	margin-left: 1px;
 	text-align: left;
 	border-right: 1px solid;
@@ -71,7 +71,7 @@ input[type=button],input[type=submit] {
 #wifiinfo {
 	background-color: #d0d0d0;
 	color: #000000;
-	width: 392px;
+	width: 49%;
 	border-right: 1px solid;
 	text-align: left;
 	padding-left: 0px;
