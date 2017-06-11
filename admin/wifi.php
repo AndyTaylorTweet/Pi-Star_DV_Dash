@@ -17,7 +17,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <meta http-equiv="Expires" content="0" />
 <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
 <link rel="stylesheet" type="text/css" href="wifi/styles.css" />
-<script type="text/Javascript" src="wifi/functions.js"></script>
+<script type="text/Javascript" src="wifi/functions.js?version=1.1"></script>
 <title>WiFi Configuration Portal</title>
 </head>
 <body>'."\n";
@@ -110,7 +110,7 @@ switch($page) {
 <input type="button" value="Configure WiFi" name="wpa_conf" onclick="document.location=\'?page=\'+this.name" />
 </form>
 <div class="infoheader">Wireless Information and Statistics</div>
-<div id="intinfo"><div class="intheader">Interface Information</div>
+<div class="intinfo"><div class="intheader">Interface Information</div>
 Interface Name : wlan0<br />
 Interface Status : ' . $strStatus . '<br />
 IP Address : ' . $strIPAddress . '<br />
@@ -124,7 +124,7 @@ Transferred Packets : ' . $strTxPackets . '<br />
 Transferred Bytes : ' . $strTxBytes . '<br />
 <br />
 </div>
-<div id="wifiinfo">
+<div class="wifiinfo">
 <div class="intheader">Wireless Information</div>
 Connected To : ' . $strSSID . '<br />
 AP Mac Address : ' . $strBSSID . '<br />
