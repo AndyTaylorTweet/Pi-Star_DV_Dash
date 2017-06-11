@@ -65,6 +65,7 @@ input[type=button],input[type=submit] {
 	border-left: 1px solid;
 	float: left;
         border-bottom:1px solid;
+	padding-left: 3px;
 }
 
 .wifiinfo {
@@ -73,7 +74,7 @@ input[type=button],input[type=submit] {
 	margin: 0 0 0 400px;
 	border-right: 1px solid;
 	text-align: left;
-	padding-left: 0px;
+	padding-left: 3px;
         border-bottom:1px solid;
 }
 
