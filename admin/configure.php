@@ -542,6 +542,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['General']['NetModeHang'] = escapeshellcmd($_POST['hangTime']);
 	}
 
+	// Set MMDVM CWId Timer
+	if (empty($_POST['MMDVMcwidTimer']) != TRUE ) {
+	  $configmmdvm['CW Id']['Time'] = escapeshellcmd($_POST['MMDVMcwidTimer']);
+	}
+
 	// Set the hardware type
 	if (empty($_POST['confHardware']) != TRUE ) {
 	$confHardware = escapeshellcmd($_POST['confHardware']);
@@ -680,55 +685,36 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set MMDVMHost DMR Mode
-	if (empty($_POST['MMDVMModeDMRon']) != TRUE ) {
-	  if (escapeshellcmd($_POST['MMDVMModeDMRon']) == 'ON' ) { $configmmdvm['DMR']['Enable'] = "1"; }
-	  if (escapeshellcmd($_POST['MMDVMModeDMRon']) == 'OFF' ) { $configmmdvm['DMR']['Enable'] = "0"; }
-	}
-
-	// Set MMDVMHost DMR Network
-	if (empty($_POST['MMDVMModeDMRneton']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeDMRneton']) == 'ON' ) { $configmmdvm['DMR Network']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeDMRneton']) == 'OFF' ) { $configmmdvm['DMR Network']['Enable'] = "0"; }
+	if (empty($_POST['MMDVMModeDMR']) != TRUE ) {
+	  if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'ON' )  { $configmmdvm['DMR']['Enable'] = "1"; $configmmdvm['DMR Network']['Enable'] = "1"; }
+	  if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'OFF' ) { $configmmdvm['DMR']['Enable'] = "0"; $configmmdvm['DMR Network']['Enable'] = "0"; }
 	}
 
 	// Set MMDVMHost D-Star Mode
-	if (empty($_POST['MMDVMModeDSTARon']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeDSTARon']) == 'ON' ) { $configmmdvm['D-Star']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeDSTARon']) == 'OFF' ) { $configmmdvm['D-Star']['Enable'] = "0"; }
-	}
-
-	// Set MMDVMHost D-Star Network
-	if (empty($_POST['MMDVMModeDSTARneton']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeDSTARneton']) == 'ON' ) { $configmmdvm['D-Star Network']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeDSTARneton']) == 'OFF' ) { $configmmdvm['D-Star Network']['Enable'] = "0"; }
+	if (empty($_POST['MMDVMModeDSTAR']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeDSTAR']) == 'ON' )  { $configmmdvm['D-Star']['Enable'] = "1"; $configmmdvm['D-Star Network']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeDSTAR']) == 'OFF' ) { $configmmdvm['D-Star']['Enable'] = "0"; $configmmdvm['D-Star Network']['Enable'] = "0"; }
 	}
 
 	// Set MMDVMHost Fusion Mode
-	if (empty($_POST['MMDVMModeFUSIONon']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeFUSIONon']) == 'ON' ) { $configmmdvm['System Fusion']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeFUSIONon']) == 'OFF' ) { $configmmdvm['System Fusion']['Enable'] = "0"; }
-	}
-
-	// Set MMDVMHost Fusion Network
-	if (empty($_POST['MMDVMModeFUSIONneton']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeFUSIONneton']) == 'ON' ) { $configmmdvm['System Fusion Network']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeFUSIONneton']) == 'OFF' ) { $configmmdvm['System Fusion Network']['Enable'] = "0"; }
+	if (empty($_POST['MMDVMModeFUSION']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeFUSION']) == 'ON' )  { $configmmdvm['System Fusion']['Enable'] = "1"; $configmmdvm['System Fusion Network']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeFUSION']) == 'OFF' ) { $configmmdvm['System Fusion']['Enable'] = "0"; $configmmdvm['System Fusion Network']['Enable'] = "0"; }
 	}
 
 	// Set MMDVMHost P25 Mode
-	if (empty($_POST['MMDVMModeP25on']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeP25on']) == 'ON' ) { $configmmdvm['P25']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeP25on']) == 'OFF' ) { $configmmdvm['P25']['Enable'] = "0"; }
+	if (empty($_POST['MMDVMModeP25']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeP25']) == 'ON' )  { $configmmdvm['P25']['Enable'] = "1"; $configmmdvm['P25 Network']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeP25']) == 'OFF' ) { $configmmdvm['P25']['Enable'] = "0"; $configmmdvm['P25 Network']['Enable'] = "0"; }
 	}
 
-	// Set MMDVMHost P25 Network
-	if (empty($_POST['MMDVMModeP25neton']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeP25neton']) == 'ON' ) { $configmmdvm['P25 Network']['Enable'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeP25neton']) == 'OFF' ) { $configmmdvm['P25 Network']['Enable'] = "0"; }
+	// Set MMDVMHost CW ID TX
+	if (empty($_POST['MMDVMcwid']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMcwid']) == 'ON' )  { $configmmdvm['CW Id']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMcwid']) == 'OFF' ) { $configmmdvm['CW Id']['Enable'] = "0"; }
 	}
 
-
-	// Set MMDVMHost P25 Network
+	// Set MMDVMHost DMR Colour Code
 	if (empty($_POST['dmrColorCode']) != TRUE ) {
           $configmmdvm['DMR']['ColorCode'] = escapeshellcmd($_POST['dmrColorCode']);
 	}
@@ -936,111 +922,76 @@ else:
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost')) { ?>
+    <input type="hidden" name="MMDVMModeDMR" value="OFF" />
+    <input type="hidden" name="MMDVMModeDSTAR" value="OFF" />
+    <input type="hidden" name="MMDVMModeFUSION" value="OFF" />
+    <input type="hidden" name="MMDVMModeP25" value="OFF" />
+    <input type="hidden" name="MMDVMcwid" value="OFF" />
 	<div><b>MMDVMHost Configuration</b></div>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
-    <th><a class="tooltip" href="#">Value<span><b>Value</b>The current value from<br />the configuration files</span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from<br />the configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Mode Enable:<span><b>DMR Mode Enable</b>Turn on DMR Features</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Mode:<span><b>DMR Mode</b>Turn on DMR Features</span></a></td>
     <?php
-	$testMMDVModeDMR = $configmmdvm['DMR']['Enable'];
-	if ( $testMMDVModeDMR == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"OFF\" />OFF</td>\n";
+	if ( $configmmdvm['DMR']['Enable'] == 1 ) {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmr\"></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDMRon\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" /><label for=\"toggle-dmr\"></label></div></td>\n";
 	}
     ?>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Network:<span><b>DMR Network</b>Turn on DMR Network</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">D-Star Mode:<span><b>D-Star Mode</b>Turn on D-Star Features</span></a></td>
     <?php
-	$testMMDVModeDMRnet = $configmmdvm['DMR Network']['Enable'];
-	if ( $testMMDVModeDMRnet == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"OFF\" />OFF</td>\n";
+	if ( $configmmdvm['D-Star']['Enable'] == 1 ) {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dstar\"></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDMRneton\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" /><label for=\"toggle-dstar\"></label></div></td>\n";
 	}
     ?>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">D-Star Mode Enable:<span><b>D-Star Mode Enable</b>Turn on D-Star Features</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">YSF Mode:<span><b>YSF Mode</b>Turn on YSF Features</span></a></td>
     <?php
-	$testMMDVModeDSTAR = $configmmdvm['D-Star']['Enable'];
-	if ( $testMMDVModeDSTAR == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"OFF\" />OFF</td>\n";
+	if ( $configmmdvm['System Fusion']['Enable'] == 1 ) {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-ysf\"></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDSTARon\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" /><label for=\"toggle-ysf\"></label></div></td>\n";
 	}
     ?>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">D-Star Network:<span><b>D-Star Network</b>Turn on D-Star Network</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">P25 Mode:<span><b>P25 Mode</b>Turn on P25 Features</span></a></td>
     <?php
-	$testMMDVModeDSTARnet = $configmmdvm['D-Star Network']['Enable'];
-	if ( $testMMDVModeDSTARnet == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"OFF\" />OFF</td>\n";
+	if ( $configmmdvm['P25']['Enable'] == 1 ) {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-p25\"></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeDSTARneton\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" /><label for=\"toggle-p25\"></label></div></td>\n";
 	}
-    ?>
-    </tr>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#">Fusion Mode Enable:<span><b>Fusion Mode Enable</b>Turn on Fusion Features</span></a></td>
-    <?php
-	$testMMDVModeFUSION = $configmmdvm['System Fusion']['Enable'];
-	if ( $testMMDVModeFUSION == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"OFF\" />OFF</td>\n";
-		}
-	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONon\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
-	}
-    ?>
-    </tr>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#">Fusion Network:<span><b>Fusion Network</b>Turn on Fusion Network</span></a></td>
-    <?php
-	$testMMDVModeFUSIONnet = $configmmdvm['System Fusion Network']['Enable'];
-	if ( $testMMDVModeFUSIONnet == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"OFF\" />OFF</td>\n";
-		}
-	else {
-		echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeFUSIONneton\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
-	}
-    ?>
-    </tr>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#">P25 Mode Enable:<span><b>P25 Mode Enable</b>Turn on P25 Features</span></a></td>
-    <?php
-        $testMMDVModeP25 = $configmmdvm['P25']['Enable'];
-        if ( $testMMDVModeP25 == 1 ) {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25on\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeP25on\" value=\"OFF\" />OFF</td>\n";
-                }
-        else {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25on\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeP25on\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
-        }
-    ?>
-    </tr>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#">P25 Network:<span><b>P25 Network</b>Turn on P25 Network</span></a></td>
-    <?php
-        $testMMDVModeP25net = $configmmdvm['P25 Network']['Enable'];
-        if ( $testMMDVModeP25net == 1 ) {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"ON\" checked=\"checked\" />ON <input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"OFF\" />OFF</td>\n";
-                }
-        else {
-                echo "<td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"ON\" />ON <input type=\"radio\" name=\"MMDVMModeP25neton\" value=\"OFF\" checked=\"checked\" />OFF</td>\n";
-        }
     ?>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Mode Hangtime:<span><b>Mode Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
-    <td align="left"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (20 secs works well)</td>
+    <td align="left" colspan="2"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (20 secs works well)</td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Transmit CW ID:<span><b>CW ID Enable</b>Turn on CW ID Feature</span></a></td>
+    <?php
+	if ( $configmmdvm['CW Id']['Enable'] == 1 ) {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-cwid\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMcwid\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-cwid\"></label></div></td>\n";
+		}
+	else {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-cwid\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMcwid\" value=\"ON\" /><label for=\"toggle-cwid\"></label></div></td>\n";
+	}
+    ?>
+    <td align="left">TX every <input type="text" name="MMDVMcwidTimer" size="3" maxlength="2" value="<?php echo $configmmdvm['CW Id']['Time']; ?>" /> Mins (10 mins is a common requirement)</td>
     </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
