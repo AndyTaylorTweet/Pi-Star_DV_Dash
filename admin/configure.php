@@ -157,7 +157,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
 	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
 	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
+	system('sudo systemctl stop ysfparrot.service > /dev/null 2>/dev/null &');		//YSFParrot
 	system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
+	system('sudo systemctl stop p25parrot.service > /dev/null 2>/dev/null &');		//P25Parrot
+	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		//DMRGateway
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
@@ -851,7 +854,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
 	system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		//PiStar-UPnP Service
 	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
+	system('sudo systemctl start ysfparrot.service > /dev/null 2>/dev/null &');		//YSFParrot
 	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
+	system('sudo systemctl start p25parrot.service > /dev/null 2>/dev/null &');		//P25Parrot
+	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		//DMRGateway
 
 	// Set the system timezone
 	$rollTimeZone = 'sudo timedatectl set-timezone '.escapeshellcmd($_POST['systemTimezone']);
