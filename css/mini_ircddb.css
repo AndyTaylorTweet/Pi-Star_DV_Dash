@@ -1,7 +1,7 @@
-div.container {
+.container {
     width: 100%;
-    text-align: center;
-    margin: 0 auto;
+    text-align: left;
+    margin: auto;
 }
 
 body, font {
@@ -9,57 +9,53 @@ body, font {
     color: #ffffff;
 }
 
-#header {
-    background: #dd4b39;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: verdana,arial,sans-serif;
-    padding: 5px 0px 1px 0px;
-    text-align: left;
-    border-radius: 10px 10px 0 0;
-    -moz-border-radius: 10px 10px 0 0;
-    -webkit-border-radius: 10px 10px 0 0;
+.header {
+    background : #dd4b39;
+    text-decoration : none;
+    color : #ffffff;
+    font-family : verdana, arial, sans-serif;
+    text-align : left;
+    padding : 5px 0px 5px 0px;
+    border-radius : 10px 10px 0 0;
 }
 
-#nav {
+.nav {
     display: none;
-    width: 160px;
-    min-height: 500px;
-    background: #242d31;
-    font-weight: normal;
-    margin: 0px;
-    padding: 5px 5px 5px 5px;
-    vertical-align:top;
+    float : left;
+    margin : 0;
+    padding : 3px 3px 3px 3px;
+    width : 160px;
+    background : #242d31;
+    font-weight : normal;
+    min-height : 100%;
 }
 
-#content {
+.content {
+    padding: 5px 5px 5px 5px;
     color: #000000;
     background: #ffffff;
-    padding: 5px 5px 5px 5px;
-    overflow: hidden;
-    font-size: 1.4em;
-}
-
-#contentwide {
-    color: #000000;
-    background: #ffffff;
-    padding: 5px 5px 5px 5px;
-    overflow: hidden;
-    font-size: 1.4em;
-}
-
-#footer {
-    width: 100%;
-    background: #dd4b39;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: verdana,arial,sans-serif;
-    font-size: 9px;
-    padding: 5px 0px 5px 0px;
     text-align: center;
-    border-radius: 0 0 10px 10px;
-    -moz-border-radius: 0 0 10px 10px;
-    -webkit-border-radius: 0 0 10px 10px;
+    font-size: 1.4em;
+}
+
+.contentwide {
+    padding: 5px 5px 5px 5px;
+    color: #000000;
+    background: #ffffff;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.footer {
+    background : #dd4b39;
+    text-decoration : none;
+    color : #ffffff;
+    font-family : verdana, arial, sans-serif;
+    font-size : 9px;
+    text-align : center;
+    padding : 10px 0 10px 0;
+    border-radius : 0 0 10px 10px;
+    clear : both;
 }
 
 #tail {
