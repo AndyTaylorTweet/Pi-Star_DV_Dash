@@ -278,6 +278,8 @@ function getHeardList($logLines) {
 			continue;
 		} else if(strpos($logLine,"overflow in the DMR slot RF queue")) {
 			continue;
+		} else if(strpos($logLine,"non repeater RF header received")) {
+			continue;
 		} else if(strpos($logLine,"network watchdog has expired")) {
                         continue;
 		} else if(strpos($logLine, 27, 6) == "0000: ") {
