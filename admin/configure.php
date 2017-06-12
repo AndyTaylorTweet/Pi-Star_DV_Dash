@@ -339,8 +339,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollFREQdvmegaTx = 'sudo sed -i "/dvmegaTXFrequency=/c\\dvmegaTXFrequency='.$newFREQtx.'" /etc/dstarrepeater';
 	  $configmmdvm['Info']['RXFrequency'] = $newFREQrx;
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQtx;
-	  $configmmdvm['DMR Network']['Slot1'] = '1';
-	  $configmmdvm['DMR Network']['Slot2'] = '1';
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
 
@@ -399,8 +397,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollFREQdvmegaTx = 'sudo sed -i "/dvmegaTXFrequency=/c\\dvmegaTXFrequency='.$newFREQ.'" /etc/dstarrepeater';
 	  $configmmdvm['Info']['RXFrequency'] = $newFREQ;
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
-	  $configmmdvm['DMR Network']['Slot1'] = '0';
-	  $configmmdvm['DMR Network']['Slot2'] = '1';
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
 
@@ -499,10 +495,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
 	    $configmmdvm['Info']['RXFrequency'] = $configmmdvm['Info']['TXFrequency'] - 1;
 	    $configmmdvm['General']['Duplex'] = 1;
+	    $configmmdvm['DMR Network']['Slot1'] = '1';
+	    $configmmdvm['DMR Network']['Slot2'] = '1';
 	    }
 	  if ($configmmdvm['Info']['RXFrequency'] !== $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "SIMPLEX" ) {
 	    $configmmdvm['Info']['RXFrequency'] = $configmmdvm['Info']['TXFrequency'];
             $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot1'] = '0';
+	    $configmmdvm['DMR Network']['Slot2'] = '1';
 	    }
 	  }
 
