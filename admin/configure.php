@@ -1131,7 +1131,7 @@ else:
     <th><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Master:<span><b>DMR Master</b>Set your prefered DMR<br /> master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Master (MMDVMHost):<span><b>DMR Master (MMDVMHost)</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost">
 <?php
         $testMMDVMdmrMaster = $configmmdvm['DMR Network']['Address'];
