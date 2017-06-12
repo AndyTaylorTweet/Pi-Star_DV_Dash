@@ -1157,7 +1157,7 @@ else:
 	while (!feof($dmrMasterFile1)) {
 		$dmrMasterLine1 = fgets($dmrMasterFile1);
                 $dmrMasterHost1 = preg_split('/\s+/', $dmrMasterLine1);
-                if ((strpos($dmrMasterHost1[0], '#') === FALSE ) && (strpos($dmrMasterHost1[0], 'DMR+') === FALSE ) && ($dmrMasterHost1[0] != '')) {
+                if ((strpos($dmrMasterHost1[0], '#') === FALSE ) && (strpos($dmrMasterHost1[0], 'BM_')) && ($dmrMasterHost1[0] != '')) {
                         if ($testMMDVMdmrMaster1 == $dmrMasterHost1[2]) { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\" selected=\"selected\">$dmrMasterHost1[0]</option>\n"; }
                         else { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\">$dmrMasterHost1[0]</option>\n"; }
                 }
