@@ -549,9 +549,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 	if (empty($_POST['dmrMasterHost2']) != TRUE ) {
 	  $dmrMasterHostArr2 = explode(',', escapeshellcmd($_POST['dmrMasterHost2']));
-	  $configdmrgateway['DMR Network 2']['Address'] = $dmrMasterHostArr1[0];
-	  $configdmrgateway['DMR Network 2']['Password'] = $dmrMasterHostArr1[1];
-	  $configdmrgateway['DMR Network 2']['Port'] = $dmrMasterHostArr1[2];
+	  $configdmrgateway['DMR Network 2']['Address'] = $dmrMasterHostArr2[0];
+	  $configdmrgateway['DMR Network 2']['Password'] = $dmrMasterHostArr2[1];
+	  $configdmrgateway['DMR Network 2']['Port'] = $dmrMasterHostArr2[2];
 	}
 
 	// Set Talker Alias Option
