@@ -1155,12 +1155,12 @@ else:
 	$dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	$testMMDVMdmrMaster1 = $configdmrgateway['DMR Network 1']['Address'];
 	while (!feof($dmrMasterFile)) {
-		//$dmrMasterLine1 = fgets($dmrMasterFile);
-                //$dmrMasterHost1 = preg_split('/\s+/', $dmrMasterLine1);
-               // if ((strpos($dmrMasterHost1[0], '#') === FALSE ) && ($dmrMasterHost1[0] != '')) {
-                //        if ($testMMDVMdmrMaster1 == $dmrMasterHost1[2]) { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\" selected=\"selected\">$dmrMasterHost1[0]</option>\n"; }
-                //        else { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\">$dmrMasterHost1[0]</option>\n"; }
-                //}
+		$dmrMasterLine1 = fgets($dmrMasterFile);
+                $dmrMasterHost1 = preg_split('/\s+/', $dmrMasterLine1);
+                if ((strpos($dmrMasterHost1[0], '#') === FALSE ) && ($dmrMasterHost1[0] != '')) {
+                        if ($testMMDVMdmrMaster1 == $dmrMasterHost1[2]) { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\" selected=\"selected\">$dmrMasterHost1[0]</option>\n"; }
+                        else { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\">$dmrMasterHost1[0]</option>\n"; }
+                }
 	}
 	fclose($dmrMasterFile);
 ?>
