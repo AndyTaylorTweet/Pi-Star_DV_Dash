@@ -135,7 +135,12 @@ if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) == 1) { echo "<tr><td s
 echo "<tr><th colspan=\"2\">DMR Master</th></tr>\n";
 if (getEnabled("DMR Network", $mmdvmconfigs) == 1) {
 		if ($dmrMasterHost == '127.0.0.1') {
-			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">Multi-Master</td></tr>\n";
+			if ($configdmrgateway['[DMR Network 1]']['Enabled'] == 1) {
+				echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$configdmrgateway['[DMR Network 1]']['Address']."</td></tr>\n";
+			}
+			if ($configdmrgateway['[DMR Network 2]']['Enabled'] == 1) {
+				echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$configdmrgateway['[DMR Network 2]']['Address']."</td></tr>\n";
+			}
 		}
 		else {
 			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost."</td></tr>\n";
