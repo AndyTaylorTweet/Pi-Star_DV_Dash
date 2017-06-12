@@ -4,6 +4,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        //MMDVMDas
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    //MMDVMDash Functions
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
+
+//Load the ircDDBGateway config file
 $configs = array();
 if ($configfile = fopen($gatewayConfigPath,'r')) {
         while ($line = fgets($configfile)) {
@@ -15,6 +17,7 @@ if ($configfile = fopen($gatewayConfigPath,'r')) {
 
 }
 
+//Load the DStarRepeater config file
 $configdstar = array();
 if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
         while ($line1 = fgets($configdstarfile)) {
@@ -26,6 +29,10 @@ if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
 		}
         }
 }
+
+//Load the dmrgateway config file
+$dmrGatewayConfigFile = '/etc/dmrgateway';
+if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
 ?>
 
 <table>
@@ -126,7 +133,17 @@ echo "<tr><th>TS2</th>";
 if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) == 1) { echo "<td style=\"background:#0b0;\">enabled</td></tr>\n"; } else { echo "<td style=\"background:#606060; color:#b0b0b0;\">disabled</td></tr>\n"; }
 if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) == 1) { echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"; }
 echo "<tr><th colspan=\"2\">DMR Master</th></tr>\n";
-if (getEnabled("DMR Network", $mmdvmconfigs) == 1) { echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost."</td></tr>\n"; } else { echo "<tr><td colspan=\"2\" style=\"background:#606060; color:#b0b0b0;\">No DMR Network</td></tr>\n"; }
+if (getEnabled("DMR Network", $mmdvmconfigs) == 1) {
+		if ($dmrMasterHost == '127.0.0.1') {
+			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">Multi-Master</td></tr>\n";
+		}
+		else {
+			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost."</td></tr>\n";
+		}
+	}
+	else { 
+		echo "<tr><td colspan=\"2\" style=\"background:#606060; color:#b0b0b0;\">No DMR Network</td></tr>\n";
+	}
 echo "</table>\n";
 }
 
