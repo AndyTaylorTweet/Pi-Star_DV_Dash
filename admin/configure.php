@@ -541,6 +541,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['dmrMasterHost']) == TRUE ) {
 		$configmmdvm['DMR Network']['Options'] = "";
 	}
+	if (empty($_POST['dmrMasterHost1']) != TRUE ) {
+	  $dmrMasterHostArr1 = explode(',', escapeshellcmd($_POST['dmrMasterHost1']));
+	  $configdmrgateway['DMR Network 1']['Address'] = $dmrMasterHostArr1[0];
+	  $configdmrgateway['DMR Network 1']['Password'] = $dmrMasterHostArr1[1];
+	  $configdmrgateway['DMR Network 1']['Port'] = $dmrMasterHostArr1[2];
+	}
+	if (empty($_POST['dmrMasterHost2']) != TRUE ) {
+	  $dmrMasterHostArr2 = explode(',', escapeshellcmd($_POST['dmrMasterHost2']));
+	  $configdmrgateway['DMR Network 2']['Address'] = $dmrMasterHostArr1[0];
+	  $configdmrgateway['DMR Network 2']['Password'] = $dmrMasterHostArr1[1];
+	  $configdmrgateway['DMR Network 2']['Port'] = $dmrMasterHostArr1[2];
+	}
 
 	// Set Talker Alias Option
 	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
