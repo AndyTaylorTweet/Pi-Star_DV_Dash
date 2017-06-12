@@ -773,10 +773,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
         // ysfgateway config file wrangling
 	$ysfgwContent = "";
-        foreach($configysfgateway as $yfsgwSection=>$ysfgwValues) {
+        foreach($configysfgateway as $ysfgwSection=>$ysfgwValues) {
                 // UnBreak special cases
-                $yfsgwSection = str_replace("_", " ", $yfsgwSection);
-                $ysfgwContent .= "[".$yfsgwSection."]\n";
+                $ysfgwSection = str_replace("_", " ", $ysfgwSection);
+                $ysfgwContent .= "[".$ysfgwSection."]\n";
                 // append the values
                 foreach($ysfgwValues as $ysfgwKey=>$ysfgwValue) {
                         $ysfgwContent .= $ysfgwKey."=".$ysfgwValue."\n";
@@ -807,7 +807,41 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		exec('sudo chown root:root /etc/ysfgateway');				// Set the owner
 	}
 
-        // modem config file wrangling
+	// dmrgateway config file wrangling
+	$dmrgwContent = "";
+        foreach($configdmrgateway as $dmrgwSection=>$dmrgwValues) {
+                // UnBreak special cases
+                $dmrgwSection = str_replace("_", " ", $dmrgwSection);
+                $dmrgwContent .= "[".$dmrgwSection."]\n";
+                // append the values
+                foreach($dmrgwValues as $dmrgwKey=>$dmrgwValue) {
+                        $dmrgwContent .= $dmrgwKey."=".$dmrgwValue."\n";
+                        }
+                        $dmrgwContent .= "\n";
+                }
+        if (!$handledmrGWconfig = fopen('/tmp/k4jhdd34jeFr8f.tmp', 'w')) {
+                return false;
+        }
+	if (!is_writable('/tmp/k4jhdd34jeFr8f.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+	}
+	else {
+	        $success = fwrite($handledmrGWconfig, $dmrgwContent);
+	        fclose($handledmrGWconfig);
+          exec('sudo mv /tmp/k4jhdd34jeFr8f.tmp /etc/dmrgateway');				// Move the file back
+          exec('sudo chmod 644 /etc/dmrgateway');						// Set the correct runtime permissions
+	  exec('sudo chown root:root /etc/dmrgateway');						// Set the owner
+	}
+
+	// modem config file wrangling
         $configModemContent = "";
         foreach($configModem as $configModemSection=>$configModemValues) {
                 // UnBreak special cases
