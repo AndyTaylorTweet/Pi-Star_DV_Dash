@@ -53,6 +53,10 @@ $configysfgateway = parse_ini_file($ysfgatewayConfigFile, true);
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
 
+//Load the dmrgateway config file
+$dmrGatewayConfigFile = '/etc/dmrgateway';
+if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
+
 //load the modem config information
 $modemConfigFileDStarRepeater = '/etc/dstar-radio.dstarrepeater';
 $modemConfigFileMMDVMHost = '/etc/dstar-radio.mmdvmhost';
