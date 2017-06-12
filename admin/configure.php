@@ -1147,17 +1147,16 @@ else:
         ?>
     </select></td>
     </tr>
-<?php if ($dmrMasterNow == "DMRGateway") {
-    echo '    <tr>
+<?php if ($dmrMasterNow == "DMRGateway") { ?>
+    <tr>
     <td align="left"><a class="tooltip2" href="#">DMRGateway Master 1:<span><b>DMR Gateway Master 1</b>Set your prefered DMR<br /> master here</span></a></td>
-    <td style="text-align: left;"></td>
-    </tr>'."\n";
-    echo '    <tr>
+    <td style="text-align: left;"><select name="dmrMasterHost1">
+    </select></td></tr>
+    <tr>
     <td align="left"><a class="tooltip2" href="#">DMRGateway Master 2:<span><b>DMR Gateway Master 2</b>Set your prefered DMR<br /> master here</span></a></td>
-    <td style="text-align: left;"></td>
-    </tr>'."\n";				 
-} ?>
-<?php
+    <td style="text-align: left;"><select name="dmrMasterHost2">
+    </select></td></tr>			 
+<?php }
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
