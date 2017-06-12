@@ -1147,7 +1147,7 @@ else:
         ?>
     </select></td>
     </tr>
-<?php if ($dmrMasterNow == '127.0.0.1') {
+<?php if ($dmrMasterNow == "DMRGateway") {
     echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Gateway 1:<span><b>DMR Gateway Master 1</b>Set your prefered DMR<br /> master here</span></a></td>
     <td></td>
