@@ -516,7 +516,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 			$configmmdvm['DMR Network']['Options'] = "";
-			//unset $configmmdvm['DMR Network']['Local'];
+			unset ($configmmdvm['DMR Network']['Local']);
 		}
 		
 		if ($dmrMasterHostArr[0] == '127.0.0.1') {
@@ -526,7 +526,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 		// Set the DMR+ Options= line
 		if (substr($dmrMasterHostArr[3], 0, 4) == "DMR+") {
-			//unset $configmmdvm['DMR Network']['Local'];
+			unset ($configmmdvm['DMR Network']['Local']);
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 				$dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
 				$configmmdvm['DMR Network']['Options'] = '"'.$dmrOptionsLineStripped.'"';
