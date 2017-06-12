@@ -1152,23 +1152,26 @@ else:
     <td align="left"><a class="tooltip2" href="#">DMRGateway Master 1:<span><b>DMR Gateway Master 1</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost1">
 <?php
+	$dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	$testMMDVMdmrMaster1 = $configdmrgateway['DMR Network 1']['Address'];
-	//while (!feof($dmrMasterFile)) {
+	while (!feof($dmrMasterFile)) {
 		//$dmrMasterLine1 = fgets($dmrMasterFile);
                 //$dmrMasterHost1 = preg_split('/\s+/', $dmrMasterLine1);
                // if ((strpos($dmrMasterHost1[0], '#') === FALSE ) && ($dmrMasterHost1[0] != '')) {
                 //        if ($testMMDVMdmrMaster1 == $dmrMasterHost1[2]) { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\" selected=\"selected\">$dmrMasterHost1[0]</option>\n"; }
                 //        else { echo "      <option value=\"$dmrMasterHost1[2],$dmrMasterHost1[3],$dmrMasterHost1[4],$dmrMasterHost1[0]\">$dmrMasterHost1[0]</option>\n"; }
                 //}
-	//}
-	//fclose($dmrMasterFile);
+	}
+	fclose($dmrMasterFile);
 ?>
     </select></td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMRGateway Master 2:<span><b>DMR Gateway Master 2</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost2">
 <?php
+	$dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	$testMMDVMdmrMaster2= $configdmrgateway['DMR Network 2']['Address'];
+	fclose($dmrMasterFile);
 ?>
     </select></td></tr>			 
 <?php }
