@@ -1149,12 +1149,12 @@ else:
     </tr>
 <?php if ($dmrMasterNow == "DMRGateway") {
     echo '    <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Gateway 1:<span><b>DMR Gateway Master 1</b>Set your prefered DMR<br /> master here</span></a></td>
-    <td></td>
+    <td align="left"><a class="tooltip2" href="#">DMRGateway Master 1:<span><b>DMR Gateway Master 1</b>Set your prefered DMR<br /> master here</span></a></td>
+    <td style="text-align: left;"></td>
     </tr>'."\n";
     echo '    <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Gateway 2:<span><b>DMR Gateway Master 2</b>Set your prefered DMR<br /> master here</span></a></td>
-    <td></td>
+    <td align="left"><a class="tooltip2" href="#">DMRGateway Master 2:<span><b>DMR Gateway Master 2</b>Set your prefered DMR<br /> master here</span></a></td>
+    <td style="text-align: left;"></td>
     </tr>'."\n";				 
 } ?>
 <?php
