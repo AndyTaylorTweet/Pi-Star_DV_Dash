@@ -1171,6 +1171,14 @@ else:
 <?php
 	$dmrMasterFile2 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 	$testMMDVMdmrMaster2= $configdmrgateway['DMR Network 2']['Address'];
+	while (!feof($dmrMasterFile2)) {
+		$dmrMasterLine2 = fgets($dmrMasterFile2);
+                $dmrMasterHost2 = preg_split('/\s+/', $dmrMasterLine2);
+                if ((strpos($dmrMasterHost2[0], '#') === FALSE ) && (substr($dmrMasterHost2[0], 0, 4) == "DMR+") && ($dmrMasterHost2[0] != '')) {
+                        if ($testMMDVMdmrMaster2 == $dmrMasterHost2[2]) { echo "      <option value=\"$dmrMasterHost2[2],$dmrMasterHost2[3],$dmrMasterHost2[4],$dmrMasterHost2[0]\" selected=\"selected\">$dmrMasterHost2[0]</option>\n"; }
+                        else { echo "      <option value=\"$dmrMasterHost2[2],$dmrMasterHost2[3],$dmrMasterHost2[4],$dmrMasterHost2[0]\">$dmrMasterHost2[0]</option>\n"; }
+                }
+	}
 	fclose($dmrMasterFile2);
 ?>
     </select></td></tr>			 
