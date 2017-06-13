@@ -494,17 +494,21 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['trxMode']) != TRUE ) {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
 	    $configmmdvm['Info']['RXFrequency'] = $configmmdvm['Info']['TXFrequency'] - 1;
-	    $configmmdvm['General']['Duplex'] = 1;
-	    $configmmdvm['DMR Network']['Slot1'] = '1';
-	    $configmmdvm['DMR Network']['Slot2'] = '1';
 	    }
 	  if ($configmmdvm['Info']['RXFrequency'] !== $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "SIMPLEX" ) {
 	    $configmmdvm['Info']['RXFrequency'] = $configmmdvm['Info']['TXFrequency'];
-            $configmmdvm['General']['Duplex'] = 0;
+	    }
+	  if ($_POST['trxMode'] == "DUPLEX") {
+	    $configmmdvm['General']['Duplex'] = 1;
+	    $configmmdvm['DMR Network']['Slot1'] = '1';
+	    $configmmdvm['DMR Network']['Slot2'] = '1';  
+	  }
+	  if ($_POST['trxMode'] == "SIMPLEX") {
+	    $configmmdvm['General']['Duplex'] = 0;
 	    $configmmdvm['DMR Network']['Slot1'] = '0';
 	    $configmmdvm['DMR Network']['Slot2'] = '1';
-	    }
 	  }
+	}
 
 	// Set DMR / CCS7 ID
 	if (empty($_POST['dmrId']) != TRUE ) {
