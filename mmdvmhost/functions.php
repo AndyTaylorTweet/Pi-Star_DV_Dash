@@ -228,7 +228,7 @@ function getDVModemFirmware() {
                         	$modemFirmware = substr($logLine, 67, 15);
 			}
 			if (strpos($logLine, 'MMDVM_HS')) {
-				$modemFirmware = "ZumLibre:".substr($logLine, 84, 8);
+				$modemFirmware = "MMDVM_HS:".substr($logLine, 84, 8);
 			}
                 }
         }
