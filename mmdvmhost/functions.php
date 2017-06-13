@@ -280,7 +280,9 @@ function getHeardList($logLines) {
 			continue;
 		} else if(strpos($logLine,"non repeater RF header received")) {
 			continue;
-		} else if(strpos($logLine,"network watchdog has expired")) {
+		//} else if(strpos($logLine,"network watchdog has expired")) {
+                //        continue;
+		} else if(strpos($logLine,"Embedded Talker Alias")) {
                         continue;
 		} else if(strpos($logLine, 27, 6) == "0000: ") {
                         continue;	
