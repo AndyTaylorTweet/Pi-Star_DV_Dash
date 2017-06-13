@@ -570,6 +570,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['hangTime']) != TRUE ) {
 	  $configmmdvm['General']['RFModeHang'] = escapeshellcmd($_POST['hangTime']);
 	  $configmmdvm['General']['NetModeHang'] = escapeshellcmd($_POST['hangTime']);
+	  $configdmrgateway['General']['Timeout'] = escapeshellcmd($_POST['hangTime']);
 	}
 
 	// Set the hardware type
@@ -859,9 +860,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	else {
 	        $success = fwrite($handledmrGWconfig, $dmrgwContent);
 	        fclose($handledmrGWconfig);
-          exec('sudo mv /tmp/k4jhdd34jeFr8f.tmp /etc/dmrgateway');				// Move the file back
-          exec('sudo chmod 644 /etc/dmrgateway');						// Set the correct runtime permissions
-	  exec('sudo chown root:root /etc/dmrgateway');						// Set the owner
+		if (fopen($dmrGatewayConfigFile,'r')) {
+          		exec('sudo mv /tmp/k4jhdd34jeFr8f.tmp /etc/dmrgateway');	// Move the file back
+          		exec('sudo chmod 644 /etc/dmrgateway');				// Set the correct runtime permissions
+	 		exec('sudo chown root:root /etc/dmrgateway');			// Set the owner
+		}
 	}
 
 	// modem config file wrangling
