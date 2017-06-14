@@ -1220,13 +1220,13 @@ else:
     if (substr($dmrMasterNow, 0, 4) == "DMR+") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
     <td align="left">
-    Options=<input type="text" name="dmrNetworkOptions" size="70" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'">
+    Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'">
     </td>
     </tr>'."\n";}
     if ($dmrMasterNow == "DMRGateway") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMRGateway DMR+:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
     <td align="left">
-    Options=<input type="text" name="dmrNetworkOptions" size="70" maxlength="100" value="'.$configdmrgateway['DMR Network 2']['Options'].'">
+    Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configdmrgateway['DMR Network 2']['Options'].'">
     </td>
     </tr>'."\n";}
 ?>
