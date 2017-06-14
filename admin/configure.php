@@ -1217,10 +1217,16 @@ else:
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>'."\n";}
-    if ((substr($dmrMasterNow, 0, 4) == "DMR+") || ($dmrMasterNow == "DMRGateway")) { echo '    <tr>
+    if (substr($dmrMasterNow, 0, 4) == "DMR+") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
     <td align="left">
     Options=<input type="text" name="dmrNetworkOptions" size="75" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'">
+    </td>
+    </tr>'."\n";}
+    if ($dmrMasterNow == "DMRGateway") { echo '    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
+    <td align="left">
+    Options=<input type="text" name="dmrNetworkOptions" size="75" maxlength="100" value="'.$configdmrgateway['DMR Network 2']['Options'].'">
     </td>
     </tr>'."\n";}
 ?>
