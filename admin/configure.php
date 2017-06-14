@@ -559,12 +559,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['DMR Network 2']['Port'] = $dmrMasterHostArr2[2];
 	  if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 	    $dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
-	    $configmmdvm['DMR Network']['Options'] = '"'.$dmrOptionsLineStripped.'"';
 	    $configdmrgateway['DMR Network 2']['Options'] = '"'.$dmrOptionsLineStripped.'"';
 	  }
 	  else { 
 		$configdmrgateway['DMR Network 2']['Options'] = "";
-		$configmmdvm['DMR Network']['Options'] = "";
 	       }
 	}
 
