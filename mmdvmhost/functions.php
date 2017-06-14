@@ -282,6 +282,8 @@ function getHeardList($logLines) {
 			continue;
 		//} else if(strpos($logLine,"network watchdog has expired")) {
                 //        continue;
+		} else if(strpos($logLine,"received network data header from")) {
+			continue;
 		} else if(strpos($logLine,"Embedded Talker Alias")) {
                         continue;
 		} else if(strpos($logLine, 27, 6) == "0000: ") {
