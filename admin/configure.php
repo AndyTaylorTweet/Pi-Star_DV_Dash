@@ -538,6 +538,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 				$dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
 				$configmmdvm['DMR Network']['Options'] = '"'.$dmrOptionsLineStripped.'"';
+				$configdmrgateway['DMR Network 2']['Options'] = '"'.$dmrOptionsLineStripped.'"';
 			}
 			else { $configmmdvm['DMR Network']['Options'] = ""; }
 		}
@@ -556,8 +557,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['DMR Network 2']['Address'] = $dmrMasterHostArr2[0];
 	  $configdmrgateway['DMR Network 2']['Password'] = $dmrMasterHostArr2[1];
 	  $configdmrgateway['DMR Network 2']['Port'] = $dmrMasterHostArr2[2];
-	  $dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
-	  $configdmrgateway['DMR Network 2']['Options'] = '"'.$dmrOptionsLineStripped.'"';
+	  if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
+	    $dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
+	    $configmmdvm['DMR Network']['Options'] = '"'.$dmrOptionsLineStripped.'"';
+	    $configdmrgateway['DMR Network 2']['Options'] = '"'.$dmrOptionsLineStripped.'"';
+	  }
+	  else { 
+		$configdmrgateway['DMR Network 2']['Options'] = "";
+		$configmmdvm['DMR Network']['Options'] = "";
+	       }
 	}
 
 	// Set Talker Alias Option
