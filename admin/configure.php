@@ -693,6 +693,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if ( $confHardware == 'zum' ) {
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	  }
+	  if ( $confHardware == 'stm32dvm' ) {
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	  }
 	}
 
 	// Set the Dashboard Public
@@ -1126,6 +1129,7 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr3') { echo ' selected="selected"';}?> value="dvrptr3">DV-RPTR V3</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvap') { echo ' selected="selected"';}?> value="dvap">DVAP</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / Zum</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') { echo ' selected="selected"';}?> value="stm32dvm">STM-32DVM / MMDVM_HS Pi Hat</option>
     </select></td>
     </tr>
     <tr>
