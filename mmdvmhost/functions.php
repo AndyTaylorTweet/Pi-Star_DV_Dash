@@ -290,13 +290,16 @@ function getHeardList($logLines) {
                         continue;	
 		}
 
-		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network")) {
+		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network") || strpos($logLine, "RF user has timed out")) {
 			$lineTokens = explode(", ",$logLine);
 			if (array_key_exists(2,$lineTokens)) {
 				$duration = strtok($lineTokens[2], " ");
 			}
 			if (array_key_exists(3,$lineTokens)) {
 				$loss = $lineTokens[3];
+			}
+			if (strpos($logLine,"RF user has timed out")) {
+				$duration = "TOut";
 			}
 
 			// if RF-Packet, no LOSS would be reported, so BER is in LOSS position
