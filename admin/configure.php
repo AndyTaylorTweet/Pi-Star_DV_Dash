@@ -1129,7 +1129,7 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr3') { echo ' selected="selected"';}?> value="dvrptr3">DV-RPTR V3</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvap') { echo ' selected="selected"';}?> value="dvap">DVAP</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / Zum</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') { echo ' selected="selected"';}?> value="stm32dvm">STM-32DVM / MMDVM_HS Pi Hat</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') { echo ' selected="selected"';}?> value="stm32dvm">STM32-DVM / MMDVM_HS Raspberry Pi Hat</option>
     </select></td>
     </tr>
     <tr>
