@@ -300,6 +300,7 @@ function getHeardList($logLines) {
 			}
 			if (strpos($logLine,"RF user has timed out")) {
 				$duration = "TOut";
+				$ber = "??%";
 			}
 
 			// if RF-Packet, no LOSS would be reported, so BER is in LOSS position
