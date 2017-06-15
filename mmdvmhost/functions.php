@@ -314,10 +314,10 @@ function getHeardList($logLines) {
 			if (strpos($logLine,"RF user has timed out")) {
 				switch (substr($logLine, 27, strpos($logLine,",") - 27)) {
 					case "DMR Slot 1":
-						$ts1duration = "TimeOut";
+						$ts1duration = "TOut";
 						break;
 					case "DMR Slot 2":
-						$ts2duration = "TimeOut";
+						$ts2duration = "TOut";
 						break;
 				}	
 			}
