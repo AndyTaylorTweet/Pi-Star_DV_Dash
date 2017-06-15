@@ -290,7 +290,7 @@ function getHeardList($logLines) {
                         continue;	
 		}
 
-		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network") || strpos($logLine, "user has timed out")) {
+		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network")) {
 			$lineTokens = explode(", ",$logLine);
 			if (array_key_exists(2,$lineTokens)) {
 				$duration = strtok($lineTokens[2], " ");
@@ -310,6 +310,17 @@ function getHeardList($logLines) {
 				}
 			}
 
+			// RF User Timeout
+			if (strpos($logLine,"RF user has timed out") {
+				switch (substr($logLine, 27, strpos($logLine,",") - 27)) {
+					case "DMR Slot 1":
+						$ts1duration = "??";
+						break;
+					case "DMR Slot 2":
+						$ts2duration = "??";
+						break;
+				}	
+			}
 			if (strpos($logLine,"ended RF data") || strpos($logLine,"ended network")) {
 				switch (substr($logLine, 27, strpos($logLine,",") - 27)) {
 					case "DMR Slot 1":
