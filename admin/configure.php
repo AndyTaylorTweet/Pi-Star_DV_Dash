@@ -1261,6 +1261,7 @@ else:
 
 <?php if (file_exists('/etc/dstar-radio.dstarrepeater') || $configmmdvm['D-Star']['Enable'] == 1) { ?>
 	<div><b>D-Star Configuration</b></div>
+	<input type="hidden" name="confTimeAnnounce" value="OFF" />
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
