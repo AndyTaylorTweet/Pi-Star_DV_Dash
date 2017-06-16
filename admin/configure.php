@@ -1391,6 +1391,17 @@ fclose($dextraFile);
         ?>
     </select></td>
     </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Time Announcements:<span><b>Time Announce</b>Announce time<br />hourly</span></a></td>
+    <?php
+	if ( !file_exists('/etc/timeserver.dissable') ) {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-timeAnnounce\"></label></div></td>\n";
+		}
+	else {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" /><label for=\"toggle-timeAnnounce\"></label></div></td>\n";
+	}
+    ?>
+    </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
