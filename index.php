@@ -36,7 +36,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
-    <title><?php echo "$MYCALL" ?> Digial Voice Dashboard</title>
+    <title><?php echo "$MYCALL" ?> Digital Voice Dashboard</title>
 <?php include_once "config/browserdetect.php"; ?>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/functions.js"></script>
