@@ -1191,7 +1191,7 @@ else:
     </tr>
 <?php if ($dmrMasterNow == "DMRGateway") { ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">DMRGateway Master 1:<span><b>DMR Gateway Master 1</b>Set your prefered DMR<br /> master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">BrandMeister Master:<span><b>BrandMeister Master</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost1">
 <?php
 	$dmrMasterFile1 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
@@ -1208,7 +1208,14 @@ else:
 ?>
     </select></td></tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">DMRGateway Master 2:<span><b>DMR Gateway Master 2</b>Set your prefered DMR<br /> master here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
+    <td>
+      <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['DMR']['Id']; ?>" target="_new" style="color: #000;">Repeater Information</a> | 
+      <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['DMR']['Id']; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+    </td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR+ Master:<span><b>DMR+ Master</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost2">
 <?php
 	$dmrMasterFile2 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
