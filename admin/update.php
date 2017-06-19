@@ -51,7 +51,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>Digital Voice Dashboard - Update</title>
+    <title>Pi-Star - Digital Voice Dashboard - Update</title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.2" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
