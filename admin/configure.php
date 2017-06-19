@@ -83,7 +83,7 @@ $MYCALL=strtoupper($callsign);
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title><?php echo "$MYCALL" ?> Hotspot Configuration Dashboard</title>
+    <title>Configuration for <?php echo "$MYCALL" ?> Digital Voice Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.2" />
     <script type="text/javascript">
 	function submitform()
