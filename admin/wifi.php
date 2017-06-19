@@ -18,7 +18,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <link rel="stylesheet" type="text/css" href="css/ircddb.css" />
 <link rel="stylesheet" type="text/css" href="wifi/styles.css" />
 <script type="text/Javascript" src="wifi/functions.js?version=1.5"></script>
-<title>WiFi Configuration Portal</title>
+<title>Pi-Star - Digital Voice Dashboard - WiFi Config</title>
 </head>
 <body>'."\n";
 switch($page) {
