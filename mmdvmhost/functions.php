@@ -95,8 +95,15 @@ function showMode($mode, $mmdvmconfigs) {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
 		}
+		elseif ($mode == "P25 Network") {
+			if (isProcessRunning("P25Gateway")) {
+				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			} else {
+				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+			}
+		}
 		else {
-			if ($mode == "D-Star" || $mode == "DMR" || $mode == "DMR Network" || $mode == "System Fusion" || $mode == "P25" || $mode == "P25 Network" ) {
+			if ($mode == "D-Star" || $mode == "DMR" || $mode == "DMR Network" || $mode == "System Fusion" || $mode == "P25") {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 				} else {
