@@ -102,8 +102,24 @@ function showMode($mode, $mmdvmconfigs) {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
 		}
+		elseif ($mode == "DMR Network") {
+			if (getConfigItem("DMR Network", "Address", $mmdvmconfigs) == '127.0.0.1') {
+				if (isProcessRunning("DMRGateway")) {
+					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+				} else {
+					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+				}
+			}
+			else {
+				if (isProcessRunning("MMDVMHost")) {
+					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+				} else {
+					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+				}
+			}
+		}
 		else {
-			if ($mode == "D-Star" || $mode == "DMR" || $mode == "DMR Network" || $mode == "System Fusion" || $mode == "P25") {
+			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25") {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 				} else {
