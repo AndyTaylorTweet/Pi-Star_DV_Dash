@@ -82,13 +82,21 @@ function showMode($mode, $mmdvmconfigs) {
 	// shows if mode is enabled or not.
 	if (getEnabled($mode, $mmdvmconfigs) == 1) {
 		if ($mode == "D-Star Network") {
-			if (isProcessRunning(IRCDDBGATEWAY)) {
+			if (isProcessRunning("ircddbgatewayd")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
-		} else {
-			if ($mode == "D-Star" || $mode =="DMR" || $mode =="DMR Network" || $mode =="System Fusion" || $mode =="System Fusion Network" || $mode =="P25" || $mode =="P25 Network" ) {
+		}
+		elseif ($mode == "System Fusion Network") {
+			if (isProcessRunning("YSFGateway")) {
+				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			} else {
+				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+			}
+		}
+		else {
+			if ($mode == "D-Star" || $mode == "DMR" || $mode == "DMR Network" || $mode == "System Fusion" || $mode == "P25" || $mode == "P25 Network" ) {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 				} else {
