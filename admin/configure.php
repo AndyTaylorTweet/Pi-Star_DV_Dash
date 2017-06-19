@@ -526,7 +526,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			$configmmdvm['DMR Network']['Options'] = "";
 			unset ($configmmdvm['DMR Network']['Local']);
 		}
-		
+
 		if ($dmrMasterHostArr[0] == '127.0.0.1') {
 			$configmmdvm['DMR Network']['Options'] = "";
 			$configmmdvm['DMR Network']['Local'] = "62032";
