@@ -26,7 +26,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - Digital Voice Dashboard - Config Backup</title>
-    <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.2" />
+    <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
   </head>
   <body>
   <div class="container">
