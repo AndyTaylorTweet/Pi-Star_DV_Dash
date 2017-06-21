@@ -84,7 +84,7 @@ $MYCALL=strtoupper($callsign);
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL" ?> - Digital Voice Dashboard - Config</title>
-    <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.2" />
+    <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
     <script type="text/javascript">
 	function submitform()
 	{
