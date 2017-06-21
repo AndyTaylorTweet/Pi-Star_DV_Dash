@@ -107,6 +107,7 @@ table td {
     font-family: "Lucidia Console",Monaco,monospace;
     text-decoration: none;
     border: 1px solid #000000;
+    overflow-x: hidden;
 }
 
 body {
