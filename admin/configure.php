@@ -550,6 +550,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 	if (empty($_POST['dmrMasterHost']) == TRUE ) {
 		$configmmdvm['DMR Network']['Options'] = "";
+		$configdmrgateway['DMR Network 2']['Options'] = "";
 	}
 	if (empty($_POST['dmrMasterHost1']) != TRUE ) {
 	  $dmrMasterHostArr1 = explode(',', escapeshellcmd($_POST['dmrMasterHost1']));
