@@ -65,6 +65,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1");
           $output .= "Compressing backup files\n";
@@ -140,6 +141,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl stop ircddbgateway.service 2>&1');	//ircDDBGateway Service
 			shell_exec('sudo systemctl stop timeserver.service 2>&1');	//Time Server Service
 			shell_exec('sudo systemctl stop pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
+			shell_exec('sudo systemctl stop pistar-remote.service 2>&1');	//PiStar-Remote Service
 			shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
 			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
 			
@@ -173,6 +175,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start ircddbgateway.service 2>&1');		//ircDDBGateway Service
 			shell_exec('sudo systemctl start timeserver.service 2>&1');		//Time Server Service
 			shell_exec('sudo systemctl start pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
+			shell_exec('sudo systemctl start pistar-remote.service 2>&1');		//PiStar-Remote Service
 			shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
 			shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
