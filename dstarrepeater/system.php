@@ -53,7 +53,7 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
     <td style="background: #<?php exec ("pgrep dstarrepeaterd", $dstarrepeaterpid); if (!empty($dstarrepeaterpid)) { echo "1d1"; } else { echo "b55"; } ?>">DStarRepeater</td>
     <td style="background: #<?php exec ("pgrep ircddbgatewayd", $ircddbgatewaypid); if (!empty($ircddbgatewaypid)) { echo "1d1"; } else { echo "b55"; } ?>">ircDDBGateway</td>
     <td style="background: #<?php exec ("pgrep timeserverd", $timeserverpid); if (!empty($timeserverpid)) { echo "1d1"; } else { echo "b55"; } ?>">TimeServer</td>
-    <td style="background: #ffffff;"></td>
+    <td style="background: #<?php exec ("pgrep -f -a /usr/local/sbin/pistar-remote | sed '/pgrep/d'", $remotepid); if (!empty($remotepid)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Remote</td>
     <td style="background: #<?php exec ("pgrep -f -a /usr/local/sbin/pistar-watchdog | sed '/pgrep/d'", $watchdogpid); if (!empty($watchdogpid)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Watchdog</td>
     <td style="background: #<?php exec ("pgrep -f -a /usr/local/sbin/pistar-keeper | sed '/pgrep/d'", $keeperpid); if (!empty($keeperpid)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Keeper</td>
   </tr>
