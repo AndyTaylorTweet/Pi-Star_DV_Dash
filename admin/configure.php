@@ -160,6 +160,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
 	system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
 	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
+	system('sudo systemctl stop pistar-remote.service > /dev/null 2>/dev/null &');		//PiStar-Remote Service
 	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
 	system('sudo systemctl stop ysfparrot.service > /dev/null 2>/dev/null &');		//YSFParrot
 	system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
@@ -953,6 +954,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
 	system('sudo systemctl start timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
 	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
+	system('sudo systemctl start pistar-remote.service > /dev/null 2>/dev/null &');		//PiStar-Remote Service
 	system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		//PiStar-UPnP Service
 	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
 	system('sudo systemctl start ysfparrot.service > /dev/null 2>/dev/null &');		//YSFParrot
