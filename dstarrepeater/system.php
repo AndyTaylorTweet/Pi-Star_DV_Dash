@@ -25,7 +25,7 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
 <b>Gateway Hardware Information</b>
 <table style="table-layout: fixed;">
   <tr>
-    <th><a class="tooltip" href="#">Hostname<br /><span><b>System IP Address:<?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
+    <th><a class="tooltip" href="#">Hostname<br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
     <th><a class="tooltip" href="#">Kernel<span><b>Release</b></span></a></th>
     <th colspan="2"><a class="tooltip" href="#">Platform<span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
     <th><a class="tooltip" href="#">CPU Load<span><b>CPU Load</b></span></a></th>
