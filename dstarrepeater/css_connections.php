@@ -39,7 +39,7 @@ if (exec('grep "CCS link" '.$linkLogPath.' | wc -l') >=1) {
                   $local_tz = new DateTimeZone(date_default_timezone_get ());
                   $dt = new DateTime($utc_time, $utc_tz);
                   $dt->setTimeZone($local_tz);
-                  $local_time = $dt->format('Y-m-d H:i:s');
+                  $local_time = $dt->format('H:i:s jS M');
 		$linkDate = $local_time;
                 $linkType = $linx[2][0];
                 $linkRptr = $linx[3][0];
