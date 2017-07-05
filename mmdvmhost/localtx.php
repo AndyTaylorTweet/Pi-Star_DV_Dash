@@ -50,7 +50,11 @@ for ($i = 0; $i < count($localTXList); $i++) {
 				echo "<td>sending or receiving SMS</td><td></td>";
 			} else {
 				echo"<td>$listElem[6]</td>";
-				echo"<td>$listElem[8]</td>";
+				
+				// Add colouring
+				if (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td style=\"background:#1d1;\">$listElem[8]</td>"; }
+				else if (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td style=\"background:#fa0;\">$listElem[8]</td>"; }
+				else { echo "<td style=\"background:#f33;\">$listElem[8]</td>"; }
 			}
 			echo"</tr>\n";
 			$counter++; }
