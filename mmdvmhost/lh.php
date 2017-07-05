@@ -54,13 +54,13 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 				echo "<td style=\"background:#1d1;\">SMS</td><td></td><td></td>";
 			} else {
 			echo "<td>$listElem[6]</td>";
-			//echo "<td>$listElem[7]</td>";
+			echo "<td>$listElem[7]</td>";
 			echo "<td>$listElem[8]</td>";
 			
-			$listElem[7] = str_replace("%", "", $listElem[7]);
-			if ($listElem[7] == '0') { echo "<td style=\"background:#1d1;\">$listElem[7]</td>"; }
-			else if ($listElem[7] >= '1' && $listElem[7] <= '3') { echo "<td style=\"background:#fa0;\">$listElem[7]</td>"; }
-			else { echo "<td style=\"background:#f33;\">$listElem[7]</td>"; }
+			//$listElem[7] = str_replace("%", "", $listElem[7]);
+			//if ($listElem[7] == '0') { echo "<td style=\"background:#1d1;\">$listElem[7]</td>"; }
+			//else if ($listElem[7] >= '1' && $listElem[7] <= '3') { echo "<td style=\"background:#fa0;\">$listElem[7]</td>"; }
+			//else { echo "<td style=\"background:#f33;\">$listElem[7]</td>"; }
 			//$listElem[8] = str_replace("%", "", $listElem[8]);
 			//if {$listElem[8] >= '0.0' && $listElem[8] >= '2.9') { echo "<td style=\"background:#1d1;\">$listElem[8]</td>"; }
 			//else if {$listElem[8] >= '3.0' && $listElem[8] >= '4.9') { echo "<td style=\"background:#fa0;\">$listElem[8]</td>"; }
