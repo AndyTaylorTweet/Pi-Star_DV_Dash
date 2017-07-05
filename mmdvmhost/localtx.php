@@ -29,7 +29,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
                         	$local_tz = new DateTimeZone(date_default_timezone_get ());
                         	$dt = new DateTime($utc_time, $utc_tz);
                         	$dt->setTimeZone($local_tz);
-                        	$local_time = $dt->format('Y-m-d H:i:s');
+                        	$local_time = $dt->format('H:i:s jS M');
 			echo"<tr>";
 			echo"<td align=\"left\">$local_time</td>";
 			echo"<td align=\"left\">$listElem[1]</td>";
