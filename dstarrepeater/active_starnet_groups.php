@@ -17,11 +17,11 @@ $MYCALL=strtoupper($callsign);
 <b>Active Starnet Groups</b>
 <table style="table-layout: fixed;">
     <tr>
-    <th width="120"><a class="tooltip" href="#">Callsign<span><b>Starnet Callsign</b></span></a></th>
-    <th width="120"><a class="tooltip" href="#">LogOff<span><b>Starnet Logoff Callsign</b></span></a></th>
+    <th><a class="tooltip" href="#">Callsign<span><b>Starnet Callsign</b></span></a></th>
+    <th><a class="tooltip" href="#">LogOff<span><b>Starnet Logoff Callsign</b></span></a></th>
     <th colspan="2"><a class="tooltip" href="#">Info<span><b>Infotext</b></span></a></th>
-    <th width="73"><a class="tooltip" href="#">UTOT<span><b>User TimeOut (min)</b>inactivity time after which a user will be disconnected</span></a></th>
-    <th width="73"><a class="tooltip" href="#">GTOT<span><b>Group TimeOut (min)</b>inactivity time after which the group will be disconnected</span></a></th>
+    <th><a class="tooltip" href="#">UTOT<span><b>User TimeOut (min)</b>inactivity time after which a user will be disconnected</span></a></th>
+    <th><a class="tooltip" href="#">GTOT<span><b>Group TimeOut (min)</b>inactivity time after which the group will be disconnected</span></a></th>
     </tr>
 <?php
     $ci = 0;
