@@ -106,7 +106,7 @@ $MYCALL=strtoupper($callsign);
                             $local_tz = new DateTimeZone(date_default_timezone_get ());
                             $dt = new DateTime($utc_time, $utc_tz);
                             $dt->setTimeZone($local_tz);
-                            $local_time = $dt->format('Y-m-d H:i:s');
+                            $local_time = $dt->format('H:i:s M jS');
 			$groupz = str_replace(' ', '&nbsp;', substr($gcall,0,8));
 			$ucall = str_replace(' ', '', substr($ucall,0,8));
 			print "<tr>";
