@@ -85,7 +85,7 @@ $MYCALL=strtoupper($callsign);
 	echo "<b>Active Starnet Group Members</b>\n";
 	echo "<table style=\"table-layout: fixed;\">\n";
 	echo "<tr>\n";
-	echo "<th><a class=tooltip href=\"#\">Date & Time (".date('T').")<span><b>Time of Login</b></span></a></th>\n";
+	echo "<th><a class=tooltip href=\"#\">Date &amp; Time (".date('T').")<span><b>Time of Login</b></span></a></th>\n";
 	echo "<th width=\"153\"><a class=tooltip href=\"#\">Group<span><b>Starnet Callsign</b></span></a></th>\n";
 	echo "<th width=\"153\"><a class=tooltip href=\"#\">Member<span><b>Callsign</b></span></a></th>\n";
 	echo "</tr>\n";
