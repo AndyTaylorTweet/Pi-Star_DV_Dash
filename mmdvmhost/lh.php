@@ -59,8 +59,8 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 			else if ($listElem[7] >= '1%' && $listElem[7] <= '3%') { echo "<td style=\"background:#fa0;\">$listElem[7]</td>"; }
 			else { echo "<td style=\"background:#f33;\">$listElem[7]</td>"; }
 
-			if (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) >= 1.9) { echo "<td style=\"background:#1d1;\">$listElem[8]</td>"; }
-			else if (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) >= 4.9) { echo "<td style=\"background:#fa0;\">$listElem[8]</td>"; }
+			if (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td style=\"background:#1d1;\">$listElem[8]</td>"; }
+			else if (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td style=\"background:#fa0;\">$listElem[8]</td>"; }
 			else { echo "<td style=\"background:#f33;\">$listElem[8]</td>"; }
 		}
 		echo"</tr>\n";
