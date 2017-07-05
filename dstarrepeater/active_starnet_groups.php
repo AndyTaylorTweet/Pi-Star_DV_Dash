@@ -35,9 +35,9 @@ $MYCALL=strtoupper($callsign);
 	    $ci++;
 	    if($ci > 1) { $ci = 0; }
 	    print "<tr>";
-	    print "<td align=\"left\">".str_replace(' ', '&nbsp;', substr($gname,0,8))."</td>";
+	    print "<td align=\"center\">".str_replace(' ', '&nbsp;', substr($gname,0,8))."</td>";
 	    $param="starNetLogoff" . $i;
-	    if(isset($configs[$param])){ $output = str_replace(' ', '&nbsp;', substr($configs[$param],0,8)); print "<td align=\"left\">$output</td>";} else { print"<td>&nbsp;</td>";}
+	    if(isset($configs[$param])){ $output = str_replace(' ', '&nbsp;', substr($configs[$param],0,8)); print "<td align=\"center\">$output</td>";} else { print"<td>&nbsp;</td>";}
 	    $param="starNetInfo" . $i;
 	    if(isset($configs[$param])){ print "<td colspan=\"2\" align=\"left\">$configs[$param]</td>";} else { print"<td colspan=\"2\">&nbsp;</td>";}
 	    $param="starNetUserTimeout" . $i;
