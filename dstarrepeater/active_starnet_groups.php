@@ -15,11 +15,11 @@ $rev="20141101";
 $MYCALL=strtoupper($callsign);
 ?>
 <b>Active Starnet Groups</b>
-<table>
+<table style="table-layout: fixed;">
     <tr>
     <th width="120"><a class="tooltip" href="#">Callsign<span><b>Starnet Callsign</b></span></a></th>
     <th width="120"><a class="tooltip" href="#">LogOff<span><b>Starnet Logoff Callsign</b></span></a></th>
-    <th><a class="tooltip" href="#">Info<span><b>Infotext</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#">Info<span><b>Infotext</b></span></a></th>
     <th width="73"><a class="tooltip" href="#">UTOT<span><b>User TimeOut (min)</b>inactivity time after which a user will be disconnected</span></a></th>
     <th width="73"><a class="tooltip" href="#">GTOT<span><b>Group TimeOut (min)</b>inactivity time after which the group will be disconnected</span></a></th>
     </tr>
@@ -37,7 +37,7 @@ $MYCALL=strtoupper($callsign);
 	    print "<tr>";
 	    print "<td align=\"left\">".str_replace(' ', '&nbsp;', substr($gname,0,8))."</td>";
 	    $param="starNetLogoff" . $i;
-	    if(isset($configs[$param])){ $output = str_replace(' ', '&nbsp;', substr($configs[$param],0,8)); print "<td align=\"left\">$output</td>";} else { print"<td>&nbsp;</td>";}
+	    if(isset($configs[$param])){ $output = str_replace(' ', '&nbsp;', substr($configs[$param],0,8)); print "<td colspan=\"2\" align=\"left\">$output</td>";} else { print"<td colspan=\"2\">&nbsp;</td>";}
 	    $param="starNetInfo" . $i;
 	    if(isset($configs[$param])){ print "<td align=\"left\">$configs[$param]</td>";} else { print"<td>&nbsp;</td>";}
 	    $param="starNetUserTimeout" . $i;
@@ -83,7 +83,7 @@ $MYCALL=strtoupper($callsign);
 	if ($active >= 1) {
 
 	echo "<b>Active Starnet Group Members</b>\n";
-	echo "<table>\n";
+	echo "<table style=\"table-layout: fixed;\">\n";
 	echo "<tr>\n";
 	echo "<th><a class=tooltip href=\"#\">Date & Time (".date('T').")<span><b>Time of Login</b></span></a></th>\n";
 	echo "<th width=\"153\"><a class=tooltip href=\"#\">Group<span><b>Starnet Callsign</b></span></a></th>\n";
