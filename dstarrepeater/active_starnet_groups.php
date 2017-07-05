@@ -37,9 +37,9 @@ $MYCALL=strtoupper($callsign);
 	    print "<tr>";
 	    print "<td align=\"left\">".str_replace(' ', '&nbsp;', substr($gname,0,8))."</td>";
 	    $param="starNetLogoff" . $i;
-	    if(isset($configs[$param])){ $output = str_replace(' ', '&nbsp;', substr($configs[$param],0,8)); print "<td colspan=\"2\" align=\"left\">$output</td>";} else { print"<td colspan=\"2\">&nbsp;</td>";}
+	    if(isset($configs[$param])){ $output = str_replace(' ', '&nbsp;', substr($configs[$param],0,8)); print "<td align=\"left\">$output</td>";} else { print"<td>&nbsp;</td>";}
 	    $param="starNetInfo" . $i;
-	    if(isset($configs[$param])){ print "<td align=\"left\">$configs[$param]</td>";} else { print"<td>&nbsp;</td>";}
+	    if(isset($configs[$param])){ print "<td colspan=\"2\" align=\"left\">$configs[$param]</td>";} else { print"<td colspan=\"2\">&nbsp;</td>";}
 	    $param="starNetUserTimeout" . $i;
 	    if(isset($configs[$param])){ print "<td align=\"center\">$configs[$param]</td>";} else { print"<td>&nbsp;</td>";}
 	    $param="starNetGroupTimeout" . $i;
