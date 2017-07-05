@@ -19,7 +19,7 @@ $MYCALL=strtoupper($callsign);
     <tr>
     <th><a class="tooltip" href="#">Callsign<span><b>Starnet Callsign</b></span></a></th>
     <th><a class="tooltip" href="#">LogOff<span><b>Starnet Logoff Callsign</b></span></a></th>
-    <th colspan="2"><a class="tooltip" href="#">Info<span><b>Infotext</b></span></a></th>
+    <th colspan="3"><a class="tooltip" href="#">Info<span><b>Infotext</b></span></a></th>
     <th><a class="tooltip" href="#">UTOT<span><b>User TimeOut (min)</b>inactivity time after which a user will be disconnected</span></a></th>
     <th><a class="tooltip" href="#">GTOT<span><b>Group TimeOut (min)</b>inactivity time after which the group will be disconnected</span></a></th>
     </tr>
@@ -39,7 +39,7 @@ $MYCALL=strtoupper($callsign);
 	    $param="starNetLogoff" . $i;
 	    if(isset($configs[$param])){ $output = str_replace(' ', '&nbsp;', substr($configs[$param],0,8)); print "<td align=\"center\">$output</td>";} else { print"<td>&nbsp;</td>";}
 	    $param="starNetInfo" . $i;
-	    if(isset($configs[$param])){ print "<td colspan=\"2\" align=\"left\">$configs[$param]</td>";} else { print"<td colspan=\"2\">&nbsp;</td>";}
+	    if(isset($configs[$param])){ print "<td colspan=\"3\" align=\"left\">$configs[$param]</td>";} else { print"<td colspan=\"3\">&nbsp;</td>";}
 	    $param="starNetUserTimeout" . $i;
 	    if(isset($configs[$param])){ print "<td align=\"center\">$configs[$param]</td>";} else { print"<td>&nbsp;</td>";}
 	    $param="starNetGroupTimeout" . $i;
