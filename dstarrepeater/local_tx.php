@@ -48,7 +48,7 @@ $MYCALL=strtoupper($callsign);
                     $local_tz = new DateTimeZone(date_default_timezone_get ());
                     $dt = new DateTime($utc_time, $utc_tz);
                     $dt->setTimeZone($local_tz);
-                    $local_time = $dt->format('H:i:s jS M');
+                    $local_time = $dt->format('H:i:s M jS');
                 print "<td align=left>$local_time</td>";
                 print "<td align=left width=\"180\"><a href=\"http://www.qrz.com/db/$MyCall\" target=\"_blank\" alt=\"Lookup Callsign\">$MyCall</a>";
                 if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
