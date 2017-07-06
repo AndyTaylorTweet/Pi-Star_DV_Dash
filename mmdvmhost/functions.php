@@ -250,6 +250,7 @@ function getMMDVMLogInfo() {
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // I: 2017-05-18 07:03:43.365 MMDVM protocol version: 1, description: DVMEGA HR3.14
 // I: 2017-05-20 19:36:19.575 MMDVM protocol version: 1, description: MMDVM_HS-ADF7021 20170414 (D-Star/DMR/YSF/P25) (Build: 20:16:25 May 20 2017)
+// I: 2017-07-06 10:55:45.791 MMDVM protocol version: 1, description: MMDVM 20170206 TCXO (D-Star/DMR/System Fusion/P25/RSSI/CW Id)
 function getDVModemFirmware() {
         $logLinesInfo = getMMDVMLogInfo();
         $modemFirmware = "";
@@ -258,8 +259,11 @@ function getDVModemFirmware() {
 			if (strpos($logLine, 'DVMEGA')) {
                         	$modemFirmware = substr($logLine, 67, 15);
 			}
-			if (strpos($logLine, 'MMDVM_HS')) {
+			if (strpos($logLine, 'description: MMDVM_HS')) {
 				$modemFirmware = "MMDVM_HS:".substr($logLine, 84, 8);
+			}
+			if (strpos($logLine, 'description: MMDVM ')) {
+				$modemFirmware = "MMDVM:".substr($logLine, 73, 8);
 			}
                 }
         }
