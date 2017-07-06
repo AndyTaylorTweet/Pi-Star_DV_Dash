@@ -1591,7 +1591,7 @@ echo '
     <td align="left"><input type="password" name="adminPassword" size="30" value="" /></td>
     <td align="right"><input type="button" value="Set Password" onclick="submitPassform()" /></td>
     </tr>
-    <tr><td colspan="3"><b>WARNING:</b> This changes the passowrd for this admin page<br />AND the "pi-star" SSH account</td></tr>
+    <tr><td colspan="3"><b>WARNING:</b> This changes the password for this admin page<br />AND the "pi-star" SSH account</td></tr>
     </table>
     </form>
 <?php endif; ?>
