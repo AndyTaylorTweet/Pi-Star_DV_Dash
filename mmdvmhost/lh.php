@@ -57,7 +57,8 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 
 			// Colour the Loss Field
 			if (floatval($listElem[7]) < 1) { echo "<td>$listElem[7]</td>"; }
-			elseif (floatval($listElem[7]) >= 1 && floatval($listElem[7]) <= 3) { echo "<td style=\"background:#fa0;\">$listElem[7]</td>"; }
+			elseif (floatval($listElem[7]) == 1) { echo "<td style=\"background:#1d1;\">$listElem[7]</td>"; }
+			elseif (floatval($listElem[7]) > 1 && floatval($listElem[7]) <= 3) { echo "<td style=\"background:#fa0;\">$listElem[7]</td>"; }
 			else { echo "<td style=\"background:#f33;\">$listElem[7]</td>"; }
 
 			// Colour the BER Field
