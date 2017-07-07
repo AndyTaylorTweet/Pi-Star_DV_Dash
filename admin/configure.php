@@ -583,6 +583,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configdmrgateway['DMR Network 2']['Options'] = "";
 	       }
 	}
+	if (empty($_POST['dmrMasterHost3']) != TRUE ) {
+	  $dmrMasterHostArr3 = explode(',', escapeshellcmd($_POST['dmrMasterHost3']));
+	  $configdmrgateway['XLX Network 1']['Address'] = $dmrMasterHostArr3[0];
+	  $configdmrgateway['XLX Network 1']['Password'] = $dmrMasterHostArr3[1];
+	  $configdmrgateway['XLX Network 1']['Port'] = $dmrMasterHostArr3[2];
+	}
 
 	// Set Talker Alias Option
 	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
@@ -594,6 +600,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['dmrDumpTAData']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'ON' ) { $configmmdvm['DMR']['DumpTAData'] = "1"; }
 	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'OFF' ) { $configmmdvm['DMR']['DumpTAData'] = "0"; }
+	}
+
+	// Set the XLX DMRGateway Master On or Off 
+	if (empty($_POST['dmrGatewayXlxEn']) != TRUE ) {
+	  if (escapeshellcmd($_POST['dmrGatewayXlxEn']) == 'ON' ) { $configdmrgateway['XLX Network 1']['Enabled'] = "1"; }
+	  if (escapeshellcmd($_POST['dmrGatewayXlxEn']) == 'OFF' ) { $configdmrgateway['XLX Network 1']['Enabled'] = "0"; }
 	}
 
 	// Set MMDVM Hang Time
