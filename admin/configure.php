@@ -1189,6 +1189,7 @@ else:
 	<div><b>DMR Configuration</b></div>
     <input type="hidden" name="dmrEmbeddedLCOnly" value="OFF" />
     <input type="hidden" name="dmrDumpTAData" value="OFF" />
+    <input type="hidden" name="dmrGatewayXlxEn" value="OFF" />
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
@@ -1252,7 +1253,12 @@ else:
 	}
 	fclose($dmrMasterFile2);
 ?>
-    </select></td></tr>			 
+    </select></td></tr>
+    <td align="left"><a class="tooltip2" href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
+    <td align="left">
+    Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configdmrgateway['DMR Network 2']['Options'].'">
+    </td>
+    </tr>
 <?php }
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
@@ -1267,12 +1273,7 @@ else:
     Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'">
     </td>
     </tr>'."\n";}
-    if ($dmrMasterNow == "DMRGateway") { echo '    <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
-    <td align="left">
-    Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configdmrgateway['DMR Network 2']['Options'].'">
-    </td>
-    </tr>'."\n";}
+    
 ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Color Code:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
