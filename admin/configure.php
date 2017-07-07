@@ -1259,6 +1259,22 @@ else:
     Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="<?php echo $configdmrgateway['DMR Network 2']['Options'];?>">
     </td>
     </tr>
+    <td align="left"><a class="tooltip2" href="#">XLX Master:<span><b>XLX Master</b>Set your prefered XLX<br /> master here</span></a></td>
+    <td style="text-align: left;"><select name="dmrMasterHost3">
+<?php
+	$dmrMasterFile3 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
+	$testMMDVMdmrMaster3= $configdmrgateway['XLX Network 1']['Address'];
+	while (!feof($dmrMasterFile3)) {
+		$dmrMasterLine3 = fgets($dmrMasterFile3);
+                $dmrMasterHost3 = preg_split('/\s+/', $dmrMasterLine3);
+                if ((strpos($dmrMasterHost3[0], '#') === FALSE ) && (substr($dmrMasterHost3[0], 0, 3) == "XLX") && ($dmrMasterHost3[0] != '')) {
+                        if ($testMMDVMdmrMaster3 == $dmrMasterHost3[2]) { echo "      <option value=\"$dmrMasterHost3[2],$dmrMasterHost3[3],$dmrMasterHost3[4],$dmrMasterHost3[0]\" selected=\"selected\">$dmrMasterHost3[0]</option>\n"; }
+                        else { echo "      <option value=\"$dmrMasterHost3[2],$dmrMasterHost3[3],$dmrMasterHost3[4],$dmrMasterHost3[0]\">$dmrMasterHost3[0]</option>\n"; }
+                }
+	}
+	fclose($dmrMasterFile3);
+?>
+    </select></td></tr>	
 <?php }
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
