@@ -45,7 +45,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
 				echo "<td>$listElem[5]</td>";
 			}
 			if ($listElem[6] == null) {
-				echo "<td>in TX</td><td></td>";
+				echo "<td style=\"background:#f33;\">TX</td><td></td>";
 			} else if ($listElem[6] == "SMS") {
 				echo "<td>sending or receiving SMS</td><td></td>";
 			} else {
