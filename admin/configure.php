@@ -1508,8 +1508,6 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
                 $p25HostsLine = fgets($p25Hosts);
                 $p25Host = preg_split('/\s+/', $p25HostsLine);
                 if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
-			//if ($testP25Host == '') { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; }
-			//	else { echo "      <option value=\"None\">None</option>\n"; }
                         if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
                         else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
                 }
