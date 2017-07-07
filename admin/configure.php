@@ -1274,7 +1274,13 @@ else:
 	}
 	fclose($dmrMasterFile3);
 ?>
-    </select></td></tr>	
+    </select></td></tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">XLX Master Enable:<span><b>XLX Master Enable</b></span></a></td>
+    <td align="left">
+    <?php if ($configdmrgateway['XLX Network 1']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayXlxEn\"></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" /><label for=\"toggle-dmrGatewayXlxEn\"></label></div>\n"; } ?>
+    </td></tr>
 <?php }
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
@@ -1289,7 +1295,6 @@ else:
     Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'">
     </td>
     </tr>'."\n";}
-    
 ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Color Code:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
