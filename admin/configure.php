@@ -524,7 +524,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set DMR / CCS7 ID
 	if (empty($_POST['dmrId']) != TRUE ) {
 	  $configmmdvm['DMR']['Id'] = escapeshellcmd($_POST['dmrId']);
-	  $configdmrgateway['XLX Network 1']['Id'] = substr(escapeshellcmd($_POST['dmrId']),0,8);
+	  $configdmrgateway['XLX Network 1']['Id'] = substr(escapeshellcmd($_POST['dmrId']),0,7);
 	}
 
 	// Set DMR Master Server
