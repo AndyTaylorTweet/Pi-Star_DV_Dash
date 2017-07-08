@@ -122,10 +122,18 @@ if ( $testMMDVModeDMR == 1 ) { //Hide the DMR information when DMR mode not enab
 $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
 if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
 if ($dmrMasterHost == '127.0.0.1') {
-	$dmrMasterHost1 = $configdmrgateway['DMR Network 1']['Address'];
-	if (strlen($dmrMasterHost1) > 21) { $dmrMasterHost1 = substr($dmrMasterHost1, 0, 19) . '..'; }
-	$dmrMasterHost2 = $configdmrgateway['DMR Network 2']['Address'];
-	if (strlen($dmrMasterHost2) > 21) { $dmrMasterHost2 = substr($dmrMasterHost2, 0, 19) . '..'; }
+	if ($configdmrgateway['XLX Network 1']['Enabled']) {
+		$xlxMasterHost1 = $configdmrgateway['XLX Network 1']['Address'];
+		if (strlen($xlxMasterHost1) > 21) { $xlxMasterHost1 = substr($xlxMasterHost1, 0, 19) . '..'; }
+	}
+	if ($configdmrgateway['DMR Network 1']['Enabled']) {
+		$dmrMasterHost1 = $configdmrgateway['DMR Network 1']['Address'];
+		if (strlen($dmrMasterHost1) > 21) { $dmrMasterHost1 = substr($dmrMasterHost1, 0, 19) . '..'; }
+	}
+	if ($configdmrgateway['DMR Network 2']['Enabled']) {
+		$dmrMasterHost2 = $configdmrgateway['DMR Network 2']['Address'];
+		if (strlen($dmrMasterHost2) > 21) { $dmrMasterHost2 = substr($dmrMasterHost2, 0, 19) . '..'; }
+	}
 }
 	
 echo "<br />\n";
