@@ -846,7 +846,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	else {
 		$success = fwrite($handleMMDVMHostConfig, $mmdvmContent);
 		fclose($handleMMDVMHostConfig);
-		if (intval(exec("wc -l /tmp/bW1kdm1ob3N0DQo.tmp")) < 150 ) {
+		if (intval(exec("cat /tmp/bW1kdm1ob3N0DQo.tmp | wc -l")) < 140 ) {
 			exec('sudo mv /tmp/bW1kdm1ob3N0DQo.tmp /etc/mmdvmhost');		// Move the file back
 			exec('sudo chmod 644 /etc/mmdvmhost');					// Set the correct runtime permissions
 			exec('sudo chown root:root /etc/mmdvmhost');				// Set the owner
