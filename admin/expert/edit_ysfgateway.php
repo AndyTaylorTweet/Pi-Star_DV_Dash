@@ -24,7 +24,7 @@ if($_POST) {
 
 		foreach($data as $section=>$values) {
 			// UnBreak special cases
-			$section = str_replace("_", " ", $section);
+			$section = str_replace("_", ".", $section);
 			$content .= "[".$section."]\n";
 			//append the values
 			foreach($values as $key=>$value) {
