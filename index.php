@@ -1,4 +1,5 @@
 <?php
+header('X-Frame-Options: ALLOW');
 require_once('config/version.php');
 require_once('config/ircddblocal.php');
 $configs = array();
