@@ -720,6 +720,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	  }
 
+	  if ( $confHardware == 'zumspotusb' ) {
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	  }
+
+	  if ( $confHardware == 'zumspotgpio' ) {
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	  }
+
 	  if ( $confHardware == 'zum' ) {
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	  }
@@ -1179,6 +1187,8 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / ZUM - USB</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') { echo ' selected="selected"';}?> value="stm32dvm">STM32-DVM / MMDVM_HS - Raspberry Pi Hat (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') { echo ' selected="selected"';}?> value="stm32usb">STM32-DVM - USB</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') { echo ' selected="selected"';}?> value="zumspotusb">ZumSpot - USB</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') { echo ' selected="selected"';}?> value="zumspotgpio">ZumSpot - Raspberry Pi Hat (GPIO)</option>
     </select></td>
     </tr>
     <tr>
