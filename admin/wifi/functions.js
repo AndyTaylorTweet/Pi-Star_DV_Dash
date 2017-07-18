@@ -71,6 +71,6 @@ function DeleteNetwork(network) {
 	element.parentNode.removeChild(element);
         var Networks = document.getElementById('Networks').value;
 	Networks--
-	document.getElementById('Networks').value = Networks;
+	//document.getElementById('Networks').value = Networks;
 	//Networks--
 }
