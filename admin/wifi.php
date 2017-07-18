@@ -191,8 +191,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$ssid = $_POST['ssid'.$x];
 			$psk = $_POST['psk'.$x];
 			$priority = 100 - $x;
-			if (!$ssid && !$psk) {}
-			elseif ($ssid == "*" && !$psk) { $config .= "network={\n\t#ssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
+			if ($ssid == "*" && !$psk) { $config .= "network={\n\t#ssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
 			elseif ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
 		}
