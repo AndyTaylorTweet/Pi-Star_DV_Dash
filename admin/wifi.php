@@ -192,7 +192,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 			$psk = $_POST['psk'.$x];
 			$priority = 100 - $x;
 			if ($ssid == "*" && !$psk) { $config .= "network={\n\t#ssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
-			elseif ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\nt#psk=\"\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
+			elseif ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
 			elseif ($ssid && $psk) { $config .= "network={\n\tssid=\"$ssid\"\n\tpsk=\"$psk\"\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
 		}
 		file_put_contents('/tmp/wifidata', $config);
