@@ -1561,15 +1561,17 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <td align="left"><a class="tooltip2" href="#">P25 Startup Host:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
     <td style="text-align: left;"><select name="p25StartupHost">
 <?php
-        if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; }
-	else { $testP25Host = ""; }
-	if ($testP25Host != "") { echo "      <option value=\"none\">None</option>\n"; }
+        if (isset($configp25gateway['Network']['Startup'])) {
+		$testP25Host = $configp25gateway['Network']['Startup'];
+		echo "      <option value=\"none\">None</option>\n";
+		}
+	else { $testP25Host = "none"; }
         while (!feof($p25Hosts)) {
                 $p25HostsLine = fgets($p25Hosts);
                 $p25Host = preg_split('/\s+/', $p25HostsLine);
                 if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
                         if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
-			elseif ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
+			elseif ($testP25Host == "none") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
                         else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
                 }
         }
