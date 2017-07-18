@@ -1509,13 +1509,13 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <td style="text-align: left;"><select name="ysfStartupHost">
 <?php
         $testYSFHost = $configysfgateway['Network']['Startup'];
+	if ($testYSFHost != "") { echo "      <option value=\"\">None</option>\n"; }
         while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
                 if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
                         if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
                         elseif ($testYSFHost == "") { echo "      <option value=\"\" selected=\"selected\">None</option>\n"; }
-			//elseif ($testYSFHost != "") { echo "      <option value=\"\">None</option>\n"; }
 			else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
                 }
         }
