@@ -1557,11 +1557,13 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <td style="text-align: left;"><select name="p25StartupHost">
 <?php
         $testP25Host = $configp25gateway['Network']['Startup'];
+	if ($testP25Host != "") { echo "      <option value=\"null\">None</option>\n"; }
         while (!feof($p25Hosts)) {
                 $p25HostsLine = fgets($p25Hosts);
                 $p25Host = preg_split('/\s+/', $p25HostsLine);
                 if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
                         if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
+			elseif ($testP25Host == "") { echo "      <option value=\"null\" selected=\"selected\">None</option>\n"; }
                         else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
                 }
         }
