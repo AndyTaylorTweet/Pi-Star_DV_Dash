@@ -483,7 +483,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the P25 Startup Host
 	if (empty($_POST['p25StartupHost']) != TRUE ) {
 	  $newP25StartupHost = strtoupper(escapeshellcmd($_POST['p25StartupHost']));
-	  $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway';
+	  if ($newP25StartupHost == "NONE") { $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup=" /etc/p25gateway'; }
+	  else { $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway'; }
 	  system($rollP25Startup);
 	}
 
@@ -498,7 +499,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
 	  $newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
-	  $configysfgateway['Network']['Startup'] = $newYSFStartupHost;
+	  if ($newYSFStartupHost == "NONE") { unset($configysfgateway['Network']['Startup']) }
+	  else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
 	}
 
 	// Set Duplex
@@ -1508,14 +1510,15 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <td align="left"><a class="tooltip2" href="#">YSF Startup Host:<span><b>YSF Host</b>Set your prefered<br /> YSF Host here</span></a></td>
     <td style="text-align: left;"><select name="ysfStartupHost">
 <?php
-        $testYSFHost = $configysfgateway['Network']['Startup'];
-	if ($testYSFHost != "") { echo "      <option value=\"null\">None</option>\n"; }
+        if (isset($configysfgateway['Network']['Startup'])) { $testYSFHost = $configysfgateway['Network']['Startup']; }
+	else { $testYSFHost = ""; }
+	if ($testYSFHost != "") { echo "      <option value=\"none\">None</option>\n"; }
         while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
                 if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
                         if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
-                        elseif ($testYSFHost == "") { echo "      <option value=\"null\" selected=\"selected\">None</option>\n"; }
+                        elseif ($testYSFHost == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
 			else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
                 }
         }
@@ -1556,14 +1559,15 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     <td align="left"><a class="tooltip2" href="#">P25 Startup Host:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
     <td style="text-align: left;"><select name="p25StartupHost">
 <?php
-        $testP25Host = $configp25gateway['Network']['Startup'];
-	if ($testP25Host != "") { echo "      <option value=\"null\">None</option>\n"; }
+        if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; }
+	else { $testP25Host = ""; }
+	if ($testP25Host != "") { echo "      <option value=\"none\">None</option>\n"; }
         while (!feof($p25Hosts)) {
                 $p25HostsLine = fgets($p25Hosts);
                 $p25Host = preg_split('/\s+/', $p25HostsLine);
                 if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
                         if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
-			elseif ($testP25Host == "") { echo "      <option value=\"null\" selected=\"selected\">None</option>\n"; }
+			elseif ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
                         else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
                 }
         }
