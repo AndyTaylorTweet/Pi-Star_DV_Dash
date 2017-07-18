@@ -498,9 +498,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
-	//  $newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
-	//  if ($newYSFStartupHost == "NONE") { unset($configysfgateway['Network']['Startup']); }
-	//  else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
+	  $newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
+	  if ($newYSFStartupHost == "NONE") { unset($configysfgateway['Network']['Startup']); }
+	  else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
 	}
 
 	// Set Duplex
@@ -1511,16 +1511,18 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <td style="text-align: left;"><select name="ysfStartupHost">
 <?php
         if (isset($configysfgateway['Network']['Startup'])) {
-		$testYSFHost = $configysfgateway['Network']['Startup'];
-		echo "      <option value=\"none\">None</option>\n";
-		}
-	else { $testYSFHost = "none"; }
+                $testYSFHost = $configysfgateway['Network']['Startup'];
+                echo "      <option value=\"none\">None</option>\n";
+                }
+        else {
+                $testYSFHost = "none";
+                echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
+                }
         while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
                 if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
                         if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
-                        elseif ($testYSFHost == "none") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
 			else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
                 }
         }
