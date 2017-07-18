@@ -1510,9 +1510,11 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <td align="left"><a class="tooltip2" href="#">YSF Startup Host:<span><b>YSF Host</b>Set your prefered<br /> YSF Host here</span></a></td>
     <td style="text-align: left;"><select name="ysfStartupHost">
 <?php
-        if (isset($configysfgateway['Network']['Startup'])) { $testYSFHost = $configysfgateway['Network']['Startup']; }
+        if (isset($configysfgateway['Network']['Startup'])) {
+		$testYSFHost = $configysfgateway['Network']['Startup'];
+		echo "      <option value=\"none\">None</option>\n";
+		}
 	else { $testYSFHost = ""; }
-	if ($testYSFHost != "") { echo "      <option value=\"none\">None</option>\n"; }
         while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
