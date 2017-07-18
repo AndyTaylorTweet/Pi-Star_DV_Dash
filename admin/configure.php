@@ -483,7 +483,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the P25 Startup Host
 	if (empty($_POST['p25StartupHost']) != TRUE ) {
           $newP25StartupHost = strtoupper(escapeshellcmd($_POST['p25StartupHost']));
-          if ($newP25StartupHost === "NONE") { $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup=" /etc/p25gateway'; }
+          if ($newP25StartupHost === "NONE") { $rollP25Startup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/p25gateway'; }
           else { $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway'; }
           system($rollP25Startup);
 	}
