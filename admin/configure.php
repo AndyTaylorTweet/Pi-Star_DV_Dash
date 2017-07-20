@@ -1123,7 +1123,7 @@ else:
 	    <option <?php if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "") ) {echo 'selected="selected" ';}; ?>value="None">None</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "OLED") {echo 'selected="selected" ';}; ?>value="OLED">OLED</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "Nextion") {echo 'selected="selected" ';}; ?>value="Nextion">Nextion</option>
-    </td>
+    </select></td>
     </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
