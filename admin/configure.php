@@ -1114,16 +1114,16 @@ else:
     ?>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Mode Hangtime:<span><b>Mode Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (20 secs works well)</td>
-    </tr>
-    <tr>
     <td align="left"><a class="tooltip2" href="#">MMDVM Display Type:<span><b>Display Type</b>Choose your display<br />type if you have one.</span></a></td>
     <td align="left"><select name="mmdvmDisplayType">
 	    <option <?php if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "") ) {echo 'selected="selected" ';}; ?>value="None">None</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "OLED") {echo 'selected="selected" ';}; ?>value="OLED">OLED</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "Nextion") {echo 'selected="selected" ';}; ?>value="Nextion">Nextion</option>
-    </select></td>
+	    </select></td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Mode Hangtime:<span><b>Mode Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
+    <td align="left" colspan="2"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (20 secs works well)</td>
     </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
