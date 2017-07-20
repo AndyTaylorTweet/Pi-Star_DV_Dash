@@ -800,6 +800,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeP25']) == 'OFF' ) { $configmmdvm['P25']['Enable'] = "0"; $configmmdvm['P25 Network']['Enable'] = "0"; }
 	}
 
+	// Set the MMDVMHost Display Type
+	if  (empty($_POST['mmdvmDisplayType']) != TRUE ) {
+	  $configmmdvm['General']['Display'] = escapeshellcmd($_POST['mmdvmDisplayType']);
+	}
+
 	// Set MMDVMHost DMR Colour Code
 	if (empty($_POST['dmrColorCode']) != TRUE ) {
           $configmmdvm['DMR']['ColorCode'] = escapeshellcmd($_POST['dmrColorCode']);
@@ -1195,10 +1200,10 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr3') { echo ' selected="selected"';}?> value="dvrptr3">DV-RPTR V3 USB</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvap') { echo ' selected="selected"';}?> value="dvap">DVAP USB</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / ZUM - USB</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') { echo ' selected="selected"';}?> value="stm32dvm">STM32-DVM / MMDVM_HS - Raspberry Pi Hat (GPIO)</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') { echo ' selected="selected"';}?> value="stm32usb">STM32-DVM - USB</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') { echo ' selected="selected"';}?> value="zumspotusb">ZumSpot - USB</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') { echo ' selected="selected"';}?> value="zumspotgpio">ZumSpot - Raspberry Pi Hat (GPIO)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') { echo ' selected="selected"';}?> value="stm32dvm">STM32-DVM / MMDVM_HS - Raspberry Pi Hat (GPIO)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') { echo ' selected="selected"';}?> value="stm32usb">STM32-DVM - USB</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') { echo ' selected="selected"';}?> value="zumspotusb">ZumSpot - USB</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') { echo ' selected="selected"';}?> value="zumspotgpio">ZumSpot - Raspberry Pi Hat (GPIO)</option>
     </select></td>
     </tr>
     <tr>
