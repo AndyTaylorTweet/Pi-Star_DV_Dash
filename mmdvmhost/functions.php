@@ -228,24 +228,25 @@ function getDVModemFirmware() {
 	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
 	$logMMDVMPrevious = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
 	$logSearchString = "MMDVM protocol version";
-
-	$logLine = shell_exec("grep \"".$logSearchString."\" ".$logMMDVMNow." | tail -1");
-	$logLinePrevious = shell_exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1");
-	if ((!$logLine) && ($logLinePrevious)) { $logLine = $logLinePrevious; }
+	$logLine = '';
 	$modemFirmware = '';
 
-	if (strpos($logLine, 'DVMEGA')) {
-		$modemFirmware = substr($logLine, 67, 15);
-	}
-	if (strpos($logLine, 'description: MMDVM_HS')) {
-		$modemFirmware = "MMDVM_HS:".substr($logLine, 84, 8);
-	}
-	if (strpos($logLine, 'description: MMDVM ')) {
-		$modemFirmware = "MMDVM:".substr($logLine, 73, 8);
+	$logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMNow." | tail -1");
+	if (!$logLine) { $logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1"); }
+
+	if ($logLine) {
+		if (strpos($logLine, 'DVMEGA')) {
+			$modemFirmware = substr($logLine, 67, 15);
+		}
+		if (strpos($logLine, 'description: MMDVM_HS')) {
+			$modemFirmware = "MMDVM_HS:".substr($logLine, 84, 8);
+		}
+		if (strpos($logLine, 'description: MMDVM ')) {
+			$modemFirmware = "MMDVM:".substr($logLine, 73, 8);
+		}
 	}
 	return $modemFirmware;
 }
-
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // M: 2016-04-29 00:15:00.013 D-Star, received network header from DG9VH   /ZEIT to CQCQCQ   via DCS002 S
