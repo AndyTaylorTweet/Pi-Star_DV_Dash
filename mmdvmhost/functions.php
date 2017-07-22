@@ -241,9 +241,9 @@ function getDVModemFirmware() {
 // M: 2017-04-18 08:00:42.337 P25, received RF end of transmission, 0.4 seconds, BER: 0.0%
 // M: 2017-04-18 08:00:43.728 P25, received network transmission from 10999 to TG 10200
 // M: 2017-04-18 08:00:45.172 P25, network end of transmission, 1.8 seconds, 0% packet loss
-// M: 2017-07-08 15:16:14.571 YSF, received RF data from 2E0EHH     to ALL       
+// M: 2017-07-08 15:16:14.571 YSF, received RF data from 2E0EHH     to ALL
 // M: 2017-07-08 15:16:19.551 YSF, received RF end of transmission, 5.1 seconds, BER: 3.8%
-// M: 2017-07-08 15:16:21.711 YSF, received network data from G0NEF      to ALL        at MB6IBK    
+// M: 2017-07-08 15:16:21.711 YSF, received network data from G0NEF      to ALL        at MB6IBK
 // M: 2017-07-08 15:16:30.994 YSF, network watchdog has expired, 5.0 seconds, 0% packet loss, BER: 0.0%
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
