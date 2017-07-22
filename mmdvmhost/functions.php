@@ -219,55 +219,31 @@ function getP25GatewayLog() {
         return $logLines;
 }
 
-function getMMDVMLogInfo() {
-        $logLinesInfo = array();
-        if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
-                if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
-                        while ($logLineInfo = fgets($log)) {
-                                if (startsWith($logLineInfo,"I:")) {
-                                        array_push($logLinesInfo, $logLineInfo);
-                                }
-                        }
-                        fclose($log);
-                }
-        }
-        if (sizeof($logLinesInfo) < 1) {
-                if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
-                        if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
-                                while ($logLineInfo = fgets($log)) {
-                                        if (startsWith($logLineInfo,"I:")) {
-                                                array_push($logLinesInfo, $logLineInfo);
-                                        }
-                                }
-                                fclose($log);
-                        }
-                }
-        }
-        return $logLinesInfo;
-}
-
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // I: 2017-05-18 07:03:43.365 MMDVM protocol version: 1, description: DVMEGA HR3.14
 // I: 2017-05-20 19:36:19.575 MMDVM protocol version: 1, description: MMDVM_HS-ADF7021 20170414 (D-Star/DMR/YSF/P25) (Build: 20:16:25 May 20 2017)
 // I: 2017-07-06 10:55:45.791 MMDVM protocol version: 1, description: MMDVM 20170206 TCXO (D-Star/DMR/System Fusion/P25/RSSI/CW Id)
 function getDVModemFirmware() {
-        $logLinesInfo = getMMDVMLogInfo();
-        $modemFirmware = "";
-        foreach ($logLinesInfo as $logLine) {
-                if(strpos($logLine,"MMDVM protocol version")) {
-			if (strpos($logLine, 'DVMEGA')) {
-                        	$modemFirmware = substr($logLine, 67, 15);
-			}
-			if (strpos($logLine, 'description: MMDVM_HS')) {
-				$modemFirmware = "MMDVM_HS:".substr($logLine, 84, 8);
-			}
-			if (strpos($logLine, 'description: MMDVM ')) {
-				$modemFirmware = "MMDVM:".substr($logLine, 73, 8);
-			}
-                }
-        }
-        return $modemFirmware;
+	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
+	$logMMDVMPrevious = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+	$logSearchString = "MMDVM protocol version";
+
+	$logLine = shell_exec("grep \"".$logSearchString."\" ".$logMMDVMNow." | tail -1");
+	$logLinePrevious = shell_exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1");
+	if ((!$logLine) && ($logLinePrevious)) { $logLine = $logLinePrevious; }
+	$modemFirmware = '';
+
+	if (strpos($logLine, 'DVMEGA')) {
+		$modemFirmware = substr($logLine, 67, 15);
+	}
+	if (strpos($logLine, 'description: MMDVM_HS')) {
+		$modemFirmware = "MMDVM_HS:".substr($logLine, 84, 8);
+	}
+	if (strpos($logLine, 'description: MMDVM ')) {
+		$modemFirmware = "MMDVM:".substr($logLine, 73, 8);
+	}
+	return $modemFirmware;
 }
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
