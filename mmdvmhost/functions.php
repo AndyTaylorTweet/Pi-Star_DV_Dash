@@ -119,87 +119,99 @@ function showMode($mode, $mmdvmconfigs) {
 function getMMDVMLog() {
         // Open Logfile and copy loglines into LogLines-Array()
         $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
         if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
                 if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
                         while ($logLine = fgets($log)) {
                                 if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
-                                        array_push($logLines, $logLine);
+                                        array_push($logLines1, $logLine);
                                 }
                         }
                         fclose($log);
                 }
         }
-	$logLines = array_slice($logLines, -200);
+	$logLines1 = array_slice($logLines1, -200);
         if (sizeof($logLines) < 50) {
                 if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
                                         if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
-                                                array_push($logLines, $logLine);
+                                                array_push($logLines2, $logLine);
                                         }
                                 }
                                 fclose($log);
                         }
                 }
         }
+	$logLines2 = array_slice($logLines2, -200);
+	$logLines = $logLines2 + $logLines1;
         return $logLines;
 }
 
 function getYSFGatewayLog() {
         // Open Logfile and copy loglines into LogLines-Array()
         $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
         if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
                 if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
                         while ($logLine = fgets($log)) {
                                 if (startsWith($logLine,"M:")) {
-                                        array_push($logLines, $logLine);
+                                        array_push($logLines1, $logLine);
                                 }
                         }
                         fclose($log);
                 }
         }
-	$logLines = array_slice($logLines, -200);
+	$logLines1 = array_slice($logLines1, -200);
         if (sizeof($logLines) < 50) {
                 if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
                                         if (startsWith($logLine,"M:")) {
-                                                array_push($logLines, $logLine);
+                                                array_push($logLines2, $logLine);
                                         }
                                 }
                                 fclose($log);
                         }
                 }
         }
+	$logLines2 = array_slice($logLines2, -200);
+	$logLines = $logLines2 + $logLines1;
         return $logLines;
 }
 
 function getP25GatewayLog() {
         // Open Logfile and copy loglines into LogLines-Array()
         $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
                 if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
                         while ($logLine = fgets($log)) {
                                 if (startsWith($logLine,"M:")) {
-                                        array_push($logLines, $logLine);
+                                        array_push($logLines1, $logLine);
                                 }
                         }
                         fclose($log);
                 }
         }
-	$logLines = array_slice($logLines, -200);
+	$logLines1 = array_slice($logLines1, -200);
         if (sizeof($logLines) < 50) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
                                         if (startsWith($logLine,"M:")) {
-                                        array_push($logLines, $logLine);
+                                        array_push($logLines2, $logLine);
                                         }
                                 }
                                 fclose($log);
                         }
                 }
         }
+	$logLines2 = array_slice($logLines2, -200);
+	$logLines = $logLines2 + $logLines1;
         return $logLines;
 }
 
