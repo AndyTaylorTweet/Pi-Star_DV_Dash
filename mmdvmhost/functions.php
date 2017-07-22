@@ -10,14 +10,6 @@ function getMMDVMHostVersion() {
 	}
 }
 
-function getMMDVMHostFileVersion() {
-	// returns creation-time of MMDVMHost as version-number
-	$filename = MMDVMHOSTPATH."/MMDVMHost";
-	if (file_exists($filename)) {
-		return date("d M y", filectime($filename));
-	}
-}
-
 function getMMDVMConfig() {
 	// loads MMDVM.ini into array for further use
 	$conf = array();
