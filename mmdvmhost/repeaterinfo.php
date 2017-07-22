@@ -119,37 +119,17 @@ echo "</table>\n";
 
 $testMMDVModeDMR = getConfigItem("DMR", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeDMR == 1 ) { //Hide the DMR information when DMR mode not enabled.
-$dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
+if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
 if ($dmrMasterHost == '127.0.0.1') {
 	$xlxMasterHost1 = $configdmrgateway['XLX Network 1']['Address'];
-	$dmrMasterHost1 = $configdmrgateway['DMR Network 1']['Address'];
-	$dmrMasterHost2 = $configdmrgateway['DMR Network 2']['Address'];
-	while (!feof($dmrMasterFile)) {
-		$dmrMasterLine = fgets($dmrMasterFile);
-                $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
-		if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
-			if ($xlxMasterHost1 == $dmrMasterHostF[2]) { $xlxMasterHost1 = $dmrMasterHostF[0]; }
-			if ($dmrMasterHost1 == $dmrMasterHostF[2]) { $dmrMasterHost1 = $dmrMasterHostF[0]; }
-			if ($dmrMasterHost2 == $dmrMasterHostF[2]) { $dmrMasterHost2 = $dmrMasterHostF[0]; }
-		}
-	}
 	if (strlen($xlxMasterHost1) > 21) { $xlxMasterHost1 = substr($xlxMasterHost1, 0, 19) . '..'; }
+	$dmrMasterHost1 = $configdmrgateway['DMR Network 1']['Address'];
 	if (strlen($dmrMasterHost1) > 21) { $dmrMasterHost1 = substr($dmrMasterHost1, 0, 19) . '..'; }
+	$dmrMasterHost2 = $configdmrgateway['DMR Network 2']['Address'];
 	if (strlen($dmrMasterHost2) > 21) { $dmrMasterHost2 = substr($dmrMasterHost2, 0, 19) . '..'; }
 }
-else {
-	while (!feof($dmrMasterFile)) {
-		$dmrMasterLine = fgets($dmrMasterFile);
-                $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
-		if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
-			if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = $dmrMasterHostF[0]; }
-		}
-	}
-	if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
-}
-fclose($dmrMasterFile);
-
+	
 echo "<br />\n";
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">DMR Repeater</th></tr>\n";
