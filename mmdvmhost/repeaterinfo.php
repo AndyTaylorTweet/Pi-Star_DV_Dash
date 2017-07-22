@@ -128,7 +128,7 @@ if ($dmrMasterHost == '127.0.0.1') {
 	while (!feof($dmrMasterFile)) {
 		$dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
-		if (strpos($dmrMasterHostF[0], '#') === FALSE ) {
+		if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
 			if ($xlxMasterHost1 == $dmrMasterHostF[2]) { $xlxMasterHost1 = $dmrMasterHostF[0]; }
 			if ($dmrMasterHost1 == $dmrMasterHostF[2]) { $dmrMasterHost1 = $dmrMasterHostF[0]; }
 			if ($dmrMasterHost2 == $dmrMasterHostF[2]) { $dmrMasterHost2 = $dmrMasterHostF[0]; }
@@ -142,7 +142,7 @@ else {
 	while (!feof($dmrMasterFile)) {
 		$dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
-		if (strpos($dmrMasterHostF[0], '#') === FALSE ) {
+		if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
 			if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = $dmrMasterHostF[0]; }
 		}
 	}
