@@ -349,7 +349,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollFREQdvmegaTx);
 
 	// Set RPT1 and RPT2
-	  if (empty($_POST['confDStarModuleSuffix']) != TRUE {
+	  if (empty($_POST['confDStarModuleSuffix']) != TRUE) {
 	    if ($newFREQtx >= 1240000000 && $newFREQtx <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
@@ -420,7 +420,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollFREQdvmegaTx);
 
 	// Set RPT1 and RPT2
-	  if (empty($_POST['confDStarModuleSuffix']) != TRUE {
+	  if (empty($_POST['confDStarModuleSuffix']) != TRUE) {
 	    if ($newFREQ >= 1240000000 && $newFREQ <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
