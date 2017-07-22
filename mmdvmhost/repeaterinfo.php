@@ -129,9 +129,9 @@ if ($dmrMasterHost == '127.0.0.1') {
 		$dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
 		if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
-			if ($xlxMasterHost1 == $dmrMasterHostF[2]) { $xlxMasterHost1 = $dmrMasterHostF[0]; }
-			if ($dmrMasterHost1 == $dmrMasterHostF[2]) { $dmrMasterHost1 = $dmrMasterHostF[0]; }
-			if ($dmrMasterHost2 == $dmrMasterHostF[2]) { $dmrMasterHost2 = $dmrMasterHostF[0]; }
+			if ($xlxMasterHost1 == $dmrMasterHostF[2]) { $xlxMasterHost1 = str_replace('_', '', $dmrMasterHostF[0]); }
+			if ($dmrMasterHost1 == $dmrMasterHostF[2]) { $dmrMasterHost1 = str_replace('_', '', $dmrMasterHostF[0]); }
+			if ($dmrMasterHost2 == $dmrMasterHostF[2]) { $dmrMasterHost2 = str_replace('_', '', $dmrMasterHostF[0]); }
 		}
 	}
 	if (strlen($xlxMasterHost1) > 21) { $xlxMasterHost1 = substr($xlxMasterHost1, 0, 19) . '..'; }
@@ -143,7 +143,7 @@ else {
 		$dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
 		if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
-			if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = $dmrMasterHostF[0]; }
+			if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', '', $dmrMasterHostF[0]); }
 		}
 	}
 	if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
