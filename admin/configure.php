@@ -349,26 +349,34 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollFREQdvmegaTx);
 
 	// Set RPT1 and RPT2
-	  if ($newFREQtx >= 1240000000 && $newFREQtx <= 1300000000) {
+	  if (empty($_POST['confDStarModuleSuffix']) != TRUE {
+	    if ($newFREQtx >= 1240000000 && $newFREQtx <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
 		}
-	  if ($newFREQtx >= 420000000 && $newFREQtx <= 450000000) {
+	    if ($newFREQtx >= 420000000 && $newFREQtx <= 450000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."B";
 		$confIRCrepeaterBand1 = "B";
 		$configmmdvm['D-Star']['Module'] = "B";
 		}
-	  if ($newFREQtx >= 218000000 && $newFREQtx <= 226000000) {
+	    if ($newFREQtx >= 218000000 && $newFREQtx <= 226000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
 		}
-	  if ($newFREQtx >= 144000000 && $newFREQtx <= 148000000) {
+	    if ($newFREQtx >= 144000000 && $newFREQtx <= 148000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."C";
 		$confIRCrepeaterBand1 = "C";
 		$configmmdvm['D-Star']['Module'] = "C";
 		}
+	  }
+	  else {
+	     $confRPT1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $confIRCrepeaterBand1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $configmmdvm['D-Star']['Module'] = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	  }
+
 	  $newCallsignUpper = strtoupper(escapeshellcmd($_POST['confCallsign']));
 	  $confRPT2 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."G";
 
@@ -412,26 +420,34 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollFREQdvmegaTx);
 
 	// Set RPT1 and RPT2
-	  if ($newFREQ >= 1240000000 && $newFREQ <= 1300000000) {
+	  if (empty($_POST['confDStarModuleSuffix']) != TRUE {
+	    if ($newFREQ >= 1240000000 && $newFREQ <= 1300000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
 		}
-	  if ($newFREQ >= 420000000 && $newFREQ <= 450000000) {
+	    if ($newFREQ >= 420000000 && $newFREQ <= 450000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."B";
 		$confIRCrepeaterBand1 = "B";
 		$configmmdvm['D-Star']['Module'] = "B";
 		}
-	  if ($newFREQ >= 218000000 && $newFREQ <= 226000000) {
+	    if ($newFREQ >= 218000000 && $newFREQ <= 226000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
 		}
-	  if ($newFREQ >= 144000000 && $newFREQ <= 148000000) {
+	    if ($newFREQ >= 144000000 && $newFREQ <= 148000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."C";
 		$confIRCrepeaterBand1 = "C";
 		$configmmdvm['D-Star']['Module'] = "C";
 		}
+	  }
+	  else {
+	     $confRPT1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $confIRCrepeaterBand1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $configmmdvm['D-Star']['Module'] = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	  }
+
 	  $newCallsignUpper = strtoupper(escapeshellcmd($_POST['confCallsign']));
 	  $confRPT2 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."G";
 
