@@ -127,10 +127,10 @@ if ($dmrMasterHost == '127.0.0.1') {
 	$dmrMasterHost2 = $configdmrgateway['DMR Network 2']['Address'];
 	while (!feof($dmrMasterFile)) {
 		$dmrMasterLine = fgets($dmrMasterFile);
-                $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
-		if ($xlxMasterHost1 == $dmrMasterHost[2]) { $xlxMasterHost1 = $dmrMasterHost[0]; }
-		if ($dmrMasterHost1 == $dmrMasterHost[2]) { $dmrMasterHost1 = $dmrMasterHost[0]; }
-		if ($dmrMasterHost2 == $dmrMasterHost[2]) { $dmrMasterHost2 = $dmrMasterHost[0]; }
+                $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
+		if ($xlxMasterHost1 == $dmrMasterHostF[2]) { $xlxMasterHost1 = $dmrMasterHostF[0]; }
+		if ($dmrMasterHost1 == $dmrMasterHostF[2]) { $dmrMasterHost1 = $dmrMasterHostF[0]; }
+		if ($dmrMasterHost2 == $dmrMasterHostF[2]) { $dmrMasterHost2 = $dmrMasterHostF[0]; }
 	}
 	if (strlen($xlxMasterHost1) > 21) { $xlxMasterHost1 = substr($xlxMasterHost1, 0, 19) . '..'; }
 	if (strlen($dmrMasterHost1) > 21) { $dmrMasterHost1 = substr($dmrMasterHost1, 0, 19) . '..'; }
@@ -139,12 +139,11 @@ if ($dmrMasterHost == '127.0.0.1') {
 else {
 	while (!feof($dmrMasterFile)) {
 		$dmrMasterLine = fgets($dmrMasterFile);
-                $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
-		if ($dmrMasterHost == $dmrMasterHost[2]) { $dmrMasterHost = $dmrMasterHost[0]; }
+                $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
+		if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = $dmrMasterHostF[0]; }
 	}
 	if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
 }
-
 fclose($dmrMasterFile1);
 
 echo "<br />\n";
