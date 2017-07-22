@@ -131,8 +131,8 @@ function getMMDVMLog() {
                         fclose($log);
                 }
         }
-	$logLines1 = array_slice($logLines1, -200);
-        if (sizeof($logLines1) < 50) {
+	$logLines1 = array_slice($logLines1, -250);
+        if (sizeof($logLines1) < 250) {
                 if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
@@ -144,8 +144,9 @@ function getMMDVMLog() {
                         }
                 }
         }
-	$logLines2 = array_slice($logLines2, -200);
+	$logLines2 = array_slice($logLines2, -250);
 	$logLines = $logLines2 + $logLines1;
+	$logLines = array_slice($logLines, -250);
         return $logLines;
 }
 
@@ -164,8 +165,8 @@ function getYSFGatewayLog() {
                         fclose($log);
                 }
         }
-	$logLines1 = array_slice($logLines1, -200);
-        if (sizeof($logLines1) < 50) {
+	$logLines1 = array_slice($logLines1, -250);
+        if (sizeof($logLines1) < 250) {
                 if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
@@ -177,8 +178,9 @@ function getYSFGatewayLog() {
                         }
                 }
         }
-	$logLines2 = array_slice($logLines2, -200);
+	$logLines2 = array_slice($logLines2, -250);
 	$logLines = $logLines2 + $logLines1;
+	$logLines = array_slice($logLines, -250);
         return $logLines;
 }
 
@@ -197,8 +199,8 @@ function getP25GatewayLog() {
                         fclose($log);
                 }
         }
-	$logLines1 = array_slice($logLines1, -200);
-        if (sizeof($logLines1) < 50) {
+	$logLines1 = array_slice($logLines1, -250);
+        if (sizeof($logLines1) < 250) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
@@ -210,8 +212,9 @@ function getP25GatewayLog() {
                         }
                 }
         }
-	$logLines2 = array_slice($logLines2, -200);
+	$logLines2 = array_slice($logLines2, -250);
 	$logLines = $logLines2 + $logLines1;
+	$logLines = array_slice($logLines, -250);
         return $logLines;
 }
 
