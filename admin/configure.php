@@ -1289,10 +1289,10 @@ else:
 	fclose($dmrMasterFile1);
 ?>
     </select></td></tr>
-    <tr>
+    <!-- <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Password:<span><b>BrandMeister Password</b>Override the Password<br />for BrandMeister</span></a></td>
     <td align="left"><input type="text" name="bmPasswordOverride" size="30" maxlength="30" value="<?php echo $configdmrgateway['DMR Network 1']['Password']; ?>"></input></td>
-    </tr>
+    </tr> -->
     <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
@@ -1345,10 +1345,10 @@ else:
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" /><label for=\"toggle-dmrGatewayXlxEn\"></label></div>\n"; } ?>
     </td></tr>
 <?php }
-    if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
+    if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <!-- <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Password:<span><b>BrandMeister Password</b>Override the Password<br />for BrandMeister</span></a></td>
     <td align="left"><input type="text" name="bmPasswordOverride" size="30" maxlength="30" value="'.$configmmdvm['DMR Network']['Password'].'"></input></td>
-    </tr>
+    </tr> -->
     <tr>
     <td align="left"><a class="tooltip2" href="#">BrandMeister Network:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
