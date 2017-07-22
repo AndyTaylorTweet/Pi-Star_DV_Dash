@@ -140,7 +140,7 @@ else {
 	while (!feof($dmrMasterFile)) {
 		$dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
-		if ($dmrMasterHost == $dmrMasterHost[2]) { $dmrMasterHost == $dmrMasterHost[0]; }
+		if ($dmrMasterHost == $dmrMasterHost[2]) { $dmrMasterHost = $dmrMasterHost[0]; }
 	}
 	if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
 }
