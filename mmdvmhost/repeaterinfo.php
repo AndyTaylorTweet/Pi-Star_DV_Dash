@@ -144,7 +144,7 @@ else {
 	}
 	if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
 }
-fclose($dmrMasterFile1);
+fclose($dmrMasterFile);
 
 echo "<br />\n";
 echo "<table>\n";
