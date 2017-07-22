@@ -1374,7 +1374,36 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">RPT1 Callsign:<span><b>RPT1 Callsign</b>This is the RPT1 field for your radio</span></a></td>
-    <td align="left" colspan="2"><?php echo str_replace(' ', '&nbsp;', $configdstar['callsign']) ?></td>
+    <td align="left" colspan="2"><?php echo str_replace(' ', '&nbsp;', substr($configdstar['callsign'], 0, 7)) ?>
+	<select name="confDStarModuleSuffix">
+	<?php echo "  <option value=\"".substr($configdstar['callsign'], 7)."\" selected=\"selected\">".substr($configdstar['callsign'], 7)."</option>\n"; ?>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+        <option>H</option>
+        <option>I</option>
+        <option>J</option>
+        <option>K</option>
+        <option>L</option>
+        <option>M</option>
+        <option>N</option>
+        <option>O</option>
+        <option>P</option>
+        <option>Q</option>
+        <option>R</option>
+        <option>S</option>
+        <option>T</option>
+        <option>U</option>
+        <option>V</option>
+        <option>W</option>
+        <option>X</option>
+        <option>Y</option>
+        <option>Z</option>
+    </select></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">RPT2 Callsign:<span><b>RPT2 Callsign</b>This is the RPT2 field for your radio</span></a></td>
