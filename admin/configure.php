@@ -1297,6 +1297,10 @@ else:
     </td>
     </tr>
     <tr>
+    <td align="left"><a class="tooltip2" href="#">BrandMeister Password:<span><b>BrandMeister Password</b>Override the Password<br />for BrandMeister</span></a></td>
+    <td align="left"><input type="text" name="bmPasswordOverride" size="68" maxlength="100" value="<?php echo $configdmrgateway['DMR Network 1']['Password']; ?>"></input></td>
+    </tr>
+    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR+ Master:<span><b>DMR+ Master</b>Set your prefered DMR<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost2">
 <?php
@@ -1347,6 +1351,10 @@ else:
       <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> | 
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['DMR']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">BrandMeister Password:<span><b>BrandMeister Password</b>Override the Password<br />for BrandMeister</span></a></td>
+    <td align="left"><input type="text" name="bmPasswordOverride" size="68" maxlength="100" value="'.$configmmdvm['DMR Network']['Password'].'"></input></td>
     </tr>'."\n";}
     if (substr($dmrMasterNow, 0, 4) == "DMR+") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR+ Network:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
