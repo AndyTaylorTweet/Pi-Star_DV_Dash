@@ -372,7 +372,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 	  }
 	  else {
-	     $confRPT1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ").strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $confIRCrepeaterBand1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $configmmdvm['D-Star']['Module'] = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	  }
@@ -443,7 +443,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 	  }
 	  else {
-	     $confRPT1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ").strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $confIRCrepeaterBand1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $configmmdvm['D-Star']['Module'] = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	  }
