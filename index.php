@@ -81,7 +81,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'config/config.php';					// MMDVMDash Config
 	include 'mmdvmhost/tools.php';					// MMDVMDash Tools
-	include 'mmdvmhost/functions.php';				// MMDVMDash Functions
+	//include 'mmdvmhost/functions.php';				// MMDVMDash Functions
 
 	echo '<div class="nav">'."\n";					// Start the Side Menu
 	echo '<script type="text/javascript">'."\n";
