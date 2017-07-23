@@ -131,24 +131,17 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	}
 
 	echo '<script type="text/javascript">'."\n";
-	echo 'function reloadLastHerd(){'."\n";
+	echo 'function reloadLocalTx(){'."\n";
+	echo '  $("#localTxs").load("/mmdvmhost/localtx.php");'."\n";
 	echo '  $("#lastHerd").load("/mmdvmhost/lh.php");'."\n";
 	echo '}'."\n";
-	echo 'setInterval(function(){reloadLastHerd()}, 1500);'."\n";
+	echo 'setInterval(function(){reloadLocalTx()}, 1500);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="lastHerd">'."\n";
 	include 'mmdvmhost/lh.php';					// MMDVMDash Last Herd
 	echo '</div>'."\n";
 	echo "<br />\n";
-
-	echo '<script type="text/javascript">'."\n";
-	echo 'function reloadLocalTx(){'."\n";
-	echo '  $("#localTxs").load("/mmdvmhost/localtx.php");'."\n";
-	echo '}'."\n";
-	echo 'setInterval(function(){reloadLocalTx()}, 1500);'."\n";
-	echo '$(window).trigger(\'resize\');'."\n";
-	echo '</script>'."\n";
 	echo '<div id="localTxs">'."\n";
 	include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
 	echo '</div>'."\n";
@@ -186,24 +179,17 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '</div>'."\n";
 
 	echo '<script type="text/javascript">'."\n";
-	echo 'function reloadLh(){'."\n";
+	echo 'function reloadLocalTx(){'."\n";
+	echo '  $("#localTx").load("/dstarrepeater/local_tx.php");'."\n";
 	echo '  $("#lh").load("/dstarrepeater/last_herd.php");'."\n";
 	echo '}'."\n";
-	echo 'setInterval(function(){reloadLh()}, 2000);'."\n";
+	echo 'setInterval(function(){reloadLocalTx()}, 3000);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="lh">'."\n";
 	include 'dstarrepeater/last_herd.php';				//dstarrepeater Last Herd
         echo '</div>'."\n";
 	echo "<br />\n";
-
-	echo '<script type="text/javascript">'."\n";
-	echo 'function reloadLocalTx(){'."\n";
-	echo '  $("#localTx").load("/dstarrepeater/local_tx.php");'."\n";
-	echo '}'."\n";
-	echo 'setInterval(function(){reloadLocalTx()}, 3000);'."\n";
-	echo '$(window).trigger(\'resize\');'."\n";
-	echo '</script>'."\n";
 	echo '<div id="localTx">'."\n";
 	include 'dstarrepeater/local_tx.php';				//dstarrepeater Local Transmissions
         echo '</div>'."\n";
