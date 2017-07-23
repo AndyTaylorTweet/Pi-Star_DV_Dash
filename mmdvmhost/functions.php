@@ -117,71 +117,47 @@ function showMode($mode, $mmdvmconfigs) {
 }
 
 function getMMDVMLog() {
-        // Open Logfile and copy loglines into LogLines-Array()
-        $logLines = array();
+	// Open Logfile and copy loglines into LogLines-Array()
+	$logLines = array();
 	$logLines1 = array();
 	$logLines2 = array();
-        if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
-                if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
-                        while ($logLine = fgets($log)) {
-                                if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
-                                        array_push($logLines1, $logLine);
-                                }
-                        }
-                        fclose($log);
-                }
-        }
+	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+		$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
+		$logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | tail -250`);
+	}
 	$logLines1 = array_slice($logLines1, -250);
-        if (sizeof($logLines1) < 250) {
-                if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
-                        if ($log = fopen(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
-                                while ($logLine = fgets($log)) {
-                                        if (!strpos($logLine, "Debug") && !strpos($logLine,"Received a NAK") && !startsWith($logLine,"I:") && !startsWith($logLine,"E:")) {
-                                                array_push($logLines2, $logLine);
-                                        }
-                                }
-                                fclose($log);
-                        }
-                }
-        }
+	if (sizeof($logLines1) < 250) {
+		if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
+			$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | tail -250`);
+		}
+	}
 	$logLines2 = array_slice($logLines2, -250);
 	$logLines = $logLines1 + $logLines2;
 	$logLines = array_slice($logLines, -250);
-        return $logLines;
+	return $logLines;
 }
 
 function getYSFGatewayLog() {
-        // Open Logfile and copy loglines into LogLines-Array()
-        $logLines = array();
+	// Open Logfile and copy loglines into LogLines-Array()
+	$logLines = array();
 	$logLines1 = array();
 	$logLines2 = array();
-        if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
-                if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
-                        while ($logLine = fgets($log)) {
-                                if (startsWith($logLine,"M:")) {
-                                        array_push($logLines1, $logLine);
-                                }
-                        }
-                        fclose($log);
-                }
-        }
+	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+		$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
+		$logLines1 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250`);
+	}
 	$logLines1 = array_slice($logLines1, -250);
-        if (sizeof($logLines1) < 250) {
-                if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
-                        if ($log = fopen(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
-                                while ($logLine = fgets($log)) {
-                                        if (startsWith($logLine,"M:")) {
-                                                array_push($logLines2, $logLine);
-                                        }
-                                }
-                                fclose($log);
-                        }
-                }
-        }
+	if (sizeof($logLines1) < 250) {
+		if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
+			$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines1 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250`);
+		}
+	}
 	$logLines2 = array_slice($logLines2, -250);
 	$logLines = $logLines1 + $logLines2;
 	$logLines = array_slice($logLines, -250);
-        return $logLines;
+	return $logLines;
 }
 
 function getP25GatewayLog() {
@@ -295,14 +271,10 @@ function getHeardList($logLines) {
 			continue;
 		} else if(strpos($logLine,"non repeater RF header received")) {
 			continue;
-		//} else if(strpos($logLine,"network watchdog has expired")) {
-                //        continue;
 		} else if(strpos($logLine,"received network data header from")) {
 			continue;
 		} else if(strpos($logLine,"Embedded Talker Alias")) {
                         continue;
-		} else if(strpos($logLine, 27, 6) == "0000: ") {
-                        continue;	
 		}
 
 		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network") || strpos($logLine, "RF user has timed out")) {
