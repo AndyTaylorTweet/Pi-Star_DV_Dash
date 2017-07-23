@@ -145,7 +145,7 @@ function getMMDVMLog() {
                 }
         }
 	$logLines2 = array_slice($logLines2, -250);
-	$logLines = $logLines2 + $logLines1;
+	$logLines = $logLines1 + $logLines2;
 	$logLines = array_slice($logLines, -250);
         return $logLines;
 }
@@ -179,7 +179,7 @@ function getYSFGatewayLog() {
                 }
         }
 	$logLines2 = array_slice($logLines2, -250);
-	$logLines = $logLines2 + $logLines1;
+	$logLines = $logLines1 + $logLines2;
 	$logLines = array_slice($logLines, -250);
         return $logLines;
 }
@@ -213,7 +213,7 @@ function getP25GatewayLog() {
                 }
         }
 	$logLines2 = array_slice($logLines2, -250);
-	$logLines = $logLines2 + $logLines1;
+	$logLines = $logLines1 + $logLines2;
 	$logLines = array_slice($logLines, -250);
         return $logLines;
 }
