@@ -33,7 +33,7 @@ if($_POST) {
                         //append the values
                         foreach($values as $key=>$value) {
                                 if ($value == '') { 
-                                        $content .= $key."=" \n"; 
+                                        $content .= $key."= \n"; 
                                         }
                                 else {
                                         $content .= $key."=".$value."\n";
