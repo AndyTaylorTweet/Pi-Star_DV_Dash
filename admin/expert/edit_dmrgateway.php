@@ -28,7 +28,13 @@ if($_POST) {
 			$content .= "[".$section."]\n";
 			//append the values
 			foreach($values as $key=>$value) {
-				$content .= $key."=".$value."\n";
+				if (($section == "DMR Network 1" || $section == "DMR Network 2") && $key == "Options" && $value) {
+					$value = str_replace('"', "", $value);
+					$content .= $key."=\"".$value."\"\n";
+				}
+				else {
+					$content .= $key."=".$value."\n";
+				}
 			}
 			$content .= "\n";
 		}
