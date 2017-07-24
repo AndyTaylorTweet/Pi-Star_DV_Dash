@@ -1,5 +1,5 @@
 <?php
-require_once('config/version.php');
+//require_once('config/version.php');
 
 //Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
