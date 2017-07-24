@@ -8,7 +8,7 @@ exec('sudo chmod 664 /tmp/aXJjZGRiZ2F0ZXdheQ.tmp');
 $filepath = '/tmp/aXJjZGRiZ2F0ZXdheQ.tmp';
 
 // Mangle the input
-$file_content = "[ircddbgateway]\r\n".file_get_contents($filepath);
+$file_content = "[ircddbgateway]\n".file_get_contents($filepath);
 file_put_contents($filepath, $file_content);
 
 // after the form submit
@@ -29,14 +29,14 @@ if($_POST) {
 		foreach($data as $section=>$values) {
                         // UnBreak special cases
                         $section = str_replace("_", " ", $section);
-                        $content .= "[".$section."]\r\n";
+                        $content .= "[".$section."]\n";
 			//append the values
 			foreach($values as $key=>$value) {
 				if ($value == '') { 
-					$content .= $key."= \r\n";
+					$content .= $key."= \n";
 					}
 				else {
-					$content .= $key."=".$value."\r\n";
+					$content .= $key."=".$value."\n";
 					}
 			}
 		}
@@ -65,7 +65,7 @@ if($_POST) {
 echo "<html>\n<body>";
 
 // parse the ini file using default parse_ini_file() PHP function
-$parsed_ini = parse_ini_file($filepath);
+$parsed_ini = parse_ini_file($filepath, true);
 
 echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
