@@ -1,4 +1,54 @@
 <?php
+require_once('config/version.php');
+
+//Load the Pi-Star Release file
+$pistarReleaseConfig = '/etc/pistar-release';
+$configPistarRelease = array();
+$configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" lang="en">
+<head>
+    <meta name="robots" content="index" />
+    <meta name="robots" content="follow" />
+    <meta name="language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <?php echo "<meta name=\"generator\" content=\"$progname $rev\" />\n"; ?>
+    <meta name="Author" content="Hans-J. Barthen (DL5DI), Kim Huebel (DV9VH) and Andy Taylor (MW0MWZ)" />
+    <meta name="Description" content="Pi-Star Dashboard" />
+    <meta name="KeyWords" content="MW0MWZ,MMDVMHost,ircDDBGateway,D-Star,ircDDB,Pi-Star,Blackwood,Wales,DL5DI,DG9VH" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title><?php echo "$MYCALL" ?> - Digital Voice Dashboard</title>
+<?php include_once "config/browserdetect.php"; ?>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <script type="text/javascript">
+      $.ajaxSetup({ cache: false });
+    </script>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
+<h1>Pi-Star Digital Voice Dashboard for <?php echo $MYCALL; ?></h1>
+<p style="padding-right: 5px; text-align: right; color: #ffffff;">
+ <a href="/" style="color: #ffffff;">Dashboard</a> |
+ <a href="/admin/" style="color: #ffffff;">Admin</a> |
+<?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+  echo ' <a href="/admin/live_modem_log.php" style="color: #ffffff;">Live Logs</a> |'."\n";
+  echo ' <a href="/admin/power.php" style="color: #ffffff;">Power</a> |'."\n";
+  echo ' <a href="/admin/update.php" style="color: #ffffff;">Update</a> |'."\n";
+  } ?>
+ <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
+</p>
+</div>
+
+<?php
 // Do some file wrangling...
 exec('sudo cp /etc/dstarrepeater /tmp/ZHN0YXJyZXBlYXRlcg.tmp');
 exec('sudo chown www-data:www-data /tmp/ZHN0YXJyZXBlYXRlcg.tmp');
@@ -81,5 +131,19 @@ echo '<form action="" method="post">'."\n";
 		echo "<br />\n";
 	}
 
-echo "</form>\n</body>\n</html>\n";
+echo "</form>";
+
 ?>
+</div>
+
+<div class="footer">
+Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
+ircDDBGateway Dashboard by Hans-J. Barthen (DL5DI),<br />
+MMDVMDash developed by Kim Huebel (DG9VH), <br />
+Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
+Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz.co.uk/pi-star/" target="_new">here</a>.<br />
+</div>
+
+</div>
+</body>
+</html>
