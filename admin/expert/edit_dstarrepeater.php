@@ -21,7 +21,7 @@ require_once('../config/version.php');
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - Digital Voice Dashboard - Expert Editor</title>
-    <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
+    <link rel="stylesheet" type="text/css" href="../css/ircddb.css?version=1.3" />
   </head>
   <body>
   <div class="container">
