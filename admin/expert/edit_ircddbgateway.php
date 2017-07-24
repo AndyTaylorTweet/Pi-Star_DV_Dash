@@ -8,7 +8,7 @@ exec('sudo chmod 664 /tmp/aXJjZGRiZ2F0ZXdheQ.tmp');
 $filepath = '/tmp/aXJjZGRiZ2F0ZXdheQ.tmp';
 
 // Mangle the input
-$file_content = "[ircddbgateway]\n".file_get_contents($filepath);
+$file_content = "[ircddbgateway]\r\n".file_get_contents($filepath);
 file_put_contents($filepath, $file_content);
 
 // after the form submit
@@ -33,10 +33,10 @@ if($_POST) {
 			//append the values
 			foreach($values as $key=>$value) {
 				if ($value == '') { 
-					$content .= $key."=";
+					$content .= $key."= \r\n";
 					}
 				else {
-					$content .= $key."=".$value;
+					$content .= $key."=".$value."\r\n";
 					}
 			}
 		}
