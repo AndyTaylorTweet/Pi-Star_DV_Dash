@@ -120,9 +120,7 @@ echo '<form action="" method="post">'."\n";
 		echo '<input type="submit" value="Save Changes" />'."\n";
 		echo "<br />\n";
 	}
-
 echo "</form>";
-
 ?>
 </div>
 
