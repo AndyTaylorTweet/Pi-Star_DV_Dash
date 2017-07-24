@@ -8,7 +8,7 @@ exec('sudo chmod 664 /tmp/ZHN0YXJyZXBlYXRlcg.tmp');
 $filepath = '/tmp/ZHN0YXJyZXBlYXRlcg.tmp';
 
 // Mangle the input
-$file_content = "[dstarrepeater]\n".file_get_contents($filepath);
+$file_content = "[dstarrepeater]\n".preg_replace('~\r\n?~', "\n", file_get_contents($filepath));
 file_put_contents($filepath, $file_content);
 
 // after the form submit
@@ -33,7 +33,7 @@ if($_POST) {
                         //append the values
                         foreach($values as $key=>$value) {
                                 if ($value == '') { 
-                                        $content .= $key."=".$value." \n"; 
+                                        $content .= $key."=" \n"; 
                                         }
                                 else {
                                         $content .= $key."=".$value."\n";
