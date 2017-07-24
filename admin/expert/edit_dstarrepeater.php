@@ -36,7 +36,7 @@ require_once('../config/version.php');
     <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
   </p>
   </div>
-  <div class="contentwide">
+  <div class="contentwide" style="test-align: left;">
 
 <?php
 // Do some file wrangling...
