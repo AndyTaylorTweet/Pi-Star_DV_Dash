@@ -8,8 +8,7 @@ exec('sudo chmod 664 /tmp/aXJjZGRiZ2F0ZXdheQ.tmp');
 $filepath = '/tmp/aXJjZGRiZ2F0ZXdheQ.tmp';
 
 // Mangle the input
-$file_content = "[ircddbgateway]\n".file_get_contents($filepath);
-$file_content = preg_replace('~\r\n?~', "\n", $file_content);
+$file_content = "[ircddbgateway]\n".preg_replace('~\r\n?~', "\n", file_get_contents($filepath));
 file_put_contents($filepath, $file_content);
 
 // after the form submit
