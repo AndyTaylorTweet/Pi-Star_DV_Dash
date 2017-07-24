@@ -15,7 +15,7 @@ require_once('../config/version.php');
     <meta name="language" content="English" />
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="Author" content="Andrew Taylor (MW0MWZ)" />
-    <meta name="Description" content="Pi-Star Power" />
+    <meta name="Description" content="Pi-Star Expert Editor" />
     <meta name="KeyWords" content="Pi-Star" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
