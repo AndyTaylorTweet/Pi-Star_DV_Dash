@@ -9,7 +9,7 @@ $filepath = '/tmp/aXJjZGRiZ2F0ZXdheQ.tmp';
 
 // Mangle the input
 $file_content = "[ircddbgateway]\n".file_get_contents($filepath);
-$file_content = preg_replace('~\R~u', "\n", $file_content);
+$file_content = preg_replace('~\r\n?~', "\n", $file_content);
 file_put_contents($filepath, $file_content);
 
 // after the form submit
