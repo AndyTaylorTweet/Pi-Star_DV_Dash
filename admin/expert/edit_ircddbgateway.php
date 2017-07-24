@@ -51,14 +51,14 @@ if($_POST) {
 
 		// Updates complete - copy the working file back to the proper location
 		exec('sudo mount -o remount,rw /');					// Make rootfs writable
-		exec('sudo cp /tmp/aXJjZGRiZ2F0ZXdheQ.tmp /etc/ircddbgateway');	// Move the file back
-		exec('sudo sed -i \'/\\[ircddbgateway\\]/d\' /etc/ircddbgateway');			// Clean up file mangling
+		exec('sudo cp /tmp/aXJjZGRiZ2F0ZXdheQ.tmp /etc/ircddbgateway');		// Move the file back
+		exec('sudo sed -i \'/\\[ircddbgateway\\]/d\' /etc/ircddbgateway');	// Clean up file mangling
 		exec('sudo chmod 644 /etc/ircddbgateway');				// Set the correct runtime permissions
 		exec('sudo chown root:root /etc/ircddbgateway');			// Set the owner
 		exec('sudo mount -o remount,ro /');					// Make rootfs read-only
 
 		// Reload the affected daemon
-		exec('sudo systemctl restart ircddbgateway.service');		// Reload the daemon
+		exec('sudo systemctl restart ircddbgateway.service');			// Reload the daemon
 		return $success;
 	}
 
