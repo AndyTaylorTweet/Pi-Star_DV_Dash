@@ -104,18 +104,19 @@ $parsed_ini = parse_ini_file($filepath, true);
 
 echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
-		echo "<h3>$section</h3>\n";
-		//keep the section as hidden text so we can update once the form submitted
-		echo "<input type='hidden' value='$section' name='$section' />\n";
-		//print all other values as input fields, so can edit. 
-		//note the name='' attribute it has both section and key
+		// keep the section as hidden text so we can update once the form submitted
+		echo "<input type=\"hidden\" value=\"$section\" name=\"$section\" />\n";
+		echo "<table>\n";
+		echo "<tr><th colspan=\"2\">$section</th></tr>\n";
+		// print all other values as input fields, so can edit. 
+		// note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
-			echo "$key: <input type='text' name='{$section}[$key]' value='$value' /><br />\n";
+			echo "<tr><td align=\"right\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
 		}
+		echo "</table>\n";
 		echo '<input type="submit" value="Save Changes" />'."\n";
 		echo "<br />\n";
 	}
-
 echo "</form>";
 ?>
 </div>
