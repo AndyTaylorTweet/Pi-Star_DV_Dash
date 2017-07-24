@@ -36,7 +36,7 @@ require_once('../config/version.php');
     <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
   </p>
   </div>
-  <div class="contentwide" style="test-align: left;">
+  <div class="contentwide">
 
 <?php
 // Do some file wrangling...
@@ -107,7 +107,7 @@ echo "<html>\n<body>";
 // parse the ini file using default parse_ini_file() PHP function
 $parsed_ini = parse_ini_file($filepath, true);
 
-echo '<form action="" method="post">'."\n";
+echo '<form action="" method="post" style="test-align: left;">'."\n";
 	foreach($parsed_ini as $section=>$values) {
 		echo "<h3>$section</h3>\n";
 		// keep the section as hidden text so we can update once the form submitted
