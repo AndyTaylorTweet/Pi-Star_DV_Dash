@@ -110,7 +110,7 @@ echo '<form action="" method="post">'."\n";
 		// keep the section as hidden text so we can update once the form submitted
 		echo "<input type=\"hidden\" value=\"$section\" name=\"$section\" />\n";
 		echo "<table width=\"80%\">\n";
-		echo "<th colspan=\"2\"><td>$section</td></th>\n";
+		echo "<tr><th colspan=\"2\">$section</th></tr>\n";
 		// print all other values as input fields, so can edit. 
 		// note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
