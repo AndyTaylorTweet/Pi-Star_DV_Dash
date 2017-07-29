@@ -325,6 +325,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollTimeserverLang);
 	}
 
+	// Clear timeserver modules
+	$rollTimeserverBandA = 'sudo sed -i "/sendA=/c\\sendA=0" /etc/timeserver';
+	$rollTimeserverBandB = 'sudo sed -i "/sendB=/c\\sendB=0" /etc/timeserver';
+	$rollTimeserverBandC = 'sudo sed -i "/sendC=/c\\sendC=0" /etc/timeserver';
+	$rollTimeserverBandD = 'sudo sed -i "/sendD=/c\\sendD=0" /etc/timeserver';
+	$rollTimeserverBandE = 'sudo sed -i "/sendE=/c\\sendE=0" /etc/timeserver';
+	system($rollTimeserverBandA);
+	system($rollTimeserverBandB);
+	system($rollTimeserverBandC);
+	system($rollTimeserverBandD);
+	system($rollTimeserverBandE);
+	
 	// Set the Frequency for Duplex
 	if (empty($_POST['confFREQtx']) != TRUE && empty($_POST['confFREQrx']) != TRUE ) {
 	  if (empty($_POST['confHardware']) != TRUE ) { $confHardware = escapeshellcmd($_POST['confHardware']); }
