@@ -354,27 +354,37 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
+		$rollTimeserverBand = 'sudo sed -i "/sendA=/c\\sendA=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	    if ($newFREQtx >= 420000000 && $newFREQtx <= 450000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."B";
 		$confIRCrepeaterBand1 = "B";
 		$configmmdvm['D-Star']['Module'] = "B";
+		$rollTimeserverBand = 'sudo sed -i "/sendB=/c\\sendB=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	    if ($newFREQtx >= 218000000 && $newFREQtx <= 226000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
+		$rollTimeserverBand = 'sudo sed -i "/sendA=/c\\sendA=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	    if ($newFREQtx >= 144000000 && $newFREQtx <= 148000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."C";
 		$confIRCrepeaterBand1 = "C";
 		$configmmdvm['D-Star']['Module'] = "C";
+		$rollTimeserverBand = 'sudo sed -i "/sendC=/c\\sendC=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	  }
 	  else {
 	     $confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ").strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $confIRCrepeaterBand1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $configmmdvm['D-Star']['Module'] = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $rollTimeserverBand = 'sudo sed -i "/send'.strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix'])).'=/c\\send'.strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix'])).'=1" /etc/timeserver';
+	     system($rollTimeserverBand);
 	  }
 
 	  $newCallsignUpper = strtoupper(escapeshellcmd($_POST['confCallsign']));
@@ -425,27 +435,37 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
+		$rollTimeserverBand = 'sudo sed -i "/sendA=/c\\sendA=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	    if ($newFREQ >= 420000000 && $newFREQ <= 450000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."B";
 		$confIRCrepeaterBand1 = "B";
 		$configmmdvm['D-Star']['Module'] = "B";
+		$rollTimeserverBand = 'sudo sed -i "/sendB=/c\\sendB=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	    if ($newFREQ >= 218000000 && $newFREQ <= 226000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."A";
 		$confIRCrepeaterBand1 = "A";
 		$configmmdvm['D-Star']['Module'] = "A";
+		$rollTimeserverBand = 'sudo sed -i "/sendA=/c\\sendA=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	    if ($newFREQ >= 144000000 && $newFREQ <= 148000000) {
 		$confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ")."C";
 		$confIRCrepeaterBand1 = "C";
 		$configmmdvm['D-Star']['Module'] = "C";
+		$rollTimeserverBand = 'sudo sed -i "/sendA=/c\\sendA=1" /etc/timeserver';
+		system($rollTimeserverBand);
 		}
 	  }
 	  else {
 	     $confRPT1 = str_pad(escapeshellcmd($_POST['confCallsign']), 7, " ").strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $confIRCrepeaterBand1 = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
 	     $configmmdvm['D-Star']['Module'] = strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix']));
+	     $rollTimeserverBand = 'sudo sed -i "/send'.strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix'])).'=/c\\send'.strtoupper(escapeshellcmd($_POST['confDStarModuleSuffix'])).'=1" /etc/timeserver';
+	     system($rollTimeserverBand);
 	  }
 
 	  $newCallsignUpper = strtoupper(escapeshellcmd($_POST['confCallsign']));
