@@ -1,7 +1,8 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          //MMDVMDash Config
-include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        //MMDVMDash Tools
-include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    //MMDVMDash Functions
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
+include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
+include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 
@@ -36,7 +37,7 @@ if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrG
 ?>
 
 <table>
-  <tr><th colspan="2"><?php echo $lang['modes_enabled'];?>Modes Enabled</th></tr>
+  <tr><th colspan="2"><?php echo $lang['modes_enabled'];?></th></tr>
   <tr><?php showMode("D-Star", $mmdvmconfigs);?><?php showMode("DMR", $mmdvmconfigs);?></tr>
   <tr><?php showMode("System Fusion", $mmdvmconfigs);?><?php showMode("P25", $mmdvmconfigs);?></tr>
 </table>
