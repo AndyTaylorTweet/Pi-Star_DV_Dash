@@ -221,10 +221,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 
 	// Change Dashboard Language
-	if (empty($_POST['dashboardLanguage']) != TRUE {
-	  $rollDashLang = 'sudo sed -i "/pistarLanguage=/c\\$pistarLanguage=\''.escapeshellcmd($_POST['dashboardLanguage']).'\';" /var/www/dashboard/config/language.php';
-	  system($rollDashLang);
-	  }
+	//if (empty($_POST['dashboardLanguage']) != TRUE {
+	//  $rollDashLang = 'sudo sed -i "/pistarLanguage=/c\\$pistarLanguage=\''.escapeshellcmd($_POST['dashboardLanguage']).'\';" /var/www/dashboard/config/language.php';
+	//  system($rollDashLang);
+	//  }
 
 	// Admin Password Change
 	if (empty($_POST['adminPassword']) != TRUE ) {
