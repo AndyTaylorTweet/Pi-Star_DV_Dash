@@ -1,5 +1,6 @@
 <?php
 // Set the language
 $pistarLanguage='english_uk';
-require_once("lang/$pistarLanguage.php");
+include_once $_SERVER['DOCUMENT_ROOT'].'/lang/$pistarLanguage.php';
+//require_once("lang/$pistarLanguage.php");
 ?>
