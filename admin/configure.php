@@ -117,11 +117,11 @@ $MYCALL=strtoupper($callsign);
 <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['configuration'];?></h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
  <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
- <a href="/admin/" style="color: #ffffff;">Admin</a> |
- <a href="/admin/power.php" style="color: #ffffff;">Power</a> |
- <a href="/admin/update.php" style="color: #ffffff;">Update</a> |
- <a href="/admin/config_backup.php" style="color: #ffffff;">Backup/Restore</a> |
- <a href="javascript:factoryReset();" style="color: #ffffff;">Factory Reset</a>
+ <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
+ <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
+ <a href="/admin/update.php" style="color: #ffffff;"><?php echo $lang['update'];?></a> |
+ <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
+ <a href="javascript:factoryReset();" style="color: #ffffff;"><?php echo $lang['factory_reset'];?></a>
 </p>
 </div>
 <div class="contentwide">
