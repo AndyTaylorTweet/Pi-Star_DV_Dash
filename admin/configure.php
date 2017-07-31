@@ -1449,15 +1449,15 @@ else:
 <?php } ?>
 
 <?php if (file_exists('/etc/dstar-radio.dstarrepeater') || $configmmdvm['D-Star']['Enable'] == 1) { ?>
-	<div><b>D-Star Configuration</b></div>
+	<div><b><?php echo $lang['dstar_config'];?></b></div>
 	<input type="hidden" name="confTimeAnnounce" value="OFF" />
     <table>
     <tr>
-    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">RPT1 Callsign:<span><b>RPT1 Callsign</b>This is the RPT1 field for your radio</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_rpt1'];?>:<span><b>RPT1 Callsign</b>This is the RPT1 field for your radio</span></a></td>
     <td align="left" colspan="2"><?php echo str_replace(' ', '&nbsp;', substr($configdstar['callsign'], 0, 7)) ?>
 	<select name="confDStarModuleSuffix">
 	<?php echo "  <option value=\"".substr($configdstar['callsign'], 7)."\" selected=\"selected\">".substr($configdstar['callsign'], 7)."</option>\n"; ?>
@@ -1490,15 +1490,15 @@ else:
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">RPT2 Callsign:<span><b>RPT2 Callsign</b>This is the RPT2 field for your radio</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_rpt2'];?>:<span><b>RPT2 Callsign</b>This is the RPT2 field for your radio</span></a></td>
     <td align="left" colspan="2"><?php echo str_replace(' ', '&nbsp;', $configdstar['gateway']) ?></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">ircDDBGateway Password:<span><b>Gateway Password</b>Used for any kind of remote<br />access to this system</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_password'];?>:<span><b>Gateway Password</b>Used for any kind of remote<br />access to this system</span></a></td>
     <td align="left" colspan="2"><input type="password" name="confPassword" size="30" maxlength="30" value="<?php echo $configs['remotePassword'] ?>" /></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Default Reflector:<span><b>Default Refelctor</b>Used for setting the<br />default reflector.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_default_ref'];?>:<span><b>Default Refelctor</b>Used for setting the<br />default reflector.</span></a></td>
     <td align="left" colspan="1"><select name="confDefRef"
 	onchange="if (this.options[this.selectedIndex].value == 'customOption') {
 	  toggleField(this,this.nextSibling);
@@ -1573,7 +1573,7 @@ fclose($dextraFile);
     <input type="radio" name="confDefRefAuto" value="OFF"<?php if ($configs['atStartup1'] == '0') {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">APRS Host:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
 <?php
         $testAPSRHost = $configs['aprsHostname'];
@@ -1591,7 +1591,7 @@ fclose($dextraFile);
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">ircDDBGateway Language:<span><b>Language</b>Set your prefered<br /> language here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_lang'];?>:<span><b>Language</b>Set your prefered<br /> language here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ircDDBGatewayAnnounceLanguage">
 <?php
         $testIrcLanguage = $configs['language'];
@@ -1611,7 +1611,7 @@ fclose($dextraFile);
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Time Announcements:<span><b>Time Announce</b>Announce time<br />hourly</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_time'];?>:<span><b>Time Announce</b>Announce time<br />hourly</span></a></td>
     <?php
 	if ( !file_exists('/etc/timeserver.dissable') ) {
 		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-timeAnnounce\"></label></div></td>\n";
@@ -1622,7 +1622,7 @@ fclose($dextraFile);
     ?>
     </tr>
     </table>
-	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['System Fusion Network']['Enable'] == 1) {
 $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
