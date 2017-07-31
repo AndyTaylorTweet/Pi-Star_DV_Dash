@@ -1281,17 +1281,18 @@ else:
     if (is_dir($lang_dir)) {
 	echo '    <tr>'."\n";
 	echo '    <td align="left"><a class="tooltip2" href="#">Dashboard Language:<span><b>Dashboard Language</b>Set the language for<br />the dashboard.</span></a></td>'."\n";
-	echo '    <td align="left" colspan="2"></td>';
+	echo '    <td align="left" colspan="2"><select name="dashboardLanguage">';
 	    if ($dh = opendir($lang_dir)) {
 		    while (($file = readdir($dh)) !== false) {
-			    if ($file != 'index.php') {
-				    $file = substr($file, -4);
+			    if (($file != 'index.php') && ($file != '.') && ($file != '..')) {
+				    $file = substr($file, 0, -4);
+				    
 				    echo "<option value=\"".$file."\">".$file."</option>\n";
 			    }
 		    }
 		    closedir($dh);
 	    }
-	echo '    </tr>'."\n";
+	echo '    </select></td></tr>'."\n";
     }
 ?>
     </table>
