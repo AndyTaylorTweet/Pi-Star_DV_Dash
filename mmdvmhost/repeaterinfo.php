@@ -153,7 +153,7 @@ fclose($dmrMasterFile);
 
 echo "<br />\n";
 echo "<table>\n";
-echo "<tr><th colspan=\"2\">DMR Repeater</th></tr>\n";
+echo "<tr><th colspan=\"2\">".$lang['dmr_repeater']."</th></tr>\n";
 echo "<tr><th>DMR ID</th><td style=\"background: #ffffff;\">".getConfigItem("DMR", "Id", $mmdvmconfigs)."</td></tr>\n";
 echo "<tr><th>DMR CC</th><td style=\"background: #ffffff;\">".getConfigItem("DMR", "ColorCode", $mmdvmconfigs)."</td></tr>\n";
 echo "<tr><th>TS1</th>";
@@ -162,7 +162,7 @@ if (getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == 1) { echo "<tr><td s
 echo "<tr><th>TS2</th>";
 if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) == 1) { echo "<td style=\"background:#0b0;\">enabled</td></tr>\n"; } else { echo "<td style=\"background:#606060; color:#b0b0b0;\">disabled</td></tr>\n"; }
 if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) == 1) { echo "<tr><td style=\"background: #ffffff;\" colspan=\"2\">".substr(getActualLink($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."/".substr(getActualReflector($reverseLogLinesMMDVM, "DMR Slot 2"), -10)."</td></tr>\n"; }
-echo "<tr><th colspan=\"2\">DMR Master</th></tr>\n";
+echo "<tr><th colspan=\"2\">".$lang['dstar_master']."</th></tr>\n";
 if (getEnabled("DMR Network", $mmdvmconfigs) == 1) {
 		if ($dmrMasterHost == '127.0.0.1') {
 			if ($configdmrgateway['XLX Network 1']['Enabled'] == 1) {
@@ -189,7 +189,7 @@ $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfig
 if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
 echo "<br />\n";
 echo "<table>\n";
-echo "<tr><th colspan=\"2\">YSF Network</th></tr>\n";
+echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
 echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesYSFGateway, "YSF")."</td></tr>\n";
 echo "</table>\n";
 }
@@ -199,10 +199,10 @@ if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode 
 echo "<br />\n";
 echo "<table>\n";
 if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
-	echo "<tr><th colspan=\"2\">P25 Radio</th></tr>\n";
+	echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
 	echo "<tr><th>NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
 }
-echo "<tr><th colspan=\"2\">P25 Network</th></tr>\n";
+echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
 echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
 echo "</table>\n";
 }
