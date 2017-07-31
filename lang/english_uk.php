@@ -2,7 +2,7 @@
 // English UK Language Pack
 $lang = array (
   // Banner texts
-  'digital_voice'               =>  'Digital Voice',
+  "digital_voice"               =>  "Digital Voice",
   "configuration"               =>  "Configuration",
   "dashboard_for"               =>  "Dashboard for",
   // Banner links
