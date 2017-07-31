@@ -1276,6 +1276,10 @@ else:
 ?>
     </select></td>
     </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Dashboard Language:<span><b>Dashboard Language</b>Set the language for<br />the dashboard.</span></a></td>
+    <td align="left" colspan="2"></td>
+    </tr>
     </table>
 	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
