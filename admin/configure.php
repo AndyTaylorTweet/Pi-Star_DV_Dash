@@ -9,6 +9,7 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
 // Pull in some config
 require_once('config/version.php');
 require_once('config/ircddblocal.php');
+require_once('config/language.php');
 $cpuLoad = sys_getloadavg();
 
 // Load the pistar-release file
