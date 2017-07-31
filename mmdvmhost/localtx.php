@@ -1,7 +1,8 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          //MMDVMDash Config
-include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        //MMDVMDash Tools
-include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    //MMDVMDash Functions
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
+include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
+include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 //$localTXList = getHeardList($reverseLogLinesMMDVM);
 $localTXList = $lastHeard;
 
@@ -9,13 +10,13 @@ $localTXList = $lastHeard;
 <b>Last 20 calls that accessed this Gateway</b>
   <table>
     <tr>
-      <th><a class="tooltip" href="#">Time (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
-      <th><a class="tooltip" href="#">Mode<span><b>Transmitted Mode</b></span></a></th>
-      <th><a class="tooltip" href="#">Callsign<span><b>Callsign</b></span></a></th>
-      <th><a class="tooltip" href="#">Target<span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
-      <th><a class="tooltip" href="#">Src<span><b>Recieved from source</b></span></a></th>
-      <th><a class="tooltip" href="#">Dur(s)<span><b>Duration in Seconds</b></span></a></th>
-      <th><a class="tooltip" href="#">BER<span><b>Bit Error Rate</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Recieved from source</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['ber'];?><span><b>Bit Error Rate</b></span></a></th>
     </tr>
 <?php
 $counter = 0;
