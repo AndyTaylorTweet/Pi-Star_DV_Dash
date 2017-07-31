@@ -55,6 +55,7 @@ $lang = array (
   "radio_type"                  =>  "Radio/Modem Type",
   "node_type"                   =>  "Node Type",
   "timezone"                    =>  "System Time Zone",
+  "dash_lang"                   =>  "Dashboard Language",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR Master (MMDVMHost)",
   "bm_master"                   =>  "BrandMeister Master",
