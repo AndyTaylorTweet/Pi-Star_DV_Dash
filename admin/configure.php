@@ -220,6 +220,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['controllerSoft']) == 'MMDVM') { system('sudo touch /etc/dstar-radio.mmdvmhost'); }
 	  }
 
+	// Change Dashboard Language
+	if (empty($_POST['dashboardLanguage']) != TRUE {
+	  $rollDashLang = 'sudo sed -i "/pistarLanguage=/c\\$pistarLanguage=\''.escapeshellcmd($_POST['dashboardLanguage']).'\';" /var/www/dashboard/config/language.php';
+	  system($rollDashLang);
+	  }
+
 	// Admin Password Change
 	if (empty($_POST['adminPassword']) != TRUE ) {
 	  $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star '.escapeshellcmd($_POST['adminPassword']);
