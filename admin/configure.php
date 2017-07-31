@@ -1185,64 +1185,64 @@ else:
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
     <?php } ?>
-	<div><b>General Configuration</b></div>
+	<div><b><?php echo $lang['general_config'];?></b></div>
     <table>
     <tr>
-    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Node Callsign:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?>:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confCallsign" size="13" maxlength="6" value="<?php echo $configs['gatewayCallsign'] ?>" /></td>
     </tr>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">CCS7/DMR ID:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
     <td align="left" colspan="2"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php echo $configmmdvm['DMR']['Id']; ?>" /></td>
     </tr><?php } ?>
 <?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
 	echo "    <tr>\n";
-	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">Radio Frequency:<span><b>Radio Frequency</b>This is the Frequency your<br />Pi-Star is on</span></a></td>\n";
+	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['radio_freq'].":<span><b>Radio Frequency</b>This is the Frequency your<br />Pi-Star is on</span></a></td>\n";
 	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQ\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
 	else {
 	echo "    <tr>\n";
-	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">Radio Frequency RX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will listen on</span></a></td>\n";
+	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['radio_freq']." RX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will listen on</span></a></td>\n";
 	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQrx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	echo "    <tr>\n";
-	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">Radio Frequency TX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will transmit on</span></a></td>\n";
+	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['radio_freq']." TX:<span><b>Radio Frequency</b>This is the Frequency your<br />repeater will transmit on</span></a></td>\n";
 	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" name=\"confFREQtx\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['TXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
 	echo "    </tr>\n";
 	}
 ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Latitude:<span><b>Gateway Latitude</b>This is the latitude where the<br />gateway is located (positive<br />number for North, negative<br />number for South)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['lattitude'];?>:<span><b>Gateway Latitude</b>This is the latitude where the<br />gateway is located (positive<br />number for North, negative<br />number for South)</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confLatitude" size="13" maxlength="9" value="<?php echo $configs['latitude'] ?>" />degrees (positive value for North, negative for South)</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Longitude:<span><b>Gateway Longitude</b>This is the longitude where the<br />gateway is located (positive<br />number for East, negative<br />number for West)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['longitude'];?>:<span><b>Gateway Longitude</b>This is the longitude where the<br />gateway is located (positive<br />number for East, negative<br />number for West)</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confLongitude" size="13" maxlength="9" value="<?php echo $configs['longitude'] ?>" />degrees (positive value for East, negative for West)</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Town:<span><b>Gateway Town</b>The town where the gateway<br />is located</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['town'];?>:<span><b>Gateway Town</b>The town where the gateway<br />is located</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confDesc1" size="30" maxlength="30" value="<?php echo $configs['description1'] ?>" /></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Country:<span><b>Gateway Country</b>The country where the gateway<br />is located</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['country'];?>:<span><b>Gateway Country</b>The country where the gateway<br />is located</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confDesc2" size="30" maxlength="30" value="<?php echo $configs['description2'] ?>" /></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">URL:<span><b>Gateway URL</b>The URL used to access<br />this dashboard</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['url'];?>:<span><b>Gateway URL</b>The URL used to access<br />this dashboard</span></a></td>
     <td align="left"><input type="text" name="confURL" size="30" maxlength="30" value="<?php echo $configs['url'] ?>" /></td>
     <td width="300">
     <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) !== FALSE) {echo ' checked="checked"';} ?> />Auto
     <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Radio/Modem Type:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_type'];?>:<span><b>Radio/Modem</b>What kind of radio or modem<br />hardware do you have ?</span></a></td>
     <td align="left" colspan="2"><select name="confHardware">
 		<option<?php if (!$configModem['Modem']['Hardware']) { echo ' selected="selected"';}?> value="">--</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpis') { echo ' selected="selected"';}?> value="dvmpis">DV-Mega Raspberry Pi Hat (GPIO) - Single Band (70cm)</option>
@@ -1264,13 +1264,13 @@ else:
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Node Type:<span><b>Node Lock</b>Set the public / private<br />node type. Public should<br />only be used with the correct<br />licence.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_type'];?>:<span><b>Node Lock</b>Set the public / private<br />node type. Public should<br />only be used with the correct<br />licence.</span></a></td>
     <td align="left" colspan="2">
     <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />Private
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">System Time Zone:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['timezone'];?>:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
     <td style="text-align: left;" colspan="2"><select name="systemTimezone">
 <?php
   exec('timedatectl list-timezones', $tzList);
@@ -1286,7 +1286,7 @@ else:
     $lang_dir = './lang';
     if (is_dir($lang_dir)) {
 	echo '    <tr>'."\n";
-	echo '    <td align="left"><a class="tooltip2" href="#">Dashboard Language:<span><b>Dashboard Language</b>Set the language for<br />the dashboard.</span></a></td>'."\n";
+	echo '    <td align="left"><a class="tooltip2" href="#">'.$lang['dash_lang'].':<span><b>Dashboard Language</b>Set the language for<br />the dashboard.</span></a></td>'."\n";
 	echo '    <td align="left" colspan="2"><select name="dashboardLanguage">'."\n";
 	    if ($dh = opendir($lang_dir)) {
 		    while (($file = readdir($dh)) !== false) {
@@ -1302,7 +1302,7 @@ else:
     }
 ?>
     </table>
-	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
 	<div><b>DMR Configuration</b></div>
