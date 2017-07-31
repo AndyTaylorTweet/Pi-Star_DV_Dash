@@ -1,6 +1,7 @@
 <?php
 require_once('config/version.php');
 require_once('config/ircddblocal.php');
+require_once('config/language.php');
 $configs = array();
 if ($configfile = fopen($gatewayConfigPath,'r')) {
         while ($line = fgets($configfile)) {
@@ -36,7 +37,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
-    <title><?php echo "$MYCALL" ?> - Digital Voice Dashboard</title>
+    <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard'];?></title>
 <?php include_once "config/browserdetect.php"; ?>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/functions.js"></script>
@@ -48,14 +49,14 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <div class="container">
 <div class="header">
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-<h1>Pi-Star Digital Voice Dashboard for <?php echo $MYCALL; ?></h1>
+<h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." ".$MYCALL; ?></h1>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
- <a href="/" style="color: #ffffff;">Dashboard</a> |
- <a href="/admin/" style="color: #ffffff;">Admin</a> |
+ <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
+ <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
 <?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
   echo ' <a href="/admin/live_modem_log.php" style="color: #ffffff;">Live Logs</a> |'."\n";
-  echo ' <a href="/admin/power.php" style="color: #ffffff;">Power</a> |'."\n";
-  echo ' <a href="/admin/update.php" style="color: #ffffff;">Update</a> |'."\n";
+  echo ' <a href="/admin/power.php" style="color: #ffffff;">'.$lang['power'].'</a> |'."\n";
+  echo ' <a href="/admin/update.php" style="color: #ffffff;">'.$lang['update'].'</a> |'."\n";
   } ?>
  <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
 </p>
