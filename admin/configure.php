@@ -1679,14 +1679,14 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) {
 $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
-	<div><b>P25 Configuration</b></div>
+	<div><b><?php echo $lang['p25_config'];?></b></div>
     <table>
     <tr>
-    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">P25 Startup Host:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
     <td style="text-align: left;"><select name="p25StartupHost">
 <?php
 	$testP25Host = $configp25gateway['Network']['Startup'];
@@ -1706,12 +1706,12 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     </tr>
 <?php if ($configmmdvm['P25']['NAC']) { ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">P25 NAC:<span><b>P25 NAC</b>Set your NAC<br /> code here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_nac'];?>:<span><b>P25 NAC</b>Set your NAC<br /> code here</span></a></td>
     <td align="left"><input type="text" name="p25nac" size="13" maxlength="3" value="<?php echo $configmmdvm['P25']['NAC'];?>" /></td>
     </tr>
 <?php } ?>
     </table>
-	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 	<div><b>Firewall Configuration</b></div>
     <table>
