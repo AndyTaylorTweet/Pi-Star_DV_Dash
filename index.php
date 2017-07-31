@@ -1,7 +1,7 @@
 <?php
 require_once('config/version.php');
 require_once('config/ircddblocal.php');
-require_once('lang/language.php');
+require_once('config/language.php');
 $configs = array();
 if ($configfile = fopen($gatewayConfigPath,'r')) {
         while ($line = fgets($configfile)) {
