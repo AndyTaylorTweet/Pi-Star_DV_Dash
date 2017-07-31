@@ -11,11 +11,11 @@ require_once('config/version.php');
 require_once('config/ircddblocal.php');
 $cpuLoad = sys_getloadavg();
 
-//Load the pistar-release file
+// Load the pistar-release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 
-//Load the dstarrepeater config file
+// Load the dstarrepeater config file
 $configdstar = array();
 if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
         while ($line1 = fgets($configdstarfile)) {
@@ -28,7 +28,7 @@ if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
         }
 }
 
-//Load the ircDDBGateway config file
+// Load the ircDDBGateway config file
 $configs = array();
 if ($configfile = fopen($gatewayConfigPath,'r')) {
         while ($line = fgets($configfile)) {
@@ -41,23 +41,23 @@ if ($configfile = fopen($gatewayConfigPath,'r')) {
         }
 }
 
-//Load the mmdvmhost config file
+// Load the mmdvmhost config file
 $mmdvmConfigFile = '/etc/mmdvmhost';
 $configmmdvm = parse_ini_file($mmdvmConfigFile, true);
 
-//Load the ysfgateway config file
+// Load the ysfgateway config file
 $ysfgatewayConfigFile = '/etc/ysfgateway';
 $configysfgateway = parse_ini_file($ysfgatewayConfigFile, true);
 
-//Load the p25gateway config file
+// Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
 
-//Load the dmrgateway config file
+// Load the dmrgateway config file
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
 
-//load the modem config information
+// Load the modem config information
 $modemConfigFileDStarRepeater = '/etc/dstar-radio.dstarrepeater';
 $modemConfigFileMMDVMHost = '/etc/dstar-radio.mmdvmhost';
 if (fopen($modemConfigFileDStarRepeater,'r')) { $configModem = parse_ini_file($modemConfigFileDStarRepeater, true); }
