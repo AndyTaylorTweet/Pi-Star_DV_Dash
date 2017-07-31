@@ -1281,13 +1281,13 @@ else:
     if (is_dir($lang_dir)) {
 	echo '    <tr>'."\n";
 	echo '    <td align="left"><a class="tooltip2" href="#">Dashboard Language:<span><b>Dashboard Language</b>Set the language for<br />the dashboard.</span></a></td>'."\n";
-	echo '    <td align="left" colspan="2"><select name="dashboardLanguage">';
+	echo '    <td align="left" colspan="2"><select name="dashboardLanguage">'."\n";
 	    if ($dh = opendir($lang_dir)) {
 		    while (($file = readdir($dh)) !== false) {
 			    if (($file != 'index.php') && ($file != '.') && ($file != '..')) {
 				    $file = substr($file, 0, -4);
-				    
-				    echo "<option value=\"".$file."\">".$file."</option>\n";
+				    if ($file == $pistarLanguage) { echo "      <option selected=\"selected\" value=\"".$file."\">".$file."</option>\n"; }
+				    else { echo "      <option value=\"".$file."\">".$file."</option>\n"; }
 			    }
 		    }
 		    closedir($dh);
