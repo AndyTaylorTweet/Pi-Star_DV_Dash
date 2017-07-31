@@ -43,6 +43,78 @@ $lang = array (
   "p25_mode"                    =>  "P25 Mode",
   "mmdvm_display"               =>  "MMDVM Display Type",
   "mode_hangtime"               =>  "Mode Hangtime",
-  
+  // Config Page - General Configuration
+  "node_call"                   =>  "Node Callsign",
+  "dmr_id"                      =>  "CCS7/DMR ID",
+  "radio_freq"                  =>  "Radio Frequency",
+  "lattitude"                   =>  "Latitude",
+  "longitude"                   =>  "Longitude",
+  "town"                        =>  "Town",
+  "country"                     =>  "Country",
+  "url"                         =>  "URL",
+  "radio_type"                  =>  "Radio/Modem Type",
+  "node_type"                   =>  "Node Type",
+  "timezone"                    =>  "System Time Zone",
+  // Config Page - DMR Configuration
+  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
+  "bm_master"                   =>  "BrandMeister Master",
+  "bm_network"                  =>  "BrandMeister Network",
+  "dmr_plus_master"             =>  "DMR+ Master",
+  "dmr_plus_network"            =>  "DMR+ Network",
+  "xlx_master"                  =>  "XLX Master",
+  "xlx_enable"                  =>  "XLX Master Enable",
+  "dmr_cc"                      =>  "DMR Colour Code",
+  "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
+  "dmr_dumptadata"              =>  "DMR DumpTAData",
+  // Config Page - D-Star Configuration
+  "dstar_rpt1"                  =>  "RPT1 Callsign",
+  "dstar_rpt2"                  =>  "RPT2 Callsign",
+  "dstar_irc_password"          =>  "ircDDBGateway Passwword",
+  "dstar_default_ref"           =>  "Default Reflector",
+  "aprs_host"                   =>  "APRS Host",
+  "dstar_irc_lang"              =>  "ircDDBGateway Language",
+  "dstar_irc_time"              =>  "Time Announcements",
+  // Config Page - YSF Configuration
+  "ysf_startup_host"            =>  "YSF Startup Host",
+  // Config Page - P25 Configuration
+  "p25_startup_host"            =>  "P25 Startup Host",
+  "p25_nac"                     =>  "P25 NAC",
+  // Config Page - Firewall Configuration
+  "fw_dash"                     =>  "Dashboard Access",
+  "fw_irc"                      =>  "ircDDGBateway Remote",
+  "fw_ssh"                      =>  "SSH Access",
+  // Config Page - Password
+  "user"                        =>  "User Name",
+  "password"                    =>  "Password",
+  "set_password"                =>  "Set Password",
+  // Dashboard Front Page - Repeater Info Pannel
+  "modes_enabled"               =>  "Modes Enabled",
+  "net_status"                  =>  "Network Status",
+  "internet"                    =>  "Internet",
+  "radio_info"                  =>  "Radio Info",
+  "dstar_repeater"              =>  "D-Star Repeater",
+  "dstar_net"                   =>  "D-Star Network",
+  "dmr_repeater"                =>  "DMR Repeater",
+  "dmr_master"                  =>  "DMR Master",
+  "ysf_net"                     =>  "YSF Network",
+  "p25_radio"                   =>  "P25 Radio",
+  "p25_net"                     =>  "P25 Network",
+  // Dashboard Front Page - Calls
+  "time"                        =>  "Time",
+  "mode"                        =>  "Mode",
+  "callsign"                    =>  "Callsign",
+  "target"                      =>  "Target",
+  "src"                         =>  "Src",        // Short version of "Source"
+  "dur"                         =>  "Dur",        // Short version of "Duration"
+  "loss"                        =>  "Loss",
+  "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
+  // Dashboard - Extra Info
+  "group"                       =>  "Group",
+  "logoff"                      =>  "LogOff",
+  "info"                        =>  "Information",
+  "utot"                        =>  "UTOT",       // Short for User Timeout
+  "gtot"                        =>  "GTOT",       // Short for Group Timeout
+  // Dictionary End
+  "nothing"                     =>  "nothing"
 );
 ?>
