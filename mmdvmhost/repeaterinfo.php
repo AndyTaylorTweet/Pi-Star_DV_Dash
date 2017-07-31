@@ -36,7 +36,7 @@ if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrG
 ?>
 
 <table>
-  <tr><th colspan="2">Modes Enabled</th></tr>
+  <tr><th colspan="2"><?php echo $lang['modes_enabled'];?>Modes Enabled</th></tr>
   <tr><?php showMode("D-Star", $mmdvmconfigs);?><?php showMode("DMR", $mmdvmconfigs);?></tr>
   <tr><?php showMode("System Fusion", $mmdvmconfigs);?><?php showMode("P25", $mmdvmconfigs);?></tr>
 </table>
