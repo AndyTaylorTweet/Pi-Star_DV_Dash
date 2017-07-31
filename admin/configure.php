@@ -1172,7 +1172,6 @@ else:
     <td align="left"><a class="tooltip2" href="#">MMDVM Display Type:<span><b>Display Type</b>Choose your display<br />type if you have one.</span></a></td>
     <td align="left"><select name="mmdvmDisplayType">
 	    <option <?php if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "") ) {echo 'selected="selected" ';}; ?>value="None">None</option>
-	    <option <?php if ($configmmdvm['General']['Display'] == "Modem") {echo 'selected="selected" ';}; ?>value="Modem">Modem</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "OLED") {echo 'selected="selected" ';}; ?>value="OLED">OLED</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "Nextion") {echo 'selected="selected" ';}; ?>value="Nextion">Nextion</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "HD44780") {echo 'selected="selected" ';}; ?>value="HD44780">HD44780</option>
