@@ -1626,14 +1626,14 @@ fclose($dextraFile);
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['System Fusion Network']['Enable'] == 1) {
 $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
-	<div><b>Yaesu System Fusion Configuration</b></div>
+	<div><b><?php echo $lang['ysf_config'];?></b></div>
     <table>
     <tr>
-    <th width="200"><a class="tooltip" href="#">Setting<span><b>Setting</b></span></a></th>
-    <th colspan="2"><a class="tooltip" href="#">Value<span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">YSF Startup Host:<span><b>YSF Host</b>Set your prefered<br /> YSF Host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['ysf_startup_host'];?>:<span><b>YSF Host</b>Set your prefered<br /> YSF Host here</span></a></td>
     <td style="text-align: left;"><select name="ysfStartupHost">
 <?php
         if (isset($configysfgateway['Network']['Startup'])) {
@@ -1657,7 +1657,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </select></td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">APRS Host:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
 <?php
         $testAPSRHost = $configs['aprsHostname'];
@@ -1675,7 +1675,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </select></td>
     </tr>
     </table>
-	<div><input type="button" value="Apply Changes" onclick="submitform()" /><br /><br /></div>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) {
 $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
