@@ -1,5 +1,9 @@
 <?php
+//
 // English UK Language Pack
+// Andy Taylor (MW0MWZ)
+// 01-Aug-2017
+//
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Digital Voice",
@@ -124,8 +128,6 @@ $lang = array (
   "active_starnet_members"      =>  "Active Starnet Group Members",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Service Status",
-  // Dictionary End
-  "nothing"                     =>  "nothing"
+  "service_status"              =>  "Service Status"
 );
 ?>
