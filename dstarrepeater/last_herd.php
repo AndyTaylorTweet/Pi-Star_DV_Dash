@@ -18,11 +18,11 @@ $MYCALL=strtoupper($callsign);
     <b>Last 20 calls heard via this Gateway</b>
     <table>
     <tr>
-    <th><a class=tooltip href="#">Date &amp; Time (<?php echo date('T')?>)</a></th>
-    <th><a class=tooltip href="#">Call</a></th>
-    <th><a class=tooltip href="#">Your Call</a></th>
-    <th><a class=tooltip href="#">Repeater 1</a></th>
-    <th><a class=tooltip href="#">Repeater 2</a></th>
+    <th><a class=tooltip href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>
+    <th><a class=tooltip href="#"><?php echo $lang['callsign'];?></a></th>
+    <th><a class=tooltip href="#">UR</a></th>
+    <th><a class=tooltip href="#">RPT 1</a></th>
+    <th><a class=tooltip href="#">RPT 2</a></th>
     </tr>
 <?php
 // Headers.log sample:
