@@ -17,6 +17,7 @@ $lang = array (
   "update"                      =>  "更新",
   "backup_restore"              =>  "备份/恢复",
   "factory_reset"               =>  "恢复出厂设置",
+  "live_logs"                   =>  "Live Logs",
   // Config page section headdings
   "hardware_info"               =>  "网关硬件信息",
   "control_software"            =>  "控制软件",
@@ -120,6 +121,14 @@ $lang = array (
   "info"                        =>  "信息",
   "utot"                        =>  "用户超时",     // Short for User Timeout
   "gtot"                        =>  "组超时",       // Short for Group Timeout
+  // Dashboard Front Page / Admin - Section Headders
+  "last_herd_list"              =>  "Last 20 calls heard via this Gateway",
+  "local_tx_list"               =>  "Last 20 calls that accessed this Gateway",
+  "active_starnet_groups"       =>  "Active Starnet Groups",
+  "active_starnet_members"      =>  "Active Starnet Group Members",
+  "d-star_link_manager"         =>  "D-Star Link Manager",
+  "d-star_link_status"          =>  "D-Star Link Information",
+  "service_status"              =>  "Service Status",
   // Dictionary End
   "nothing"                     =>  "nothing"
 );
