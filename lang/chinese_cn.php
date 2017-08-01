@@ -1,10 +1,15 @@
 <?php
-// Chinese CN (China) Language Pack
+// Chinese CN (simplified Chinese characters) Language Pack
+// Translated by Le Peng（BD7KLE）, Email: bd7kle@gmail.com
+//               Yuan Wang（BG3MDO）, Email: bg3mdo@gmail.com
+// Maintained by Yuan Wang（BG3MDO）, Email: bg3mdo@gmail.com 
+// Last update on 01/08/2017
+
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "数字语音",
   "configuration"               =>  "配置",
-  "dashboard_for"               =>  "仪表盘：",
+  "dashboard_for"               =>  "仪表盘-",
   // Banner links
   "dashboard"                   =>  "仪表盘",
   "admin"                       =>  "管理",
@@ -47,7 +52,7 @@ $lang = array (
   "node_call"                   =>  "节点呼号",
   "dmr_id"                      =>  "CCS7/DMR ID",
   "radio_freq"                  =>  "电台频率",
-  "lattitude"                   =>  "维度",
+  "lattitude"                   =>  "纬度",
   "longitude"                   =>  "经度",
   "town"                        =>  "城市",
   "country"                     =>  "国家",
@@ -55,13 +60,13 @@ $lang = array (
   "radio_type"                  =>  "电台/调制解调器类型",
   "node_type"                   =>  "节点类型",
   "timezone"                    =>  "时区",
-  "dash_lang"                   =>  "控制台语言",
+  "dash_lang"                   =>  "仪表盘语言",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR 主机 (MMDVMHost)",
   "bm_master"                   =>  "BrandMeister 主机 ",
-  "bm_network"                  =>  "BrandMeister Network",
+  "bm_network"                  =>  "BrandMeister 网络",
   "dmr_plus_master"             =>  "DMR+ 主机 ",
-  "dmr_plus_network"            =>  "DMR+ Network",
+  "dmr_plus_network"            =>  "DMR+ 网络",
   "xlx_master"                  =>  "XLX 主机 ",
   "xlx_enable"                  =>  "XLX 主机启用",
   "dmr_cc"                      =>  "DMR 彩色码",
@@ -106,14 +111,14 @@ $lang = array (
   "callsign"                    =>  "呼号",
   "target"                      =>  "目标",
   "src"                         =>  "源",        // Short version of "Source"
-  "dur"                         =>  "时长",        // Short version of "Duration"
+  "dur"                         =>  "时长",      // Short version of "Duration"
   "loss"                        =>  "丢失",
-  "ber"                         =>  "误码率",        // Short version of "Bit Error Rate"
+  "ber"                         =>  "误码率",    // Short version of "Bit Error Rate"
   // Dashboard - Extra Info
   "group"                       =>  "组",
   "logoff"                      =>  "注销",
   "info"                        =>  "信息",
-  "utot"                        =>  "用户超时",       // Short for User Timeout
+  "utot"                        =>  "用户超时",     // Short for User Timeout
   "gtot"                        =>  "组超时",       // Short for Group Timeout
   // Dictionary End
   "nothing"                     =>  "nothing"
