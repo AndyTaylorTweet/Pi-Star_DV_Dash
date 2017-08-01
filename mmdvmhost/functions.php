@@ -634,7 +634,7 @@ function getActualReflector($logLines, $mode) {
 				if ($from == "4000") {
 					return "not linked";
 				} else {
-					return "TG ".$from;
+					return "Ref ".$from;
 				}
 			} 
 		}
