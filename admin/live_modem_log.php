@@ -76,7 +76,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
   <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['live_logs'];?></h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;">?php echo $lang['dashboard'];?></a> |
+    <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
     <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
     <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
     <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
