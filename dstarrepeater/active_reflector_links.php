@@ -1,4 +1,5 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 $configs = array();
 
 if ($configfile = fopen($gatewayConfigPath,'r')) {
@@ -14,7 +15,7 @@ $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev="20141101";
 $MYCALL=strtoupper($callsign);
 ?>
-    <b>D-Star Link Information</b>
+    <b><?php echo $lang['d-star_link_status'];?></b>
     <table>
     <tr>
     <th><a class="tooltip" href="#">Radio<span><b>Radio Module</b></span></a></th>
