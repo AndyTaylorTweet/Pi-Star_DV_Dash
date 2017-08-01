@@ -122,13 +122,13 @@ $lang = array (
   "utot"                        =>  "用户超时",     // Short for User Timeout
   "gtot"                        =>  "组超时",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_herd_list"              =>  "Last 20 calls heard via this Gateway",
-  "local_tx_list"               =>  "Last 20 calls that accessed this Gateway",
-  "active_starnet_groups"       =>  "Active Starnet Groups",
-  "active_starnet_members"      =>  "Active Starnet Group Members",
-  "d-star_link_manager"         =>  "D-Star Link Manager",
-  "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Service Status",
+  "last_herd_list"              =>  "网关接收到的最近 20 个呼叫",
+  "local_tx_list"               =>  "来自本地的最近 20 个呼叫",
+  "active_starnet_groups"       =>  "激活的 Starnet 组",
+  "active_starnet_members"      =>  "激活的 Starnet 组成员",
+  "d-star_link_manager"         =>  "D-Star 连接管理器",
+  "d-star_link_status"          =>  "D-Star 连接信息",
+  "service_status"              =>  "服务状态",
   // Dictionary End
   "nothing"                     =>  "nothing"
 );
