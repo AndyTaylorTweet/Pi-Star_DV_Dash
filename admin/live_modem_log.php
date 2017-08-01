@@ -1,9 +1,11 @@
 <?php
-//Load the Pi-Star Release file
+// Load the language support
+require_once('config/language.php');
+// Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
-//Load the Version Info
+// Load the Version Info
 require_once('config/version.php');
 
 // Sanity Check that this file has been opened correctly
@@ -52,7 +54,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>Pi-Star - Digital Voice Dashboard - Live Log</title>
+    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['live_logs'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
@@ -71,19 +73,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
   <body>
   <div class="container">
   <div class="header">
-  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-  <h1>Pi-Star Digital Voice - Live Modem Log</h1>
+  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
+  <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['live_logs'];?></h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;">Dashboard</a> |
-    <a href="/admin/" style="color: #ffffff;">Admin</a> |
-    <a href="/admin/power.php" style="color: #ffffff;">Power</a> |
-    <a href="/admin/config_backup.php" style="color: #ffffff;">Backup/Restore</a> |
-    <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
+    <a href="/" style="color: #ffffff;">?php echo $lang['dashboard'];?></a> |
+    <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
+    <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
+    <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
+    <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
   </p>
   </div>
   <div class="contentwide">
   <table width="100%">
-  <tr><th>Live Modem Log</th></tr>
+  <tr><th><?php echo $lang['live_logs'];?></th></tr>
   <tr><td align="left"><div id="tail">Starting logging, please wait...<br /></div></td></tr>
   </table>
   </div>
