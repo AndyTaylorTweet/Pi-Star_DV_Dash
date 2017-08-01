@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 $localTXList = $lastHeard;
 
 ?>
-<b>Last 20 calls that accessed this Gateway</b>
+<b><?php echo $lang['local_tx_list'];?></b>
   <table>
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
