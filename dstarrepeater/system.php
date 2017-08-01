@@ -40,7 +40,7 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
     <?php echo $cpuTempHTML; ?>
   </tr>
   <tr>
-    <th colspan="6">Service Status</th>
+    <th colspan="6"><?php echo $lang['service_status'];?></th>
   </tr>
   <tr>
     <td style="background: #<?php exec ("pgrep MMDVMHost", $mmdvmhostpid); if (!empty($mmdvmhostpid)) { echo "1d1"; } else { echo "b55"; } ?>">MMDVMHost</td>
