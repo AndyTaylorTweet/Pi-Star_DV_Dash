@@ -128,8 +128,6 @@ $lang = array (
   "active_starnet_members"      =>  "激活的 Starnet 组成员",
   "d-star_link_manager"         =>  "D-Star 连接管理器",
   "d-star_link_status"          =>  "D-Star 连接信息",
-  "service_status"              =>  "服务状态",
-  // Dictionary End
-  "nothing"                     =>  "nothing"
+  "service_status"              =>  "服务状态"
 );
 ?>
