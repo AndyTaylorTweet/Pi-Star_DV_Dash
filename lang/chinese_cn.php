@@ -9,7 +9,7 @@ $lang = array (
   // Banner texts
   "digital_voice"               =>  "数字语音",
   "configuration"               =>  "配置",
-  "dashboard_for"               =>  "仪表盘-",
+  "dashboard_for"               =>  "仪表盘 -",
   // Banner links
   "dashboard"                   =>  "仪表盘",
   "admin"                       =>  "管理",
