@@ -26,26 +26,26 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>Pi-Star - Digital Voice Dashboard - Power Control</title>
+    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['power'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
   </head>
   <body>
   <div class="container">
   <div class="header">
-  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-  <h1>Pi-Star Digital Voice - Power Control</h1>
+  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
+  <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['power'];?></h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;">Dashboard</a> |
-    <a href="/admin/" style="color: #ffffff;">Admin</a> |
-    <a href="/admin/update.php" style="color: #ffffff;">Update</a> |
-    <a href="/admin/config_backup.php" style="color: #ffffff;">Backup/Restore</a> |
-    <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
+    <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
+    <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
+    <a href="/admin/update.php" style="color: #ffffff;"><?php echo $lang['update'];?></a> |
+    <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
+    <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
   </p>
   </div>
   <div class="contentwide">
 <?php if (!empty($_POST)) { ?>
   <table width="100%">
-  <tr><th colspan="2">Power Control</th></tr>
+  <tr><th colspan="2"><?php echo $lang['power'];?></th></tr>
   <?php
         if ( escapeshellcmd($_POST["action"]) == "reboot" ) {
                 echo '<tr><td colspan="2" style="background: #000000; color: #00ff00;"><br /><br />Reboot command has been sent to your Pi,
@@ -71,7 +71,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
   <table width="100%">
   <tr>
-    <th colspan="2">Power Control</th>
+    <th colspan="2"><?php echo $lang['power'];?></th>
   </tr>
   <tr>
     <td align="center">
