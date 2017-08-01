@@ -17,7 +17,7 @@ $lang = array (
   "update"                      =>  "更新",
   "backup_restore"              =>  "备份/恢复",
   "factory_reset"               =>  "恢复出厂设置",
-  "live_logs"                   =>  "Live Logs",
+  "live_logs"                   =>  "日志",
   // Config page section headdings
   "hardware_info"               =>  "网关硬件信息",
   "control_software"            =>  "控制软件",
