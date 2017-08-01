@@ -118,7 +118,7 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_herd_list"              =>  "Last 20 calls heard via this Gateway",
+  "last_heard_list"              =>  "Last 20 calls heard via this Gateway",
   "local_tx_list"               =>  "Last 20 calls that accessed this Gateway",
   "active_starnet_groups"       =>  "Active Starnet Groups",
   "active_starnet_members"      =>  "Active Starnet Group Members",
