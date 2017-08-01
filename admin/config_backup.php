@@ -1,9 +1,11 @@
 <?php
-//Load the Pi-Star Release file
+// Load the language support
+require_once('config/language.php');
+// Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
-//Load the Version Info
+// Load the Version Info
 require_once('config/version.php');
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
@@ -25,20 +27,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>Pi-Star - Digital Voice Dashboard - Config Backup</title>
+    <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['backup_restore'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
   </head>
   <body>
   <div class="container">
   <div class="header">
-  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-  <h1>Pi-Star Digital Voice - Config Backup / Restore</h1>
+  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
+  <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['backup_restore'];?></h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;">Dashboard</a> |
-    <a href="/admin/" style="color: #ffffff;">Admin</a> |
-    <a href="/admin/power.php" style="color: #ffffff;">Power</a> |
-    <a href="/admin/update.php" style="color: #ffffff;">Update</a> |
-    <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
+    <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
+    <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
+    <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
+    <a href="/admin/update.php" style="color: #ffffff;"><?php echo $lang['update'];?></a> |
+    <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
   </p>
   </div>
   <div class="contentwide">
@@ -46,7 +48,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   echo '<table width="100%">'."\n";
 
         if ( escapeshellcmd($_POST["action"]) == "download" ) {
-          echo "<tr><th colspan=\"2\">Config Backup</th></tr>\n";
+          echo "<tr><th colspan=\"2\">".$lang['backup_restore']."</th></tr>\n";
 
           $output = "Finding config files to be backed up\n";
           $backupDir = "/tmp/config_backup";
@@ -197,7 +199,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
   <table width="100%">
   <tr>
-    <th colspan="2">Backup / Restore</th>
+    <th colspan="2"><?php echo $lang['backup_restore'];?></th>
   </tr>
   <tr>
     <td align="center" valign="top" width="50%">Download Configuration<br />
