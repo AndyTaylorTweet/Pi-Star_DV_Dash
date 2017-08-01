@@ -1,4 +1,5 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 $configs = array();
 
 if ($configfile = fopen($gatewayConfigPath,'r')) {
