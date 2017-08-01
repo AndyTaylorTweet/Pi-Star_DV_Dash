@@ -20,7 +20,7 @@ $MYCALL=strtoupper($callsign);
     <tr>
     <th><a class=tooltip href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>
     <th><a class=tooltip href="#"><?php echo $lang['callsign'];?></a></th>
-    <th><a class=tooltip href="#">UR</a></th>
+    <th><a class=tooltip href="#"><?php echo $lang['target'];?></a></th>
     <th><a class=tooltip href="#">RPT 1</a></th>
     <th><a class=tooltip href="#">RPT 2</a></th>
     </tr>
