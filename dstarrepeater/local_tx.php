@@ -15,7 +15,7 @@ $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev="20141101";
 $MYCALL=strtoupper($callsign);
 ?>
-    <b>Last calls that accessed this Gateway</b>
+    <b><?php echo $lang['local_tx_list'];?></b>
     <table>
     <tr>
     <th><a class=tooltip href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>
