@@ -1,9 +1,11 @@
 <?php
-//Load the Pi-Star Release file
+// Load the language support
+require_once('config/language.php');
+// Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
-//Load the Version Info
+// Load the Version Info
 require_once('config/version.php');
 
 // Sanity Check that this file has been opened correctly
