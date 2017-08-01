@@ -15,7 +15,7 @@ $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev="20141101";
 $MYCALL=strtoupper($callsign);
 ?>
-<b>Active Starnet Groups</b>
+<b><?php echo $lang['active_starnet_groups'];?></b>
 <table style="table-layout: fixed;">
     <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Starnet Callsign</b></span></a></th>
@@ -83,7 +83,7 @@ $MYCALL=strtoupper($callsign);
 
 	if ($active >= 1) {
 
-	echo "<b>Active Starnet Group Members</b>\n";
+	echo "<b>".$lang['active_starnet_members']."</b>\n";
 	echo "<table style=\"table-layout: fixed;\">\n";
 	echo "<tr>\n";
 	echo "<th><a class=tooltip href=\"#\">".$lang['hostname']." (".date('T').")<span><b>Time of Login</b></span></a></th>\n";
