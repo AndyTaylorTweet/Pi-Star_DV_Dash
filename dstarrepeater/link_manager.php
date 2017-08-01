@@ -1,5 +1,6 @@
 <?php
 if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
 if (!empty($_POST)):
 if (preg_match('/[^A-Z]/',$_POST["Link"])) { unset ($_POST["Link"]);}
@@ -56,7 +57,7 @@ unset($_POST);
 echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 
 else: ?>
-<b>D-Star Link Manager</b>
+<b><?php echo $lang['d-star_link_manager'];?></b>
 <form action="http://<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 <table>
   <tr>
