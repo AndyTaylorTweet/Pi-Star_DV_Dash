@@ -22,14 +22,14 @@ if ($cpuTempC < 50) { $cpuTempHTML = "<td style=\"background: #1d1\">".$cpuTempC
 if ($cpuTempC >= 50) { $cpuTempHTML = "<td style=\"background: #fa0\">".$cpuTempC."&deg;C / ".$cpuTempF."&deg;F</td>\n"; }
 if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTempC."&deg;C / ".$cpuTempF."&deg;F</td>\n"; }
 ?>
-<b>Gateway Hardware Information</b>
+<b><?php echo $lang['hardware_info'];?></b>
 <table style="table-layout: fixed;">
   <tr>
-    <th><a class="tooltip" href="#">Hostname<br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
-    <th><a class="tooltip" href="#">Kernel<span><b>Release</b></span></a></th>
-    <th colspan="2"><a class="tooltip" href="#">Platform<span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
-    <th><a class="tooltip" href="#">CPU Load<span><b>CPU Load</b></span></a></th>
-    <th><a class="tooltip" href="#">CPU Temp<span><b>CPU Temp</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><b>CPU Temp</b></span></a></th>
   </tr>
   <tr>
     <td><?php echo php_uname('n');?></td>
