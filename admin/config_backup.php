@@ -27,7 +27,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title><?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['backup_restore'];?></title>
+    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['backup_restore'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
   </head>
   <body>
