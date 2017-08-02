@@ -2,7 +2,7 @@
 //
 // Norwegian NO Language Pack
 // Translated to Norwegian by LB4GH, Torkell Opedal Wullum, lb4gh@lb4gh.no
-// Updated 02-Aug-2017
+// Updated: 02-Aug-2017
 //
 $lang = array (
   // Banner texts
