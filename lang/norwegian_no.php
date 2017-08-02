@@ -19,7 +19,7 @@ $lang = array (
   "live_logs"                   =>  "Live Logg",
   // Config page section headdings
   "hardware_info"               =>  "Gateway Hardware Informasjon",
-  "control_software"            =>  "Kontroller Software",
+  "control_software"            =>  "Kontroller Programvare",
   "mmdvmhost_config"            =>  "MMDVMHost Konfigurasjon",
   "general_config"              =>  "Generel Konfigurasjon",
   "dmr_config"                  =>  "DMR Konfigurasjon",
@@ -34,10 +34,10 @@ $lang = array (
   "value"                       =>  "Verdi",
   "apply"                       =>  "Bruk endringer",
   // Config Page - Gateway Hardware Information
-  "hostname"                    =>  "Hostnavn",
+  "hostname"                    =>  "Vertsnavn",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platform",
-  "cpu_load"                    =>  "CPU Load",
+  "cpu_load"                    =>  "CPU-belastning",
   "cpu_temp"                    =>  "CPU Temp",
   // Config Page - Control Software
   "controller_software"         =>  "Kontroller Programvare",
@@ -60,7 +60,7 @@ $lang = array (
   "url"                         =>  "URL",
   "radio_type"                  =>  "Radio/Modem Type",
   "node_type"                   =>  "Node Type",
-  "timezone"                    =>  "System Tids sone",
+  "timezone"                    =>  "Tidssone",
   "dash_lang"                   =>  "Skrivebord Språk",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR Master (MMDVMHost)",
@@ -122,8 +122,8 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"              =>  "De siste 20 anropene hørte via denne gatewayen",
-  "local_tx_list"               =>  "Siste 20 samtaler som åpnet denne gatewayen",
+  "last_heard_list"             =>  "De siste 20 anropene hørt via denne Gatewayen",
+  "local_tx_list"               =>  "De siste 20 anropene som åpnet denne Gatewayen",
   "active_starnet_groups"       =>  "Aktive Starnet Grupper",
   "active_starnet_members"      =>  "Aktive Starnet Gruppe medlemer",
   "d-star_link_manager"         =>  "D-Star Link Manager",
