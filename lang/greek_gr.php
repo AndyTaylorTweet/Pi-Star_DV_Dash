@@ -6,7 +6,7 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Ψηφιακή Τηλεφωνία - ",
+  "digital_voice"               =>  "Ψηφιακή Τηλεφωνία",
   "configuration"               =>  "Ρυθμίσεις",
   "dashboard_for"               =>  "Ταμπλώ για τον",
   // Banner links
@@ -122,7 +122,7 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"              =>  "Τελευταία 20 διακριτικά που ακούστηκαν μέσω αυτής της Πύλης",
+  "last_heard_list"             =>  "Τελευταία 20 διακριτικά που ακούστηκαν μέσω αυτής της Πύλης",
   "local_tx_list"               =>  "Τελευταία 20 διακριτικά που είχαν πρόσβαση σε αυτή την Πύλη",
   "active_starnet_groups"       =>  "Ενεργές Ομάδες Starnet",
   "active_starnet_members"      =>  "Ενεργά Μέλη Ομάδων Starnet",
