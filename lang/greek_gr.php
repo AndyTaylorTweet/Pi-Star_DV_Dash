@@ -6,17 +6,17 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Ψηφιακή Τηλεφωνία",
+  "digital_voice"               =>  "Ψηφιακή Τηλεφωνία - ",
   "configuration"               =>  "Ρυθμίσεις",
   "dashboard_for"               =>  "Ταμπλώ για τον",
   // Banner links
   "dashboard"                   =>  "Ταμπλώ",
   "admin"                       =>  "Διαχείριση",
-  "power"                       =>  "Power",
+  "power"                       =>  "Απενεργοποίηση",
   "update"                      =>  "Ενημέρωση",
   "backup_restore"              =>  "Εφεδρικό Αντίγραφο/Επαναφορά",
   "factory_reset"               =>  "Εργοστασιακές Ρυθμίσεις",
-  "live_logs"                   =>  "Ημερολόγιο",
+  "live_logs"                   =>  "Αρχείο Καταγραφής",
   // Config page section headdings
   "hardware_info"               =>  "Πληροφορίες Συσκευών Πύλης",
   "control_software"            =>  "Πρόγραμμα Ελέγχου",
@@ -34,7 +34,7 @@ $lang = array (
   "value"                       =>  "Τιμή",
   "apply"                       =>  "Εφαρμογή",
   // Config Page - Gateway Hardware Information
-  "hostname"                    =>  "Ονομα Υπολογιστή",
+  "hostname"                    =>  "Ονομα Διακομιστή",
   "kernel"                      =>  "Πυρήνας",
   "platform"                    =>  "Πλατφόρμα",
   "cpu_load"                    =>  "Φόρτος CPU",
@@ -61,7 +61,7 @@ $lang = array (
   "radio_type"                  =>  "Τύπος Modem",
   "node_type"                   =>  "Τύπος Κόμβου",
   "timezone"                    =>  "Ζώνη Ωρας",
-  "dash_lang"                   =>  "Γλώσσα Πίνακα",
+  "dash_lang"                   =>  "Γλώσσα Ταμπλώ",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "Διακομιστής DMR (MMDVMHost)",
   "bm_master"                   =>  "Διακομιστής BrandMeister",
@@ -87,7 +87,7 @@ $lang = array (
   "p25_startup_host"            =>  "Διακομιστής Εκκίνησης P25",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "Πρόσβαση στον Πίνακα",
+  "fw_dash"                     =>  "Πρόσβαση στο Ταμπλώ",
   "fw_irc"                      =>  "Απομακρυσμένος ircDDGBateway",
   "fw_ssh"                      =>  "Πρόσβαση SSH",
   // Config Page - Password
