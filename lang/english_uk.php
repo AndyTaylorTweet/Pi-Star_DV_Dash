@@ -2,7 +2,7 @@
 //
 // English UK Language Pack
 // Andy Taylor (MW0MWZ)
-// 01-Aug-2017
+// Updated: 02-Aug-2017
 //
 $lang = array (
   // Banner texts
