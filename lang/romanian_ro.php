@@ -37,8 +37,8 @@ $lang = array (
   "hostname"                    =>  "Denumire Detinator",
   "kernel"                      =>  "Nucleu",
   "platform"                    =>  "Platforma",
-  "cpu_load"                    =>  "Incarcare Procesor",
-  "cpu_temp"                    =>  "Temeratura Procesor",
+  "cpu_load"                    =>  "Incarcare CPU",
+  "cpu_temp"                    =>  "Temeratura CPU",
   // Config Page - Control Software
   "controller_software"         =>  "Program de Control",
   "controller_mode"             =>  "Mod Control",
