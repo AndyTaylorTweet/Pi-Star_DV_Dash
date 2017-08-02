@@ -8,9 +8,9 @@ $lang = array (
   // Banner texts
   "digital_voice"               =>  "Ψηφιακή Τηλεφωνία",
   "configuration"               =>  "Ρυθμίσεις",
-  "dashboard_for"               =>  "Ταμπλό για",
+  "dashboard_for"               =>  "Ταμπλώ για τον",
   // Banner links
-  "dashboard"                   =>  "Ταμπλό",
+  "dashboard"                   =>  "Ταμπλώ",
   "admin"                       =>  "Διαχείριση",
   "power"                       =>  "Power",
   "update"                      =>  "Ενημέρωση",
@@ -98,7 +98,7 @@ $lang = array (
   "modes_enabled"               =>  "Ενεργές Λειτουργίες",
   "net_status"                  =>  "Κατάσταση Δικτύου",
   "internet"                    =>  "Διαδίκτυο",
-  "radio_info"                  =>  "Πληροφορίες Ασυρμάτου",
+  "radio_info"                  =>  "Πληροφ. Ασυρμάτου",
   "dstar_repeater"              =>  "Αναμεταδότης D-Star",
   "dstar_net"                   =>  "Δίκτυο D-Star",
   "dmr_repeater"                =>  "Αναμεταδότης DMR",
@@ -122,7 +122,7 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Τελευταία 20 διακριτικά που ακούστηκαν μέσω αυτής της Πύλης",
+  "last_heard_list"              =>  "Τελευταία 20 διακριτικά που ακούστηκαν μέσω αυτής της Πύλης",
   "local_tx_list"               =>  "Τελευταία 20 διακριτικά πο που είχαν πρόσβαση σε αυτή την Πύλη",
   "active_starnet_groups"       =>  "Ενεργές Ομάδες Starnet",
   "active_starnet_members"      =>  "Ενεργά Μέλη Ομάδων Starnet",
