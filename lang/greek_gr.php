@@ -1,5 +1,9 @@
 <?php
-// Greek GR Language Pack by Demetre SV1UY, version 2
+//
+// Greek GR Language Pack
+// Translated to Greek by Demetre SV1UY, version 2
+// Updated: 02-Aug-2017
+//
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Ψηφιακή Τηλεφωνία",
