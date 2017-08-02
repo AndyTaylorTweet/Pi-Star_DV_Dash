@@ -76,7 +76,7 @@ $lang = array (
   // Config Page - D-Star Configuration
   "dstar_rpt1"                  =>  "RPT1 Callsign",
   "dstar_rpt2"                  =>  "RPT2 Callsign",
-  "dstar_irc_password"          =>  "ircDDBGateway Passwword",
+  "dstar_irc_password"          =>  "ircDDBGateway Password",
   "dstar_default_ref"           =>  "Default Reflector",
   "aprs_host"                   =>  "APRS Host",
   "dstar_irc_lang"              =>  "ircDDBGateway Language",
