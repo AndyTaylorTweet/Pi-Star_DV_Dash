@@ -14,7 +14,7 @@ $lang = array (
   "admin"                       =>  "Administrator",
   "power"                       =>  "Alimentare",
   "update"                      =>  "Actualizare",
-  "backup_restore"              =>  "Copie Rezerva /Restabilire",
+  "backup_restore"              =>  "Copie Rezerva/Restabilire",
   "factory_reset"               =>  "Resetare Stare Initiala",
   "live_logs"                   =>  "Jurnal Live",
   // Config page section headdings
