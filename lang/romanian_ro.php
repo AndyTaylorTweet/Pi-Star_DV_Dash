@@ -2,7 +2,7 @@
 //
 // Romanian RO Language Pack
 // Stirbu Isidor (YO8TEH)
-// 02-Aug-2017
+// Updated: 02-Aug-2017
 //
 $lang = array (
   // Banner texts
