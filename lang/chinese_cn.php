@@ -88,7 +88,7 @@ $lang = array (
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "仪表盘访问",
-  "fw_irc"                      =>  "ircDDGBateway 远程",
+  "fw_irc"                      =>  "ircDDBGateway 远程",
   "fw_ssh"                      =>  "SSH访问",
   // Config Page - Password
   "user"                        =>  "用户名",
