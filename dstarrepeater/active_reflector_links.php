@@ -118,7 +118,7 @@ $MYCALL=strtoupper($callsign);
 			if($linkRptr == $rptrcall){
 			    $ci++;
 			    if($ci > 1) { $ci = 0; }
-			    if ($tr == 1) {
+			    if ($i >= 1) {
 			      print "<tr>";
 			      print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
 			      print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
