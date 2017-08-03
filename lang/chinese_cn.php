@@ -122,7 +122,7 @@ $lang = array (
   "utot"                        =>  "用户超时",     // Short for User Timeout
   "gtot"                        =>  "组超时",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_herd_list"              =>  "网关上最后 20 个呼叫",
+  "last_heard_list"             =>  "网关上最后 20 个呼叫",
   "local_tx_list"               =>  "最后 20 个本地呼叫",
   "active_starnet_groups"       =>  "激活的 Starnet 组",
   "active_starnet_members"      =>  "激活的 Starnet 组成员",
