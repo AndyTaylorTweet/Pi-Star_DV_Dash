@@ -121,11 +121,9 @@ $MYCALL=strtoupper($callsign);
 			if($linkRptr == $rptrcall){
 			    $ci++;
 			    if($ci > 1) { $ci = 0; }
-			    if ($tr == 0) {
-			      print "<tr>";
-			      print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
-			      print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
-			    }
+			    print "<tr>";
+			    print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
+			    print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
 			    print "<td>$statimg</td>";
 			    print "<td>".str_replace(' ', '&nbsp;', substr($linkRefl,0,8))."</td>";
 			    print "<td>$protocol</td>";
@@ -138,7 +136,7 @@ $MYCALL=strtoupper($callsign);
                         	$local_time = $dt->format('H:i:s M jS');
 			    print "<td>$local_time</td>";
 			    print "</tr>\n";
-                    	    $tr = 0;
+                    	    //$tr = 0;
             		}
             	    }
 		}
