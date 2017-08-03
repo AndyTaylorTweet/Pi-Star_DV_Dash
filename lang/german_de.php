@@ -3,7 +3,6 @@
 // German Language Pack
 // by Klaus, DL5RFK
 // 03-Aug-2017
-// file: /var/www/dashboard/lang/german_de.php
 //
 $lang = array (
   // Banner texts
