@@ -96,6 +96,9 @@ $MYCALL=strtoupper($callsign);
 		fclose($linkLog);
 	    }
 
+	    if ($tr == 1){
+		print"<td>$statimg</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
+	    }
 // 2012-05-08 21:16:31: DExtra link - Type: Repeater Rptr: DB0LJ  A Refl: DB0MYK B Dir: Incoming
 
 	    if ($linkLog = fopen($linkLogPath,'r')) {
@@ -118,7 +121,7 @@ $MYCALL=strtoupper($callsign);
 			if($linkRptr == $rptrcall){
 			    $ci++;
 			    if($ci > 1) { $ci = 0; }
-			    if ($i >= 1) {
+			    if ($tr == 1) {
 			      print "<tr>";
 			      print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
 			      print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
@@ -141,9 +144,9 @@ $MYCALL=strtoupper($callsign);
 		}
 		fclose($linkLog);
 	    }
-	    if ($tr == 1){
-		print"<td>$statimg</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
-	    }
+	    //if ($tr == 1){
+		//print"<td>$statimg</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
+	    //}
 	}
     }
 ?>
