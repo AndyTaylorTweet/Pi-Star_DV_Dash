@@ -3,7 +3,7 @@
 // Translated by Le Peng（BD7KLE）, Email: bd7kle@gmail.com
 //               Yuan Wang（BG3MDO）, Email: bg3mdo@gmail.com
 // Maintained by Yuan Wang（BG3MDO）, Email: bg3mdo@gmail.com 
-// Last update on 01/08/2017
+// Last update on 03/08/2017
 
 $lang = array (
   // Banner texts
@@ -87,15 +87,15 @@ $lang = array (
   "p25_startup_host"            =>  "P25 默认服务器",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "访问仪表盘",
+  "fw_dash"                     =>  "仪表盘访问",
   "fw_irc"                      =>  "ircDDGBateway 远程",
-  "fw_ssh"                      =>  "访问SSH",
+  "fw_ssh"                      =>  "SSH访问",
   // Config Page - Password
   "user"                        =>  "用户名",
   "password"                    =>  "密码",
   "set_password"                =>  "设置密码",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "模式启动",
+  "modes_enabled"               =>  "启动的模式",
   "net_status"                  =>  "网络状态",
   "internet"                    =>  "互联网",
   "radio_info"                  =>  "电台信息",
@@ -122,8 +122,8 @@ $lang = array (
   "utot"                        =>  "用户超时",     // Short for User Timeout
   "gtot"                        =>  "组超时",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"              =>  "网关接收到的最近 20 个呼叫",
-  "local_tx_list"               =>  "来自本地的最近 20 个呼叫",
+  "last_herd_list"              =>  "网关上最后 20 个呼叫",
+  "local_tx_list"               =>  "最后 20 个本地呼叫",
   "active_starnet_groups"       =>  "激活的 Starnet 组",
   "active_starnet_members"      =>  "激活的 Starnet 组成员",
   "d-star_link_manager"         =>  "D-Star 连接管理器",
