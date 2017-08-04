@@ -69,7 +69,6 @@ $MYCALL=strtoupper($callsign);
 // 2012-10-12 17:15:45: DCS link - Type: Repeater Rptr: DB0LJ  B Refl: DCS001 L Dir: Outgoing
 // 2012-10-12 17:56:10: DCS link - Type: Repeater Rptr: DB0RPL B Refl: DCS015 B Dir: Outgoing
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Outgoing$/',$linkLine,$linx) > 0){
-			//$statimg = "<img src=\"images/20green.png\" />";
 			$statimg = "Up";
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
@@ -103,10 +102,8 @@ $MYCALL=strtoupper($callsign);
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // 2012-05-08 21:16:31: DExtra link - Type: Repeater Rptr: DB0LJ  A Refl: DB0MYK B Dir: Incoming
 // 2012-05-08 21:16:31: DPlus link - Type: Dongle User: W1CDG  H Dir: Incoming
-
 	    if ($linkLog = fopen($linkLogPath,'r')) {
 		while ($linkLine = fgets($linkLog)) {
-		    //$statimg = "<img src=\"images/20red.png\" />";
 		    $statimg = "Down";
                     $linkDate = "&nbsp;";
                     $protocol = "&nbsp;";
@@ -114,7 +111,6 @@ $MYCALL=strtoupper($callsign);
                     $linkRptr = "&nbsp;";
                     $linkRefl = "&nbsp;";
                     if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: Incoming$/',$linkLine,$linx) > 0){
-			//$statimg = "<img src=\"images/20green.png\" />";
 			$statimg = "Up";
 			$linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
@@ -145,9 +141,46 @@ $MYCALL=strtoupper($callsign);
 		}
 		fclose($linkLog);
 	    }
-	    //if ($tr == 1){
-		//print"<td>$statimg</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
-	    //}
+// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
+// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+// 2012-05-08 21:16:31: DExtra link - Type: Repeater Rptr: DB0LJ  A Refl: DB0MYK B Dir: Incoming
+// 2012-05-08 21:16:31: DPlus link - Type: Dongle User: W1CDG  H Dir: Incoming
+            if ($linkLog = fopen($linkLogPath,'r')) {
+                while ($linkLine = fgets($linkLog)) {
+                    $statimg = "Down";
+                    $linkDate = "&nbsp;";
+                    $protocol = "&nbsp;";
+                    $linkType = "&nbsp;";
+                    $linkRptr = "&nbsp;";
+                    $linkRefl = "&nbsp;";
+                    if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.{8}).*Dir: Incoming$/',$linkLine,$linx) > 0){
+                        $statimg = "Up";
+                        $linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
+                        $protocol = $linx[2][0];
+                        $linkType = $linx[3][0];
+                        $linkRptr = $linx[4][0];
+                            $ci++;
+                            if($ci > 1) { $ci = 0; }
+			    print "<tr>";
+                            print "<td>".str_replace(' ', '&nbsp;', substr($rptrcall,0,8))."</td>";
+                            print "<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>";
+                            print "<td>$statimg</td>";
+                            print "<td>".str_replace(' ', '&nbsp;', substr($linkRptr,0,8))."</td>";
+                            print "<td>$protocol</td>";
+                            print "<td>Incoming</td>";
+                                $utc_time = $linkDate;
+                                $utc_tz =  new DateTimeZone('UTC');
+                                $local_tz = new DateTimeZone(date_default_timezone_get ());
+                                $dt = new DateTime($utc_time, $utc_tz);
+                                $dt->setTimeZone($local_tz);
+                                $local_time = $dt->format('H:i:s M jS');
+                            print "<td>$local_time</td>";
+                            print "</tr>\n";
+                    }
+                }
+                fclose($linkLog);
+            }
+	// End
 	}
     }
 ?>
