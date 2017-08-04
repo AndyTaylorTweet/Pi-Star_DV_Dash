@@ -8,9 +8,9 @@ $lang = array (
   // Banner texts
   "digital_voice"               =>  "Ψηφιακή Τηλεφωνία",
   "configuration"               =>  "Ρυθμίσεις",
-  "dashboard_for"               =>  "Ταμπλώ για τον",
+  "dashboard_for"               =>  "Πίνακας Ελέγχου για τον",
   // Banner links
-  "dashboard"                   =>  "Ταμπλώ",
+  "dashboard"                   =>  "Πίνακας Ελέγχου",
   "admin"                       =>  "Διαχείριση",
   "power"                       =>  "Απενεργοποίηση",
   "update"                      =>  "Ενημέρωση",
@@ -28,7 +28,7 @@ $lang = array (
   "p25_config"                  =>  "Ρυθμίσεις P25",
   "wifi_config"                 =>  "Ρυθμίσεις WiFi",
   "fw_config"                   =>  "Ρυθμίσεις Τείχους Προστασίας",
-  "remote_access_pw"            =>  "Κωδικός Απομακρυσμένης Πρόσβασης",
+  "remote_access_pw"            =>  "Κωδικός Πρόσβασης",
   // Config Page - Section General
   "setting"                     =>  "Ρυθμίσεις",
   "value"                       =>  "Τιμή",
@@ -61,7 +61,7 @@ $lang = array (
   "radio_type"                  =>  "Τύπος Modem",
   "node_type"                   =>  "Τύπος Κόμβου",
   "timezone"                    =>  "Ζώνη Ωρας",
-  "dash_lang"                   =>  "Γλώσσα Ταμπλώ",
+  "dash_lang"                   =>  "Γλώσσα Πίνακα Ελέγχου",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "Διακομιστής DMR (MMDVMHost)",
   "bm_master"                   =>  "Διακομιστής BrandMeister",
@@ -87,7 +87,7 @@ $lang = array (
   "p25_startup_host"            =>  "Διακομιστής Εκκίνησης P25",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "Πρόσβαση στο Ταμπλώ",
+  "fw_dash"                     =>  "Πρόσβαση στον Πίνακα Ελέγχου",
   "fw_irc"                      =>  "Απομακρυσμένος ircDDGBateway",
   "fw_ssh"                      =>  "Πρόσβαση SSH",
   // Config Page - Password
