@@ -2,7 +2,7 @@
 //
 // Greek GR Language Pack
 // Translated to Greek by Demetre SV1UY, version 2
-// Updated: 02-Aug-2017
+// Updated: 04-Aug-2017
 //
 $lang = array (
   // Banner texts
@@ -34,7 +34,7 @@ $lang = array (
   "value"                       =>  "Τιμή",
   "apply"                       =>  "Εφαρμογή",
   // Config Page - Gateway Hardware Information
-  "hostname"                    =>  "Ονομα Διακομιστή",
+  "hostname"                    =>  "Ονομα Συσκευής",
   "kernel"                      =>  "Πυρήνας",
   "platform"                    =>  "Πλατφόρμα",
   "cpu_load"                    =>  "Φόρτος CPU",
