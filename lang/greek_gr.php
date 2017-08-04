@@ -1,7 +1,7 @@
 <?php
 //
 // Greek GR Language Pack
-// Translated to Greek by Demetre SV1UY, version 6
+// Translated to Greek by Demetre SV1UY, version 7
 // Updated: 04-Aug-2017
 //
 $lang = array (
@@ -18,7 +18,7 @@ $lang = array (
   "factory_reset"               =>  "Εργοστασιακές Ρυθμίσεις",
   "live_logs"                   =>  "Αρχείο Καταγραφής",
   // Config page section headdings
-  "hardware_info"               =>  "Πληροφορίες Συσκευών Πύλης",
+  "hardware_info"               =>  "Πληροφορίες Υλικού Πύλης",
   "control_software"            =>  "Πρόγραμμα Ελέγχου",
   "mmdvmhost_config"            =>  "Ρυθμίσεις του MMDVMHost",
   "general_config"              =>  "Γενικές Ρυθμίσεις",
