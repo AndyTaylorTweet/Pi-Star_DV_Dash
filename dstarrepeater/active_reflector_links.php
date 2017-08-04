@@ -48,7 +48,6 @@ $MYCALL=strtoupper($callsign);
 	    $param="reflector" . $i;
 	    if(isset($configs[$param])) { print "<td>".str_replace(' ', '&nbsp;', substr($configs[$param],0,8))."</td>"; } else { print "<td>&nbsp;</td>";}
 	    $param="atStartup" . $i;
-	    //if($configs[$param] == 1){print "<td><img src=\"images/20green.png\" /></td>"; } else { print "<td><img src=\"images/20red.png\" /></td>"; }
 	    if($configs[$param] == 1){print "<td>Auto</td>"; } else { print "<td>No</td>"; }
 	    $param="reconnect" . $i;
 	    if(isset($configs[$param])) { $t = $configs[$param]; } else { $t = 0; }
@@ -96,7 +95,7 @@ $MYCALL=strtoupper($callsign);
 	    }
 
 	    if ($tr == 1){
-		print"<td>$statimg</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
+		print"<td>&nbsp</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
 	    }
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
