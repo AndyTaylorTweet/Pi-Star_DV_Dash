@@ -1,7 +1,7 @@
 <?php
 //
 // Greek GR Language Pack
-// Translated to Greek by Demetre SV1UY, version 2
+// Translated to Greek by Demetre SV1UY, version 6
 // Updated: 04-Aug-2017
 //
 $lang = array (
