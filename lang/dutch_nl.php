@@ -1,7 +1,7 @@
 <?php
 //
 // Dutch NL Language Pack for Pi-Star translated by Rob van Rheenen P0DIB
-// Updated: 02-Aug-2017
+// Updated: 04-Aug-2017
 //
 $lang = array (
   // Banner texts
@@ -49,7 +49,7 @@ $lang = array (
   "mmdvm_display"               =>  "MMDVM display type",
   "mode_hangtime"               =>  "Mode hangtijd",
   // Config Page - General Configuration
-  "node_call"                   =>  "Node Callsign",
+  "node_call"                   =>  "Node roepletters",
   "dmr_id"                      =>  "CCS7/DMR ID",
   "radio_freq"                  =>  "Radio frequentie",
   "lattitude"                   =>  "Breedtegraad",
@@ -73,13 +73,13 @@ $lang = array (
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
   // Config Page - D-Star Configuration
-  "dstar_rpt1"                  =>  "RPT1 Callsign",
-  "dstar_rpt2"                  =>  "RPT2 Callsign",
+  "dstar_rpt1"                  =>  "RPT1 roepletters",
+  "dstar_rpt2"                  =>  "RPT2 roepletters",
   "dstar_irc_password"          =>  "ircDDBGateway paswoord",
-  "dstar_default_ref"           =>  "Standaard Reflector",
+  "dstar_default_ref"           =>  "Standaard reflector",
   "aprs_host"                   =>  "APRS Host",
   "dstar_irc_lang"              =>  "ircDDBGateway taal",
-  "dstar_irc_time"              =>  "Tijd uitzenden (D-Star)",
+  "dstar_irc_time"              =>  "Tijd uitzenden",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF standaard Host",
   // Config Page - P25 Configuration
@@ -108,11 +108,11 @@ $lang = array (
   // Dashboard Front Page - Calls
   "time"                        =>  "Tijd",
   "mode"                        =>  "Mode",
-  "callsign"                    =>  "Callsign",
+  "callsign"                    =>  "Roepletters",
   "target"                      =>  "Doel",
   "src"                         =>  "Bron",        // Short version of "Source"
   "dur"                         =>  "Duur",        // Short version of "Duration"
-  "loss"                        =>  "Loss",        // Not translated due space (most NL understand Loss) 
+  "loss"                        =>  "Verlies", 
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // Dashboard - Extra Info
   "group"                       =>  "Groep",
@@ -121,8 +121,8 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"              => "Laatste 20 calls gehoord via deze Gateway",
-  "local_tx_list"               =>  "Laatste 20 calls TX via deze Gateway",
+  "last_heard_list"             => "Laatste 20 oproepen gehoord (RX) via deze Gateway",
+  "local_tx_list"               =>  "Laatste 20 oproepen verzonden (TX) via deze Gateway",
   "active_starnet_groups"       =>  "Actieve Starnet groepen",
   "active_starnet_members"      =>  "Actieve Starnet groepsleden",
   "d-star_link_manager"         =>  "D-Star Link Manager",
