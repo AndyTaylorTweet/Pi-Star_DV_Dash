@@ -221,7 +221,7 @@ function getDVModemFirmware() {
 			$modemFirmware = "MMDVM:".substr($logLine, 73, 8);
 		}
 		if (strpos($logLine, 'description: ZUMspot ')) {
-			//$modemFirmware = "ZUMspot:".strok(substr($logLine, 83, 12));
+			$modemFirmware = "ZUMspot:".strtok(substr($logLine, 83, 12));
 		}
 
 	}
