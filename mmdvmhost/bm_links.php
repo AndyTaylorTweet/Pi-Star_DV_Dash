@@ -29,9 +29,9 @@ if ( $testMMDVModeDMR == 1 ) {
                 }
   }
 
+  if (substr($dmrMasterHost, 0, 2) == "BM") {
   // DMR ID, we will need this for the JSON lookup
   $dmrID = getConfigItem("DMR", "Id", $mmdvmconfigs);
-  if (substr($dmrID, 0, 2) == "BM") {
 
   // Connect to the master and get the JSON for this host on the correct DMR Master
   $json = json_decode(file_get_contents("http://$dmrMasterHostIP/status/status.php", true));
