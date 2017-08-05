@@ -62,7 +62,5 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '    </tr>'."\n";
 
   echo '  </table>'."\n";
-  echo '  <br />'."\n";
-
 }
 ?>
