@@ -35,6 +35,12 @@ if ( $testMMDVModeDMR == 1 ) {
 
   // Use BM API to get information about current TGs
   $json = json_decode(file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=profile&q=$dmrID", true));
+
+  // Set some Variable
+  $bmStaticTGList = "";
+  $bmDynamicTGList = "";
+
+  // Pull the information form JSON
   if (isset($json->reflector->reflector)) { $bmReflectorDef = $json->reflector->reflector; } else { $bmReflectorDef = "Not Set"; }
   if (isset($json->reflector->interval)) { $bmReflectorInterval = $json->reflector->interval; } else {$bmReflectorInterval = "Not Set"; }
   if (isset($json->reflector->active)) { $bmReflectorActive = $json->reflector->active; } else { $bmReflectorActive = "None"; }
