@@ -132,8 +132,16 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	}
 
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
+		echo '<script type="text/javascript">'."\n";
+        	echo 'function reloadbmConnections(){'."\n";
+        	echo '  $("#bmConnects").load("/mmdvmhost/bm_links.php");'."\n";
+        	echo '}'."\n";
+        	echo 'setInterval(function(){reloadbmConnections()}, 15000);'."\n";
+		echo '$(window).trigger(\'resize\');'."\n";
+        	echo '</script>'."\n";
+        	echo '<div id="bmConnects">'."\n";
 		include 'mmdvmhost/bm_links.php';                       // BM Links
-        	echo "<br />\n";
+		echo '</div>'."\n";
 	}
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
