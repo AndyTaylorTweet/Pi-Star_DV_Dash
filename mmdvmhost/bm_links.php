@@ -48,16 +48,16 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '<b>Active BrandMeister Connections</b>
   <table>
     <tr>
-      <th><a class=tooltip href="#">Master<span><b>Connected Master</b></span></a></th>
-      <th><a class=tooltip href="#">TA Data<span><b>TA Data</b></span></a></th>
-      <th><a class=tooltip href="#">Linked TG<span><b>Last Linked Talk Group</b></span></a></th>
+      <th><a class=tooltip href="#">DMR Master<span><b>Connected Master</b></span></a></th>
+      <th><a class=tooltip href="#">Talker Alias Data<span><b>TA Data</b></span></a></th>
+      <!-- <th><a class=tooltip href="#">Linked TG<span><b>Last Linked Talk Group</b></span></a></th> -->
       <th><a class=tooltip href="#">Linked Ref<span><b>Last Linked Reflector</b></span></a></th>
     </tr>'."\n";
 
   echo '    <tr>'."\n";
   echo '      <td>'.$dmrMasterHost.'</td>';
   echo '<td>'.$taData.'</td>';
-  echo '<td>'.$linkedTG.'</td>';
+  //echo '<td>'.$linkedTG.'</td>';
   echo '<td>'.$linkedREF.'</td>'."\n";
   echo '    </tr>'."\n";
 
