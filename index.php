@@ -117,9 +117,6 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 
 		include 'dstarrepeater/link_manager.php';		// D-Star Link Manager
 		echo "<br />\n";
-		
-		include 'mmdvmhost/bm_links.php';                       // BM Links
-                echo "<br />\n";
 		}
 
         echo '<script type="text/javascript">'."\n";
@@ -134,6 +131,10 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '</div>'."\n";
 	}
 
+	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
+		include 'mmdvmhost/bm_links.php';                       // BM Links
+        	echo "<br />\n";
+	}
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
 	echo '  $("#localTxs").load("/mmdvmhost/localtx.php");'."\n";
