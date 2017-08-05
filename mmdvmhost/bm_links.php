@@ -56,7 +56,7 @@ if ( $testMMDVModeDMR == 1 ) {
     <tr>
       <th><a class=tooltip href="#">DMR Master<span><b>Connected Master</b></span></a></th>
       <th><a class=tooltip href="#">Default Ref<span><b>Default Reflector</b></span></a></th>
-      <th><a class=tooltip href="#">Timeout<span><b>Configured Timeout</b></span></a></th>
+      <th><a class=tooltip href="#">Timeout(s)<span><b>Configured Timeout</b></span></a></th>
       <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
       <th><a class=tooltip href="#">Static TGs<span><b>Statically linked talkgroups</b></span></a></th>
       <th><a class=tooltip href="#">Dynamic TGs<span><b>Dynamically linked talkgroups</b></span></a></th>
