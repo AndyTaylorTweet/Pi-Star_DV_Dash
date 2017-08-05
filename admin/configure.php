@@ -187,7 +187,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           unset($_POST);
 
 	  // Over-write the config files with the clean copies
-	  exec('sudo unzip -o /usr/local/etc/config_clean.zip -d /etc/');
+	  exec('sudo unzip -o /usr/local/bin/config_clean.zip -d /etc/');
 	  exec('sudo rm -rf /etc/dstar-radio.*');
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  // Make the root filesystem read-only
