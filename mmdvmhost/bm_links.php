@@ -51,7 +51,7 @@ if ( $testMMDVModeDMR == 1 ) {
       <th><a class=tooltip href="#">DMR Master<span><b>Connected Master</b></span></a></th>
       <th><a class=tooltip href="#">Talker Alias Data<span><b>TA Data</b></span></a></th>
       <!-- <th><a class=tooltip href="#">Linked TG<span><b>Last Linked Talk Group</b></span></a></th> -->
-      <th><a class=tooltip href="#">Linked Ref<span><b>Last Linked Reflector</b></span></a></th>
+      <th><a class=tooltip href="#">Linked Reflector<span><b>Last Linked Reflector</b></span></a></th>
     </tr>'."\n";
 
   echo '    <tr>'."\n";
