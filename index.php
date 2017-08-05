@@ -117,6 +117,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 
 		include 'dstarrepeater/link_manager.php';		// D-Star Link Manager
 		echo "<br />\n";
+		
+		include 'mmdvmhost/bm_links.php';                       // BM Links
+                echo "<br />\n";
 		}
 
         echo '<script type="text/javascript">'."\n";
