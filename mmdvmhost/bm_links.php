@@ -31,7 +31,7 @@ if ( $testMMDVModeDMR == 1 ) {
 
   // DMR ID, we will need this for the JSON lookup
   $dmrID = getConfigItem("DMR", "Id", $mmdvmconfigs);
-
+  if (substr($dmrID, 0, 2) == "BM") {
 
   // Connect to the master and get the JSON for this host on the correct DMR Master
   $json = json_decode(file_get_contents("http://$dmrMasterHostIP/status/status.php", true));
@@ -45,7 +45,7 @@ if ( $testMMDVModeDMR == 1 ) {
   if ($values[18] == '0') { $linkedTG = "None"; } else { $linkedTG = $values[18]; }
   if (($values[19] >= '4001') && ($values[19] <= '4999')) { $linkedREF = $values[19]; } else { $linkedREF = "None"; }
 
-  echo '<b>Active DMR Connections</b>
+  echo '<b>Active BrandMeister Connections</b>
   <table>
     <tr>
       <th><a class=tooltip href="#">Master<span><b>Connected Master</b></span></a></th>
@@ -62,5 +62,6 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '    </tr>'."\n";
 
   echo '  </table>'."\n";
+  }
 }
 ?>
