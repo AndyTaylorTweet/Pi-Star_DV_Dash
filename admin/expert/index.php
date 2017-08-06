@@ -52,7 +52,7 @@ require_once('../config/version.php');
 
   <table width="100%">
     <tr><th>Expert Editors</th></tr>
-    <tr><td align="left">
+    <tr><td align="center">
       <h2>**WARNING**</h2>
       Pi-Star Expert editors have been created to make editing some of the extra settings in the<br />
       config files more simple, allowing you to update some areas of the config files without the<br />
