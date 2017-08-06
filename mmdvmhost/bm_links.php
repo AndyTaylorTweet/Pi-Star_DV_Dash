@@ -60,7 +60,7 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '<b>Active BrandMeister Connections</b>
   <table>
     <tr>
-      <th><a class=tooltip href="#">DMR Master<span><b>Connected Master</b></span></a></th>
+      <th><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
       <th><a class=tooltip href="#">Default Ref<span><b>Default Reflector</b></span></a></th>
       <th><a class=tooltip href="#">Timeout(s)<span><b>Configured Timeout</b></span></a></th>
       <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
