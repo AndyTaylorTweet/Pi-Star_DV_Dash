@@ -46,7 +46,7 @@ require_once('../config/version.php');
     <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a> |
     <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
     <a href="edit_starnetserver.php" style="color: #ffffff;">StarNetServer</a> |
-    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a> |
+    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a>
   </p>
   </div>
   <div class="contentwide">
