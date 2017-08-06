@@ -50,7 +50,10 @@ require_once('../config/version.php');
   </div>
   <div class="contentwide">
 
-
+  <table width="100%">
+    <tr><th>Expert Editors</th></tr>
+    <tr><td align="left"></td></tr>
+  </table>
   </div>
 
 <div class="footer">
