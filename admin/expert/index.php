@@ -66,7 +66,8 @@ require_once('../config/version.php');
       With that warning in mind, you are free to make any changes you like, for help come to the Facebook<br />
       group (link at the bottom of the page) and ask for help if / when you need it.<br />
       73 and enjoy your Pi-Star experiance.<br />
-      Pi-Star UK Team.
+      Pi-Star UK Team.<br />
+      <br />
     </td></tr>
   </table>
   </div>
