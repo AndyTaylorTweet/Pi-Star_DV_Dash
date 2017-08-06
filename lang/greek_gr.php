@@ -1,7 +1,7 @@
 <?php
 //
 // Greek GR Language Pack
-// Translated to Greek by Demetre SV1UY, version 8
+// Translated to Greek by Demetre SV1UY, version 9
 // Updated: 06-Aug-2017
 //
 $lang = array (
@@ -48,7 +48,7 @@ $lang = array (
   "ysf_mode"                    =>  "Λειτουργία YSF",
   "p25_mode"                    =>  "Λειτουργία P25",
   "mmdvm_display"               =>  "Τύπος Οθόνης MMDVM",
-  "mode_hangtime"               =>  "Χρόνος Περάτωσης Λειτουργίας",
+  "mode_hangtime"               =>  "Χρόνος Επαναφοράς Σάρωσης",
   // Config Page - General Configuration
   "node_call"                   =>  "Διακριτικό Κόμβου",
   "dmr_id"                      =>  "Ταυτότητα CCS7/DMR",
