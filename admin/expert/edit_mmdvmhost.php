@@ -31,11 +31,11 @@ require_once('../config/version.php');
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
   <h1>Pi-Star Digital Voice - Expert Editor</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;">Dashboard</a> |
-    <a href="/admin/" style="color: #ffffff;">Admin</a> |
-    <a href="/admin/update.php" style="color: #ffffff;">Update</a> |
-    <a href="/admin/config_backup.php" style="color: #ffffff;">Backup/Restore</a> |
-    <a href="/admin/configure.php" style="color: #ffffff;">Config</a>
+    <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
+    <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
+    <a href="/admin/update.php" style="color: #ffffff;"><?php echo $lang['update'];?></a> |
+    <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
+    <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
   </p>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     Edit:
@@ -45,7 +45,6 @@ require_once('../config/version.php');
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
     <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a> |
     <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
-    <a href="edit_starnetserver.php" style="color: #ffffff;">StarNetServer</a> |
     <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a>
   </p>
   </div>
