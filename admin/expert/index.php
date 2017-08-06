@@ -52,7 +52,22 @@ require_once('../config/version.php');
 
   <table width="100%">
     <tr><th>Expert Editors</th></tr>
-    <tr><td align="left"></td></tr>
+    <tr><td align="left">
+      <h2>**WARNING**</h2>
+      Pi-Star Expert editors have been created to make editing some of the extra settings in the<br />
+      config files more simple, allowing you to update some areas of the config files without the<br />
+      need to login to your Pi over SSH.<br />
+      <br />
+      Please keep in mind when making your edits here, that these config files can be updated by<br />
+      the dashboard, and that your edits can be over-written. It is assumed that you already know<br />
+      what you are doing editing the files by hand, and that you understand what parts of the files<br />
+      are maintained by the dashboard.<br />
+      <br />
+      With that warning in mind, you are free to make any changes you like, for help come to the Facebook<br />
+      group (link at the bottom of the page) and ask for help if / when you need it.<br />
+      73 and enjoy your Pi-Star experiance.<br />
+      Pi-Star UK Team.
+    </td></tr>
   </table>
   </div>
 
