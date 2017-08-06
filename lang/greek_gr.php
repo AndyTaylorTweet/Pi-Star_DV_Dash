@@ -1,8 +1,8 @@
 <?php
 //
 // Greek GR Language Pack
-// Translated to Greek by Demetre SV1UY, version 7
-// Updated: 04-Aug-2017
+// Translated to Greek by Demetre SV1UY, version 8
+// Updated: 06-Aug-2017
 //
 $lang = array (
   // Banner texts
@@ -63,13 +63,13 @@ $lang = array (
   "timezone"                    =>  "Ζώνη Ωρας",
   "dash_lang"                   =>  "Γλώσσα Πίνακα Ελέγχου",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "Διακομιστής DMR (MMDVMHost)",
-  "bm_master"                   =>  "Διακομιστής BrandMeister",
+  "dmr_master"                  =>  "Εξυπηρετητής DMR (MMDVMHost)",
+  "bm_master"                   =>  "Εξυπηρετητής BrandMeister",
   "bm_network"                  =>  "Δίκτυο BrandMeister",
-  "dmr_plus_master"             =>  "Διακομιστής DMR+",
+  "dmr_plus_master"             =>  "Εξυπηρετητής DMR+",
   "dmr_plus_network"            =>  "Δίκτυο DMR+",
-  "xlx_master"                  =>  "Διακομιστής XLX",
-  "xlx_enable"                  =>  "Ενεργοποίηση Διακομιστή XLX",
+  "xlx_master"                  =>  "Εξυπηρετητής XLX",
+  "xlx_enable"                  =>  "Ενεργοποίηση Εξυπηρετητή XLX",
   "dmr_cc"                      =>  "Κωδικός Χρώματος DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -78,13 +78,13 @@ $lang = array (
   "dstar_rpt2"                  =>  "Διακριτικό RPT2",
   "dstar_irc_password"          =>  "Κωδικός ircDDBGateway",
   "dstar_default_ref"           =>  "Reflector Προεπιλογής",
-  "aprs_host"                   =>  "Διακομιστής APRS",
+  "aprs_host"                   =>  "Κεντρικός Υπολ. APRS",
   "dstar_irc_lang"              =>  "Γλώσσα ircDDBGateway",
   "dstar_irc_time"              =>  "Αναγγελίες Ωρας",
   // Config Page - YSF Configuration
-  "ysf_startup_host"            =>  "Διακομιστής Εκκίνησης YSF",
+  "ysf_startup_host"            =>  "Εξυπηρετητής Εκκίνησης YSF",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "Διακομιστής Εκκίνησης P25",
+  "p25_startup_host"            =>  "Εξυπηρετητής Εκκίνησης P25",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Πρόσβαση στον Πίνακα Ελέγχου",
@@ -93,7 +93,7 @@ $lang = array (
   // Config Page - Password
   "user"                        =>  "Ονομα Χρήστη",
   "password"                    =>  "Κωδικός Πρόσβασης",
-  "set_password"                =>  "Ρύθμιση Κωδικού Πρόσβασης",
+  "set_password"                =>  "Αλλαγή Κωδικού Πρόσβασης",
   // Dashboard Front Page - Repeater Info Pannel
   "modes_enabled"               =>  "Ενεργές Λειτουργίες",
   "net_status"                  =>  "Κατάσταση Δικτύου",
@@ -102,7 +102,7 @@ $lang = array (
   "dstar_repeater"              =>  "Αναμεταδότης D-Star",
   "dstar_net"                   =>  "Δίκτυο D-Star",
   "dmr_repeater"                =>  "Αναμεταδότης DMR",
-  "dmr_master"                  =>  "Διακομιστής DMR",
+  "dmr_master"                  =>  "Εξυπηρετητής DMR",
   "ysf_net"                     =>  "Δίκτυο YSF",
   "p25_radio"                   =>  "Ασύρματος P25",
   "p25_net"                     =>  "Δίκτυο P25",
@@ -112,15 +112,15 @@ $lang = array (
   "callsign"                    =>  "Διακριτικό",
   "target"                      =>  "Προορισμός",
   "src"                         =>  "Πηγή",        // Short version of "Source"
-  "dur"                         =>  "Διάρκεια",        // Short version of "Duration"
+  "dur"                         =>  "Διάρκεια",    // Short version of "Duration"
   "loss"                        =>  "Απώλεια",
-  "ber"                         =>  "Σφάλματα",        // Short version of "Bit Error Rate"
+  "ber"                         =>  "Σφάλματα",    // Short version of "Bit Error Rate"
   // Dashboard - Extra Info
   "group"                       =>  "Ομάδα",
   "logoff"                      =>  "Αποσύνδεση",
   "info"                        =>  "Πληροφορίες",
-  "utot"                        =>  "UTOT",       // Short for User Timeout
-  "gtot"                        =>  "GTOT",       // Short for Group Timeout
+  "utot"                        =>  "UTOT",        // Short for User Timeout
+  "gtot"                        =>  "GTOT",        // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Τελευταία 20 διακριτικά που ακούστηκαν μέσω αυτής της Πύλης",
   "local_tx_list"               =>  "Τελευταία 20 διακριτικά που είχαν πρόσβαση σε αυτή την Πύλη",
