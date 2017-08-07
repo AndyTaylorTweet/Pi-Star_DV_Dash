@@ -49,7 +49,7 @@ if ( $testMMDVModeDMR == 1 ) {
                                             $bmStaticTGList .= "TG".$staticTG->talkgroup." ";
                                           }
                                           $bmStaticTGList = wordwrap($bmStaticTGList, 15, "<br />\n");
-                                          //if (strpos($bmStaticTGList, 'TG') == false) { $bmStaticTGList = "None"; }
+                                          if (preg_match('/TG/', $bmStaticTGList) == false) { $bmStaticTGList = "None"; }
                                          } else { $bmStaticTGList = "None"; }
   if (isset($json->dynamicSubscriptions)) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
                                            foreach($bmDynamicTGListJson as $dynamicTG) {
