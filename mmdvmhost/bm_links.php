@@ -44,15 +44,15 @@ if ( $testMMDVModeDMR == 1 ) {
   if (isset($json->reflector->reflector)) { $bmReflectorDef = $json->reflector->reflector; } else { $bmReflectorDef = "Not Set"; }
   if (isset($json->reflector->interval)) { $bmReflectorInterval = $json->reflector->interval; } else {$bmReflectorInterval = "Not Set"; }
   if (isset($json->reflector->active)) { $bmReflectorActive = $json->reflector->active; } else { $bmReflectorActive = "None"; }
-  if ((isset($json->staticSubscriptions)) && ($json->staticSubscriptions != '')) { $bmStaticTGListJson = $json->staticSubscriptions;
+  if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
                                           foreach($bmStaticTGListJson as $staticTG) {
-                                            $bmStaticTGList .= $staticTG->talkgroup." ";
+                                            $bmStaticTGList .= "TG".$staticTG->talkgroup." ";
                                           }
                                           $bmStaticTGList = wordwrap($bmStaticTGList, 15, "<br />\n");
                                          } else { $bmStaticTGList = "None"; }
-  if ((isset($json->dynamicSubscriptions)) && ($json->dynamicSubscriptions !='')) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
+  if (isset($json->dynamicSubscriptions)) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
                                            foreach($bmDynamicTGListJson as $dynamicTG) {
-                                             $bmDynamicTGList .= $dynamicTG->talkgroup." ";
+                                             $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ";
                                            }
                                            $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
                                           } else { $bmDynamicTGList = "None"; }
