@@ -41,9 +41,9 @@ if ( $testMMDVModeDMR == 1 ) {
   $bmDynamicTGList = "";
 
   // Pull the information form JSON
-  if (isset($json->reflector->reflector)) { $bmReflectorDef = $json->reflector->reflector; } else { $bmReflectorDef = "Not Set"; }
-  if (isset($json->reflector->interval)) { $bmReflectorInterval = $json->reflector->interval; } else {$bmReflectorInterval = "Not Set"; }
-  if (isset($json->reflector->active)) { $bmReflectorActive = $json->reflector->active; } else { $bmReflectorActive = "None"; }
+  if (isset($json->reflector->reflector)) { $bmReflectorDef = "REF".$json->reflector->reflector; } else { $bmReflectorDef = "Not Set"; }
+  if (isset($json->reflector->interval)) { $bmReflectorInterval = $json->reflector->interval."(s)"; } else {$bmReflectorInterval = "Not Set"; }
+  if (isset($json->reflector->active)) { $bmReflectorActive = "REF".$json->reflector->active; } else { $bmReflectorActive = "None"; }
   if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
                                           foreach($bmStaticTGListJson as $staticTG) {
                                             $bmStaticTGList .= "TG".$staticTG->talkgroup." ";
