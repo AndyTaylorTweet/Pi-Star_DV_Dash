@@ -45,20 +45,17 @@ if ( $testMMDVModeDMR == 1 ) {
   if (isset($json->reflector->interval)) { $bmReflectorInterval = $json->reflector->interval; } else {$bmReflectorInterval = "Not Set"; }
   if (isset($json->reflector->active)) { $bmReflectorActive = $json->reflector->active; } else { $bmReflectorActive = "None"; }
   if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
-                                                foreach($bmStaticTGListJson as $staticTG) {
-                                                        $bmStaticTGList .= $staticTG->talkgroup." ";
-                                                }
-                                        $bmStaticTGList = wordwrap($bmStaticTGList, 15, "<br />\n");
-                                        } else { $bmStaticTGList = "None"; }
-  if (isset($json->dynamicSubscriptions)) { $bmDynamicTGList = $json->dynamicSubscriptions;
-                                                if ($bmDynamicTGList != '') {
-                                                  foreach($bmDynamicTGListJson as $dynamicTG) {
-                                                    $bmDynamicTGList .= $dynamicTG->talkgroup." ";
-                                                  }
-                                                  $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
-                                                }
-                                                else { $bmDynamicTGList = "None"; }
+                                          foreach($bmStaticTGListJson as $staticTG) {
+                                            $bmStaticTGList .= $staticTG->talkgroup." ";
                                           }
+                                          $bmStaticTGList = wordwrap($bmStaticTGList, 15, "<br />\n");
+                                         } else { $bmStaticTGList = "None"; }
+  if (isset($json->dynamicSubscriptions)) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
+                                           foreach($bmDynamicTGListJson as $dynamicTG) {
+                                             $bmDynamicTGList .= $dynamicTG->talkgroup." ";
+                                           }
+                                           $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
+                                          } else { $bmDynamicTGList = "None"; }
 
   echo '<b>Active BrandMeister Connections</b>
   <table>
