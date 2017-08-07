@@ -51,12 +51,14 @@ if ( $testMMDVModeDMR == 1 ) {
                                         $bmStaticTGList = wordwrap($bmStaticTGList, 15, "<br />\n");
                                         } else { $bmStaticTGList = "None"; }
   if (isset($json->dynamicSubscriptions)) { $bmDynamicTGList = $json->dynamicSubscriptions;
-                                                foreach($bmDynamicTGListJson as $dynamicTG) {
-                                                        $bmDynamicTGList .= $dynamicTG->talkgroup." ";
+                                                if (isset($bmDynamicTGList)) {
+                                                  foreach($bmDynamicTGListJson as $dynamicTG) {
+                                                    $bmDynamicTGList .= $dynamicTG->talkgroup." ";
+                                                  }
+                                                  $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
                                                 }
-                                                if (isset($bmDynamicTGList)) { $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n"); }
                                                 else { $bmDynamicTGList = "None"; }
-                                        }
+                                          }
 
   echo '<b>Active BrandMeister Connections</b>
   <table>
