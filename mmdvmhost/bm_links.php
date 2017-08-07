@@ -56,7 +56,7 @@ if ( $testMMDVModeDMR == 1 ) {
                                              $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ";
                                            }
                                            $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
-                                           //if (strpos($bmDynamicTGList, 'TG') == false) { $bmDynamicTGList = "None"; }
+                                           if (preg_match('/TG/', $bmDynamicTGList) == false) { $bmDynamicTGList = "None"; }
                                           } else { $bmDynamicTGList = "None"; }
 
   echo '<b>Active BrandMeister Connections</b>
