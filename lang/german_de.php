@@ -2,33 +2,33 @@
 //
 // German Language Pack
 // by Klaus, DL5RFK
-// 03-Aug-2017
+// 08-Aug-2017
 //
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Digital Voice",
   "configuration"               =>  "Konfiguration",
-  "dashboard_for"               =>  "Dashboard f&uuml;r",
+  "dashboard_for"               =>  "Tableau f&uuml;r",
   // Banner links
-  "dashboard"                   =>  "Dashboard",
+  "dashboard"                   =>  "Tableau",
   "admin"                       =>  "Admin",
-  "power"                       =>  "Power",
+  "power"                       =>  "Strom",
   "update"                      =>  "Aktuallisieren",
   "backup_restore"              =>  "Datensicherung/Wiederherstellung",
   "factory_reset"               =>  "Werkseinstellung",
   "live_logs"                   =>  "Protokoll",
   // Config page section headdings
   "hardware_info"               =>  "Gateway Hardware Information",
-  "control_software"            =>  "Kontrol Software",
+  "control_software"            =>  "Kontrollsoftware",
   "mmdvmhost_config"            =>  "MMDVMHost Konfiguration",
   "general_config"              =>  "Basis Konfiguration",
   "dmr_config"                  =>  "DMR Konfiguration",
   "dstar_config"                =>  "D-Star Konfiguration",
   "ysf_config"                  =>  "Yaesu System Fusion Konfiguration",
   "p25_config"                  =>  "P25 Konfiguration",
-  "wifi_config"                 =>  "Wireless Konfiguration",
+  "wifi_config"                 =>  "Wlan Konfiguration",
   "fw_config"                   =>  "Firewall Konfiguration",
-  "remote_access_pw"            =>  "Fernzugriff Passwort",
+  "remote_access_pw"            =>  "Fernzugriff",
   // Config Page - Section General
   "setting"                     =>  "Einstellung",
   "value"                       =>  "Wert",
@@ -40,15 +40,15 @@ $lang = array (
   "cpu_load"                    =>  "CPU Last",
   "cpu_temp"                    =>  "CPU Temp",
   // Config Page - Control Software
-  "controller_software"         =>  "Controller Software",
-  "controller_mode"             =>  "Controller Mode",
+  "controller_software"         =>  "Kontroller Software",
+  "controller_mode"             =>  "Kontroller Mode",
   // Config Page - MMDVMHost Configuration
   "dmr_mode"                    =>  "DMR Modus",
   "d-star_mode"                 =>  "D-Star Modus",
   "ysf_mode"                    =>  "YSF Modus",
   "p25_mode"                    =>  "P25 Modus",
   "mmdvm_display"               =>  "MMDVM Display Typ",
-  "mode_hangtime"               =>  "Mode Hangtime",
+  "mode_hangtime"               =>  "Mode Nachlaufzeit",
   // Config Page - General Configuration
   "node_call"                   =>  "Node Rufzeichen",
   "dmr_id"                      =>  "CCS7/DMR ID",
@@ -61,7 +61,7 @@ $lang = array (
   "radio_type"                  =>  "Radio/Modem Typ",
   "node_type"                   =>  "Node Typ",
   "timezone"                    =>  "Systemzeit Zone",
-  "dash_lang"                   =>  "Dashboard Sprache",
+  "dash_lang"                   =>  "Tableau Sprache",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR Master (MMDVMHost)",
   "bm_master"                   =>  "BrandMeister Master",
@@ -70,7 +70,7 @@ $lang = array (
   "dmr_plus_network"            =>  "DMR+ Netzwerk",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Aktiv",
-  "dmr_cc"                      =>  "DMR Colour Code",
+  "dmr_cc"                      =>  "DMR Color Code",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
   // Config Page - D-Star Configuration
@@ -87,7 +87,7 @@ $lang = array (
   "p25_startup_host"            =>  "P25 Startup Host",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "Dashboard Zugriff",
+  "fw_dash"                     =>  "Tableau Zugriff",
   "fw_irc"                      =>  "ircDDGBateway Remote",
   "fw_ssh"                      =>  "SSH Zugriff",
   // Config Page - Password
@@ -111,8 +111,8 @@ $lang = array (
   "mode"                        =>  "Mode",
   "callsign"                    =>  "Rufzeichen",
   "target"                      =>  "Ziel",
-  "src"                         =>  "Quelle",        // Short version of "Source"
-  "dur"                         =>  "Dauer",        // Short version of "Duration"
+  "src"                         =>  "Quelle",     // Short version of "Source"
+  "dur"                         =>  "Dauer",      // Short version of "Duration"
   "loss"                        =>  "Verlust",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // Dashboard - Extra Info
@@ -123,11 +123,11 @@ $lang = array (
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Letzten 20 Rufzeichen, die gerh&ouml;rt wurden",
-  "local_tx_list"               =>  "Letzen 20 Rufzeichen, die dieses Gateway nutzen",
+  "local_tx_list"               =>  "Letzten 20 Rufzeichen, die dieses Gateway nutzten",
   "active_starnet_groups"       =>  "Aktive Starnet Gruppen",
   "active_starnet_members"      =>  "Aktive Starnet Gruppen Mitglieder",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
   "service_status"              =>  "Service Status"
-);
+  );
 ?>
