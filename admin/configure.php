@@ -59,10 +59,15 @@ $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
 
 // Load the modem config information
-$modemConfigFileDStarRepeater = '/etc/dstar-radio.dstarrepeater';
-$modemConfigFileMMDVMHost = '/etc/dstar-radio.mmdvmhost';
-if (fopen($modemConfigFileDStarRepeater,'r')) { $configModem = parse_ini_file($modemConfigFileDStarRepeater, true); }
-if (fopen($modemConfigFileMMDVMHost,'r')) { $configModem = parse_ini_file($modemConfigFileMMDVMHost, true); }
+if (file_exists('/etc/dstar-radio.dstarrepeater')) {
+	$modemConfigFileDStarRepeater = '/etc/dstar-radio.dstarrepeater';
+	if (fopen($modemConfigFileDStarRepeater,'r')) { $configModem = parse_ini_file($modemConfigFileDStarRepeater, true); }
+	}
+
+if (file_exists('/etc/dstar-radio.mmdvmhost')) {
+	$modemConfigFileMMDVMHost = '/etc/dstar-radio.mmdvmhost';
+	if (fopen($modemConfigFileMMDVMHost,'r')) { $configModem = parse_ini_file($modemConfigFileMMDVMHost, true); }
+}
 
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
