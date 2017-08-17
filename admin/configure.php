@@ -357,9 +357,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the Frequency for Duplex
 	if (empty($_POST['confFREQtx']) != TRUE && empty($_POST['confFREQrx']) != TRUE ) {
 	  if (empty($_POST['confHardware']) != TRUE ) { $confHardware = escapeshellcmd($_POST['confHardware']); }
-	  $newFREQtx = str_pad(str_replace(".", "", escapeshellcmd($_POST['confFREQtx'])), 9, "0");
+	  $newConfFREQtx = preg_replace('/[^0-9\.]/', '', $_POST['confFREQtx']);
+	  $newConfFREQrx = preg_replace('/[^0-9\.]/', '', $_POST['confFREQrx']);
+	  $newFREQtx = str_pad(str_replace(".", "", $newConfFREQtx, 9, "0");
 	  $newFREQtx = mb_strimwidth($newFREQtx, 0, 9);
-	  $newFREQrx = str_pad(str_replace(".", "", escapeshellcmd($_POST['confFREQrx'])), 9, "0");
+	  $newFREQrx = str_pad(str_replace(".", "", $newConfFREQrx, 9, "0");
 	  $newFREQrx = mb_strimwidth($newFREQrx, 0, 9);
 	  $newFREQirc = substr_replace($newFREQrx, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
@@ -438,7 +440,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the Frequency for Simplex
 	if (empty($_POST['confFREQ']) != TRUE ) {
 	  if (empty($_POST['confHardware']) != TRUE ) { $confHardware = escapeshellcmd($_POST['confHardware']); }
-	  $newFREQ = str_pad(str_replace(".", "", escapeshellcmd($_POST['confFREQ'])), 9, "0");
+	  $newConfFREQ = preg_replace('/[^0-9\.]/', '', $_POST['confFREQ']);
+	  $newFREQ = str_pad(str_replace(".", "", $newConfFREQ, 9, "0");
 	  $newFREQ = mb_strimwidth($newFREQ, 0, 9);
 	  $newFREQirc = substr_replace($newFREQ, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
