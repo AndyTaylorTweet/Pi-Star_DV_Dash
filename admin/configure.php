@@ -1040,16 +1040,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	else {
                 $success = fwrite($handleModemConfig, $configModemContent);
                 fclose($handleModemConfig);
-                if (fopen($modemConfigFileDStarRepeater,'r')) {
-                    exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileDStarRepeater);	// Move the file back
-                    exec('sudo chmod 644 $modemConfigFileDStarRepeater');			// Set the correct runtime permissions
-                    exec('sudo chown root:root $modemConfigFileDStarRepeater');			// Set the owner
-                }
-                if (fopen($modemConfigFileMMDVMHost,'r')) {
-                    exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileMMDVMHost);		// Move the file back
-                    exec('sudo chmod 644 $modemConfigFileMMDVMHost');				// Set the correct runtime permissions
-                    exec('sudo chown root:root $modemConfigFileMMDVMHost');			// Set the owner
-                }
+		if (file_exists('/etc/dstar-radio.dstarrepeater')) {
+                    if (fopen($modemConfigFileDStarRepeater,'r')) {
+                        exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileDStarRepeater);	// Move the file back
+                        exec('sudo chmod 644 $modemConfigFileDStarRepeater');			// Set the correct runtime permissions
+                        exec('sudo chown root:root $modemConfigFileDStarRepeater');			// Set the owner
+                    }
+		}
+		if (file_exists('/etc/dstar-radio.mmdvmhost')) {
+                    if (fopen($modemConfigFileMMDVMHost,'r')) {
+                        exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileMMDVMHost);		// Move the file back
+                        exec('sudo chmod 644 $modemConfigFileMMDVMHost');				// Set the correct runtime permissions
+                        exec('sudo chown root:root $modemConfigFileMMDVMHost');			// Set the owner
+                    }
+		}
         }
 
 	// Start the DV Services
