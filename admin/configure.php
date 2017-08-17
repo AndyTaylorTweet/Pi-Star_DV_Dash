@@ -519,7 +519,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set Callsign
 	if (empty($_POST['confCallsign']) != TRUE ) {
-	  $newCallsignUpper = strtoupper(escapeshellcmd($_POST['confCallsign']));
+	  $newCallsignUpper = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $_POST['confCallsign']));
 
 	  $rollGATECALL = 'sudo sed -i "/gatewayCallsign=/c\\gatewayCallsign='.$newCallsignUpper.'" /etc/ircddbgateway';
 	  $rollIRCUSER = 'sudo sed -i "/ircddbUsername=/c\\ircddbUsername='.$newCallsignUpper.'" /etc/ircddbgateway';
@@ -589,8 +589,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set DMR / CCS7 ID
 	if (empty($_POST['dmrId']) != TRUE ) {
-	  $configmmdvm['DMR']['Id'] = escapeshellcmd($_POST['dmrId']);
-	  $configdmrgateway['XLX Network 1']['Id'] = substr(escapeshellcmd($_POST['dmrId']),0,7);
+	  $newPostDmrId = preg_replace('/[^0-9]/', '', $_POST['dmrId'])
+	  $configmmdvm['DMR']['Id'] = $newPostDmrId;
+	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	}
 
 	// Set DMR Master Server
