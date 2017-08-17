@@ -273,15 +273,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the Latitude
 	if (empty($_POST['confLatitude']) != TRUE ) {
-	  $newConfLatitude = preg_replace('/[^0-9\.\-]/', '', $_POST['confLatitude'])
-	  //$rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
-	  //$rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
-	  //$configmmdvm['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
-	  //$configysfgateway['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
-	  $rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.$newConfLatitude.'" /etc/ircddbgateway';
-	  $rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.$newConfLatitude.'" /etc/ircddbgateway';
-	  $configmmdvm['Info']['Latitude'] = $newConfLatitude;
-	  $configysfgateway['Info']['Latitude'] = $newConfLatitude;
+	  //$newConfLatitude = preg_replace('/[^0-9\.\-]/', '', $_POST['confLatitude'])
+	  $rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
+	  $rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
+	  $configmmdvm['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
+	  $configysfgateway['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
+	  //$rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.$newConfLatitude.'" /etc/ircddbgateway';
+	  //$rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.$newConfLatitude.'" /etc/ircddbgateway';
+	  //$configmmdvm['Info']['Latitude'] = $newConfLatitude;
+	  //$configysfgateway['Info']['Latitude'] = $newConfLatitude;
 	  system($rollConfLat0);
 	  system($rollConfLat1);
 	  }
