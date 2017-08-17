@@ -677,7 +677,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set MMDVM Hang Time
 	if (empty($_POST['hangTime']) != TRUE ) {
-	  $newConfHangTime = reg_replace('/[^0-9]/', '', $_POST['hangTime']);
+	  $newConfHangTime = preg_replace('/[^0-9]/', '', $_POST['hangTime']);
 	  $configmmdvm['General']['RFModeHang'] = $newConfHangTime;
 	  $configmmdvm['General']['NetModeHang'] = $newConfHangTime;
 	  $configdmrgateway['General']['Timeout'] = $newConfHangTime;
