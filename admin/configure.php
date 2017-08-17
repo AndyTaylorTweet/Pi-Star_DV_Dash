@@ -1279,8 +1279,8 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpid') { echo ' selected="selected"';}?> value="dvmpid">DV-Mega Raspberry Pi Hat (GPIO) - Dual Band</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuado') { echo ' selected="selected"';}?> value="dvmuad">DV-Mega on Arduino USB - Dual Band (Old Firmware)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'dvmuad') { echo ' selected="selected"';}?> value="dvmuad">DV-Mega on Arduino USB - Dual Band (New Firmware)</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsko') { echo ' selected="selected"';}?> value="dvmuagmsko">DV-Mega on Arduino USB - GMSK Node (Old Firmware)</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsk') { echo ' selected="selected"';}?> value="dvmuagmsk">DV-Mega on Arduino USB - GMSK Node (New Firmware)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsko') { echo ' selected="selected"';}?> value="dvmuagmsko">DV-Mega on Arduino USB - GMSK Modem (Old Firmware)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsk') { echo ' selected="selected"';}?> value="dvmuagmsk">DV-Mega on Arduino USB - GMSK Modem (New Firmware)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmbss') { echo ' selected="selected"';}?> value="dvmbss">DV-Mega on Bluestack USB - Single Band (70cm)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmbsd') { echo ' selected="selected"';}?> value="dvmbsd">DV-Mega on Bluestack USB - Dual Band</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr1') { echo ' selected="selected"';}?> value="dvrptr1">DV-RPTR V1 USB</option>
