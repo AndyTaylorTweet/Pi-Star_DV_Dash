@@ -589,7 +589,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set DMR / CCS7 ID
 	if (empty($_POST['dmrId']) != TRUE ) {
-	  $newPostDmrId = preg_replace('/[^0-9]/', '', $_POST['dmrId'])
+	  $newPostDmrId = preg_replace('/[^0-9]/', '', $_POST['dmrId']);
 	  $configmmdvm['DMR']['Id'] = $newPostDmrId;
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	}
