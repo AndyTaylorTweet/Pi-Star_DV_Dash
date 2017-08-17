@@ -274,10 +274,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the Latitude
 	if (empty($_POST['confLatitude']) != TRUE ) {
 	  $newConfLatitude = preg_replace('/[^0-9\.\-]/', '', $_POST['confLatitude']);
-	  //$rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
-	  //$rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
-	  //$configmmdvm['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
-	  //$configysfgateway['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
 	  $rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.$newConfLatitude.'" /etc/ircddbgateway';
 	  $rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.$newConfLatitude.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['Latitude'] = $newConfLatitude;
@@ -288,20 +284,22 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the Longitude
 	if (empty($_POST['confLongitude']) != TRUE ) {
-	  $rollConfLon0 = 'sudo sed -i "/longitude=/c\\longitude='.escapeshellcmd($_POST['confLongitude']).'" /etc/ircddbgateway';
-	  $rollConfLon1 = 'sudo sed -i "/longitude1=/c\\longitude1='.escapeshellcmd($_POST['confLongitude']).'" /etc/ircddbgateway';
-	  $configmmdvm['Info']['Longitude'] = escapeshellcmd($_POST['confLongitude']);
-	  $configysfgateway['Info']['Longitude'] = escapeshellcmd($_POST['confLongitude']);
+	  $newConfLongitude = preg_replace('/[^0-9\.\-]/', '', $_POST['confLongitude']);
+	  $rollConfLon0 = 'sudo sed -i "/longitude=/c\\longitude='.$newConfLongitude.'" /etc/ircddbgateway';
+	  $rollConfLon1 = 'sudo sed -i "/longitude1=/c\\longitude1='.$newConfLongitude.'" /etc/ircddbgateway';
+	  $configmmdvm['Info']['Longitude'] = $newConfLongitude;
+	  $configysfgateway['Info']['Longitude'] = $newConfLongitude;
 	  system($rollConfLon0);
 	  system($rollConfLon1);
 	  }
 
 	// Set the Town
 	if (empty($_POST['confDesc1']) != TRUE ) {
-	  $rollDesc1 = 'sudo sed -i "/description1=/c\\description1='.escapeshellcmd($_POST['confDesc1']).'" /etc/ircddbgateway';
-	  $rollDesc11 = 'sudo sed -i "/description1_1=/c\\description1_1='.escapeshellcmd($_POST['confDesc1']).'" /etc/ircddbgateway';
-	  $configmmdvm['Info']['Location'] = escapeshellcmd($_POST['confDesc1']);
-          $configysfgateway['Info']['Name'] = escapeshellcmd($_POST['confDesc1']);
+	  $newConfDesc1 = preg_replace('/[^A-Za-z0-9\.\s\,\-]/', '', $_POST['confDesc1']);
+	  $rollDesc1 = 'sudo sed -i "/description1=/c\\description1='.$newConfDesc1.'" /etc/ircddbgateway';
+	  $rollDesc11 = 'sudo sed -i "/description1_1=/c\\description1_1='.$newConfDesc1.'" /etc/ircddbgateway';
+	  $configmmdvm['Info']['Location'] = $newConfDesc1;
+          $configysfgateway['Info']['Name'] = $newConfDesc1;
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
