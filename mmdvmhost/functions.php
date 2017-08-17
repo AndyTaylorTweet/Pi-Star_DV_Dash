@@ -603,12 +603,13 @@ function getActualLink($logLines, $mode) {
 	    foreach($logLines as $logLine) {
                $to = "";
                if (strpos($logLine,"Linked to")) {
-                  $to = substr($logLine, 47, 5);
+		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
                }
                if (strpos($logLine,"Linked at startup to")) {
-                  $to = substr($logLine, 58, 5);
+		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 58, 5));
                }
                if ($to !== "") {
+		  $to = preg_replace('/[^0-9]/', '', $to);
                   return "Linked to: ".$to;
                }
                if (strpos($logLine,"Starting P25Gateway")) {
