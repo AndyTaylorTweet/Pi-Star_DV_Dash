@@ -677,9 +677,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set MMDVM Hang Time
 	if (empty($_POST['hangTime']) != TRUE ) {
-	  $configmmdvm['General']['RFModeHang'] = escapeshellcmd($_POST['hangTime']);
-	  $configmmdvm['General']['NetModeHang'] = escapeshellcmd($_POST['hangTime']);
-	  $configdmrgateway['General']['Timeout'] = escapeshellcmd($_POST['hangTime']);
+	  $newConfHangTime = reg_replace('/[^0-9]/', '', $_POST['hangTime']);
+	  $configmmdvm['General']['RFModeHang'] = $newConfHangTime;
+	  $configmmdvm['General']['NetModeHang'] = $newConfHangTime;
+	  $configdmrgateway['General']['Timeout'] = $newConfHangTime;
 	}
 
 	// Set the hardware type
