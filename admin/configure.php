@@ -431,7 +431,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollRPT1);
 	  system($rollRPT2);
 	  system($rollBEACONTEXT);
-	  system($rollDVVARIANT);
 	  system($rollIRCrepeaterBand1);
 	  system($rollIRCrepeaterCall1);
 	}
@@ -511,7 +510,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollRPT1);
 	  system($rollRPT2);
 	  system($rollBEACONTEXT);
-	  system($rollDVVARIANT);
 	  system($rollIRCrepeaterBand1);
 	  system($rollIRCrepeaterCall1);
 	  }
