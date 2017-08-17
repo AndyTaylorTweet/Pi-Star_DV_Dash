@@ -712,6 +712,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyACM0" /etc/dstarrepeater';
 	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=3" /etc/dstarrepeater';
+            $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
+	    system($rollModemType);
+	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
+	  }
+
+	  if ( $confHardware == 'dvmuado' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
+	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyACM0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=3" /etc/dstarrepeater';
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	    system($rollModemType);
 	    system($rollDVMegaPort);
@@ -786,6 +796,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVAP" /etc/dstarrepeater';
             $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
 	    system($rollModemType);
+	  }
+
+	  if ( $confHardware == 'zumspotlibre' ) {
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	  }
 
 	  if ( $confHardware == 'zumspotusb' ) {
@@ -1263,7 +1277,8 @@ else:
 		<option<?php if (!$configModem['Modem']['Hardware']) { echo ' selected="selected"';}?> value="">--</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpis') { echo ' selected="selected"';}?> value="dvmpis">DV-Mega Raspberry Pi Hat (GPIO) - Single Band (70cm)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpid') { echo ' selected="selected"';}?> value="dvmpid">DV-Mega Raspberry Pi Hat (GPIO) - Dual Band</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuad') { echo ' selected="selected"';}?> value="dvmuad">DV-Mega on Arduino USB - Dual Band</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuado') { echo ' selected="selected"';}?> value="dvmuad">DV-Mega on Arduino USB - Dual Band (Old Firmware)</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'dvmuad') { echo ' selected="selected"';}?> value="dvmuad">DV-Mega on Arduino USB - Dual Band (New Firmware)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsko') { echo ' selected="selected"';}?> value="dvmuagmsko">DV-Mega on Arduino USB - GMSK Node (Old Firmware)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsk') { echo ' selected="selected"';}?> value="dvmuagmsk">DV-Mega on Arduino USB - GMSK Node (New Firmware)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmbss') { echo ' selected="selected"';}?> value="dvmbss">DV-Mega on Bluestack USB - Single Band (70cm)</option>
@@ -1275,7 +1290,8 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zum') { echo ' selected="selected"';}?> value="zum">MMDVM / MMDVM_HS / Teensy / ZUM - USB</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32dvm') { echo ' selected="selected"';}?> value="stm32dvm">STM32-DVM / MMDVM_HS - Raspberry Pi Hat (GPIO)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'stm32usb') { echo ' selected="selected"';}?> value="stm32usb">STM32-DVM - USB</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') { echo ' selected="selected"';}?> value="zumspotusb">ZumSpot - USB</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotlibre') { echo ' selected="selected"';}?> value="zumspotlibre">ZumSpot Libre</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') { echo ' selected="selected"';}?> value="zumspotusb">ZumSpot - USB Stick</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') { echo ' selected="selected"';}?> value="zumspotgpio">ZumSpot - Raspberry Pi Hat (GPIO)</option>
     </select></td>
     </tr>
