@@ -161,17 +161,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop cron.service > /dev/null 2>/dev/null &');			//Cron
 
 	// Stop the DV Services
-	system('sudo systemctl stop dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
-	system('sudo systemctl stop mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
-	system('sudo systemctl stop ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
-	system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
-	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
-	system('sudo systemctl stop pistar-remote.service > /dev/null 2>/dev/null &');		//PiStar-Remote Service
-	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
-	system('sudo systemctl stop ysfparrot.service > /dev/null 2>/dev/null &');		//YSFParrot
-	system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
-	system('sudo systemctl stop p25parrot.service > /dev/null 2>/dev/null &');		//P25Parrot
-	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		//DMRGateway
+	system('sudo systemctl stop dstarrepeater.service > /dev/null 2>/dev/null &');		// D-Star Radio Service
+	system('sudo systemctl stop mmdvmhost.service > /dev/null 2>/dev/null &');		// MMDVMHost Radio Service
+	system('sudo systemctl stop ircddbgateway.service > /dev/null 2>/dev/null &');		// ircDDBGateway Service
+	system('sudo systemctl stop timeserver.service > /dev/null 2>/dev/null &');		// Time Server Service
+	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	// PiStar-Watchdog Service
+	system('sudo systemctl stop pistar-remote.service > /dev/null 2>/dev/null &');		// PiStar-Remote Service
+	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		// YSFGateway
+	system('sudo systemctl stop ysfparrot.service > /dev/null 2>/dev/null &');		// YSFParrot
+	system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		// P25Gateway
+	system('sudo systemctl stop p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
+	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
@@ -273,10 +273,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the Latitude
 	if (empty($_POST['confLatitude']) != TRUE ) {
-	  $rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
-	  $rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
-	  $configmmdvm['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
-	  $configysfgateway['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
+	  $newConfLatitude = preg_replace('/[^0-9\.\-]/', '', $_POST['confLatitude'])
+	  //$rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
+	  //$rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.escapeshellcmd($_POST['confLatitude']).'" /etc/ircddbgateway';
+	  //$configmmdvm['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
+	  //$configysfgateway['Info']['Latitude'] = escapeshellcmd($_POST['confLatitude']);
+	  $rollConfLat0 = 'sudo sed -i "/latitude=/c\\latitude='.$newConfLatitude.'" /etc/ircddbgateway';
+	  $rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.$newConfLatitude.'" /etc/ircddbgateway';
+	  $configmmdvm['Info']['Latitude'] = $newConfLatitude;
+	  $configysfgateway['Info']['Latitude'] = $newConfLatitude;
 	  system($rollConfLat0);
 	  system($rollConfLat1);
 	  }
@@ -1048,18 +1053,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         }
 
 	// Start the DV Services
-	system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		//D-Star Radio Service
-	system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');		//MMDVMHost Radio Service
-	system('sudo systemctl start ircddbgateway.service > /dev/null 2>/dev/null &');		//ircDDBGateway Service
-	system('sudo systemctl start timeserver.service > /dev/null 2>/dev/null &');		//Time Server Service
-	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	//PiStar-Watchdog Service
-	system('sudo systemctl start pistar-remote.service > /dev/null 2>/dev/null &');		//PiStar-Remote Service
-	system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		//PiStar-UPnP Service
-	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		//YSFGateway
-	system('sudo systemctl start ysfparrot.service > /dev/null 2>/dev/null &');		//YSFParrot
-	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		//P25Gateway
-	system('sudo systemctl start p25parrot.service > /dev/null 2>/dev/null &');		//P25Parrot
-	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		//DMRGateway
+	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');			// Restart Systemd to account for any service changes
+	system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		// D-Star Radio Service
+	system('sudo systemctl start mmdvmhost.service > /dev/null 2>/dev/null &');		// MMDVMHost Radio Service
+	system('sudo systemctl start ircddbgateway.service > /dev/null 2>/dev/null &');		// ircDDBGateway Service
+	system('sudo systemctl start timeserver.service > /dev/null 2>/dev/null &');		// Time Server Service
+	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	// PiStar-Watchdog Service
+	system('sudo systemctl start pistar-remote.service > /dev/null 2>/dev/null &');		// PiStar-Remote Service
+	system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		// PiStar-UPnP Service
+	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		// YSFGateway
+	system('sudo systemctl start ysfparrot.service > /dev/null 2>/dev/null &');		// YSFParrot
+	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		// P25Gateway
+	system('sudo systemctl start p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
+	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	// Set the system timezone
 	$rollTimeZone = 'sudo timedatectl set-timezone '.escapeshellcmd($_POST['systemTimezone']);
