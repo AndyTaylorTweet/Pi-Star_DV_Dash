@@ -306,16 +306,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the Country
 	if (empty($_POST['confDesc2']) != TRUE ) {
-	  $rollDesc2 = 'sudo sed -i "/description2=/c\\description2='.escapeshellcmd($_POST['confDesc2']).'" /etc/ircddbgateway';
-	  $rollDesc22 = 'sudo sed -i "/description1_2=/c\\description1_2='.escapeshellcmd($_POST['confDesc2']).'" /etc/ircddbgateway';
-          $configmmdvm['Info']['Description'] = escapeshellcmd($_POST['confDesc2']);
-          $configysfgateway['Info']['Description'] = escapeshellcmd($_POST['confDesc2']);
+	  $newConfDesc2 = preg_replace('/[^A-Za-z0-9\.\s\,\-]/', '', $_POST['confDesc2']);
+	  $rollDesc2 = 'sudo sed -i "/description2=/c\\description2='.$newConfDesc2.'" /etc/ircddbgateway';
+	  $rollDesc22 = 'sudo sed -i "/description1_2=/c\\description1_2='.$newConfDesc2.'" /etc/ircddbgateway';
+          $configmmdvm['Info']['Description'] = $newConfDesc2;
+          $configysfgateway['Info']['Description'] = $newConfDesc2;
 	  system($rollDesc2);
 	  system($rollDesc22);
 	  }
 
 	// Set the URL
 	if (empty($_POST['confURL']) != TRUE ) {
+	  $newConfURL = strtolower(preg_replace('/[^A-Za-z0-9\.\s\,\-\/\:]/', '', $_POST['confURL']));
 	  if (escapeshellcmd($_POST['urlAuto']) == 'auto') { $txtURL = "http://www.qrz.com/db/".strtoupper(escapeshellcmd($_POST['confCallsign'])); }
 	  if (escapeshellcmd($_POST['urlAuto']) == 'man')  { $txtURL = escapeshellcmd($_POST['confURL']); }
 	  if (escapeshellcmd($_POST['urlAuto']) == 'auto') { $rollURL0 = 'sudo sed -i "/url=/c\\url=http://www.qrz.com/db/'.strtoupper(escapeshellcmd($_POST['confCallsign'])).'" /etc/ircddbgateway';  }
