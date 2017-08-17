@@ -610,7 +610,7 @@ function getActualLink($logLines, $mode) {
                }
                if ($to !== "") {
 		  $to = preg_replace('/[^0-9]/', '', $to);
-                  return "Linked to: ".$to;
+                  return "Linked to: TG".$to;
                }
                if (strpos($logLine,"Starting P25Gateway")) {
                   $to = "not linked";
