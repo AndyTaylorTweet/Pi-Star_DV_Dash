@@ -85,7 +85,7 @@ if($_POST) {
 					$content .= $key."=\"".$value."\"\n";
 				}
 				elseif ($value == '') { 
-                                        $content .= $key."=None\n"; 
+                                        $content .= $key."=none\n"; 
                                         }
 				else {
 					$content .= $key."=".$value."\n";
