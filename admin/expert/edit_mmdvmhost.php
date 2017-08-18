@@ -84,8 +84,11 @@ if($_POST) {
 					$value = str_replace('"', "", $value);
 					$content .= $key."=\"".$value."\"\n";
 				}
+				elseif ($section == "DMR Network" && $key == "Options" && !$value) {
+					$content .= $key."= \n";
+				}
 				elseif ($value == '') { 
-                                        $content .= $key."=none\n"; 
+                                        $content .= $key."=none\n";
                                         }
 				else {
 					$content .= $key."=".$value."\n";
