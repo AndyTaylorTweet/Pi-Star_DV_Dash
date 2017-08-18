@@ -84,6 +84,9 @@ if($_POST) {
 					$value = str_replace('"', "", $value);
 					$content .= $key."=\"".$value."\"\n";
 				}
+				elseif ($value == '') { 
+                                        $content .= $key."=None\n"; 
+                                        }
 				else {
 					$content .= $key."=".$value."\n";
 				}
