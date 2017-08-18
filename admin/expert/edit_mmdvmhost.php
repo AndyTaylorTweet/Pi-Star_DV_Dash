@@ -131,7 +131,7 @@ echo '<form action="" method="post">'."\n";
 		// print all other values as input fields, so can edit. 
 		// note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
-			if ($value) {
+			if (($value) && ($key != "Options")) {
 				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
 			}
 			else {
