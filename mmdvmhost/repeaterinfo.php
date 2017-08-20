@@ -55,45 +55,50 @@ if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrG
 <tr><th colspan="2"><?php echo $lang['radio_info'];?></th></tr>
 <tr><th>Trx</th><?php
 // TRX Status code
-$listElem = $lastHeard[0];
-if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
-        echo "<td style=\"background:#f33;\">TX $listElem[1]</td>";
-        }
-        else {
-        if (getActualMode($lastHeard, $mmdvmconfigs) === 'idle') {
-                echo "<td style=\"background:#0b0; color:#030;\">Listening</td>";
-                }
-        elseif (getActualMode($lastHeard, $mmdvmconfigs) === NULL) {
-                exec ("pgrep MMDVMHost", $mmdvmhostpid); if (!empty($mmdvmhostpid)) { echo "<td style=\"background:#0b0; color:#030;\">Listening</td>"; } else { echo "<td style=\"background:#606060; color:#b0b0b0;\">OFFLINE</td>"; }
-                }
-        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'D-Star') {
-                echo "<td style=\"background:#4aa361;\">RX D-Star</td>";
-                }
-        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'D-Star') {
-                echo "<td style=\"background:#ade;\">Listening D-Star</td>";
-                }
-        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'DMR') {
-                echo "<td style=\"background:#4aa361;\">RX DMR</td>";
-                }
-        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'DMR') {
-                echo "<td style=\"background:#f93;\">Listening DMR</td>";
-                }
-        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'YSF') {
-                echo "<td style=\"background:#4aa361;\">RX YSF</td>";
-                }
-        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'YSF') {
-                echo "<td style=\"background:#ff9;\">Listening YSF</td>";
-                }
-        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
-                echo "<td style=\"background:#4aa361;\">RX P25</td>";
-                }
-        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
-                echo "<td style=\"background:#f9f;\">Listening P25</td>";
-                }
-        else {
-                echo "<td>".getActualMode($lastHeard, $mmdvmconfigs)."</td>";
-                }
-        }
+if (isset($lastHeard[0])) {
+	$listElem = $lastHeard[0];
+	if ( $listElem[2] && $listElem[6] == null && $listElem[5] !== 'RF') {
+	        echo "<td style=\"background:#f33;\">TX $listElem[1]</td>";
+	        }
+	        else {
+	        if (getActualMode($lastHeard, $mmdvmconfigs) === 'idle') {
+	                echo "<td style=\"background:#0b0; color:#030;\">Listening</td>";
+	                }
+	        elseif (getActualMode($lastHeard, $mmdvmconfigs) === NULL) {
+	                exec ("pgrep MMDVMHost", $mmdvmhostpid); if (!empty($mmdvmhostpid)) { echo "<td style=\"background:#0b0; color:#030;\">Listening</td>"; } else { echo "<td style=\"background:#606060; color:#b0b0b0;\">OFFLINE</td>"; }
+	                }
+	        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'D-Star') {
+	                echo "<td style=\"background:#4aa361;\">RX D-Star</td>";
+	                }
+	        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'D-Star') {
+	                echo "<td style=\"background:#ade;\">Listening D-Star</td>";
+	                }
+	        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'DMR') {
+	                echo "<td style=\"background:#4aa361;\">RX DMR</td>";
+	                }
+	        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'DMR') {
+	                echo "<td style=\"background:#f93;\">Listening DMR</td>";
+	                }
+	        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'YSF') {
+	                echo "<td style=\"background:#4aa361;\">RX YSF</td>";
+	                }
+	        elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'YSF') {
+	                echo "<td style=\"background:#ff9;\">Listening YSF</td>";
+	                }
+	        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
+        	        echo "<td style=\"background:#4aa361;\">RX P25</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
+        	        echo "<td style=\"background:#f9f;\">Listening P25</td>";
+        	        }
+        	else {
+        	        echo "<td>".getActualMode($lastHeard, $mmdvmconfigs)."</td>";
+        	        }
+		}
+	}
+else {
+	echo "<td></td>";
+}
 ?></tr>
 <tr><th>Tx</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $mmdvmconfigs)); ?></td></tr>
 <tr><th>Rx</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "RXFrequency", $mmdvmconfigs)); ?></td></tr>
