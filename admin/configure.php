@@ -550,6 +550,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	  $configmmdvm['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['General']['Callsign'] = $newCallsignUpper;
+	  $configysfgateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
