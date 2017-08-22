@@ -381,7 +381,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newFREQtx = mb_strimwidth($newFREQtx, 0, 9);
 	  $newFREQrx = str_pad(str_replace(".", "", $newConfFREQrx), 9, "0");
 	  $newFREQrx = mb_strimwidth($newFREQrx, 0, 9);
-	  $newFREQirc = substr_replace($newFREQrx, '.', '3', 0);
+	  $newFREQirc = substr_replace($newFREQtx, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
 	  $rollFREQirc = 'sudo sed -i "/frequency1=/c\\frequency1='.$newFREQirc.'" /etc/ircddbgateway';
 	  $rollFREQdvap = 'sudo sed -i "/dvapFrequency=/c\\dvapFrequency='.$newFREQrx.'" /etc/dstarrepeater';
