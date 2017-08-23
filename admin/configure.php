@@ -830,6 +830,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	  }
 
+	  if ( $confHardware == 'zumradiopigpio' ) {
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	  }
+
 	  if ( $confHardware == 'zum' ) {
             $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	  }
@@ -1315,6 +1319,7 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumspotlibre') { echo ' selected="selected"';}?> value="zumspotlibre">ZumSpot Libre (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') { echo ' selected="selected"';}?> value="zumspotusb">ZumSpot - USB Stick</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') { echo ' selected="selected"';}?> value="zumspotgpio">ZumSpot - Raspberry Pi Hat (GPIO)</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumradiopigpio') { echo ' selected="selected"';}?> value="zumradiopigpio">ZUM Radio-MMDVM for Pi (GPIO)</option>
     </select></td>
     </tr>
     <tr>
