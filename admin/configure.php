@@ -1746,6 +1746,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
 	$testP25Host = $configp25gateway['Network']['Startup'];
 	if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
         else { echo "      <option value=\"none\">None</option>\n"; }
+	if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
+        else { echo "      <option value=\"10\">10 - Parrot</option>\n"; }
         while (!feof($p25Hosts)) {
                 $p25HostsLine = fgets($p25Hosts);
                 $p25Host = preg_split('/\s+/', $p25HostsLine);
