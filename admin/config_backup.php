@@ -190,12 +190,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		}
 		else {
 			$output .= "There was a problem with the upload. Please try again.";
-			$output .= '<button onclick="goBack()">Go Back</button>';
-			$output .= '<script>';
-			$output .= 'function goBack() {';
-			$output .= '    window.history.back();';
-			$output .= '}';
-			$output .= '</script>';
+			$output .= "\n".'<button onclick="goBack()">Go Back</button>'."\n";
+			$output .= '<script>'."\n";
+			$output .= 'function goBack() {'."\n";
+			$output .= '    window.history.back();'."\n";
+			$output .= '}'."\n";
+			$output .= '</script>'."\n";
 		}
 	  echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
   };
