@@ -74,7 +74,7 @@ switch($page) {
 					preg_match('/RX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
 					$strRxBytes = $result[1];
 				} else {
-					preg_match('/RX packets [0-9.] bytes (\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
+					preg_match('/RX packets \d+ bytes (\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
 					$strRxBytes = $result[1];
 				}
 				preg_match('/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
