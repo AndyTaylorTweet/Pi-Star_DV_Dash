@@ -43,6 +43,8 @@ switch($page) {
 		$strWlan0 = preg_replace('/\s\s+/', ' ', $strWlan0);
 		preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
 		$strHWAddress = $result[1];
+		preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
+		$strHWAddress = $result[1];
 		if(strpos($strWlan0, "UP") !== false && strpos($strWlan0, "RUNNING") !== false) {
 			$strStatus = '<span style="color:green">Interface is up</span>';
 				//Cant get these unless we are connected :)
