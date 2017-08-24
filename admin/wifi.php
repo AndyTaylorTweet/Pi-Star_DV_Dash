@@ -70,8 +70,13 @@ switch($page) {
 				$strRxPackets = $result[1];
 				preg_match('/TX packets.(\d+)/',$strWlan0,$result);
 				$strTxPackets = $result[1];
-				preg_match('/RX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
-				$strRxBytes = $result[1];
+				if (strpos($strWlan0,'RX Bytes:') !== false) {
+					preg_match('/RX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
+					$strRxBytes = $result[1];
+				} else {
+					preg_match('/RX packets [0-9.] bytes (\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
+					$strRxBytes = $result[1];
+				}
 				preg_match('/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
 				$strTxBytes = $result[1];
 				preg_match('/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result);
