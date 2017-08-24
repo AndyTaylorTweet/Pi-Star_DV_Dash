@@ -70,7 +70,7 @@ switch($page) {
 				$strRxPackets = $result[1];
 				preg_match('/TX packets.(\d+)/',$strWlan0,$result);
 				$strTxPackets = $result[1];
-				if (strpos($strWlan0,'RX Bytes:') !== false) {
+				if (strpos($strWlan0,'RX Bytes') !== false) {
 					preg_match('/RX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
 					$strRxBytes = $result[1];
 				} else {
