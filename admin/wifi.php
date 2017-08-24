@@ -233,9 +233,9 @@ Signal Level : ' . $strSignalLevel . '<br />
 		$return = '';
 		exec('ifconfig wlan0 | grep -i running | wc -l',$test);
 		sleep(2);
-		exec('sudo wpa_cli scan',$return);
+		exec('sudo wpa_cli scan -i wlan0',$return);
 		sleep(5);
-		exec('sudo wpa_cli scan_results',$return);
+		exec('sudo wpa_cli scan_results -i wlan0',$return);
 		for($shift = 0; $shift < 4; $shift++ ) {
 			array_shift($return);
 		}
