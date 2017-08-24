@@ -54,7 +54,7 @@ switch($page) {
 				$strIPAddress = $result[1];
 				preg_match('/Mask:([0-9.]+)/i',$strWlan0,$result);
 				$strNetMask = $result[1];
-				preg_match('/netmask:([0-9.]+)/i',$strWlan0,$result);
+				preg_match('/netmask ([0-9.]+)/i',$strWlan0,$result);
 				$strNetMask = $result[1];
 				preg_match('/RX packets:(\d+)/',$strWlan0,$result);
 				$strRxPackets = $result[1];
