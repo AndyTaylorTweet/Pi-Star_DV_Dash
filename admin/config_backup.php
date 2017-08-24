@@ -189,8 +189,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			$output .= "Configuration Restore Complete.\n";
 		}
 		else {
-			$output .= "There was a problem with the upload. Please try again.";
-			$output .= "\n".'<button onclick="goBack()">Go Back</button>'."\n";
+			$output .= "There was a problem with the upload. Please try again.<br />";
+			$output .= "\n".'<button onclick="goBack()">Go Back</button><br />'."\n";
 			$output .= '<script>'."\n";
 			$output .= 'function goBack() {'."\n";
 			$output .= '    window.history.back();'."\n";
