@@ -1828,7 +1828,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
 	if (strpos($strWlan0,'HWaddr') !== false) {
 		preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
 	}
-	elseif (strpos($strWlan0,'HWaddr') !== false) {
+	elseif (strpos($strWlan0,'ether') !== false) {
 		preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
 	}
 	$strHWAddress = $result['1'];
