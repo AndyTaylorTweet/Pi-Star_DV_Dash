@@ -1825,7 +1825,12 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
 	exec('iwconfig wlan0',$return);
 	$strWlan0 = implode(" ",$return);
 	$strWlan0 = preg_replace('/\s\s+/', ' ', $strWlan0);
-	preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
+	if (strpos($strWlan0,'HWaddr') !== false) {
+		preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
+	}
+	elseif (strpos($strWlan0,'HWaddr') !== false) {
+		preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
+	}
 	$strHWAddress = $result['1'];
 
 	if ( isset($strHWAddress) ) {
