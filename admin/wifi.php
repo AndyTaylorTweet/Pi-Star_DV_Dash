@@ -79,10 +79,10 @@ switch($page) {
 				}
 				if (strpos($strWlan0,'TX [B|b]ytes') !== false) {
 					preg_match('/TX [B|b]ytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
-					$strRxBytes = $result[1];
+					$strTxBytes = $result[1];
 				} else {
 					preg_match('/TX packets \d+ bytes (\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
-					$strRxBytes = $result[1];
+					$strTxBytes = $result[1];
 				}
 				//preg_match('/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
 				//$strTxBytes = $result[1];
