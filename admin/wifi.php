@@ -56,9 +56,9 @@ switch($page) {
 				$strNetMask = $result[1];
 				preg_match('/netmask ([0-9.]+)/i',$strWlan0,$result);
 				$strNetMask = $result[1];
-				preg_match('/RX packets:(\d+)/',$strWlan0,$result);
+				preg_match('/RX packets.(\d+)/',$strWlan0,$result);
 				$strRxPackets = $result[1];
-				preg_match('/TX packets:(\d+)/',$strWlan0,$result);
+				preg_match('/TX packets.(\d+)/',$strWlan0,$result);
 				$strTxPackets = $result[1];
 				preg_match('/RX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result);
 				$strRxBytes = $result[1];
