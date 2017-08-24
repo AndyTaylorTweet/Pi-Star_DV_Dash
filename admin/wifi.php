@@ -41,21 +41,31 @@ switch($page) {
 		exec('iwconfig wlan0',$return);
 		$strWlan0 = implode(" ",$return);
 		$strWlan0 = preg_replace('/\s\s+/', ' ', $strWlan0);
-		preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
-		$strHWAddress = $result[1];
-		preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
-		$strHWAddress = $result[1];
+		if (strpos($strWlan0,'HWaddr') !== false) {
+			preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
+			$strHWAddress = $result[1];
+		}
+		if (strpos($strWlan0,'ether') !== false) {
+			preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
+			$strHWAddress = $result[1];
+		}
 		if(strpos($strWlan0, "UP") !== false && strpos($strWlan0, "RUNNING") !== false) {
 			$strStatus = '<span style="color:green">Interface is up</span>';
 				//Cant get these unless we are connected :)
-				preg_match('/inet addr:([0-9.]+)/i',$strWlan0,$result);
-				$strIPAddress = $result[1];
-				preg_match('/inet ([0-9.]+)/i',$strWlan0,$result);
-				$strIPAddress = $result[1];
-				preg_match('/Mask:([0-9.]+)/i',$strWlan0,$result);
-				$strNetMask = $result[1];
-				preg_match('/netmask ([0-9.]+)/i',$strWlan0,$result);
-				$strNetMask = $result[1];
+				if (strpos($strWlan0,'inet addr:') !== false) {
+					preg_match('/inet addr:([0-9.]+)/i',$strWlan0,$result);
+					$strIPAddress = $result[1];
+				} else {
+					preg_match('/inet ([0-9.]+)/i',$strWlan0,$result);
+					$strIPAddress = $result[1];
+				}
+				if (strpos($strWlan0,'Mask:') !== false) {
+					preg_match('/Mask:([0-9.]+)/i',$strWlan0,$result);
+					$strNetMask = $result[1];
+				} else {
+					preg_match('/netmask ([0-9.]+)/i',$strWlan0,$result);
+					$strNetMask = $result[1];
+				}
 				preg_match('/RX packets.(\d+)/',$strWlan0,$result);
 				$strRxPackets = $result[1];
 				preg_match('/TX packets.(\d+)/',$strWlan0,$result);
