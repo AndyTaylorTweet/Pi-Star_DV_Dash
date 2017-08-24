@@ -48,6 +48,8 @@ switch($page) {
 				//Cant get these unless we are connected :)
 				preg_match('/inet addr:([0-9.]+)/i',$strWlan0,$result);
 				$strIPAddress = $result[1];
+				preg_match('/inet ([0-9.]+)/i',$strWlan0,$result);
+				$strIPAddress = $result[1];
 				preg_match('/Mask:([0-9.]+)/i',$strWlan0,$result);
 				$strNetMask = $result[1];
 				preg_match('/RX packets:(\d+)/',$strWlan0,$result);
