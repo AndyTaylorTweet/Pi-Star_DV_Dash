@@ -204,7 +204,7 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
 	echo "<br />\n";
 	echo "<table>\n";
 	echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
-	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$ysfLinkedToTxt."</td></tr>\n";
+	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$ysfLinkedTo."</td></tr>\n";
 	echo "</table>\n";
 }
 
