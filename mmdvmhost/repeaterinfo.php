@@ -200,6 +200,9 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
                 if ($ysfRoomTxtLine[0] == $ysfLinkedTo) {
                         $ysfLinkedToTxt = $ysfRoomTxtLine[1];
                 }
+		else {
+			$ysfLinkedToTxt = $ysfLinkedTo;
+		}
         }
 	echo "<br />\n";
 	echo "<table>\n";
