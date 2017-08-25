@@ -195,12 +195,12 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
 	$ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
 	$ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
 	while (!feof($ysfHostFile)) {
-		$ysfHostFileLine = fgets($ysfHostFile);
-                $dmrMasterHostF = preg_split('/;/', $ysfHostFileLine);
-		if ($dmrMasterHostF[0] == $ysfLinkedTo) {
-			$ysfLinkedToTxt = $dmrMasterHostF[1];
-		}
-	}
+                $ysfHostFileLine = fgets($ysfHostFile);
+                $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
+                if ($ysfRoomTxtLine[0] == $ysfLinkedTo) {
+                        $ysfLinkedToTxt = $ysfRoomTxtLine[1];
+                }
+        }
 	echo "<br />\n";
 	echo "<table>\n";
 	echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
