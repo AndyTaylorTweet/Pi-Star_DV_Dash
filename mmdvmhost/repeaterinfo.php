@@ -192,23 +192,32 @@ echo "</table>\n";
 
 $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
-echo "<br />\n";
-echo "<table>\n";
-echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
-echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesYSFGateway, "YSF")."</td></tr>\n";
-echo "</table>\n";
+	$ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
+	$ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
+	while (!feof($ysfHostFile)) {
+		$ysfHostFileLine = fgets($ysfHostFile);
+                $dmrMasterHostF = preg_split('/;/', $ysfHostFileLine);
+		if ($dmrMasterHostF[0] == $ysfLinkedTo) {
+			$ysfLinkedToTxt = $dmrMasterHostF[1];
+		}
+	}
+	echo "<br />\n";
+	echo "<table>\n";
+	echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
+	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$ysfLinkedTo."</td></tr>\n";
+	echo "</table>\n";
 }
 
 $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode not enabled.
-echo "<br />\n";
-echo "<table>\n";
-if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
-	echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
-	echo "<tr><th>NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
-}
-echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
-echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
-echo "</table>\n";
+	echo "<br />\n";
+	echo "<table>\n";
+	if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
+		echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
+		echo "<tr><th>NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
+	}
+	echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
+	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
+	echo "</table>\n";
 }
 ?>
