@@ -192,23 +192,24 @@ echo "</table>\n";
 
 $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
-	$ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
-	$ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
-	while (!feof($ysfHostFile)) {
+        $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
+        $ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
+        $ysfLinkedToTxt = "null";
+        while (!feof($ysfHostFile)) {
                 $ysfHostFileLine = fgets($ysfHostFile);
                 $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
                 if ($ysfRoomTxtLine[0] == $ysfLinkedTo) {
                         $ysfLinkedToTxt = $ysfRoomTxtLine[1];
                 }
-		else {
-			$ysfLinkedToTxt = "Linked to: ".$ysfLinkedTo;
-		}
         }
-	echo "<br />\n";
-	echo "<table>\n";
-	echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
-	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$ysfLinkedToTxt."</td></tr>\n";
-	echo "</table>\n";
+        if ($ysfLinkedToTxt != "null") { $ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt; } else { $ysfLinkedToTxt = "Linked to: ".$ysfLinkedTo; }
+        $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
+        if (strlen($ysfLinkedToTxt) > 21) { $ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 19) . '..'; }
+        echo "<br />\n";
+        echo "<table>\n";
+        echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
+        echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$ysfLinkedToTxt."</td></tr>\n";
+        echo "</table>\n";
 }
 
 $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
