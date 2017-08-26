@@ -93,7 +93,3 @@ if ($system['mem_info']) {
   </div>
   </body>
   </html>
-
-<?php
-}
-?>
