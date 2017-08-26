@@ -129,6 +129,7 @@ function formatSize( $bytes ) {
 <?php
 // Ram information
 if ($system['mem_info']) {
+    echo "  <tr><td><b>Memory</b></td><td><b>Stats</b></td></tr>\n";
     $sysRamUsed = $system['mem_info']['MemTotal'] - $system['mem_info']['MemFree'] - $system['mem_info']['Buffers'] - $system['mem_info']['Cached'];
     $sysRamPercent = sprintf('%.2f',($sysRamUsed / $system['mem_info']['MemTotal']) * 100);
     echo "  <tr><td>RAM</td><td><div class='progress progress-info' style='margin-bottom: 0;'><div class='bar' style='width: ".$sysRamPercent."%;'>Used&nbsp;".$sysRamPercent."%</div></div>";
