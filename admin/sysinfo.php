@@ -96,7 +96,7 @@ function formatSize( $bytes ) {
     .progress .bar + .bar {
       -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
       -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15)
+      box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
     }
     .progress-info .bar, .progress .bar-info {
       background-color: #4bb1cf;
@@ -106,7 +106,7 @@ function formatSize( $bytes ) {
       background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
       background-image: linear-gradient(to bottom, #5bc0de, #339bb9);
       background-repeat: repeat-x;
-      filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff339bb9', GradientType=0)
+      filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff339bb9', GradientType=0);
   }
   </style>
   </head>
