@@ -25,18 +25,6 @@ function system_information() {
         }
     }
     return array('date' => date('Y-m-d H:i:s T'),
-                 'system' => $system,
-                 'kernel' => $kernel,
-                 'host' => $host,
-                 'ip' => gethostbyname($host),
-                 'uptime' => @exec('uptime'),
-                 'http_server' => $_SERVER['SERVER_SOFTWARE'],
-                 'php' => PHP_VERSION,
-                 'hostbyaddress' => @gethostbyaddr(gethostbyname($host)),
-                 'http_proto' => $_SERVER['SERVER_PROTOCOL'],
-                 'http_mode' => $_SERVER['GATEWAY_INTERFACE'],
-                 'http_port' => $_SERVER['SERVER_PORT'],
-                 'php_modules' => get_loaded_extensions(),
                  'mem_info' => $meminfo,
                  'partitions' => disk_list()
                  );
