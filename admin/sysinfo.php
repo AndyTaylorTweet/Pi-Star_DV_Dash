@@ -104,6 +104,23 @@ function formatSize( $bytes ) {
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
+    <style>  
+    .progress .bar + .bar {
+      -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15)
+    }
+    .progress-info .bar, .progress .bar-info {
+      background-color: #4bb1cf;
+      background-image: -moz-linear-gradient(top, #5bc0de, #339bb9);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#339bb9));
+      background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);
+      background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
+      background-image: linear-gradient(to bottom, #5bc0de, #339bb9);
+      background-repeat: repeat-x;
+      filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff339bb9', GradientType=0)
+  }
+  </style>
   </head>
   <body>
   <div class="container">
