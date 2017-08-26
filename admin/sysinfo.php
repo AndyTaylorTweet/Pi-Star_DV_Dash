@@ -8,6 +8,9 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 // Load the Version Info
 require_once('config/version.php');
 
+// Retrieve server information
+$system = system_information();
+
 function system_information() {
     @list($system, $host, $kernel) = preg_split('/[\s,]+/', php_uname('a'), 5);
     $meminfo = false;
