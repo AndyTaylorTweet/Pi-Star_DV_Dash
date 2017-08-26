@@ -107,8 +107,8 @@ function formatSize( $bytes ) {
       background-image: linear-gradient(to bottom, #5bc0de, #339bb9);
       background-repeat: repeat-x;
       filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff339bb9', GradientType=0);
-  }
-  </style>
+    }
+    </style>
   </head>
   <body>
   <div class="container">
