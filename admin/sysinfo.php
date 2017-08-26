@@ -144,21 +144,20 @@ if ($system['mem_info']) {
               }
 }
 // Filesystem Information
-                if (count($system['partitions']) > 0) {
-                    echo "  <tr><td><b>Disk</b></td><td><b>Mount</b></td><td><b>Stats</b></td></tr>\n";
-                    foreach($system['partitions'] as $fs) {
-                      if (!$fs['Temporary']['bool'] && $fs['FileSystem']['text']!= "none" && $fs['FileSystem']['text']!= "udev") {
-                        $diskFree = $fs['Free']['value'];
-                        $diskTotal = $fs['Size']['value'];;
-                        $diskUsed = $fs['Used']['value'];;
-                        $diskPercent = sprintf('%.2f',($diskUsed / $diskTotal) * 100);
+if (count($system['partitions']) > 0) {
+    echo "  <tr><td><b>Disk</b></td><td><b>Mount</b></td><td><b>Stats</b></td></tr>\n";
+    foreach($system['partitions'] as $fs) {
+        if ($fs['FileSystem']['text']!= "none" && $fs['FileSystem']['text']!= "udev") {
+            $diskFree = $fs['Free']['value'];
+            $diskTotal = $fs['Size']['value'];;
+            $diskUsed = $fs['Used']['value'];;
+            $diskPercent = sprintf('%.2f',($diskUsed / $diskTotal) * 100);
                         
-                        echo "  <tr><td class='subinfo'></td><td>".$fs['Partition']['text']."</td><td><div class='progress progress-info' style='margin-bottom: 0;'><div class='bar' style='width: ".$diskPercent."%;'>Used&nbsp;".$diskPercent."%</div></div>";
-                        echo "  <b>Total:</b> ".formatSize($diskTotal)."<b> Used:</b> ".formatSize($diskUsed)."<b> Free:</b> ".formatSize($diskFree)."</td></tr>\n";
-                        
-                      }
-                    }
-                }
+            echo "  <tr><td class='subinfo'></td><td>".$fs['Partition']['text']."</td><td><div class='progress progress-info' style='margin-bottom: 0;'><div class='bar' style='width: ".$diskPercent."%;'>Used&nbsp;".$diskPercent."%</div></div>";
+            echo "  <b>Total:</b> ".formatSize($diskTotal)."<b> Used:</b> ".formatSize($diskUsed)."<b> Free:</b> ".formatSize($diskFree)."</td></tr>\n";
+        }
+    }
+}
 ?>
   </table>  
   </div>
