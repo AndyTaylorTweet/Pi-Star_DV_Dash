@@ -8,7 +8,7 @@ $lang = array (
   // Banner texts
   "digital_voice"               =>  "Modi Digitali",
   "configuration"               =>  "Configurazioni",
-  "dashboard_for"               =>  "Cruscotto delle",
+  "dashboard_for"               =>  "Cruscotto",
   // Banner links
   "dashboard"                   =>  "Cruscotto",
   "admin"                       =>  "Admin",
@@ -18,10 +18,10 @@ $lang = array (
   "factory_reset"               =>  "Ripristino",
   "live_logs"                   =>  "Live Logs",
   // Config page section headdings
-  "hardware_info"               =>  "Inforormzioni Hardware del Gateway",
+  "hardware_info"               =>  "Informazioni Hardware del Gateway",
   "control_software"            =>  "Software di controllo",
   "mmdvmhost_config"            =>  "MMDVMHost Config",
-  "general_config"              =>  "Configuraziuone Generale",
+  "general_config"              =>  "Configurazione Generale",
   "dmr_config"                  =>  "DMR Config",
   "dstar_config"                =>  "D-Star Configuration",
   "ysf_config"                  =>  "Yaesu System Fusion Config",
@@ -48,7 +48,7 @@ $lang = array (
   "ysf_mode"                    =>  "YSF Mode",
   "p25_mode"                    =>  "P25 Mode",
   "mmdvm_display"               =>  "MMDVM Display Type",
-  "mode_hangtime"               =>  "Tempo Ritado",
+  "mode_hangtime"               =>  "Tempo Ritardo",
   // Config Page - General Configuration
   "node_call"                   =>  "Nominativo",
   "dmr_id"                      =>  "CCS7/DMR ID",
@@ -122,7 +122,7 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Le Ultime 20 Trasmessioni Di Questo Nodo",
+  "last_heard_list"             =>  "Le Ultime 20 Trasmissioni Di Questo Nodo",
   "local_tx_list"               =>  "Gli Ultimi 20 Accessi RF Su Questo Nodo",
   "active_starnet_groups"       =>  "Gruppi Attivi Starnet",
   "active_starnet_members"      =>  "Menbri Attivi Nel Gruppo Starnet",
