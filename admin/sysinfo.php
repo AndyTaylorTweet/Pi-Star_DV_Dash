@@ -43,7 +43,7 @@ require_once('config/version.php');
   <div class="contentwide">
   <table width="100%">
 <?php
-echo "  <tr><td><b>Pi</b></td><td>CPU Temp</td><td>".number_format((int)@exec('cat /sys/class/thermal/thermal_zone0/temp')/1000, '2', '.', '')."&degC"</td></tr>\n";
+echo "  <tr><td><b>Pi</b></td><td>CPU Temp</td><td>".number_format((int)@exec('cat /sys/class/thermal/thermal_zone0/temp')/1000, '2', '.', '')."&degC</td></tr>\n";
               foreach (glob("/boot/emonSD-*") as $emonpiRelease) {
                 $emonpiRelease = str_replace("/boot/", '', $emonpiRelease);
               }
