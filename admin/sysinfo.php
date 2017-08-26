@@ -10,62 +10,55 @@ require_once('config/version.php');
 
 function system_information() {
     @list($system, $host, $kernel) = preg_split('/[\s,]+/', php_uname('a'), 5);
-    
     $meminfo = false;
     if (@is_readable('/proc/meminfo')) {
-      $data = explode("\n", file_get_contents("/proc/meminfo"));
-      $meminfo = array();
-      foreach ($data as $line) {
-          if (strpos($line, ':') !== false) {
-              list($key, $val) = explode(":", $line);
-              $meminfo[$key] = 1024 * floatval( trim( str_replace( ' kB', '', $val ) ) );
-          }
-      }
-    }
-  
-  function disk_list()
-  {
-      $partitions = array();
-      // Fetch partition information from df command
-      // I would have used disk_free_space() and disk_total_space() here but
-      // there appears to be no way to get a list of partitions in PHP?
-      $output = array();
-      @exec('df --block-size=1', $output);
-      foreach($output as $line)
-      {
-        $columns = array();
-        foreach(explode(' ', $line) as $column)
-        {
-          $column = trim($column);
-          if($column != '') $columns[] = $column;
+        $data = explode("\n", file_get_contents("/proc/meminfo"));
+        $meminfo = array();
+        foreach ($data as $line) {
+            if (strpos($line, ':') !== false) {
+                list($key, $val) = explode(":", $line);
+                $meminfo[$key] = 1024 * floatval( trim( str_replace( ' kB', '', $val ) ) );
+            }
         }
-    
+    }
+}
+  
+function disk_list() {
+    $partitions = array();
+    // Fetch partition information from df command
+    // I would have used disk_free_space() and disk_total_space() here but
+    // there appears to be no way to get a list of partitions in PHP?
+    $output = array();
+    @exec('df --block-size=1', $output);
+    foreach($output as $line) {
+        $columns = array();
+        foreach(explode(' ', $line) as $column) {
+            $column = trim($column);
+            if($column != '') $columns[] = $column;
+        }
+        
         // Only process 6 column rows
         // (This has the bonus of ignoring the first row which is 7)
-        if(count($columns) == 6)
-        {
-          $partition = $columns[5];
-          $partitions[$partition]['Temporary']['bool'] = in_array($columns[0], array('tmpfs', 'devtmpfs'));
-          $partitions[$partition]['Partition']['text'] = $partition;
-          $partitions[$partition]['FileSystem']['text'] = $columns[0];
-          if(is_numeric($columns[1]) && is_numeric($columns[2]) && is_numeric($columns[3]))
-          {
-            $partitions[$partition]['Size']['value'] = $columns[1];
-            $partitions[$partition]['Free']['value'] = $columns[3];
-            $partitions[$partition]['Used']['value'] = $columns[2];
-          }
-          else
-          {
-            // Fallback if we don't get numerical values
-            $partitions[$partition]['Size']['text'] = $columns[1];
-            $partitions[$partition]['Used']['text'] = $columns[2];
-            $partitions[$partition]['Free']['text'] = $columns[3];
-          }
+        if(count($columns) == 6) {
+            $partition = $columns[5];
+            $partitions[$partition]['Temporary']['bool'] = in_array($columns[0], array('tmpfs', 'devtmpfs'));
+            $partitions[$partition]['Partition']['text'] = $partition;
+            $partitions[$partition]['FileSystem']['text'] = $columns[0];
+            if(is_numeric($columns[1]) && is_numeric($columns[2]) && is_numeric($columns[3])) {
+                $partitions[$partition]['Size']['value'] = $columns[1];
+                $partitions[$partition]['Free']['value'] = $columns[3];
+                $partitions[$partition]['Used']['value'] = $columns[2];
+            }
+            else {
+                // Fallback if we don't get numerical values
+                $partitions[$partition]['Size']['text'] = $columns[1];
+                $partitions[$partition]['Used']['text'] = $columns[2];
+                $partitions[$partition]['Free']['text'] = $columns[3];
+            }
         }
-      }
-      return $partitions;
-  }
-  
+    }
+    return $partitions;
+}
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
