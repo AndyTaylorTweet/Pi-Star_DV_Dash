@@ -157,10 +157,10 @@ if ($system['mem_info']) {
 if (count($system['partitions']) > 0) {
     echo "  <tr><td><b>Disk</b></td><td><b>Mount</b></td><td><b>Stats</b></td></tr>\n";
     foreach($system['partitions'] as $fs) {
-        if ($fs['FileSystem']['text']!= "none" && $fs['FileSystem']['text']!= "udev") {
+        if ($fs['Used']['value'] > 0 && $fs['FileSystem']['text']!= "none" && $fs['FileSystem']['text']!= "udev") {
             $diskFree = $fs['Free']['value'];
-            $diskTotal = $fs['Size']['value'];;
-            $diskUsed = $fs['Used']['value'];;
+            $diskTotal = $fs['Size']['value'];
+            $diskUsed = $fs['Used']['value'];
             $diskPercent = sprintf('%.2f',($diskUsed / $diskTotal) * 100);
                         
             echo "  <tr><td></td><td>".$fs['Partition']['text']."</td><td><div class='progress progress-info' style='margin-bottom: 0;'><div class='bar' style='width: ".$diskPercent."%;'>Used&nbsp;".$diskPercent."%</div></div>";
