@@ -7,18 +7,18 @@
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Voz Digital",
-  "configuration"               =>  "Configuação",
+  "configuration"               =>  "Configuração",
   "dashboard_for"               =>  "Painel de Controle para",
   // Banner links
-  "dashboard"                   =>  "Painel de Controle",
+  "dashboard"                   =>  "Painel",
   "admin"                       =>  "Admin",
-  "power"                       =>  "Potência",
+  "power"                       =>  "Ação",
   "update"                      =>  "Atualizar",
   "backup_restore"              =>  "Backupear/Restaurar",
-  "factory_reset"               =>  "Reset de Fábrica",
+  "factory_reset"               =>  "Resetar",
   "live_logs"                   =>  "Logs Ao Vivo",
   // Config page section headdings
-  "hardware_info"               =>  "Informação Hardware do Gateway",
+  "hardware_info"               =>  "Informações Hardware do Gateway",
   "control_software"            =>  "Controle Software",
   "mmdvmhost_config"            =>  "MMDVMHost Configuração",
   "general_config"              =>  "Configurações Gerais",
@@ -78,7 +78,7 @@ $lang = array (
   "dstar_rpt2"                  =>  "RPT2 Indicativo",
   "dstar_irc_password"          =>  "Senha ircDDBGateway",
   "dstar_default_ref"           =>  "Refletor Principal",
-  "aprs_host"                   =>  "APRS Servidor",
+  "aprs_host"                   =>  "Servidor APRS",
   "dstar_irc_lang"              =>  "Idioma ircDDBGateway",
   "dstar_irc_time"              =>  "Anúncio a cada Hora",
   // Config Page - YSF Configuration
@@ -123,10 +123,10 @@ $lang = array (
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Últimas 20 chamadas via Gateway",
-  "local_tx_list"               =>  "Últimas 20 chamadas que acessaram este Gateway",
+  "local_tx_list"               =>  "Últimas 20 chamadas por este Gateway",
   "active_starnet_groups"       =>  "Grupo Ativos na Starnet",
   "active_starnet_members"      =>  "Grupo de Membros Ativos na Starnet",
-  "d-star_link_manager"         =>  "Gerente Linkados no D-Star",
+  "d-star_link_manager"         =>  "Gerenciar Conexão D-Star",
   "d-star_link_status"          =>  "Informações do Link D-Star",
   "service_status"              =>  "Status do Serviço"
 );
