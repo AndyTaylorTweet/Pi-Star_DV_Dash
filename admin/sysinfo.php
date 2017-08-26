@@ -120,6 +120,16 @@ function formatSize( $bytes ) {
       background-repeat: repeat-x;
       filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff339bb9', GradientType=0)
   }
+  .table .table {
+    background-color: #fff
+  }
+
+  .table-condensed th, .table-condensed td {
+    padding: 4px 5px
+  }
+  .table-hover tbody tr:hover > td, .table-hover tbody tr:hover > th {
+    background-color: #f5f5f5
+  }
   </style>
   </head>
   <body>
@@ -136,7 +146,7 @@ function formatSize( $bytes ) {
   </p>
   </div>
   <div class="contentwide">
-  <table width="100%">
+  <table width="100%" class="table table-hover table-condensed">
 <?php
 echo "  <tr><td><b>Pi</b></td><td>CPU Temp</td><td>".number_format((int)@exec('cat /sys/class/thermal/thermal_zone0/temp')/1000, '2', '.', '')."&degC</td></tr>\n";
               foreach (glob("/boot/emonSD-*") as $emonpiRelease) {
