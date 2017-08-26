@@ -144,7 +144,7 @@ if (count($system['partitions']) > 0) {
             $diskUsed = $fs['Used']['value'];
             $diskPercent = sprintf('%.2f',($diskUsed / $diskTotal) * 100);
                         
-            echo "  <tr><td></td><td>".$fs['Partition']['text']."</td><td><div class='progress progress-info' style='margin-bottom: 0;'><div class='bar' style='width: ".$diskPercent."%;'>Used&nbsp;".$diskPercent."%</div></div>";
+            echo "  <tr><td></td><td align=\"left\">".$fs['Partition']['text']."</td><td><div class='progress progress-info' style='margin-bottom: 0;'><div class='bar' style='width: ".$diskPercent."%;'>Used&nbsp;".$diskPercent."%</div></div>";
             echo "  <b>Total:</b> ".formatSize($diskTotal)."<b> Used:</b> ".formatSize($diskUsed)."<b> Free:</b> ".formatSize($diskFree)."</td></tr>\n";
         }
     }
