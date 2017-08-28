@@ -945,6 +945,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $currHostname = gethostname();
 	  $rollHostname = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hostname';
 	  $rollHosts = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hosts';
+	  system($rollHostname);
 	  system($rollHosts);
 	}
 
