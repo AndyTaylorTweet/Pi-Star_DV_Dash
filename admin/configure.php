@@ -1252,9 +1252,12 @@ else:
     <?php } ?>
 	<div><b><?php echo $lang['general_config'];?></b></div>
     <table>
-    <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">echo Host Name:<span><b>System Hostname</b>This is the system<br />hostname.</span></a></td>
+    <td align="left" colspan="2"><input type="text" name="confHostame" size="13" maxlength="15" value="<?php echo gethostname(); ?>" /></td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?>:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
