@@ -1256,7 +1256,7 @@ else:
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">echo Host Name:<span><b>System Hostname</b>This is the system<br />hostname.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Hostname:<span><b>System Hostname</b>This is the system<br />hostname, used for access<br />to the dashboard etc.</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confHostame" size="13" maxlength="15" value="<?php echo gethostname(); ?>" /></td>
     </tr>
     <tr>
