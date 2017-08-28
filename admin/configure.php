@@ -942,7 +942,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the Hostname
 	if (empty($_POST['confHostame']) != TRUE ) {
 	  $newHostnameLower = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['confHostame']));
-	  $currHostname = gethostname();
+	  $currHostname = exec('cat /etc/hostname');
 	  $rollHostname = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hostname';
 	  $rollHosts = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hosts';
 	  system($rollHostname);
@@ -1267,7 +1267,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Hostname:<span><b>System Hostname</b>This is the system<br />hostname, used for access<br />to the dashboard etc.</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confHostame" size="13" maxlength="15" value="<?php echo gethostname(); ?>" />Do not add suffixes such as .local</td>
+    <td align="left" colspan="2"><input type="text" name="confHostame" size="13" maxlength="15" value="<?php echo exec('cat /etc/hostname'); ?>" />Do not add suffixes such as .local</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?>:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
