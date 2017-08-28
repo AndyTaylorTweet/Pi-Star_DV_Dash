@@ -943,8 +943,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['confHostame']) != TRUE ) {
 	  $newHostnameLower = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['confHostame']));
 	  $currHostname = gethostname();
-	  $rollHostname = 'sudo sed -i "/'.$currHostname.'=/c\\'.$newHostnameLower.'" /etc/hostname';
-	  $rollHosts = 'sudo sed -i "/'.$currHostname.'=/c\\'.$newHostnameLower.'" /etc/hosts';
+	  $rollHostname = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hostname';
+	  $rollHosts = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hosts';
+	  system($rollHosts);
 	}
 
 	// Continue Page Output
