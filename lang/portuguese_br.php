@@ -2,21 +2,21 @@
 //
 // Portuguese BR Language Pack
 // Rubens H. Zolotujin (PU2LRZ)
-// Updated: 26-Aug-2017
+// Updated: 30-Aug-2017
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Voz Digital",
+  "digital_voice"               =>  "Digital Voz",
   "configuration"               =>  "Configuração",
-  "dashboard_for"               =>  "Painel de Controle para",
+  "dashboard_for"               =>  "Painel de Controle de",
   // Banner links
   "dashboard"                   =>  "Painel",
   "admin"                       =>  "Admin",
   "power"                       =>  "Ação",
   "update"                      =>  "Atualizar",
-  "backup_restore"              =>  "Backupear/Restaurar",
-  "factory_reset"               =>  "Resetar",
-  "live_logs"                   =>  "Logs Ao Vivo",
+  "backup_restore"              =>  "Backup/Restaurar",
+  "factory_reset"               =>  "Reset",
+  "live_logs"                   =>  "Logs online",
   // Config page section headdings
   "hardware_info"               =>  "Informações Hardware do Gateway",
   "control_software"            =>  "Controle Software",
@@ -32,7 +32,7 @@ $lang = array (
   // Config Page - Section General
   "setting"                     =>  "Configurações",
   "value"                       =>  "Valores",
-  "apply"                       =>  "Aplicar Alterações",
+  "apply"                       =>  "Aplicar",
   // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Nome do Host",
   "kernel"                      =>  "Kernel",
@@ -40,7 +40,7 @@ $lang = array (
   "cpu_load"                    =>  "Leitura de CPU",
   "cpu_temp"                    =>  "Temperatura de CPU",
   // Config Page - Control Software
-  "controller_software"         =>  "Controle do Software",
+  "controller_software"         =>  "Tipo de Software",
   "controller_mode"             =>  "Modo de Controle",
   // Config Page - MMDVMHost Configuration
   "dmr_mode"                    =>  "Modo DMR",
@@ -128,6 +128,6 @@ $lang = array (
   "active_starnet_members"      =>  "Grupo de Membros Ativos na Starnet",
   "d-star_link_manager"         =>  "Gerenciar Conexão D-Star",
   "d-star_link_status"          =>  "Informações do Link D-Star",
-  "service_status"              =>  "Status do Serviço"
+  "service_status"              =>  "Status do Sistema"
 );
 ?>
