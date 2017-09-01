@@ -1511,6 +1511,7 @@ else:
 	fclose($dmrMasterFile2);
 ?>
     </select></td></tr>
+    <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?>:<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
     <td align="left">
     Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="<?php echo $configdmrgateway['DMR Network 2']['Options'];?>">
