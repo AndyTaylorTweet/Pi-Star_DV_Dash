@@ -1554,7 +1554,7 @@ else:
     if (substr($dmrMasterNow, 0, 4) == "DMR+") { echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">'.$lang['dmr_plus_network'].':<span><b>DMR+ Network</b>Set your options=<br />for DMR+ here</span></a></td>
     <td align="left">
-    Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'">
+    Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="'.$configmmdvm['DMR Network']['Options'].'" />
     </td>
     </tr>'."\n";}
 ?>
