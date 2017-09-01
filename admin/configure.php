@@ -921,8 +921,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the MMDVMHost Display Type
 	if  (empty($_POST['mmdvmDisplayPort']) != TRUE ) {
-	  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort']);
-	  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort']);
+	  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort'];
+	  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort'];
 	}
 
 	// Set MMDVMHost DMR Colour Code
