@@ -1314,6 +1314,7 @@ else:
     <?php } ?>
 	<div><b><?php echo $lang['general_config'];?></b></div>
     <table>
+    <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
