@@ -696,12 +696,39 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['dmrGatewayXlxEn']) == 'OFF' ) { $configdmrgateway['XLX Network 1']['Enabled'] = "0"; }
 	}
 
-	// Set MMDVM Hang Time
-	if (empty($_POST['hangTime']) != TRUE ) {
-	  $newConfHangTime = preg_replace('/[^0-9]/', '', $_POST['hangTime']);
-	  $configmmdvm['General']['RFModeHang'] = $newConfHangTime;
-	  $configmmdvm['General']['NetModeHang'] = $newConfHangTime;
-	  $configdmrgateway['General']['Timeout'] = $newConfHangTime;
+	// Remove old settings
+	if (isset($configmmdvm['General']['ModeHang'])) { unset($configmmdvm['General']['ModeHang']); }
+	if (isset($configmmdvm['General']['RFModeHang'])) { $configmmdvm['General']['RFModeHang'] = 300; }
+	if (isset($configmmdvm['General']['NetModeHang'])) { $configmmdvm['General']['NetModeHang'] = 300; }
+	
+	// Set DMR Hang Timers
+	if (empty($_POST['dmrRfHangTime']) != TRUE ) {
+	  $configmmdvm['DMR']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dmrRfHangTime']);
+	}
+	if (empty($_POST['dmrNetHangTime']) != TRUE ) {
+	  $configmmdvm['DMR Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dmrNetHangTime']);
+	  $configdmrgateway['General']['Timeout'] = preg_replace('/[^0-9]/', '', $_POST['dmrNetHangTime']);
+	}
+	// Set D-Star Hang Timers
+	if (empty($_POST['dstarRfHangTime']) != TRUE ) {
+	  $configmmdvm['D-Star']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dstarRfHangTime']);
+	}
+	if (empty($_POST['dstarNetHangTime']) != TRUE ) {
+	  $configmmdvm['D-Star Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dstarNetHangTime']);
+	}
+	// Set YSF Hang Timers
+	if (empty($_POST['ysfRfHangTime']) != TRUE ) {
+	  $configmmdvm['System Fusion']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
+	}
+	if (empty($_POST['ysfNetHangTime']) != TRUE ) {
+	  $configmmdvm['System Fusion Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']);
+	}
+	// Set P25 Hang Timers
+	if (empty($_POST['dmrRfHangTime']) != TRUE ) {
+	  $configmmdvm['P25']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25RfHangTime']);
+	}
+	if (empty($_POST['dmrNetHangTime']) != TRUE ) {
+	  $configmmdvm['P25 Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25NetHangTime']);
 	}
 
 	// Set the hardware type
@@ -1216,7 +1243,7 @@ else:
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" /><label for=\"toggle-dmr\"></label></div></td>\n";
 	}
     ?>
-    <td>RF Hangtime: <input type="text" name="dmrRfHangTime" size="7" maxlength="3" value="<?php echo $configmmdvm['DMR']['ModeHang']; ?>" />
+    <td>RF Hangtime: <input type="text" name="dmrRfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['DMR']['ModeHang'])) { echo $configmmdvm['DMR']['ModeHang']); } else { echo "20"; } ?>" />
     Net Hangtime: <input type="text" name="dmrNetHangTime" size="7" maxlength="3" value="<?php echo $configmmdvm['DMR Network']['ModeHang']; ?>" />
     </td>
     </tr>
