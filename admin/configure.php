@@ -1210,10 +1210,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_mode'];?>:<span><b>DMR Mode</b>Turn on DMR Features</span></a></td>
     <?php
 	if ( $configmmdvm['DMR']['Enable'] == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmr\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmr\"></label></div>";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" /><label for=\"toggle-dmr\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" /><label for=\"toggle-dmr\"></label></div>";
 	}
     ?>RF Hangtime: <input type="text" name="dmrRfHangTime" size="7" maxlength="3" value="<?php echo $configmmdvm['DMR']['ModeHang']; ?>" />
     Net Hangtime: <input type="text" name="dmrNetHangTime" size="7" maxlength="3" value="<?php echo $configmmdvm['DMR Network']['ModeHang']; ?>" />
@@ -1223,10 +1223,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['d-star_mode'];?>:<span><b>D-Star Mode</b>Turn on D-Star Features</span></a></td>
     <?php
 	if ( $configmmdvm['D-Star']['Enable'] == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dstar\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dstar\"></label></div>";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" /><label for=\"toggle-dstar\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" /><label for=\"toggle-dstar\"></label></div>";
 	}
     ?></td>
     </tr>
@@ -1234,10 +1234,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['ysf_mode'];?>:<span><b>YSF Mode</b>Turn on YSF Features</span></a></td>
     <?php
 	if ( $configmmdvm['System Fusion']['Enable'] == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-ysf\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-ysf\"></label></div>";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" /><label for=\"toggle-ysf\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" /><label for=\"toggle-ysf\"></label></div>";
 	}
     ?></td>
     </tr>
@@ -1245,10 +1245,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_mode'];?>:<span><b>P25 Mode</b>Turn on P25 Features</span></a></td>
     <?php
 	if ( $configmmdvm['P25']['Enable'] == 1 ) {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-p25\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-p25\"></label></div>";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" /><label for=\"toggle-p25\"></label></div>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" /><label for=\"toggle-p25\"></label></div>";
 	}
     ?></td>
     </tr>
