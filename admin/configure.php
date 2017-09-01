@@ -919,6 +919,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['General']['Display'] = escapeshellcmd($_POST['mmdvmDisplayType']);
 	}
 
+	// Set the MMDVMHost Display Type
+	if  (empty($_POST['mmdvmDisplayPort']) != TRUE ) {
+	  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort']);
+	  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort']);
+	}
+
 	// Set MMDVMHost DMR Colour Code
 	if (empty($_POST['dmrColorCode']) != TRUE ) {
           $configmmdvm['DMR']['ColorCode'] = escapeshellcmd($_POST['dmrColorCode']);
