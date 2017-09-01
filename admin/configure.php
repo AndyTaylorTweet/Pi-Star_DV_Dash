@@ -1305,10 +1305,10 @@ else:
 	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyUSB0") {echo 'selected="selected" ';}; ?>value="/dev/ttyUSB0">/dev/ttyUSB0</option>
 	    </select>
     </td></tr>
-    <tr>
+    <!--<tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mode_hangtime'];?>:<span><b>Net Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
     <td align="left" colspan="2"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (90 secs works well for Multi-Mode)</td>
-    </tr>
+    </tr>-->
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
     <?php } ?>
