@@ -469,6 +469,9 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 		if ($source === "Network" && $mode === "P25") {
 			$hangtime = getConfigItem("P25 Network", "ModeHang", $mmdvmconfigs);
 		}
+		else {
+			$hangtime = getConfigItem("General", "RFModeHang", $mmdvmconfigs);
+		}
 		$timestamp->add(new DateInterval('PT' . $hangtime . 'S'));
 	}
 	if ($now->format('U') > $timestamp->format('U')) {
