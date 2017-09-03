@@ -444,29 +444,29 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 	if ($hangtime != "") {
 		$timestamp->add(new DateInterval('PT' . $hangtime . 'S'));
 	} else {
-		$source = $listElem[6];
-		if ($source !== "Network" && $mode === "D-Star") {
+		$source = $listElem[5];
+		if ($source == "RF" && $mode === "D-Star") {
 			$hangtime = getConfigItem("D-Star", "ModeHang", $mmdvmconfigs);
 		}
-		if ($source === "Network" && $mode === "D-Star") {
+		else if ($source == "Net" && $mode === "D-Star") {
 			$hangtime = getConfigItem("D-Star Network", "ModeHang", $mmdvmconfigs);
 		}
-		if ($source !== "Network" && $mode === "DMR") {
+		else if ($source == "RF" && $mode === "DMR") {
 			$hangtime = getConfigItem("DMR", "ModeHang", $mmdvmconfigs);
 		}
-		if ($source === "Network" && $mode === "DMR") {
+		else if ($source == "Net" && $mode === "DMR") {
 			$hangtime = getConfigItem("DMR Network", "ModeHang", $mmdvmconfigs);
 		}
-		if ($source !== "Network" && $mode === "System Fusion") {
+		else if ($source == "RF" && $mode === "System Fusion") {
 			$hangtime = getConfigItem("System Fusion", "ModeHang", $mmdvmconfigs);
 		}
-		if ($source === "Network" && $mode === "System Fusion") {
+		else if ($source == "Net" && $mode === "System Fusion") {
 			$hangtime = getConfigItem("System Fusion Network", "ModeHang", $mmdvmconfigs);
 		}
-		if ($source !== "Network" && $mode === "P25") {
+		else if ($source == "RF" && $mode === "P25") {
 			$hangtime = getConfigItem("P25", "ModeHang", $mmdvmconfigs);
 		}
-		if ($source === "Network" && $mode === "P25") {
+		else if ($source == "Net" && $mode === "P25") {
 			$hangtime = getConfigItem("P25 Network", "ModeHang", $mmdvmconfigs);
 		}
 		else {
