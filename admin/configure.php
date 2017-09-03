@@ -624,13 +624,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 			unset ($configmmdvm['DMR Network']['Options']);
-			$configdmrgateway['DMR Network 2']['Options'] = "";
+			unset ($configdmrgateway['DMR Network 2']['Options']);
 			unset ($configmmdvm['DMR Network']['Local']);
 		}
 
 		if ($dmrMasterHostArr[0] == '127.0.0.1') {
 			unset ($configmmdvm['DMR Network']['Options']);
-			$configdmrgateway['DMR Network 2']['Options'] = "";
+			unset ($configdmrgateway['DMR Network 2']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62032";
 		}
 
@@ -640,17 +640,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 				$dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
 				$configmmdvm['DMR Network']['Options'] = '"'.$dmrOptionsLineStripped.'"';
-				$configdmrgateway['DMR Network 2']['Options'] = "";
+				$configdmrgateway['DMR Network 2']['Options'] = '"'.$dmrOptionsLineStripped.'"';
 			}
 			else {
 				unset ($configmmdvm['DMR Network']['Options']);
-				$configdmrgateway['DMR Network 2']['Options'] = "";
+				unset ($configdmrgateway['DMR Network 2']['Options']);
 			}
 		}
 	}
 	if (empty($_POST['dmrMasterHost']) == TRUE ) {
 		unset ($configmmdvm['DMR Network']['Options']);
-		$configdmrgateway['DMR Network 2']['Options'] = "";
+		unset ($configdmrgateway['DMR Network 2']['Options']);
 	}
 	if (empty($_POST['dmrMasterHost1']) != TRUE ) {
 	  $dmrMasterHostArr1 = explode(',', escapeshellcmd($_POST['dmrMasterHost1']));
@@ -665,10 +665,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['DMR Network 2']['Port'] = $dmrMasterHostArr2[2];
 	  if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 	    $dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
+	    unset ($configmmdvm['DMR Network']['Options']);
 	    $configdmrgateway['DMR Network 2']['Options'] = '"'.$dmrOptionsLineStripped.'"';
 	  }
 	  else { 
-		$configdmrgateway['DMR Network 2']['Options'] = "";
+		unset ($configdmrgateway['DMR Network 2']['Options']);
 	       }
 	}
 	if (empty($_POST['dmrMasterHost3']) != TRUE ) {
