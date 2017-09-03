@@ -543,6 +543,7 @@ function getActualLink($logLines, $mode) {
 	//M: 2016-05-02 07:04:10.504 D-Star link status set to "Verlinkt zu DCS002 S"
 	//M: 2016-04-03 16:16:18.638 DMR Slot 2, received network voice header from 4000 to 2625094
 	//M: 2016-04-03 19:30:03.099 DMR Slot 2, received network voice header from 4020 to 2625094
+	//M: 2017-09-03 08:10:42.862 DMR Slot 2, received network data header from M6JQD to TG 9, 5 blocks
 	switch ($mode) {
     case "D-Star":
     	if (isProcessRunning(IRCDDBGATEWAY)) {
@@ -561,6 +562,7 @@ function getActualLink($logLines, $mode) {
 					$to = trim(substr($logLine, strpos($logLine,"to") + 3));
 				}
 				if ($to !== "") {
+					$to = substr($to, 0, strpos($to, ","));
 					return $to;
 				}
 	        	}
@@ -577,6 +579,7 @@ function getActualLink($logLines, $mode) {
 					$to = trim(substr($logLine, strpos($logLine,"to") + 3));
 				}
 				if ($to !== "") {
+					$to = substr($to, 0, strpos($to, ","));
 					return $to;
 				}
         		}
