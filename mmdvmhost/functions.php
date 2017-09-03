@@ -457,10 +457,10 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 		else if ($source == "Net" && $mode === "DMR") {
 			$hangtime = getConfigItem("DMR Network", "ModeHang", $mmdvmconfigs);
 		}
-		else if ($source == "RF" && $mode === "System Fusion") {
+		else if ($source == "RF" && $mode === "YSF") {
 			$hangtime = getConfigItem("System Fusion", "ModeHang", $mmdvmconfigs);
 		}
-		else if ($source == "Net" && $mode === "System Fusion") {
+		else if ($source == "Net" && $mode === "YSF") {
 			$hangtime = getConfigItem("System Fusion Network", "ModeHang", $mmdvmconfigs);
 		}
 		else if ($source == "RF" && $mode === "P25") {
