@@ -657,12 +657,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['DMR Network 1']['Address'] = $dmrMasterHostArr1[0];
 	  $configdmrgateway['DMR Network 1']['Password'] = $dmrMasterHostArr1[1];
 	  $configdmrgateway['DMR Network 1']['Port'] = $dmrMasterHostArr1[2];
+	  $configdmrgateway['DMR Network 1']['Name'] = $dmrMasterHostArr1[3];
 	}
 	if (empty($_POST['dmrMasterHost2']) != TRUE ) {
 	  $dmrMasterHostArr2 = explode(',', escapeshellcmd($_POST['dmrMasterHost2']));
 	  $configdmrgateway['DMR Network 2']['Address'] = $dmrMasterHostArr2[0];
 	  $configdmrgateway['DMR Network 2']['Password'] = $dmrMasterHostArr2[1];
 	  $configdmrgateway['DMR Network 2']['Port'] = $dmrMasterHostArr2[2];
+	  $configdmrgateway['DMR Network 2']['Name'] = $dmrMasterHostArr2[3];
 	  if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 	    $dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
 	    unset ($configmmdvm['DMR Network']['Options']);
@@ -677,6 +679,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network 1']['Address'] = $dmrMasterHostArr3[0];
 	  $configdmrgateway['XLX Network 1']['Password'] = $dmrMasterHostArr3[1];
 	  $configdmrgateway['XLX Network 1']['Port'] = $dmrMasterHostArr3[2];
+	  $configdmrgateway['XLX Network 1']['Name'] = $dmrMasterHostArr3[3];
 	}
 
 	// Set Talker Alias Option
