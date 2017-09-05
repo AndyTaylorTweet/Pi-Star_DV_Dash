@@ -9,7 +9,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 require_once('../config/version.php');
 
 if (file_exists('/etc/default/shellinabox')) {
-  $getPortCommand = "grep -m 1 'SHELLINABOX_PORT=' /etc/default/shellinabox | awk -F '=' '/SHELLINABOX_PORT=/ {print $2}'";
+  $getPortCommand = "grep -m 1 \'SHELLINABOX_PORT=\' /etc/default/shellinabox | awk -F \'=\' \'/SHELLINABOX_PORT=/ {print $2}\'";
   $shellPort = exec('$getPortCommand');
 }
 
