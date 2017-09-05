@@ -8,6 +8,11 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 // Load the Version Info
 require_once('../config/version.php');
 
+if (file_exists('/etc/default/shellinabox')) {
+  $getPortCommand = "grep -m 1 'SHELLINABOX_PORT=' /etc/default/shellinabox | awk -F '=' '/SHELLINABOX_PORT=/ {print $2}'";
+  $shellPort = exec('$getPortCommand');
+}
+
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
 ?>
@@ -56,7 +61,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
   <div class="contentwide">
   <table width="100%">
   <tr><th>SSH - Pi-Star</th></tr>
-  <tr><td align="left"><div id="tail"></div></td></tr>
+  <tr><td align="left"><div id="tail"><? echo $shellPort; ?></div></td></tr>
   </table>
   </div>
   <div class="footer">
