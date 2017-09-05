@@ -61,7 +61,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
   <div class="contentwide">
   <table width="100%">
   <tr><th>SSH - Pi-Star</th></tr>
-  <tr><td align="left"><div id="tail"><? echo $getPortCommand."<br />".$shellPort; ?></div></td></tr>
+  <tr><td align="left"><div id="tail">
+    <iframe src="https://pi-star.local:<?php echo $shellPort ?>" style="border:0px #ffffff none;" name="Pi-Star SSH" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" height="100%" width="100%"</iframe>
+  </div></td></tr>
   </table>
   </div>
   <div class="footer">
