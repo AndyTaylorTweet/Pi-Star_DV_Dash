@@ -1,15 +1,15 @@
 <?php
 // Load the language support
-require_once('config/language.php');
+require_once('../config/language.php');
 // Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 // Load the Version Info
-require_once('config/version.php');
+require_once('../config/version.php');
 
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
