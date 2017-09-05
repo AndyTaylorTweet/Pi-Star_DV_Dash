@@ -39,7 +39,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
   <div class="container">
   <div class="header">
   <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-  <h1>Pi-Star Digital Voice - Expert Editor</h1>
+  <h1>Pi-Star Digital Voice - SSH Access</h1>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
     <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
@@ -55,7 +55,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
     <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a> |
     <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
-    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a>
+    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a> |
+    <a href="ssh_access.php" style="color: #ffffff;">SSH Access</a>
   </p>
   </div>
   <div class="contentwide">
