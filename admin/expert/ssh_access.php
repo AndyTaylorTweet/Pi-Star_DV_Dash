@@ -61,14 +61,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
   <div class="contentwide">
   <table width="100%">
   <tr><th>SSH - Pi-Star</th></tr>
-  <tr><td align="left"><div id="tail">
+  <tr><td align="left">
     <?php if (isset($shellPort)) {
       echo "<iframe src=\"http://".$_SERVER['HTTP_HOST'].":".$shellPort."\" style=\"border:0px #ffffff none;\" name=\"Pi-Star SSH\" scrolling=\"no\" frameborder=\"0\" marginheight=\"0px\" marginwidth=\"0px\" height=\"100%\" width=\"100%\"></iframe>";
     }
     else {
       echo "SSH Feature not yet installed";
     } ?>
-  </div></td></tr>
+  </td></tr>
   </table>
   <?php if (isset($shellPort)) { echo "<a href=\"http://".$_SERVER['HTTP_HOST'].":".$shellPort."\">Click here for fullscreen SSH client</a><br />\n"; } ?>
   </div>
