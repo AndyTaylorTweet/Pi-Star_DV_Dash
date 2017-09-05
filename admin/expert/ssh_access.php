@@ -61,7 +61,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
   <div class="contentwide">
   <table width="100%">
   <tr><th>SSH - Pi-Star</th></tr>
-  <tr><td align="left"><div id="tail"><? echo $shellPort; ?></div></td></tr>
+  <tr><td align="left"><div id="tail"><? echo $getPortCommand; ?></div></td></tr>
   </table>
   </div>
   <div class="footer">
