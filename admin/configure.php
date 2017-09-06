@@ -552,6 +552,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
+	  $configysfgateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
