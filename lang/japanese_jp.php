@@ -1,8 +1,8 @@
 <?php
 //
-// English UK Language Pack
-// Andy Taylor (MW0MWZ)
-// Updated: 02-Aug-
+// Japanese JP Language Pack
+// Toshiro Okano (JF1CXH)
+// Updated: 09-Sep-2017
 //
 $lang = array (
   // Banner texts
@@ -30,38 +30,38 @@ $lang = array (
   "fw_config"                   =>  "Firewall Configuration",
   "remote_access_pw"            =>  "Remote Access Password",
   // Config Page - Section General
-  "setting"                     =>  "Ý’è€–Ú",
-  "value"                       =>  "Ý’è“à—e",
-  "apply"                       =>  "XV",
+  "setting"                     =>  "è¨­å®šé …ç›®",
+  "value"                       =>  "è¨­å®šå†…å®¹",
+  "apply"                       =>  "æ›´æ–°",
   // Config Page - Gateway Hardware Information
-  "hostname"                    =>  "ƒzƒXƒgƒl[ƒ€",
-  "kernel"                      =>  "ƒJ[ƒlƒ‹",
-  "platform"                    =>  "ƒvƒ‰ƒbƒgƒtƒH[ƒ€",
-  "cpu_load"                    =>  "CPU•‰‰×",
-  "cpu_temp"                    =>  "CPU‰·“x",
+  "hostname"                    =>  "ãƒ›ã‚¹ãƒˆãƒãƒ¼ãƒ ",
+  "kernel"                      =>  "ã‚«ãƒ¼ãƒãƒ«",
+  "platform"                    =>  "ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ ",
+  "cpu_load"                    =>  "CPUè² è·",
+  "cpu_temp"                    =>  "CPUæ¸©åº¦",
   // Config Page - Control Software
-  "controller_software"         =>  "ƒRƒ“ƒgƒ[ƒ‹ƒ\ƒtƒg",
-  "controller_mode"             =>  "ƒRƒ“ƒgƒ[ƒ‹ƒ‚[ƒh",
+  "controller_software"         =>  "ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚½ãƒ•ãƒˆ",
+  "controller_mode"             =>  "ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰",
   // Config Page - MMDVMHost Configuration
-  "dmr_mode"                    =>  "DMR ƒ‚[ƒh",
-  "d-star_mode"                 =>  "D-Star ƒ‚[ƒh",
-  "ysf_mode"                    =>  "YSF ƒ‚[ƒh",
-  "p25_mode"                    =>  "P25 ƒ‚[ƒh",
-  "mmdvm_display"               =>  "MMDVM ƒfƒBƒXƒvƒŒƒCƒ^ƒCƒv",
-  "mode_hangtime"               =>  "ƒ‚[ƒhƒnƒ“ƒOƒ^ƒCƒ€",
+  "dmr_mode"                    =>  "DMR ãƒ¢ãƒ¼ãƒ‰",
+  "d-star_mode"                 =>  "D-Star ãƒ¢ãƒ¼ãƒ‰",
+  "ysf_mode"                    =>  "YSF ãƒ¢ãƒ¼ãƒ‰",
+  "p25_mode"                    =>  "P25 ãƒ¢ãƒ¼ãƒ‰",
+  "mmdvm_display"               =>  "MMDVM ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚¿ã‚¤ãƒ—",
+  "mode_hangtime"               =>  "ãƒ¢ãƒ¼ãƒ‰ãƒãƒ³ã‚°ã‚¿ã‚¤ãƒ ",
   // Config Page - General Configuration
-  "node_call"                   =>  "ƒm[ƒh ƒR[ƒ‹ƒTƒCƒ“",
+  "node_call"                   =>  "ãƒŽãƒ¼ãƒ‰ ã‚³ãƒ¼ãƒ«ã‚µã‚¤ãƒ³",
   "dmr_id"                      =>  "CCS7/DMR ID",
-  "radio_freq"                  =>  "Žü”g”",
-  "lattitude"                   =>  "ˆÜ“x",
-  "longitude"                   =>  "Œo“x",
-  "town"                        =>  "Žs’¬‘º",
-  "country"                     =>  "‘",
+  "radio_freq"                  =>  "å‘¨æ³¢æ•°",
+  "lattitude"                   =>  "ç·¯åº¦",
+  "longitude"                   =>  "çµŒåº¦",
+  "town"                        =>  "å¸‚ç”ºæ‘",
+  "country"                     =>  "å›½",
   "url"                         =>  "URL",
-  "radio_type"                  =>  "Radio/Modem ƒ^ƒCƒv",
-  "node_type"                   =>  "ƒm[ƒhƒ^ƒCƒv",
-  "timezone"                    =>  "ƒVƒXƒeƒ€ ƒ^ƒCƒ€ƒ][ƒ“",
-  "dash_lang"                   =>  "ƒ_ƒbƒVƒ…ƒ{[ƒhŒ¾Œê",
+  "radio_type"                  =>  "Radio/Modem ã‚¿ã‚¤ãƒ—",
+  "node_type"                   =>  "ãƒŽãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—",
+  "timezone"                    =>  "ã‚·ã‚¹ãƒ†ãƒ  ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³",
+  "dash_lang"                   =>  "ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰è¨€èªž",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR Master (MMDVMHost)",
   "bm_master"                   =>  "BrandMeister Master",
@@ -74,30 +74,30 @@ $lang = array (
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
   // Config Page - D-Star Configuration
-  "dstar_rpt1"                  =>  "RPT1 ƒR[ƒ‹ƒTƒCƒ“",
-  "dstar_rpt2"                  =>  "RPT2 ƒR[ƒ‹ƒTƒCƒ“",
-  "dstar_irc_password"          =>  "ircDDBGateway ƒpƒXƒ[ƒh",
-  "dstar_default_ref"           =>  "ƒfƒBƒtƒHƒ‹ƒg@ƒŠƒtƒŒƒNƒ^[",
-  "aprs_host"                   =>  "APRS ƒzƒXƒg",
-  "dstar_irc_lang"              =>  "ircDDBGateway Œ¾Œê",
-  "dstar_irc_time"              =>  "ŽžƒAƒiƒEƒ“ƒX",
+  "dstar_rpt1"                  =>  "RPT1 ã‚³ãƒ¼ãƒ«ã‚µã‚¤ãƒ³",
+  "dstar_rpt2"                  =>  "RPT2 ã‚³ãƒ¼ãƒ«ã‚µã‚¤ãƒ³",
+  "dstar_irc_password"          =>  "ircDDBGateway ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰",
+  "dstar_default_ref"           =>  "ãƒ‡ã‚£ãƒ•ã‚©ãƒ«ãƒˆã€€ãƒªãƒ•ãƒ¬ã‚¯ã‚¿ãƒ¼",
+  "aprs_host"                   =>  "APRS ãƒ›ã‚¹ãƒˆ",
+  "dstar_irc_lang"              =>  "ircDDBGateway è¨€èªž",
+  "dstar_irc_time"              =>  "æ™‚åˆ»ã‚¢ãƒŠã‚¦ãƒ³ã‚¹",
   // Config Page - YSF Configuration
-  "ysf_startup_host"            =>  "YSF ƒXƒ^[ƒgƒAƒbƒv@ƒzƒXƒg",
+  "ysf_startup_host"            =>  "YSF ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒƒãƒ—ã€€ãƒ›ã‚¹ãƒˆ",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 ƒXƒ^[ƒgƒAƒbƒv@ƒzƒXƒg",
+  "p25_startup_host"            =>  "P25 ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒƒãƒ—ã€€ãƒ›ã‚¹ãƒˆ",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "ƒ_ƒbƒVƒ…ƒ{[ƒh@ƒAƒNƒZƒX",
-  "fw_irc"                      =>  "ircDDGBateway ƒŠƒ‚[ƒg",
-  "fw_ssh"                      =>  "SSH ƒAƒNƒZƒX",
+  "fw_dash"                     =>  "ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰ã€€ã‚¢ã‚¯ã‚»ã‚¹",
+  "fw_irc"                      =>  "ircDDGBateway ãƒªãƒ¢ãƒ¼ãƒˆ",
+  "fw_ssh"                      =>  "SSH ã‚¢ã‚¯ã‚»ã‚¹",
   // Config Page - Password
-  "user"                        =>  "ƒ†[ƒU[–¼",
-  "password"                    =>  "ƒpƒXƒ[ƒh",
-  "set_password"                =>  "ƒpƒXƒ[ƒh•Û‘¶",
+  "user"                        =>  "ãƒ¦ãƒ¼ã‚¶ãƒ¼å",
+  "password"                    =>  "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰",
+  "set_password"                =>  "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ä¿å­˜",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Žg—p‰Â”\ƒ‚[ƒh",
-  "net_status"                  =>  "ƒlƒbƒgƒ[ƒNó‹µ",
-  "internet"                    =>  "ƒCƒ“ƒ^[ƒlƒbƒg",
+  "modes_enabled"               =>  "ä½¿ç”¨å¯èƒ½ãƒ¢ãƒ¼ãƒ‰",
+  "net_status"                  =>  "ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯çŠ¶æ³",
+  "internet"                    =>  "ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆ",
   "radio_info"                  =>  "Radio Info",
   "dstar_repeater"              =>  "D-Star Repeater",
   "dstar_net"                   =>  "D-Star Network",
@@ -107,10 +107,10 @@ $lang = array (
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "P25 Network",
   // Dashboard Front Page - Calls
-  "time"                        =>  "Žž",
-  "mode"                        =>  "ƒ‚[ƒh",
-  "callsign"                    =>  "ƒR[ƒ‹ƒTƒCƒ“",
-  "target"                      =>  "ƒ^[ƒQƒbƒg",
+  "time"                        =>  "æ™‚åˆ»",
+  "mode"                        =>  "ãƒ¢ãƒ¼ãƒ‰",
+  "callsign"                    =>  "ã‚³ãƒ¼ãƒ«ã‚µã‚¤ãƒ³",
+  "target"                      =>  "ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ",
   "src"                         =>  "Src",        // Short version of "Source"
   "dur"                         =>  "Dur",        // Short version of "Duration"
   "loss"                        =>  "Loss",
