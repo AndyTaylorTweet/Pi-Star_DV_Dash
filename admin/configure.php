@@ -688,6 +688,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network 1']['Name'] = $dmrMasterHostArr3[3];
 	}
 
+	// XLX StartUp TG
+	if (empty($_POST['dmrMasterHost3Startup']) != TRUE ) {
+	  $dmrMasterHost3Startup = escapeshellcmd($_POST['dmrMasterHost3Startup']);
+	  if ($dmrMasterHost3Startup != "None") {
+	    $configdmrgateway['XLX Network 1']['Startup'] = $dmrMasterHost3Startup;
+	  }
+	  else { unset($configdmrgateway['XLX Network 1']['Startup']); }
+	}
+
 	// Set Talker Alias Option
 	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrEmbeddedLCOnly']) == 'ON' ) { $configmmdvm['DMR']['EmbeddedLCOnly'] = "1"; }
