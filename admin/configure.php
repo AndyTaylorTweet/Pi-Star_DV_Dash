@@ -1550,12 +1550,12 @@ else:
     <td align="left"><select name="dmrMasterHost3Startup">
 <?php
 	for ($xlxSu = 01; $xlxSu <= 26; $xlxSu++) {
-		$xlxSu = sprintf('%02d', $xlxSu);
+		$xlxSu = '40'.sprintf('%02d', $xlxSu);
 		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == '40'.$xlxSu)) {
-			echo "<option value=\"40".$xlxSu."\" selected=\"selected\">40".$xlxSu."</option>\n";
+			echo '<option value="'.$xlxSu.'" selected="selected">'.$xlxSu.'</option>'."\n";
 		}
 		else {
-			echo "<option value=\"40".$xlxSu."\">40".$xlxSu."</option>\n";
+			echo '<option value="'.$xlxSu.'">'.$xlxSu.'</option>'."\n";
 		}
 	} 
 ?>
