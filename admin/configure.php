@@ -1549,7 +1549,7 @@ else:
     <td align="left"><a class="tooltip2" href="#">XLX Startup TG:<span><b>XLX Startup TG</b></span></a></td>
     <td align="left"><select name="dmrMasterHost3Startup">
 <?php
-	if (!isset($configdmrgateway['XLX Network 1']['Startup']) {
+	if (!isset($configdmrgateway['XLX Network 1']['Startup'])) {
 		echo '      <option value="None" selected="selected">None</option>'."\n";
 	}
 	else {
