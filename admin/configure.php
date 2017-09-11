@@ -1549,18 +1549,15 @@ else:
     <td align="left"><a class="tooltip2" href="#">XLX Startup TG:<span><b>XLX Startup TG</b></span></a></td>
     <td align="left"><select name="dmrMasterHost3Startup">
 <?php
-	if (!isset($configdmrgateway['XLX Network 1']['Startup'])) {
-		echo '      <option value="None" selected="selected">None</option>'."\n";
+	if (isset($configdmrgateway['XLX Network 1']['Startup'])) {
+		echo '      <option value="None">None</option>'."\n";
 	}
 	else {
-		echo '      <option value="None">None</option>'."\n";
+		echo '      <option value="None" selected="selected">None</option>'."\n";
 	}
 
 	for ($xlxSu = 1; $xlxSu <= 26; $xlxSu++) {
 		$xlxSu = '40'.sprintf('%02d', $xlxSu);
-		if (!isset($configdmrgateway['XLX Network 1']['Startup']) {
-			echo '      <option value="None" selected="selected">None</option>'."\n";
-		}
 		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSu)) {
 			echo '      <option value="'.$xlxSu.'" selected="selected">'.$xlxSu.'</option>'."\n";
 		}
