@@ -1557,13 +1557,13 @@ else:
 	}
 
 	for ($xlxSu = 1; $xlxSu <= 26; $xlxSu++) {
-		$xlxSu = '40'.sprintf('%02d', $xlxSu);
-		//if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSu)) {
-		//	echo '      <option value="'.$xlxSu.'" selected="selected">'.$xlxSu.'</option>'."\n";
-		//}
-		//else {
-			echo '      <option value="'.$xlxSu.'">'.$xlxSu.'</option>'."\n";
-		//}
+		$xlxSuVal = '40'.sprintf('%02d', $xlxSu);
+		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSuVal)) {
+			echo '      <option value="'.$xlxSuVal.'" selected="selected">'.$xlxSuVal.'</option>'."\n";
+		}
+		else {
+			echo '      <option value="'.$xlxSuVal.'">'.$xlxSuVal.'</option>'."\n";
+		}
 	} 
 ?>
     </select></td></tr>
