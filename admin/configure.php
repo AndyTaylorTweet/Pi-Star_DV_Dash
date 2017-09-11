@@ -1544,6 +1544,23 @@ else:
 	fclose($dmrMasterFile3);
 ?>
     </select></td></tr>
+
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">XLX Startup TG:<span><b>XLX Startup TG</b></span></a></td>
+    <td align="left"><select name="dmrMasterHost3Startup">
+<?php
+	for ($xlxSu = 01; $xlxSu <= 26; $xlxSu++) {
+		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == '40'.$xlxSu)) {
+			echo "<option value=\"40".$xlxSu."\" selected=\"selected\"></option>\n";
+		}
+		else {
+			echo "<option value=\"40".$xlxSu."\"></option>\n";
+		}
+	} 
+?>
+    </select></td></tr>
+
+
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_enable'];?>:<span><b>XLX Master Enable</b></span></a></td>
     <td align="left">
