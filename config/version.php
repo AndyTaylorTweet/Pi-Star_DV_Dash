@@ -1,3 +1,3 @@
 <?php
-$version = 20170911-dev
+$version = 20170911
 ?>
