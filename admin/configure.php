@@ -688,6 +688,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network 1']['Name'] = $dmrMasterHostArr3[3];
 	}
 
+	// XLX StartUp TG
+	if (empty($_POST['dmrMasterHost3Startup']) != TRUE ) {
+	  $dmrMasterHost3Startup = escapeshellcmd($_POST['dmrMasterHost3Startup']);
+	  if ($dmrMasterHost3Startup != "None") {
+	    $configdmrgateway['XLX Network 1']['Startup'] = $dmrMasterHost3Startup;
+	  }
+	  else { unset($configdmrgateway['XLX Network 1']['Startup']); }
+	}
+
 	// Set Talker Alias Option
 	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrEmbeddedLCOnly']) == 'ON' ) { $configmmdvm['DMR']['EmbeddedLCOnly'] = "1"; }
@@ -1545,6 +1554,27 @@ else:
 ?>
     </select></td></tr>
     <tr>
+    <td align="left"><a class="tooltip2" href="#">XLX Startup TG:<span><b>XLX Startup TG</b></span></a></td>
+    <td align="left"><select name="dmrMasterHost3Startup">
+<?php
+	if (isset($configdmrgateway['XLX Network 1']['Startup'])) {
+		echo '      <option value="None">None</option>'."\n";
+	}
+	else {
+		echo '      <option value="None" selected="selected">None</option>'."\n";
+	}
+	for ($xlxSu = 1; $xlxSu <= 26; $xlxSu++) {
+		$xlxSuVal = '40'.sprintf('%02d', $xlxSu);
+		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSuVal)) {
+			echo '      <option value="'.$xlxSuVal.'" selected="selected">'.$xlxSuVal.'</option>'."\n";
+		}
+		else {
+			echo '      <option value="'.$xlxSuVal.'">'.$xlxSuVal.'</option>'."\n";
+		}		
+	} 
+?>
+    </select></td></tr>
+    <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_enable'];?>:<span><b>XLX Master Enable</b></span></a></td>
     <td align="left">
     <?php if ($configdmrgateway['XLX Network 1']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayXlxEn\"></label></div>\n"; }
@@ -1577,7 +1607,7 @@ else:
     <td style="text-align: left;"><select name="dmrColorCode">
 	<?php for ($dmrColorCodeInput = 1; $dmrColorCodeInput <= 15; $dmrColorCodeInput++) {
 		if ($configmmdvm['DMR']['ColorCode'] == $dmrColorCodeInput) { echo "<option selected=\"selected\" value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
-		else {echo "<option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
+		else {echo "      <option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
 	} ?>
     </select></td>
     </tr>
