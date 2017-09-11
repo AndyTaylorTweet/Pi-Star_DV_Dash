@@ -1551,11 +1551,11 @@ else:
 <?php
 	for ($xlxSu = 01; $xlxSu <= 26; $xlxSu++) {
 		$xlxSu = '40'.sprintf('%02d', $xlxSu);
-		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == '40'.$xlxSu)) {
-			echo '<option value="'.$xlxSu.'" selected="selected">'.$xlxSu.'</option>'."\n";
+		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSu)) {
+			echo '      <option value="'.$xlxSu.'" selected="selected">'.$xlxSu.'</option>'."\n";
 		}
 		else {
-			echo '<option value="'.$xlxSu.'">'.$xlxSu.'</option>'."\n";
+			echo '      <option value="'.$xlxSu.'">'.$xlxSu.'</option>'."\n";
 		}
 	} 
 ?>
@@ -1595,7 +1595,7 @@ else:
     <td style="text-align: left;"><select name="dmrColorCode">
 	<?php for ($dmrColorCodeInput = 1; $dmrColorCodeInput <= 15; $dmrColorCodeInput++) {
 		if ($configmmdvm['DMR']['ColorCode'] == $dmrColorCodeInput) { echo "<option selected=\"selected\" value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
-		else {echo "<option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
+		else {echo "      <option value=\"$dmrColorCodeInput\">$dmrColorCodeInput</option>\n"; }
 	} ?>
     </select></td>
     </tr>
