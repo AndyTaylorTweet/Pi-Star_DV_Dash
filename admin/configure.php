@@ -1556,18 +1556,15 @@ else:
 		echo '      <option value="None" selected="selected">None</option>'."\n";
 	}
 
-	$xlxSu = 1;
-	$xlxSuVal = 4001;
 	while ($xlxSu <= 26) {
 		//$xlxSuVal = '40'.sprintf('%02d', $xlxSu);
-		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSuVal)) {
-			echo '      <option value="'.$xlxSuVal.'" selected="selected">'.$xlxSuVal.'</option>'."\n";
+		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSu)) {
+			echo '      <option value="'.$xlxSu.'" selected="selected">'.$xlxSu.'</option>'."\n";
 		}
 		else {
-			echo '      <option value="'.$xlxSuVal.'">'.$xlxSuVal.'</option>'."\n";
+			echo '      <option value="'.$xlxSu.'">'.$xlxSu.'</option>'."\n";
 		}
 		$xlxSu++;
-		$xlxSuVal++;
 		
 	} 
 ?>
