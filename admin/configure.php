@@ -1561,7 +1561,9 @@ else:
 		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSu)) {
 			echo '      <option value="'.$xlxSu.'" selected="selected">'.$xlxSu.'</option>'."\n";
 		}
-		echo '      <option value="'.$xlxSu.'">'.$xlxSu.'</option>'."\n";
+		else {
+			echo '      <option value="'.$xlxSu.'">'.$xlxSu.'</option>'."\n";
+		}
 	} 
 ?>
     </select></td></tr>
