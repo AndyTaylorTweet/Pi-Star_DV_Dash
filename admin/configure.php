@@ -218,7 +218,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  echo "<br />\n</div>\n";
           echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
           echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistar/\" target=\"_new\">here for the Support Group</a><br />\n";
-          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.mw0mwz.co.uk/pi-star/\" target=\"_blank\">here</a>.<br />\n";
+          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
           echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
 	  die();
 	  }
@@ -1980,7 +1980,7 @@ echo '
 <div class="footer">
 Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
-Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz.co.uk/pi-star/" target="_blank">here</a>.<br />
+Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
 <br />
 </div>
 </div>
@@ -1994,7 +1994,7 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz
 <div class="footer">
 Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
-Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.mw0mwz.co.uk/pi-star/" target="_blank">here</a>.<br />
+Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
 <br />
 </div>
 </div>
