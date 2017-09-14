@@ -257,12 +257,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollAdminPass2);
 	  }
 
-	// Set the ircDDBGAteway Remote Password
+	// Set the ircDDBGAteway Remote Password and Port
 	if (empty($_POST['confPassword']) != TRUE ) {
 	  $rollConfPassword0 = 'sudo sed -i "/remotePassword=/c\\remotePassword='.escapeshellcmd($_POST['confPassword']).'" /etc/ircddbgateway';
 	  $rollConfPassword1 = 'sudo sed -i "/password=/c\\password='.escapeshellcmd($_POST['confPassword']).'" /root/.Remote\ Control';
+	  $rollConfRemotePort = 'sudo sed -i "/port=/c\\port='.$configs['remotePort'].'" /root/.Remote\ Control';
 	  system($rollConfPassword0);
 	  system($rollConfPassword1);
+	  system($rollConfRemotePort);
 	  }
 
 	// Set the ircDDBGateway Defaut Reflector
