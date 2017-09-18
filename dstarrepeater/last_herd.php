@@ -18,11 +18,11 @@ $MYCALL=strtoupper($callsign);
     <b><?php echo $lang['last_heard_list'];?></b>
     <table>
     <tr>
-    <th><a class=tooltip href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>
-    <th><a class=tooltip href="#"><?php echo $lang['callsign'];?></a></th>
-    <th><a class=tooltip href="#"><?php echo $lang['target'];?></a></th>
-    <th><a class=tooltip href="#">RPT 1</a></th>
-    <th><a class=tooltip href="#">RPT 2</a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['target'];?></a></th>
+    <th><a class="tooltip" href="#">RPT 1</a></th>
+    <th><a class="tooltip" href="#">RPT 2</a></th>
     </tr>
 <?php
 // Headers.log sample:
@@ -52,12 +52,12 @@ $MYCALL=strtoupper($callsign);
                     $dt = new DateTime($utc_time, $utc_tz);
                     $dt->setTimeZone($local_tz);
                     $local_time = $dt->format('H:i:s M jS');
-		print "<td align=left>$local_time</td>";
-		print "<td align=left width=180><a href=\"http://www.qrz.com/db/$MyCall\" target=\"_blank\" alt=\"Lookup Callsign\">$MyCall</a>";
+		print "<td align=\"left\">$local_time</td>";
+		print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCall\" target=\"_blank\" alt=\"Lookup Callsign\">$MyCall</a>";
 		if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
-                print "<td align=left width=100>$YourCall</td>";
-		print "<td align=left width=100>$Rpt1</td>";
-		print "<td align=left width=100>$Rpt2</td>";
+                print "<td align=\"left\" width=\"100\">$YourCall</td>";
+		print "<td align=\"left\" width=\"100\">$Rpt1</td>";
+		print "<td align=\"left\" width=\"100\">$Rpt2</td>";
 		print "</tr>\n";
 	    }
 	}
