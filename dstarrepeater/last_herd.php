@@ -64,5 +64,4 @@ $MYCALL=strtoupper($callsign);
 	fclose($LastHeardLog);
     }
 ?>
-</tr>
 </table>
