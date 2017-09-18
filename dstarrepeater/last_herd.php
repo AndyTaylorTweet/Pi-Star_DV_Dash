@@ -53,7 +53,7 @@ $MYCALL=strtoupper($callsign);
                     $dt->setTimeZone($local_tz);
                     $local_time = $dt->format('H:i:s M jS');
 		print "<td align=\"left\">$local_time</td>";
-		print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCall\" target=\"_blank\" alt=\"Lookup Callsign\">$MyCall</a>";
+		print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCall\" target=\"_blank\">$MyCall</a>";
 		if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
                 print "<td align=\"left\" width=\"100\">$YourCall</td>";
 		print "<td align=\"left\" width=\"100\">$Rpt1</td>";
