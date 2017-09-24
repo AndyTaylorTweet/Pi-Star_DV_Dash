@@ -720,16 +720,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Remove old settings
 	if (isset($configmmdvm['General']['ModeHang'])) { unset($configmmdvm['General']['ModeHang']); }
+	if (isset($configdmrgateway['General']['Timeout'])) { unset($configdmrgateway['General']['Timeout']); }
 	if (isset($configmmdvm['General']['RFModeHang'])) { $configmmdvm['General']['RFModeHang'] = 300; }
 	if (isset($configmmdvm['General']['NetModeHang'])) { $configmmdvm['General']['NetModeHang'] = 300; }
 	
 	// Set DMR Hang Timers
 	if (empty($_POST['dmrRfHangTime']) != TRUE ) {
 	  $configmmdvm['DMR']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dmrRfHangTime']);
+	  $configdmrgateway['General']['RFTimeout'] = preg_replace('/[^0-9]/', '', $_POST['dmrRfHangTime']);
 	}
 	if (empty($_POST['dmrNetHangTime']) != TRUE ) {
 	  $configmmdvm['DMR Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dmrNetHangTime']);
-	  $configdmrgateway['General']['Timeout'] = preg_replace('/[^0-9]/', '', $_POST['dmrNetHangTime']);
+	  $configdmrgateway['General']['NetTimeout'] = preg_replace('/[^0-9]/', '', $_POST['dmrNetHangTime']);
 	}
 	// Set D-Star Hang Timers
 	if (empty($_POST['dstarRfHangTime']) != TRUE ) {
