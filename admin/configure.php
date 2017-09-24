@@ -720,7 +720,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Remove old settings
 	if (isset($configmmdvm['General']['ModeHang'])) { unset($configmmdvm['General']['ModeHang']); }
-	if (isset($configdmrgateway['General']['Timeout'])) { unset($configdmrgateway['General']['Timeout']); }
+	if (isset($configdmrgateway['General']['Timeout'])) { $configdmrgateway['General']['Timeout'] = 300; }
 	if (isset($configmmdvm['General']['RFModeHang'])) { $configmmdvm['General']['RFModeHang'] = 300; }
 	if (isset($configmmdvm['General']['NetModeHang'])) { $configmmdvm['General']['NetModeHang'] = 300; }
 	
