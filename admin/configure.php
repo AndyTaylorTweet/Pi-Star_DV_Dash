@@ -786,7 +786,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaVariant);
 	  }
 
-	  if ( $confHardware == 'dvmuad' ) {
+	  if ( $confHardware == 'dvmuadu' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
+	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyUSB0" /etc/dstarrepeater';
+	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=3" /etc/dstarrepeater';
+            $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
+	    system($rollModemType);
+	    system($rollDVMegaPort);
+	    system($rollDVMegaVariant);
+	  }
+
+	  if ( $confHardware == 'dvmuada' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyACM0" /etc/dstarrepeater';
 	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=3" /etc/dstarrepeater';
@@ -816,7 +826,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaVariant);
 	  }
 
-	  if ( $confHardware == 'dvmuagmsk' ) {
+	  if ( $confHardware == 'dvmuagmsku' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyUSB0" /etc/dstarrepeater';
 	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=0" /etc/dstarrepeater';
@@ -826,7 +836,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaVariant);
 	  }
 
-	  if ( $confHardware == 'dvmuagmsko' ) {
+	  if ( $confHardware == 'dvmuagmska' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyACM0" /etc/dstarrepeater';
 	    $rollDVMegaVariant = 'sudo sed -i "/dvmegaVariant=/c\\dvmegaVariant=0" /etc/dstarrepeater';
@@ -1411,12 +1421,13 @@ else:
 		<option<?php if (!$configModem['Modem']['Hardware']) { echo ' selected="selected"';}?> value="">--</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpis') { echo ' selected="selected"';}?> value="dvmpis">DV-Mega Raspberry Pi Hat (GPIO) - Single Band (70cm)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmpid') { echo ' selected="selected"';}?> value="dvmpid">DV-Mega Raspberry Pi Hat (GPIO) - Dual Band</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuad') { echo ' selected="selected"';}?> value="dvmuad">DV-Mega on Arduino (USB) - Dual Band</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsko') { echo ' selected="selected"';}?> value="dvmuagmsko">DV-Mega on Arduino (USB) - GMSK Modem (Old Firmware)</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsk') { echo ' selected="selected"';}?> value="dvmuagmsk">DV-Mega on Arduino (USB) - GMSK Modem (New Firmware)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuadu') { echo ' selected="selected"';}?> value="dvmuadu">DV-Mega on Arduino (USB - /dev/ttyUSB0) - Dual Band</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'dvmuada') { echo ' selected="selected"';}?> value="dvmuada">DV-Mega on Arduino (USB - /dev/ttyACM0) - Dual Band</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmsku') { echo ' selected="selected"';}?> value="dvmuagmsku">DV-Mega on Arduino (USB - /dev/ttyUSB0) - GMSK Modem</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmuagmska') { echo ' selected="selected"';}?> value="dvmuagmska">DV-Mega on Arduino (USB - /dev/ttyACM0) - GMSK Modem</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmbss') { echo ' selected="selected"';}?> value="dvmbss">DV-Mega on Bluestack (USB) - Single Band (70cm)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvmbsd') { echo ' selected="selected"';}?> value="dvmbsd">DV-Mega on Bluestack (USB) - Dual Band</option>
-		<option<?php if ($configModem['Modem']['Hardware'] === 'gmsk_modem') { echo ' selected="selected"';}?> value="gmsk_modem">GMSK Modem (USB)</option>
+		<option<?php if ($configModem['Modem']['Hardware'] === 'gmsk_modem') { echo ' selected="selected"';}?> value="gmsk_modem">GMSK Modem (USB DStarRepeater Only)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr1') { echo ' selected="selected"';}?> value="dvrptr1">DV-RPTR V1 (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr2') { echo ' selected="selected"';}?> value="dvrptr2">DV-RPTR V2 (USB)</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'dvrptr3') { echo ' selected="selected"';}?> value="dvrptr3">DV-RPTR V3 (USB)</option>
