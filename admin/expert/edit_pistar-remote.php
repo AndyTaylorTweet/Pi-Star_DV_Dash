@@ -89,7 +89,7 @@ fclose($fh);
 ?>
 <form name="test" method="post" action="">
 <textarea name="data" cols="80" rows="45"><?php echo $theData; ?></textarea><br />
-<input type="submit" name="submit" value="Save Changes" />
+<input type="submit" name="submit" value="<?php echo $lang['apply']; ?>" />
 </form>
 
 </div>
