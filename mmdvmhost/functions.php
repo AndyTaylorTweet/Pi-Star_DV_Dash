@@ -283,6 +283,8 @@ function getHeardList($logLines) {
                         continue;
 		} else if(strpos($logLine,"CSBK Preamble")) {
                         continue;
+		} else if(strpos($logLine,"Preamble CSBK")) {
+                        continue;
 		}
 
 		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network") || strpos($logLine, "RF user has timed out")) {
