@@ -47,7 +47,7 @@ if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrG
   <tr><th colspan="2"><?php echo $lang['net_status'];?></th></tr>
   <tr><?php showMode("D-Star Network", $mmdvmconfigs);?><?php showMode("DMR Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("System Fusion Network", $mmdvmconfigs);?><?php showMode("P25 Network", $mmdvmconfigs);?></tr>
-  <tr><?php if (!$sock = @fsockopen('www.google.com', 80, $num, $error, 5)) { echo "<td colspan=\"2\" style=\"background:#b00; color:#300;\">".$lang['internet']."</td>\n"; } else { echo "<td colspan=\"2\" style=\"background:#0b0; color:#030;\">".$lang['internet']."</td>\n"; } ?></tr>
+  <tr><?php if (!$sock = @fsockopen('www.pistar.uk', 80, $num, $error, 5)) { echo "<td colspan=\"2\" style=\"background:#b00; color:#300;\">".$lang['internet']."</td>\n"; } else { echo "<td colspan=\"2\" style=\"background:#0b0; color:#030;\">".$lang['internet']."</td>\n"; } ?></tr>
 </table>
 <br />
 
