@@ -86,7 +86,7 @@ $MYCALL=strtoupper($callsign);
 	echo "<b>".$lang['active_starnet_members']."</b>\n";
 	echo "<table style=\"table-layout: fixed;\">\n";
 	echo "<tr>\n";
-	echo "<th><a class=tooltip href=\"#\">".$lang['hostname']." (".date('T').")<span><b>Time of Login</b></span></a></th>\n";
+	echo "<th><a class=tooltip href=\"#\">".$lang['time']." (".date('T').")<span><b>Time of Login</b></span></a></th>\n";
 	echo "<th><a class=tooltip href=\"#\">".$lang['group']."<span><b>Starnet Callsign</b></span></a></th>\n";
 	echo "<th><a class=tooltip href=\"#\">".$lang['callsign']."<span><b>Callsign</b></span></a></th>\n";
 	echo "</tr>\n";
