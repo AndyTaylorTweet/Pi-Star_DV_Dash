@@ -11,7 +11,7 @@ $lang = array (
   "dashboard_for"               =>  "Panel de control de",
   // Banner links
   "dashboard"                   =>  "Panel de Control",
-  "admin"                       =>  "Admin",
+  "admin"                       =>  "Administrar",
   "power"                       =>  "Reiniciar/Apagar",
   "update"                      =>  "Actualizar",
   "backup_restore"              =>  "Backup/Restaurar copia de seguridad",
@@ -68,7 +68,7 @@ $lang = array (
   "bm_network"                  =>  "Red de BrandMeister",
   "dmr_plus_master"             =>  "Master de DMR+",
   "dmr_plus_network"            =>  "Red de DMR+",
-  "xlx_master"                  =>  "Master XLX",
+  "xlx_master"                  =>  "Master de XLX",
   "xlx_enable"                  =>  "habilitar Master XLX",
   "dmr_cc"                      =>  "Codigo de color de DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
@@ -78,9 +78,9 @@ $lang = array (
   "dstar_rpt2"                  =>  "RPT2 indicativo de llamada",
   "dstar_irc_password"          =>  "contrasena de ircDDBGateway",
   "dstar_default_ref"           =>  "Reflector predeterminado",
-  "aprs_host"                   =>  "APRS Host",
+  "aprs_host"                   =>  "Servidor de APRS",
   "dstar_irc_lang"              =>  "Idioma de ircDDBGateway",
-  "dstar_irc_time"              =>  "Tiempo Anuncios",
+  "dstar_irc_time"              =>  "Intervalo de Balizas",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Lanzamiento Host",
   // Config Page - P25 Configuration
@@ -95,7 +95,7 @@ $lang = array (
   "password"                    =>  "Contrasena",
   "set_password"                =>  "Establecer contrasena",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Modos habilitado",
+  "modes_enabled"               =>  "Modos habilitados",
   "net_status"                  =>  "Estado de la red",
   "internet"                    =>  "Internet",
   "radio_info"                  =>  "Informacion de Radio",
@@ -103,14 +103,14 @@ $lang = array (
   "dstar_net"                   =>  "Red de D-Star",
   "dmr_repeater"                =>  "Repetidor de DMR",
   "dmr_master"                  =>  "Master de DMR",
-  "ysf_net"                     =>  "red de YSF",
+  "ysf_net"                     =>  "Red de YSF",
   "p25_radio"                   =>  "Radio de P25",
-  "p25_net"                     =>  "red de P25",
+  "p25_net"                     =>  "Red de P25",
   // Dashboard Front Page - Calls
   "time"                        =>  "Hora",
   "mode"                        =>  "Modo",
   "callsign"                    =>  "Indicativo de llamada",
-  "target"                      =>  "Objetivo",
+  "target"                      =>  "Destino",
   "src"                         =>  "SRC",        //version corta de "fuente"
   "dur"                         =>  "DUR",        //version corta de "duracion"
   "loss"                        =>  "Perdida",
@@ -126,8 +126,8 @@ $lang = array (
   "local_tx_list"               =>  "Ultimas 20 llamadas que accedieron a ese puerto",
   "active_starnet_groups"       =>  "Grupos activos Starnet",
   "active_starnet_members"      =>  "Miembros activos del grupo Starnet",
-  "d-star_link_manager"         =>  "D-Star gestor de enlaces",
-  "d-star_link_status"          =>  "D-Star Informacion de enlaces",
+  "d-star_link_manager"         =>  "Gestor de enlaces D-Star",
+  "d-star_link_status"          =>  "Informacion de enlaces D-Star",
   "service_status"              =>  "Estado del servicio"
 );
 ?>
