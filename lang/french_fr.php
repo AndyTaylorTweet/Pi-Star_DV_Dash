@@ -6,20 +6,20 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Digital Voice",
+  "digital_voice"               =>  "Relais numérique",
   "configuration"               =>  "Configuration",
   "dashboard_for"               =>  "Console pour",
   // Banner links
   "dashboard"                   =>  "Console",
   "admin"                       =>  "Administration",
-  "power"                       =>  "D&eacute;marrage",
+  "power"                       =>  "Arr&ecirc;t/Red&eacute;marrage",
   "update"                      =>  "Mise &agrave; jour",
-  "backup_restore"              =>  "Sauvegarder/Restaurer",
+  "backup_restore"              =>  "Sauvegarde/Restauration",
   "factory_reset"               =>  "R&eacute;initialisation Usine",
-  "live_logs"                   =>  "Logs instantann&eacute;s",
+  "live_logs"                   =>  "Surveillance des Logs",
   // Config page section headdings
   "hardware_info"               =>  "Informations mat&eacute;rielles de la passerelle",
-  "control_software"            =>  "Logiciel de contr&ocirc;le",
+  "control_software"            =>  "Contr&ocirc;le logiciel",
   "mmdvmhost_config"            =>  "Configuration de MMDVMHost",
   "general_config"              =>  "Configuration g&eacute;n&eacute;rale",
   "dmr_config"                  =>  "Configuration DMR",
@@ -34,7 +34,7 @@ $lang = array (
   "value"                       =>  "Valeur",
   "apply"                       =>  "Appliquer les modifications",
   // Config Page - Gateway Hardware Information
-  "hostname"                    =>  "Hostname",
+  "hostname"                    =>  "Nom d'h&ocirc;te",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Plateforme",
   "cpu_load"                    =>  "Charge CPU",
@@ -113,7 +113,7 @@ $lang = array (
   "target"                      =>  "Cible",
   "src"                         =>  "Source ",        // Short version of "Source"
   "dur"                         =>  "Dur&eacute;e ",        // Short version of "Duration"
-  "loss"                        =>  "Perte",
+  "loss"                        =>  "Pertes",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // Dashboard - Extra Info
   "group"                       =>  "Groupe",
