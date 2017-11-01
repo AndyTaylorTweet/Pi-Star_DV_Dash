@@ -2,7 +2,7 @@
 //
 // Frehcn FR Language Pack
 // Pierre Philippe (F4MZI)
-// Updated: 30-Oct-2017
+// Updated: 01-Nov-2017
 //
 $lang = array (
   // Banner texts
@@ -28,7 +28,7 @@ $lang = array (
   "p25_config"                  =>  "Configuration P25",
   "wifi_config"                 =>  "Configuration R&eacute;seau WIFI",
   "fw_config"                   =>  "Configuration du Firewall",
-  "remote_access_pw"            =>  "Mot de passe acc&egrave; distant",
+  "remote_access_pw"            =>  "Mot de passe acc&egrave;s distant",
   // Config Page - Section General
   "setting"                     =>  "Param&egrave;tres",
   "value"                       =>  "Valeur",
@@ -46,7 +46,7 @@ $lang = array (
   "dmr_mode"                    =>  "Mode DMR",
   "d-star_mode"                 =>  "Mode D-Star",
   "ysf_mode"                    =>  "Mode YSF",
-  "p25_mode"                    =>  "P25 Mode",
+  "p25_mode"                    =>  "Mode P25",
   "mmdvm_display"               =>  "Afficheur MMDVM",
   "mode_hangtime"               =>  "Mode Hangtime",
   // Config Page - General Configuration
