@@ -472,7 +472,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollFREQdvap = 'sudo sed -i "/dvapFrequency=/c\\dvapFrequency='.$newFREQ.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaRx = 'sudo sed -i "/dvmegaRXFrequency=/c\\dvmegaRXFrequency='.$newFREQ.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaTx = 'sudo sed -i "/dvmegaTXFrequency=/c\\dvmegaTXFrequency='.$newFREQ.'" /etc/dstarrepeater';
-	  $rollModeSimplex = 'sudo sed -i "/mode=/c\\mode=0" /etc/dstarrepeater';
+	  $rollModeSimplex = 'sudo sed -i "/mode=/c\\mode=1" /etc/dstarrepeater';
 	  $configmmdvm['Info']['RXFrequency'] = $newFREQ;
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
