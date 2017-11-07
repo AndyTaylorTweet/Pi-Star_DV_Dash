@@ -930,7 +930,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if ( $confHardware == 'f4mgpio' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
-	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	  }
 	}
 
