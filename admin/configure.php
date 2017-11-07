@@ -926,6 +926,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
 	  }
+		
+	  if ( $confHardware == 'f4mgpio' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	    system($rollModemType);
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	  }
 	}
 
 	// Set the Dashboard Public
@@ -1443,6 +1449,7 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotusb') { echo ' selected="selected"';}?> value="zumspotusb">ZumSpot - USB Stick</option>
 		<option<?php if ($configModem['Modem']['Hardware'] === 'zumspotgpio') { echo ' selected="selected"';}?> value="zumspotgpio">ZumSpot - Raspberry Pi Hat (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'zumradiopigpio') { echo ' selected="selected"';}?> value="zumradiopigpio">ZUM Radio-MMDVM for Pi (GPIO)</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'f4mgpio') { echo ' selected="selected"';}?> value="f4mgpio">MMDVM F4M-GPIO (GPIO)</option>
     </select></td>
     </tr>
     <tr>
