@@ -299,6 +299,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.$newConfLatitude.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['Latitude'] = $newConfLatitude;
 	  $configysfgateway['Info']['Latitude'] = $newConfLatitude;
+	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
 	  system($rollConfLat0);
 	  system($rollConfLat1);
 	  }
@@ -310,6 +311,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollConfLon1 = 'sudo sed -i "/longitude1=/c\\longitude1='.$newConfLongitude.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['Longitude'] = $newConfLongitude;
 	  $configysfgateway['Info']['Longitude'] = $newConfLongitude;
+	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
 	  system($rollConfLon0);
 	  system($rollConfLon1);
 	  }
@@ -320,6 +322,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollDesc1 = 'sudo sed -i "/description1=/c\\description1='.$newConfDesc1.'" /etc/ircddbgateway';
 	  $rollDesc11 = 'sudo sed -i "/description1_1=/c\\description1_1='.$newConfDesc1.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['Location'] = $newConfDesc1;
+	  $configdmrgateway['Info']['Location'] = $newConfDesc1;
           $configysfgateway['Info']['Name'] = $newConfDesc1;
 	  system($rollDesc1);
 	  system($rollDesc11);
@@ -331,6 +334,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollDesc2 = 'sudo sed -i "/description2=/c\\description2='.$newConfDesc2.'" /etc/ircddbgateway';
 	  $rollDesc22 = 'sudo sed -i "/description1_2=/c\\description1_2='.$newConfDesc2.'" /etc/ircddbgateway';
           $configmmdvm['Info']['Description'] = $newConfDesc2;
+	  $configdmrgateway['Info']['Description'] = $newConfDesc2;
           $configysfgateway['Info']['Description'] = $newConfDesc2;
 	  system($rollDesc2);
 	  system($rollDesc22);
@@ -344,6 +348,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['urlAuto']) == 'auto') { $rollURL0 = 'sudo sed -i "/url=/c\\url=http://www.qrz.com/db/'.strtoupper(escapeshellcmd($_POST['confCallsign'])).'" /etc/ircddbgateway';  }
 	  if (escapeshellcmd($_POST['urlAuto']) == 'man') { $rollURL0 = 'sudo sed -i "/url=/c\\url='.$newConfURL.'" /etc/ircddbgateway'; }
           $configmmdvm['Info']['URL'] = $txtURL;
+	  $configdmrgateway['Info']['URL'] = $txtURL;
 	  system($rollURL0);
 	  }
 
@@ -393,6 +398,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollModeDuplex = 'sudo sed -i "/mode=/c\\mode=0" /etc/dstarrepeater';
 	  $configmmdvm['Info']['RXFrequency'] = $newFREQrx;
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQtx;
+	  $configdmrgateway['Info']['RXFrequency'] = $newFREQrx;
+	  $configdmrgateway['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
 
@@ -475,6 +482,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollModeSimplex = 'sudo sed -i "/mode=/c\\mode=1" /etc/dstarrepeater';
 	  $configmmdvm['Info']['RXFrequency'] = $newFREQ;
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
+	  $configdmrgateway['Info']['RXFrequency'] = $newFREQ;
+	  $configdmrgateway['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
 
@@ -1032,6 +1041,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollHostname);
 	  system($rollHosts);
 	}
+	
+	if (!isset($configdmrgateway['Info']['Enabled'])) { $configdmrgateway['Info']['Enabled'] = 0; }
+	if (!isset($configdmrgateway['Info']['Power'])) { $configdmrgateway['Info']['Power'] = $configmmdvm['Info']['Power']; }
+	if (!isset($configdmrgateway['Info']['Height'])) { $configdmrgateway['Info']['Height'] = $configmmdvm['Info']['Height']; }
 
 	// Continue Page Output
 	echo "<br />";
