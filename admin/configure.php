@@ -639,6 +639,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		  if (substr($dmrMasterHostArrTest[3], 0, 4) == 'DMR+') { $newPostDmrId = substr($newPostDmrId, 0, 7); }
 	  }
 	  $configmmdvm['General']['Id'] = $newPostDmrId;
+	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
 	}
