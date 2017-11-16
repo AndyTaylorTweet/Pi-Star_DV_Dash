@@ -1059,6 +1059,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configdmrgateway['XLX Network']['Startup'])) { $configdmrgateway['XLX Network']['Startup'] = "950"; }
 	if (!isset($configdmrgateway['XLX Network']['Relink'])) { $configdmrgateway['XLX Network']['Relink'] = "60"; }
 	if (!isset($configdmrgateway['XLX Network']['Debug'])) { $configdmrgateway['XLX Network']['Debug'] = "0"; }
+	
+	// Clean up legacy options
+	$dmrGatewayVer = exec('DMRGateway -v | awk {'print $3'} | cut -c 1-8');
+	if ($dmrGatewayVer > 20170924) {
+		unset($configdmrgateway['XLX Network 1']);
+		unset($configdmrgateway['XLX Network 2']);
+	}
 
 	// Continue Page Output
 	echo "<br />";
