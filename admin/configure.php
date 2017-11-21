@@ -1023,12 +1023,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['nodeMode']) == 'prv' ) {
             $configmmdvm['DMR']['SelfOnly'] = 1;
             $configmmdvm['D-Star']['SelfOnly'] = 1;
+	    $configmmdvm['System Fusion']['SelfOnly'] = 1;
 	    $configmmdvm['P25']['SelfOnly'] = 1;
             system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
           }
 	  if (escapeshellcmd($_POST['nodeMode']) == 'pub' ) {
             $configmmdvm['DMR']['SelfOnly'] = 0;
             $configmmdvm['D-Star']['SelfOnly'] = 0;
+	    $configmmdvm['System Fusion']['SelfOnly'] = 0;
 	    $configmmdvm['P25']['SelfOnly'] = 0;
             system('sudo sed -i "/restriction=/c\\restriction=0" /etc/dstarrepeater');
           }
