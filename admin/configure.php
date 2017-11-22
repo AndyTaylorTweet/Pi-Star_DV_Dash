@@ -1012,6 +1012,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort'];
 	  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort'];
 	}
+	
+	// Set the Nextion Display Layout
+	if (empty($_POST['mmdvmNextionDisplayType']) != TRUE ) {
+	  $configmmdvm['Nextion']['ScreenLayout'] = $_POST['mmdvmNextionDisplayType'];
+	}
 
 	// Set MMDVMHost DMR Colour Code
 	if (empty($_POST['dmrColorCode']) != TRUE ) {
