@@ -1393,6 +1393,10 @@ else:
 	    	<option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyS2") {echo 'selected="selected" ';}; ?>value="/dev/ttyS2">/dev/ttyS2</option>
     	    <?php } ?>
 	    </select>
+	    Nextion Layout: <select name="mmdvmNextionDisplayType">
+	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "1") {echo 'selected="selected" ';}; ?>value="1">G4KLX</option>
+	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "2") {echo 'selected="selected" ';}; ?>value="2">ON7LDS</option>
+	    </select> 
     </td></tr>
     <!--<tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mode_hangtime'];?>:<span><b>Net Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
