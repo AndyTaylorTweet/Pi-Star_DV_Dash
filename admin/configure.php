@@ -1405,7 +1405,7 @@ else:
     	    <?php } ?>
 	    </select>
 	    Nextion Layout: <select name="mmdvmNextionDisplayType">
-	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "1") {echo 'selected="selected" ';}; ?>value="1">G4KLX</option>
+	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "0") {echo 'selected="selected" ';}; ?>value="0">G4KLX</option>
 	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "2") {echo 'selected="selected" ';}; ?>value="2">ON7LDS</option>
 	    </select> 
     </td></tr>
