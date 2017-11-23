@@ -1021,7 +1021,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	
 	// Set the Nextion Display Layout
 	if (empty($_POST['mmdvmNextionDisplayType']) != TRUE ) {
-	  $configmmdvm['Nextion']['ScreenLayout'] = $_POST['mmdvmNextionDisplayType'];
+	  if escapeshellcmd($_POST['mmdvmNextionDisplayType']) == "G4KLX" { $configmmdvm['Nextion']['ScreenLayout'] = "0"; }
+	  if escapeshellcmd($_POST['mmdvmNextionDisplayType']) == "ON7LDS" { $configmmdvm['Nextion']['ScreenLayout'] = "2"; }
 	}
 
 	// Set MMDVMHost DMR Colour Code
@@ -1405,8 +1406,8 @@ else:
     	    <?php } ?>
 	    </select>
 	    Nextion Layout: <select name="mmdvmNextionDisplayType">
-	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "0") {echo 'selected="selected" ';}; ?>value="0">G4KLX</option>
-	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "2") {echo 'selected="selected" ';}; ?>value="2">ON7LDS</option>
+	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "0") {echo 'selected="selected" ';}; ?>value="G4KLX">G4KLX</option>
+	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "2") {echo 'selected="selected" ';}; ?>value="ON7LDS">ON7LDS</option>
 	    </select> 
     </td></tr>
     <!--<tr>
