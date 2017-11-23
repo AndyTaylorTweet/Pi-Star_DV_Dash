@@ -1021,8 +1021,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	
 	// Set the Nextion Display Layout
 	if (empty($_POST['mmdvmNextionDisplayType']) != TRUE ) {
-	  if escapeshellcmd($_POST['mmdvmNextionDisplayType']) == "G4KLX" { $configmmdvm['Nextion']['ScreenLayout'] = "0"; }
-	  if escapeshellcmd($_POST['mmdvmNextionDisplayType']) == "ON7LDS" { $configmmdvm['Nextion']['ScreenLayout'] = "2"; }
+	  if (escapeshellcmd($_POST['mmdvmNextionDisplayType']) == "G4KLX") { $configmmdvm['Nextion']['ScreenLayout'] = "0"; }
+	  if (escapeshellcmd($_POST['mmdvmNextionDisplayType']) == "ON7LDS") { $configmmdvm['Nextion']['ScreenLayout'] = "2"; }
 	}
 
 	// Set MMDVMHost DMR Colour Code
