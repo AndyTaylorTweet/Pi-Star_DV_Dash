@@ -1598,8 +1598,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?>:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
-      <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['DMR']['Id']; ?>" target="_new" style="color: #000;">Repeater Information</a> | 
-      <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['DMR']['Id']; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+      <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Repeater Information</a> | 
+      <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>
     <tr>
