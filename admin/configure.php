@@ -321,9 +321,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newConfDesc1 = preg_replace('/[^A-Za-z0-9\.\s\,\-]/', '', $_POST['confDesc1']);
 	  $rollDesc1 = 'sudo sed -i "/description1=/c\\description1='.$newConfDesc1.'" /etc/ircddbgateway';
 	  $rollDesc11 = 'sudo sed -i "/description1_1=/c\\description1_1='.$newConfDesc1.'" /etc/ircddbgateway';
-	  $configmmdvm['Info']['Location'] = $newConfDesc1;
-	  $configdmrgateway['Info']['Location'] = $newConfDesc1;
-          $configysfgateway['Info']['Name'] = $newConfDesc1;
+	  $configmmdvm['Info']['Location'] = '"'.$newConfDesc1.'"';
+	  $configdmrgateway['Info']['Location'] = '"'.$newConfDesc1.'"';
+          $configysfgateway['Info']['Name'] = '"'.$newConfDesc1.'"';
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
@@ -333,9 +333,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newConfDesc2 = preg_replace('/[^A-Za-z0-9\.\s\,\-]/', '', $_POST['confDesc2']);
 	  $rollDesc2 = 'sudo sed -i "/description2=/c\\description2='.$newConfDesc2.'" /etc/ircddbgateway';
 	  $rollDesc22 = 'sudo sed -i "/description1_2=/c\\description1_2='.$newConfDesc2.'" /etc/ircddbgateway';
-          $configmmdvm['Info']['Description'] = $newConfDesc2;
-	  $configdmrgateway['Info']['Description'] = $newConfDesc2;
-          $configysfgateway['Info']['Description'] = $newConfDesc2;
+          $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
+          $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
 	  system($rollDesc22);
 	  }
