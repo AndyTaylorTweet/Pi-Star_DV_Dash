@@ -1074,6 +1074,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configdmrgateway['XLX Network']['Relink'])) { $configdmrgateway['XLX Network']['Relink'] = "60"; }
 	if (!isset($configdmrgateway['XLX Network']['Debug'])) { $configdmrgateway['XLX Network']['Debug'] = "0"; }
 	
+	// Add missing options to YSFGateway
+	if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
+	
 	// Clean up legacy options
 	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($dmrGatewayVer > 20170924) {
