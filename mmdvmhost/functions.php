@@ -200,6 +200,7 @@ function getP25GatewayLog() {
 // I: 2017-05-20 19:36:19.575 MMDVM protocol version: 1, description: MMDVM_HS-ADF7021 20170414 (D-Star/DMR/YSF/P25) (Build: 20:16:25 May 20 2017)
 // I: 2017-07-06 10:55:45.791 MMDVM protocol version: 1, description: MMDVM 20170206 TCXO (D-Star/DMR/System Fusion/P25/RSSI/CW Id)
 // I: 2017-08-05 06:54:45.757 MMDVM protocol version: 1, description: ZUMspot ADF7021 v1.0.0 20170728 (DStar/DMR/YSF/P25) GitID #c16dd5a
+// I: 2017-11-30 15:32:10.046 MMDVM protocol version: 1, description: MMDVM_MDO ADF7021 v1.0.1 20170826 (DStar/DMR/YSF/P25) GitID #BD7KLE
 function getDVModemFirmware() {
 	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
 	$logMMDVMPrevious = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
@@ -223,7 +224,9 @@ function getDVModemFirmware() {
 		if (strpos($logLine, 'description: ZUMspot ')) {
 			$modemFirmware = "ZUMspot:".strtok(substr($logLine, 83, 12), ' ');
 		}
-
+		if (strpos($logLine, 'description: MMDVM_MDO ')) {
+			$modemFirmware = "MMDVM_HS:".strtok(substr($logLine, 85, 12), ' ');
+		}
 	}
 	return $modemFirmware;
 }
