@@ -1910,6 +1910,17 @@ fclose($dextraFile);
 	}
     ?>
     </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Use DPlus for XRF:<span><b>Host Files</b>Should host files<br />use DPlus for XRFs</span></a></td>
+    <?php
+	if ( file_exists('/etc/hostfiles.combine') ) {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesDPlusMode\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dplusHostFiles\"></label></div></td>\n";
+		}
+	else {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesDPlusMode\" value=\"ON\" /><label for=\"toggle-dplusHostFiles\"></label></div></td>\n";
+	}
+    ?>
+    </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
