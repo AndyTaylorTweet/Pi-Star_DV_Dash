@@ -1268,6 +1268,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
         }
 
+	// Create the hostfiles.nodextra file if required
+	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
+		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
+			if (!file_exists('/etc/hostfiles.nodextra')) { system('touch /etc/hostfiles.nodextra'); }
+		}
+		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'OFF' )  {
+			if (file_exists('/etc/hostfiles.nodextra')) { system('sudo rm -rf /etc/hostfiles.nodextra'); }
+		}
+	}
+
 	// Start the DV Services
 	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');			// Restart Systemd to account for any service changes
 	system('sudo systemctl start dstarrepeater.service > /dev/null 2>/dev/null &');		// D-Star Radio Service
@@ -1911,13 +1921,13 @@ fclose($dextraFile);
     ?>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">Use DPlus for XRF:<span><b>Host Files</b>Should host files<br />use DPlus for XRFs</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">Use DPlus for XRF:<span><b>No DExtra</b>Should host files<br />use DPlus Protocol for XRFs</span></a></td>
     <?php
-	if ( file_exists('/etc/hostfiles.combine') ) {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesDPlusMode\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dplusHostFiles\"></label></div></td>\n";
+	if ( file_exists('/etc/hostfiles.nodextra') ) {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dplusHostFiles\"></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesDPlusMode\" value=\"ON\" /><label for=\"toggle-dplusHostFiles\"></label></div></td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" /><label for=\"toggle-dplusHostFiles\"></label></div></td>\n";
 	}
     ?>
     </tr>
