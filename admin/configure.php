@@ -1101,6 +1101,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		unset($configdmrgateway['XLX Network 2']);
 	}
 
+	// Create the hostfiles.nodextra file if required
+	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
+		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
+			if (!file_exists('/etc/hostfiles.nodextra')) { system('touch /etc/hostfiles.nodextra'); }
+		}
+		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'OFF' )  {
+			if (file_exists('/etc/hostfiles.nodextra')) { system('sudo rm -rf /etc/hostfiles.nodextra'); }
+		}
+	}
+
 	// Continue Page Output
 	echo "<br />";
 	echo "<table>\n";
@@ -1267,16 +1277,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                     }
 		}
         }
-
-	// Create the hostfiles.nodextra file if required
-	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
-		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
-			if (!file_exists('/etc/hostfiles.nodextra')) { system('touch /etc/hostfiles.nodextra'); }
-		}
-		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'OFF' )  {
-			if (file_exists('/etc/hostfiles.nodextra')) { system('sudo rm -rf /etc/hostfiles.nodextra'); }
-		}
-	}
 
 	// Start the DV Services
 	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');			// Restart Systemd to account for any service changes
