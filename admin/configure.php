@@ -1104,7 +1104,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
 		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
-			if (!file_exists('/etc/hostfiles.nodextra')) { system('touch /etc/hostfiles.nodextra'); }
+			if (!file_exists('/etc/hostfiles.nodextra')) { system('sudo touch /etc/hostfiles.nodextra'); }
 		}
 		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'OFF' )  {
 			if (file_exists('/etc/hostfiles.nodextra')) { system('sudo rm -rf /etc/hostfiles.nodextra'); }
