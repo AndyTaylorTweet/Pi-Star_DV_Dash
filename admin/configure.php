@@ -789,6 +789,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'dvmpid' ) {
@@ -799,6 +800,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'dvmuadu' ) {
@@ -809,6 +811,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'dvmuada' ) {
@@ -819,6 +822,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'dvmbss' ) {
@@ -829,6 +833,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'dvmbsd' ) {
@@ -839,6 +844,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'dvmuagmsku' ) {
@@ -900,18 +906,21 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'zumspotusb' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'zumspotgpio' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'zumradiopigpio' ) {
@@ -948,12 +957,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 
 	  if ( $confHardware == 'mmdvmmdohat' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	    $configmmdvm['General']['Duplex'] = 0;
 	  }
 	}
 
