@@ -1930,7 +1930,7 @@ fclose($dextraFile);
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" /><label for=\"toggle-dplusHostFiles\"></label></div></td>\n";
 	}
     ?>
-    <td>Note: Update is Required after changing this option</td>
+    <td>Note: Update Required if changed</td>
     </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
