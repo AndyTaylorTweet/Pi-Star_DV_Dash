@@ -42,6 +42,7 @@ $MYCALL=strtoupper($callsign);
 		print "<tr>";
                 $QSODate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                 $MyCall = str_replace(' ', '', substr($linx[2][0],0,8));
+		$MyCallLink = strtok(substr($linx[2][0],0,8), " ");
                 $MyId = str_replace(' ', '', substr($linx[2][0],9,4));
                 $YourCall = str_replace(' ', '&nbsp;', substr($linx[3][0],0,8));
                 $Rpt1 = str_replace(' ', '&nbsp;', substr($linx[4][0],0,8));
