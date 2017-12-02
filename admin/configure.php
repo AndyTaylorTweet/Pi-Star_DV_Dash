@@ -106,7 +106,8 @@ $MYCALL=strtoupper($callsign);
     <meta name="Description" content="Pi-Star Configuration" />
     <meta name="KeyWords" content="Pi-Star, MW0MWZ" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />

@@ -13,7 +13,8 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <meta name="Description" content="Pi-Star Configuration" />
 <meta name="KeyWords" content="Pi-Star, MW0MWZ" />
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 <meta http-equiv="Expires" content="0" />
 <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
 <link rel="stylesheet" type="text/css" href="wifi/styles.css" />
