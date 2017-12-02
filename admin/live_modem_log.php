@@ -52,7 +52,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     <meta name="Description" content="Pi-Star Update" />
     <meta name="KeyWords" content="Pi-Star" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['live_logs'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
