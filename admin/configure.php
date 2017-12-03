@@ -70,29 +70,29 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if (fopen($modemConfigFileMMDVMHost,'r')) { $configModem = parse_ini_file($modemConfigFileMMDVMHost, true); }
 }
 
-function aprspass ($callsign) { 
-	$stophere = strpos($callsign, '-'); 
-	if ($stophere) $callsign = substr($callsign, 0, $stophere); 
-	$realcall = strtoupper(substr($callsign, 0, 10)); 
-	// initialize hash 
-	$hash = 0x73e2; 
-	$i = 0; 
-	$len = strlen($realcall); 
-	// hash callsign two bytes at a time 
-	while ($i < $len) { 
-		$hash ^= ord(substr($realcall, $i, 1))<<8; 
-		$hash ^= ord(substr($realcall, $i + 1, 1)); 
-		$i += 2; 
-	} 
-	// mask off the high bit so number is always positive 
-	return $hash & 0x7fff; 
+function aprspass ($callsign) {
+	$stophere = strpos($callsign, '-');
+	if ($stophere) $callsign = substr($callsign, 0, $stophere);
+	$realcall = strtoupper(substr($callsign, 0, 10));
+	// initialize hash
+	$hash = 0x73e2;
+	$i = 0;
+	$len = strlen($realcall);
+	// hash callsign two bytes at a time
+	while ($i < $len) {
+		$hash ^= ord(substr($realcall, $i, 1))<<8;
+		$hash ^= ord(substr($realcall, $i + 1, 1));
+		$i += 2;
+	}
+	// mask off the high bit so number is always positive
+	return $hash & 0x7fff;
 }
 
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
 $MYCALL=strtoupper($callsign);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" lang="en">
@@ -153,7 +153,7 @@ $MYCALL=strtoupper($callsign);
 <?php
 // Hardware Detail
 if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
-//HTML output starts here 
+//HTML output starts here
 ?>
     <b><?php echo $lang['hardware_info'];?></b>
     <table style="table-layout: fixed;">
@@ -380,7 +380,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system($rollTimeserverBandC);
 	system($rollTimeserverBandD);
 	system($rollTimeserverBandE);
-	
+
 	// Set the Frequency for Duplex
 	if (empty($_POST['confFREQtx']) != TRUE && empty($_POST['confFREQrx']) != TRUE ) {
 	  if (empty($_POST['confHardware']) != TRUE ) { $confHardware = escapeshellcmd($_POST['confHardware']); }
@@ -570,7 +570,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		  $rollIRCUSER = 'sudo sed -i "/ircddbUsername=/c\\ircddbUsername='.$newCallsignUpperIRC.'" /etc/ircddbgateway';
 		  system($rollIRCUSER);
 	  }
-		
+
 	  $configmmdvm['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
@@ -621,7 +621,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if ($_POST['trxMode'] == "DUPLEX") {
 	    $configmmdvm['General']['Duplex'] = 1;
 	    $configmmdvm['DMR Network']['Slot1'] = '1';
-	    $configmmdvm['DMR Network']['Slot2'] = '1';  
+	    $configmmdvm['DMR Network']['Slot2'] = '1';
 	  }
 	  if ($_POST['trxMode'] == "SIMPLEX") {
 	    $configmmdvm['General']['Duplex'] = 0;
@@ -700,7 +700,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    unset ($configmmdvm['DMR Network']['Options']);
 	    $configdmrgateway['DMR Network 2']['Options'] = '"'.$dmrOptionsLineStripped.'"';
 	  }
-	  else { 
+	  else {
 		unset ($configdmrgateway['DMR Network 2']['Options']);
 	       }
 	}
@@ -734,7 +734,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'OFF' ) { $configmmdvm['DMR']['DumpTAData'] = "0"; }
 	}
 
-	// Set the XLX DMRGateway Master On or Off 
+	// Set the XLX DMRGateway Master On or Off
 	if (empty($_POST['dmrGatewayXlxEn']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrGatewayXlxEn']) == 'ON' ) { $configdmrgateway['XLX Network 1']['Enabled'] = "1"; $configdmrgateway['XLX Network']['Enabled'] = "1"; }
 	  if (escapeshellcmd($_POST['dmrGatewayXlxEn']) == 'OFF' ) { $configdmrgateway['XLX Network 1']['Enabled'] = "0"; $configdmrgateway['XLX Network']['Enabled'] = "0"; }
@@ -745,7 +745,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (isset($configdmrgateway['General']['Timeout'])) { unset($configdmrgateway['General']['Timeout']); }
 	if (isset($configmmdvm['General']['RFModeHang'])) { $configmmdvm['General']['RFModeHang'] = 300; }
 	if (isset($configmmdvm['General']['NetModeHang'])) { $configmmdvm['General']['NetModeHang'] = 300; }
-	
+
 	// Set DMR Hang Timers
 	if (empty($_POST['dmrRfHangTime']) != TRUE ) {
 	  $configmmdvm['DMR']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dmrRfHangTime']);
@@ -947,7 +947,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
 	  }
-		
+
 	  if ( $confHardware == 'f4mgpio' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
@@ -1001,7 +1001,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['confTimeAnnounce']) == 'ON' )  { system('sudo rm -rf /etc/timeserver.dissable'); }
 	  if (escapeshellcmd($_POST['confTimeAnnounce']) == 'OFF' )  { system('sudo touch /etc/timeserver.dissable'); }
 	}
-	
+
 	// Set MMDVMHost DMR Mode
 	if (empty($_POST['MMDVMModeDMR']) != TRUE ) {
 	  if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'ON' )  { $configmmdvm['DMR']['Enable'] = "1"; $configmmdvm['DMR Network']['Enable'] = "1"; }
@@ -1036,7 +1036,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort'];
 	  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort'];
 	}
-	
+
 	// Set the Nextion Display Layout
 	if (empty($_POST['mmdvmNextionDisplayType']) != TRUE ) {
 	  if (escapeshellcmd($_POST['mmdvmNextionDisplayType']) == "G4KLX") { $configmmdvm['Nextion']['ScreenLayout'] = "0"; }
@@ -1091,10 +1091,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configdmrgateway['XLX Network']['Startup'])) { $configdmrgateway['XLX Network']['Startup'] = "950"; }
 	if (!isset($configdmrgateway['XLX Network']['Relink'])) { $configdmrgateway['XLX Network']['Relink'] = "60"; }
 	if (!isset($configdmrgateway['XLX Network']['Debug'])) { $configdmrgateway['XLX Network']['Debug'] = "0"; }
-	
+
 	// Add missing options to YSFGateway
 	if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
-	
+
 	// Clean up legacy options
 	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($dmrGatewayVer > 20170924) {
@@ -1297,7 +1297,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the system timezone
 	$rollTimeZone = 'sudo timedatectl set-timezone '.escapeshellcmd($_POST['systemTimezone']);
 	system($rollTimeZone);
-	$rollTimeZoneConfig = 'sudo sed -i "/date_default_timezone_set/c\\date_default_timezone_set(\''.escapeshellcmd($_POST['systemTimezone']).'\')\;" /var/www/dashboard/config/config.php';   
+	$rollTimeZoneConfig = 'sudo sed -i "/date_default_timezone_set/c\\date_default_timezone_set(\''.escapeshellcmd($_POST['systemTimezone']).'\')\;" /var/www/dashboard/config/config.php';
 	system($rollTimeZoneConfig);
 
 	// Start Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
@@ -1439,7 +1439,7 @@ else:
 	    Nextion Layout: <select name="mmdvmNextionDisplayType">
 	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "0") {echo 'selected="selected" ';}; ?>value="G4KLX">G4KLX</option>
 	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "2") {echo 'selected="selected" ';}; ?>value="ON7LDS">ON7LDS</option>
-	    </select> 
+	    </select>
     </td></tr>
     <!--<tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mode_hangtime'];?>:<span><b>Net Hang Time</b>Stay in the last mode for<br />this many seconds</span></a></td>
@@ -1630,7 +1630,7 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?>:<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
-      <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Repeater Information</a> | 
+      <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Repeater Information</a> |
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>
@@ -1691,8 +1691,8 @@ else:
 		}
 		else {
 			echo '      <option value="'.$xlxSuVal.'">'.$xlxSuVal.'</option>'."\n";
-		}		
-	} 
+		}
+	}
 ?>
     </select></td></tr>
     <tr>
@@ -1709,7 +1709,7 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#">'.$lang['bm_network'].':<span><b>BrandMeister Dashboards</b>Direct links to your<br />BrandMeister Dashboards</span></a></td>
     <td>
-      <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> | 
+      <a href="https://brandmeister.network/?page=hotspot&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Repeater Information</a> |
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>'."\n";}
@@ -2101,7 +2101,9 @@ echo '
     <tr><th width="200"><?php echo $lang['user'];?></th><th colspan="3"><?php echo $lang['password'];?></th></tr>
     <tr>
     <td align="left"><b>pi-star</b></td>
-    <td align="left"><input type="password" name="adminPassword" size="30" value="" /></td>
+    <td align="left"><label for="pass1">Password:</label><input type="password" name="adminPassword" id="pass1" size="30" value="" />
+    <label for="pass2">Confirm Password:</label><input type="password" name="adminPassword" id="pass2" onkeyup="checkPass(); return false;">
+    <br /><span id="confirmMessage" class="confirmMessage"></span></td>
     <td align="right"><input type="button" value="<?php echo $lang['set_password'];?>" onclick="submitPassform()" /></td>
     </tr>
     <tr><td colspan="3"><b>WARNING:</b> This changes the password for this admin page<br />AND the "pi-star" SSH account</td></tr>
