@@ -16,11 +16,13 @@ function checkPass(){                   //used in confirm matching password entr
     pass2.style.backgroundColor = goodColor;
     message.style.color = goodColor;
     message.innerHTML = "Passwords Match!";
-    button.disabled = false;
+    //button.disabled = false;
+    document.getElementById('submitpwd').removeAttribute("disabled");
  }else{
     pass2.style.backgroundColor = badColor;
     message.style.color = badColor;
     message.innerHTML = "Passwords Do Not Match!";
-    button.disabled = true;
+    //button.disabled = true;
+    document.getElementById('submitpwd').setAttribute("disabled","disabled");
   }
 }
