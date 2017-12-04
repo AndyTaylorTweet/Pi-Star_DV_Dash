@@ -1562,16 +1562,20 @@ else:
 	echo '    <tr>'."\n";
 	echo '    <td align="left"><a class="tooltip2" href="#">'.$lang['dash_lang'].':<span><b>Dashboard Language</b>Set the language for<br />the dashboard.</span></a></td>'."\n";
 	echo '    <td align="left" colspan="2"><select name="dashboardLanguage">'."\n";
-	    if ($dh = opendir($lang_dir)) {
-		    while (($file = readdir($dh)) !== false) {
-			    if (($file != 'index.php') && ($file != '.') && ($file != '..')) {
-				    $file = substr($file, 0, -4);
-				    if ($file == $pistarLanguage) { echo "      <option selected=\"selected\" value=\"".$file."\">".$file."</option>\n"; }
-				    else { echo "      <option value=\"".$file."\">".$file."</option>\n"; }
-			    }
-		    }
-		    closedir($dh);
-	    }
+
+  if ($dh = opendir($lang_dir)) {
+  while ($files[] = readdir($dh))
+  sort($files);
+  foreach ($files as $file){
+    if (($file != 'index.php') && ($file != '.') && ($file != '..') && ($file != '')) {
+      $file = substr($file, 0, -4);
+        if ($file == $pistarLanguage) { echo "      <option selected=\"selected\" value=\"".$file."\">".$file."</option>\n"; }
+            else { echo "      <option value=\"".$file."\">".$file."</option>\n";
+        }
+      }
+  }
+    closedir($dh);
+  }
 	echo '    </select></td></tr>'."\n";
     }
 ?>
@@ -2101,10 +2105,10 @@ echo '
     <tr><th width="200"><?php echo $lang['user'];?></th><th colspan="3"><?php echo $lang['password'];?></th></tr>
     <tr>
     <td align="left"><b>pi-star</b></td>
-    <td align="left"><label for="pass1">Password:</label><input type="password" name="adminPassword" id="pass1" size="30" value="" />
+    <td align="left"><label for="pass1">Password:</label><input type="password" name="adminPassword" id="pass1" onkeyup="checkPass(); return false;" size="30"/>
     <label for="pass2">Confirm Password:</label><input type="password" name="adminPassword" id="pass2" onkeyup="checkPass(); return false;">
     <br /><span id="confirmMessage" class="confirmMessage"></span></td>
-    <td align="right"><input type="button" value="<?php echo $lang['set_password'];?>" onclick="submitPassform()" /></td>
+    <td align="right"><input type="button" id="submitpwd" value="<?php echo $lang['set_password'];?>" onclick="submitPassform()" disabled/></td>
     </tr>
     <tr><td colspan="3"><b>WARNING:</b> This changes the password for this admin page<br />AND the "pi-star" SSH account</td></tr>
     </table>
