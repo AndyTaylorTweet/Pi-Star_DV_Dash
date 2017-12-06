@@ -312,7 +312,7 @@ function getHeardList($logLines) {
 			// if RF-Packet, no LOSS would be reported, so BER is in LOSS position
 			if (startsWith($loss,"BER")) {
 				$ber = substr($loss, 5);
-				$loss = "";
+				$loss = "0%";
 			} else {
 				$loss = strtok($loss, " ");
 				if (array_key_exists(4,$lineTokens)) {
