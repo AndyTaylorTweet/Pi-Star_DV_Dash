@@ -1435,6 +1435,9 @@ else:
 	    <?php if (file_exists('/dev/ttyS2')) { ?>
 	    	<option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyS2") {echo 'selected="selected" ';}; ?>value="/dev/ttyS2">/dev/ttyS2</option>
     	    <?php } ?>
+	    <?php if (file_exists('/dev/ttyNextionDriver')) { ?>
+	    	<option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyNextionDriver") {echo 'selected="selected" ';}; ?>value="/dev/ttyNextionDriver">/dev/ttyNextionDriver</option>
+    	    <?php } ?>
 	    </select>
 	    Nextion Layout: <select name="mmdvmNextionDisplayType">
 	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "0") {echo 'selected="selected" ';}; ?>value="G4KLX">G4KLX</option>
