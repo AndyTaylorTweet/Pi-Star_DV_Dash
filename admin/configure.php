@@ -591,10 +591,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['p25StartupHost']) != TRUE ) {
           $newP25StartupHost = strtoupper(escapeshellcmd($_POST['p25StartupHost']));
           if ($newP25StartupHost === "NONE") { $rollP25Startup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/p25gateway'; }
-          else {
-		  if (!isset($configp25gateway['Network']['Startup'])) { $rollP25Startup = 'sudo echo "Startup='.$newP25StartupHost.'"' >> /etc/p25gateway'; }
-		  else { $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway'; }
-	  }
+        #  else {
+	#	  if (!isset($configp25gateway['Network']['Startup'])) { $rollP25Startup = 'sudo echo "Startup='.$newP25StartupHost.'"' >> /etc/p25gateway'; }
+	#	  else { $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway'; }
+	#  }
 	  system($rollP25Startup);
 	}
 
