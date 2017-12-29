@@ -1077,6 +1077,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollHosts = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hosts';
 	  system($rollHostname);
 	  system($rollHosts);
+	  if (file_exists('/etc/hostapd/hostapd.conf')) {
+		  // Update the Hotspot name to the Hostname
+		  $rollApSsid = 'sudo sed -i "/ssid=/c\\ssid='.$newHostnameLower.'" /etc/hostapd/hostapd.conf';
+		  system($rollApSsid);
+	  }
 	}
 
 	// Add missing values to DMRGateway
