@@ -2084,19 +2084,20 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
     </form>
 
 <?php
-	exec('ifconfig wlan0',$return);
-	exec('iwconfig wlan0',$return);
-	$strWlan0 = implode(" ",$return);
-	$strWlan0 = preg_replace('/\s\s+/', ' ', $strWlan0);
-	if (strpos($strWlan0,'HWaddr') !== false) {
-		preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
-	}
-	elseif (strpos($strWlan0,'ether') !== false) {
-		preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
-	}
-	$strHWAddress = $result['1'];
-
-	if ( isset($strHWAddress) ) {
+//	exec('ifconfig wlan0',$return);
+//	exec('iwconfig wlan0',$return);
+//	$strWlan0 = implode(" ",$return);
+//	$strWlan0 = preg_replace('/\s\s+/', ' ', $strWlan0);
+//	if (strpos($strWlan0,'HWaddr') !== false) {
+//		preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
+//	}
+//	elseif (strpos($strWlan0,'ether') !== false) {
+//		preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
+//	}
+//	$strHWAddress = $result['1'];
+//
+//	if ( isset($strHWAddress) ) {
+	if ( file_exists('/sys/class/net/wlan0') || file_exists('/sys/class/net/wlan1') ) {
 echo '
 <br />
     <b>'.$lang['wifi_config'].'</b>
