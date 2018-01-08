@@ -660,19 +660,19 @@ function getActualLink($logLines, $mode) {
                $to = "";
                if (strpos($logLine,"Linked to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
+		  $to = preg_replace('/[^0-9]/', '', $to);
+		  return "Linked to: TG".$to;
                }
                if (strpos($logLine,"Linked at startup to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 58, 5));
-               }
-               if (substr( $to, 0, 9 ) === "Linked to") {
 		  $to = preg_replace('/[^0-9]/', '', $to);
-                  return "Linked to: TG".$to;
+		  return "Linked to: TG".$to;
                }
                if (strpos($logLine,"Starting P25Gateway")) {
-		  return "not linked";
+		  return "Starting Gateway";
                }
                if (strpos($logLine,"Unlinked")) {
-                  return "not linked";
+                  return "Not Linked";
                }
 	    }
 	}
