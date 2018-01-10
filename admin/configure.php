@@ -2009,7 +2009,6 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) {
 $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
-if (file_exists('/root/P25Hosts.txt')) { $p25Hosts2 = fopen("/root/P25Hosts.txt", "r"); }
 	?>
 	<div><b><?php echo $lang['p25_config'];?></b></div>
     <table>
@@ -2035,7 +2034,8 @@ if (file_exists('/root/P25Hosts.txt')) { $p25Hosts2 = fopen("/root/P25Hosts.txt"
                 }
         }
         fclose($p25Hosts);
-        if (file_exists('/root/P25Hosts.txt')) {
+        if (file_exists('/usr/local/etc/P25HostsLocal.txt')) {
+		$p25Hosts2 = fopen("/usr/local/etc/P25HostsLocal.txt", "r");
 		while (!feof($p25Hosts2)) {
                 	$p25HostsLine2 = fgets($p25Hosts2);
                 	$p25Host2 = preg_split('/\s+/', $p25HostsLine2);
