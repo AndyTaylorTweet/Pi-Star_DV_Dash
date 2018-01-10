@@ -2008,7 +2008,9 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) {
-$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
+$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
+if (file_exists('/root/P25Hosts.txt') { $p25Hosts2 = fopen("/root/P25Hosts.txt", "r"); }
+	?>
 	<div><b><?php echo $lang['p25_config'];?></b></div>
     <table>
     <tr>
@@ -2033,6 +2035,17 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r"); ?>
                 }
         }
         fclose($p25Hosts);
+        if (file_exists('/root/P25Hosts.txt') {
+		while (!feof($p25Hosts2)) {
+                	$p25HostsLine2 = fgets($p25Hosts2);
+                	$p25Host2 = preg_split('/\s+/', $p25HostsLine2);
+                	if ((strpos($p25Host2[0], '#') === FALSE ) && ($p25Host2[0] != '')) {
+                        	if ($testP25Host == $p25Host2[0]) { echo "      <option value=\"$p25Host2[0]\" selected=\"selected\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
+                        	else { echo "      <option value=\"$p25Host2[0]\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
+                	}
+		}
+		fclose($p25Hosts2);
+	}
         ?>
     </select></td>
     </tr>
