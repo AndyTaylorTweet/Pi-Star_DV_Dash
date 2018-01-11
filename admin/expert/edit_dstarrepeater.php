@@ -113,7 +113,7 @@ if($_POST) {
 		exec('sudo mount -o remount,ro /');					// Make rootfs read-only
 
 		// Reload the affected daemon
-		exec('sudo systemctl restart timeserver.service');			// Reload the daemon
+		exec('sudo systemctl restart dstarrepeater.service');			// Reload the daemon
 		return $success;
 	}
 
