@@ -174,6 +174,10 @@ if (getEnabled("DMR Network", $mmdvmconfigs) == 1) {
 			if ((isset($configdmrgateway['XLX Network 1']['Enabled'])) && ($configdmrgateway['XLX Network 1']['Enabled'] == 1)) {
 				echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$xlxMasterHost1."</td></tr>\n";
 			}
+                        if ((!isset($configdmrgateway['XLX Network 1']['Enabled'])) && (isset($configdmrgateway['XLX Network']['Enabled']))) {
+                                $xlxMasterHost1 = exec('grep "XLX, Linking to reflector" /var/log/pi-star/DMRGateway-'.gmdate("Y-m-d").'.log | tail -1 | awk \'{print $8 " " $9}\'');
+                                echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$xlxMasterHost1."</td></tr>\n";
+                        }
 			if ($configdmrgateway['DMR Network 1']['Enabled'] == 1) {
 				echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost1."</td></tr>\n";
 			}
