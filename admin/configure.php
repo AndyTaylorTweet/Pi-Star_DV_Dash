@@ -1703,12 +1703,14 @@ else:
     <td style="text-align: left;"><select name="dmrMasterHost3">
 <?php
 	$dmrMasterFile3 = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
-	$testMMDVMdmrMaster3= $configdmrgateway['XLX Network 1']['Address'];
+	if (isset($configdmrgateway['XLX Network 1']['Address'])) { $testMMDVMdmrMaster3= $configdmrgateway['XLX Network 1']['Address']; }
+	if (isset($configdmrgateway['XLX Network']['Startup'])) { $testMMDVMdmrMaster3= $configdmrgateway['XLX Network']['Startup']; }
 	while (!feof($dmrMasterFile3)) {
 		$dmrMasterLine3 = fgets($dmrMasterFile3);
                 $dmrMasterHost3 = preg_split('/\s+/', $dmrMasterLine3);
                 if ((strpos($dmrMasterHost3[0], '#') === FALSE ) && (substr($dmrMasterHost3[0], 0, 3) == "XLX") && ($dmrMasterHost3[0] != '')) {
                         if ($testMMDVMdmrMaster3 == $dmrMasterHost3[2]) { echo "      <option value=\"$dmrMasterHost3[2],$dmrMasterHost3[3],$dmrMasterHost3[4],$dmrMasterHost3[0]\" selected=\"selected\">$dmrMasterHost3[0]</option>\n"; }
+			if ('XLX_'.$testMMDVMdmrMaster3 == $dmrMasterHost3[0]) { echo "      <option value=\"$dmrMasterHost3[2],$dmrMasterHost3[3],$dmrMasterHost3[4],$dmrMasterHost3[0]\" selected=\"selected\">$dmrMasterHost3[0]</option>\n"; }
                         else { echo "      <option value=\"$dmrMasterHost3[2],$dmrMasterHost3[3],$dmrMasterHost3[4],$dmrMasterHost3[0]\">$dmrMasterHost3[0]</option>\n"; }
                 }
 	}
@@ -1729,9 +1731,6 @@ else:
 		$xlxSuVal = '40'.sprintf('%02d', $xlxSu);
 		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSuVal)) {
 			echo '      <option value="'.$xlxSuVal.'" selected="selected">'.$xlxSuVal.'</option>'."\n";
-		}
-		else if ((isset($configdmrgateway['XLX Network']['Startup'])) && ($configdmrgateway['XLX Network']['Startup'] == 'XLX_'.$xlxSuVal)) {
-			echo '      <option value="XLX_'.$xlxSuVal.'" selected="selected">XLX_'.$xlxSuVal.'</option>'."\n";
 		}
 		else {
 			echo '      <option value="'.$xlxSuVal.'">'.$xlxSuVal.'</option>'."\n";
