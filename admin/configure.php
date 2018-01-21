@@ -1717,6 +1717,7 @@ else:
 	fclose($dmrMasterFile3);
 ?>
     </select></td></tr>
+    <?php if (isset($configdmrgateway['XLX Network 1']['Startup'])) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">XLX Startup TG:<span><b>XLX Startup TG</b></span></a></td>
     <td align="left"><select name="dmrMasterHost3Startup">
@@ -1738,6 +1739,7 @@ else:
 	}
 ?>
     </select></td></tr>
+    <?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_enable'];?>:<span><b>XLX Master Enable</b></span></a></td>
     <td align="left">
