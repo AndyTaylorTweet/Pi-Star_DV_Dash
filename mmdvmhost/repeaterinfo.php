@@ -128,7 +128,8 @@ if ( $testMMDVModeDMR == 1 ) { //Hide the DMR information when DMR mode not enab
 $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
 if ($dmrMasterHost == '127.0.0.1') {
-	$xlxMasterHost1 = $configdmrgateway['XLX Network 1']['Address'];
+	if (isset($configdmrgateway['XLX Network 1']['Address'])) { $xlxMasterHost1 = $configdmrgateway['XLX Network 1']['Address']; }
+	if (isset($configdmrgateway['XLX Network']['Address'])) { $xlxMasterHost1 = $configdmrgateway['XLX Network']['Address']; }
 	$dmrMasterHost1 = $configdmrgateway['DMR Network 1']['Address'];
 	$dmrMasterHost2 = $configdmrgateway['DMR Network 2']['Address'];
 	while (!feof($dmrMasterFile)) {
