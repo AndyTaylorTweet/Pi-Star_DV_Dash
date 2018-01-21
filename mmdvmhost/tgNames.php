@@ -1044,7 +1044,3 @@ $tgNames = [
     "5059742" => "XRF740 C"
 ];
 ?>
-
-
-tgNames
-include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tgNames.php';      // TalkGroup Names
