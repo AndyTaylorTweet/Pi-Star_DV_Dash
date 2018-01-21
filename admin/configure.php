@@ -1730,6 +1730,9 @@ else:
 		if ((isset($configdmrgateway['XLX Network 1']['Startup'])) && ($configdmrgateway['XLX Network 1']['Startup'] == $xlxSuVal)) {
 			echo '      <option value="'.$xlxSuVal.'" selected="selected">'.$xlxSuVal.'</option>'."\n";
 		}
+		else if ((isset($configdmrgateway['XLX Network']['Startup'])) && ($configdmrgateway['XLX Network']['Startup'] == 'XLX_'.$xlxSuVal)) {
+			echo '      <option value="XLX_'.$xlxSuVal.'" selected="selected">XLX_'.$xlxSuVal.'</option>'."\n";
+		}
 		else {
 			echo '      <option value="'.$xlxSuVal.'">'.$xlxSuVal.'</option>'."\n";
 		}
