@@ -107,7 +107,6 @@ table td {
     font-family: "Lucidia Console",Monaco,monospace;
     text-decoration: none;
     border: 1px solid #000000;
-    overflow-x: hidden;
 }
 
 body {
@@ -117,7 +116,6 @@ body {
 
 a {
     text-decoration:none;
-    
 }
 
 a:link, a:visited {
@@ -157,7 +155,7 @@ a.tooltip:hover span {
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
-    font: 12px Verdana, sans-serif; 
+    font: 12px Verdana, sans-serif;
     text-align: left;
 }
 
@@ -208,7 +206,7 @@ a.tooltip2:hover span {
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
-    font: 12px Verdana, sans-serif; 
+    font: 12px Verdana, sans-serif;
     text-align: left;
 }
 
