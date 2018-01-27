@@ -669,7 +669,7 @@ function getActualLink($logLines, $mode) {
 		  return "Linked to: TG".$to;
                }
                if (strpos($logLine,"Starting P25Gateway")) {
-		  return "Starting Gateway";
+		  return "Not Linked";
                }
                if (strpos($logLine,"Unlinked")) {
                   return "Not Linked";
