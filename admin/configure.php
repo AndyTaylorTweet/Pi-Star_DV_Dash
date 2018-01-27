@@ -1082,8 +1082,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $currHostname = exec('cat /etc/hostname');
 	  $rollHostname = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hostname';
 	  $rollHosts = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hosts';
+	  $rollMotd = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/motd';
 	  system($rollHostname);
 	  system($rollHosts);
+	  system($rollMotd);
 	  if (file_exists('/etc/hostapd/hostapd.conf')) {
 		  // Update the Hotspot name to the Hostname
 		  $rollApSsid = 'sudo sed -i "/ssid=/c\\ssid='.$newHostnameLower.'" /etc/hostapd/hostapd.conf';
