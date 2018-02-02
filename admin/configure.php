@@ -51,6 +51,10 @@ $configmmdvm = parse_ini_file($mmdvmConfigFile, true);
 $ysfgatewayConfigFile = '/etc/ysfgateway';
 $configysfgateway = parse_ini_file($ysfgatewayConfigFile, true);
 
+// Load the ysf2dmr config file
+$ysf2dmrConfigFile = '/etc/ysf2dmr';
+if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
+
 // Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
@@ -107,7 +111,7 @@ $MYCALL=strtoupper($callsign);
     <meta name="KeyWords" content="Pi-Star, MW0MWZ" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
@@ -188,6 +192,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop pistar-watchdog.service > /dev/null 2>/dev/null &');	// PiStar-Watchdog Service
 	system('sudo systemctl stop pistar-remote.service > /dev/null 2>/dev/null &');		// PiStar-Remote Service
 	system('sudo systemctl stop ysfgateway.service > /dev/null 2>/dev/null &');		// YSFGateway
+	system('sudo systemctl stop ysf2dmr.service > /dev/null 2>/dev/null &');		// YSF2DMR
 	system('sudo systemctl stop ysfparrot.service > /dev/null 2>/dev/null &');		// YSFParrot
 	system('sudo systemctl stop p25gateway.service > /dev/null 2>/dev/null &');		// P25Gateway
 	system('sudo systemctl stop p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
@@ -1230,6 +1235,44 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 	}
 
+        // ysf2dmr config file wrangling
+        $ysf2dmrContent = "";
+        foreach($configysf2dmr as $ysf2dmrSection=>$ysf2dmrValues) {
+                // UnBreak special cases
+                $ysf2dmrSection = str_replace("_", " ", $ysf2dmrSection);
+                $ysf2dmrContent .= "[".$ysf2dmrSection."]\n";
+                // append the values
+                foreach($ysf2dmrValues as $ysf2dmrKey=>$ysf2dmrValue) {
+                        $ysf2dmrContent .= $ysf2dmrKey."=".$ysf2dmrValue."\n";
+                        }
+                        $ysf2dmrContent .= "\n";
+                }
+
+        if (!$handleYSF2DMRconfig = fopen('/tmp/dsWGR34tHRrSFFGA.tmp', 'w')) {
+                return false;
+        }
+
+        if (!is_writable('/tmp/dsWGR34tHRrSFFGA.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+        else {
+                $success = fwrite($handleYSF2DMRconfig, $ysf2dmrContent);
+                fclose($handleYSF2DMRconfig);
+                if (intval(exec('cat /tmp/dsWGR34tHRrSFFGA.tmp | wc -l')) > 35 ) {
+                        exec('sudo mv /tmp/dsWGR34tHRrSFFGA.tmp /etc/ysf2dmr');                 // Move the file back
+                        exec('sudo chmod 644 /etc/ysf2dmr');                                    // Set the correct runtime permissions
+                        exec('sudo chown root:root /etc/ysf2dmr');                              // Set the owner
+                }
+        }
+
 	// dmrgateway config file wrangling
 	$dmrgwContent = "";
         foreach($configdmrgateway as $dmrgwSection=>$dmrgwValues) {
@@ -1324,6 +1367,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start pistar-watchdog.service > /dev/null 2>/dev/null &');	// PiStar-Watchdog Service
 	system('sudo systemctl start pistar-remote.service > /dev/null 2>/dev/null &');		// PiStar-Remote Service
 	system('sudo systemctl start pistar-upnp.service > /dev/null 2>/dev/null &');		// PiStar-UPnP Service
+	system('sudo systemctl start ysf2dmr.service > /dev/null 2>/dev/null &');		// YSF2DMR
 	system('sudo systemctl start ysfgateway.service > /dev/null 2>/dev/null &');		// YSFGateway
 	system('sudo systemctl start ysfparrot.service > /dev/null 2>/dev/null &');		// YSFParrot
 	system('sudo systemctl start p25gateway.service > /dev/null 2>/dev/null &');		// P25Gateway
