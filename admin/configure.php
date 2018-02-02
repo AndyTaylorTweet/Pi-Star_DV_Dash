@@ -1698,7 +1698,7 @@ else:
     <input type="hidden" name="dmrEmbeddedLCOnly" value="OFF" />
     <input type="hidden" name="dmrDumpTAData" value="OFF" />
     <input type="hidden" name="dmrGatewayXlxEn" value="OFF" />
-    <input type="hidden" name="dmrDMRnetJitterBufer" value="OFF" />
+    <input type="hidden" name="dmrDMRnetJitterBufer" value="ON" />
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
