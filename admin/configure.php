@@ -307,6 +307,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollConfLat1 = 'sudo sed -i "/latitude1=/c\\latitude1='.$newConfLatitude.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['Latitude'] = $newConfLatitude;
 	  $configysfgateway['Info']['Latitude'] = $newConfLatitude;
+	  $configysf2dmr['Info']['Latitude'] = $newConfLatitude;
 	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
 	  system($rollConfLat0);
 	  system($rollConfLat1);
@@ -319,6 +320,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollConfLon1 = 'sudo sed -i "/longitude1=/c\\longitude1='.$newConfLongitude.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['Longitude'] = $newConfLongitude;
 	  $configysfgateway['Info']['Longitude'] = $newConfLongitude;
+	  $configysf2dmr['Info']['Longitude'] = $newConfLongitude;
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
 	  system($rollConfLon0);
 	  system($rollConfLon1);
@@ -332,6 +334,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configdmrgateway['Info']['Location'] = '"'.$newConfDesc1.'"';
           $configysfgateway['Info']['Name'] = '"'.$newConfDesc1.'"';
+	  $configysf2dmr['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
@@ -344,6 +347,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
           $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $configysf2dmr['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
 	  system($rollDesc22);
 	  }
@@ -356,6 +360,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['urlAuto']) == 'auto') { $rollURL0 = 'sudo sed -i "/url=/c\\url=http://www.qrz.com/db/'.strtoupper(escapeshellcmd($_POST['confCallsign'])).'" /etc/ircddbgateway';  }
 	  if (escapeshellcmd($_POST['urlAuto']) == 'man') { $rollURL0 = 'sudo sed -i "/url=/c\\url='.$newConfURL.'" /etc/ircddbgateway'; }
           $configmmdvm['Info']['URL'] = $txtURL;
+	  $configysf2dmr['Info']['URL'] = $txtURL;
 	  $configdmrgateway['Info']['URL'] = $txtURL;
 	  system($rollURL0);
 	  }
@@ -410,6 +415,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
+	  $configysf2dmr['Info']['RXFrequency'] = $newFREQrx;
+	  $configysf2dmr['Info']['TXFrequency'] = $newFREQtx;
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -494,6 +501,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
+	  $configysf2dmr['Info']['RXFrequency'] = $newFREQ;
+	  $configysf2dmr['Info']['TXFrequency'] = $newFREQ;
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -582,6 +591,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysfgateway['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $configysfgateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $configysf2dmr['YSF Network']['Callsign'] = $newCallsignUpper;
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -653,6 +663,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
+	  $configysf2dmr['DMR Network']['Id'] = substr($newPostDmrId,0,7);
 	}
 
 	// Set DMR Master Server
@@ -661,22 +672,30 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
 	  $configmmdvm['DMR Network']['Password'] = $dmrMasterHostArr[1];
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
+	  $configysf2dmr['DMR Network']['Address'] = $dmrMasterHostArr[0];
+	  $configysf2dmr['DMR Network']['Password'] = $dmrMasterHostArr[1];
+	  $configysf2dmr['DMR Network']['Port'] = $dmrMasterHostArr[2];
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 			unset ($configmmdvm['DMR Network']['Options']);
 			unset ($configdmrgateway['DMR Network 2']['Options']);
 			unset ($configmmdvm['DMR Network']['Local']);
+			unset ($configysf2dmr['DMR Network']['Options']);
+			unset ($configysf2dmr['DMR Network']['Local']);
 		}
 
 		if ($dmrMasterHostArr[0] == '127.0.0.1') {
 			unset ($configmmdvm['DMR Network']['Options']);
 			unset ($configdmrgateway['DMR Network 2']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62032";
+			unset ($configysf2dmr['DMR Network']['Options']);
+			$configysf2dmr['DMR Network']['Local'] = "62032";
 		}
 
 		// Set the DMR+ Options= line
 		if (substr($dmrMasterHostArr[3], 0, 4) == "DMR+") {
 			unset ($configmmdvm['DMR Network']['Local']);
+			unset ($configysf2dmr['DMR Network']['Local']);
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 				$dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
 				$configmmdvm['DMR Network']['Options'] = '"'.$dmrOptionsLineStripped.'"';
@@ -685,6 +704,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			else {
 				unset ($configmmdvm['DMR Network']['Options']);
 				unset ($configdmrgateway['DMR Network 2']['Options']);
+				unset ($configysf2dmr['DMR Network']['Options']);
 			}
 		}
 	}
