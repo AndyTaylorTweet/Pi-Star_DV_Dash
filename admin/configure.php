@@ -752,6 +752,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  else { unset($configdmrgateway['XLX Network 1']['Startup']); }
 	}
 
+	// Set JutterBuffer Option
+	if (empty($_POST['dmrDMRnetJitterBufer']) != TRUE ) {
+	  if (escapeshellcmd($_POST['dmrDMRnetJitterBufer']) == 'ON' ) { $configmmdvm['DMR Network']['JitterEnabled'] = "1"; }
+	  if (escapeshellcmd($_POST['dmrDMRnetJitterBufer']) == 'OFF' ) { $configmmdvm['DMR Network']['JitterEnabled'] = "0"; }
+	}
+
 	// Set Talker Alias Option
 	if (empty($_POST['dmrEmbeddedLCOnly']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrEmbeddedLCOnly']) == 'ON' ) { $configmmdvm['DMR']['EmbeddedLCOnly'] = "1"; }
@@ -1152,7 +1158,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['D-Star']['AckTime'])) { $configmmdvm['D-Star']['AckTime'] = "750"; }
 	if (!isset($configmmdvm['DMR']['BeaconInterval'])) { $configmmdvm['DMR']['BeaconInterval'] = "60"; }
 	if (!isset($configmmdvm['DMR']['BeaconDuration'])) { $configmmdvm['DMR']['BeaconDuration'] = "3"; }
-	if (!isset($configmmdvm['DMR Network']['JitterEnabled'])) { $configmmdvm['DMR Network']['JitterEnabled'] = "0"; }
 	if (!isset($configmmdvm['OLED']['Scroll'])) { $configmmdvm['OLED']['Scroll'] = "0"; }
 
 	// Add missing options to YSFGateway
@@ -1693,6 +1698,7 @@ else:
     <input type="hidden" name="dmrEmbeddedLCOnly" value="OFF" />
     <input type="hidden" name="dmrDumpTAData" value="OFF" />
     <input type="hidden" name="dmrGatewayXlxEn" value="OFF" />
+    <input type="hidden" name="dmrDMRnetJitterBufer" value="OFF" />
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
@@ -1859,6 +1865,12 @@ else:
     <td align="left">
     <?php if ($configmmdvm['DMR']['DumpTAData'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrDumpTAData\"></label></div>\n"; }
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" /><label for=\"toggle-dmrDumpTAData\"></label></div>\n"; } ?>
+    </td></tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo "JitterBuffer";?>:<span><b>DMR JitterBuffer</b>Turn on for improved<br />network resiliancy, in high<br />Latency networks.</span></a></td>
+    <td align="left">
+    <?php if ($configmmdvm['DMR']['JitterEnabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrJitterBufer\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDMRnetJitterBufer\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrJitterBufer\"></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrJitterBufer\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDMRnetJitterBufer\" value=\"ON\" /><label for=\"toggle-dmrJitterBufer\"></label></div>\n"; } ?>
     </td></tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
