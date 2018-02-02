@@ -52,8 +52,10 @@ $ysfgatewayConfigFile = '/etc/ysfgateway';
 $configysfgateway = parse_ini_file($ysfgatewayConfigFile, true);
 
 // Load the ysf2dmr config file
-$ysf2dmrConfigFile = '/etc/ysf2dmr';
-if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
+if (file_exists('/etc/ysf2dmr')) {
+	$ysf2dmrConfigFile = '/etc/ysf2dmr';
+	if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
+}
 
 // Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
@@ -67,7 +69,7 @@ if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrG
 if (file_exists('/etc/dstar-radio.dstarrepeater')) {
 	$modemConfigFileDStarRepeater = '/etc/dstar-radio.dstarrepeater';
 	if (fopen($modemConfigFileDStarRepeater,'r')) { $configModem = parse_ini_file($modemConfigFileDStarRepeater, true); }
-	}
+}
 
 if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	$modemConfigFileMMDVMHost = '/etc/dstar-radio.mmdvmhost';
