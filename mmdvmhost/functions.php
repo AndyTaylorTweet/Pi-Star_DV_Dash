@@ -589,6 +589,12 @@ function getActualLink($logLines, $mode) {
 					$to = trim(substr($logLine, strpos($logLine,"to") + 3));
 				}
 				if ($to !== "") {
+					if (substr($to, 0, 3) !== 'TG ') {
+						continue;
+					}
+					if ($to === "TG 4000") {
+						return "not linked";
+					}
 					if (strpos($to, ',') !== false) {
 						$to = substr($to, 0, strpos($to, ','));
 					}
@@ -608,6 +614,12 @@ function getActualLink($logLines, $mode) {
 					$to = trim(substr($logLine, strpos($logLine,"to") + 3));
 				}
 				if ($to !== "") {
+					if (substr($to, 0, 3) !== 'TG ') {
+						continue;
+					}
+					if ($to === "TG 4000") {
+						return "not linked";
+					}
 					if (strpos($to, ',') !== false) {
 						$to = substr($to, 0, strpos($to, ','));
 					}
