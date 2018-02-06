@@ -168,9 +168,9 @@ Connected To : ' . $strSSID . '<br />
 AP Mac Address : ' . $strBSSID . '<br />
 <br />
 Bitrate : ' . $strBitrate . '<br />';
-if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; }
+if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; } else { echo "<br />\n"; }
 echo "<br />\n";
-if ($strLinkQuality) { echo 'Link Quality : ' . $strLinkQuality . '<br />'."\n"; }
+if ($strLinkQuality) { echo 'Link Quality : ' . $strLinkQuality . '<br />'."\n"; } else { echo "<br />\n"; }
 echo 'Signal Level : ' . $strSignalLevel . '<br />
 <br />
 <br />
