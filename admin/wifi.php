@@ -136,7 +136,7 @@ switch($page) {
 			exec('sudo wpa_cli reconfigure wlan0 && sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0 && sudo wpa_cli scan',$test);
 			echo '<script>window.location.href=\'wifi.php?page=wlan0_info\';</script>';
 		}
-		
+
 	echo '<script type="text/javascript">setTimeout(function () { location.reload(1); }, 15000);</script>
 <div class="infobox">
 <form action="'.$_SERVER['PHP_SELF'].'?page=wlan0_info" method="post">
@@ -238,13 +238,13 @@ Signal Level : ' . $strSignalLevel . '<br />
 		echo "Wifi Settings Updated Successfully\n";
 		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		header("Refresh:1");
-	
+
 	} elseif(isset($_POST['Scan'])) {
 		$return = '';
 		exec('ifconfig wlan0 | grep -i running | wc -l',$test);
-		sleep(2);
+		// sleep(2); // Removed pointless sleep
 		exec('sudo wpa_cli scan -i wlan0',$return);
-		sleep(5);
+		sleep(7); // Added some time to the scan process to find more APs
 		exec('sudo wpa_cli scan_results -i wlan0',$return);
 		// This section appears to limit the number of found APs to 4, this seems to have been done to clean up the output.
 		//for($shift = 0; $shift < 4; $shift++ ) {
@@ -285,4 +285,3 @@ echo '
 </body>
 </html>';
 ?>
-
