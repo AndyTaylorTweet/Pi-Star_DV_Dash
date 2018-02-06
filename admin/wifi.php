@@ -246,9 +246,12 @@ Signal Level : ' . $strSignalLevel . '<br />
 		exec('sudo wpa_cli scan -i wlan0',$return);
 		sleep(5);
 		exec('sudo wpa_cli scan_results -i wlan0',$return);
-		for($shift = 0; $shift < 4; $shift++ ) {
-			array_shift($return);
-		}
+		// This section appears to limit the number of found APs to 4, this seems to have been done to clean up the output.
+		//for($shift = 0; $shift < 4; $shift++ ) {
+		//	array_shift($return);
+		//}
+		unset($return['0']); // This is a better way to clean up;
+		unset($return['1']); // This is a better way to clean up;
 		echo "<br />\n";
 		echo "Networks found : <br />\n";
 		echo "<table>\n";
