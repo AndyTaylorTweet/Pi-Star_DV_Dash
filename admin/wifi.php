@@ -244,7 +244,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 		exec('ifconfig wlan0 | grep -i running | wc -l',$test);
 		// sleep(2); // Removed pointless sleep
 		exec('sudo wpa_cli scan -i wlan0',$return);
-		sleep(7); // Added some time to the scan process to find more APs
+		sleep(8); // Added some time to the scan process to find more APs
 		exec('sudo wpa_cli scan_results -i wlan0',$return);
 		// This section appears to limit the number of found APs to 4, this seems to have been done to clean up the output.
 		//for($shift = 0; $shift < 4; $shift++ ) {
