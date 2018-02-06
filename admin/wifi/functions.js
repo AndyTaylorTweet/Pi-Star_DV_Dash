@@ -69,8 +69,7 @@ function CheckPSK(psk) {
 function DeleteNetwork(network) {
 	element = document.getElementById('Networkbox'+network);
 	element.parentNode.removeChild(element);
-        var Networks = document.getElementById('Networks').value;
+	var Networks = document.getElementById('Networks').value;
 	Networks--
-	//document.getElementById('Networks').value = Networks;
-	//Networks--
+	document.getElementById('Networks').value = Networks;
 }
