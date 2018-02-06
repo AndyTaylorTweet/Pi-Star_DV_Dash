@@ -103,7 +103,7 @@ switch($page) {
 				if (preg_match('/SSID:\ ([a-zA-Z0-9-_\s]+)/i',$strWlan0,$result)) {
 				$strSSID = str_replace(' freq','',$result[1]); }
 				if (preg_match('/Link Quality=([0-9]+\/[0-9]+)/i',$strWlan0,$result)) {
-				$strLinkQuality = $result[1]; } else { $strLinkQuality = "unknown"; }
+				$strLinkQuality = $result[1]; } else { unset($strLinkQuality); }
 				if (preg_match('/Signal Level=(-[0-9]+ dBm)/i',$strWlan0,$result)) {
 				$strSignalLevel = $result[1]; }
 				if (preg_match('/Signal Level=([0-9]+\/[0-9]+)/i',$strWlan0,$result)) {
@@ -168,10 +168,10 @@ Connected To : ' . $strSSID . '<br />
 AP Mac Address : ' . $strBSSID . '<br />
 <br />
 Bitrate : ' . $strBitrate . '<br />';
-if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; } else { echo "<br />\n"; }
-echo '<br />
-Link Quality : ' . $strLinkQuality . '<br />
-Signal Level : ' . $strSignalLevel . '<br />
+if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; }
+echo "<br />\n";
+if ($strLinkQuality) { echo 'Link Quality : ' . $strLinkQuality . '<br />'."\n"; }
+echo 'Signal Level : ' . $strSignalLevel . '<br />
 <br />
 <br />
 <br />
