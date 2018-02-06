@@ -103,7 +103,7 @@ switch($page) {
 				if (preg_match('/SSID:\ ([a-zA-Z0-9-_\s]+)/i',$strWlan0,$result)) {
 				$strSSID = str_replace(' freq','',$result[1]); }
 				if (preg_match('/Link Quality=([0-9]+\/[0-9]+)/i',$strWlan0,$result)) {
-				$strLinkQuality = $result[1]; } else { unset($strLinkQuality); }
+				$strLinkQuality = $result[1]; }
 				if (preg_match('/Signal Level=(-[0-9]+ dBm)/i',$strWlan0,$result)) {
 				$strSignalLevel = $result[1]; }
 				if (preg_match('/Signal Level=([0-9]+\/[0-9]+)/i',$strWlan0,$result)) {
