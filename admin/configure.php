@@ -663,7 +663,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
-	  $configysf2dmr['DMR Network']['Id'] = substr($newPostDmrId,0,7);
+	  $configysf2dmr['DMR Network']['Id'] = $newPostDmrId;
 	}
 
 	// Set DMR Master Server
