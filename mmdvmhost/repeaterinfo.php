@@ -210,6 +210,9 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
                 if ($ysfRoomTxtLine[0] == $ysfLinkedTo) {
                         $ysfLinkedToTxt = $ysfRoomTxtLine[1];
                 }
+		if ($ysfLinkedTo == "00002") {
+			$ysfLinkedToTxt = "YSF2DMR";
+		}
         }
         if ($ysfLinkedToTxt != "null") { $ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt; } else { $ysfLinkedToTxt = "Linked to: ".$ysfLinkedTo; }
         $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
