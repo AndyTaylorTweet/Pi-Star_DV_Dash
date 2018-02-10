@@ -52,7 +52,7 @@ $lang = array (
   // Config Page - General Configuration
   "node_call"                   =>  "Indicativo do Nó",
   "dmr_id"                      =>  "CCS7/DMR ID",
-  "radio_freq"                  =>  "Frequencia do Rádio",
+  "radio_freq"                  =>  "Frequência do Rádio",
   "lattitude"                   =>  "Latitude",
   "longitude"                   =>  "Longitude",
   "town"                        =>  "Cidade",
