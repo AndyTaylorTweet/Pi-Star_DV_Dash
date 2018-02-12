@@ -13,9 +13,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
-  $lifetime=30;
-  session_set_cookie_params($lifetime);
   session_start();
+
+  if (!isset($_GET['ajax'])) {
+    unset($_SESSION['offset']);
+    //$_SESSION['offset'] = 0;
+  }
 
   if (isset($_GET['ajax'])) {
     //session_start();
@@ -28,6 +31,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     
     $handle = fopen($logfile, 'rb');
     if (isset($_SESSION['offset'])) {
+      fseek($handle, 0, SEEK_END);
+      if ($_SESSION['offset'] > ftell($handle)) //log rotated/truncated
+        $_SESSION['offset'] = 0; //continue at beginning of the new log
       $data = stream_get_contents($handle, -1, $_SESSION['offset']);
       $_SESSION['offset'] += strlen($data);
       echo nl2br($data);
@@ -63,9 +69,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     $(function() {
       $.repeat(1000, function() {
         $.get('/admin/live_modem_log.php?ajax', function(data) {
-          $('#tail').append(data);
+          if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
-          objDiv.scrollTop = objDiv.scrollHeight;
+          var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;
+          $('#tail').append(data);
+          if (isScrolledToBottom)
+            objDiv.scrollTop = objDiv.scrollHeight;
         });
       });
     });
