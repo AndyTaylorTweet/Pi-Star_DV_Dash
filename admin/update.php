@@ -22,24 +22,24 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   session_start();
 
   if (!isset($_GET['ajax'])) {
-    //unset($_SESSION['offset']);
-    $_SESSION['offset'] = filesize('/var/log/pi-star/pi-star_update.log');
+    //unset($_SESSION['update_offset']);
+    $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_update.log');
   }
   
   if (isset($_GET['ajax'])) {
     //session_start();
     $handle = fopen('/var/log/pi-star/pi-star_update.log', 'rb');
-    if (isset($_SESSION['offset'])) {
+    if (isset($_SESSION['update_offset'])) {
       fseek($handle, 0, SEEK_END);
-      if ($_SESSION['offset'] > ftell($handle)) //log rotated/truncated
-        $_SESSION['offset'] = 0; //continue at beginning of the new log
-      $data = stream_get_contents($handle, -1, $_SESSION['offset']);
-      $_SESSION['offset'] += strlen($data);
+      if ($_SESSION['update_offset'] > ftell($handle)) //log rotated/truncated
+        $_SESSION['update_offset'] = 0; //continue at beginning of the new log
+      $data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
+      $_SESSION['update_offset'] += strlen($data);
       echo nl2br($data);
       }
     else {
       fseek($handle, 0, SEEK_END);
-      $_SESSION['offset'] = ftell($handle);
+      $_SESSION['update_offset'] = ftell($handle);
       } 
   exit();
   }
