@@ -22,7 +22,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   session_start();
 
   if (!isset($_GET['ajax'])) {
-    unset($_SESSION['offset']);
+    //unset($_SESSION['offset']);
+    $_SESSION['offset'] = filesize('/var/log/pi-star/pi-star_update.log');
   }
   
   if (isset($_GET['ajax'])) {
