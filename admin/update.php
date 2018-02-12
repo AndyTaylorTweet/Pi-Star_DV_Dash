@@ -62,9 +62,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     $(function() {
       $.repeat(1000, function() {
         $.get('/admin/update.php?ajax', function(data) {
-          $('#tail').append(data);
+          if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
-          objDiv.scrollTop = objDiv.scrollHeight;
+          var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;
+          $('#tail').append(data);
+          if (isScrolledToBottom)
+            objDiv.scrollTop = objDiv.scrollHeight;
         });
       });
     });
