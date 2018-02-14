@@ -145,13 +145,13 @@ function getYSFGatewayLog() {
 	$logLines2 = array();
 	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250`);
+		$logLines1 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250 | sed \'s/^[A-Z]\:\s//\'`);
 	}
 	$logLines1 = array_slice($logLines1, -250);
 	if (sizeof($logLines1) < 250) {
 		if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250`);
+			$logLines2 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250 | sed \'s/^[A-Z]\:\s//\'`);
 		}
 	}
 	$logLines2 = array_slice($logLines2, -250);
