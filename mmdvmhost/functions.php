@@ -624,8 +624,9 @@ function getActualLink($logLines, $mode) {
 	// M: 2016-09-25 16:08:05.811 Connect to 62829 has been requested by DG9VH
 	// M: 2016-10-01 17:52:36.586 Automatic connection to 62829
          if (isProcessRunning("YSFGateway")) {
+         	$to = "";
             foreach($logLines as $logLine) {
-               $to = "";
+               //$to = "";
                if (strpos($logLine,"Connect to")) {
                   $to = substr($logLine, 38, 5);
                }
@@ -643,11 +644,10 @@ function getActualLink($logLines, $mode) {
                }
             }
             return "not linked";
-            break;
          } else {
             return "Service Not Started";
-            break;
          }
+         break;
 
     case "P25":
 	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
