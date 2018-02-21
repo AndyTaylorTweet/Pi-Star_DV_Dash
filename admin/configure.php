@@ -2088,7 +2088,12 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
         if (isset($configysfgateway['Network']['Startup'])) {
                 $testYSFHost = $configysfgateway['Network']['Startup'];
                 echo "      <option value=\"none\">None</option>\n";
-		echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR</option>\n";
+		if ($testYSFHost == 00002) {
+			echo "      <option value=\"00002\" selected=\"selected\">00002 - YSF2DMR - YSF2DMR Gateway</option>\n";
+		}
+		else {
+			echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR Gateway</option>\n";
+		}
                 }
         else {
                 $testYSFHost = "none";
