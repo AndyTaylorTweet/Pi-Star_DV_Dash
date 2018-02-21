@@ -2092,6 +2092,9 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
         else {
                 $testYSFHost = "none";
                 echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
+		if (file_exists('/etc/ysf2dmr') {
+			echo "      <option value=\"00002\" selected=\"selected\">00002 - YSF2DMR - YSF2DMR Bridge</option>\n";
+		}
                 }
         while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
