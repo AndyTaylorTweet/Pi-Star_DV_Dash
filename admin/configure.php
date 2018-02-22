@@ -1112,6 +1112,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
             $configmmdvm['D-Star']['SelfOnly'] = 1;
 	    $configmmdvm['System Fusion']['SelfOnly'] = 1;
 	    $configmmdvm['P25']['SelfOnly'] = 1;
+	    $configmmdvm['NXDN']['SelfOnly'] = 1;
             system('sudo sed -i "/restriction=/c\\restriction=1" /etc/dstarrepeater');
           }
 	  if (escapeshellcmd($_POST['nodeMode']) == 'pub' ) {
@@ -1119,6 +1120,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
             $configmmdvm['D-Star']['SelfOnly'] = 0;
 	    $configmmdvm['System Fusion']['SelfOnly'] = 0;
 	    $configmmdvm['P25']['SelfOnly'] = 0;
+	    $configmmdvm['NXDN']['SelfOnly'] = 0;
             system('sudo sed -i "/restriction=/c\\restriction=0" /etc/dstarrepeater');
           }
 	}
