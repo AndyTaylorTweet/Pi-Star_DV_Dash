@@ -47,6 +47,7 @@ $lang = array (
   "d-star_mode"                 =>  "Modo DSTAR",
   "ysf_mode"                    =>  "Modo YSF",
   "p25_mode"                    =>  "Modo P25",
+  "nxdn_mode"                   =>  "Modo NXDN",
   "mmdvm_display"               =>  "Exibição MMDVM",
   "mode_hangtime"               =>  "Espera tempo do Modo",
   // Config Page - General Configuration
