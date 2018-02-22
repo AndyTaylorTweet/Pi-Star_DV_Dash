@@ -47,6 +47,7 @@ $lang = array (
   "d-star_mode"                 =>  "Λειτουργία D-Star",
   "ysf_mode"                    =>  "Λειτουργία YSF",
   "p25_mode"                    =>  "Λειτουργία P25",
+  "nxdn_mode"                   =>  "Λειτουργία NXDN",
   "mmdvm_display"               =>  "Τύπος Οθόνης MMDVM",
   "mode_hangtime"               =>  "Χρόνος Επαναφοράς Σάρωσης",
   // Config Page - General Configuration
