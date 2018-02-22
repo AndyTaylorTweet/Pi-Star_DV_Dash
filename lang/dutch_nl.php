@@ -46,6 +46,7 @@ $lang = array (
   "d-star_mode"                 =>  "D-Star modus",
   "ysf_mode"                    =>  "YSF modus",
   "p25_mode"                    =>  "P25 modus",
+  "nxdn_mode"                   =>  "NXDN modus",
   "mmdvm_display"               =>  "MMDVM display type",
   "mode_hangtime"               =>  "Mode hangtijd",
   // Config Page - General Configuration
