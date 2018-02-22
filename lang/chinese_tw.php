@@ -45,6 +45,7 @@ $lang = array (
   "d-star_mode"                 =>  "D-Star 模式",
   "ysf_mode"                    =>  "YSF 模式",
   "p25_mode"                    =>  "P25 模式",
+  "nxdn_mode"                   =>  "NXDN 模式",
   "mmdvm_display"               =>  "MMDVM 螢幕類型",
   "mode_hangtime"               =>  "模式保持時間",
   // Config Page - General Configuration
