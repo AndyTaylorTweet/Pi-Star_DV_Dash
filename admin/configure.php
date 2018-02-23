@@ -1180,7 +1180,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['NXDN']['SelfOnly'])) { $configmmdvm['NXDN']['SelfOnly'] = "1"; }
 	if (!isset($configmmdvm['NXDN']['RemoteGateway'])) { $configmmdvm['NXDN']['RemoteGateway'] = "0"; }
 	if (!isset($configmmdvm['NXDN Network']['Enable'])) { $configmmdvm['NXDN Network']['Enable'] = "0"; }
-	if (!isset($configmmdvm['NXDN Network']['LocalAddress'])) { $configmmdvm['NXDN Network']['LocalAddress'] = "127.0.0.1"; }
 	if (!isset($configmmdvm['NXDN Network']['LocalPort'])) { $configmmdvm['NXDN Network']['LocalPort'] = "3300"; }
 	if (!isset($configmmdvm['NXDN Network']['GatewayAddress'])) { $configmmdvm['NXDN Network']['GatewayAddress'] = "127.0.0.1"; }
 	if (!isset($configmmdvm['NXDN Network']['GatewayPort'])) { $configmmdvm['NXDN Network']['GatewayPort'] = "4300"; }
@@ -1201,6 +1200,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if ($dmrGatewayVer > 20170924) {
 		unset($configdmrgateway['XLX Network 1']);
 		unset($configdmrgateway['XLX Network 2']);
+		unset($configmmdvm['NXDN Network']['LocalAddress']);
 	}
 
 	// Create the hostfiles.nodextra file if required
