@@ -26,6 +26,7 @@ $lang = array (
   "dstar_config"                =>  "Ρυθμίσεις D-Star",
   "ysf_config"                  =>  "Ρυθμίσεις Fusion",
   "p25_config"                  =>  "Ρυθμίσεις P25",
+  "nxdn_config"                 =>  "Ρυθμίσεις NXDN",
   "wifi_config"                 =>  "Ρυθμίσεις WiFi",
   "fw_config"                   =>  "Ρυθμίσεις Τείχους Προστασίας",
   "remote_access_pw"            =>  "Κωδικός Πρόσβασης",
