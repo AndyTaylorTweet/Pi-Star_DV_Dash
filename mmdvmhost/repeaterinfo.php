@@ -232,7 +232,7 @@ if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode 
 	echo "<table>\n";
 	if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
 		echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
-		echo "<tr><th style=\"width:100px\">NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
+		echo "<tr><th style=\"width:70px\">NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
 	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
@@ -245,7 +245,7 @@ if ( $testMMDVModeNXDN == 1 ) { //Hide the NXDN information when NXDN Network mo
 	echo "<table>\n";
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
 		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
-		echo "<tr><th style=\"width:100px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
+		echo "<tr><th style=\"width:70px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
 	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Linked to: TG 65000</td></tr>\n";
