@@ -1236,6 +1236,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2dmr['Log']['FileLevel'])) { $configysf2dmr['Log']['FileLevel'] = "1"; }
 	if (!isset($configysf2dmr['Log']['FilePath'])) { $configysf2dmr['Log']['FilePath'] = "/var/log/pi-star"; }
 	if (!isset($configysf2dmr['Log']['FileRoot'])) { $configysf2dmr['Log']['FileRoot'] = "YSF2DMR"; }
+	if (!isset($configysf2dmr['Enabled']['Enabled'])) { $configysf2dmr['Enabled']['Enabled'] = "0"; }
 
 
 	// Clean up legacy options
@@ -2220,6 +2221,34 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
         ?>
     </select></td>
     </tr>
+
+    <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2dmr['Enabled']['Enabled'] == 1) { ?>
+    $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
+    <tr>
+      <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
+      <td align="left" colspan="2"><input type="text" name="ysf2dmrId" size="13" maxlength="9" value="<?php if (isset($configysf2dmr['DMR Network']['Id'])) { echo $configysf2dmr['DMR Network']['Id']; } ?>" /></td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (YSF2DMR)</b>Set your prefered DMR<br /> master here</span></a></td>
+    <td style="text-align: left;"><select name="ysf2dmrMasterHost">
+<?php
+        $testMMDVMysf2dmrMaster = $configysf2dmr['DMR Network']['Address'];
+        while (!feof($dmrMasterFile)) {
+                $dmrMasterLine = fgets($dmrMasterFile);
+                $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
+                if ((strpos($dmrMasterHost[0], '#') === FALSE ) && (substr($dmrMasterHost[0], 0, 3) != "XLX") && (substr($dmrMasterHost[0], 0, 3) != "DMR") && ($dmrMasterHost[0] != '')) {
+                        if ($testMMDVMysf2dmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected=\"selected\">$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
+                        else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\">$dmrMasterHost[0]</option>\n"; }
+                }
+        }
+        fclose($dmrMasterFile);
+        ?>
+    </select></td>
+    </tr>
+    <?php } ?>
+
+
+
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
