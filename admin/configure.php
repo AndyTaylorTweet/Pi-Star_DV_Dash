@@ -2243,6 +2243,9 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
       </tr>
       <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered<br /> NXDN Host here</span></a></td>
+        <td style="text-align: left;"><select name="nxdnStartupHost">
+		</select></td>
       </tr>
     <?php if ($configmmdvm['NXDN']['RAN']) { ?>
       <tr>
