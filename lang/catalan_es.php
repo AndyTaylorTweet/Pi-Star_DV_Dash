@@ -111,6 +111,8 @@ $lang = array (
   "ysf_net"                     =>  "Xarxa de YSF",
   "p25_radio"                   =>  "Radio de P25",
   "p25_net"                     =>  "Xarxa de P25",
+  "nxdn_radio"                  =>  "Radio de NXDN",
+  "nxdn_net"                    =>  "Xarxa de NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Hora",
   "mode"                        =>  "Mode",
