@@ -111,6 +111,8 @@ $lang = array (
   "ysf_net"                     =>  "Reteaua YSF",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "Reteaua P25",
+  "nxdn_radio"                  =>  "NXDN Radio",
+  "nxdn_net"                    =>  "Reteaua NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Ora",
   "mode"                        =>  "Mod",
