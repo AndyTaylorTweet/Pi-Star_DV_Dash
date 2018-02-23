@@ -111,6 +111,8 @@ $lang = array (
   "ysf_net"                     =>  "YSF 网络",
   "p25_radio"                   =>  "P25 电台",
   "p25_net"                     =>  "P25 网络",
+  "nxdn_radio"                  =>  "NXDN 电台",
+  "nxdn_net"                    =>  "NXDN 网络",
   // Dashboard Front Page - Calls
   "time"                        =>  "时间",
   "mode"                        =>  "模式",
