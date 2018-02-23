@@ -26,6 +26,7 @@ $lang = array (
   "dstar_config"                =>  "Configuracio de DSTAR",
   "ysf_config"                  =>  "Configuracio de Yaesu C4FM fusion",
   "p25_config"                  =>  "Configuracio de P25",
+  "nxdn_config"                 =>  "Configuracio de NXDN",
   "wifi_config"                 =>  "Configuracio WIFI",
   "fw_config"                   =>  "Configuracio del tallafocs",
   "remote_access_pw"            =>  "Mot de pas d'accces Remot",
