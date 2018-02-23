@@ -91,13 +91,6 @@ function showMode($mode, $mmdvmconfigs) {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
 		}
-		elseif ($mode == "YSF2DMR Network") {
-			if (isProcessRunning("YSF2DMR")) {
-				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
-			} else {
-				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
-			}
-		}
 		elseif ($mode == "DMR Network") {
 			if (getConfigItem("DMR Network", "Address", $mmdvmconfigs) == '127.0.0.1') {
 				if (isProcessRunning("DMRGateway")) {
@@ -115,7 +108,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 		else {
-			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "YSF2DMR") {
+			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN") {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 				} else {
@@ -124,7 +117,20 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 	}
-
+	elseif ($mode == "YSF2DMR") {
+		if (isProcessRunning("YSF2DMR")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+		}
+	}
+	elseif ($mode == "YSF2DMR Network") {
+		if (isProcessRunning("YSF2DMR")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+		}
+	}
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
     }
