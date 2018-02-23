@@ -2227,11 +2227,15 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 	
-<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) { ?>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['NXDN Network']['Enable'] == 1) { ?>
 	<div><b><?php echo $lang['nxdn_config'];?></b></div>
     <table>
-    <tr>
-    </tr>
+      <tr>
+        <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+        <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+      <tr>
+      </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
