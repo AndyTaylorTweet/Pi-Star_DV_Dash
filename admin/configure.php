@@ -680,6 +680,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['DMR Network']['Id'] = $newPostDmrId;
 	}
 
+	// Set NXDN ID
+	if (empty($_POST['nxdnId']) != TRUE ) {
+	  $newPostNxdnId = preg_replace('/[^0-9]/', '', $_POST['nxdnId']);
+	  $configmmdvm['NXDN']['Id'] = $newPostNxdnId;
+	  if ($configmmdvm['NXDN']['Id'] > 65535) { unset($configmmdvm['NXDN']['Id']); }
+	}
+
 	// Set DMR Master Server
 	if (empty($_POST['dmrMasterHost']) != TRUE ) {
 	  $dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
