@@ -686,7 +686,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
-	  $configysf2dmr['DMR Network']['Id'] = $newPostDmrId;
+	}
+
+	// Set YSF2DMR ID
+	if (empty($_POST['ysf2dmrId']) != TRUE ) {
+	  $newPostYsf2DmrId = preg_replace('/[^0-9]/', '', $_POST['ysf2dmrId']);	
+	  $configysf2dmr['DMR Network']['Id'] = $newPostYsf2DmrId;
 	}
 
 	// Set NXDN ID
