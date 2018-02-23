@@ -2245,6 +2245,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered<br /> NXDN Host here</span></a></td>
         <td style="text-align: left;"><select name="nxdnStartupHost">
+		<option value="176.9.1.168">D2FET Test Host - 176.9.1.168</option>
 		</select></td>
       </tr>
     <?php if ($configmmdvm['NXDN']['RAN']) { ?>
@@ -2256,7 +2257,6 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
-	
 	
 	<div><b><?php echo $lang['fw_config'];?></b></div>
     <table>
