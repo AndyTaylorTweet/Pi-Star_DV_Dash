@@ -627,6 +627,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['nxdnStartupHost']) != TRUE ) {
 	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
 	  $configmmdvm['NXDN Network']['GatewayAddress'] = $newNXDNStartupHost;
+	  $configmmdvm['NXDN Network']['GatewayPort'] = "41007";
 	}
 
 	// Set NXDN RAN
