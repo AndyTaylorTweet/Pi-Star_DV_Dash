@@ -622,7 +622,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['P25']['NAC'] = $p25nacNew;
 	  }
 	}
-	
+
+	// Set the NXDN Startup Host
+	if (empty($_POST['nxdnStartupHost']) != TRUE ) {
+	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
+	  $configmmdvm['NXDN Network']['GatewayAddress'] = $newNXDNStartupHost;
+	}
+
 	// Set NXDN RAN
 	if (empty($_POST['nxdnran']) != TRUE ) {
 	  $nxdnranNew = strtolower(escapeshellcmd($_POST['nxdnran']));
