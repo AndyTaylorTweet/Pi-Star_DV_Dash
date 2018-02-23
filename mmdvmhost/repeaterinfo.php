@@ -93,6 +93,12 @@ if (isset($lastHeard[0])) {
         	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
         	        echo "<td style=\"background:#f9f;\">Listening P25</td>";
         	        }
+		elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'NXDN') {
+        	        echo "<td style=\"background:#4aa361;\">RX NXDN</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'NXDN') {
+        	        echo "<td style=\"background:#36f;\">Listening NXDN</td>";
+        	        }
         	else {
         	        echo "<td>".getActualMode($lastHeard, $mmdvmconfigs)."</td>";
         	        }
