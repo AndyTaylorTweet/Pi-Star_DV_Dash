@@ -244,7 +244,7 @@ if ( $testMMDVModeNXDN == 1 ) { //Hide the NXDN information when NXDN Network mo
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
-		echo "<tr><th colspan=\"2\"".$lang['nxdn_radio']."</th></tr>\n";
+		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
 		echo "<tr><th>RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
