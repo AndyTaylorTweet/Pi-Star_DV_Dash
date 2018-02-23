@@ -88,6 +88,9 @@ $lang = array (
   // Config Page - P25 Configuration
   "p25_startup_host"            =>  "P25 默認服務器",
   "p25_nac"                     =>  "P25 NAC",
+  // Config Page - NXDN Configuration
+  "nxdn_startup_host"            =>  "NXDN 默認服務器",
+  "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "儀表盤訪問",
   "fw_irc"                      =>  "ircDDBGateway 遠程",
