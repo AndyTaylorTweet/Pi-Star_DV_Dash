@@ -2226,6 +2226,17 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
+	
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['P25 Network']['Enable'] == 1) { ?>
+	<div><b><?php echo $lang['nxdn_config'];?></b></div>
+    <table>
+    <tr>
+    </tr>
+    </table>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
+	
+	
 	<div><b><?php echo $lang['fw_config'];?></b></div>
     <table>
     <tr>
