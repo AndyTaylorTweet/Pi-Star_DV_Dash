@@ -123,7 +123,17 @@ function showMode($mode, $mmdvmconfigs) {
 				}
 			}
 		}
-	} else {
+	}
+	elseif {
+		($mode == "YSF2DMR Network") {
+			if (isProcessRunning("YSF2DMR")) {
+				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			} else {
+				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+			}
+		}
+	}
+	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
     }
     $mode = str_replace("System Fusion", "YSF", $mode);
