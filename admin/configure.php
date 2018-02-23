@@ -645,6 +645,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
 	}
 
+	// Set the YSF2DMR Master
+	if (empty($_POST['ysf2dmrMasterHost']) != TRUE ) {
+	  $ysf2dmrMasterHostArr = explode(',', escapeshellcmd($_POST['ysf2dmrMasterHost']));
+	  $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
+	  $configysf2dmr['DMR Network']['Password'] = $ysf2dmrMasterHostArr[1];
+	  $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
+	}
+
 	// Set Duplex
 	if (empty($_POST['trxMode']) != TRUE ) {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
@@ -694,9 +702,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
 	  $configmmdvm['DMR Network']['Password'] = $dmrMasterHostArr[1];
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
-	  $configysf2dmr['DMR Network']['Address'] = $dmrMasterHostArr[0];
-	  $configysf2dmr['DMR Network']['Password'] = $dmrMasterHostArr[1];
-	  $configysf2dmr['DMR Network']['Port'] = $dmrMasterHostArr[2];
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 			unset ($configmmdvm['DMR Network']['Options']);
@@ -2236,7 +2241,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
         while (!feof($dmrMasterFile)) {
                 $dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHost = preg_split('/\s+/', $dmrMasterLine);
-                if ((strpos($dmrMasterHost[0], '#') === FALSE ) && (substr($dmrMasterHost[0], 0, 3) != "XLX") && (substr($dmrMasterHost[0], 0, 3) != "DMR") && ($dmrMasterHost[0] != '')) {
+                if ((strpos($dmrMasterHost[0], '#') === FALSE ) && (substr($dmrMasterHost[0], 0, 3) != "XLX") && (substr($dmrMasterHost[0], 0, 4) != "DMRG") && ($dmrMasterHost[0] != '')) {
                         if ($testMMDVMysf2dmrMaster == $dmrMasterHost[2]) { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\" selected=\"selected\">$dmrMasterHost[0]</option>\n"; $dmrMasterNow = $dmrMasterHost[0]; }
                         else { echo "      <option value=\"$dmrMasterHost[2],$dmrMasterHost[3],$dmrMasterHost[4],$dmrMasterHost[0]\">$dmrMasterHost[0]</option>\n"; }
                 }
