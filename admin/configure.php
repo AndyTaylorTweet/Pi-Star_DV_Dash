@@ -655,8 +655,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the YSF2DMR Starting TG
 	if (empty($_POST['ysf2dmrTg']) != TRUE ) {
-	  $newPostysf2dmrTg = preg_replace('/[^0-9]/', '', $_POST['ysf2dmrTg']);
-	  $configysf2dmr['DMR Network']['StartupDstId'] = $newPostysf2dmrTg;
+	  $ysf2dmrStartupDstId = preg_replace('/[^0-9]/', '', $_POST['ysf2dmrTg']);
+	  $configysf2dmr['DMR Network']['StartupDstId'] = $ysf2dmrStartupDstId;
 	}
 
 	// Set Duplex
