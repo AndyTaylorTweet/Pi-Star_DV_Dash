@@ -111,6 +111,8 @@ $lang = array (
   "ysf_net"                     =>  "Δίκτυο YSF",
   "p25_radio"                   =>  "Ασύρματος P25",
   "p25_net"                     =>  "Δίκτυο P25",
+  "nxdn_radio"                  =>  "Ασύρματος NXDN",
+  "nxdn_net"                    =>  "Δίκτυο NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Ωρα",
   "mode"                        =>  "Λειτουργία",
