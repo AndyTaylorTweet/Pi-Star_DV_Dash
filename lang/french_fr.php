@@ -88,6 +88,9 @@ $lang = array (
   // Config Page - P25 Configuration
   "p25_startup_host"            =>  "H&ocirc;te de d&eacute;marrage P25",
   "p25_nac"                     =>  "P25 NAC",
+  // Config Page - NXDN Configuration
+  "nxdn_startup_host"            =>  "H&ocirc;te de d&eacute;marrage NXDN",
+  "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Acc&egrave;s Console",
   "fw_irc"                      =>  "Commande &agrave; distance ircDDGBateway",
