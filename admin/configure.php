@@ -1496,6 +1496,7 @@ else:
     <input type="hidden" name="MMDVMModeDSTAR" value="OFF" />
     <input type="hidden" name="MMDVMModeFUSION" value="OFF" />
     <input type="hidden" name="MMDVMModeP25" value="OFF" />
+    <input type="hidden" name="MMDVMModeNXDN" value="OFF" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
