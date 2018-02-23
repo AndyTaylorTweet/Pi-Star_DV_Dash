@@ -622,6 +622,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['P25']['NAC'] = $p25nacNew;
 	  }
 	}
+	
+	// Set NXDN RAN
+	if (empty($_POST['nxdnran']) != TRUE ) {
+	  $nxdnranNew = strtolower(escapeshellcmd($_POST['nxdnran']));
+	  if (preg_match('/[a-f0-9]{1}/', $nxdnranNew)) {
+	    $configmmdvm['NXDN']['RAN'] = $nxdnranNew;
+	  }
+	}
 
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
@@ -2236,6 +2244,12 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       </tr>
       <tr>
       </tr>
+    <?php if ($configmmdvm['NXDN']['RAN']) { ?>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_ran'];?>:<span><b>NXDN RAN</b>Set your RAN<br /> code here</span></a></td>
+        <td align="left"><input type="text" name="nxdnran" size="13" maxlength="1" value="<?php echo $configmmdvm['NXDN']['RAN'];?>" /></td>
+      </tr>
+    <?php } ?>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
