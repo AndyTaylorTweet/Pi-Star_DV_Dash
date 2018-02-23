@@ -244,10 +244,10 @@ if ( $testMMDVModeNXDN == 1 ) { //Hide the NXDN information when NXDN Network mo
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
-		echo "<tr><th colspan=\"2\">NXDN Radio</th></tr>\n";
+		echo "<tr><th colspan=\"2\"".$lang['nxdn_radio']."</th></tr>\n";
 		echo "<tr><th>RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
 	}
-	echo "<tr><th colspan=\"2\">NXDN Network</th></tr>\n";
+	echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
 	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Linked to: TG 65000</td></tr>\n";
 	//echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
 	echo "</table>\n";
