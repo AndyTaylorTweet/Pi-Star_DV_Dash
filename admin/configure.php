@@ -623,6 +623,21 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	}
 
+	// Set the NXDN Startup Host
+	if (empty($_POST['nxdnStartupHost']) != TRUE ) {
+	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
+	  $configmmdvm['NXDN Network']['GatewayAddress'] = $newNXDNStartupHost;
+	  $configmmdvm['NXDN Network']['GatewayPort'] = "41007";
+	}
+
+	// Set NXDN RAN
+	if (empty($_POST['nxdnran']) != TRUE ) {
+	  $nxdnranNew = strtolower(escapeshellcmd($_POST['nxdnran']));
+	  if (preg_match('/[a-f0-9]{1}/', $nxdnranNew)) {
+	    $configmmdvm['NXDN']['RAN'] = $nxdnranNew;
+	  }
+	}
+
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
 	  $newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
@@ -664,6 +679,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
 	  $configysf2dmr['DMR Network']['Id'] = $newPostDmrId;
+	}
+
+	// Set NXDN ID
+	if (empty($_POST['nxdnId']) != TRUE ) {
+	  $newPostNxdnId = preg_replace('/[^0-9]/', '', $_POST['nxdnId']);
+	  $configmmdvm['NXDN']['Id'] = $newPostNxdnId;
+	  if ($configmmdvm['NXDN']['Id'] > 65535) { unset($configmmdvm['NXDN']['Id']); }
 	}
 
 	// Set DMR Master Server
@@ -1079,7 +1101,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	
 	// Set MMDVMHost NXDN Mode
 	if (empty($_POST['MMDVMModeNXDN']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "0"; }
+          if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "1"; }
           if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'OFF' ) { $configmmdvm['NXDN']['Enable'] = "0"; $configmmdvm['NXDN Network']['Enable'] = "0"; }
 	}
 
@@ -1180,7 +1202,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['NXDN']['SelfOnly'])) { $configmmdvm['NXDN']['SelfOnly'] = "1"; }
 	if (!isset($configmmdvm['NXDN']['RemoteGateway'])) { $configmmdvm['NXDN']['RemoteGateway'] = "0"; }
 	if (!isset($configmmdvm['NXDN Network']['Enable'])) { $configmmdvm['NXDN Network']['Enable'] = "0"; }
-	if (!isset($configmmdvm['NXDN Network']['LocalAddress'])) { $configmmdvm['NXDN Network']['LocalAddress'] = "127.0.0.1"; }
 	if (!isset($configmmdvm['NXDN Network']['LocalPort'])) { $configmmdvm['NXDN Network']['LocalPort'] = "3300"; }
 	if (!isset($configmmdvm['NXDN Network']['GatewayAddress'])) { $configmmdvm['NXDN Network']['GatewayAddress'] = "127.0.0.1"; }
 	if (!isset($configmmdvm['NXDN Network']['GatewayPort'])) { $configmmdvm['NXDN Network']['GatewayPort'] = "4300"; }
@@ -1196,11 +1217,33 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	unset($configysfgateway['Network']['DataPort']);
 	unset($configysfgateway['Network']['StatusPort']);
 
+	// Add missing options to YSF2DMR
+	if (!isset($configysf2dmr['Info']['Enabled'])) { $configysf2dmr['Info']['Enabled'] = "0"; }
+	if (!isset($configysf2dmr['Info']['Power'])) { $configysf2dmr['Info']['Power'] = "1"; }
+	if (!isset($configysf2dmr['Info']['Height'])) { $configysf2dmr['Info']['Height'] = "0"; }
+	if (!isset($configysf2dmr['YSF Network']['DstAddress'])) { $configysf2dmr['YSF Network']['DstAddress'] = "127.0.0.1"; }
+	if (!isset($configysf2dmr['YSF Network']['DstPort'])) { $configysf2dmr['YSF Network']['DstPort'] = "42000"; }
+	if (!isset($configysf2dmr['YSF Network']['LocalAddress'])) { $configysf2dmr['YSF Network']['LocalAddress'] = "127.0.0.1"; }
+	if (!isset($configysf2dmr['YSF Network']['LocalPort'])) { $configysf2dmr['YSF Network']['LocalPort'] = "42013"; }
+	if (!isset($configysf2dmr['YSF Network']['Daemon'])) { $configysf2dmr['YSF Network']['Daemon'] = "1"; }
+	if (!isset($configysf2dmr['DMR Network']['Daemon'])) { $configysf2dmr['DMR Network']['StartupDstId'] = "31672"; }
+	if (!isset($configysf2dmr['DMR Network']['Daemon'])) { $configysf2dmr['DMR Network']['StartupPC'] = "0"; }
+	if (!isset($configysf2dmr['DMR Network']['Daemon'])) { $configysf2dmr['DMR Network']['Jitter'] = "500"; }
+	if (!isset($configysf2dmr['DMR Network']['Daemon'])) { $configysf2dmr['DMR Network']['Debug'] = "0"; }
+	if (!isset($configysf2dmr['DMR Id Lookup']['File'])) { $configysf2dmr['DMR Id Lookup']['File'] = "/usr/local/etc/DMRIds.dat"; }
+	if (!isset($configysf2dmr['DMR Id Lookup']['Time'])) { $configysf2dmr['DMR Id Lookup']['Time'] = "24"; }
+	if (!isset($configysf2dmr['Log']['DisplayLevel'])) { $configysf2dmr['Log']['DisplayLevel'] = "1"; }
+	if (!isset($configysf2dmr['Log']['FileLevel'])) { $configysf2dmr['Log']['FileLevel'] = "1"; }
+	if (!isset($configysf2dmr['Log']['FilePath'])) { $configysf2dmr['Log']['FilePath'] = "/var/log/pi-star"; }
+	if (!isset($configysf2dmr['Log']['FileRoot'])) { $configysf2dmr['Log']['FileRoot'] = "YSF2DMR"; }
+
+
 	// Clean up legacy options
 	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($dmrGatewayVer > 20170924) {
 		unset($configdmrgateway['XLX Network 1']);
 		unset($configdmrgateway['XLX Network 2']);
+		unset($configmmdvm['NXDN Network']['LocalAddress']);
 	}
 
 	// Create the hostfiles.nodextra file if required
@@ -1496,6 +1539,7 @@ else:
     <input type="hidden" name="MMDVMModeDSTAR" value="OFF" />
     <input type="hidden" name="MMDVMModeFUSION" value="OFF" />
     <input type="hidden" name="MMDVMModeP25" value="OFF" />
+    <input type="hidden" name="MMDVMModeNXDN" value="OFF" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -1625,6 +1669,11 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
     <td align="left" colspan="2"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php if (isset($configmmdvm['General']['Id'])) { echo $configmmdvm['General']['Id']; } else { echo $configmmdvm['DMR']['Id']; } ?>" /></td>
+    </tr><?php } ?>
+    <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['NXDN']['Enable'] == 1)) { ?>
+    <tr>
+      <td align="left"><a class="tooltip2" href="#">NXDN ID:<span><b>NXDN ID</b>Enter your NXDN ID here</span></a></td>
+      <td align="left" colspan="2"><input type="text" name="nxdnId" size="13" maxlength="5" value="<?php if (isset($configmmdvm['NXDN']['Id'])) { echo $configmmdvm['NXDN']['Id']; } ?>" /></td>
     </tr><?php } ?>
 <?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
 	echo "    <tr>\n";
@@ -2225,6 +2274,30 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
+	
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['NXDN Network']['Enable'] == 1) { ?>
+	<div><b><?php echo $lang['nxdn_config'];?></b></div>
+    <table>
+      <tr>
+        <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+        <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered<br /> NXDN Host here</span></a></td>
+        <td style="text-align: left;"><select name="nxdnStartupHost">
+		<option value="176.9.1.168">D2FET Test Host - 176.9.1.168</option>
+		</select></td>
+      </tr>
+    <?php if ($configmmdvm['NXDN']['RAN']) { ?>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_ran'];?>:<span><b>NXDN RAN</b>Set your RAN<br /> code here</span></a></td>
+        <td align="left"><input type="text" name="nxdnran" size="13" maxlength="1" value="<?php echo $configmmdvm['NXDN']['RAN'];?>" /></td>
+      </tr>
+    <?php } ?>
+    </table>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
+	
 	<div><b><?php echo $lang['fw_config'];?></b></div>
     <table>
     <tr>

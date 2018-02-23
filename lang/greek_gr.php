@@ -26,6 +26,7 @@ $lang = array (
   "dstar_config"                =>  "Ρυθμίσεις D-Star",
   "ysf_config"                  =>  "Ρυθμίσεις Fusion",
   "p25_config"                  =>  "Ρυθμίσεις P25",
+  "nxdn_config"                 =>  "Ρυθμίσεις NXDN",
   "wifi_config"                 =>  "Ρυθμίσεις WiFi",
   "fw_config"                   =>  "Ρυθμίσεις Τείχους Προστασίας",
   "remote_access_pw"            =>  "Κωδικός Πρόσβασης",
@@ -87,6 +88,9 @@ $lang = array (
   // Config Page - P25 Configuration
   "p25_startup_host"            =>  "Εξυπηρετητής Εκκίνησης P25",
   "p25_nac"                     =>  "P25 NAC",
+  // Config Page - NXDN Configuration
+  "nxdn_startup_host"            =>  "Εξυπηρετητής Εκκίνησης NXDN",
+  "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Πρόσβαση στον Πίνακα Ελέγχου",
   "fw_irc"                      =>  "Απομακρυσμένος ircDDGBateway",
@@ -107,6 +111,8 @@ $lang = array (
   "ysf_net"                     =>  "Δίκτυο YSF",
   "p25_radio"                   =>  "Ασύρματος P25",
   "p25_net"                     =>  "Δίκτυο P25",
+  "nxdn_radio"                  =>  "Ασύρματος NXDN",
+  "nxdn_net"                    =>  "Δίκτυο NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Ωρα",
   "mode"                        =>  "Λειτουργία",

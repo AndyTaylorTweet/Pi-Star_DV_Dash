@@ -25,6 +25,7 @@ $lang = array (
   "dstar_config"                =>  "D-Star configuratie",
   "ysf_config"                  =>  "Yaesu System Fusion configuratie",
   "p25_config"                  =>  "P25 configuratie",
+  "nxdn_config"                 =>  "NXDN configuratie",
   "wifi_config"                 =>  "Wireless configuratie",
   "fw_config"                   =>  "Firewall configuratie",
   "remote_access_pw"            =>  "Remote Access paswoord",
@@ -86,6 +87,9 @@ $lang = array (
   // Config Page - P25 Configuration
   "p25_startup_host"            =>  "P25 standaard Host",
   "p25_nac"                     =>  "P25 NAC",
+  // Config Page - NXDN Configuration
+  "nxdn_startup_host"            =>  "NXDN standaard Host",
+  "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Dashboard toegang",
   "fw_irc"                      =>  "ircDDGBateway op afstand",
@@ -106,6 +110,8 @@ $lang = array (
   "ysf_net"                     =>  "YSF netwerk",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "P25 netwerk",
+  "nxdn_radio"                  =>  "NXDN Radio",
+  "nxdn_net"                    =>  "NXDN netwerk",
   // Dashboard Front Page - Calls
   "time"                        =>  "Tijd",
   "mode"                        =>  "Mode",

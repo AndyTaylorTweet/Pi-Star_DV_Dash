@@ -27,6 +27,7 @@ $lang = array (
   "dstar_config"                =>  "D-Star 配置",
   "ysf_config"                  =>  "Yaesu System Fusion 配置",
   "p25_config"                  =>  "P25 配置",
+  "nxdn_config"                 =>  "NXDN 配置",
   "fw_config"                   =>  "防火墙配置",
   "remote_access_pw"            =>  "远程访问密码",
   // Config Page - Section General
@@ -87,6 +88,9 @@ $lang = array (
   // Config Page - P25 Configuration
   "p25_startup_host"            =>  "P25 默认服务器",
   "p25_nac"                     =>  "P25 NAC",
+  // Config Page - NXDN Configuration
+  "nxdn_startup_host"            =>  "NXDN 默认服务器",
+  "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "仪表盘访问",
   "fw_irc"                      =>  "ircDDBGateway 远程",
@@ -107,6 +111,8 @@ $lang = array (
   "ysf_net"                     =>  "YSF 网络",
   "p25_radio"                   =>  "P25 电台",
   "p25_net"                     =>  "P25 网络",
+  "nxdn_radio"                  =>  "NXDN 电台",
+  "nxdn_net"                    =>  "NXDN 网络",
   // Dashboard Front Page - Calls
   "time"                        =>  "时间",
   "mode"                        =>  "模式",

@@ -26,6 +26,7 @@ $lang = array (
   "dstar_config"                =>  "D-Star Konfigurasjon",
   "ysf_config"                  =>  "Yaesu System Fusion Konfigurasjon",
   "p25_config"                  =>  "P25 Konfigurasjon",
+  "nxdn_config"                 =>  "NXDN Konfigurasjon",
   "wifi_config"                 =>  "Trådløs Konfigurasjon",
   "fw_config"                   =>  "Firewall Konfigurasjon",
   "remote_access_pw"            =>  "Fjerntilgangs passord",
@@ -85,8 +86,11 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Oppstarts Vert",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 Oppstarts vert",
+  "p25_startup_host"            =>  "P25 Oppstarts Vert",
   "p25_nac"                     =>  "P25 NAC",
+  // Config Page - NXDN Configuration
+  "nxdn_startup_host"            =>  "NXDN Oppstarts Vert",
+  "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Skrivebord Adgang",
   "fw_irc"                      =>  "ircDDGBateway Remote",
@@ -107,6 +111,8 @@ $lang = array (
   "ysf_net"                     =>  "YSF Nettverk",
   "p25_radio"                   =>  "P25 Radio",
   "p25_net"                     =>  "P25 Nettverk",
+  "nxdn_radio"                  =>  "NXDN Radio",
+  "nxdn_net"                    =>  "NXDN Nettverk",
   // Dashboard Front Page - Calls
   "time"                        =>  "Tid",
   "mode"                        =>  "Mode",

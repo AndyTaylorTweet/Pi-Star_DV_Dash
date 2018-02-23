@@ -84,7 +84,8 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 		elseif ($mode == "NXDN Network") {
-			if (isProcessRunning("NXDNGateway")) {
+			// if (isProcessRunning("NXDNGateway")) {
+			if (isProcessRunning("MMDVMHost")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
@@ -280,6 +281,14 @@ function getDVModemFirmware() {
 // M: 2017-07-08 15:16:19.551 YSF, received RF end of transmission, 5.1 seconds, BER: 3.8%
 // M: 2017-07-08 15:16:21.711 YSF, received network data from G0NEF      to ALL        at MB6IBK
 // M: 2017-07-08 15:16:30.994 YSF, network watchdog has expired, 5.0 seconds, 0% packet loss, BER: 0.0%
+// M: 2017-04-18 08:00:41.977 NXDN, received RF transmission from MW0MWZ to TG 65000
+// M: 2017-04-18 08:00:42.131 Debug: NXDNRX: pos/neg/centre/threshold 106 -105 0 106
+// M: 2017-04-18 08:00:42.135 Debug: NXDNRX: sync found in Ldu pos/centre/threshold 3986 9 104
+// M: 2017-04-18 08:00:42.312 Debug: NXDNRX: pos/neg/centre/threshold 267 -222 22 245
+// M: 2017-04-18 08:00:42.316 Debug: NXDNRX: sync found in Ldu pos/centre/threshold 3986 10 112
+// M: 2017-04-18 08:00:42.337 NXDN, received RF end of transmission, 0.4 seconds, BER: 0.0%
+// M: 2017-04-18 08:00:43.728 NXDN, received network transmission from 10999 to TG 65000
+// M: 2017-04-18 08:00:45.172 NXDN, network end of transmission, 1.8 seconds, 0% packet loss
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
 	$heardList = array();
@@ -303,6 +312,10 @@ function getHeardList($logLines) {
 	$p25loss = "";
 	$p25ber = "";
 	$p25rssi = "";
+	$nxdnduration = "";
+	$nxdnloss = "";
+	$nxdnber = "";
+	$nxdnrssi = "";
 	foreach ($logLines as $logLine) {
 		$duration = "";
 		$loss = "";
@@ -409,6 +422,12 @@ function getHeardList($logLines) {
 						$p25ber = $ber;
 						$p25rssi = $rssi;
 						break;
+					case "NXDN":
+						$nxdnduration = $duration;
+						$nxdnloss = $loss;
+						$nxdnber = $ber;
+						$nxdnrssi = $rssi;
+						break;
 				}
 			}
 		}
@@ -465,6 +484,12 @@ function getHeardList($logLines) {
 				$ber = $p25ber;
 				$rssi = $p25rssi;
 				break;
+			case "NXDN":
+				$duration = $nxdnduration;
+				$loss = $nxdnloss;
+				$ber = $nxdnber;
+				$rssi = $nxdnrssi;
+				break;
 		}
 		
 		// Callsign or ID should be less than 11 chars long, otherwise it could be errorneous
@@ -486,7 +511,7 @@ function getLastHeard($logLines) {
 	$heardList = getHeardList($logLines);
 	$counter = 0;
 	foreach ($heardList as $listElem) {
-		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || (startsWith($listElem[1], "DMR")) ) {
+		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || ($listElem[1] == "NXDN") || (startsWith($listElem[1], "DMR")) ) {
 			if(!(array_search($listElem[2]."#".$listElem[1].$listElem[3], $heardCalls) > -1)) {
 				array_push($heardCalls, $listElem[2]."#".$listElem[1].$listElem[3]);
 				array_push($lastHeard, $listElem);
@@ -542,6 +567,12 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 		}
 		else if ($source == "Net" && $mode === "P25") {
 			$hangtime = getConfigItem("P25 Network", "ModeHang", $mmdvmconfigs);
+		}
+		else if ($source == "RF" && $mode === "NXDN") {
+			$hangtime = getConfigItem("NXDN", "ModeHang", $mmdvmconfigs);
+		}
+		else if ($source == "Net" && $mode === "NXDN") {
+			$hangtime = getConfigItem("NXDN Network", "ModeHang", $mmdvmconfigs);
 		}
 		else {
 			$hangtime = getConfigItem("General", "RFModeHang", $mmdvmconfigs);

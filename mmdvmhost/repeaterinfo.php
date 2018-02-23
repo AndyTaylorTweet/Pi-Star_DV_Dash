@@ -93,6 +93,12 @@ if (isset($lastHeard[0])) {
         	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
         	        echo "<td style=\"background:#f9f;\">Listening P25</td>";
         	        }
+		elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'NXDN') {
+        	        echo "<td style=\"background:#4aa361;\">RX NXDN</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'NXDN') {
+        	        echo "<td style=\"background:#c9f;\">Listening NXDN</td>";
+        	        }
         	else {
         	        echo "<td>".getActualMode($lastHeard, $mmdvmconfigs)."</td>";
         	        }
@@ -232,10 +238,24 @@ if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode 
 	echo "<table>\n";
 	if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
 		echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
-		echo "<tr><th>NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
+		echo "<tr><th style=\"width:70px\">NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
 	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
+	echo "</table>\n";
+}
+
+$testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
+if ( $testMMDVModeNXDN == 1 ) { //Hide the NXDN information when NXDN Network mode not enabled.
+	echo "<br />\n";
+	echo "<table>\n";
+	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
+		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
+		echo "<tr><th style=\"width:70px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
+	}
+	echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
+	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Linked to: TG65000</td></tr>\n";
+	//echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
 	echo "</table>\n";
 }
 ?>
