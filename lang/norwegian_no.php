@@ -86,8 +86,11 @@ $lang = array (
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Oppstarts Vert",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 Oppstarts vert",
+  "p25_startup_host"            =>  "P25 Oppstarts Vert",
   "p25_nac"                     =>  "P25 NAC",
+  // Config Page - NXDN Configuration
+  "nxdn_startup_host"            =>  "NXDN Oppstarts Vert",
+  "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Skrivebord Adgang",
   "fw_irc"                      =>  "ircDDGBateway Remote",
