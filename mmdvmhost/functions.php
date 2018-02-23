@@ -711,6 +711,7 @@ function getActualLink($logLines, $mode) {
 	if (isProcessRunning("P25Gateway")) {
 	    foreach($logLines as $logLine) {
                $to = "";
+	       if (strpos($logLine,"Loaded")) { continue; }
                if (strpos($logLine,"Linked to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
