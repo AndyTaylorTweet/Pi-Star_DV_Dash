@@ -822,5 +822,5 @@ $P25Gatewayconfigs = getP25GatewayConfig();
 $logLinesP25Gateway = getP25GatewayLog();
 $reverseLogLinesP25Gateway = $logLinesP25Gateway;
 array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
-$ysf2dmronfigs = getYSF2DMRConfig();
+$ysf2dmrconfigs = getYSF2DMRConfig();
 ?>
