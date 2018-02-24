@@ -136,7 +136,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 	}
-	elseif (isYSF2DMRenabled($ysf2dmrconfigs) == 1) {}
+	//elseif (isYSF2DMRenabled($ysf2dmrconfigs) == 1) {}
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
     }
