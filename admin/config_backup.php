@@ -64,6 +64,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
@@ -148,6 +149,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl stop pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
 			shell_exec('sudo systemctl stop pistar-remote.service 2>&1');	//PiStar-Remote Service
 			shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
+			shell_exec('sudo systemctl stop ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
 			
 			// Make the disk Writable
@@ -183,6 +185,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start pistar-remote.service 2>&1');		//PiStar-Remote Service
 			shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
 			shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
+			shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
 			shell_exec('sudo systemctl start cron.service 2>&1');			//Cron
 			
