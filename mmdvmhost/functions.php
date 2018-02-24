@@ -26,7 +26,7 @@ function getYSFGatewayConfig() {
 function getYSF2DMRConfig() {
 	// loads ysf2dmr config into array for further use
 	$conf = array();
-	if ( (file_exists('/etc/ysf2dmr')) && ($configs = fopen('/etc/ysf2dmr', 'r')) ) {
+	if ($configs = fopen('/etc/ysf2dmr', 'r')) {
 		while ($config = fgets($configs)) {
 			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
 		}
