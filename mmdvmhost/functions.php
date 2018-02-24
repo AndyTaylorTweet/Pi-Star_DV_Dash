@@ -118,7 +118,7 @@ function showMode($mode, $mmdvmconfigs) {
 		}
 	}
 	elseif ($mode == "YSF2DMR") {
-		if (isProcessRunning("MMDVMHost")) {
+		if (isProcessRunning("YSF2DMR")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
