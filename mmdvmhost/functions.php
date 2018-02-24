@@ -123,14 +123,14 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 	}
-	elseif (($mode == "YSF2DMR") && file_exists('/etc/ysf2dmr') && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
+	elseif (($mode == "YSF2DMR") && (file_exists('/etc/ysf2dmr')) && (isset($configysf2dmr['Enabled']['Enabled'])) && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
 		if (isProcessRunning("MMDVMHost")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
 			echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 		}
 	}
-	elseif (($mode == "YSF2DMR Network") && file_exists('/etc/ysf2dmr') && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
+	elseif (($mode == "YSF2DMR Network") && (file_exists('/etc/ysf2dmr')) && (isset($configysf2dmr['Enabled']['Enabled'])) && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
 		if (isProcessRunning("YSF2DMR")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
