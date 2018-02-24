@@ -117,12 +117,20 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 	}
-	//if ( ($mode == "YSF2DMR") && (isProcessRunning("YSF2DMR")) ){
-	//	echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
-	//} else { echo "<td style=\"background:#606060; color:#b0b0b0;\">"; }
-	//if ( ($mode == "YSF2DMR Network") && (isProcessRunning("YSF2DMR")) ) {
-	//	echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
-	//} else { echo "<td style=\"background:#606060; color:#b0b0b0;\">"; }
+	elseif ($mode == "YSF2DMR") {
+		if (isProcessRunning("MMDVMHost")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+		}
+	}
+	elseif ($mode == "YSF2DMR Network") {
+		if (isProcessRunning("YSF2DMR")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+		}
+	}
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
     }
