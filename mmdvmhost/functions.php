@@ -24,10 +24,10 @@ function getYSFGatewayConfig() {
 }
 
 // Load the ysf2dmr config file
-//if (file_exists('/etc/ysf2dmr')) {
-//	$ysf2dmrConfigFile = '/etc/ysf2dmr';
-//	if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
-//}
+if (file_exists('/etc/ysf2dmr')) {
+	$ysf2dmrConfigFile = '/etc/ysf2dmr';
+	if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
+}
 
 function getP25GatewayConfig() {
 	// loads MMDVM.ini into array for further use
@@ -123,20 +123,20 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 	}
-	//elseif (($mode == "YSF2DMR") && file_exists('/etc/ysf2dmr') && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
-	//	if (isProcessRunning("MMDVMHost")) {
-	//		echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
-	//	} else {
-	//		echo "<td style=\"background:#b00; color:#500; width:50%;\">";
-	//	}
-	//}
-	//elseif (($mode == "YSF2DMR Network") && file_exists('/etc/ysf2dmr') && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
-	//	if (isProcessRunning("YSF2DMR")) {
-	//		echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
-	//	} else {
-	//		echo "<td style=\"background:#b00; color:#500; width:50%;\">";
-	//	}
-	//}
+	elseif (($mode == "YSF2DMR") && file_exists('/etc/ysf2dmr') && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
+		if (isProcessRunning("MMDVMHost")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+		}
+	}
+	elseif (($mode == "YSF2DMR Network") && file_exists('/etc/ysf2dmr') && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
+		if (isProcessRunning("YSF2DMR")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+		}
+	}
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
     }
