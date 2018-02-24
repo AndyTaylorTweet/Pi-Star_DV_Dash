@@ -23,10 +23,23 @@ function getYSFGatewayConfig() {
 	return $conf;
 }
 
-// Load the ysf2dmr config file
-if (file_exists('/etc/ysf2dmr')) {
-	$ysf2dmrConfigFile = '/etc/ysf2dmr';
-	if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
+function getYSF2DMRConfig() {
+	// loads ysf2dmr into array for further use
+	$conf = array();
+	if (file_exists('/etc/ysf2dmr')) {
+		if ($configs = fopen('/etc/ysf2dmr', 'r')) {
+			while ($config = fgets($configs)) {
+				array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+			}
+			fclose($configs);
+		}
+	}
+	return $conf;
+}
+
+function getYSF2DMREnabled($ysf2dmrconfigs) {
+	// returns Callsign from MMDVM-config
+	return getConfigItem("Enabled", "Enabled", $ysf2dmrconfigs);
 }
 
 function getP25GatewayConfig() {
@@ -123,7 +136,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 	}
-	elseif (($mode == "YSF2DMR") && (file_exists('/etc/ysf2dmr')) && (isset($configysf2dmr['Enabled']['Enabled'])) && ($configysf2dmr['Enabled']['Enabled'] == 1)) {
+	elseif (($mode == "YSF2DMR") && (file_exists('/etc/ysf2dmr')) && ($getYSF2DMREnabled() == 1) ) {
 		if (isProcessRunning("MMDVMHost")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
@@ -824,4 +837,5 @@ $P25Gatewayconfigs = getP25GatewayConfig();
 $logLinesP25Gateway = getP25GatewayLog();
 $reverseLogLinesP25Gateway = $logLinesP25Gateway;
 array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
+$ysf2dmrconfigs = getYSF2DMRConfig();
 ?>
