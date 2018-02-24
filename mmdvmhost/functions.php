@@ -117,14 +117,14 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 	}
-	elseif ($mode == "YSF2DMR") {
-		if (isProcessRunning("YSF2DMR")) {
+	elseif ( ($mode == "YSF2DMR") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
+		if ( (isProcessRunning("YSF2DMR")) && (isProcessRunning("MMDVMHost")) ) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
 		}
 	}
-	elseif ($mode == "YSF2DMR Network") {
+	elseif ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("YSF2DMR")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
