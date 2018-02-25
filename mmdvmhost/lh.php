@@ -32,9 +32,11 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 		echo"<td align=\"left\">$local_time</td>";
 		echo"<td align=\"left\">$listElem[1]</td>";
 		if ( $listElem[3] && $listElem[3] != '    ' ) {
-			echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
+			echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" data-featherlight=\"iframe\" data-featherlight-iframe-width=\"780\" data-featherlight-iframe-height=\"800\">$listElem[2]</a>/$listElem[3]</td>";
+			//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
 		} else {
-			echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
+			echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" data-featherlight=\"iframe\" data-featherlight-iframe-width=\"780\" data-featherlight-iframe-height=\"800\">$listElem[2]</a></td>";
+			//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 		}
 
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
