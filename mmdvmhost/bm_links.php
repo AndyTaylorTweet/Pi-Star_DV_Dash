@@ -99,7 +99,7 @@ if ( $testMMDVModeDMR == 1 ) {
     echo '    <tr>'."\n";
     echo '<td>'.$dmrID.'</td>';
     echo '<td>'.$bmReflectorActive.'</td>';
-    echo '<td></td>';
+    echo '<td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
     echo '<td></td>';
     echo '</tr>'."\n";
     echo '  </table>'."\n";
