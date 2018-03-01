@@ -78,7 +78,9 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '<td>'.$bmStaticTGList.'</td>';
   echo '<td>'.$bmDynamicTGList.'</td>';
   echo '    </tr>'."\n";
-
+  if (file_exists('/etc/bmapi.key')) {
+    echo '<tr><td></td><td></td><td></td><td></td><td></td><td>BMTools</td></tr>'."\n";
+  }
   echo '  </table>'."\n";
   echo '  <br />'."\n";
   }
