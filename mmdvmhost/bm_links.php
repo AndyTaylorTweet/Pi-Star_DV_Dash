@@ -82,7 +82,7 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '<td>'.$bmReflectorActive.'</td>';
   echo '<td>'.$bmStaticTGList.'</td>';
   echo '<td>'.$bmDynamicTGList.'</td>';
-  echo '    </tr>'."\n";
+  echo '</tr>'."\n";
   echo '  </table>'."\n";
   echo '  <br />'."\n";
 
@@ -96,6 +96,12 @@ if ( $testMMDVModeDMR == 1 ) {
       <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
       <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
     </tr>'."\n";
+    echo '    <tr>'."\n";
+    echo '<td>'.$dmrMasterHost.'</td>';
+    echo '<td>'.$bmReflectorActive.'</td>';
+    echo '<td></td>';
+    echo '<td></td>';
+    echo '</tr>'."\n";
     echo '  </table>'."\n";
     echo '  <br />'."\n";
     }
