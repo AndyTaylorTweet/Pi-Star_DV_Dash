@@ -97,16 +97,16 @@ if ( $testMMDVModeDMR == 1 ) {
       <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
     </tr>'."\n";
     echo '    <tr>'."\n";
-    echo '<td>'.$dmrID.'</td>';
+    echo '      <td>'.$dmrID.'</td>';
     echo '<td><select name="reflectorNr">'."\n";
       for ($refNrBase = 1; $refNrBase <= 999; $refNrBase++) {
         $refNr = 4000 + $refNrBase;
-        if ( $bmReflectorActive == "None" ) { echo '<option selected="selected" value="4000">None</option>'."\n"; }
-        elseif ( "REF".$refNr == $bmReflectorActive ) { echo '<option selected="selected" value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
-        else { echo '<option value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
+        if ( $bmReflectorActive == "None" ) { echo '        <option selected="selected" value="4000">None</option>'."\n"; }
+        elseif ( "REF".$refNr == $bmReflectorActive ) { echo '        <option selected="selected" value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
+        else { echo '        <option value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
       }
-    echo '</td>';
-    echo '<td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
+    echo '        </td>'."\n";
+    echo '      <td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
     echo '<td><input type="submit" value="Request Change" /></td>';
     echo '</tr>'."\n";
     echo '  </table>'."\n";
