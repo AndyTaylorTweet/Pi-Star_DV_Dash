@@ -100,7 +100,7 @@ if ( $testMMDVModeDMR == 1 ) {
     echo '<td>'.$dmrID.'</td>';
     echo '<td><select name="reflectorNr">'."\n";
       for ($refNr = 1; $refNr <= 5000; $refNr++) {
-        echo '<option>$refNr</option>'."\n";
+        echo '<option>'.$refNr.'</option>'."\n";
       }
     echo '</td>';
     
