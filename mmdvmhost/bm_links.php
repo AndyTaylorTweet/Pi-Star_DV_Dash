@@ -98,7 +98,13 @@ if ( $testMMDVModeDMR == 1 ) {
     </tr>'."\n";
     echo '    <tr>'."\n";
     echo '<td>'.$dmrID.'</td>';
-    echo '<td>'.$bmReflectorActive.'</td>';
+    echo '<td><select name="reflectorNr">'."\n";
+      for ($refNr = 1; $refNr <= 5000; $refNr++) {
+        echo '<option>$refNr</option>'."\n";
+      }
+    echo '</td>';
+    
+    //echo '<td>'.$bmReflectorActive.'</td>';
     echo '<td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
     echo '<td><input type="submit" value="Request Change" /></td>';
     echo '</tr>'."\n";
