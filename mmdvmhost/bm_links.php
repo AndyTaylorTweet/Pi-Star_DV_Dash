@@ -91,13 +91,13 @@ if ( $testMMDVModeDMR == 1 ) {
     echo '<b>BrandMeister Manager</b>'."\n";
     echo '<table>
     <tr>
-      <th><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
+      <th><a class=tooltip href="#">DMR ID<span><b>DMR ID</b></span></a></th>
       <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
       <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
       <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
     </tr>'."\n";
     echo '    <tr>'."\n";
-    echo '<td>'.$dmrMasterHost.'</td>';
+    echo '<td>'.$dmrID.'</td>';
     echo '<td>'.$bmReflectorActive.'</td>';
     echo '<td></td>';
     echo '<td></td>';
