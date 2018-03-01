@@ -88,7 +88,16 @@ if ( $testMMDVModeDMR == 1 ) {
 
   // If there is a BM API Key
   if (isset($bmAPIkey)) {
-    echo 'BM tools here'."\n";
+    echo '<b>BrandMeister Manager</b>'."\n";
+    echo '<table>
+    <tr>
+      <th><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
+      <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
+      <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+      <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
+    </tr>'."\n";
+    echo '  </table>'."\n";
+    echo '  <br />'."\n";
     }
   }
 }
