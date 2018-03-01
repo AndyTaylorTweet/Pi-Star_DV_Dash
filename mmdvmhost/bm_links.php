@@ -78,12 +78,39 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '<td>'.$bmStaticTGList.'</td>';
   echo '<td>'.$bmDynamicTGList.'</td>';
   echo '    </tr>'."\n";
-  // If there is a BM API Key, then add the toolkit
-  if (file_exists('/etc/bmapi.key')) {
-    echo '<tr><td></td><td>Disconnect</td><td></td><td>Disconnect</td><td>Drop</td><td>Drop</td></tr>'."\n";
-  }
   echo '  </table>'."\n";
   echo '  <br />'."\n";
+
+  // If there is a BM API Key
+  if (file_exists('/etc/bmapi.key')) {
+    if (!empty($_POST)):
+      //actions go here
+  
+      //end of actions
+      unset($_POST);
+      echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+
+    else:
+      // code to create post data
+      echo '<b>BrandMeister Manager</b>'."\n";
+      echo '  <table>'."\n";
+      echo '    <tr>'."\n";
+      echo '      <th><a class=tooltip href="#">Default Ref<span><b>Default Reflector</b></span></a></th>'."\n";
+      echo '      <th><a class=tooltip href="#">Ref Timeout<span><b>Ref timeout</b></span></a></th>'."\n";
+      echo '      <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>'."\n";
+      echo '      <th><a class=tooltip href="#">Drop Call(s)<span><b>Drop Active Calls</b></span></a></th>'."\n";
+      echo '      <th><a class=tooltip href="#">Drop Dynamic TGs<span><b>Drop Dynamic TGs</b></span></a></th>'."\n";
+      echo '      <th><a class=tooltip href="#">Action<span><b>Action Button</b></span></a></th>'."\n";
+      echo '    </tr>'."\n";
+
+      //echo '    <tr>'."\n";
+      //echo '      <td></td><td>Disconnect</td><td></td><td>Disconnect</td><td>Drop</td><td>Drop</td>'."\n";
+      //echo '    </tr>'."\n";
+      echo '  </table>'."\n";
+      echo '<br />'."\n";
+
+    endif;
+    }
   }
 }
 ?>
