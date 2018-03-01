@@ -10,7 +10,7 @@ $testMMDVModeDMR = getConfigItem("DMR", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeDMR == 1 ) {
   //setup BM API Key
   $bmAPIkeyFile = '/etc/bmapi.key';
-  if (fopen($bmAPIkeyFile,'r')) { $configBMapi = parse_ini_file($bmAPIkeyFile, true);
+  if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) { $configBMapi = parse_ini_file($bmAPIkeyFile, true);
     $bmAPIkey = $configBMapi['key']['apikey']; }
   
   //Load the dmrgateway config file
