@@ -101,8 +101,8 @@ if ( $testMMDVModeDMR == 1 ) {
     echo '<td><select name="reflectorNr">'."\n";
       for ($refNrBase = 1; $refNrBase <= 1000; $refNrBase++) {
         $refNr = 4000 + $refNrBase;
-        if ( "REF".$refNr == $bmReflectorActive ) { echo '<option selected="selected">'.$refNr.'</option>'."\n"; }
-        else { echo '<option>'.$refNr.'</option>'."\n"; }
+        if ( "REF".$refNr == $bmReflectorActive ) { echo '<option selected="selected">REF'.$refNr.'</option>'."\n"; }
+        else { echo '<option>REF'.$refNr.'</option>'."\n"; }
       }
     echo '</td>';
     
