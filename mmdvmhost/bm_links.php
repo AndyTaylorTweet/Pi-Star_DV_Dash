@@ -122,8 +122,7 @@ if ( $testMMDVModeDMR == 1 ) {
     );
 
     $context = stream_context_create($opts);
-    $result = fopen($bmAPIurl, 'r', false, $context);
-    //$result = file_get_contents($bmAPIurl, false, $context);
+    $result = file_get_contents($bmAPIurl, false, $context);
 
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
