@@ -105,7 +105,7 @@ if($_POST) {
 
 		// Updates complete - copy the working file back to the proper location
 		exec('sudo mount -o remount,rw /');				// Make rootfs writable
-		exec('sudo cp /tmp/d39fk36sg55433gd.tmp /etc/bmapi.key');	// Move the file back
+		exec('sudo mv /tmp/d39fk36sg55433gd.tmp /etc/bmapi.key');	// Move the file back
 		exec('sudo chmod 644 /etc/bmapi.key');				// Set the correct runtime permissions
 		exec('sudo chown root:root /etc/bmapi.key');			// Set the owner
 		exec('sudo mount -o remount,ro /');				// Make rootfs read-only
