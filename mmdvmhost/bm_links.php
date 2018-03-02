@@ -149,7 +149,7 @@ if ( $testMMDVModeDMR == 1 ) {
         }
       echo '        </td>'."\n";
       echo '      <td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
-      echo '<td><input type="submit" value="Request Change" /></td>';
+      echo '<td><input type="submit" value="Request Change" name="refSubmit" /></td>';
       echo '</tr>'."\n";
       //echo '  </table>'."\n";
       echo '<tr>
@@ -162,7 +162,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<td><input type="text" name="tgNr" size="15" maxlength="7" /></td>';
       echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
       echo '<td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
-      echo '<td><input type="submit" value="Request Change" /></td>';
+      echo '<td><input type="submit" value="Request Change" name="tgSubmit" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
       echo '  <br />'."\n";
