@@ -144,8 +144,8 @@ if ( $testMMDVModeDMR == 1 ) {
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-    echo $bmAPIurl;
-    //echo $result;
+    //echo $bmAPIurl;
+    echo $result;
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
 
