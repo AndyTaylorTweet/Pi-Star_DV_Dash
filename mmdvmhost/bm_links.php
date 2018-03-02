@@ -93,10 +93,10 @@ if ( $testMMDVModeDMR == 1 ) {
     if ($_POST["Link"] == "UNLINK") {}
     
     // Build the JSON
-    $headers = array(
-      'Content-Type:application/json',
-      'Authorization: Basic '.base64_encode($bmAPIkey.":")
-    );
+    //$headers = array(
+    //  'Content-Type:application/json',
+    //  'Authorization: Basic '.base64_encode($bmAPIkey.":")
+    //);
     $bmAPIurl = "https://api.brandmeister.network/v1.0/repeater/"
     $curlHandler = curl_init($bmAPIurl);
     $jsonData = array(
