@@ -97,12 +97,12 @@ if ( $testMMDVModeDMR == 1 ) {
     //  'Content-Type:application/json',
     //  'Authorization: Basic '.base64_encode($bmAPIkey.":")
     //);
-    $bmAPIurl = "https://api.brandmeister.network/v1.0/repeater/"
-    $curlHandler = curl_init($bmAPIurl);
-    $jsonData = array(
-      'username' => 'MyUsername',
-      'password' => 'MyPassword'
-    );
+   // $bmAPIurl = "https://api.brandmeister.network/v1.0/repeater/"
+    //$curlHandler = curl_init($bmAPIurl);
+    //$jsonData = array(
+    //  'username' => 'MyUsername',
+    //  'password' => 'MyPassword'
+    //);
     
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
