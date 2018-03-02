@@ -104,21 +104,22 @@ if ( $testMMDVModeDMR == 1 ) {
     
     // Build the JSON
     $postHeaders = array(
-      'Content-Type:application/json',
-      'Authorization: Basic '.base64_encode($bmAPIkey.":")
+      'Content-Type: application/json',
+      'Authorization: Basic '.base64_encode($bmAPIkey.':',
     );
 
     $jsonData = array(
       'talkgroup' => $targetTG,
-      'timeslot' => $targetSlot
+      'timeslot' => $targetSlot,
     );
 
     $opts = array(
       'http' => array(
       'header'  => $postHeaders,
       'method'  => 'POST',
-      'content' => json_encode($jsonData)
-      //'content' => http_build_query($jsonData)
+      'data' => json_encode($jsonData),
+      'password' => '',
+      'success' => '',
       )
     );
 
