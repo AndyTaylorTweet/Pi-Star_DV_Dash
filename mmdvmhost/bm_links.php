@@ -101,7 +101,7 @@ if ( $testMMDVModeDMR == 1 ) {
 
     $jsonData = array(
       'talkgroup' => $_POST["reflectorNr"],
-      'timeslot' => '2'
+      'timeslot' => '0'
     );
 
     $opts = array('http' =>
