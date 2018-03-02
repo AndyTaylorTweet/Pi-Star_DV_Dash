@@ -160,7 +160,7 @@ if ( $testMMDVModeDMR == 1 ) {
       </tr>'."\n";
       echo '    <tr>';
       echo '<td></td>';
-      echo '<td><input type="radio" name="TS" value="0" checked="checked" />HotSpot <input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" />TS2</td>';
+      echo '<td><<input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked"/>TS2</td>';
       echo '<td></td><td></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
