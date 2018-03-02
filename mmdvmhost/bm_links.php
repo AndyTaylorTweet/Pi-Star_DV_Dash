@@ -121,7 +121,8 @@ if ( $testMMDVModeDMR == 1 ) {
       'http' => array(
       'header'  => $postHeaders,
       'method'  => 'POST',
-      'content' => json_encode($postData),
+      //'content' => json_encode($postData),
+      'content' => http_build_query($postData),
       'password' => '',
       'success' => '',
       ),
