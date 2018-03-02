@@ -90,8 +90,8 @@ if ( $testMMDVModeDMR == 1 ) {
   $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
   if (!empty($_POST)): // Data has been posted
     // Figure out what has been posted
-    if ($_POST["Link"] == "LINK") { $bmAPIurl = $bmAPIurl."reflector/?action=ADD&id=".$dmrID; }
-    if ($_POST["Link"] == "UNLINK") { $bmAPIurl = $bmAPIurl."reflector/?action=DEL&id=".$dmrID; }
+    if ($_POST["Link"] == "LINK") { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
+    if ($_POST["Link"] == "UNLINK") { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
 
     // Build the JSON
     $postHeaders = array(
@@ -100,7 +100,8 @@ if ( $testMMDVModeDMR == 1 ) {
     );
 
     $jsonData = array(
-      'reflector' => $_POST["reflectorNr"]
+      'talkgroup' => $_POST["reflectorNr"],
+      'timeslot' => '0'
     );
 
     $opts = array('http' =>
