@@ -103,10 +103,7 @@ if ( $testMMDVModeDMR == 1 ) {
     if (isset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
     
     // Build the JSON
-    $postHeaders = array(
-      'Content-Type: application/json',
-      'Authorization: Basic '.base64_encode($bmAPIkey.':'
-    );
+    $postHeaders = array('Content-Type: application/json', 'Authorization: Basic '.base64_encode($bmAPIkey));
 
     $jsonData = array(
       'talkgroup' => $targetTG,
