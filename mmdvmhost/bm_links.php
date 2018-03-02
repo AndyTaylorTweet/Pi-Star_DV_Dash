@@ -179,7 +179,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '</tr>'."\n";
       //echo '  </table>'."\n";
       echo '<tr>
-        <th><a class=tooltip href="#">Talk Group<span><b>Enter the Talkgroup number</b></span></a></th>
+        <th><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
         <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
         <th><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
