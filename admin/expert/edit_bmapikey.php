@@ -64,7 +64,7 @@ exec('sudo chown www-data:www-data /tmp/d39fk36sg55433gd.tmp');
 exec('sudo chmod 664 /tmp/d39fk36sg55433gd.tmp');
   
 //ini file to open
-$filepath = '/tmp/d39fk36sg55433gd.tmpp';
+$filepath = '/tmp/d39fk36sg55433gd.tmp';
 
 //after the form submit
 if($_POST) {
