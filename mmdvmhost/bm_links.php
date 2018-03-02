@@ -88,17 +88,32 @@ if ( $testMMDVModeDMR == 1 ) {
 
   // If there is a BM API Key
   if (!empty($_POST)): // Data has been posted
+    // Figure out what has been posted
+    if ($_POST["Link"] == "LINK") {}
+    if ($_POST["Link"] == "UNLINK") {}
     
-  // Output to the browser
-  echo '<b>BrandMeister Manager</b>'."\n";
-  echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-  echo "SOME OUTPUT";
-  echo "</td></tr>\n</table>\n";
-  echo "<br />\n";
+    // Build the JSON
+    $headers = array(
+      'Content-Type:application/json',
+      'Authorization: Basic '.base64_encode($bmAPIkey.":")
+    );
+    $bmAPIurl = "https://api.brandmeister.network/v1.0/repeater/"
+    $curlHandler = curl_init($bmAPIurl);
+    $jsonData = array(
+      'username' => 'MyUsername',
+      'password' => 'MyPassword'
+    );
     
-  // Clean up...
-  unset($_POST);
-  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+    // Output to the browser
+    echo '<b>BrandMeister Manager</b>'."\n";
+    echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+    echo "SOME OUTPUT";
+    echo "</td></tr>\n</table>\n";
+    echo "<br />\n";
+    
+    // Clean up...
+    unset($_POST);
+    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 
   else: // Do this when we are not handling post data
     if (isset($bmAPIkey)) {
