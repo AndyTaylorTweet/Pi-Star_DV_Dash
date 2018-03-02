@@ -89,10 +89,18 @@ if ( $testMMDVModeDMR == 1 ) {
   // If there is a BM API Key
   $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
   if (!empty($_POST)): // Data has been posted
-    // Figure out what has been posted
-    if ($_POST["Link"] == "LINK") { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-    if ($_POST["Link"] == "UNLINK") { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
+    // Are we a repeater
+    if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
+      unset($_POST["TS"]); $targetSlot = "0";
+      } else {
+        $targetSlot = $_POST["TS"];
+      }
 
+    // Figure out what has been posted
+    if ( ($_POST["Link"] == "LINK") && (issset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
+    if ( ($_POST["Link"] == "UNLINK") && (issset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
+    if (issset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
+    
     // Build the JSON
     $postHeaders = array(
       'Content-Type:application/json',
@@ -100,8 +108,8 @@ if ( $testMMDVModeDMR == 1 ) {
     );
 
     $jsonData = array(
-      'talkgroup' => '310',
-      'timeslot' => '0'
+      'talkgroup' => $targetTG,
+      'timeslot' => $targetSlot
     );
 
     $opts = array('http' =>
