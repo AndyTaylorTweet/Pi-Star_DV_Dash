@@ -141,8 +141,5 @@ if ( $testMMDVModeDMR == 1 ) {
       }
   endif;
   }
-
-
-
 }
 
