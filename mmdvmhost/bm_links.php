@@ -164,7 +164,7 @@ if ( $testMMDVModeDMR == 1 ) {
         }
       echo '        </td>'."\n";
       echo '      <td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
-      echo '<td><input type="submit" value="Modify Reflector" name="refSubmit" /><input type="submit" value="Drop QSO" name="dropQso" /></td>';
+      echo '<td><input type="submit" value="Modify Reflector" name="refSubmit" /></td>';
       echo '</tr>'."\n";
       //echo '  </table>'."\n";
       echo '<tr>
@@ -177,9 +177,10 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<td><input type="text" name="tgNr" size="10" maxlength="7" /></td>';
       echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
       echo '<td><input type="radio" name="Action" value="ADD" checked="checked" />Add <input type="radio" name="Action" value="DEL" />Delete</td>';
-      echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
+      echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
+      echo '  <p style="text-align:right;"><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></p>'."\n";
       echo '  <br />'."\n";
       }
 
