@@ -72,6 +72,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	  $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/hosts $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/hostname $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1");
           $output .= "Compressing backup files\n";
