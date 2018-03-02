@@ -105,7 +105,7 @@ if ( $testMMDVModeDMR == 1 ) {
     // Build the JSON
     $postHeaders = array(
       'Content-Type: application/json',
-      'Authorization: Basic '.base64_encode($bmAPIkey).':',
+      'Authorization: Basic '.base64_encode($bmAPIkey),
     );
 
     $jsonData = array(
