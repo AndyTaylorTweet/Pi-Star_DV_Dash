@@ -300,28 +300,28 @@ function getDVModemFirmware() {
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
 	$heardList = array();
-	$ts1duration = "";
-	$ts1loss = "";
-	$ts1ber = "";
-	$ts2duration = "";
-	$ts2loss = "";
-	$ts2ber = "";
-	$dstarduration = "";
-	$dstarloss = "";
-	$dstarber = "";
-	$ysfduration = "";
-        $ysfloss = "";
-        $ysfber = "";
-	$p25duration = "";
-        $p25loss = "";
-        $p25ber = "";
-	$nxdnduration = "";
-        $nxdnloss = "";
-        $nxdnber = "";
+	$ts1duration	= "";
+	$ts1loss	= "";
+	$ts1ber		= "";
+	$ts2duration	= "";
+	$ts2loss	= "";
+	$ts2ber		= "";
+	$dstarduration	= "";
+	$dstarloss	= "";
+	$dstarber	= "";
+	$ysfduration	= "";
+        $ysfloss	= "";
+        $ysfber		= "";
+	$p25duration	= "";
+        $p25loss	= "";
+        $p25ber		= "";
+	$nxdnduration	= "";
+        $nxdnloss	= "";
+        $nxdnber	= "";
 	foreach ($logLines as $logLine) {
-		$duration = "";
-		$loss = "";
-		$ber = "";
+		$duration	= "";
+		$loss		= "";
+		$ber		= "";
 		//removing invalid lines
 		if(strpos($logLine,"BS_Dwn_Act")) {
 			continue;
@@ -381,34 +381,34 @@ function getHeardList($logLines) {
 			} else {
 				switch (substr($logLine, 27, strpos($logLine,",") - 27)) {
 					case "D-Star":
-						$dstarduration = $duration;
-						$dstarloss = $loss;
-						$dstarber = $ber;
+						$dstarduration	= $duration;
+						$dstarloss	= $loss;
+						$dstarber	= $ber;
 						break;
 					case "DMR Slot 1":
-						$ts1duration = $duration;
-						$ts1loss = $loss;
-						$ts1ber = $ber;
+						$ts1duration	= $duration;
+						$ts1loss	= $loss;
+						$ts1ber		= $ber;
 						break;
 					case "DMR Slot 2":
-						$ts2duration = $duration;
-						$ts2loss = $loss;
-						$ts2ber = $ber;
+						$ts2duration	= $duration;
+						$ts2loss	= $loss;
+						$ts2ber		= $ber;
 						break;
 					case "YSF":
-						$ysfduration = $duration;
-						$ysfloss = $loss;
-						$ysfber = $ber;
+						$ysfduration	= $duration;
+						$ysfloss	= $loss;
+						$ysfber		= $ber;
 						break;
 					case "P25":
-						$p25duration = $duration;
-						$p25loss = $loss;
-						$p25ber = $ber;
+						$p25duration	= $duration;
+						$p25loss	= $loss;
+						$p25ber		= $ber;
 						break;
 					case "NXDN":
-						$nxdnduration = $duration;
-						$nxdnloss = $loss;
-						$nxdnber = $ber;
+						$nxdnduration	= $duration;
+						$nxdnloss	= $loss;
+						$nxdnber	= $ber;
 						break;
 				}
 			}
@@ -437,34 +437,34 @@ function getHeardList($logLines) {
 		
 		switch ($mode) {
 			case "D-Star":
-				$duration = $dstarduration;
-				$loss = $dstarloss;
-				$ber = $dstarber;
+				$duration	= $dstarduration;
+				$loss		= $dstarloss;
+				$ber		= $dstarber;
 				break;
 			case "DMR Slot 1":
-				$duration = $ts1duration;
-				$loss = $ts1loss;
-				$ber = $ts1ber;
+				$duration	= $ts1duration;
+				$loss		= $ts1loss;
+				$ber		= $ts1ber;
 				break;
 			case "DMR Slot 2":
-				$duration = $ts2duration;
-				$loss = $ts2loss;
-				$ber = $ts2ber;
+				$duration	= $ts2duration;
+				$loss		= $ts2loss;
+				$ber		= $ts2ber;
 				break;
 			case "YSF":
-                		$duration = $ysfduration;
-                		$loss = $ysfloss;
-                		$ber = $ysfber;
+                		$duration	= $ysfduration;
+                		$loss		= $ysfloss;
+                		$ber		= $ysfber;
                 		break;
 			case "P25":
-                		$duration = $p25duration;
-                		$loss = $p25loss;
-                		$ber = $p25ber;
+                		$duration	= $p25duration;
+                		$loss		= $p25loss;
+                		$ber		= $p25ber;
                 		break;
 			case "NXDN":
-                		$duration = $nxdnduration;
-                		$loss = $nxdnloss;
-                		$ber = $nxdnber;
+                		$duration	= $nxdnduration;
+                		$loss		= $nxdnloss;
+                		$ber		= $nxdnber;
                 		break;
 		}
 		
@@ -569,44 +569,44 @@ function getDSTARLinks() {
 //	$out = "<table>";
 	if ($linkLog = fopen(LINKLOGPATH."/Links.log",'r')) {
 		while ($linkLine = fgets($linkLog)) {
-			$linkDate = "&nbsp;";
-			$protocol = "&nbsp;";
-			$linkType = "&nbsp;";
-			$linkSource = "&nbsp;";
-			$linkDest = "&nbsp;";
-			$linkDir = "&nbsp;";
+			$linkDate	= "&nbsp;";
+			$protocol	= "&nbsp;";
+			$linkType	= "&nbsp;";
+			$linkSource	= "&nbsp;";
+			$linkDest	= "&nbsp;";
+			$linkDir	= "&nbsp;";
 // Reflector-Link, sample:
 // 2011-09-22 02:15:06: DExtra link - Type: Repeater Rptr: DB0LJ	B Refl: XRF023 A Dir: Outgoing
 // 2012-04-03 08:40:07: DPlus link - Type: Dongle Rptr: DB0ERK B Refl: REF006 D Dir: Outgoing
 // 2012-04-03 08:40:07: DCS link - Type: Repeater Rptr: DB0ERK C Refl: DCS001 C Dir: Outgoing
 			if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: (.{8})/',$linkLine,$linx) > 0){
-				$linkDate = $linx[1][0];
-				$protocol = $linx[2][0];
-				$linkType = $linx[3][0];
-				$linkSource = $linx[4][0];
-				$linkDest = $linx[5][0];
-				$linkDir = $linx[6][0];
+				$linkDate	= $linx[1][0];
+				$protocol	= $linx[2][0];
+				$linkType	= $linx[3][0];
+				$linkSource	= $linx[4][0];
+				$linkDest	= $linx[5][0];
+				$linkDir	= $linx[6][0];
 			}
 // CCS-Link, sample:
 // 2013-03-30 23:21:53: CCS link - Rptr: PE1AGO C Remote: PE1KZU	Dir: Incoming
 			if(preg_match_all('/^(.{19}).*(CC[A-Za-z]*).*Rptr: (.{8}).*Remote: (.{8}).*Dir: (.{8})/',$linkLine,$linx) > 0){
-				$linkDate = $linx[1][0];
-				$protocol = $linx[2][0];
-				$linkType = $linx[2][0];
-				$linkSource = $linx[3][0];
-				$linkDest = $linx[4][0];
-				$linkDir = $linx[5][0];
+				$linkDate	= $linx[1][0];
+				$protocol	= $linx[2][0];
+				$linkType	= $linx[2][0];
+				$linkSource	= $linx[3][0];
+				$linkDest	= $linx[4][0];
+				$linkDir	= $linx[5][0];
 			}
 // Dongle-Link, sample: 
 // 2011-09-24 07:26:59: DPlus link - Type: Dongle User: DC1PIA	Dir: Incoming
 // 2012-03-14 21:32:18: DPlus link - Type: Dongle User: DC1PIA Dir: Incoming
 			if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.{6,8}).*Dir: (.*)$/',$linkLine,$linx) > 0){
-				$linkDate = $linx[1][0];
-				$protocol = $linx[2][0];
-				$linkType = $linx[3][0];
-				$linkSource = "&nbsp;";
-				$linkDest = $linx[4][0];
-				$linkDir = $linx[5][0];
+				$linkDate	= $linx[1][0];
+				$protocol	= $linx[2][0];
+				$linkType	= $linx[3][0];
+				$linkSource	= "&nbsp;";
+				$linkDest	= $linx[4][0];
+				$linkDir	= $linx[5][0];
 			}
 //MW0MWZ Mods		$out .= "<tr><td>" . $linkSource . "</td><td>&nbsp;" . $protocol . "-link</td><td>&nbsp;to&nbsp;</td><td>" . $linkDest . "</td><td>&nbsp;" . $linkDir . "</td></tr>";
 			$out = "Linked to <b>" . $linkDest . "</b><br />\n(" . $protocol . " " . $linkDir . ")";
