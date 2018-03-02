@@ -13,28 +13,30 @@ if ( $testMMDVModeDMR == 1 ) {
   if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
     $configBMapi = parse_ini_file($bmAPIkeyFile, true);
     $bmAPIkey = $configBMapi['key']['apikey'];
+    // Check the BM API Key
+    if ( strlen($bmAPIkey) <= 20 ) { unset($bmAPIkey); }
+  }
+
+  //Load the dmrgateway config file
+  $dmrGatewayConfigFile = '/etc/dmrgateway';
+  if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
+
+  // Get the current DMR Master from the config
+  $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
+  if ( $dmrMasterHost == '127.0.0.1' ) { $dmrMasterHost = $configdmrgateway['DMR Network 1']['Address']; }
+
+  // Store the DMR Master IP, we will need this for the JSON lookup
+  $dmrMasterHostIP = $dmrMasterHost;
+
+  // Make sure the master is a BrandMeister Master
+  $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
+  while (!feof($dmrMasterFile)) {
+    $dmrMasterLine = fgets($dmrMasterFile);
+    $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
+    if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
+      if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
     }
-    
-    //Load the dmrgateway config file
-    $dmrGatewayConfigFile = '/etc/dmrgateway';
-    if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
-
-    // Get the current DMR Master from the config
-    $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
-    if ( $dmrMasterHost == '127.0.0.1' ) { $dmrMasterHost = $configdmrgateway['DMR Network 1']['Address']; }
-
-    // Store the DMR Master IP, we will need this for the JSON lookup
-    $dmrMasterHostIP = $dmrMasterHost;
-
-    // Make sure the master is a BrandMeister Master
-    $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
-    while (!feof($dmrMasterFile)) {
-      $dmrMasterLine = fgets($dmrMasterFile);
-      $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
-      if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
-        if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
-      }
-    }
+  }
     if (substr($dmrMasterHost, 0, 2) == "BM") {
     // OK this is Brandmeister, get some config and output the HTML
     $dmrID = getConfigItem("General", "Id", $mmdvmconfigs);
