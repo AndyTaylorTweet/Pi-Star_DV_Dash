@@ -100,10 +100,10 @@ if ( $testMMDVModeDMR == 1 ) {
     // Figure out what has been posted
     if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl."setRepeaterTarantool.php?action=dropDynamicGroups&slot=0&q=".$dmrID; }
     if (isset($_POST["dropQso"])) { $bmAPIurl = $bmAPIurl."setRepeaterDbus.php?action=dropCallRoute&slot=0&q=".$dmrID; }
-    if ($_POST["Action"] == "ADD") { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-    if ($_POST["Action"] == "DEL") { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
-    if ($_POST["Action"] == "LINK") { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; }
-    if ($_POST["Action"] == "UNLINK") { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; }
+    if ($_POST["TGmgr"] == "ADD") { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
+    if ($_POST["TGmgr"] == "DEL") { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
+    if ($_POST["REFmgr"] == "LINK") { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; }
+    if ($_POST["REFmgr"] == "UNLINK") { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; }
     if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = $_POST["tgNr"]; }
     if ( (isset($_POST["reflectorNr"])) && (isset($_POST["refSubmit"])) ) { $targetREF = $_POST["reflectorNr"]; }
 
@@ -174,7 +174,7 @@ if ( $testMMDVModeDMR == 1 ) {
           else { echo '        <option value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
         }
       echo '        </td>'."\n";
-      echo '      <td><input type="radio" name="Action" value="ADD" />Link <input type="radio" name="Action" value="DEL" checked="checked" />UnLink</td>';
+      echo '      <td><input type="radio" name="REFmgr" value="ADD" />Link <input type="radio" name="REFmgr" value="DEL" checked="checked" />UnLink</td>';
       echo '<td><input type="submit" value="Modify Reflector" name="refSubmit" /></td>';
       echo '</tr>'."\n";
       //echo '  </table>'."\n";
@@ -187,7 +187,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '    <tr>';
       echo '<td><input type="text" name="tgNr" size="10" maxlength="7" /></td>';
       echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
-      echo '<td><input type="radio" name="Action" value="ADD" checked="checked" />Add <input type="radio" name="Action" value="DEL" />Delete</td>';
+      echo '<td><input type="radio" name="TGmgr" value="ADD" checked="checked" />Add <input type="radio" name="TGmgr" value="DEL" />Delete</td>';
       echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
