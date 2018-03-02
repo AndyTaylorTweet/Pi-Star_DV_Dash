@@ -98,6 +98,7 @@ if ( $testMMDVModeDMR == 1 ) {
       }
 
     // Figure out what has been posted
+    if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl."setRepeaterTarantool.php?action=dropDynamicGroups&slot=0&q=".$dmrID; }
     if ( ($_POST["Action"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
     if ( ($_POST["Action"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
     if (isset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
@@ -108,16 +109,18 @@ if ( $testMMDVModeDMR == 1 ) {
       'Authorization: Basic '.base64_encode($bmAPIkey.':'),
     );
 
-    $jsonData = array(
-      'talkgroup' => $targetTG,
-      'timeslot' => $targetSlot,
-    );
+    if (!isset($_POST["dropDyn"])) {
+      $postData = array(
+        'talkgroup' => $targetTG,
+        'timeslot' => $targetSlot,
+      );
+    }
 
     $opts = array(
       'http' => array(
       'header'  => $postHeaders,
       'method'  => 'POST',
-      'data' => json_encode($jsonData),
+      'data' => json_encode($postData),
       'password' => '',
       'success' => ''
       )
@@ -173,7 +176,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<td><input type="text" name="tgNr" size="10" maxlength="7" /></td>';
       echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
       echo '<td><input type="radio" name="Action" value="ADD" checked="checked" />Add <input type="radio" name="Action" value="DEL" />Delete</td>';
-      echo '<td><input type="submit" value="Modify TalkGroup" name="tgSubmit" /></td>';
+      echo '<td><input type="submit" value="Modify TalkGroup" name="tgSubmit" /><input type="submit" value="Drop Dynamic TalkGroups" name="dropDyn" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
       echo '  <br />'."\n";
