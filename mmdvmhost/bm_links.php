@@ -100,10 +100,10 @@ if ( $testMMDVModeDMR == 1 ) {
     // Figure out what has been posted
     if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl."setRepeaterTarantool.php?action=dropDynamicGroups&slot=0&q=".$dmrID; }
     if (isset($_POST["dropQso"])) { $bmAPIurl = $bmAPIurl."setRepeaterDbus.php?action=dropCallRoute&slot=0&q=".$dmrID; }
-    if ($_POST["TGmgr"] == "ADD") { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-    if ($_POST["TGmgr"] == "DEL") { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
-    if ($_POST["REFmgr"] == "LINK") { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; }
-    if ($_POST["REFmgr"] == "UNLINK") { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; $targetREF = "0"; }
+    if ( ($_POST["TGmgr"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
+    if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
+    if ( ($_POST["REFmgr"] == "LINK") && (isset($_POST["refSubmit"])) ) { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; }
+    if ( ($_POST["REFmgr"] == "UNLINK") && (isset($_POST["refSubmit"])) ) { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; $targetREF = "0"; }
     if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = $_POST["tgNr"]; }
     if ( (isset($_POST["reflectorNr"])) && (isset($_POST["refSubmit"])) && ($_POST["REFmgr"] == "LINK")) { $targetREF = $_POST["reflectorNr"]; }
 
