@@ -181,7 +181,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '</tr>'."\n";
       echo '  </table>'."\n";
       echo '  <p style="text-align:right;"><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></p>'."\n";
-      echo '  <br />'."\n";
+      //echo '  <br />'."\n";
       }
 
   endif;
