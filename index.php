@@ -148,7 +148,6 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	}
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
                 include 'mmdvmhost/bm_manager.php';                     // DMR Link Manager
-                echo "<br />\n";
         }
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
