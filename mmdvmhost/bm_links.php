@@ -104,12 +104,7 @@ if ( $testMMDVModeDMR == 1 ) {
     if ( ($_POST["Action"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/index.php?action=DEL&id=".$dmrID; }
     if (isset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
 
-    // Build the JSON
-    $postHeaders = array(
-      'Content-Type: application/json',
-      'Authorization: Basic '.base64_encode($bmAPIkey.':'),
-    );
-
+    // Build the Data
     if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) ) {
       $postData = array(
         'talkgroup' => $targetTG,
@@ -117,12 +112,20 @@ if ( $testMMDVModeDMR == 1 ) {
       );
     }
 
+    // Buld the Query
+    $postData = http_build_query($postData);
+
+    $postHeaders = array(
+      'Content-Type: application/x-www-form-urlencoded',
+      'Content-Length: '.strlen($postData),
+      'Authorization: Basic '.base64_encode($bmAPIkey.':'),
+    );
+    
     $opts = array(
       'http' => array(
       'header'  => $postHeaders,
       'method'  => 'POST',
-      //'content' => json_encode($postData),
-      'content' => http_build_query($postData),
+      'content' => $postData,
       'password' => '',
       'success' => '',
       ),
