@@ -93,25 +93,30 @@ if ( $testMMDVModeDMR == 1 ) {
     if ($_POST["Link"] == "UNLINK") {}
 
     // Build the JSON
-    $headers = array(
+    $curlHeaders = array(
       'Content-Type:application/json',
       'Authorization: Basic '.base64_encode($bmAPIkey.":")
     );
     $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
     $curlHandler = curl_init($bmAPIurl);
+    curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $curlHeaders);
+    
     $jsonData = array(
       'username' => 'MyUsername',
       'password' => 'MyPassword'
     );
-
+    $return = curl_exec($curlHandler);
+    
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
     echo "SOME OUTPUT";
+    //echo $return;
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
 
     // Clean up...
+    curl_close($curlHandler);
     unset($_POST);
     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 
