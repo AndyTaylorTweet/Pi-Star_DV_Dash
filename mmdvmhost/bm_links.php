@@ -176,7 +176,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<td><input type="text" name="tgNr" size="10" maxlength="7" /></td>';
       echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
       echo '<td><input type="radio" name="Action" value="ADD" checked="checked" />Add <input type="radio" name="Action" value="DEL" />Delete</td>';
-      echo '<td><input type="submit" value="Modify TalkGroup" name="tgSubmit" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
+      echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
       echo '  <br />'."\n";
