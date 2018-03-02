@@ -108,7 +108,7 @@ if ( $testMMDVModeDMR == 1 ) {
       array(
         'method'  => 'POST',
         'header'  => $postHeaders,
-        'content' => json_encode($postdata)
+        'content' => json_encode($jsonData)
       )
     );
 
