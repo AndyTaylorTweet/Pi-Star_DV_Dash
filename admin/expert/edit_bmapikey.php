@@ -115,6 +115,7 @@ if($_POST) {
 
 //parse the ini file using default parse_ini_file() PHP function
 $parsed_ini = parse_ini_file($filepath, true);
+if (!isset($parsed_ini['key']['apikey'])) { $parsed_ini['key']['apikey'] = ""; }
 
 echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
