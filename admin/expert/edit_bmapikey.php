@@ -59,6 +59,8 @@ if (file_exists('/etc/bmapi.key')) {
   exec('sudo cp /etc/bmapi.key /tmp/d39fk36sg55433gd.tmp');
 } else {
   exec('sudo touch /tmp/d39fk36sg55433gd.tmp');
+  exec('sudo echo "[key]" > /tmp/d39fk36sg55433gd.tmp');
+  exec('sudo echo "apikey=None" >> /tmp/d39fk36sg55433gd.tmp');
 }
 exec('sudo chown www-data:www-data /tmp/d39fk36sg55433gd.tmp');
 exec('sudo chmod 664 /tmp/d39fk36sg55433gd.tmp');
