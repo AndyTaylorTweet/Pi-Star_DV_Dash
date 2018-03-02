@@ -134,7 +134,6 @@ if ( $testMMDVModeDMR == 1 ) {
     echo "<br />\n";
 
     // Clean up...
-    fclose($result);
     unset($_POST);
     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 
