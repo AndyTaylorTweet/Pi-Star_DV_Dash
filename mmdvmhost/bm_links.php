@@ -110,7 +110,7 @@ if ( $testMMDVModeDMR == 1 ) {
       'Authorization: Basic '.base64_encode($bmAPIkey.':'),
     );
 
-    if ( (!isset($_POST["dropDyn"])) (!isset($_POST["dropQso"])) ) {
+    if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) ) {
       $postData = array(
         'talkgroup' => $targetTG,
         'timeslot' => $targetSlot,
