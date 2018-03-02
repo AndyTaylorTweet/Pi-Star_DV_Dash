@@ -92,18 +92,17 @@ if ( $testMMDVModeDMR == 1 ) {
     // Figure out what has been posted
     if ($_POST["Link"] == "LINK") { $bmAPIurl = $bmAPIurl."reflector/?action=ADD&id=".$dmrID; }
     if ($_POST["Link"] == "UNLINK") { $bmAPIurl = $bmAPIurl."reflector/?action=DEL&id=".$dmrID; }
-    
-    
+
     // Build the JSON
     $postHeaders = array(
       'Content-Type:application/json',
       'Authorization: Basic '.base64_encode($bmAPIkey.":")
     );
-        
+
     $jsonData = array(
       'reflector' => $_POST["reflectorNr"]
     );
-    
+
     $opts = array('http' =>
       array(
         'method'  => 'POST',
@@ -111,21 +110,21 @@ if ( $testMMDVModeDMR == 1 ) {
         'content' => json_encode($postdata)
       )
     );
-    
+
     $context = stream_context_create($opts);
     $result = file_get_contents($bmAPIurl, false, $context);
-    
+
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-    echo "SOME OUTPUT";
-    //echo $result;
+    //echo "SOME OUTPUT";
+    echo $result;
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
 
     // Clean up...
     unset($_POST);
-    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 
   else: // Do this when we are not handling post data
     if (isset($bmAPIkey)) {
