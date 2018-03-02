@@ -92,8 +92,8 @@ if ( $testMMDVModeDMR == 1 ) {
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-    //echo $bmAPIurl;
-    echo $result;
+    echo "Sending command to BrandMeister API";
+    //echo $result;
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
     // Clean up...
@@ -123,7 +123,6 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '      <td><input type="radio" name="REFmgr" value="LINK" />Link <input type="radio" name="REFmgr" value="UNLINK" checked="checked" />UnLink</td>';
       echo '<td><input type="submit" value="Modify Reflector" name="refSubmit" /></td>';
       echo '</tr>'."\n";
-      //echo '  </table>'."\n";
       echo '<tr>
         <th><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
         <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
