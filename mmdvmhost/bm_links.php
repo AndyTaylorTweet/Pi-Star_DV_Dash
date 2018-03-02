@@ -113,17 +113,12 @@ if ( $testMMDVModeDMR == 1 ) {
       'timeslot' => $targetSlot
     );
 
-    //$postdata = http_build_query(
-    //  'talkgroup' => $targetTG,
-    //  'timeslot' => $targetSlot
-    //);
-
     $opts = array('http' =>
       array(
         'method'  => 'POST',
         'header'  => $postHeaders,
-        'data' => json_encode($jsonData)
-        //'content' => $postdata
+        //'content' => json_encode($jsonData)
+        'content' => $postdata
       )
     );
 
