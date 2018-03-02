@@ -180,7 +180,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
-      echo '  <p style="text-align:right;"><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></p>'."\n";
+      echo '  <input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" />'."\n";
       //echo '  <br />'."\n";
       }
 
