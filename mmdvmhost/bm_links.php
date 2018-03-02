@@ -152,10 +152,10 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '    <tr>';
       echo '<td>'.$dmrID.'</td>';
       echo '<td><select name="reflectorNr">'."\n";
+      if ( $bmReflectorActive == "None" || $bmReflectorActive == "REF0" ) { echo '        <option selected="selected" value="0">None</option>'."\n"; } else { echo '        <option value="0">None</option>'."\n"; }
         for ($refNrBase = 1; $refNrBase <= 999; $refNrBase++) {
           $refNr = 4000 + $refNrBase;
-          if ( $bmReflectorActive == "None" || $bmReflectorActive == "REF0" ) { echo '        <option selected="selected" value="0">None</option>'."\n"; }
-          elseif ( "REF".$refNr == $bmReflectorActive ) { echo '        <option selected="selected" value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
+          if ( "REF".$refNr == $bmReflectorActive ) { echo '        <option selected="selected" value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
           else { echo '        <option value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
         }
       echo '        </td>'."\n";
