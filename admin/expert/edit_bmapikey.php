@@ -126,13 +126,13 @@ echo '<form action="" method="post">'."\n";
 		// note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
 			if (($key == "Options") || ($value)) {
-				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
+				echo "<tr><td align=\"right\" width=\"80%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
 			}
 			elseif (($key == "Display") && ($value == '')) {
-				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"None\" /></td></tr>\n";
+				echo "<tr><td align=\"right\" width=\"80%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"None\" /></td></tr>\n";
 			}
 			else {
-				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"0\" /></td></tr>\n";			
+				echo "<tr><td align=\"right\" width=\"80%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"0\" /></td></tr>\n";			
 			}
 		}
 		echo "</table>\n";
