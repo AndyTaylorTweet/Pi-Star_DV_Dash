@@ -100,8 +100,8 @@ if ( $testMMDVModeDMR == 1 ) {
     // Figure out what has been posted
     if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl."setRepeaterTarantool.php?action=dropDynamicGroups&slot=0&q=".$dmrID; }
     if (isset($_POST["dropQso"])) { $bmAPIurl = $bmAPIurl."setRepeaterDbus.php?action=dropCallRoute&slot=0&q=".$dmrID; }
-    if ( ($_POST["Action"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-    if ( ($_POST["Action"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
+    if ( ($_POST["Action"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/index.php?action=ADD&id=".$dmrID; }
+    if ( ($_POST["Action"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/index.php?action=DEL&id=".$dmrID; }
     if (isset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
 
     // Build the JSON
