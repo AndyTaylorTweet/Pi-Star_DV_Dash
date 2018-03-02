@@ -148,13 +148,13 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<form action="http://'.htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
       echo '<table>
       <tr>
-        <th><a class=tooltip href="#">DMR ID<span><b>DMR ID</b></span></a></th>
+        <th><a class=tooltip href="#">Tools<span><b>DMR ID</b></span></a></th>
         <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
         <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
       </tr>'."\n";
       echo '    <tr>';
-      echo '<td>'.$dmrID.'</td>';
+      echo '<td><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
       echo '<td><select name="reflectorNr">'."\n";
       if ( $bmReflectorActive == "None" || $bmReflectorActive == "REF0" ) { echo '        <option selected="selected" value="0">None</option>'."\n"; } else { echo '        <option value="0">None</option>'."\n"; }
         for ($refNrBase = 1; $refNrBase <= 999; $refNrBase++) {
@@ -180,8 +180,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
-      echo '  <input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" />'."\n";
-      //echo '  <br />'."\n";
+      echo '  <br />'."\n";
       }
 
   endif;
