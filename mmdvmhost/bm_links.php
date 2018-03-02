@@ -121,10 +121,10 @@ if ( $testMMDVModeDMR == 1 ) {
       'http' => array(
       'header'  => $postHeaders,
       'method'  => 'POST',
-      'data' => json_encode($postData),
+      'content' => json_encode($postData),
       'password' => '',
-      'success' => ''
-      )
+      'success' => '',
+      ),
     );
 
     $context = stream_context_create($opts);
