@@ -87,36 +87,43 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '  <br />'."\n";
 
   // If there is a BM API Key
+  $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
   if (!empty($_POST)): // Data has been posted
     // Figure out what has been posted
-    if ($_POST["Link"] == "LINK") {}
-    if ($_POST["Link"] == "UNLINK") {}
-
+    if ($_POST["Link"] == "LINK") { $bmAPIurl = $bmAPIurl."reflector/?action=ADD&id=".$dmrID; }
+    if ($_POST["Link"] == "UNLINK") { $bmAPIurl = $bmAPIurl."reflector/?action=DEL&id=".$dmrID; }
+    
+    
     // Build the JSON
-    $curlHeaders = array(
+    $postHeaders = array(
       'Content-Type:application/json',
       'Authorization: Basic '.base64_encode($bmAPIkey.":")
     );
-    $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
-    $curlHandler = curl_init($bmAPIurl);
-    curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $curlHeaders);
-    
+        
     $jsonData = array(
-      'username' => 'MyUsername',
-      'password' => 'MyPassword'
+      'reflector' => $_POST["reflectorNr"]
     );
-    $return = curl_exec($curlHandler);
+    
+    $opts = array('http' =>
+      array(
+        'method'  => 'POST',
+        'header'  => $postHeaders,
+        'content' => json_encode($postdata)
+      )
+    );
+    
+    $context = stream_context_create($opts);
+    $result = file_get_contents($bmAPIurl, false, $context);
     
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
     echo "SOME OUTPUT";
-    //echo $return;
+    //echo $result;
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
 
     // Clean up...
-    curl_close($curlHandler);
     unset($_POST);
     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
 
