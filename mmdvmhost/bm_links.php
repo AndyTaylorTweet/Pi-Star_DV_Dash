@@ -90,9 +90,11 @@ if ( $testMMDVModeDMR == 1 ) {
   if (!empty($_POST)): // Data has been posted
     
   // Output to the browser
+  echo '<b>BrandMeister Manager</b>'."\n";
   echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
   echo "SOME OUTPUT";
   echo "</td></tr>\n</table>\n";
+  echo "<br />\n";
     
   // Clean up...
   unset($_POST);
