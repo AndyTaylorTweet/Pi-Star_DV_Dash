@@ -138,8 +138,8 @@ if ( $testMMDVModeDMR == 1 ) {
         <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
       </tr>'."\n";
-      echo '    <tr>'."\n";
-      echo '      <td>'.$dmrID.'</td>';
+      echo '    <tr>';
+      echo '<td>'.$dmrID.'</td>';
       echo '<td><select name="reflectorNr">'."\n";
         for ($refNrBase = 1; $refNrBase <= 999; $refNrBase++) {
           $refNr = 4000 + $refNrBase;
@@ -158,6 +158,9 @@ if ( $testMMDVModeDMR == 1 ) {
         <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
       </tr>'."\n";
+      echo '    <tr>';
+      echo '<td></td><td></td><td></td><td></td>';
+      echo '</tr>'."\n";
       echo '  </table>'."\n";
       echo '  <br />'."\n";
       }
