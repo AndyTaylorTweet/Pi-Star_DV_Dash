@@ -98,7 +98,7 @@ if ( $testMMDVModeDMR == 1 ) {
     echo "<br />\n";
     // Clean up...
     unset($_POST);
-    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+    echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
   else: // Do this when we are not handling post data
     if (isset($bmAPIkey)) {
       echo '<b>BrandMeister Manager</b>'."\n";
