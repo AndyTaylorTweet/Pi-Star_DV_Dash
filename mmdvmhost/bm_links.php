@@ -167,7 +167,7 @@ if ( $testMMDVModeDMR == 1 ) {
           else { echo '        <option value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
         }
       echo '        </td>'."\n";
-      echo '      <td><input type="radio" name="Link" value="LINK" />Link <input type="radio" name="Link" value="UNLINK" checked="checked" />UnLink</td>';
+      echo '      <td><input type="radio" name="Action" value="ADD" />Link <input type="radio" name="Action" value="DEL" checked="checked" />UnLink</td>';
       echo '<td><input type="submit" value="Modify Reflector" name="refSubmit" /></td>';
       echo '</tr>'."\n";
       //echo '  </table>'."\n";
