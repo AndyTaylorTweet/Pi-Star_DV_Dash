@@ -99,6 +99,7 @@ if ( $testMMDVModeDMR == 1 ) {
 
     // Figure out what has been posted
     if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl."setRepeaterTarantool.php?action=dropDynamicGroups&slot=0&q=".$dmrID; }
+    if (isset($_POST["dropQso"])) { $bmAPIurl = $bmAPIurl."setRepeaterDbus.php?action=dropCallRoute&slot=0&q=".$dmrID; }
     if ( ($_POST["Action"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
     if ( ($_POST["Action"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
     if (isset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
@@ -109,7 +110,7 @@ if ( $testMMDVModeDMR == 1 ) {
       'Authorization: Basic '.base64_encode($bmAPIkey.':'),
     );
 
-    if (!isset($_POST["dropDyn"])) {
+    if ( (!isset($_POST["dropDyn"])) (!isset($_POST["dropQso"])) ) {
       $postData = array(
         'talkgroup' => $targetTG,
         'timeslot' => $targetSlot,
@@ -163,7 +164,7 @@ if ( $testMMDVModeDMR == 1 ) {
         }
       echo '        </td>'."\n";
       echo '      <td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
-      echo '<td><input type="submit" value="Modify Reflector" name="refSubmit" /></td>';
+      echo '<td><input type="submit" value="Modify Reflector" name="refSubmit" /><input type="submit" value="Drop QSO" name="dropQso" /></td>';
       echo '</tr>'."\n";
       //echo '  </table>'."\n";
       echo '<tr>
