@@ -87,31 +87,47 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '  <br />'."\n";
 
   // If there is a BM API Key
-  if (isset($bmAPIkey)) {
-    echo '<b>BrandMeister Manager</b>'."\n";
-    echo '<table>
-    <tr>
-      <th><a class=tooltip href="#">DMR ID<span><b>DMR ID</b></span></a></th>
-      <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
-      <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
-      <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
-    </tr>'."\n";
-    echo '    <tr>'."\n";
-    echo '      <td>'.$dmrID.'</td>';
-    echo '<td><select name="reflectorNr">'."\n";
-      for ($refNrBase = 1; $refNrBase <= 999; $refNrBase++) {
-        $refNr = 4000 + $refNrBase;
-        if ( $bmReflectorActive == "None" ) { echo '        <option selected="selected" value="4000">None</option>'."\n"; }
-        elseif ( "REF".$refNr == $bmReflectorActive ) { echo '        <option selected="selected" value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
-        else { echo '        <option value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
+  if (!empty($_POST)): // Data has been posted
+    
+  // Output to the browser
+  echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+  echo "SOME OUTPUT";
+  echo "</td></tr>\n</table>\n";
+    
+  // Clean up...
+  unset($_POST);
+  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+
+  else: // Do this when we are not handling post data
+    if (isset($bmAPIkey)) {
+      echo '<b>BrandMeister Manager</b>'."\n";
+      echo '<form action="http://'.htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+      echo '<table>
+      <tr>
+        <th><a class=tooltip href="#">DMR ID<span><b>DMR ID</b></span></a></th>
+        <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
+        <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+        <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
+      </tr>'."\n";
+      echo '    <tr>'."\n";
+      echo '      <td>'.$dmrID.'</td>';
+      echo '<td><select name="reflectorNr">'."\n";
+        for ($refNrBase = 1; $refNrBase <= 999; $refNrBase++) {
+          $refNr = 4000 + $refNrBase;
+          if ( $bmReflectorActive == "None" ) { echo '        <option selected="selected" value="4000">None</option>'."\n"; }
+          elseif ( "REF".$refNr == $bmReflectorActive ) { echo '        <option selected="selected" value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
+          else { echo '        <option value="'.$refNr.'">REF'.$refNr.'</option>'."\n"; }
+        }
+      echo '        </td>'."\n";
+      echo '      <td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
+      echo '<td><input type="submit" value="Request Change" /></td>';
+      echo '</tr>'."\n";
+      echo '  </table>'."\n";
+      echo '  <br />'."\n";
       }
-    echo '        </td>'."\n";
-    echo '      <td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
-    echo '<td><input type="submit" value="Request Change" /></td>';
-    echo '</tr>'."\n";
-    echo '  </table>'."\n";
-    echo '  <br />'."\n";
-    }
+
+  endif;
+    
   }
 }
 ?>
