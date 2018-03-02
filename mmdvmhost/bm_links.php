@@ -98,8 +98,8 @@ if ( $testMMDVModeDMR == 1 ) {
       }
 
     // Figure out what has been posted
-    if ( ($_POST["Link"] == "LINK") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-    if ( ($_POST["Link"] == "UNLINK") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
+    if ( ($_POST["Action"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
+    if ( ($_POST["Action"] == "REMOVE") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
     if (isset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
     
     // Build the JSON
@@ -165,13 +165,13 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<tr>
         <th><a class=tooltip href="#">Talk Group<span><b>Enter the Talkgroup number</b></span></a></th>
         <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
-        <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+        <th><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
       </tr>'."\n";
       echo '    <tr>';
-      echo '<td><input type="text" name="tgNr" size="15" maxlength="7" /></td>';
+      echo '<td><input type="text" name="tgNr" size="10" maxlength="7" /></td>';
       echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
-      echo '<td><input type="radio" name="Link" value="LINK" checked="checked" />Link <input type="radio" name="Link" value="UNLINK" />UnLink</td>';
+      echo '<td><input type="radio" name="Action" value="ADD" checked="checked" />Link <input type="radio" name="Action" value="REMOVE" />UnLink</td>';
       echo '<td><input type="submit" value="Request Change" name="tgSubmit" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
