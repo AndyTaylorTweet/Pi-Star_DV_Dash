@@ -159,8 +159,8 @@ if ( $testMMDVModeDMR == 1 ) {
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
       </tr>'."\n";
       echo '    <tr>';
-      echo '<td></td>';
-      echo '<td><<input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
+      echo '<td><input type="text" name="tgNr" size="15" maxlength="7" /></td>';
+      echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
       echo '<td></td><td></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
