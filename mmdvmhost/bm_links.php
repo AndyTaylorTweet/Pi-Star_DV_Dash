@@ -152,6 +152,12 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<td><input type="submit" value="Request Change" /></td>';
       echo '</tr>'."\n";
       echo '  </table>'."\n";
+      echo '<tr>
+        <th><a class=tooltip href="#">Talk Group<span><b>Enter the Talkgroup number</b></span></a></th>
+        <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
+        <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+        <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
+      </tr>'."\n";
       echo '  <br />'."\n";
       }
 
