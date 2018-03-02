@@ -114,7 +114,8 @@ if ( $testMMDVModeDMR == 1 ) {
         'timeslot' => $targetSlot,
       );
       $postDataREF = array(
-        'reflector' => $targetREF
+        'reflector' => $targetREF,
+        'interval' => '3600',
       );
     }
 
