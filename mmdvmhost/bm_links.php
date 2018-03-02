@@ -91,15 +91,16 @@ if ( $testMMDVModeDMR == 1 ) {
   if (!empty($_POST)): // Data has been posted
     // Are we a repeater
     if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
-      unset($_POST["TS"]); $targetSlot = "0";
+        unset($_POST["TS"]);
+        $targetSlot = "0";
       } else {
         $targetSlot = $_POST["TS"];
       }
 
     // Figure out what has been posted
-    if ( ($_POST["Link"] == "LINK") && (issset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-    if ( ($_POST["Link"] == "UNLINK") && (issset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
-    if (issset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
+    if ( ($_POST["Link"] == "LINK") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
+    if ( ($_POST["Link"] == "UNLINK") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
+    if (isset($_POST["tgNr"])) { $targetTG = $_POST["tgNr"]; }
     
     // Build the JSON
     $postHeaders = array(
