@@ -2,7 +2,7 @@
 if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 
-if (!empty($_POST)):
+if ( !empty($_POST) && isset($_POST["dstrMgrSubmit") ): // Data has been posted to this page
 if (preg_match('/[^A-Z]/',$_POST["Link"])) { unset ($_POST["Link"]);}
 if ($_POST["Link"] == "LINK") {
 	if (preg_match('/[^A-Za-z0-9 ]/',$_POST["RefName"])) { unset ($_POST["RefName"]);}
@@ -162,7 +162,7 @@ fclose($dextraFile);
         <input type="radio" name="Link" value="UNLINK" />UnLink
     </td>
     <td>
-    <input type="submit" value="Request Change" />
+    <input type="submit" name="dstrMgrSubmit" value="Request Change" />
     </td>
   </tr>
 </table>
