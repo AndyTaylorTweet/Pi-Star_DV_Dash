@@ -303,25 +303,32 @@ function getHeardList($logLines) {
 	$ts1duration	= "";
 	$ts1loss	= "";
 	$ts1ber		= "";
+	$ts1rssi	= "";
 	$ts2duration	= "";
 	$ts2loss	= "";
 	$ts2ber		= "";
+	$ts2rssi	= "";
 	$dstarduration	= "";
 	$dstarloss	= "";
 	$dstarber	= "";
+	$dstarrssi	= "";
 	$ysfduration	= "";
         $ysfloss	= "";
         $ysfber		= "";
+	$ysfrssi	= "";
 	$p25duration	= "";
         $p25loss	= "";
         $p25ber		= "";
+	$p25rssi	= "";
 	$nxdnduration	= "";
         $nxdnloss	= "";
         $nxdnber	= "";
+	$nxdnrssi	= "";
 	foreach ($logLines as $logLine) {
 		$duration	= "";
 		$loss		= "";
 		$ber		= "";
+		$rssi		= "";
 		//removing invalid lines
 		if(strpos($logLine,"BS_Dwn_Act")) {
 			continue;
@@ -362,6 +369,19 @@ function getHeardList($logLines) {
 			if (startsWith($loss,"BER")) {
 				$ber = substr($loss, 5);
 				$loss = "0%";
+				if (array_key_exists(4,$lineTokens) && startsWith($lineTokens[4],"RSSI")) {
+					$rssi = substr($lineTokens[4], 6);
+					$rssi = substr($rssi, strrpos($rssi,'/')+1); //average only
+					$relint = intval($rssi) + 93;
+					$signal = round(($relint/6)+9, 0);
+					if ($signal < 0) $signal = 0;
+					if ($signal > 9) $signal = 9;
+					if ($relint > 0) {
+						$rssi = "S{$signal}+{$relint}dB";
+					} else {
+						$rssi = "S{$signal}";
+					}
+				}
 			} else {
 				$loss = strtok($loss, " ");
 				if (array_key_exists(4,$lineTokens)) {
@@ -384,31 +404,37 @@ function getHeardList($logLines) {
 						$dstarduration	= $duration;
 						$dstarloss	= $loss;
 						$dstarber	= $ber;
+						$dstarrssi	= $rssi;
 						break;
 					case "DMR Slot 1":
 						$ts1duration	= $duration;
 						$ts1loss	= $loss;
 						$ts1ber		= $ber;
+						$ts1rssi	= $rssi;
 						break;
 					case "DMR Slot 2":
 						$ts2duration	= $duration;
 						$ts2loss	= $loss;
 						$ts2ber		= $ber;
+						$ts2rssi	= $rssi;
 						break;
 					case "YSF":
 						$ysfduration	= $duration;
 						$ysfloss	= $loss;
 						$ysfber		= $ber;
+						$ysfrssi	= $rssi;
 						break;
 					case "P25":
 						$p25duration	= $duration;
 						$p25loss	= $loss;
 						$p25ber		= $ber;
+						$p25rssi	= $rssi;
 						break;
 					case "NXDN":
 						$nxdnduration	= $duration;
 						$nxdnloss	= $loss;
 						$nxdnber	= $ber;
+						$nxdnrssi	= $rssi;
 						break;
 				}
 			}
@@ -440,40 +466,47 @@ function getHeardList($logLines) {
 				$duration	= $dstarduration;
 				$loss		= $dstarloss;
 				$ber		= $dstarber;
+				$rssi		= $dstarrssi;
 				break;
 			case "DMR Slot 1":
 				$duration	= $ts1duration;
 				$loss		= $ts1loss;
 				$ber		= $ts1ber;
+				$rssi		= $ts1rssi;
 				break;
 			case "DMR Slot 2":
 				$duration	= $ts2duration;
 				$loss		= $ts2loss;
 				$ber		= $ts2ber;
+				$rssi		= $ts2rssi;
 				break;
 			case "YSF":
                 		$duration	= $ysfduration;
                 		$loss		= $ysfloss;
                 		$ber		= $ysfber;
+				$rssi		= $ysfrssi;
                 		break;
 			case "P25":
                 		$duration	= $p25duration;
                 		$loss		= $p25loss;
                 		$ber		= $p25ber;
+				$rssi		= $p25rssi;
                 		break;
 			case "NXDN":
                 		$duration	= $nxdnduration;
                 		$loss		= $nxdnloss;
                 		$ber		= $nxdnber;
+				$rssi		= $nxdnrssi;
                 		break;
 		}
 		
 		// Callsign or ID should be less than 11 chars long, otherwise it could be errorneous
 		if ( strlen($callsign) < 11 ) {
-			array_push($heardList, array($timestamp, $mode, $callsign, $id, $target, $source, $duration, $loss, $ber));
+			array_push($heardList, array($timestamp, $mode, $callsign, $id, $target, $source, $duration, $loss, $ber, $rssi));
 			$duration = "";
 			$loss ="";
 			$ber = "";
+			$rssi = "";
 		}
 	}
 	return $heardList;
