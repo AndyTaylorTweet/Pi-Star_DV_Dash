@@ -44,7 +44,7 @@ if ( $testMMDVModeDMR == 1 ) {
 
   // If there is a BM API Key
   $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
-  if (!empty($_POST)): // Data has been posted
+  if ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["refSubmit"]) || isset($_POST["tgSubmit"]) ) ): // Data has been posted for this page
     // Are we a repeater
     if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
         unset($_POST["TS"]);
