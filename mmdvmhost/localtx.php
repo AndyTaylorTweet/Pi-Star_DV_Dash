@@ -24,7 +24,7 @@ $counter = 0;
 $i = 0;
 for ($i = 0; $i < count($localTXList); $i++) {
 		$listElem = $localTXList[$i];
-		if ($listElem[5] == "RF" && ($listElem[1]=="D-Star" || startsWith($listElem[1], "DMR") || $listElem[1]=="YSF" || $listElem[1]=="P25")) {
+		if ($listElem[5] == "RF" && ($listElem[1] == "D-Star" || startsWith($listElem[1], "DMR") || $listElem[1] == "YSF" || $listElem[1]== "P25" || $listElem[1]== "NXDN")) {
 			if ($counter <= 19) { //last 20 calls
 				$utc_time = $listElem[0];
                         	$utc_tz =  new DateTimeZone('UTC');
@@ -36,9 +36,11 @@ for ($i = 0; $i < count($localTXList); $i++) {
 			echo"<td align=\"left\">$local_time</td>";
 			echo"<td align=\"left\">$listElem[1]</td>";
 			if ($listElem[3] && $listElem[3] != '    ' ) {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" data-featherlight=\"iframe\" data-featherlight-iframe-min-width=\"90%\" data-featherlight-iframe-max-width=\"90%\" data-featherlight-iframe-width=\"2000\" data-featherlight-iframe-height=\"2000\">$listElem[2]</a>/$listElem[3]</td>";
+				//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
 			} else {
-				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
+				echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" data-featherlight=\"iframe\" data-featherlight-iframe-min-width=\"90%\" data-featherlight-iframe-max-width=\"90%\" data-featherlight-iframe-width=\"2000\" data-featherlight-iframe-height=\"2000\">$listElem[2]</a></td>";
+				//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 			}
 			echo"<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
 			if ($listElem[5] == "RF"){

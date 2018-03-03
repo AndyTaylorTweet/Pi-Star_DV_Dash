@@ -45,6 +45,8 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <script type="text/javascript">
       $.ajaxSetup({ cache: false });
     </script>
+    <link href="/featherlight.css" type="text/css" rel="stylesheet" />
+    <script src="/featherlight.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="container">
@@ -144,6 +146,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		include 'mmdvmhost/bm_links.php';                       // BM Links
 		echo '</div>'."\n";
 	}
+	if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
+                include 'mmdvmhost/bm_manager.php';                     // DMR Link Manager
+        }
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
 	echo '  $("#localTxs").load("/mmdvmhost/localtx.php");'."\n";

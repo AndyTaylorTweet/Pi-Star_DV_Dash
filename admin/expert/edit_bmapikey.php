@@ -54,27 +54,32 @@ require_once('../config/version.php');
   <div class="contentwide">
 
 <?php
-// Do some file wrangling...
-exec('sudo cp /etc/p25gateway /tmp/aFE45dgs4tFS.tmp');
-exec('sudo chown www-data:www-data /tmp/aFE45dgs4tFS.tmp');
-exec('sudo chmod 664 /tmp/aFE45dgs4tFS.tmp');
+//Do some file wrangling...
+if (file_exists('/etc/bmapi.key')) {
+  exec('sudo cp /etc/bmapi.key /tmp/d39fk36sg55433gd.tmp');
+} else {
+  exec('sudo touch /tmp/d39fk36sg55433gd.tmp');
+  exec('sudo echo "[key]" > /tmp/d39fk36sg55433gd.tmp');
+  exec('sudo echo "apikey=None" >> /tmp/d39fk36sg55433gd.tmp');
+}
+exec('sudo chown www-data:www-data /tmp/d39fk36sg55433gd.tmp');
+exec('sudo chmod 664 /tmp/d39fk36sg55433gd.tmp');
+  
+//ini file to open
+$filepath = '/tmp/d39fk36sg55433gd.tmp';
 
-// ini file to open
-$filepath = '/tmp/aFE45dgs4tFS.tmp';
-
-// after the form submit
+//after the form submit
 if($_POST) {
 	$data = $_POST;
 	//update ini file, call function
 	update_ini_file($data, $filepath);
 }
 
-// this is the function going to update your ini file
+//this is the function going to update your ini file
 	function update_ini_file($data, $filepath) {
 		$content = "";
 
-		// parse the ini file to get the sections
-		// parse the ini file using default parse_ini_file() PHP function
+		//parse the ini file using default parse_ini_file() PHP function
 		$parsed_ini = parse_ini_file($filepath, true);
 
 		foreach($data as $section=>$values) {
@@ -83,12 +88,16 @@ if($_POST) {
 			$content .= "[".$section."]\n";
 			//append the values
 			foreach($values as $key=>$value) {
-				$content .= $key."=".$value."\n";
+				if ($value == '') { 
+          $content .= $key."=none\n";
+        } else {
+					$content .= $key."=".$value."\n";
+				}
 			}
 			$content .= "\n";
 		}
 
-		// write it into file
+		//write it into file
 		if (!$handle = fopen($filepath, 'w')) {
 			return false;
 		}
@@ -98,18 +107,17 @@ if($_POST) {
 
 		// Updates complete - copy the working file back to the proper location
 		exec('sudo mount -o remount,rw /');				// Make rootfs writable
-		exec('sudo cp /tmp/aFE45dgs4tFS.tmp /etc/p25gateway');	// Move the file back
-		exec('sudo chmod 644 /etc/p25gateway');				// Set the correct runtime permissions
-		exec('sudo chown root:root /etc/p25gateway');			// Set the owner
+		exec('sudo mv /tmp/d39fk36sg55433gd.tmp /etc/bmapi.key');	// Move the file back
+		exec('sudo chmod 644 /etc/bmapi.key');				// Set the correct runtime permissions
+		exec('sudo chown root:root /etc/bmapi.key');			// Set the owner
 		exec('sudo mount -o remount,ro /');				// Make rootfs read-only
 
-		// Reload the affected daemon
-		exec('sudo systemctl restart p25gateway.service');		// Reload the daemon
 		return $success;
 	}
 
-// parse the ini file using default parse_ini_file() PHP function
+//parse the ini file using default parse_ini_file() PHP function
 $parsed_ini = parse_ini_file($filepath, true);
+if (!isset($parsed_ini['key']['apikey'])) { $parsed_ini['key']['apikey'] = ""; }
 
 echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
@@ -120,7 +128,15 @@ echo '<form action="" method="post">'."\n";
 		// print all other values as input fields, so can edit. 
 		// note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
-			echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
+			if (($key == "Options") || ($value)) {
+				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"3\">$value</textarea></td></tr>\n";
+			}
+			elseif (($key == "Display") && ($value == '')) {
+				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"3\">$value</textarea></td></tr>\n";
+			}
+			else {
+				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"3\">$value</textarea></td></tr>\n";			
+			}
 		}
 		echo "</table>\n";
 		echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";

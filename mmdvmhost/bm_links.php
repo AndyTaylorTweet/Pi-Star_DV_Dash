@@ -8,6 +8,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 $testMMDVModeDMR = getConfigItem("DMR", "Enable", $mmdvmconfigs);
 
 if ( $testMMDVModeDMR == 1 ) {
+  //setup BM API Key
+  $bmAPIkeyFile = '/etc/bmapi.key';
+  if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) { $configBMapi = parse_ini_file($bmAPIkeyFile, true);
+    $bmAPIkey = $configBMapi['key']['apikey']; }
+  
   //Load the dmrgateway config file
   $dmrGatewayConfigFile = '/etc/dmrgateway';
   if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
@@ -34,7 +39,7 @@ if ( $testMMDVModeDMR == 1 ) {
   $dmrID = getConfigItem("General", "Id", $mmdvmconfigs);
 
   // Use BM API to get information about current TGs
-  $json = json_decode(file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=profile&q=$dmrID", true));
+  $json = json_decode(file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true));
 
   // Set some Variable
   $bmStaticTGList = "";
@@ -77,8 +82,7 @@ if ( $testMMDVModeDMR == 1 ) {
   echo '<td>'.$bmReflectorActive.'</td>';
   echo '<td>'.$bmStaticTGList.'</td>';
   echo '<td>'.$bmDynamicTGList.'</td>';
-  echo '    </tr>'."\n";
-
+  echo '</tr>'."\n";
   echo '  </table>'."\n";
   echo '  <br />'."\n";
   }
