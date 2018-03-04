@@ -1280,6 +1280,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2dmr['aprs.fi']['Refresh'])) { $configysf2dmr['aprs.fi']['Refresh'] = "240"; }
 	if (!isset($configysf2dmr['Enabled']['Enabled'])) { $configysf2dmr['Enabled']['Enabled'] = "0"; }
 	unset($configysf2dmr['Info']['Enabled']);
+	unset($configysf2dmr['DMR Network']['JitterEnabled']);
 
 
 	// Clean up legacy options
