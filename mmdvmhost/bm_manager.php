@@ -59,8 +59,8 @@ if ( $testMMDVModeDMR == 1 ) {
     if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
     if ( ($_POST["REFmgr"] == "LINK") && (isset($_POST["refSubmit"])) ) { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; }
     if ( ($_POST["REFmgr"] == "UNLINK") && (isset($_POST["refSubmit"])) ) { $bmAPIurl = $bmAPIurl."reflector/setActiveReflector.php?id=".$dmrID; $targetREF = "4000"; }
-    if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = $_POST["tgNr"]; }
-    if ( (isset($_POST["reflectorNr"])) && (isset($_POST["refSubmit"])) && ($_POST["REFmgr"] == "LINK")) { $targetREF = $_POST["reflectorNr"]; }
+    if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
+    if ( (isset($_POST["reflectorNr"])) && (isset($_POST["refSubmit"])) && ($_POST["REFmgr"] == "LINK")) { $targetREF = preg_replace("/[^0-9]/", "", $_POST["reflectorNr"]); }
     // Build the Data
     if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) ) {
       $postDataTG = array(
