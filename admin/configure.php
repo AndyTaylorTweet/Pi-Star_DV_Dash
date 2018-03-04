@@ -1330,7 +1330,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configysfgateway['YSF Network']['YSF2DMRAddress'] = "127.0.0.1";
 		$configysfgateway['YSF Network']['YSF2DMRPort'] = "42013";
 		$configysfgateway['FCS Network']['Enable'] = "1";
-		$configysfgateway['YSF Network']['Port'] = "42001";
+		$configysfgateway['FCS Network']['Port'] = "42001";
 	}
 
 	// Create the hostfiles.nodextra file if required
