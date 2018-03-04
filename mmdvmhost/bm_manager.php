@@ -96,8 +96,7 @@ if ( $testMMDVModeDMR == 1 ) {
     echo '<b>BrandMeister Manager</b>'."\n";
     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
     //echo "Sending command to BrandMeister API";
-    print $feeback->{'message'};
-    //echo $result;
+    print "BrandMeister API: ".$feeback->{'message'};
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
     // Clean up...
