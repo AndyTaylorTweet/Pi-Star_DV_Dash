@@ -1310,6 +1310,28 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		unset($configdmrgateway['XLX Network 2']);
 		unset($configmmdvm['NXDN Network']['LocalAddress']);
 	}
+	
+	// Migrate YSFGateway Config
+	$ysfGatewayVer = exec("YSFGateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($ysfGatewayVer > 20180303) {
+		if (isset($configysfgateway['Network']['Startup'])) { $ysfTmpStartup = $configysfgateway['Network']['Startup']; }
+		$configysfgateway['aprs.fi']['Enable'] = "0";
+		unset($configysfgateway['Network']);
+		if (isset($ysfTmpStartup)) { $configysfgateway['Network']['Startup'] = $ysfTmpStartup; }
+		$configysfgateway['Network']['InactivityTimeout'] = "0";
+		$configysfgateway['Network']['Revert'] = "0";
+		$configysfgateway['Network']['Debug'] = "0";
+		$configysfgateway['YSF Network']['Enable'] = "1";
+		$configysfgateway['YSF Network']['Port'] = "42000";
+		$configysfgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
+		$configysfgateway['YSF Network']['ReloadTime'] = "60";
+		$configysfgateway['YSF Network']['ParrotAddress'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['ParrotPort'] = "42012";
+		$configysfgateway['YSF Network']['YSF2DMRAddress'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['YSF2DMRPort'] = "42013";
+		$configysfgateway['FCS Network']['Enable'] = "1";
+		$configysfgateway['YSF Network']['Port'] = "42001";
+	}
 
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
