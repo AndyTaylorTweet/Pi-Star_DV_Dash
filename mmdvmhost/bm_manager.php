@@ -91,10 +91,12 @@ if ( $testMMDVModeDMR == 1 ) {
     );
     $context = stream_context_create($opts);
     $result = file_get_contents($bmAPIurl, false, $context);
+    $feeback=json_decode($result);
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
     echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-    echo "Sending command to BrandMeister API";
+    //echo "Sending command to BrandMeister API";
+    print $feeback->{'message'};
     //echo $result;
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
