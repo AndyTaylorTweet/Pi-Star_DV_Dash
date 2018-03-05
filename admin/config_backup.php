@@ -82,7 +82,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
           
           if (file_exists($backupZip)) {
-            $utc_time = gmdate();
+            $utc_time = gmdate('Y-m-d H:i:s');
             $utc_tz =  new DateTimeZone('UTC');
             $local_tz = new DateTimeZone(date_default_timezone_get ());
             $dt = new DateTime($utc_time, $utc_tz);
