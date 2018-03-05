@@ -9,7 +9,7 @@
     <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
   </p>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    Quick Editors:
+    <b>Quick Editors:</b>
     <a href="edit_dstarrepeater.php" style="color: #ffffff;">DStarRepeater</a> |
     <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
     <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a> |
@@ -17,11 +17,11 @@
     <a href="edit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
     <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a><br />
-    Full Editors:
+    <b>Full Editors:</b>
     <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
-    <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi Config</a> |
-    Tools:
+    <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi Config</a>
+    <b>Tools:</b>
     <a href="ssh_access.php" style="color: #ffffff;">SSH Access</a>
   </p>
   </div>
