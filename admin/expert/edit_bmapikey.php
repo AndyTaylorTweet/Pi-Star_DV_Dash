@@ -28,7 +28,7 @@ require_once('../config/version.php');
   </head>
   <body>
   <div class="container">
-  <?php include 'header-menu.inc'; ?>
+  <?php include './header-menu.inc'; ?>
   <div class="contentwide">
 
 <?php
