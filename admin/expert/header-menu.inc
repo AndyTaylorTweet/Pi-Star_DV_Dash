@@ -21,7 +21,8 @@
     <b>Full Editors:</b>
     <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
-    <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi Config</a>
+    <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi Config</a> |
+    <a href="fulledit_cron.php" style="color: #ffffff;">System Cron</a>
     <b>Tools:</b>
     <a href="ssh_access.php" style="color: #ffffff;">SSH Access</a>
   </p>
