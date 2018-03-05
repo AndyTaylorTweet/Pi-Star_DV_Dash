@@ -45,7 +45,7 @@ if(isset($_POST['data'])) {
         exec('sudo mount -o remount,rw /');
         exec('sudo cp /tmp/k45s7h5s9k3.tmp /etc/wpa_supplicant/wpa_supplicant.conf');
         exec('sudo chmod 644 /etc/wpa_supplicant/wpa_supplicant.conf');
-        exec('sudo chown root:root /etc/wpa_supplicant/wpa_supplicant.conf');
+        exec('sudo chown www-data:www-data /etc/wpa_supplicant/wpa_supplicant.conf');
         exec('sudo mount -o remount,ro /');
 
         // Re-open the file and read it
