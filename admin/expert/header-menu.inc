@@ -9,10 +9,10 @@
     <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
   </p>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    Edit:
+    Editors:
     <a href="edit_dstarrepeater.php" style="color: #ffffff;">DStarRepeater</a> |
     <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
-    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a><br />
+    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a> |
     <a href="edit_mmdvmhost.php" style="color: #ffffff;">MMDVMHost</a> |
     <a href="edit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
