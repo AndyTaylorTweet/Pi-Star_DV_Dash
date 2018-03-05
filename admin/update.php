@@ -23,11 +23,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   if (!isset($_GET['ajax'])) {
     //unset($_SESSION['update_offset']);
-    $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_update.log');
+    if (file_exists('/var/log/pi-star/pi-star_update.log')) {
+      $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_update.log');
+    } else {
+      $_SESSION['update_offset'] = 0;
+    }
   }
   
   if (isset($_GET['ajax'])) {
     //session_start();
+    if (!file_exists('/var/log/pi-star/pi-star_update.log')) {
+      exit();
+    }
+    
     $handle = fopen('/var/log/pi-star/pi-star_update.log', 'rb');
     if (isset($_SESSION['update_offset'])) {
       fseek($handle, 0, SEEK_END);
