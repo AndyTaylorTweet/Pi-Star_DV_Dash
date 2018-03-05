@@ -47,6 +47,9 @@ if(isset($_POST['data'])) {
         exec('sudo chmod 644 /etc/pistar-remote');
         exec('sudo chown root:root /etc/pistar-remote');
         exec('sudo mount -o remount,ro /');
+  
+        // Reload the affected daemon
+		    exec('sudo systemctl restart pistar-remote.service');		    // Reload the daemon
 
         // Re-open the file and read it
         $fh = fopen($filepath, 'r');
