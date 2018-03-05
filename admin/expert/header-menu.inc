@@ -18,7 +18,8 @@
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
     <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a><br />
     Full Editors:
-    <a href="edit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
+    <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
+    <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
     Tools:
     <a href="ssh_access.php" style="color: #ffffff;">SSH Access</a>
   </p>
