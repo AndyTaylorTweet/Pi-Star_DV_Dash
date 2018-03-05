@@ -11,13 +11,14 @@
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     Edit:
     <a href="edit_dstarrepeater.php" style="color: #ffffff;">DStarRepeater</a> |
+    <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
+    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a><br />
     <a href="edit_mmdvmhost.php" style="color: #ffffff;">MMDVMHost</a> |
     <a href="edit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
     <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a> |
-    <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
-    <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a> |
-    <a href="edit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
+    <a href="edit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a><br />
+    Tools:
     <a href="ssh_access.php" style="color: #ffffff;">SSH Access</a>
   </p>
   </div>
