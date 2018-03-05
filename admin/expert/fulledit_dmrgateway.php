@@ -47,6 +47,9 @@ if(isset($_POST['data'])) {
         exec('sudo chmod 644 /etc/dmrgateway');
         exec('sudo chown root:root /etc/dmrgateway');
         exec('sudo mount -o remount,ro /');
+  
+        // Reload the affected daemon
+		    exec('sudo systemctl restart dmrgateway.service');		    // Reload the daemon
 
         // Re-open the file and read it
         $fh = fopen($filepath, 'r');
