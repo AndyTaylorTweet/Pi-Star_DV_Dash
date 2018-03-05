@@ -33,19 +33,19 @@ require_once('../config/version.php');
   <?php
 if(isset($_POST['data'])) {
         // File Wrangling
-        exec('sudo cp /etc/pistar-remote /tmp/fmehg65934eg.tmp');
-        exec('sudo chown www-data:www-data /tmp/fmehg65934eg.tmp');
-        exec('sudo chmod 664 /tmp/fmehg65934eg.tmp');
+        exec('sudo cp /etc/dmrgateway /tmp/fmehg65694eg.tmp');
+        exec('sudo chown www-data:www-data /tmp/fmehg65694eg.tmp');
+        exec('sudo chmod 664 /tmp/fmehg65694eg.tmp');
 
         // Open the file and write the data
-        $filepath = '/tmp/fmehg65934eg.tmp';
+        $filepath = '/tmp/fmehg65694eg.tmp';
         $fh = fopen($filepath, 'w');
         fwrite($fh, $_POST['data']);
         fclose($fh);
         exec('sudo mount -o remount,rw /');
-        exec('sudo cp /tmp/fmehg65934eg.tmp /etc/pistar-remote');
-        exec('sudo chmod 644 /etc/pistar-remote');
-        exec('sudo chown root:root /etc/pistar-remote');
+        exec('sudo cp /tmp/fmehg65694eg.tmp /etc/dmrgateway');
+        exec('sudo chmod 644 /etc/dmrgateway');
+        exec('sudo chown root:root /etc/dmrgateway');
         exec('sudo mount -o remount,ro /');
 
         // Re-open the file and read it
@@ -54,12 +54,12 @@ if(isset($_POST['data'])) {
 
 } else {
         // File Wrangling
-        exec('sudo cp /etc/pistar-remote /tmp/fmehg65934eg.tmp');
-        exec('sudo chown www-data:www-data /tmp/fmehg65934eg.tmp');
-        exec('sudo chmod 664 /tmp/fmehg65934eg.tmp');
+        exec('sudo cp /etc/dmrgateway /tmp/fmehg65694eg.tmp');
+        exec('sudo chown www-data:www-data /tmp/fmehg65694eg.tmp');
+        exec('sudo chmod 664 /tmp/fmehg65694eg.tmp');
 
         // Open the file and read it
-        $filepath = '/tmp/fmehg65934eg.tmp';
+        $filepath = '/tmp/fmehg65694eg.tmp';
         $fh = fopen($filepath, 'r');
         $theData = fread($fh, filesize($filepath));
 }
