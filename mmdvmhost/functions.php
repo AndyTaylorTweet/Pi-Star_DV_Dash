@@ -168,13 +168,13 @@ function getYSFGatewayLog() {
 	$logLines2 = array();
 	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250`);
+		$logLines1 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath | tail -250`);
 	}
 	$logLines1 = array_slice($logLines1, -250);
 	if (sizeof($logLines1) < 250) {
 		if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting" $logPath | tail -250`);
+			$logLines2 = explode("\n", `egrep -h "repeater|Starting|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath | tail -250`);
 		}
 	}
 	$logLines2 = array_slice($logLines2, -250);
@@ -722,8 +722,8 @@ function getActualLink($logLines, $mode) {
          	$to = "";
             foreach($logLines as $logLine) {
                //$to = "";
-	       if (strpos($logLine,"Linked to")) {
-                  $to = substr($logLine, 37, 15);
+	       if ( (strpos($logLine,"Linked to")) && (!strpos($logLine,"Linked to MMDVM")) ) {
+                  $to = substr($logLine, 37, 15); 
                }
 	       if (strpos($logLine,"Automatic (re-)connection to")) {
                   $to = substr($logLine, 56, 5);
