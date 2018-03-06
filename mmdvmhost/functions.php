@@ -714,10 +714,20 @@ function getActualLink($logLines, $mode) {
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 	// M: 2016-09-25 16:08:05.811 Connect to 62829 has been requested by DG9VH
 	// M: 2016-10-01 17:52:36.586 Automatic connection to 62829
+	// New YSFGateway Format
+	// M: 2018-03-06 15:36:06.344 Linked to GB SOUTH WEST
+	// M: 2018-03-06 15:36:06.302 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "  
+		
          if (isProcessRunning("YSFGateway")) {
          	$to = "";
             foreach($logLines as $logLine) {
                //$to = "";
+	       if (strpos($logLine,"Linked to")) {
+                  $to = substr($logLine, 37, 15);
+               }
+	       if (strpos($logLine,"Automatic (re-)connection to")) {
+                  $to = substr($logLine, 56, 5);
+               }
                if (strpos($logLine,"Connect to")) {
                   $to = substr($logLine, 38, 5);
                }
