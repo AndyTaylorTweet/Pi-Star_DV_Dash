@@ -460,7 +460,7 @@ function getHeardList($logLines) {
 		}
 		
 		$target = substr($logLine, strpos($logLine, "to") + 3);
-		$target = preg_replace('!\s+!', ' ', $target);
+		//$target = preg_replace('!\s+!', ' ', $target);
 		$source = "RF";
 		if (strpos($logLine,"network") > 0 ) {
 			$source = "Net";
@@ -490,6 +490,7 @@ function getHeardList($logLines) {
                 		$loss		= $ysfloss;
                 		$ber		= $ysfber;
 				$rssi		= $ysfrssi;
+				$target		= preg_replace('!\s+!', ' ', $target);
                 		break;
 			case "P25":
                 		$duration	= $p25duration;
