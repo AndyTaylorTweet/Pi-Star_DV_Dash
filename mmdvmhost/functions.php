@@ -486,6 +486,7 @@ function getHeardList($logLines) {
 				$rssi		= $ts2rssi;
 				break;
 			case "YSF":
+				if ($source == "Net" && $target == "ALL        at ".$callsign) {$callsign = "PARROT";}
                 		$duration	= $ysfduration;
                 		$loss		= $ysfloss;
                 		$ber		= $ysfber;
