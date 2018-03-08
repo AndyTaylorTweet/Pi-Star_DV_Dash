@@ -203,7 +203,7 @@ function getP25GatewayLog() {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
-                                        ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
+                                        if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
                                         array_push($logLines2, $logLine);
                                         }
                                 }
