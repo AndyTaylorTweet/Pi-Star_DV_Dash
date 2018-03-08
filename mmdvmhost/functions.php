@@ -486,12 +486,12 @@ function getHeardList($logLines) {
 				$rssi		= $ts2rssi;
 				break;
 			case "YSF":
-				if ($source == "Net" && $callsign == "ALL        at ".$target) {$callsign = "PARROT";}
+				$target		= preg_replace('!\s+!', ' ', $target);
+				if ($source == "Net" && $target == "ALL at ".$callsign) {$callsign = "PARROT";}
                 		$duration	= $ysfduration;
                 		$loss		= $ysfloss;
                 		$ber		= $ysfber;
 				$rssi		= $ysfrssi;
-				$target		= preg_replace('!\s+!', ' ', $target);
                 		break;
 			case "P25":
 				if ($source == "Net" && $target == "TG 10") {$callsign = "PARROT";}
