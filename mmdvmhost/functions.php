@@ -493,8 +493,8 @@ function getHeardList($logLines) {
 				$target		= preg_replace('!\s+!', ' ', $target);
                 		break;
 			case "P25":
-				if ($source == "Net" && $target == "TG 10") {$callsign = "Pi-Star";}
-				if ($source == "Net" && $callsign == "10999") {$callsign = "Pi-Star";}
+				if ($source == "Net" && $target == "TG 10") {$callsign = "PARROT";}
+				if ($source == "Net" && $callsign == "10999") {$callsign = "SYSTEM";}
                 		$duration	= $p25duration;
                 		$loss		= $p25loss;
                 		$ber		= $p25ber;
