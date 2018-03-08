@@ -191,7 +191,7 @@ function getP25GatewayLog() {
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
                 if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
                         while ($logLine = fgets($log)) {
-                                if (startsWith($logLine,"M:")) {
+                                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
                                         array_push($logLines1, $logLine);
                                 }
                         }
@@ -203,7 +203,7 @@ function getP25GatewayLog() {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
-                                        if (startsWith($logLine,"M:")) {
+                                        ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
                                         array_push($logLines2, $logLine);
                                         }
                                 }
@@ -757,6 +757,7 @@ function getActualLink($logLines, $mode) {
 	// M: 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
 	// M: 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
 	// M: 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
+	// W: 2000-01-01 00:00:00.000 No response from 10200, unlinking
 	if (isProcessRunning("P25Gateway")) {
 	    foreach($logLines as $logLine) {
                $to = "";
@@ -770,6 +771,9 @@ function getActualLink($logLines, $mode) {
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "Linked to: TG".$to;
                }
+	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
+		  return "Not Linked";
+	       }
                if (strpos($logLine,"Starting P25Gateway")) {
 		  return "Not Linked";
                }
