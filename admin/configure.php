@@ -1271,6 +1271,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysfgateway['Network']['Port'])) { $configysfgateway['Network']['Port'] = "42000"; }
 	if (!isset($configysfgateway['Network']['YSF2DMRAddress'])) { $configysfgateway['Network']['YSF2DMRAddress'] = "127.0.0.1"; }
 	if (!isset($configysfgateway['Network']['YSF2DMRPort'])) { $configysfgateway['Network']['YSF2DMRPort'] = "42013"; }
+	if ( (!isset($configysfgateway['DMR Network']['TGListFile'])) && (file_exists('/usr/local/etc/TGList_BM.txt')) ) { $configysfgateway['DMR Network']['TGListFile'] = "/usr/local/etc/TGList_BM.txt"; }
 	unset($configysfgateway['Network']['DataPort']);
 	unset($configysfgateway['Network']['StatusPort']);
 
