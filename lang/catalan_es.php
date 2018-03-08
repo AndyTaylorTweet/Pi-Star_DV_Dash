@@ -1,8 +1,8 @@
 <?php
 //
 // Catalan ES Language Pack
-// Rafael EA3BIL
-// 21-Feb-2018
+// Rafa EA3BIL
+// 08-Mar-2018. Some updates done after linguistic expert review.
 //
 $lang = array (
   // Banner texts
@@ -14,8 +14,8 @@ $lang = array (
   "admin"                       =>  "Administrar",
   "power"                       =>  "Reiniciar/Apagar",
   "update"                      =>  "Actualitzar",
-  "backup_restore"              =>  "Backup/Restaurar copia de seguridad",
-  "factory_reset"               =>  "Restaurar dades de fabrica",
+  "backup_restore"              =>  "Fer/Restaurar copia seguretat",
+  "factory_reset"               =>  "Restaurar estat de fabrica",
   "live_logs"                   =>  "Informes-Logs",
   // Config page section headdings
   "hardware_info"               =>  "Informacio del hardware",
@@ -28,17 +28,17 @@ $lang = array (
   "p25_config"                  =>  "Configuracio de P25",
   "nxdn_config"                 =>  "Configuracio de NXDN",
   "wifi_config"                 =>  "Configuracio WIFI",
-  "fw_config"                   =>  "Configuracio del tallafocs",
-  "remote_access_pw"            =>  "Mot de pas d'accces Remot",
+  "fw_config"                   =>  "Configuracio del Tallafocs",
+  "remote_access_pw"            =>  "Password per accces Remot",
   // Config Page - Section General
-  "setting"                     =>  "Adjustus",
+  "setting"                     =>  "Ajustaments",
   "value"                       =>  "Valor",
   "apply"                       =>  "Aplicar",
   // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Hostname",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Plataforma",
-  "cpu_load"                    =>  "Carrega de CPU",
+  "cpu_load"                    =>  "Carrega CPU",
   "cpu_temp"                    =>  "Temperatura CPU",
   // Config Page - Control Software
   "controller_software"         =>  "Controlador Software",
@@ -50,7 +50,7 @@ $lang = array (
   "p25_mode"                    =>  "Mode P25",
   "nxdn_mode"                   =>  "Mode NXDN",
   "mmdvm_display"               =>  "MMDVM Tipus Display",
-  "mode_hangtime"               =>  "Modo temps de suspensio",
+  "mode_hangtime"               =>  "Mode temps de suspensio",
   // Config Page - General Configuration
   "node_call"                   =>  "Indicatiu de Node",
   "dmr_id"                      =>  "CCS7/DMR ID",
@@ -63,26 +63,26 @@ $lang = array (
   "radio_type"                  =>  "Radio/Tipus modem",
   "node_type"                   =>  "Node Tipus",
   "timezone"                    =>  "Zona horaria",
-  "dash_lang"                   =>  "Idioma del Panell de Control",
+  "dash_lang"                   =>  "Idioma Panell de Control",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR Master (MMDVMHost)",
-  "bm_master"                   =>  "Master de BrandMeister",
-  "bm_network"                  =>  "Xarxa de BrandMeister",
-  "dmr_plus_master"             =>  "Master de DMR+",
-  "dmr_plus_network"            =>  "Xarxa de DMR+",
-  "xlx_master"                  =>  "Master de XLX",
-  "xlx_enable"                  =>  "habilitar Master XLX",
-  "dmr_cc"                      =>  "Codi de color de DMR",
+  "bm_master"                   =>  "Master BrandMeister",
+  "bm_network"                  =>  "Xarxa BrandMeister",
+  "dmr_plus_master"             =>  "Master DMR+",
+  "dmr_plus_network"            =>  "Xarxa DMR+",
+  "xlx_master"                  =>  "Master XLX",
+  "xlx_enable"                  =>  "Habilitar Master XLX",
+  "dmr_cc"                      =>  "Codi de color DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
   // Config Page - D-Star Configuration
   "dstar_rpt1"                  =>  "RPT1 indicatiu de crida",
   "dstar_rpt2"                  =>  "RPT2 indicatiu de crida",
-  "dstar_irc_password"          =>  "mot de pas de ircDDBGateway",
+  "dstar_irc_password"          =>  "Password d'ircDDBGateway",
   "dstar_default_ref"           =>  "Reflector predeterminat",
-  "aprs_host"                   =>  "Servidor de APRS",
+  "aprs_host"                   =>  "Servidor d'APRS",
   "dstar_irc_lang"              =>  "Idioma d'ircDDBGateway",
-  "dstar_irc_time"              =>  "Interval de Balius",
+  "dstar_irc_time"              =>  "Interval de Balissa",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Arrencant Host",
   // Config Page - P25 Configuration
@@ -92,47 +92,47 @@ $lang = array (
   "nxdn_startup_host"            =>  "NXDN Arrencant Host",
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "Taulell d'acces",
-  "fw_irc"                      =>  "ircDDGBateway Remoto",
+  "fw_dash"                     =>  "Panell d'acces",
+  "fw_irc"                      =>  "ircDDGBateway Remot",
   "fw_ssh"                      =>  "Acces per SSH",
   // Config Page - Password
-  "user"                        =>  "Nom d'usuario",
-  "password"                    =>  "Mot de pas",
-  "set_password"                =>  "Establir mot de pas",
+  "user"                        =>  "Nom d'usuari",
+  "password"                    =>  "Password",
+  "set_password"                =>  "Establir password",
   // Dashboard Front Page - Repeater Info Pannel
   "modes_enabled"               =>  "Modes habilitats",
   "net_status"                  =>  "Estat de xarxa",
   "internet"                    =>  "Internet",
   "radio_info"                  =>  "Informacio de Radio",
-  "dstar_repeater"              =>  "Repetidor de D-Star",
-  "dstar_net"                   =>  "Xarxa de D-Star",
-  "dmr_repeater"                =>  "Repetidor de DMR",
-  "dmr_master"                  =>  "Master de DMR",
-  "ysf_net"                     =>  "Xarxa de YSF",
-  "p25_radio"                   =>  "Radio de P25",
-  "p25_net"                     =>  "Xarxa de P25",
-  "nxdn_radio"                  =>  "Radio de NXDN",
-  "nxdn_net"                    =>  "Xarxa de NXDN",
+  "dstar_repeater"              =>  "Repetidor D-Star",
+  "dstar_net"                   =>  "Xarxa D-Star",
+  "dmr_repeater"                =>  "Repetidor DMR",
+  "dmr_master"                  =>  "Master DMR",
+  "ysf_net"                     =>  "Xarxa YSF",
+  "p25_radio"                   =>  "Radio P25",
+  "p25_net"                     =>  "Xarxa P25",
+  "nxdn_radio"                  =>  "Radio NXDN",
+  "nxdn_net"                    =>  "Xarxa NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Hora",
   "mode"                        =>  "Mode",
-  "callsign"                    =>  "Indicatiu de crida",
+  "callsign"                    =>  "Indicatiu",
   "target"                      =>  "Desti",
   "src"                         =>  "SRC",        //version corta de "fuente"
   "dur"                         =>  "DUR",        //version corta de "duracion"
   "loss"                        =>  "Perdua",
   "ber"                         =>  "BER",        //version corta de "Error de bit"
   // Dashboard - Extra Info
-  "group"                       =>  "Grups",
+  "group"                       =>  "Grup",
   "logoff"                      =>  "Finalitzar",
   "info"                        =>  "Informacio",
   "utot"                        =>  "UTOT",       //tiempo agotado para usuario
   "gtot"                        =>  "GTOT",       // tiempo agotado para grupo
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Ultimes 20 trucadas que han accedit al sistema",
-  "local_tx_list"               =>  "Ultimes 20 trucadas que han accedit al port",
+  "last_heard_list"             =>  "Ultimes 20 trucades que han accedit al sistema",
+  "local_tx_list"               =>  "Ultimes 20 trucades que han accedit per radio",
   "active_starnet_groups"       =>  "Grups actius Starnet",
-  "active_starnet_members"      =>  "Membres actius del grup Starnet",
+  "active_starnet_members"      =>  "Membres actius grup Starnet",
   "d-star_link_manager"         =>  "Gestor d'enllaços D-Star",
   "d-star_link_status"          =>  "Informacio d'enllaços D-Star",
   "service_status"              =>  "Estat del servei"
