@@ -105,7 +105,7 @@ if ( $testMMDVModeDMR == 1 ) {
   else: // Do this when we are not handling post data
     if (isset($bmAPIkey)) {
       echo '<b>BrandMeister Manager</b>'."\n";
-      echo '<form action="http://'.htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+      echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
       echo '<table>
       <tr>
         <th><a class=tooltip href="#">Tools<span><b>DMR ID</b></span></a></th>
