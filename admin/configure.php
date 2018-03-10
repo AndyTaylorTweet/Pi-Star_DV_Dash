@@ -28,6 +28,7 @@ if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
                 	$configdstar[$key1] = $value1;
 		}
         }
+        fclose($configdstarfile);
 }
 
 // Load the ircDDBGateway config file
@@ -41,6 +42,7 @@ if ($configfile = fopen($gatewayConfigPath,'r')) {
                 	$configs[$key] = $value;
 		}
         }
+        fclose($configfile);
 }
 
 // Load the mmdvmhost config file
