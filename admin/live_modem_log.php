@@ -29,6 +29,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
       $logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
     }
     
+    if (empty($logfile) || !file_exists($logfile)) {
+      exit();
+    }
+    
     $handle = fopen($logfile, 'rb');
     if (isset($_SESSION['offset'])) {
       fseek($handle, 0, SEEK_END);
