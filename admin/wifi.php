@@ -236,20 +236,18 @@ echo '<br />
 		file_put_contents('/tmp/wifidata', $config);
 		system('sudo mount -o remount,rw / && sudo cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf');
 		echo "Wifi Settings Updated Successfully\n";
-		system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+		// If Auto AP is on, dont restart the WiFi Card
+		if (!file_exists('/sys/class/net/wlan0_ap')) {
+			system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+		}
 		header("Refresh:1");
 
 	} elseif(isset($_POST['Scan'])) {
 		$return = '';
 		exec('ifconfig wlan0 | grep -i running | wc -l',$test);
-		// sleep(2); // Removed pointless sleep
 		exec('sudo wpa_cli scan -i wlan0',$return);
-		sleep(8); // Added some time to the scan process to find more APs
+		sleep(8);
 		exec('sudo wpa_cli scan_results -i wlan0',$return);
-		// This section appears to limit the number of found APs to 4, this seems to have been done to clean up the output.
-		//for($shift = 0; $shift < 4; $shift++ ) {
-		//	array_shift($return);
-		//}
 		unset($return['0']); // This is a better way to clean up;
 		unset($return['1']); // This is a better way to clean up;
 		echo "<br />\n";
@@ -265,7 +263,7 @@ echo '<br />
 			$ssid = $arrNetwork[4];
 
 			echo '<tr>';
-			echo '<td style="text-align: left;"><input type="button" value="Connect" onclick="AddScanned(\''.$ssid.'\')" /></td>';
+			echo '<td style="text-align: left;"><input type="button" value="Select" onclick="AddScanned(\''.$ssid.'\')" /></td>';
 			echo '<td style="text-align: left;">'.$ssid.'</td>';
 			echo '<td style="text-align: left;">Channel '.$channel.'</td>';
 			echo '<td>'.$signal.'</td>';
