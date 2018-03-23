@@ -934,6 +934,6 @@ $reverseLogLinesP25Gateway = $logLinesP25Gateway;
 array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
 $NXDNGatewayconfigs = getNXDNGatewayConfig();
 $logLinesNXDNGateway = getNDXNGatewayLog();
-$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
-array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
+//$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
+//array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
 ?>
