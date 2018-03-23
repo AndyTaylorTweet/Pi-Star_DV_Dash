@@ -1,4 +1,10 @@
 <?php
+
+define("NXDNGATEWAYLOGPATH", "/var/log/pi-star");
+define("NXDNGATEWAYLOGPREFIX", "NXDNGateway");
+define("NXDNGATEWAYINIPATH", "/etc");
+define("NXDNGATEWAYINIFILENAME", "nxdngateway");
+
 function getMMDVMConfig() {
 	// loads MMDVM.ini into array for further use
 	$conf = array();
