@@ -646,8 +646,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the NXDN Startup Host
 	if (empty($_POST['nxdnStartupHost']) != TRUE ) {
 	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
-	  $configmmdvm['NXDN Network']['GatewayAddress'] = $newNXDNStartupHost;
-	  $configmmdvm['NXDN Network']['GatewayPort'] = "41007";
+	  if (file_exists('/etc/nxdngateway')) {
+		if ($newNXDNStartupHost === "NONE") { $rollNXDNStartup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/nxdngateway'; }
+		else {
+		if (!isset($confignxdngateway['Network']['Startup'])) { $rollNXDNStartup = 'sudo echo "Startup='.$newNXDNStartupHost.'" >> /etc/nxdngateway'; }
+		else { $rollNXDNStartup = 'sudo sed -i "/Startup=/c\\Startup='.$newNXDNStartupHost.'" /etc/nxdngateway'; }
+	  	}
+	  	system($rollNXDNStartup);
+	  } else {
+		$configmmdvm['NXDN Network']['GatewayAddress'] = $newNXDNStartupHost;
+		$configmmdvm['NXDN Network']['GatewayPort'] = "41007";
+	  }
 	}
 
 	// Set NXDN RAN
