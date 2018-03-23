@@ -596,6 +596,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollSTARNETSERVERcall = 'sudo sed -i "/callsign=/c\\callsign='.$newCallsignUpper.'" /etc/starnetserver';
 	  $rollSTARNETSERVERirc = 'sudo sed -i "/ircddbUsername=/c\\ircddbUsername='.$newCallsignUpperIRC.'" /etc/starnetserver';
 	  $rollP25GATEWAY = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/p25gateway';
+	  $rollNXDNGATEWAY = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/nxdngateway';
 
 	  // Only roll ircDDBGateway Username if using OpenQuad
 	  if ($configs['ircddbHostname'] == "rr.openquad.net") {
@@ -619,6 +620,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollSTARNETSERVERcall);
 	  system($rollSTARNETSERVERirc);
 	  system($rollP25GATEWAY);
+	  if (file_exists('/etc/nxdngateway')) { system($rollNXDNGATEWAY); }
 
 	}
 
