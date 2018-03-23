@@ -812,6 +812,44 @@ function getActualLink($logLines, $mode) {
          }
          break;
 
+    case "NXDN":
+	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
+	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+	// M: 2000-01-01 00:00:00.000 Linked at startup to reflector 65000
+	// M: 2000-01-01 00:00:00.000 Unlinked from reflector 65000 by M1ABC
+	// M: 2000-01-01 00:00:00.000 Linked to reflector 65000 by M1ABC
+	// W: 2000-01-01 00:00:00.000 No response from 65000, unlinking
+		
+         if (isProcessRunning("NXDNGateway")) {
+         	$to = "";
+            foreach($logLines as $logLine) {
+               $to = "";
+               if (strpos($logLine,"Linked to")) {
+		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
+		  $to = preg_replace('/[^0-9]/', '', $to);
+		  return "Linked to: TG".$to;
+               }
+               if (strpos($logLine,"Linked at startup to")) {
+		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 58, 5));
+		  $to = preg_replace('/[^0-9]/', '', $to);
+		  return "Linked to: TG".$to;
+               }
+	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
+		  return "Not Linked";
+	       }
+               if (strpos($logLine,"Starting NXDNGateway")) {
+		  return "Not Linked";
+               }
+               if (strpos($logLine,"Unlinked")) {
+                  return "Not Linked";
+               }
+	    }
+            return "not linked";
+         } else {
+            return "Service Not Started";
+         }
+         break;
+			
     case "P25":
 	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
