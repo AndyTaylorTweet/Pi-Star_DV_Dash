@@ -96,8 +96,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 		elseif ($mode == "NXDN Network") {
-			// if (isProcessRunning("NXDNGateway")) {
-			if (isProcessRunning("MMDVMHost")) {
+			if (isProcessRunning("NXDNGateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
