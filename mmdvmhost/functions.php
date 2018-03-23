@@ -259,6 +259,7 @@ function getNXDNGatewayLog() {
 	$logLines2 = array_slice($logLines2, -25);
 	$logLines = $logLines1 + $logLines2;
 	$logLines = array_slice($logLines, -25);
+	array_multisort($logLines);
         return $logLines;
 }
 
