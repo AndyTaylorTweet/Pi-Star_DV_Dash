@@ -63,6 +63,12 @@ if (file_exists('/etc/ysf2dmr')) {
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
 
+// Load the nxdngateway config file
+if (file_exists('/etc/nxdngateway')) {
+	$nxdngatewayConfigFile = '/etc/nxdngateway';
+	$confignxdngateway = parse_ini_file($nxdngatewayConfigFile, true);
+}
+
 // Load the dmrgateway config file
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
