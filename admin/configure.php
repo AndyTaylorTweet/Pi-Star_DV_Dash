@@ -1313,7 +1313,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2dmr['Enabled']['Enabled'])) { $configysf2dmr['Enabled']['Enabled'] = "0"; }
 	unset($configysf2dmr['Info']['Enabled']);
 	unset($configysf2dmr['DMR Network']['JitterEnabled']);
-
+	
+	// Clean up for NXDN Gateway
+	if (file_exists('/etc/nxdngateway')) {
+		$configmmdvm['NXDN Network']['LocalAddress'] = "127.0.0.1";
+		$configmmdvm['NXDN Network']['LocalPort'] = "14021";
+		$configmmdvm['NXDN Network']['GatewayAddress'] = "127.0.0.1";
+		$configmmdvm['NXDN Network']['GatewayPort'] = "14020";
+	}
 
 	// Clean up legacy options
 	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
