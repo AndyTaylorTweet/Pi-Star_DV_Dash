@@ -1347,7 +1347,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if ($dmrGatewayVer > 20170924) {
 		unset($configdmrgateway['XLX Network 1']);
 		unset($configdmrgateway['XLX Network 2']);
-		unset($configmmdvm['NXDN Network']['LocalAddress']);
 	}
 	
 	// Migrate YSFGateway Config
