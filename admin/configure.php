@@ -1331,10 +1331,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['NXDN Network']['GatewayPort'] = "14020";
 		$nxdnRfModeHangTmp = $configmmdvm['NXDN']['ModeHang'];
 		$nxdnNetModeHangTmp = $configmmdvm['NXDN Network']['ModeHang'];
-		//unset($configmmdvm['NXDN']['ModeHang']);
-		//unset($configmmdvm['NXDN Network']['ModeHang']);
-		//$configmmdvm['NXDN']['ModeHang'] = $nxdnRfModeHangTmp';
-		//$configmmdvm['NXDN Network']['ModeHang'] = $nxdnNetModeHangTmp';
+		unset($configmmdvm['NXDN']['ModeHang']);
+		unset($configmmdvm['NXDN Network']['ModeHang']);
+		$configmmdvm['NXDN']['ModeHang'] = $nxdnRfModeHangTmp;
+		$configmmdvm['NXDN Network']['ModeHang'] = $nxdnNetModeHangTmp;
 	}
 	
 
