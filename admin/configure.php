@@ -1329,6 +1329,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['NXDN Network']['LocalPort'] = "14021";
 		$configmmdvm['NXDN Network']['GatewayAddress'] = "127.0.0.1";
 		$configmmdvm['NXDN Network']['GatewayPort'] = "14020";
+		if(isset($configmmdvm['NXDN']['SelfOnly'])) {
+			$nxdnSelfOnlyTmp = $configmmdvm['NXDN']['SelfOnly'];
+			unset($configmmdvm['NXDN']['SelfOnly']);
+			$configmmdvm['NXDN']['SelfOnly'] = $nxdnSelfOnlyTmp;
+		}
 		if(isset($configmmdvm['NXDN']['ModeHang'])) {
 			$nxdnRfModeHangTmp = $configmmdvm['NXDN']['ModeHang'];
 			unset($configmmdvm['NXDN']['ModeHang']);
