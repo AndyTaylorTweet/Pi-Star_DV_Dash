@@ -1,10 +1,4 @@
 <?php
-
-//define("NXDNGATEWAYLOGPATH", "/var/log/pi-star");
-//define("NXDNGATEWAYLOGPREFIX", "NXDNGateway");
-//define("NXDNGATEWAYINIPATH", "/etc");
-//define("NXDNGATEWAYINIFILENAME", "nxdngateway");
-
 function getMMDVMConfig() {
 	// loads MMDVM.ini into array for further use
 	$conf = array();
@@ -41,17 +35,17 @@ function getP25GatewayConfig() {
 	return $conf;
 }
 
-//function getNXDNGatewayConfig() {
-//	// loads MMDVM.ini into array for further use
-//	$conf = array();
-//	if ($configs = fopen(NXDNGATEWAYINIPATH."/".NXDNGATEWAYINIFILENAME, 'r')) {
-//		while ($config = fgets($configs)) {
-//			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-//		}
-//		fclose($configs);
-//	}
-//	return $conf;
-//}
+function getNXDNGatewayConfig() {
+	// loads MMDVM.ini into array for further use
+	$conf = array();
+	if ($configs = fopen('/etc/nxdngateway', 'r')) {
+		while ($config = fgets($configs)) {
+			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+		}
+		fclose($configs);
+	}
+	return $conf;
+}
 
 function getCallsign($mmdvmconfigs) {
 	// returns Callsign from MMDVM-config
