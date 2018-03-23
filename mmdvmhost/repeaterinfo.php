@@ -254,8 +254,11 @@ if ( $testMMDVModeNXDN == 1 ) { //Hide the NXDN information when NXDN Network mo
 		echo "<tr><th style=\"width:70px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
-	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Linked to: TG65000</td></tr>\n";
-	//echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
+	if (file_exists('/etc/nxdngateway')) {
+		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesNXDNGateway, "NXDN")."</td></tr>\n"
+	} else {
+		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Linked to: TG65000</td></tr>\n";
+	}
 	echo "</table>\n";
 }
 ?>
