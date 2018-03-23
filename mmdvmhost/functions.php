@@ -1,9 +1,9 @@
 <?php
 
-define("NXDNGATEWAYLOGPATH", "/var/log/pi-star");
-define("NXDNGATEWAYLOGPREFIX", "NXDNGateway");
-define("NXDNGATEWAYINIPATH", "/etc");
-define("NXDNGATEWAYINIFILENAME", "nxdngateway");
+//define("NXDNGATEWAYLOGPATH", "/var/log/pi-star");
+//define("NXDNGATEWAYLOGPREFIX", "NXDNGateway");
+//define("NXDNGATEWAYINIPATH", "/etc");
+//define("NXDNGATEWAYINIFILENAME", "nxdngateway");
 
 function getMMDVMConfig() {
 	// loads MMDVM.ini into array for further use
@@ -41,17 +41,17 @@ function getP25GatewayConfig() {
 	return $conf;
 }
 
-function getNXDNGatewayConfig() {
-	// loads MMDVM.ini into array for further use
-	$conf = array();
-	if ($configs = fopen(NXDNGATEWAYINIPATH."/".NXDNGATEWAYINIFILENAME, 'r')) {
-		while ($config = fgets($configs)) {
-			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-		}
-		fclose($configs);
-	}
-	return $conf;
-}
+//function getNXDNGatewayConfig() {
+//	// loads MMDVM.ini into array for further use
+//	$conf = array();
+//	if ($configs = fopen(NXDNGATEWAYINIPATH."/".NXDNGATEWAYINIFILENAME, 'r')) {
+//		while ($config = fgets($configs)) {
+//			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+//		}
+//		fclose($configs);
+//	}
+//	return $conf;
+//}
 
 function getCallsign($mmdvmconfigs) {
 	// returns Callsign from MMDVM-config
@@ -938,8 +938,8 @@ $P25Gatewayconfigs = getP25GatewayConfig();
 $logLinesP25Gateway = getP25GatewayLog();
 $reverseLogLinesP25Gateway = $logLinesP25Gateway;
 array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
-$NXDNGatewayconfigs = getNXDNGatewayConfig();
-$logLinesNXDNGateway = getNDXNGatewayLog();
-$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
-array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
+//$NXDNGatewayconfigs = getNXDNGatewayConfig();
+//$logLinesNXDNGateway = getNDXNGatewayLog();
+//$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
+//array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
 ?>
