@@ -35,6 +35,18 @@ function getP25GatewayConfig() {
 	return $conf;
 }
 
+function getNXDNGatewayConfig() {
+	// loads MMDVM.ini into array for further use
+	$conf = array();
+	if ($configs = fopen(NXDNGATEWAYINIPATH."/".NXDNGATEWAYINIFILENAME, 'r')) {
+		while ($config = fgets($configs)) {
+			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+		}
+		fclose($configs);
+	}
+	return $conf;
+}
+
 function getCallsign($mmdvmconfigs) {
 	// returns Callsign from MMDVM-config
 	return getConfigItem("General", "Callsign", $mmdvmconfigs);
@@ -216,6 +228,41 @@ function getP25GatewayLog() {
 	$logLines = array_slice($logLines, -250);
         return $logLines;
 }
+
+function getNXDNGatewayLog() {
+        // Open Logfile and copy loglines into LogLines-Array()
+        $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
+        if (file_exists(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+                if ($log = fopen(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
+                        while ($logLine = fgets($log)) {
+                                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
+                                        array_push($logLines1, $logLine);
+                                }
+                        }
+                        fclose($log);
+                }
+        }
+	$logLines1 = array_slice($logLines1, -250);
+        if (sizeof($logLines1) < 250) {
+                if (file_exists(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
+                        if ($log = fopen(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
+                                while ($logLine = fgets($log)) {
+                                        if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
+                                        array_push($logLines2, $logLine);
+                                        }
+                                }
+                                fclose($log);
+                        }
+                }
+        }
+	$logLines2 = array_slice($logLines2, -250);
+	$logLines = $logLines1 + $logLines2;
+	$logLines = array_slice($logLines, -250);
+        return $logLines;
+}
+
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
@@ -885,4 +932,8 @@ $P25Gatewayconfigs = getP25GatewayConfig();
 $logLinesP25Gateway = getP25GatewayLog();
 $reverseLogLinesP25Gateway = $logLinesP25Gateway;
 array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
+$NXDNGatewayconfigs = getNXDNGatewayConfig();
+$logLinesNXDNGateway = getNDXNGatewayLog();
+$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
+array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
 ?>
