@@ -236,19 +236,19 @@ function getNXDNGatewayLog() {
         if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
                 if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log", 'r')) {
                         while ($logLine = fgets($log)) {
-                                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
+                                if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
                                         array_push($logLines1, $logLine);
                                 }
                         }
                         fclose($log);
                 }
         }
-	$logLines1 = array_slice($logLines1, -250);
+	$logLines1 = array_slice($logLines1, -25);
         if (sizeof($logLines1) < 250) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
-                                        if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
+                                        if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
                                         array_push($logLines2, $logLine);
                                         }
                                 }
@@ -256,9 +256,9 @@ function getNXDNGatewayLog() {
                         }
                 }
         }
-	$logLines2 = array_slice($logLines2, -250);
+	$logLines2 = array_slice($logLines2, -25);
 	$logLines = $logLines1 + $logLines2;
-	$logLines = array_slice($logLines, -250);
+	$logLines = array_slice($logLines, -25);
         return $logLines;
 }
 
