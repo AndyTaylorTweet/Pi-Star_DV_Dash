@@ -833,6 +833,9 @@ function getActualLink($logLines, $mode) {
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "Linked to: TG".$to;
                }
+	       if (strpos($logLine,"Opening Icom connection")) {
+		  return "";
+	       }
 	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
 		  return "Not Linked";
 	       }
