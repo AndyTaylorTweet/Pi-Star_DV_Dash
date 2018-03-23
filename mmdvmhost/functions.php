@@ -780,9 +780,8 @@ function getActualLink($logLines, $mode) {
 	// M: 2018-03-06 15:36:06.302 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "  
 		
          if (isProcessRunning("YSFGateway")) {
-         	$to = "";
+            $to = "";
             foreach($logLines as $logLine) {
-               //$to = "";
 	       if ( (strpos($logLine,"Linked to")) && (!strpos($logLine,"Linked to MMDVM")) ) {
                   $to = substr($logLine, 37, 15); 
                }
@@ -820,30 +819,33 @@ function getActualLink($logLines, $mode) {
 	// W: 2000-01-01 00:00:00.000 No response from 65000, unlinking
 		
          if (isProcessRunning("NXDNGateway")) {
-         	$to = "";
+            $to = "";
+	    $output = "";
             foreach($logLines as $logLine) {
-               $to = "";
                if (strpos($logLine,"Linked to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
-		  return "Linked to: TG".$to;
+		  $output = "Linked to: TG".$to;
                }
                if (strpos($logLine,"Linked at startup to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 58, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
-		  return "Linked to: TG".$to;
+		  $output = "Linked to: TG".$to;
+               }
+	       if ($output !== "") {
+                  return $output;
                }
 	       if (strpos($logLine,"Opening Icom connection")) {
-		  return "Not Linked";
+		  $output = "Not Linked";
 	       }
 	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
-		  return "Not Linked";
+		  $ouput =  "Not Linked";
 	       }
                if (strpos($logLine,"Starting NXDNGateway")) {
-		  return "Not Linked";
+		  $output = "Not Linked";
                }
                if (strpos($logLine,"Unlinked")) {
-                  return "Not Linked";
+                  $output = "Not Linked";
                }
 	    }
             return "not linked";
