@@ -209,8 +209,8 @@ function getP25GatewayLog() {
                         fclose($log);
                 }
         }
-	$logLines1 = array_slice($logLines1, -250);
-        if (sizeof($logLines1) < 250) {
+	$logLines1 = array_slice($logLines1, -25);
+        if (sizeof($logLines1) < 25) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
@@ -222,9 +222,9 @@ function getP25GatewayLog() {
                         }
                 }
         }
-	$logLines2 = array_slice($logLines2, -250);
+	$logLines2 = array_slice($logLines2, -25);
 	$logLines = $logLines1 + $logLines2;
-	$logLines = array_slice($logLines, -250);
+	$logLines = array_slice($logLines, -25);
         return $logLines;
 }
 
@@ -244,7 +244,7 @@ function getNXDNGatewayLog() {
                 }
         }
 	$logLines1 = array_slice($logLines1, -25);
-        if (sizeof($logLines1) < 250) {
+        if (sizeof($logLines1) < 25) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
                         if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
@@ -832,9 +832,6 @@ function getActualLink($logLines, $mode) {
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  $output = "Linked to: TG".$to;
                }
-	       if (strpos($logLine,"Opening Icom connection")) {
-		  $output = "Not Linked";
-	       }
 	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
 		  $ouput =  "Not Linked";
 	       }
