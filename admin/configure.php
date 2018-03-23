@@ -2433,8 +2433,40 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered<br /> NXDN Host here</span></a></td>
         <td style="text-align: left;"><select name="nxdnStartupHost">
-		<option value="176.9.1.168">D2FET Test Host - 176.9.1.168</option>
-		</select></td>
+<?php
+	if (file_exists('/etc/nxdngateway')) {
+		$nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
+		$testNXDNHost = $confignxdngateway['Network']['Startup'];
+		if ($testNXDNHost == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
+	        else { echo "      <option value=\"none\">None</option>\n"; }
+		if ($testNXDNHost == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
+	        else { echo "      <option value=\"10\">10 - Parrot</option>\n"; }
+	        while (!feof($nxdnHosts)) {
+	                $nxdnHostsLine = fgets($nxdnHosts);
+	                $nxdnHost = preg_split('/\s+/', $nxdnHostsLine);
+	                if ((strpos($nxdnHost[0], '#') === FALSE ) && ($nxdnHost[0] != '')) {
+	                        if ($testNXDNHost == $nxdnHost[0]) { echo "      <option value=\"$nxdnHost[0]\" selected=\"selected\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
+	                        else { echo "      <option value=\"$nxdnHost[0]\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
+	                }
+	        }
+	        fclose($nxdnHosts);
+	        if (file_exists('/usr/local/etc/NXDNHostsLocal.txt')) {
+			$nxdnHosts2 = fopen("/usr/local/etc/P25HostsLocal.txt", "r");
+			while (!feof($nxdnHosts2)) {
+	                	$nxdnHostsLine2 = fgets($nxdnHosts2);
+	                	$nxdnHost2 = preg_split('/\s+/', $nxdnHostsLine2);
+	                	if ((strpos($nxdnHost2[0], '#') === FALSE ) && ($nxdnHost2[0] != '')) {
+	                        	if ($testnxdnHost == $nxdnHost2[0]) { echo "      <option value=\"$nxdnHost2[0]\" selected=\"selected\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
+	                        	else { echo "      <option value=\"$nxdnHost2[0]\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
+	                	}
+			}
+			fclose($nxdnHosts2);
+		}
+	} else {
+		echo '<option value="176.9.1.168">D2FET Test Host - 176.9.1.168</option>'."\n";
+	}
+?>
+        </select></td>
       </tr>
     <?php if ($configmmdvm['NXDN']['RAN']) { ?>
       <tr>
