@@ -234,8 +234,8 @@ function getNXDNGatewayLog() {
         $logLines = array();
 	$logLines1 = array();
 	$logLines2 = array();
-        if (file_exists(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
-                if ($log = fopen(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
+        if (file_exists('/var/log/pi-star/NXDNGateway'."-".gmdate("Y-m-d").".log")) {
+                if ($log = fopen('/var/log/pi-star/NXDNGateway'."-".gmdate("Y-m-d").".log", 'r')) {
                         while ($logLine = fgets($log)) {
                                 if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
                                         array_push($logLines1, $logLine);
@@ -246,8 +246,8 @@ function getNXDNGatewayLog() {
         }
 	$logLines1 = array_slice($logLines1, -250);
         if (sizeof($logLines1) < 250) {
-                if (file_exists(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
-                        if ($log = fopen(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
+                if (file_exists('/var/log/pi-star/NXDNGateway'."-".gmdate("Y-m-d", time() - 86340).".log")) {
+                        if ($log = fopen('/var/log/pi-star/NXDNGateway'."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
                                         if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
                                         array_push($logLines2, $logLine);
