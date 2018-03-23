@@ -834,7 +834,7 @@ function getActualLink($logLines, $mode) {
 		  return "Linked to: TG".$to;
                }
 	       if (strpos($logLine,"Opening Icom connection")) {
-		  return "";
+		  return "Not Linked";
 	       }
 	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
 		  return "Not Linked";
