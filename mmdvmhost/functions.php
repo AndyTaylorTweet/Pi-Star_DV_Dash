@@ -203,7 +203,7 @@ function getP25GatewayLog() {
                 if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
                         while ($logLine = fgets($log)) {
                                 if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
-                                        array_push($logLines1, $logLine);
+                                        array_push($logLines1, substr($logLine, 3));
                                 }
                         }
                         fclose($log);
@@ -215,7 +215,7 @@ function getP25GatewayLog() {
                         if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
                                         if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
-                                        array_push($logLines2, $logLine);
+                                        	array_push($logLines1, substr($logLine, 3));
                                         }
                                 }
                                 fclose($log);
@@ -810,64 +810,56 @@ function getActualLink($logLines, $mode) {
          }
          break;
 
-    case "NXDN":
-	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
-	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-	// M: 2000-01-01 00:00:00.000 Linked at startup to reflector 65000
-	// M: 2000-01-01 00:00:00.000 Unlinked from reflector 65000 by M1ABC
-	// M: 2000-01-01 00:00:00.000 Linked to reflector 65000 by M1ABC
-	// W: 2000-01-01 00:00:00.000 No response from 65000, unlinking
-		
-         if (isProcessRunning("NXDNGateway")) {
-            $to = "";
-	    $output = "";
+     case "NXDN":
+        // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
+        // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+        // 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
+        // 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
+        // 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
+        // 2000-01-01 00:00:00.000 No response from 10200, unlinking
+        if (isProcessRunning("NXDNGateway")) {
             foreach($logLines as $logLine) {
+               $to = "";
                if (strpos($logLine,"Linked to")) {
-		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
-		  $to = preg_replace('/[^0-9]/', '', $to);
-		  $output = "Linked to: TG".$to;
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
+                  $to = preg_replace('/[^0-9]/', '', $to);
+                  return "Linked to: TG".$to;
                }
                if (strpos($logLine,"Linked at startup to")) {
-		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 58, 5));
-		  $to = preg_replace('/[^0-9]/', '', $to);
-		  $output = "Linked to: TG".$to;
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
+                  $to = preg_replace('/[^0-9]/', '', $to);
+                  return "Linked to: TG".$to;
                }
-	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
-		  $ouput =  "Not Linked";
-	       }
-               if (strpos($logLine,"Starting NXDNGateway")) {
-		  $output = "Not Linked";
+               if (strpos($logLine,"unlinking")) {
+                  return "Not Linked";
+               }
+               if (strpos($logLine,"Starting P25Gateway")) {
+                  return "Not Linked";
                }
                if (strpos($logLine,"Unlinked")) {
-                  $output = "Not Linked";
+                  return "Not Linked";
                }
-    	       if ($output !== "") {
-                  return $output;
-               }
-	    }
-            return "not linked";
-         } else {
-            return "Service Not Started";
-         }
-         break;
+            }
+        }
+        break;
 			
     case "P25":
 	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-	// M: 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
-	// M: 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
-	// M: 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
-	// W: 2000-01-01 00:00:00.000 No response from 10200, unlinking
+	// 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
+	// 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
+	// 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
+	// 2000-01-01 00:00:00.000 No response from 10200, unlinking
 	if (isProcessRunning("P25Gateway")) {
 	    foreach($logLines as $logLine) {
                $to = "";
                if (strpos($logLine,"Linked to")) {
-		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
+		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "Linked to: TG".$to;
                }
                if (strpos($logLine,"Linked at startup to")) {
-		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 58, 5));
+		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "Linked to: TG".$to;
                }
@@ -974,5 +966,5 @@ array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
 $NXDNGatewayconfigs = getNXDNGatewayConfig();
 $logLinesNXDNGateway = getNXDNGatewayLog();
 $reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
-//array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
+array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
 ?>
