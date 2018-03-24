@@ -2,7 +2,7 @@
 function getMMDVMConfig() {
 	// loads MMDVM.ini into array for further use
 	$conf = array();
-	if ($configs = fopen(MMDVMINIPATH."/".MMDVMINIFILENAME, 'r')) {
+	if ($configs = @fopen(MMDVMINIPATH."/".MMDVMINIFILENAME, 'r')) {
 		while ($config = fgets($configs)) {
 			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
 		}
@@ -14,7 +14,7 @@ function getMMDVMConfig() {
 function getYSFGatewayConfig() {
 	// loads MMDVM.ini into array for further use
 	$conf = array();
-	if ($configs = fopen(YSFGATEWAYINIPATH."/".YSFGATEWAYINIFILENAME, 'r')) {
+	if ($configs = @fopen(YSFGATEWAYINIPATH."/".YSFGATEWAYINIFILENAME, 'r')) {
 		while ($config = fgets($configs)) {
 			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
 		}
@@ -26,7 +26,7 @@ function getYSFGatewayConfig() {
 function getP25GatewayConfig() {
 	// loads MMDVM.ini into array for further use
 	$conf = array();
-	if ($configs = fopen(P25GATEWAYINIPATH."/".P25GATEWAYINIFILENAME, 'r')) {
+	if ($configs = @fopen(P25GATEWAYINIPATH."/".P25GATEWAYINIFILENAME, 'r')) {
 		while ($config = fgets($configs)) {
 			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
 		}
@@ -38,7 +38,7 @@ function getP25GatewayConfig() {
 function getNXDNGatewayConfig() {
 	// loads MMDVM.ini into array for further use
 	$conf = array();
-	if ($configs = fopen('/etc/nxdngateway', 'r')) {
+	if ($configs = @fopen('/etc/nxdngateway', 'r')) {
 		while ($config = fgets($configs)) {
 			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
 		}
