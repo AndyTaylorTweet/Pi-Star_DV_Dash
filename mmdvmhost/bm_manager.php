@@ -71,7 +71,8 @@ if ( $testMMDVModeDMR == 1 ) {
         'reflector' => $targetREF,
       );
     }
-    // Buld the Query
+    // Build the Query
+    $postData = '';
     if (isset($_POST["refSubmit"])) { $postData = http_build_query($postDataREF); }
     if (isset($_POST["tgSubmit"])) { $postData = http_build_query($postDataTG); }
     $postHeaders = array(
