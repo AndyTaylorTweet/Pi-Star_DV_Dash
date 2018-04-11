@@ -221,7 +221,8 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo "<p>I don't know what mode I am in, you probaly just need to configure me.</p>\n";
 	echo "<p>You will be re-directed to the configuration portal in 10 secs</p>\n";
 	echo "<p>In the mean time, you might want to register on the support<br />\n";
-	echo "page here: <a href=\"https://www.facebook.com/groups/pistar/\" target=\"_new\">https://www.facebook.com/groups/pistar/</a></p>\n";
+	echo "page here: <a href=\"https://www.facebook.com/groups/pistar/\" target=\"_new\">https://www.facebook.com/groups/pistar/</a><br />\n";
+	echo "or the Support forum here: <a href=\"https://forum.pistar.uk/\" target=\"_new\">https://forum.pistar.uk/</a></p>\n";
 	echo '<script type="text/javascript">setTimeout(function() { window.location="/admin/configure.php";},10000);</script>'."\n";
 }
 ?>
@@ -231,7 +232,8 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
 ircDDBGateway Dashboard by Hans-J. Barthen (DL5DI),<br />
 MMDVMDash developed by Kim Huebel (DG9VH), <br />
-Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
+Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Facebook Group</a><br />
+Click <a style="color: #ffffff;" href="https://forum.pistar.uk/" target="_new">here for the Support Forum</a><br />	
 Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_new">here</a>.<br />
 </div>
 
