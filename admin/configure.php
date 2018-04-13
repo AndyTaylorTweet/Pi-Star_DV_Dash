@@ -2328,11 +2328,11 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 echo "      <option value=\"none\">None</option>\n";
 		if ($testYSFHost == 00002) {
 			echo "      <option value=\"00002\" selected=\"selected\">00002 - YSF2DMR - YSF2DMR Bridge</option>\n";
-		}
-		else {
-			echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR Bridge</option>\n";
-		}
-                }
+			}
+		//else {
+		//	echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR Bridge</option>\n";
+		//	}
+        	}
         else {
                 $testYSFHost = "none";
                 echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
