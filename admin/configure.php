@@ -680,7 +680,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['ysf2dmrMasterHost']) != TRUE ) {
 	  $ysf2dmrMasterHostArr = explode(',', escapeshellcmd($_POST['ysf2dmrMasterHost']));
 	  $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
-	  $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
+	  $configysf2dmr['DMR Network']['Password'] = $ysf2dmrMasterHostArr[1];
 	  $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
 	}
 
@@ -2327,16 +2327,16 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 $testYSFHost = $configysfgateway['Network']['Startup'];
                 echo "      <option value=\"none\">None</option>\n";
 		if ($testYSFHost == 00002) {
-			echo "      <option value=\"00002\" selected=\"selected\">00002 - YSF2DMR - YSF2DMR Gateway</option>\n";
+			echo "      <option value=\"00002\" selected=\"selected\">00002 - YSF2DMR - YSF2DMR Bridge</option>\n";
 		}
 		else {
-			echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR Gateway</option>\n";
+			echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR Bridge</option>\n";
 		}
                 }
         else {
                 $testYSFHost = "none";
                 echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
-		echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR Gateway</option>\n";
+		//echo "      <option value=\"00002\">00002 - YSF2DMR - YSF2DMR Gateway</option>\n";
                 }
         while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
