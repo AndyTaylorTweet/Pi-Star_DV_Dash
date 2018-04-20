@@ -126,12 +126,23 @@ $MYCALL=strtoupper($callsign);
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
     <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
     <script type="text/javascript">
+	function disablesubmitbuttons()
+	{
+	  var inputs = document.getElementsByTagName('input');
+	  for (var i = 0; i < inputs.length; i++) {
+	    if (inputs[i].type === 'button') {
+	        inputs[i].disabled = true;
+	    }
+	  }
+	}
 	function submitform()
 	{
+	  disablesubmitbuttons();
 	  document.getElementById("config").submit();
 	}
 	function submitPassform()
 	{
+	  disablesubmitbuttons();
 	  document.getElementById("adminPassForm").submit();
 	}
 	function factoryReset()
