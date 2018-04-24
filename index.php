@@ -71,9 +71,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 	echo '<div class="contentwide">'."\n";
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadSysInfo(){'."\n";
-	echo '  $("#sysInfo").load("/dstarrepeater/system.php");'."\n";
+	echo '  $("#sysInfo").load("/dstarrepeater/system.php",function(){ setTimeout(reloadSysInfo,15000) });'."\n";
 	echo '}'."\n";
-	echo 'setInterval(function(){reloadSysInfo()}, 15000);'."\n";
+	echo 'setTimeout(reloadSysInfo,15000);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="sysInfo">'."\n";
@@ -84,15 +84,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
 if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'config/config.php';					// MMDVMDash Config
-	include 'mmdvmhost/tools.php';					// MMDVMDash Tools
+	include_once 'mmdvmhost/tools.php';					// MMDVMDash Tools
 	//include 'mmdvmhost/functions.php';				// MMDVMDash Functions
 
 	echo '<div class="nav">'."\n";					// Start the Side Menu
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadRepeaterInfo(){'."\n";
-	echo '  $("#repeaterInfo").load("/mmdvmhost/repeaterinfo.php");'."\n";
+	echo '  $("#repeaterInfo").load("/mmdvmhost/repeaterinfo.php",function(){ setTimeout(reloadRepeaterInfo,1000) });'."\n";
 	echo '}'."\n";
-	echo 'setInterval(function(){reloadRepeaterInfo()}, 1000);'."\n";
+	echo 'setTimeout(reloadRepeaterInfo,1000);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="repeaterInfo">'."\n";
@@ -108,9 +108,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
 		echo '<script type="text/javascript">'."\n";
 		echo 'function reloadrefLinks(){'."\n";
-		echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php");'."\n";
+		echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php",function(){ setTimeout(reloadrefLinks,2500) });'."\n";
 		echo '}'."\n";
-		echo 'setInterval(function(){reloadrefLinks()}, 2500);'."\n";
+		echo 'setTimeout(reloadrefLinks,2500);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
 		echo '<div id="refLinks">'."\n";
@@ -124,9 +124,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 
         echo '<script type="text/javascript">'."\n";
         echo 'function reloadcssConnections(){'."\n";
-        echo '  $("#cssConnects").load("/dstarrepeater/css_connections.php");'."\n";
+        echo '  $("#cssConnects").load("/dstarrepeater/css_connections.php",function(){ setTimeout(reloadcssConnections,15000) });'."\n";
         echo '}'."\n";
-        echo 'setInterval(function(){reloadcssConnections()}, 15000);'."\n";
+        echo 'setTimeout(reloadcssConnections,15000);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
         echo '</script>'."\n";
         echo '<div id="cssConnects">'."\n";
@@ -137,9 +137,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
 		echo '<script type="text/javascript">'."\n";
         	echo 'function reloadbmConnections(){'."\n";
-        	echo '  $("#bmConnects").load("/mmdvmhost/bm_links.php");'."\n";
+        	echo '  $("#bmConnects").load("/mmdvmhost/bm_links.php",function(){ setTimeout(reloadbmConnections,15000) });'."\n";
         	echo '}'."\n";
-        	echo 'setInterval(function(){reloadbmConnections()}, 15000);'."\n";
+        	echo 'setTimeout(reloadbmConnections,15000);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
         	echo '</script>'."\n";
         	echo '<div id="bmConnects">'."\n";
@@ -151,10 +151,13 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
         }
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
-	echo '  $("#localTxs").load("/mmdvmhost/localtx.php");'."\n";
-	echo '  $("#lastHerd").load("/mmdvmhost/lh.php");'."\n";
+	echo '  $("#localTxs").load("/mmdvmhost/localtx.php",function(){ setTimeout(reloadLocalTx,1500) });'."\n";
 	echo '}'."\n";
-	echo 'setInterval(function(){reloadLocalTx()}, 1500);'."\n";
+	echo 'setTimeout(reloadLocalTx,1500);'."\n";
+	echo 'function reloadLastHerd(){'."\n";
+	echo '  $("#lastHerd").load("/mmdvmhost/lh.php",function(){ setTimeout(reloadLastHerd,1500) });'."\n";
+	echo '}'."\n";
+	echo 'setTimeout(reloadLastHerd,1500);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="lastHerd">'."\n";
@@ -171,9 +174,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'dstarrepeater/gateway_software_config.php';		// dstarrepeater gateway config
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadrefLinks(){'."\n";
-	echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php");'."\n";
+	echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php",function(){ setTimeout(reloadrefLinks,2500) });'."\n";
 	echo '}'."\n";
-	echo 'setInterval(function(){reloadrefLinks()}, 2500);'."\n";
+	echo 'setTimeout(reloadrefLinks,2500);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
         echo '<br />'."\n";
@@ -188,9 +191,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 
 	echo '<script type="text/javascript">'."\n";
         echo 'function reloadcssConnections(){'."\n";
-        echo '  $("#cssConnects").load("/dstarrepeater/css_connections.php");'."\n";
+        echo '  $("#cssConnects").load("/dstarrepeater/css_connections.php",function(){ setTimeout(reloadcssConnections,15000) });'."\n";
         echo '}'."\n";
-        echo 'setInterval(function(){reloadcssConnections()}, 15000);'."\n";
+        echo 'setTimeout(reloadcssConnections,15000);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
         echo '</script>'."\n";
         echo '<div id="cssConnects">'."\n";
@@ -199,10 +202,13 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
-	echo '  $("#localTx").load("/dstarrepeater/local_tx.php");'."\n";
-	echo '  $("#lh").load("/dstarrepeater/last_herd.php");'."\n";
+	echo '  $("#localTx").load("/dstarrepeater/local_tx.php",function(){ setTimeout(reloadLocalTx,3000) });'."\n";
 	echo '}'."\n";
-	echo 'setInterval(function(){reloadLocalTx()}, 3000);'."\n";
+	echo 'setTimeout(reloadLocalTx,3000);'."\n";
+	echo 'function reloadLastHerd(){'."\n";
+	echo '  $("#lh").load("/dstarrepeater/last_herd.php",function(){ setTimeout(reloadLastHerd,3000) });'."\n";
+	echo '}'."\n";
+	echo 'setTimeout(reloadLastHerd,3000);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="lh">'."\n";

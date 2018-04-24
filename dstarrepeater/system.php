@@ -1,5 +1,6 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
+include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
 $configs = array();
 
 if ($configfile = fopen($gatewayConfigPath,'r')) {
@@ -44,20 +45,20 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
     <th colspan="6"><?php echo $lang['service_status'];?></th>
   </tr>
   <tr>
-    <td style="background: #<?php exec ("pgrep MMDVMHost", $mmdvmhostpid); if (!empty($mmdvmhostpid)) { echo "1d1"; } else { echo "b55"; } ?>">MMDVMHost</td>
-    <td style="background: #<?php exec ("pgrep DMRGateway", $dmrgatewaypid); if (!empty($dmrgatewaypid)) { echo "1d1"; } else { echo "b55"; } ?>">DMRGateway</td>
-    <td style="background: #<?php exec ("pgrep YSFGateway", $ysfgatewaypid); if (!empty($ysfgatewaypid)) { echo "1d1"; } else { echo "b55"; } ?>">YSFGateway</td>
-    <td style="background: #<?php exec ("pgrep YSFParrot", $ysfparrotpid); if (!empty($ysfparrotpid)) { echo "1d1"; } else { echo "b55"; } ?>">YSFParrot</td>
-    <td style="background: #<?php exec ("pgrep P25Gateway", $p25gatewaypid); if (!empty($p25gatewaypid)) { echo "1d1"; } else { echo "b55"; } ?>">P25Gateway</td>
-    <td style="background: #<?php exec ("pgrep P25Parrot", $p25parrotpid); if (!empty($p25parrotpid)) { echo "1d1"; } else { echo "b55"; } ?>">P25Parrot</td>
+    <td style="background: #<?php if (isProcessRunning('MMDVMHost')) { echo "1d1"; } else { echo "b55"; } ?>">MMDVMHost</td>
+    <td style="background: #<?php if (isProcessRunning('DMRGateway')) { echo "1d1"; } else { echo "b55"; } ?>">DMRGateway</td>
+    <td style="background: #<?php if (isProcessRunning('YSFGateway')) { echo "1d1"; } else { echo "b55"; } ?>">YSFGateway</td>
+    <td style="background: #<?php if (isProcessRunning('YSFParrot')) { echo "1d1"; } else { echo "b55"; } ?>">YSFParrot</td>
+    <td style="background: #<?php if (isProcessRunning('P25Gateway')) { echo "1d1"; } else { echo "b55"; } ?>">P25Gateway</td>
+    <td style="background: #<?php if (isProcessRunning('P25Parrot')) { echo "1d1"; } else { echo "b55"; } ?>">P25Parrot</td>
   </tr>
   <tr>
-    <td style="background: #<?php exec ("pgrep dstarrepeaterd", $dstarrepeaterpid); if (!empty($dstarrepeaterpid)) { echo "1d1"; } else { echo "b55"; } ?>">DStarRepeater</td>
-    <td style="background: #<?php exec ("pgrep ircddbgatewayd", $ircddbgatewaypid); if (!empty($ircddbgatewaypid)) { echo "1d1"; } else { echo "b55"; } ?>">ircDDBGateway</td>
-    <td style="background: #<?php exec ("pgrep timeserverd", $timeserverpid); if (!empty($timeserverpid)) { echo "1d1"; } else { echo "b55"; } ?>">TimeServer</td>
-    <td style="background: #<?php exec ("pgrep -f -a /usr/local/sbin/pistar-watchdog | sed '/pgrep/d'", $watchdogpid); if (!empty($watchdogpid)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Watchdog</td>
-    <td style="background: #<?php exec ("pgrep -f -a /usr/local/sbin/pistar-remote | sed '/pgrep/d'", $remotepid); if (!empty($remotepid)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Remote</td>
-    <td style="background: #<?php exec ("pgrep -f -a /usr/local/sbin/pistar-keeper | sed '/pgrep/d'", $keeperpid); if (!empty($keeperpid)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Keeper</td>
+    <td style="background: #<?php if (isProcessRunning('dstarrepeaterd')) { echo "1d1"; } else { echo "b55"; } ?>">DStarRepeater</td>
+    <td style="background: #<?php if (isProcessRunning('ircddbgatewayd')) { echo "1d1"; } else { echo "b55"; } ?>">ircDDBGateway</td>
+    <td style="background: #<?php if (isProcessRunning('timeserverd')) { echo "1d1"; } else { echo "b55"; } ?>">TimeServer</td>
+    <td style="background: #<?php if (isProcessRunning('/usr/local/sbin/pistar-watchdog',true)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Watchdog</td>
+    <td style="background: #<?php if (isProcessRunning('/usr/local/sbin/pistar-remote',true)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Remote</td>
+    <td style="background: #<?php if (isProcessRunning('/usr/local/sbin/pistar-keeper',true)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Keeper</td>
   </tr>
 </table>
 <br />
