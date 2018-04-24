@@ -84,7 +84,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 // First lets figure out if we are in MMDVMHost mode, or dstarrepeater mode;
 if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'config/config.php';					// MMDVMDash Config
-	include 'mmdvmhost/tools.php';					// MMDVMDash Tools
+	include_once 'mmdvmhost/tools.php';					// MMDVMDash Tools
 	//include 'mmdvmhost/functions.php';				// MMDVMDash Functions
 
 	echo '<div class="nav">'."\n";					// Start the Side Menu
