@@ -951,20 +951,22 @@ function getName($callsign) {
 
 //Some basic inits
 $mmdvmconfigs = getMMDVMConfig();
-$logLinesMMDVM = getMMDVMLog();
-$reverseLogLinesMMDVM = $logLinesMMDVM;
-array_multisort($reverseLogLinesMMDVM,SORT_DESC);
-$lastHeard = getLastHeard($reverseLogLinesMMDVM);
-$YSFGatewayconfigs = getYSFGatewayConfig();
-$logLinesYSFGateway = getYSFGatewayLog();
-$reverseLogLinesYSFGateway = $logLinesYSFGateway;
-array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
-$P25Gatewayconfigs = getP25GatewayConfig();
-$logLinesP25Gateway = getP25GatewayLog();
-$reverseLogLinesP25Gateway = $logLinesP25Gateway;
-array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
-$NXDNGatewayconfigs = getNXDNGatewayConfig();
-$logLinesNXDNGateway = getNXDNGatewayLog();
-$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
-array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
+if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/bm_manager.php'),true)) {
+	$logLinesMMDVM = getMMDVMLog();
+	$reverseLogLinesMMDVM = $logLinesMMDVM;
+	array_multisort($reverseLogLinesMMDVM,SORT_DESC);
+	$lastHeard = getLastHeard($reverseLogLinesMMDVM);
+	$YSFGatewayconfigs = getYSFGatewayConfig();
+	$logLinesYSFGateway = getYSFGatewayLog();
+	$reverseLogLinesYSFGateway = $logLinesYSFGateway;
+	array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
+	$P25Gatewayconfigs = getP25GatewayConfig();
+	$logLinesP25Gateway = getP25GatewayLog();
+	$reverseLogLinesP25Gateway = $logLinesP25Gateway;
+	array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
+	$NXDNGatewayconfigs = getNXDNGatewayConfig();
+	$logLinesNXDNGateway = getNXDNGatewayLog();
+	$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
+	array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
+}
 ?>
