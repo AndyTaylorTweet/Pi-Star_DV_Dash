@@ -33,15 +33,23 @@ function getMHZ($freq) {
 	return substr($freq,0,3) . "." . substr($freq,3,6) . " MHz";
 }
 
-function isProcessRunning($processname) {
-	exec("pgrep " . $processname, $pids);
-	if(empty($pids)) {
-	    // process not running!
-	    return false;
-	} else {
-		// process running!
-		return true;
-	}
+function isProcessRunning($processName, $full = false, $refresh = false) {
+  if ($full) {
+    static $processes_full = array();
+    if ($refresh) $processes_full = array();
+    if (empty($processes_full))
+      exec('ps -eo args', $processes_full);
+  } else {
+    static $processes = array();
+    if ($refresh) $processes = array();
+    if (empty($processes))
+      exec('ps -eo comm', $processes);
+  }
+  foreach (($full ? $processes_full : $processes) as $processString) {
+    if (strpos($processString, $processName) !== false)
+      return true;
+  }
+  return false;
 }
 
 function createConfigLines() { 
