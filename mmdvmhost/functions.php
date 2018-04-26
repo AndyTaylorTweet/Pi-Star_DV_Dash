@@ -641,6 +641,11 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 		}
 		$timestamp->add(new DateInterval('PT' . $hangtime . 'S'));
 	}
+	if ($listElem[6] != null) { //if terminated, hangtime counts after end of transmission
+		$timestamp->add(new DateInterval('PT' . ceil($listElem[6]) . 'S'));
+	} else { //if not terminated, always return mode
+		return $mode;
+	}
 	if ($now->format('U') > $timestamp->format('U')) {
 		return "idle";
 	} else {
