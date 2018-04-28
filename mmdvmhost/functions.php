@@ -845,6 +845,8 @@ function getActualLink($logLines, $mode) {
                   return "Not Linked";
                }
             }
+        } else {
+            return "Service Not Started";
         }
         break;
 			
@@ -878,7 +880,7 @@ function getActualLink($logLines, $mode) {
                   return "Not Linked";
                }
 	    }
-	}
+	} 
 	break;		
 	}
 	return "Service Not Started";
