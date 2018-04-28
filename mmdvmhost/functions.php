@@ -547,6 +547,7 @@ function getHeardList($logLines) {
 				$rssi		= $p25rssi;
                 		break;
 			case "NXDN":
+				if ($source == "Net" && $target == "TG 10") {$callsign = "PARROT";}
                 		$duration	= $nxdnduration;
                 		$loss		= $nxdnloss;
                 		$ber		= $nxdnber;
