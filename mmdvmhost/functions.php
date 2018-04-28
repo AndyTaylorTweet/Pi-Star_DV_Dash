@@ -881,7 +881,7 @@ function getActualLink($logLines, $mode) {
                   return "Not Linked";
                }
 	    }
-	} 
+	}
 	break;		
 	}
 	return "Service Not Started";
