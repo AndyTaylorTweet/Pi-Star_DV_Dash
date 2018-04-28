@@ -972,11 +972,9 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 	array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
 	$P25Gatewayconfigs = getP25GatewayConfig();
 	$logLinesP25Gateway = getP25GatewayLog();
-	$reverseLogLinesP25Gateway = $logLinesP25Gateway;
-	array_multisort($reverseLogLinesP25Gateway,SORT_DESC);
+	$reverseLogLinesP25Gateway = array_reverse(getP25GatewayConfig());
 	$NXDNGatewayconfigs = getNXDNGatewayConfig();
 	$logLinesNXDNGateway = getNXDNGatewayLog();
-	$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
-	array_multisort($reverseLogLinesNXDNGateway,SORT_DESC);
+	$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
 }
 ?>
