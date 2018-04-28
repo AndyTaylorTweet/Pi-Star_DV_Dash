@@ -240,7 +240,7 @@ if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode 
 		echo "<tr><th style=\"width:70px\">NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
-	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
+	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($reverseLogLinesP25Gateway, "P25")."</td></tr>\n";
 	echo "</table>\n";
 }
 
