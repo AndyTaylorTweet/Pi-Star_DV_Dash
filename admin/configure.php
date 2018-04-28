@@ -59,6 +59,18 @@ if (file_exists('/etc/ysf2dmr')) {
 	if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
 }
 
+// Load the ysf2nxdn config file
+if (file_exists('/etc/ysf2nxdn')) {
+	$ysf2nxdnConfigFile = '/etc/ysf2nxdn';
+	if (fopen($ysf2nxdnConfigFile,'r')) { $configysf2nxdn = parse_ini_file($ysf2nxdnConfigFile, true); }
+}
+
+// Load the ysf2p25 config file
+if (file_exists('/etc/ysf2p25')) {
+	$ysf2p25ConfigFile = '/etc/ysf2p25';
+	if (fopen($ysf2p25ConfigFile,'r')) { $configysf2p25 = parse_ini_file($ysf2p25ConfigFile, true); }
+}
+
 // Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
@@ -67,6 +79,12 @@ $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
 if (file_exists('/etc/nxdngateway')) {
 	$nxdngatewayConfigFile = '/etc/nxdngateway';
 	$confignxdngateway = parse_ini_file($nxdngatewayConfigFile, true);
+}
+
+// Load the nxdn2dmr config file
+if (file_exists('/etc/nxdn2dmr')) {
+	$nxdn2dmrConfigFile = '/etc/nxdn2dmr';
+	if (fopen($nxdn2dmrConfigFile,'r')) { $confignxdn2dmr = parse_ini_file($nxdn2dmrConfigFile, true); }
 }
 
 // Load the dmrgateway config file
