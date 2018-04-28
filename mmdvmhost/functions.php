@@ -249,7 +249,7 @@ function getNXDNGatewayLog() {
                         if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                                 while ($logLine = fgets($log)) {
                                         if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
-                                        	array_push($logLines2, substr($logLine, 3));
+                                        	array_push($logLines1, substr($logLine, 3));
                                         }
                                 }
                                 fclose($log);
