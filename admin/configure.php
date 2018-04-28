@@ -640,10 +640,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the P25 Startup Host
 	if (empty($_POST['p25StartupHost']) != TRUE ) {
           $newP25StartupHost = strtoupper(escapeshellcmd($_POST['p25StartupHost']));
-          if ($newP25StartupHost === "NONE") { $rollP25Startup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/p25gateway'; }
-          else {
-		  if (!isset($configp25gateway['Network']['Startup'])) { $rollP25Startup = 'sudo echo "Startup='.$newP25StartupHost.'" >> /etc/p25gateway'; }
-		  else { $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway'; }
+          if ($newP25StartupHost === "NONE") {
+		  $rollP25Startup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/p25gateway';
+	  } else {
+		  $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway';
 	  }
 	  system($rollP25Startup);
 	}
@@ -660,10 +660,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['nxdnStartupHost']) != TRUE ) {
 	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
 	  if (file_exists('/etc/nxdngateway')) {
-		if ($newNXDNStartupHost === "NONE") { $rollNXDNStartup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/nxdngateway'; }
-		else {
-		if (!isset($confignxdngateway['Network']['Startup'])) { $rollNXDNStartup = 'sudo echo "Startup='.$newNXDNStartupHost.'" >> /etc/nxdngateway'; }
-		else { $rollNXDNStartup = 'sudo sed -i "/Startup=/c\\Startup='.$newNXDNStartupHost.'" /etc/nxdngateway'; }
+		if ($newNXDNStartupHost === "NONE") {
+			$rollNXDNStartup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/nxdngateway';
+		} else {
+			$rollNXDNStartup = 'sudo sed -i "/Startup=/c\\Startup='.$newNXDNStartupHost.'" /etc/nxdngateway';
 	  	}
 	  	system($rollNXDNStartup);
 	  } else {
