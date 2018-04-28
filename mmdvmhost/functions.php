@@ -977,6 +977,6 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 	$NXDNGatewayconfigs = getNXDNGatewayConfig();
 	$logLinesNXDNGateway = getNXDNGatewayLog();
 	$reverseLogLinesNXDNGateway = $logLinesNXDNGateway;
-	array_reverse($reverseLogLinesNXDNGateway);
+	#array_reverse($reverseLogLinesNXDNGateway);
 }
 ?>
