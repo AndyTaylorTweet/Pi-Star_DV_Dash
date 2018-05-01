@@ -712,7 +712,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1]; }
 	  } else {
 	  	if ($newYSFStartupHostArr[0] == "NONE") { unset($configysfgateway['Network']['Startup']); }
-	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1]; }
+	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[0]; }
 	  }
 	}
 
