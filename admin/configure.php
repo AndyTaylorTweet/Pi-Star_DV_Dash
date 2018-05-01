@@ -707,8 +707,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  //$newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
 	  //if ($newYSFStartupHost == "NONE") { unset($configysfgateway['Network']['Startup']); }
 	  //else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
-	  if ($newYSFStartupHostArr[0] == "NONE") { unset($configysfgateway['Network']['Startup']); }
-	  else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[0]; }
+	  if (isset($configysfgateway['FCS Network'])) {
+		if ($newYSFStartupHostArr[0] == "NONE") { unset($configysfgateway['Network']['Startup']); }
+	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1]; }
+	  } else {
+	  	if ($newYSFStartupHostArr[0] == "NONE") { unset($configysfgateway['Network']['Startup']); }
+	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1]; }
+	  }
 	}
 
 	// Set the YSF2DMR Master
