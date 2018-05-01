@@ -703,7 +703,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
-	  $newYSFStartupHostArr = explode(',', strtoupper(escapeshellcmd($_POST['ysfStartupHost'])));
+	  $newYSFStartupHostArr = explode(',', escapeshellcmd($_POST['ysfStartupHost']));
 	  //$newYSFStartupHost = strtoupper(escapeshellcmd($_POST['ysfStartupHost']));
 	  //if ($newYSFStartupHost == "NONE") { unset($configysfgateway['Network']['Startup']); }
 	  //else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
