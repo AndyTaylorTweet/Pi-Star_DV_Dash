@@ -1931,7 +1931,7 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mnnano-teensy') { echo ' selected="selected"';}?> value="mnnano-teensy">MicroNode Teensy (USB)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'f4mgpio') { echo ' selected="selected"';}?> value="f4mgpio">MMDVM F4M-GPIO (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmhshat') { echo ' selected="selected"';}?> value="mmdvmhshat">MMDVM_HS_Hat (DB9MAT & DF2ET) for Pi (GPIO)</option>
-	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmhshatd') { echo ' selected="selected"';}?> value="mmdvmhshatd">MMDVM_HS_Hat Dual (DB9MAT, DF2ET & DO7EN) for Pi (GPIO)</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmhshatd') { echo ' selected="selected"';}?> value="mmdvmhshatd">MMDVM_HS_Dual_Hat (DB9MAT, DF2ET & DO7EN) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmmdohat') { echo ' selected="selected"';}?> value="mmdvmmdohat">MMDVM_HS_MDO Hat (BG3MDO) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehat') { echo ' selected="selected"';}?> value="mmdvmvyehat">MMDVM_HS_NPi Hat (VR2VYE) for Nano Pi (GPIO)</option>
     </select></td>
