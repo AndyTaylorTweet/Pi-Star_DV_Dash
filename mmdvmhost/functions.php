@@ -783,7 +783,8 @@ function getActualLink($logLines, $mode) {
 	// M: 2016-10-01 17:52:36.586 Automatic connection to 62829
 	// New YSFGateway Format
 	// M: 2018-03-06 15:36:06.344 Linked to GB SOUTH WEST
-	// M: 2018-03-06 15:36:06.302 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "  
+	// M: 2018-03-06 15:36:06.302 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "
+	// M: 2018-05-03 13:02:36.904 Disconnect via DTMF has been requested by MW0MWZ
 		
          if (isProcessRunning("YSFGateway")) {
             $to = "";
@@ -802,6 +803,12 @@ function getActualLink($logLines, $mode) {
                }
                if ($to !== "") {
                   return $to;
+               }
+               if (strpos($logLine,"Disconnect via DTMF")) {
+                  $to = "not linked";
+               }
+               if (strpos($logLine,"Linked to MMDVM")) {
+                  $to = "not linked";
                }
                if (strpos($logLine,"Starting YSFGateway")) {
                   $to = "not linked";
