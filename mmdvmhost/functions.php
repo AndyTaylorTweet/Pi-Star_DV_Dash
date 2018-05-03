@@ -801,11 +801,11 @@ function getActualLink($logLines, $mode) {
                if (strpos($logLine,"Automatic connection to")) {
                   $to = substr($logLine, 51, 5);
                }
-               if ($to !== "") {
-                  return $to;
-               }
                if (strpos($logLine,"Disconnect via DTMF")) {
                   $to = "not linked";
+               }
+               if ($to !== "") {
+                  return $to;
                }
                if (strpos($logLine,"Linked to MMDVM")) {
                   $to = "not linked";
