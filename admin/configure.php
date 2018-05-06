@@ -1397,8 +1397,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	unset($configysf2dmr['DMR Network']['JitterEnabled']);
 
 	// Add missing options to YSF2NXDN
-	$configysf2nxdn['YSF Network']['LocalPort'] = $configmmdvm['YSF Network']['YSF2NXDNPort'];
-	$configysf2nxdn['YSF Network']['DstPort'] = $configmmdvm['YSF Network']['Port'];	
+	$configysf2nxdn['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2NXDNPort'];
+	$configysf2nxdn['YSF Network']['DstPort'] = $configysfgateway['YSF Network']['Port'];	
 	if (!isset($configysf2nxdn['Enabled']['Enabled'])) { $configysf2nxdn['Enabled']['Enabled'] = "0"; }
 	$configysf2nxdn['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv";
 	$configysf2nxdn['NXDN Network']['TGListFile'] = "/usr/local/etc/TGList_BM.txt";
