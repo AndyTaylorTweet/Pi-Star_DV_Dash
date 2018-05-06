@@ -812,7 +812,7 @@ function getActualLink($logLines, $mode) {
                   return $to;
                }
                if (strpos($logLine,"Linked to MMDVM")) {
-                  $to = "not linked";
+                  continue;
                }
                if (strpos($logLine,"Starting YSFGateway")) {
                   $to = "not linked";
