@@ -49,6 +49,7 @@ if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrG
   <tr><?php showMode("D-Star Network", $mmdvmconfigs);?><?php showMode("DMR Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("System Fusion Network", $mmdvmconfigs);?><?php showMode("P25 Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?><?php showMode("YSF2P25 Network", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
