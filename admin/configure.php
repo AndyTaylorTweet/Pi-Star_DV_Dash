@@ -1410,7 +1410,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Add missing options to YSF2NXDN
 	$configysf2nxdn['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2NXDNPort'];
-	$configysf2nxdn['YSF Network']['DstPort'] = $configysfgateway['YSF Network']['Port'];	
+	$configysf2nxdn['YSF Network']['DstPort'] = $configysfgateway['YSF Network']['Port'];
+	$configysf2nxdn['YSF Network']['Daemon'] = "1";
 	if (!isset($configysf2nxdn['Enabled']['Enabled'])) { $configysf2nxdn['Enabled']['Enabled'] = "0"; }
 	$configysf2nxdn['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv";
 	$configysf2nxdn['NXDN Network']['TGListFile'] = "/usr/local/etc/TGList_BM.txt";
@@ -1422,6 +1423,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Add missing options to YSF2P25
 	$configysf2p25['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2P25Port'];
 	$configysf2p25['YSF Network']['DstPort'] = $configysfgateway['YSF Network']['Port'];
+	$configysf2p25['YSF Network']['Daemon'] = "1";
 	if (!isset($configysf2p25['Enabled']['Enabled'])) { $configysf2p25['Enabled']['Enabled'] = "0"; }
 	$configysf2p25['DMR Id Lookup']['File'] = "/usr/local/etc/DMRIds.dat";
 	$configysf2p25['Log']['DisplayLevel'] = "1";
