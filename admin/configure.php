@@ -2599,7 +2599,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2dmr['Enabled']['Enabled'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
     <tr>
-      <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
+      <td align="left"><a class="tooltip2" href="#">(YSF2DMR)<?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
       <td align="left" colspan="2"><input type="text" name="ysf2dmrId" size="13" maxlength="9" value="<?php if (isset($configysf2dmr['DMR Network']['Id'])) { echo $configysf2dmr['DMR Network']['Id']; } ?>" /></td>
     </tr>
     <tr>
@@ -2624,14 +2624,9 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
       <td align="left" colspan="2"><input type="text" name="ysf2dmrTg" size="13" maxlength="7" value="<?php if (isset($configysf2dmr['DMR Network']['StartupDstId'])) { echo $configysf2dmr['DMR Network']['StartupDstId']; } ?>" /></td>  
     </tr>
     <?php } ?>
-	    
-	    
-	    
-	    
-	    
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2nxdn['Enabled']['Enabled'] == 1) { ?>
     <tr>
-      <td align="left"><a class="tooltip2" href="#">NXDN ID:<span><b>NXDN ID</b>Enter your NXDN ID here</span></a></td>
+      <td align="left"><a class="tooltip2" href="#">(YSF2NXDN) NXDN ID:<span><b>NXDN ID</b>Enter your NXDN ID here</span></a></td>
       <td align="left" colspan="2"><input type="text" name="ysf2nxdnId" size="13" maxlength="5" value="<?php if (isset($configysf2nxdn['NXDN Network']['Id'])) { echo $configysf2nxdn['NXDN Network']['Id']; } ?>" /></td>
     </tr>
     <tr>
@@ -2657,7 +2652,46 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
         </select></td>
       </tr>
     <?php } ?>
-	    
+    <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2p25['Enabled']['Enabled'] == 1) { ?>
+    <tr>
+      <td align="left"><a class="tooltip2" href="#">(YSF2P25)<?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
+      <td align="left" colspan="2"><input type="text" name="ysf2p25Id" size="13" maxlength="9" value="<?php if (isset($configysf2p25['P25 Network']['Id'])) { echo $configysf2p25['DMR Network']['Id']; } ?>" /></td>
+    </tr>
+    <tr>
+      <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
+      <td style="text-align: left;"><select name="ysf2p25StartupDstId">
+<?php
+	$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");									       
+	$testP25Host = $configysf2p25['P25 Network']['StartupDstId'];
+	if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
+        else { echo "      <option value=\"none\">None</option>\n"; }
+	if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
+        else { echo "      <option value=\"10\">10 - Parrot</option>\n"; }
+        while (!feof($p25Hosts)) {
+                $p25HostsLine = fgets($p25Hosts);
+                $p25Host = preg_split('/\s+/', $p25HostsLine);
+                if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
+                        if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
+                        else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
+                }
+        }
+        fclose($p25Hosts);
+        if (file_exists('/usr/local/etc/P25HostsLocal.txt')) {
+		$p25Hosts2 = fopen("/usr/local/etc/P25HostsLocal.txt", "r");
+		while (!feof($p25Hosts2)) {
+                	$p25HostsLine2 = fgets($p25Hosts2);
+                	$p25Host2 = preg_split('/\s+/', $p25HostsLine2);
+                	if ((strpos($p25Host2[0], '#') === FALSE ) && ($p25Host2[0] != '')) {
+                        	if ($testP25Host == $p25Host2[0]) { echo "      <option value=\"$p25Host2[0]\" selected=\"selected\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
+                        	else { echo "      <option value=\"$p25Host2[0]\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
+                	}
+		}
+		fclose($p25Hosts2);
+	}
+        ?>
+    </select></td>
+    </tr>
+    <?php } ?>
 	    
 	    
 	    
