@@ -1401,6 +1401,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2nxdn['YSF Network']['DstPort'] = $configmmdvm['YSF Network']['Port'];
 	if (!isset($configysf2nxdn['Enabled']['Enabled'])) { $configysf2nxdn['Enabled']['Enabled'] = "0"; }
 	$configysf2nxdn['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv";
+	$configysf2nxdn['NXDN Network']['TGListFile'] = "/usr/local/etc/TGList_BM.txt";
 	$configysf2nxdn['Log']['DisplayLevel'] = "1";
 	$configysf2nxdn['Log']['FileLevel'] = "1";
 	$configysf2nxdn['Log']['FilePath'] = "/var/log/pi-star";
