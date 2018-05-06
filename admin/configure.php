@@ -758,6 +758,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['DMR Network']['StartupDstId'] = $ysf2dmrStartupDstId;
 	}
 
+	// Set the YSF2NXDN Master
+	if (empty($_POST['ysf2nxdnStartupDstId']) != TRUE ) {
+	  $configysf2nxdn['NXDN Network']['StartupDstId'] = escapeshellcmd($_POST['ysf2nxdnStartupDstId']);
+	}
+
+	// Set the YSF2NXDN Id
+	if (empty($_POST['ysf2nxdnId']) != TRUE ) {
+	  $configysf2nxdn['NXDN Network']['Id'] = preg_replace('/[^0-9]/', '', $_POST['ysf2nxdnId']);
+	}
+
 	// Set Duplex
 	if (empty($_POST['trxMode']) != TRUE ) {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
