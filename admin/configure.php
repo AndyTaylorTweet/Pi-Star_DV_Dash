@@ -1671,7 +1671,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         else {
                 $success = fwrite($handleYSF2P25config, $ysf2p25Content);
                 fclose($handleYSF2P25config);
-                if (intval(exec('cat /tmp/dsWGR34tHRrSFFGc.tmp | wc -l')) > 35 ) {
+                if (intval(exec('cat /tmp/dsWGR34tHRrSFFGc.tmp | wc -l')) > 25 ) {
                         exec('sudo mv /tmp/dsWGR34tHRrSFFGc.tmp /etc/ysf2p25');                 // Move the file back
                         exec('sudo chmod 644 /etc/ysf2p25');                                    // Set the correct runtime permissions
                         exec('sudo chown root:root /etc/ysf2p25');                              // Set the owner
