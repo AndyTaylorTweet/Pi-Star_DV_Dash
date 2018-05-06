@@ -1408,8 +1408,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2nxdn['Log']['FileRoot'] = "YSF2NXDN";
 
 	// Add missing options to YSF2P25
-	$configysf2p25['YSF Network']['LocalPort'] = $configmmdvm['YSF Network']['YSF2P25Port'];
-	$configysf2p25['YSF Network']['DstPort'] = $configmmdvm['YSF Network']['Port'];
+	$configysf2p25['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2P25Port'];
+	$configysf2p25['YSF Network']['DstPort'] = $configysfgateway['YSF Network']['Port'];
 	if (!isset($configysf2p25['Enabled']['Enabled'])) { $configysf2p25['Enabled']['Enabled'] = "0"; }
 	$configysf2p25['DMR Id Lookup']['File'] = "/usr/local/etc/DMRIds.dat";
 	$configysf2p25['Log']['DisplayLevel'] = "1";
