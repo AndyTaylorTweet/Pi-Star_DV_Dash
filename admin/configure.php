@@ -1415,6 +1415,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configysfgateway['YSF Network']['ParrotPort'] = "42012";
 		$configysfgateway['YSF Network']['YSF2DMRAddress'] = "127.0.0.1";
 		$configysfgateway['YSF Network']['YSF2DMRPort'] = "42013";
+		$configysfgateway['YSF Network']['YSF2NXDNAddress'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['YSF2NXDNPort'] = "42014";
+		$configysfgateway['YSF Network']['YSF2P25Address'] = "127.0.0.1";
+		$configysfgateway['YSF Network']['YSF2P25Port'] = "42015";
 		$configysfgateway['FCS Network']['Enable'] = "1";
 		$configysfgateway['FCS Network']['Port'] = "42001";
 	}
