@@ -357,6 +357,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['Latitude'] = $newConfLatitude;
 	  $configysfgateway['Info']['Latitude'] = $newConfLatitude;
 	  $configysf2dmr['Info']['Latitude'] = $newConfLatitude;
+	  $configysf2nxdn['Info']['Latitude'] = $newConfLatitude;
+	  $configysf2p25['Info']['Latitude'] = $newConfLatitude;
 	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
 	  system($rollConfLat0);
 	  system($rollConfLat1);
@@ -370,6 +372,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['Longitude'] = $newConfLongitude;
 	  $configysfgateway['Info']['Longitude'] = $newConfLongitude;
 	  $configysf2dmr['Info']['Longitude'] = $newConfLongitude;
+	  $configysf2nxdn['Info']['Longitude'] = $newConfLongitude;
+	  $configysf2p25['Info']['Longitude'] = $newConfLongitude;
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
 	  system($rollConfLon0);
 	  system($rollConfLon1);
@@ -384,6 +388,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['Location'] = '"'.$newConfDesc1.'"';
           $configysfgateway['Info']['Name'] = '"'.$newConfDesc1.'"';
 	  $configysf2dmr['Info']['Location'] = '"'.$newConfDesc1.'"';
+	  $configysf2nxdn['Info']['Location'] = '"'.$newConfDesc1.'"';
+	  $configysf2p25['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
@@ -397,6 +403,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
           $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configysf2dmr['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $configysf2nxdn['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $configysf2p25['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
 	  system($rollDesc22);
 	  }
@@ -410,6 +418,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['urlAuto']) == 'man') { $rollURL0 = 'sudo sed -i "/url=/c\\url='.$newConfURL.'" /etc/ircddbgateway'; }
           $configmmdvm['Info']['URL'] = $txtURL;
 	  $configysf2dmr['Info']['URL'] = $txtURL;
+	  $configysf2nxdn['Info']['URL'] = $txtURL;
+	  $configysf2p25['Info']['URL'] = $txtURL;
 	  $configdmrgateway['Info']['URL'] = $txtURL;
 	  system($rollURL0);
 	  }
@@ -420,6 +430,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollAPRSHost);
 	  $configysfgateway['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  $configysf2dmr['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
+	  $configysf2nxdn['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
+	  $configysf2ysf['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  }
 
 	// Set ircDDBGateway and TimeServer language
@@ -467,6 +479,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
 	  $configysf2dmr['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2dmr['Info']['TXFrequency'] = $newFREQtx;
+	  $configysf2nxdn['Info']['RXFrequency'] = $newFREQrx;
+	  $configysf2nxdn['Info']['TXFrequency'] = $newFREQtx;
+	  $configysf2p25['Info']['RXFrequency'] = $newFREQrx;
+	  $configysf2p25['Info']['TXFrequency'] = $newFREQtx;
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -553,6 +569,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
 	  $configysf2dmr['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2dmr['Info']['TXFrequency'] = $newFREQ;
+	  $configysf2nxdn['Info']['RXFrequency'] = $newFREQ;
+	  $configysf2nxdn['Info']['TXFrequency'] = $newFREQ;
+	  $configysf2p25['Info']['RXFrequency'] = $newFREQ;
+	  $configysf2p25['Info']['TXFrequency'] = $newFREQ;
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -645,6 +665,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $configysf2dmr['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2dmr['YSF Network']['Callsign'] = $newCallsignUpper;
+	  $configysf2nxdn['aprs.fi']['Password'] = aprspass($newCallsignUpper);
+	  $configysf2nxdn['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $configysf2nxdn['YSF Network']['Callsign'] = $newCallsignUpper;
+	  $configysf2p25['aprs.fi']['Password'] = aprspass($newCallsignUpper);
+	  $configysf2p25['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $configysf2p25['YSF Network']['Callsign'] = $newCallsignUpper;
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -667,6 +693,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		  $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway';
 	  }
 	  system($rollP25Startup);
+	  $configysf2p25['P25 Network']['StartupDstId'] = $newP25StartupHost;
 	}
 
 	// Set P25 NAC
@@ -691,6 +718,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['NXDN Network']['GatewayAddress'] = $newNXDNStartupHost;
 		$configmmdvm['NXDN Network']['GatewayPort'] = "41007";
 	  }
+	  $configysf2nxdn['NXDN Network']['StartupDstId'] = $newNXDNStartupHost;
 	}
 
 	// Set NXDN RAN
@@ -777,6 +805,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newPostNxdnId = preg_replace('/[^0-9]/', '', $_POST['nxdnId']);
 	  $configmmdvm['NXDN']['Id'] = $newPostNxdnId;
 	  if ($configmmdvm['NXDN']['Id'] > 65535) { unset($configmmdvm['NXDN']['Id']); }
+	  $configysf2nxdn['NXDN Network']['Id'] = $newPostNxdnId;
+	  if ($configysf2nxdn['NXDN Network']['Id'] > 65535) { unset($configysf2nxdn['NXDN Network']['Id']); }
 	}
 
 	// Set DMR Master Server
@@ -1550,6 +1580,42 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                         exec('sudo mv /tmp/dsWGR34tHRrSFFGA.tmp /etc/ysf2dmr');                 // Move the file back
                         exec('sudo chmod 644 /etc/ysf2dmr');                                    // Set the correct runtime permissions
                         exec('sudo chown root:root /etc/ysf2dmr');                              // Set the owner
+                }
+        }
+
+	// ysf2nxdn config file wrangling
+        $ysf2nxdnContent = "";
+        foreach($configysf2nxdn as $ysf2nxdnSection=>$ysf2nxdnValues) {
+                // UnBreak special cases
+                $ysf2nxdnSection = str_replace("_", " ", $ysf2nxdnSection);
+                $ysf2nxdnContent .= "[".$ysf2nxdnSection."]\n";
+                // append the values
+                foreach($ysf2nxdnValues as $ysf2nxdnKey=>$ysf2nxdnValue) {
+                        $ysf2nxdnContent .= $ysf2nxdnKey."=".$ysf2nxdnValue."\n";
+                        }
+                        $ysf2nxdnContent .= "\n";
+                }
+        if (!$handleYSF2NXDNconfig = fopen('/tmp/dsWGR34tHRrSFFGb.tmp', 'w')) {
+                return false;
+        }
+        if (!is_writable('/tmp/dsWGR34tHRrSFFGb.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+        else {
+                $success = fwrite($handleYSF2NXDNconfig, $ysf2dmrContent);
+                fclose($handleYSF2NXDNconfig);
+                if (intval(exec('cat /tmp/dsWGR34tHRrSFFGb.tmp | wc -l')) > 35 ) {
+                        exec('sudo mv /tmp/dsWGR34tHRrSFFGb.tmp /etc/ysf2nxdn');                 // Move the file back
+                        exec('sudo chmod 644 /etc/ysf2nxdn');                                    // Set the correct runtime permissions
+                        exec('sudo chown root:root /etc/ysf2nxdn');                              // Set the owner
                 }
         }
 
