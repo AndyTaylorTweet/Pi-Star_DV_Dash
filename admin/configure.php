@@ -1610,7 +1610,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           die();
         }
         else {
-                $success = fwrite($handleYSF2NXDNconfig, $ysf2dmrContent);
+                $success = fwrite($handleYSF2NXDNconfig, $ysf2nxdnContent);
                 fclose($handleYSF2NXDNconfig);
                 if (intval(exec('cat /tmp/dsWGR34tHRrSFFGb.tmp | wc -l')) > 35 ) {
                         exec('sudo mv /tmp/dsWGR34tHRrSFFGb.tmp /etc/ysf2nxdn');                 // Move the file back
