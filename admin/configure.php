@@ -1640,6 +1640,42 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                 }
         }
 
+	// ysf2p25 config file wrangling
+        $ysf2p25Content = "";
+        foreach($configysf2p25 as $ysf2p25Section=>$ysf2p25Values) {
+                // UnBreak special cases
+                $ysf2p25Section = str_replace("_", " ", $ysf2p25Section);
+                $ysf2p25Content .= "[".$ysf2p25Section."]\n";
+                // append the values
+                foreach($ysf2p25Values as $ysf2p25Key=>$ysf2p25Value) {
+                        $ysf2p25Content .= $ysf2p25Key."=".$ysf2p25Value."\n";
+                        }
+                        $ysf2p25Content .= "\n";
+                }
+        if (!$handleYSF2P25config = fopen('/tmp/dsWGR34tHRrSFFGc.tmp', 'w')) {
+                return false;
+        }
+        if (!is_writable('/tmp/dsWGR34tHRrSFFGc.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+        else {
+                $success = fwrite($handleYSF2P25config, $ysf2p25Content);
+                fclose($handleYSF2P25config);
+                if (intval(exec('cat /tmp/dsWGR34tHRrSFFGc.tmp | wc -l')) > 35 ) {
+                        exec('sudo mv /tmp/dsWGR34tHRrSFFGc.tmp /etc/ysf2p25');                 // Move the file back
+                        exec('sudo chmod 644 /etc/ysf2p25');                                    // Set the correct runtime permissions
+                        exec('sudo chown root:root /etc/ysf2p25');                              // Set the owner
+                }
+        }
+
 	// dmrgateway config file wrangling
 	$dmrgwContent = "";
         foreach($configdmrgateway as $dmrgwSection=>$dmrgwValues) {
