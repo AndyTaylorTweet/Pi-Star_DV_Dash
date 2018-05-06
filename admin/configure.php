@@ -1949,7 +1949,7 @@ else:
 	}
     ?>
     </tr>
-    <?php (file_exists('/etc/ysf2nxdn')) { ?>
+    <?php if (file_exists('/etc/ysf2nxdn')) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">YSF2NXDN:<span><b>YSF2NXDN Mode</b>Turn on YSF2NXDN Features</span></a></td>
     <?php
@@ -1962,7 +1962,7 @@ else:
     ?>
     </tr>
     <?php } ?>
-    <?php (file_exists('/etc/ysf2p25')) { ?>
+    <?php if (file_exists('/etc/ysf2p25')) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">YSF2P25:<span><b>YSF2P25 Mode</b>Turn on YSF2P25 Features</span></a></td>
     <?php
