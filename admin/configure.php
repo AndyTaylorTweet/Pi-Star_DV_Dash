@@ -768,6 +768,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2nxdn['NXDN Network']['Id'] = preg_replace('/[^0-9]/', '', $_POST['ysf2nxdnId']);
 	}
 
+	// Set the YSF2P25 Master
+	if (empty($_POST['ysf2p25StartupDstId']) != TRUE ) {	
+	  $newYSF2P25StartupHost = strtoupper(escapeshellcmd($_POST['ysf2p25StartupDstId']));
+	  $configysf2p25['P25 Network']['StartupDstId'] = $newYSF2P25StartupHost;
+	  if ($newYSF2P25StartupHost === "NONE") { unset($configysf2p25['P25 Network']['StartupDstId']); }
+	}
+	
+	// Set the YSF2P25 P25Id
+	if (empty($_POST['ysf2p25Id']) != TRUE ) {
+	  $configysf2p25['P25 Network']['Id'] = preg_replace('/[^0-9]/', '', $_POST['ysf2p25Id']);
+	}
+
 	// Set Duplex
 	if (empty($_POST['trxMode']) != TRUE ) {
 	  if ($configmmdvm['Info']['RXFrequency'] === $configmmdvm['Info']['TXFrequency'] && $_POST['trxMode'] == "DUPLEX" ) {
