@@ -142,11 +142,19 @@ function showMode($mode, $mmdvmconfigs) {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
 		}
 	}
+	elseif ( ($mode == "YSF2NXDN Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
+		if (isProcessRunning("YSF2NXDN")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+		}
+	}
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
     }
     $mode = str_replace("System Fusion", "YSF", $mode);
     $mode = str_replace("Network", "Net", $mode);
+    if (strpos($mode, 'YSF2') > -1) { $mode = str_replace(" Net", "", $mode); }
     echo $mode."</td>\n";
 }
 
