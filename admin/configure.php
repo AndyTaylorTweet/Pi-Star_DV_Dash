@@ -1250,6 +1250,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeYSF2DMR']) == 'OFF' ) { $configysf2dmr['Enabled']['Enabled'] = "0"; }
 	}
 
+	// Set YSF2NXDN Mode
+	if (empty($_POST['MMDVMModeYSF2NXDN']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeYSF2NXDN']) == 'ON' )  { $configysf2nxdn['Enabled']['Enabled'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeYSF2NXDN']) == 'OFF' ) { $configysf2nxdn['Enabled']['Enabled'] = "0"; }
+	}
+
+	// Set YSF2P25 Mode
+	if (empty($_POST['MMDVMModeYSF2P25']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'ON' )  { $configysf2p25['Enabled']['Enabled'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'OFF' ) { $configysf2p25['Enabled']['Enabled'] = "0"; }
+	}
+
 	// Set the MMDVMHost Display Type
 	if  (empty($_POST['mmdvmDisplayType']) != TRUE ) {
 	  $configmmdvm['General']['Display'] = escapeshellcmd($_POST['mmdvmDisplayType']);
@@ -1848,6 +1860,8 @@ else:
     <input type="hidden" name="MMDVMModeP25" value="OFF" />
     <input type="hidden" name="MMDVMModeNXDN" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2DMR" value="OFF" />
+    <input type="hidden" name="MMDVMModeYSF2NXDN" value="OFF" />
+    <input type="hidden" name="MMDVMModeYSF2P25" value="OFF" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -1935,6 +1949,32 @@ else:
 	}
     ?>
     </tr>
+    <?php (file_exists('/etc/ysf2nxdn')) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">YSF2NXDN:<span><b>YSF2NXDN Mode</b>Turn on YSF2NXDN Features</span></a></td>
+    <?php
+	if ( $configysf2nxdn['Enabled']['Enabled'] == 1 ) {
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2NXDN\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-ysf2nxdn\"></label></div></td>\n";
+		}
+	else {
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2NXDN\" value=\"ON\" /><label for=\"toggle-ysf2nxdn\"></label></div></td>\n";
+	}
+    ?>
+    </tr>
+    <?php } ?>
+    <?php (file_exists('/etc/ysf2p25')) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">YSF2P25:<span><b>YSF2P25 Mode</b>Turn on YSF2P25 Features</span></a></td>
+    <?php
+	if ( $configysf2p25['Enabled']['Enabled'] == 1 ) {
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2P25\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-ysf2p25\"></label></div></td>\n";
+		}
+	else {
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2P25\" value=\"ON\" /><label for=\"toggle-ysf2p25\"></label></div></td>\n";
+	}
+    ?>
+    </tr>
+    <?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mmdvm_display'];?>:<span><b>Display Type</b>Choose your display<br />type if you have one.</span></a></td>
     <td align="left" colspan="2"><select name="mmdvmDisplayType">
