@@ -659,7 +659,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 
 	  $configmmdvm['General']['Callsign'] = $newCallsignUpper;
-	  $configysfgateway['General']['Callsign'] = $newCallsignUpper;
+	  $configysfgateway['General']['Callsign'] = str_pad($newCallsignUpper,  6, "-100");
 	  $configysfgateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $configysfgateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2dmr['aprs.fi']['Password'] = aprspass($newCallsignUpper);
