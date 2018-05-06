@@ -815,8 +815,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newPostNxdnId = preg_replace('/[^0-9]/', '', $_POST['nxdnId']);
 	  $configmmdvm['NXDN']['Id'] = $newPostNxdnId;
 	  if ($configmmdvm['NXDN']['Id'] > 65535) { unset($configmmdvm['NXDN']['Id']); }
-	  $configysf2nxdn['NXDN Network']['Id'] = $newPostNxdnId;
-	  if ($configysf2nxdn['NXDN Network']['Id'] > 65535) { unset($configysf2nxdn['NXDN Network']['Id']); }
 	}
 
 	// Set DMR Master Server
