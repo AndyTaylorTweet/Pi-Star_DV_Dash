@@ -2025,7 +2025,7 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?>:<span><b>Gateway Callsign</b>This is your licenced callsign for use<br />on this gateway, do not append<br />the "G"</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confCallsign" size="13" maxlength="7" value="<?php echo $configs['gatewayCallsign'] ?>" /></td>
     </tr>
-    <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && (($configmmdvm['DMR']['Enable'] == 1) || ($configysf2ysf['Enabled']['Enable'] == 1 ) || ($configysf2dmr['Enabled']['Enabled'] == 1) || ($configmmdvm['P25']['Enable'] == 1 ))) { ?>
+    <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && (($configmmdvm['DMR']['Enable'] == 1) || ($configmmdvm['P25']['Enable'] == 1 ))) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
     <td align="left" colspan="2"><input type="text" name="dmrId" size="13" maxlength="9" value="<?php if (isset($configmmdvm['General']['Id'])) { echo $configmmdvm['General']['Id']; } else { echo $configmmdvm['DMR']['Id']; } ?>" /></td>
@@ -2616,6 +2616,45 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
       <td align="left" colspan="2"><input type="text" name="ysf2dmrTg" size="13" maxlength="7" value="<?php if (isset($configysf2dmr['DMR Network']['StartupDstId'])) { echo $configysf2dmr['DMR Network']['StartupDstId']; } ?>" /></td>  
     </tr>
     <?php } ?>
+	    
+	    
+	    
+	    
+	    
+    <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2nxdn['Enabled']['Enabled'] == 1) { ?>
+    <tr>
+      <td align="left"><a class="tooltip2" href="#">>NXDN ID:<span><b>NXDN ID</b>Enter your NXDN ID here</span></a></td>
+      <td align="left" colspan="2"><input type="text" name="ysf2nxdnId" size="13" maxlength="5" value="<?php if (isset($configysf2nxdn['NXDN Network']['Id'])) { echo $configysf2nxdn['NXDN Network']['Id']; } ?>" /></td>
+    </tr>
+    <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered<br /> NXDN Host here</span></a></td>
+        <td style="text-align: left;"><select name="ysf2nxdnStartupDstId">
+<?php
+	$nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
+	$testNXDNHost = $configysf2nxdn['NXDN Network']['StartupDstId'];
+	if ($testNXDNHost == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
+        else { echo "      <option value=\"none\">None</option>\n"; }
+	if ($testNXDNHost == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
+        else { echo "      <option value=\"10\">10 - Parrot</option>\n"; }
+        while (!feof($nxdnHosts)) {
+                $nxdnHostsLine = fgets($nxdnHosts);
+                $nxdnHost = preg_split('/\s+/', $nxdnHostsLine);
+                if ((strpos($nxdnHost[0], '#') === FALSE ) && ($nxdnHost[0] != '')) {
+                        if ($testNXDNHost == $nxdnHost[0]) { echo "      <option value=\"$nxdnHost[0]\" selected=\"selected\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
+                        else { echo "      <option value=\"$nxdnHost[0]\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
+                }
+        }
+        fclose($nxdnHosts);
+?>
+        </select></td>
+      </tr>
+    <?php } ?>
+	    
+	    
+	    
+	    
+	    
+	    
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
