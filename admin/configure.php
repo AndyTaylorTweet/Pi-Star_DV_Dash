@@ -2667,7 +2667,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2p25['Enabled']['Enabled'] == 1) { ?>
     <tr>
       <td align="left"><a class="tooltip2" href="#">(YSF2P25) <?php echo $lang['dmr_id'];?>:<span><b>DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
-      <td align="left" colspan="2"><input type="text" name="ysf2p25Id" size="13" maxlength="9" value="<?php if (isset($configysf2p25['P25 Network']['Id'])) { echo $configysf2p25['P25 Network']['Id']; } ?>" /></td>
+      <td align="left" colspan="2"><input type="text" name="ysf2p25Id" size="13" maxlength="7" value="<?php if (isset($configysf2p25['P25 Network']['Id'])) { echo $configysf2p25['P25 Network']['Id']; } ?>" /></td>
     </tr>
     <tr>
       <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered<br /> P25 Host here</span></a></td>
