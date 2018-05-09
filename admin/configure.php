@@ -431,7 +431,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysfgateway['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  $configysf2dmr['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  $configysf2nxdn['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
-	  $configysf2ysf['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
+	  $configysf2p25['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  }
 
 	// Set ircDDBGateway and TimeServer language
