@@ -215,12 +215,10 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
         while (!feof($ysfHostFile)) {
                 $ysfHostFileLine = fgets($ysfHostFile);
                 $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
-                if ($ysfRoomTxtLine[0] == $ysfLinkedTo) {
+                if (($ysfRoomTxtLine[0] == $ysfLinkedTo) || ($ysfRoomTxtLine[1] == $ysfLinkedTo)) {
                         $ysfLinkedToTxt = $ysfRoomTxtLine[1];
+                        break;
                 }
-		if ($ysfLinkedTo == "00002") {
-			$ysfLinkedToTxt = "YSF2DMR";
-		}
         }
         if ($ysfLinkedToTxt != "null") { $ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt; } else { $ysfLinkedToTxt = "Linked to: ".$ysfLinkedTo; }
         $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
