@@ -220,9 +220,6 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
                         break;
                 }
         }
-        if ($ysfLinkedTo == "00002") {
-                $ysfLinkedToTxt = "YSF2DMR";
-        }
         if ($ysfLinkedToTxt != "null") { $ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt; } else { $ysfLinkedToTxt = "Linked to: ".$ysfLinkedTo; }
         $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
         if (strlen($ysfLinkedToTxt) > 21) { $ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 19) . '..'; }
