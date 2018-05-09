@@ -1510,6 +1510,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configysfgateway['YSF Network']['YSF2P25Port'] = "42015";
 		$configysfgateway['FCS Network']['Enable'] = "1";
 		$configysfgateway['FCS Network']['Port'] = "42001";
+		$configysfgateway['FCS Network']['Rooms'] = "/usr/local/etc/FCSHosts.txt";
 	}
 
 	// Create the hostfiles.nodextra file if required
