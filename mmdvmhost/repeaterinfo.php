@@ -215,6 +215,7 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
         while (!feof($ysfHostFile)) {
                 $ysfHostFileLine = fgets($ysfHostFile);
                 $ysfRoomTxtLine = preg_split('/;/', $ysfHostFileLine);
+                if (empty($ysfRoomTxtLine[0]) || empty($ysfRoomTxtLine[1])) continue;
                 if (($ysfRoomTxtLine[0] == $ysfLinkedTo) || ($ysfRoomTxtLine[1] == $ysfLinkedTo)) {
                         $ysfLinkedToTxt = $ysfRoomTxtLine[1];
                         break;
