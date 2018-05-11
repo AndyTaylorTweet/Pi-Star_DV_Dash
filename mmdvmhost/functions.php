@@ -823,7 +823,7 @@ function getActualLink($logLines, $mode) {
                if (strpos($logLine,"Disconnect via DTMF")) {
                   $to = "not linked";
                }
-               if (strpos($logLine,"Starting YSFGateway-")) {
+               if (strpos($logLine,"Opening YSF network connection")) {
                   $to = "not linked";
                }
                if (strpos($logLine,"DISCONNECT Reply")) {
