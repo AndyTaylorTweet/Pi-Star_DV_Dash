@@ -808,10 +808,10 @@ function getActualLink($logLines, $mode) {
          if (isProcessRunning("YSFGateway")) {
             $to = "";
             foreach($logLines as $logLine) {
-	       if ( (strpos($logLine,"Linked to")) && (!strpos($logLine,"Linked to MMDVM")) ) {
+               if ( (strpos($logLine,"Linked to")) && (!strpos($logLine,"Linked to MMDVM")) ) {
                   $to = trim(substr($logLine, 37, 16));
                }
-	       if (strpos($logLine,"Automatic (re-)connection to")) {
+               if (strpos($logLine,"Automatic (re-)connection to")) {
                   $to = substr($logLine, 56, 5);
                }
                if (strpos($logLine,"Connect to")) {
@@ -823,17 +823,14 @@ function getActualLink($logLines, $mode) {
                if (strpos($logLine,"Disconnect via DTMF")) {
                   $to = "not linked";
                }
-               if ($to !== "") {
-                  return $to;
-               }
-               if (strpos($logLine,"Linked to MMDVM")) {
-                  continue;
-               }
                if (strpos($logLine,"Starting YSFGateway-")) {
                   $to = "not linked";
                }
                if (strpos($logLine,"DISCONNECT Reply")) {
                   $to = "not linked";
+               }
+               if ($to !== "") {
+                  return $to;
                }
             }
             return "not linked";
