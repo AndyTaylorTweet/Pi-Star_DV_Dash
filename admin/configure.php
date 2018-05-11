@@ -738,10 +738,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  //if ($newYSFStartupHost == "NONE") { unset($configysfgateway['Network']['Startup']); }
 	  //else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
 	  if (isset($configysfgateway['FCS Network'])) {
-		if ($newYSFStartupHostArr[0] == "NONE") { unset($configysfgateway['Network']['Startup']); }
+		if ($newYSFStartupHostArr[0] == "none") { unset($configysfgateway['Network']['Startup']); }
 	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1]; }
 	  } else {
-	  	if ($newYSFStartupHostArr[0] == "NONE") { unset($configysfgateway['Network']['Startup']); }
+	  	if ($newYSFStartupHostArr[0] == "none") { unset($configysfgateway['Network']['Startup']); }
 	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[0]; }
 	  }
 	}
