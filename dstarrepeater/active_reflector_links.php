@@ -152,7 +152,7 @@ $MYCALL=strtoupper($callsign);
                     $linkType = "&nbsp;";
                     $linkRptr = "&nbsp;";
                     $linkRefl = "&nbsp;";
-                    if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.{8}).*Dir: Incoming$/',$linkLine,$linx) > 0){
+                    if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.[^\s]+).*Dir: Incoming$/',$linkLine,$linx) > 0){
                         $statimg = "Up";
                         $linkDate = date("d-M-Y H:i:s", strtotime(substr($linx[1][0],0,19)));
                         $protocol = $linx[2][0];
