@@ -1234,9 +1234,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['uPNP']) != TRUE ) {
 	  $uPNPon = 'sudo sed -i \'/pistar-upnp.service/c\\*/5 *\t* * *\troot\t/usr/local/sbin/pistar-upnp.service start > /dev/null 2>&1 &\' /etc/crontab';
 	  $uPNPoff = 'sudo sed -i \'/pistar-upnp.service/ s/^#*/#/\' /etc/crontab';
+	  $uPNPsvcOn = 'sudo systemctl enable pistar-upnp.timer';
+	  $uPNPsvcOff = 'sudo systemctl disable pistar-upnp.timer';
 
-	  if (escapeshellcmd($_POST['uPNP']) == 'ON' ) { system($uPNPon); }
-	  if (escapeshellcmd($_POST['uPNP']) == 'OFF' ) { system($uPNPoff); }
+	  if (escapeshellcmd($_POST['uPNP']) == 'ON' ) { system($uPNPon); system($uPNPsvcOn); }
+	  if (escapeshellcmd($_POST['uPNP']) == 'OFF' ) { system($uPNPoff); system($uPNPsvcOff); }
 	}
 
 	// D-Star Time Announce
