@@ -1230,6 +1230,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['sshAccess']) == 'PRV' ) { system($privateSSH); }
 	}
 
+	// Set uPNP On or Off
+	if (empty($_POST['uPNP']) != TRUE ) {
+	  $uPNPon = 'sudo sed -i \'/pistar-upnp.service/c\\*/5 *\t* * *\troot\t/usr/local/sbin/pistar-upnp.service start > /dev/null 2>&1 &\' /etc/crontab';
+	  $uPNPoff = 'sudo sed -i \'/$DAEMON -a $ipVar 22/ s/^#*/#/\' /etc/crontab';
+
+	  if (escapeshellcmd($_POST['uPNP']) == 'ON' ) { system($uPNPon); }
+	  if (escapeshellcmd($_POST['uPNP']) == 'OFF' ) { system($uPNPoff); }
+	}
+
 	// D-Star Time Announce
 	if (empty($_POST['confTimeAnnounce']) != TRUE ) {
 	  if (escapeshellcmd($_POST['confTimeAnnounce']) == 'ON' )  { system('sudo rm -rf /etc/timeserver.dissable'); }
