@@ -2866,6 +2866,18 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       <td>Note: Reboot Required if changed</td>
     </tr>
     <?php } ?>
+    <tr>
+      <td align="left"><a class="tooltip2" href="#">uPNP:<span><b>uPNP</b>Do you want your Pi<br />to create its own Firewall rules<br />for use with D-Star.</span></a></td>
+      <?php
+        $testupnp = exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1');
+	if (substr($testupnp, 0, 1) === '#') {
+	  echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"uPNP\" value=\"ON\" />On <input type=\"radio\" name=\"uPNP\" value=\"OFF\" checked=\"checked\" />Off</td>\n";
+	}
+        else {
+	  echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"uPNP\" value=\"ON\" checked=\"checked\" />On <input type=\"radio\" name=\"uPNP\" value=\"OFF\" />Off</td>\n";
+	}
+      ?>
+    </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /></div>
     </form>
