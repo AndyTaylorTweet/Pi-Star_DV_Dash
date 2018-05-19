@@ -1233,7 +1233,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set uPNP On or Off
 	if (empty($_POST['uPNP']) != TRUE ) {
 	  $uPNPon = 'sudo sed -i \'/pistar-upnp.service/c\\*/5 *\t* * *\troot\t/usr/local/sbin/pistar-upnp.service start > /dev/null 2>&1 &\' /etc/crontab';
-	  $uPNPoff = 'sudo sed -i \'/$DAEMON -a $ipVar 22/ s/^#*/#/\' /etc/crontab';
+	  $uPNPoff = 'sudo sed -i \'/pistar-upnp.service/ s/^#*/#/\' /etc/crontab';
 
 	  if (escapeshellcmd($_POST['uPNP']) == 'ON' ) { system($uPNPon); }
 	  if (escapeshellcmd($_POST['uPNP']) == 'OFF' ) { system($uPNPoff); }
