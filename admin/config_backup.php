@@ -184,7 +184,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start timeserver.service 2>&1');		//Time Server Service
 			shell_exec('sudo systemctl start pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
 			shell_exec('sudo systemctl start pistar-remote.service 2>&1');		//PiStar-Remote Service
-			shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
+			if (substr(exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1'), 0, 1) !== '#') {
+				shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
+			}
 			shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
 			shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
