@@ -288,6 +288,7 @@ function getNXDNGatewayLog() {
 // I: 2017-12-26 20:04:04.069 MMDVM protocol version: 1, description: ZUMspot-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
 // I: 2017-12-26 19:31:10.880 MMDVM protocol version: 1, description: MMDVM_HS_Hat-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
 // I: 2017-12-26 18:31:17.960 MMDVM protocol version: 1, description: MMDVM_HS-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
+// I: 2018-05-22 10:22:12.137 MMDVM protocol version: 1, description: MMDVM_HS_Dual_Hat-v1.3.6 20180521 dual ADF7021 FW by CA6JAU GitID #bd6217a
 // I: 2018-03-06 12:12:14.960 MMDVM protocol version: 1, description: Nano_hotSPOT-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
 // I: 2018-03-06 12:12:14.960 MMDVM protocol version: 1, description: Nano-Spot-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
 
@@ -322,6 +323,9 @@ function getDVModemFirmware() {
 		}
 		if (strpos($logLine, 'description: MMDVM_HS_Hat-')) {
 			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 80, 12), ' ');
+		}
+		if (strpos($logLine, 'description: MMDVM_HS_Dual_Hat-')) {
+			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 85, 12), ' ');
 		}
 		if (strpos($logLine, 'description: MMDVM_HS-')) {
 			$modemFirmware = "MMDVM_HS:".strtok(substr($logLine, 76, 12), ' ');
