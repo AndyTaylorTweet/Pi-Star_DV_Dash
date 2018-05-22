@@ -477,12 +477,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
+	  $configysfgateway['General']['Suffix'] = "RPT";
 	  $configysf2dmr['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2dmr['Info']['TXFrequency'] = $newFREQtx;
+	  $configysf2dmr['YSF Network']['Suffix'] = "RPT";
 	  $configysf2nxdn['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2nxdn['Info']['TXFrequency'] = $newFREQtx;
+	  $configysf2nxdn['YSF Network']['Suffix'] = "RPT";
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQtx;
+	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -567,12 +571,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
+	  $configysfgateway['General']['Suffix'] = "ND";
 	  $configysf2dmr['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2dmr['Info']['TXFrequency'] = $newFREQ;
+	  $configysf2dmr['YSF Network']['Suffix'] = "RPT";
 	  $configysf2nxdn['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2nxdn['Info']['TXFrequency'] = $newFREQ;
+	  $configysf2nxdn['YSF Network']['Suffix'] = "RPT";
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQ;
+	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -1446,9 +1454,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2nxdn['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2NXDNPort'];
 	$configysf2nxdn['YSF Network']['DstPort'] = $configysfgateway['YSF Network']['Port'];
 	$configysf2nxdn['YSF Network']['Daemon'] = "1";
+	$configysf2nxdn['YSF Network']['EnableWiresX'] = "1";
 	if (!isset($configysf2nxdn['Enabled']['Enabled'])) { $configysf2nxdn['Enabled']['Enabled'] = "0"; }
 	$configysf2nxdn['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv";
-	$configysf2nxdn['NXDN Network']['TGListFile'] = "/usr/local/etc/TGList_BM.txt";
+	$configysf2nxdn['NXDN Network']['TGListFile'] = "/usr/local/etc/TGList_NXDN.txt";
 	$configysf2nxdn['Log']['DisplayLevel'] = "1";
 	$configysf2nxdn['Log']['FileLevel'] = "1";
 	$configysf2nxdn['Log']['FilePath'] = "/var/log/pi-star";
@@ -1458,13 +1467,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2p25['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2P25Port'];
 	$configysf2p25['YSF Network']['DstPort'] = $configysfgateway['YSF Network']['Port'];
 	$configysf2p25['YSF Network']['Daemon'] = "1";
+	$configysf2p25['YSF Network']['EnableWiresX'] = "1";
 	if (!isset($configysf2p25['Enabled']['Enabled'])) { $configysf2p25['Enabled']['Enabled'] = "0"; }
 	$configysf2p25['DMR Id Lookup']['File'] = "/usr/local/etc/DMRIds.dat";
+	$configysf2p25['P25 Network']['TGListFile'] = "/usr/local/etc/TGList_P25.txt";
 	$configysf2p25['Log']['DisplayLevel'] = "1";
 	$configysf2p25['Log']['FileLevel'] = "1";
 	$configysf2p25['Log']['FilePath'] = "/var/log/pi-star";
-	$configysf2p25['Log']['FileRoot'] = "YSF2P25";
-	if (isset($configysf2p25['Info'])) { unset($configysf2p25['Info']); }
+	$configysf2p25['Log']['FileRoot'] = "YSF2P25";	
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
 	
 	// Clean up for NXDN Gateway
