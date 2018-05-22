@@ -574,13 +574,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysfgateway['General']['Suffix'] = "ND";
 	  $configysf2dmr['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2dmr['Info']['TXFrequency'] = $newFREQ;
-	  $configysf2dmr['YSF Network']['Suffix'] = "RPT";
+	  $configysf2dmr['YSF Network']['Suffix'] = "ND";
 	  $configysf2nxdn['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2nxdn['Info']['TXFrequency'] = $newFREQ;
-	  $configysf2nxdn['YSF Network']['Suffix'] = "RPT";
+	  $configysf2nxdn['YSF Network']['Suffix'] = "ND";
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQ;
-	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
+	  $configysf2p25['YSF Network']['Suffix'] = "ND";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
