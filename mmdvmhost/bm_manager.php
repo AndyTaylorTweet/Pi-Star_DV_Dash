@@ -88,10 +88,11 @@ if ( $testMMDVModeDMR == 1 ) {
       'content' => $postData,
       'password' => '',
       'success' => '',
+      'timeout' => 2,
       ),
     );
     $context = stream_context_create($opts);
-    $result = file_get_contents($bmAPIurl, false, $context);
+    $result = @file_get_contents($bmAPIurl, false, $context);
     $feeback=json_decode($result);
     // Output to the browser
     echo '<b>BrandMeister Manager</b>'."\n";
