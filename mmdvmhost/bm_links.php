@@ -39,7 +39,8 @@ if ( $testMMDVModeDMR == 1 ) {
   $dmrID = getConfigItem("General", "Id", $mmdvmconfigs);
 
   // Use BM API to get information about current TGs
-  $json = json_decode(file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true));
+  $jsonContext = stream_context_create(array('http'=>array('timeout' => 2) )); // Add Timout
+  $json = json_decode(@file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true, $jsonContext));
 
   // Set some Variable
   $bmStaticTGList = "";
