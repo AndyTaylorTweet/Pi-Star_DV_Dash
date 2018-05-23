@@ -1419,6 +1419,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysfgateway['Network']['YSF2DMRPort'])) { $configysfgateway['Network']['YSF2DMRPort'] = "42013"; }
 	unset($configysfgateway['Network']['DataPort']);
 	unset($configysfgateway['Network']['StatusPort']);
+	$configysfgateway['aprs.fi']['Enable'] = "1";
 
 	// Add missing options to YSF2DMR
 	if (!isset($configysf2dmr['Info']['Power'])) { $configysf2dmr['Info']['Power'] = "1"; }
