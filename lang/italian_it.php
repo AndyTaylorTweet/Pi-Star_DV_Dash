@@ -82,7 +82,7 @@ $lang = array (
   "dstar_default_ref"           =>  "Default Reflector",
   "aprs_host"                   =>  "APRS Host",
   "dstar_irc_lang"              =>  "ircDDBGateway Linguaggio",
-  "dstar_irc_time"              =>  "Tempo D'Annuncio",
+  "dstar_irc_time"              =>  "Annuncio (Vocale) Orario",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "Room YSF Di Partenza",
   // Config Page - P25 Configuration
