@@ -1419,7 +1419,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysfgateway['Network']['YSF2DMRPort'])) { $configysfgateway['Network']['YSF2DMRPort'] = "42013"; }
 	unset($configysfgateway['Network']['DataPort']);
 	unset($configysfgateway['Network']['StatusPort']);
-	$configysfgateway['aprs.fi']['Enable'] = "1";
 
 	// Add missing options to YSF2DMR
 	if (!isset($configysf2dmr['Info']['Power'])) { $configysf2dmr['Info']['Power'] = "1"; }
@@ -1513,7 +1512,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$ysfGatewayVer = exec("YSFGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($ysfGatewayVer > 20180303) {
 		if (isset($configysfgateway['Network']['Startup'])) { $ysfTmpStartup = $configysfgateway['Network']['Startup']; }
-		$configysfgateway['aprs.fi']['Enable'] = "0";
+		$configysfgateway['aprs.fi']['Enable'] = "1";
 		unset($configysfgateway['Network']);
 		if (isset($ysfTmpStartup)) { $configysfgateway['Network']['Startup'] = $ysfTmpStartup; }
 		$configysfgateway['Network']['InactivityTimeout'] = "0";
