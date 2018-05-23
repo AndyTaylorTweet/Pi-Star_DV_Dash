@@ -67,7 +67,15 @@ if ( $testMMDVModeDMR == 1 ) {
                                          } else { $bmStaticTGList = "None"; }
   if (isset($json->dynamicSubscriptions)) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
                                            foreach($bmDynamicTGListJson as $dynamicTG) {
-                                             $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."(".$staticTG->slot.") ";
+                                             if (getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) && $dynamicTG->slot == "1") {
+                                               $bmStaticTGList .= "TG".$dynamicTG->talkgroup."(".$dynamicTG->slot.") ";
+                                             }
+                                             else if (getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) && $dynamicTG->slot == "2") {
+                                               $bmStaticTGList .= "TG".$dynamicTG->talkgroup."(".$dynamicTG->slot.") ";
+                                             }
+                                             else if (getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" && getConfigItem("DMR Network", "Slot2", $mmdvmconfigs) && $dynamicTG->slot == "0") {
+                                               $bmStaticTGList .= "TG".$dynamicTG->talkgroup." ";
+                                             }
                                            }
                                            $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
                                            if (preg_match('/TG/', $bmDynamicTGList) == false) { $bmDynamicTGList = "None"; }
