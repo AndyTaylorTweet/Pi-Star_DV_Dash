@@ -33,7 +33,7 @@ $lang = array (
   // Config Page - Section General
   "setting"                     =>  "Settaggi",
   "value"                       =>  "Valori",
-  "apply"                       =>  "Applicale le modifiche",
+  "apply"                       =>  "Applicare le modifiche",
   // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Hostname",
   "kernel"                      =>  "Kernel",
