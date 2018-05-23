@@ -52,14 +52,14 @@ if ( $testMMDVModeDMR == 1 ) {
   if ((isset($json->reflector->active)) && ($json->reflector->active != "4000")) { $bmReflectorActive = "REF".$json->reflector->active; } else { $bmReflectorActive = "None"; }
   if (isset($json->staticSubscriptions)) { $bmStaticTGListJson = $json->staticSubscriptions;
                                           foreach($bmStaticTGListJson as $staticTG) {
-                                            $bmStaticTGList .= "TG".$staticTG->talkgroup." ";
+                                            $bmStaticTGList .= "TG".$staticTG->talkgroup."(".$staticTG->slot.") ";
                                           }
                                           $bmStaticTGList = wordwrap($bmStaticTGList, 15, "<br />\n");
                                           if (preg_match('/TG/', $bmStaticTGList) == false) { $bmStaticTGList = "None"; }
                                          } else { $bmStaticTGList = "None"; }
   if (isset($json->dynamicSubscriptions)) { $bmDynamicTGListJson = $json->dynamicSubscriptions;
                                            foreach($bmDynamicTGListJson as $dynamicTG) {
-                                             $bmDynamicTGList .= "TG".$dynamicTG->talkgroup." ";
+                                             $bmDynamicTGList .= "TG".$dynamicTG->talkgroup."(".$staticTG->slot.") ";
                                            }
                                            $bmDynamicTGList = wordwrap($bmDynamicTGList, 15, "<br />\n");
                                            if (preg_match('/TG/', $bmDynamicTGList) == false) { $bmDynamicTGList = "None"; }
