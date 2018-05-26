@@ -22,10 +22,8 @@ if (file_exists('/etc/pistar-css.ini')) {
     $bannerDropShaddows = "303030";     // Banner drop shaddow colour
     $tableHeadDropShaddow = "8b0000";   // Table Headder drop shaddows
     $textContent = "000000";            // Used for the section titles
-    $trafficLighsGood = "";
-    $trafficLighsMid = "";
-    $trafficLighsBad = "";
-    
+    $tableRowEvenBg = "f7f7f7";		// Table Row BG Colour (Even)
+    $tableRowOddBg = "d0d0d0";		// Table Row BG Colour (Odd)
 }
 ?>
 
@@ -43,7 +41,7 @@ body, font {
 .header {
     background : #<?php echo $backgroundBanners; ?>;
     text-decoration : none;
-    color : #ffffff;
+    color : #<?php echo $textBanners; ?>;
     font-family : verdana, arial, sans-serif;
     text-align : left;
     padding : 5px 0px 5px 0px;
@@ -78,7 +76,7 @@ body, font {
 .footer {
     background : #<?php echo $backgroundBanners; ?>;
     text-decoration : none;
-    color : #ffffff;
+    color : #<?php echo $textBanners; ?>;
     font-family : verdana, arial, sans-serif;
     font-size : 9px;
     text-align : center;
@@ -126,11 +124,11 @@ table th {
 }
 
 table tr:nth-child(even) {
-    background: #f7f7f7;
+    background: #<?php echo $tableRowEvenBg; ?>;
 }
 
 table tr:nth-child(odd) {
-    background: #d0d0d0;
+    background: #<?php echo $tableRowOddBg; ?>;
 }
 
 table td {
