@@ -26,7 +26,6 @@ if (file_exists('/etc/pistar-css.ini')) {
     $tableRowOddBg = "d0d0d0";		// Table Row BG Colour (Odd)
 }
 ?>
-
 .container {
     width: 820px;
     text-align: left;
