@@ -153,8 +153,13 @@ echo '<form action="" method="post">'."\n";
 		echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";
 		echo "<br />\n";
 	}
-//echo '<input type="submit" value="'.$lang['factory_reset'].'" />'."\n";
 echo "</form>";
+
+echo 'if you took it all too far and now it makes you feel sick, click below to reset.'."\n";
+echo '<form id="factoryReset" action="" method="post">'."\n";
+echo '  <div><input type="hidden" name="factoryReset" value="1" /></div>'."\n";
+echo '</form>'."\n";
+echo '<input type="button" onclick="javascript:factoryReset();" value="'.$lang['factory_reset'].'" />'."\n";
 ?>
 </div>
 
