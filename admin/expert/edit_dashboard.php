@@ -75,11 +75,16 @@ if($_POST) {
 	$data = $_POST;
 	// Factory Reset Handler Here
 	if (empty($_POST['factoryReset']) != TRUE ) {
+		echo "<br />\n";
+		echo "<table>\n";
+		echo "<tr><th>Factory Reset Config</th></tr>\n";
+		echo "<tr><td>Loading fresh configuration file(s)...</td><tr>\n";
+		echo "</table>\n";
+		unset($_POST);
 		//Reset the config
 		exec('sudo mount -o remount,rw /');                             // Make rootfs writable
 		exec('sudo rm -rf /etc/pistar-css.ini');                        // Delete the Config
 		exec('sudo mount -o remount,ro /');                             // Make rootfs read-only
-		unset($_POST);
 		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},0);</script>';
 		die();
 	} else {
@@ -148,6 +153,7 @@ echo '<form action="" method="post">'."\n";
 		echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";
 		echo "<br />\n";
 	}
+echo '<input type="submit" value="'.$lang['factory_reset'].'" />'."\n";
 echo "</form>";
 ?>
 </div>
