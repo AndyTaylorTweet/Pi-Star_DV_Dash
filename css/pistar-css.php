@@ -12,6 +12,15 @@ if (file_exists('/etc/pistar-css.ini')) {
 	if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
     
     // Set the Values from the config file
+    $backgroundPage = $piStarCss['Background']['Page'];		// usually off-white
+    $backgroundContent = $piStarCss['Background']['Content'];   // The White background in the content section
+    $backgroundBanners = $piStarCss['Background']['Banners'];   // The ubiquitous Pi-Star Red
+    $textBanners = $piStarCss['Text']['Banners'];            	// Usually white
+    $bannerDropShaddows = $piStarCss['Text']['BannersDrop'];    // Banner drop shaddow colour
+    $tableHeadDropShaddow = $piStarCss['Tables']['HeadDrop'];   // Table Headder drop shaddows
+    $textContent = $piStarCss['Content']['Text'];            	// Used for the section titles
+    $tableRowEvenBg = $piStarCss['Tables']['BgEven']; 		// Table Row BG Colour (Even)
+    $tableRowOddBg = $piStarCss['Tables']['BgOdd'];		// Table Row BG Colour (Odd)
     
 } else {
     // Default values
