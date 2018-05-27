@@ -25,6 +25,16 @@ require_once('../config/version.php');
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - Digital Voice Dashboard - Expert Editor</title>
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
+    <script type="text/javascript">
+      function factoryReset()
+	{
+	  if (confirm('WARNING: This will set these settings back to factory defaults.\n\nAre you SURE you want to do this?\n\nPress OK to restore the factory configuration\nPress Cancel to go back.')) {
+	    document.getElementById("factoryReset").submit();
+	    } else {
+	    return false;
+	    }
+	}
+    </script>
   </head>
   <body>
   <div class="container">
@@ -139,6 +149,7 @@ echo '<form action="" method="post">'."\n";
 		echo "<br />\n";
 	}
 echo "</form>";
+<a href="javascript:factoryReset();"><?php echo $lang['factory_reset'];?></a>
 ?>
 </div>
 
