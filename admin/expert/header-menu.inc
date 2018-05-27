@@ -20,8 +20,8 @@
     <b>Full Editors:</b>
     <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
-    <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi Config</a> |
-    <a href="fulledit_bmapikey.php" style="color: #ffffff;">BM API Key</a> |
+    <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi</a> |
+    <a href="fulledit_bmapikey.php" style="color: #ffffff;">BM API</a> |
     <a href="fulledit_cron.php" style="color: #ffffff;">System Cron</a> |
     <a href="fulledit_rssidat.php" style="color: #ffffff;">RSSI Dat</a>
     &emsp;<b>Tools:</b>
