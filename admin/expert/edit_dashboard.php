@@ -149,7 +149,6 @@ echo '<form action="" method="post">'."\n";
 		echo "<br />\n";
 	}
 echo "</form>";
-echo "<a href=\"javascript:factoryReset();\">".$lang['factory_reset']."</a>\n";
 ?>
 </div>
 
