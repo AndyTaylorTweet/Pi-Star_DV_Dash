@@ -32,6 +32,21 @@ require_once('../config/version.php');
   <div class="contentwide">
 
 <?php
+if (!file_exists('/etc/pistar-css.ini')) {
+	//The source file does not exist, lets create it....
+	exec('sudo mount -o remount,rw /');	// Make rootfs writable
+	$outFile = fopen("/etc/pistar-css.ini", "w") or die("Unable to open file!");
+	$fileContent = "[Background]\nPage=edf0f5\nContent=ffffff\nBanners=ff0000\n\n";
+	$fileContent .= "[Text]\nBanners=ffffff\nBannersDrop=303030\n\n";
+	$fileContent .= "[Tables]\nHeadDrop=8b0000\nBgEven=f7f7f7\nBgOdd=d0d0d0\n\n";
+	$fileContent .= "[Content]\nText=000000\n\n";
+	$fileContent .= "[BannerH2]\nEnabled=0\nText=Some Text\n\n";
+	$fileContent .= "[BannerExtText]\nEnabled=0\nText=Some long text entry\n";
+	fwrite($outFile, $fileContent);
+	fclose($outFile);
+	exec('sudo mount -o remount,ro /');	// Make rootfs read-only
+}
+
 //Do some file wrangling...
 exec('sudo cp /etc/pistar-css.ini /tmp/bW1kd4jg6b3N0DQo.tmp');
 exec('sudo chown www-data:www-data /tmp/bW1kd4jg6b3N0DQo.tmp');
