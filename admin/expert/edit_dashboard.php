@@ -34,8 +34,7 @@ require_once('../config/version.php');
 <?php
 if (!file_exists('/etc/pistar-css.ini')) {
 	//The source file does not exist, lets create it....
-	exec('sudo mount -o remount,rw /');	// Make rootfs writable
-	$outFile = fopen("/etc/pistar-css.ini", "w") or die("Unable to open file!");
+	$outFile = fopen("/tmp/bW1kd4jg6b3N0DQo.tmp", "w") or die("Unable to open file!");
 	$fileContent = "[Background]\nPage=edf0f5\nContent=ffffff\nBanners=ff0000\n\n";
 	$fileContent .= "[Text]\nBanners=ffffff\nBannersDrop=303030\n\n";
 	$fileContent .= "[Tables]\nHeadDrop=8b0000\nBgEven=f7f7f7\nBgOdd=d0d0d0\n\n";
@@ -44,7 +43,13 @@ if (!file_exists('/etc/pistar-css.ini')) {
 	$fileContent .= "[BannerExtText]\nEnabled=0\nText=Some long text entry\n";
 	fwrite($outFile, $fileContent);
 	fclose($outFile);
-	exec('sudo mount -o remount,ro /');	// Make rootfs read-only
+	
+	// Put the file back where it should be
+	exec('sudo mount -o remount,rw /');                             // Make rootfs writable
+	exec('sudo cp /tmp/bW1kd4jg6b3N0DQo.tmp /etc/pistar-css.ini');  // Move the file back
+	exec('sudo chmod 644 /etc/pistar-css.ini');                     // Set the correct runtime permissions
+	exec('sudo chown root:root /etc/pistar-css.ini');               // Set the owner
+	exec('sudo mount -o remount,ro /');                             // Make rootfs read-only
 }
 
 //Do some file wrangling...
