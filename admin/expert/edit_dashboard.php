@@ -63,11 +63,22 @@ $filepath = '/tmp/bW1kd4jg6b3N0DQo.tmp';
 //after the form submit
 if($_POST) {
 	$data = $_POST;
-	//update ini file, call function
-	update_ini_file($data, $filepath);
+	// Factory Reset Handler Here
+	if (empty($_POST['factoryReset']) != TRUE ) {
+		//Reset the config
+		exec('sudo mount -o remount,rw /');                             // Make rootfs writable
+		exec('sudo rm -rf /etc/pistar-css.ini');                        // Delete the Config
+		exec('sudo mount -o remount,ro /');                             // Make rootfs read-only
+		unset($_POST);
+		echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},0);</script>';
+		die();
+	} else {
+		//update ini file, call function
+		update_ini_file($data, $filepath);
+	}
 }
 
-//this is the function going to update your ini file
+	//this is the function going to update your ini file
 	function update_ini_file($data, $filepath) {
 		$content = "";
 
