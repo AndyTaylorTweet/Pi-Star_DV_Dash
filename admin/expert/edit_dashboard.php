@@ -153,7 +153,7 @@ echo '<form action="" method="post">'."\n";
 		echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";
 		echo "<br />\n";
 	}
-echo '<input type="submit" value="'.$lang['factory_reset'].'" />'."\n";
+//echo '<input type="submit" value="'.$lang['factory_reset'].'" />'."\n";
 echo "</form>";
 ?>
 </div>
