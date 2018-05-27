@@ -32,7 +32,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - SSH";?></title>
-    <link rel="stylesheet" type="text/css" href="../css/ircddb.css?version=1.3" />
+    <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
   </head>
