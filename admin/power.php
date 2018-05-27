@@ -30,7 +30,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['power'];?></title>
-    <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
+    <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
   </head>
   <body>
   <div class="container">
