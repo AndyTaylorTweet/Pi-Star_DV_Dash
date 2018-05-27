@@ -16,7 +16,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <meta http-equiv="pragma" content="no-cache" />
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 <meta http-equiv="Expires" content="0" />
-<link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
+<link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
 <link rel="stylesheet" type="text/css" href="wifi/styles.css" />
 <script type="text/Javascript" src="wifi/functions.js?version=1.5"></script>
 <title>Pi-Star - Digital Voice Dashboard - WiFi Config</title>
