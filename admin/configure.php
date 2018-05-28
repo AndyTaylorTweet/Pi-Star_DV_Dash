@@ -71,6 +71,12 @@ if (file_exists('/etc/ysf2p25')) {
 	if (fopen($ysf2p25ConfigFile,'r')) { $configysf2p25 = parse_ini_file($ysf2p25ConfigFile, true); }
 }
 
+// Load the dmr2ysf config file
+if (file_exists('/etc/dmr2ysf')) {
+	$dmr2ysfConfigFile = '/etc/dmr2ysf';
+	if (fopen($dmr2ysfConfigFile,'r')) { $configdmr2ysf = parse_ini_file($dmr2ysfConfigFile, true); }
+}
+
 // Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
@@ -241,6 +247,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
 	system('sudo systemctl stop nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl stop nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
+	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	echo "<table>\n";
@@ -1848,6 +1855,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
 	system('sudo systemctl start nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl start nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
+	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	// Set the system timezone
