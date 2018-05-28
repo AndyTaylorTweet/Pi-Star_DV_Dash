@@ -496,6 +496,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQrx;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQtx;
 	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
+	  $configdmr2ysf['YSF Network']['Suffix'] = "RPT";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -592,6 +593,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['Info']['RXFrequency'] = $newFREQ;
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQ;
 	  $configysf2p25['YSF Network']['Suffix'] = "ND";
+	  $configdmr2ysf['YSF Network']['Suffix'] = "ND";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -693,6 +695,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $configysf2p25['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2p25['YSF Network']['Callsign'] = $newCallsignUpper;
+	  $configdmr2ysf['YSF Network']['Callsign'] = $newCallsignUpper;
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -836,6 +839,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
+	  $configdmr2ysf['DMR Network']['Id'] = substr($newPostDmrId,0,7);
 	}
 
 	// Set YSF2DMR ID
@@ -1313,6 +1317,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['MMDVMModeYSF2P25']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'ON' )  { $configysf2p25['Enabled']['Enabled'] = "1"; }
           if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'OFF' ) { $configysf2p25['Enabled']['Enabled'] = "0"; }
+	}
+
+	// Set DMR2YSF Mode
+	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON' )  { $configdmr2ysf['Enabled']['Enabled'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'OFF' ) { $configdmr2ysf['Enabled']['Enabled'] = "0"; }
 	}
 
 	// Set the MMDVMHost Display Type
