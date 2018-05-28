@@ -1327,20 +1327,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'OFF' ) { $configysf2p25['Enabled']['Enabled'] = "0"; }
 	}
 
-	// Work out if DMR Network 3 should be ON or not
-	if ((empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) && (empty($_POST['MMDVMModeDMR2YSF']) != TRUE )) {
-		if ((escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON') || (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON')) {
-			$configdmrgateway['DMR Network 3']['Enabled'] = "1";
-		} else {
-			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
-		}
-	}
-
 	// Set DMR2YSF Mode
 	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON' )  {
 		  $configdmr2ysf['Enabled']['Enabled'] = "1";
 		  unset($configdmrgateway['DMR Network 3']);
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
 		  $configdmrgateway['DMR Network 3']['Name'] = "DMR2YSF_Cross-over";
 		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
 		  $configdmrgateway['DMR Network 3']['Port'] = "62033";
@@ -1354,6 +1346,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
           if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'OFF' ) {
 		  $configdmr2ysf['Enabled']['Enabled'] = "0";
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
 	  }
 	}
 
@@ -1362,6 +1355,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON' )  {
 		  $configdmr2nxdn['Enabled']['Enabled'] = "1";
 		  unset($configdmrgateway['DMR Network 3']);
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
 		  $configdmrgateway['DMR Network 3']['Name'] = "DMR2NXDN_Cross-over";
 		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
 		  $configdmrgateway['DMR Network 3']['Port'] = "62033";
@@ -1375,7 +1369,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
           if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'OFF' ) {
 		  $configdmr2nxdn['Enabled']['Enabled'] = "0";
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
 	  }
+	}
+
+	// Work out if DMR Network 3 should be ON or not
+	if ((empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) && (empty($_POST['MMDVMModeDMR2YSF']) != TRUE )) {
+		if ((escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON') || (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON')) {
+			$configdmrgateway['DMR Network 3']['Enabled'] = "1";
+		} else {
+			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
+		}
 	}
 
 	// Set the MMDVMHost Display Type
