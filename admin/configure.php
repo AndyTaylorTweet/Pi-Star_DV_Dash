@@ -1323,7 +1323,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON' )  {
 		  $configdmr2ysf['Enabled']['Enabled'] = "1";
-		  unset($configdmrgateway['DMR Network 3'])
+		  unset($configdmrgateway['DMR Network 3']);
 		  $configdmrgateway['DMR Network 3']['Enabled'] = "1";
 		  $configdmrgateway['DMR Network 3']['Name'] = "DMR2YSF_Cross-over";
 		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
