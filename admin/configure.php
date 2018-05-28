@@ -1321,8 +1321,25 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set DMR2YSF Mode
 	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON' )  { $configdmr2ysf['Enabled']['Enabled'] = "1"; }
-          if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'OFF' ) { $configdmr2ysf['Enabled']['Enabled'] = "0"; }
+          if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON' )  {
+		  $configdmr2ysf['Enabled']['Enabled'] = "1";
+		  unset($configdmrgateway['DMR Network 3'])
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "1";
+		  $configdmrgateway['DMR Network 3']['Name'] = "DMR2YSF_Cross-over";
+		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
+		  $configdmrgateway['DMR Network 3']['Port'] = "62033";
+		  $configdmrgateway['DMR Network 3']['Local'] = "62034";
+		  $configdmrgateway['DMR Network 3']['TGRewrite'] = "2,7,2,700000,99999";
+		  $configdmrgateway['DMR Network 3']['SrcRewrite'] = "2,700000,2,7,99999";
+		  $configdmrgateway['DMR Network 3']['PCRewrite'] = "2,700000,2,00000,99999";
+		  $configdmrgateway['DMR Network 3']['Password'] = "PASSWORD";
+		  $configdmrgateway['DMR Network 3']['Location'] = "0";
+		  $configdmrgateway['DMR Network 3']['Debug'] = "0";
+	  }
+          if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'OFF' ) {
+		  $configdmr2ysf['Enabled']['Enabled'] = "0";
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
+	  }
 	}
 
 	// Set the MMDVMHost Display Type
@@ -2646,7 +2663,7 @@ fclose($dextraFile);
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
-<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['System Fusion Network']['Enable'] == 1) {
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['System Fusion Network']['Enable'] == 1 || $configdmr2ysf['Enabled']['Enabled'] == 1 )) {
 $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 	<div><b><?php echo $lang['ysf_config'];?></b></div>
     <table>
