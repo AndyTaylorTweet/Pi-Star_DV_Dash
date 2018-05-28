@@ -1748,6 +1748,42 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                         exec('sudo chown root:root /etc/ysf2p25');                              // Set the owner
                 }
         }
+	
+	// dmr2ysf config file wrangling
+        $dmr2ysfContent = "";
+        foreach($configdmr2ysf as $dmr2ysfSection=>$dmr2ysfValues) {
+                // UnBreak special cases
+                $dmr2ysfSection = str_replace("_", " ", $dmr2ysfSection);
+                $dmr2ysfContent .= "[".$dmr2ysfSection."]\n";
+                // append the values
+                foreach($dmr2ysfValues as $dmr2ysfKey=>$dmr2ysfValue) {
+                        $dmr2ysfContent .= $dmr2ysfKey."=".$dmr2ysfValue."\n";
+                        }
+                        $dmr2ysfContent .= "\n";
+                }
+        if (!$handleDMR2YSFconfig = fopen('/tmp/dhJSgdy7755HGc.tmp', 'w')) {
+                return false;
+        }
+        if (!is_writable('/tmp/dhJSgdy7755HGc.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+        else {
+                $success = fwrite($handleDMR2YSFconfig, $dmr2ysfContent);
+                fclose($handleDMR2YSFconfig);
+                if (intval(exec('cat /tmp/dhJSgdy7755HGc.tmp | wc -l')) > 25 ) {
+                        exec('sudo mv /tmp/dhJSgdy7755HGc.tmp /etc/dmr2ysf');		// Move the file back
+                        exec('sudo chmod 644 /etc/dmr2ysf');				// Set the correct runtime permissions
+                        exec('sudo chown root:root /etc/dmr2ysf');			// Set the owner
+                }
+        }
 
 	// dmrgateway config file wrangling
 	$dmrgwContent = "";
