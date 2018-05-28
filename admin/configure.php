@@ -77,6 +77,12 @@ if (file_exists('/etc/dmr2ysf')) {
 	if (fopen($dmr2ysfConfigFile,'r')) { $configdmr2ysf = parse_ini_file($dmr2ysfConfigFile, true); }
 }
 
+// Load the dmr2nxdn config file
+if (file_exists('/etc/dmr2nxdn')) {
+	$dmr2nxdnConfigFile = '/etc/dmr2nxdn';
+	if (fopen($dmr2nxdnConfigFile,'r')) { $configdmr2nxdn = parse_ini_file($dmr2nxdnConfigFile, true); }
+}
+
 // Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
@@ -248,6 +254,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl stop nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
 	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
+	system('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	echo "<table>\n";
@@ -840,6 +847,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmr2ysf['DMR Network']['Id'] = substr($newPostDmrId,0,7);
+	  $configdmr2nxdn['DMR Network']['Id'] = substr($newPostDmrId,0,7);
 	}
 
 	// Set YSF2DMR ID
@@ -1338,6 +1346,29 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
           if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'OFF' ) {
 		  $configdmr2ysf['Enabled']['Enabled'] = "0";
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
+	  }
+	}
+
+	// Set DMR2NXDN Mode
+	if (empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON' )  {
+		  $configdmr2nxdn['Enabled']['Enabled'] = "1";
+		  unset($configdmrgateway['DMR Network 3']);
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "1";
+		  $configdmrgateway['DMR Network 3']['Name'] = "DMR2NXDN_Cross-over";
+		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
+		  $configdmrgateway['DMR Network 3']['Port'] = "62033";
+		  $configdmrgateway['DMR Network 3']['Local'] = "62034";
+		  $configdmrgateway['DMR Network 3']['TGRewrite'] = "2,7,2,700000,99999";
+		  $configdmrgateway['DMR Network 3']['SrcRewrite'] = "2,700000,2,7,99999";
+		  $configdmrgateway['DMR Network 3']['PCRewrite'] = "2,700000,2,00000,99999";
+		  $configdmrgateway['DMR Network 3']['Password'] = "PASSWORD";
+		  $configdmrgateway['DMR Network 3']['Location'] = "0";
+		  $configdmrgateway['DMR Network 3']['Debug'] = "0";
+	  }
+          if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'OFF' ) {
+		  $configdmr2nxdn['Enabled']['Enabled'] = "0";
 		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
 	  }
 	}
@@ -1919,6 +1950,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl start nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
 	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
+	system('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	// Set the system timezone
@@ -2897,7 +2929,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 	
-<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['NXDN Network']['Enable'] == 1) { ?>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['NXDN Network']['Enable'] == 1 || $configdmr2nxdn['Enabled']['Enabled'] == 1)) { ?>
 	<div><b><?php echo $lang['nxdn_config'];?></b></div>
     <table>
       <tr>
