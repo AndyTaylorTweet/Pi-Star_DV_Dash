@@ -1327,6 +1327,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'OFF' ) { $configysf2p25['Enabled']['Enabled'] = "0"; }
 	}
 
+	// Work out if DMR Network 3 should be ON or not
+	if ((empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) && (empty($_POST['MMDVMModeDMR2YSF']) != TRUE )) {
+		if ((escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON') || (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON')) {
+			$configdmrgateway['DMR Network 3']['Enabled'] = "1";
+		} else {
+			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
+		}
+	}
+
 	// Set DMR2YSF Mode
 	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON' )  {
@@ -1367,14 +1376,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'OFF' ) {
 		  $configdmr2nxdn['Enabled']['Enabled'] = "0";
 	  }
-	}
-
-	if ((empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) && (empty($_POST['MMDVMModeDMR2YSF']) != TRUE )) {
-		if ((escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON') || (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON')) {
-			$configdmrgateway['DMR Network 3']['Enabled'] = "1";
-		} else {
-			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
-		}
 	}
 
 	// Set the MMDVMHost Display Type
