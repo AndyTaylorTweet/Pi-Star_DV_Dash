@@ -2113,7 +2113,7 @@ else:
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" /><label for=\"toggle-dmr2ysf\"></label></div></td>\n";
 	}
     ?>
-    <td>Requires DMRGateway - Configured as TG7, cannot use DMR2NXDN at the same time.</td>
+    <td>Requires DMRGateway - Use TG7, cannot use with DMR2NXDN enabled.</td>
     </tr>
     <?php } ?>
     <?php if (file_exists('/etc/dmr2nxdn')) { ?>
@@ -2127,7 +2127,7 @@ else:
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" /><label for=\"toggle-dmr2nxdn\"></label></div></td>\n";
 	}
     ?>
-    <td>Requires DMRGateway - Configured as TG7, cannot use DMR2YSF at the same time.</td>
+    <td>Requires DMRGateway - Use TG7, cannot use with DMR2YSF enabled.</td>
     </tr>
     <?php } ?>
     <tr>
