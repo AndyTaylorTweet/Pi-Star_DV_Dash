@@ -1970,6 +1970,7 @@ else:
     <input type="hidden" name="MMDVMModeYSF2DMR" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2NXDN" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2P25" value="OFF" />
+    <input type="hidden" name="MMDVMModeDMR2YSF" value="OFF" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -2079,6 +2080,19 @@ else:
 		}
 	else {
 		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2P25\" value=\"ON\" /><label for=\"toggle-ysf2p25\"></label></div></td>\n";
+	}
+    ?>
+    </tr>
+    <?php } ?>
+    <?php if (file_exists('/etc/dmr2ysf')) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR2YSF:<span><b>DMR2YSF Mode</b>Turn on DMR2YSF Features</span></a></td>
+    <?php
+	if ( $configdmr2ysf['Enabled']['Enabled'] == 1 ) {
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmr2ysf\"></label></div></td>\n";
+		}
+	else {
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" /><label for=\"toggle-dmr2ysf\"></label></div></td>\n";
 	}
     ?>
     </tr>
