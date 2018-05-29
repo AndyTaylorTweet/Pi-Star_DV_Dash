@@ -89,17 +89,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
   </head>
   <body>
   <div class="container">
-  <div class="header">
-  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-  <h1>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></h1>
-  <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
-    <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
-    <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
-    <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
-    <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
-  </p>
-  </div>
+  <?php include './header-menu.inc'; ?>
   <div class="contentwide">
   <table width="100%">
   <tr><th>Upgrade Running</th></tr>
