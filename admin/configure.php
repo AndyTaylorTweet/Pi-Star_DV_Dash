@@ -1378,9 +1378,34 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	}
 
+	// Set DMR2NXDN Mode
+	if (empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON' )  {
+		  $configdmr2nxdn['Enabled']['Enabled'] = "1";
+		  unset($configdmrgateway['DMR Network 3']);
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
+		  $configdmrgateway['DMR Network 3']['Name'] = "DMR2NXDN_Cross-over";
+		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
+		  $configdmrgateway['DMR Network 3']['Port'] = "62035";
+		  $configdmrgateway['DMR Network 3']['Local'] = "62036";
+		  $configdmrgateway['DMR Network 3']['TGRewrite'] = "2,7,2,700000,99999";
+		  $configdmrgateway['DMR Network 3']['SrcRewrite'] = "2,700000,2,7,99999";
+		  $configdmrgateway['DMR Network 3']['PCRewrite'] = "2,700000,2,00000,99999";
+		  $configdmrgateway['DMR Network 3']['Password'] = "PASSWORD";
+		  $configdmrgateway['DMR Network 3']['Location'] = "0";
+		  $configdmrgateway['DMR Network 3']['Debug'] = "0";
+		  $configmmdvm['NXDN']['Enable'] = "0";
+		  $configmmdvm['NXDN Network']['Enable'] = "0";
+	  }
+          if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'OFF' ) {
+		  $configdmr2nxdn['Enabled']['Enabled'] = "0";
+		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
+	  }
+	}
+
 	// Work out if DMR Network 3 should be ON or not
-	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE ) {
-		if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON') {
+	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE || empty($_POST['MMDVMModeDMR2NXDN']) != TRUE) {
+		if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON' || escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON') {
 			$configdmrgateway['DMR Network 3']['Enabled'] = "1";
 		} else {
 			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
