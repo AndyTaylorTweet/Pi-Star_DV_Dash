@@ -34,6 +34,22 @@ if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
 //Load the dmrgateway config file
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
+
+//Load the dmr2ysf config file
+$dmr2ysfConfigFile = '/etc/dmr2ysf';
+if (fopen($dmr2ysfConfigFile,'r')) { $dmr2ysfConfig = parse_ini_file($dmr2ysfConfigFile, true); }
+
+//Load the dmr2nxdn config file
+$dmr2nxdnConfigFile = '/etc/dmr2nxdn';
+if (fopen($dmr2nxdnConfigFile,'r')) { $dmr2nxdnConfig = parse_ini_file($dmr2nxdnConfigFile, true); }
+
+//Load the ysf2nxdn config file
+$ysf2nxdnConfigFile = '/etc/ysf2nxdn';
+if (fopen($ysf2nxdnConfigFile,'r')) { $ysf2nxdnConfig = parse_ini_file($ysf2nxdnConfigFile, true); }
+
+//Load the ysf2p25 config file
+$ysf2p25ConfigFile = '/etc/ysf2p25';
+if (fopen($ysf2p25ConfigFile,'r')) { $ysf2p25Config = parse_ini_file($ysf2p25ConfigFile, true); }
 ?>
 
 <table>
@@ -208,7 +224,8 @@ echo "</table>\n";
 }
 
 $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
+$testDMR2YSF = getConfigItem("Enabled", "Enabled", $dmr2ysfConfig);
+if ( $testMMDVModeYSF == 1 || $testDMR2YSF == 1) { //Hide the YSF information when System Fusion Network mode not enabled.
         $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
         $ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
         $ysfLinkedToTxt = "null";
@@ -232,7 +249,8 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
 }
 
 $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode not enabled.
+$testYSF2P25 = getConfigItem("Enabled", "Enabled", $ysf2p25Config);
+if ( $testMMDVModeP25 == 1 || $testYSF2P25 == 1 ) { //Hide the P25 information when P25 Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
@@ -245,7 +263,9 @@ if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode 
 }
 
 $testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeNXDN == 1 ) { //Hide the NXDN information when NXDN Network mode not enabled.
+$testDMR2NXDN = getConfigItem("Enabled", "Enabled", $dmr2nxdnConfig);
+$testYSF2NXDN = getConfigItem("Enabled", "Enabled", $ysf2nxdnConfig);
+if ( $testMMDVModeNXDN == 1 || $testDMR2NXDN == 1 || $testYSF2NXDN == 1 ) { //Hide the NXDN information when NXDN Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
