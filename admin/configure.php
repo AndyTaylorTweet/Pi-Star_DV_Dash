@@ -77,6 +77,12 @@ if (file_exists('/etc/dmr2ysf')) {
 	if (fopen($dmr2ysfConfigFile,'r')) { $configdmr2ysf = parse_ini_file($dmr2ysfConfigFile, true); }
 }
 
+// Load the dmr2nxdn config file
+if (file_exists('/etc/dmr2nxdn')) {
+	$dmr2nxdnConfigFile = '/etc/dmr2nxdn';
+	if (fopen($dmr2nxdnConfigFile,'r')) { $configdmr2nxdn = parse_ini_file($dmr2nxdnConfigFile, true); }
+}
+
 // Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
@@ -248,6 +254,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl stop nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
 	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
+	system('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	echo "<table>\n";
@@ -878,14 +885,30 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			$configmmdvm['DMR Network']['Local'] = "62032";
 			unset ($configysf2dmr['DMR Network']['Options']);
 			$configysf2dmr['DMR Network']['Local'] = "62032";
-			$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.1";
+			if (isset($configdmr2ysf['DMR Network']['LocalAddress'])) {
+				$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.1";
+			}
+			if (isset($configdmr2nxdn['DMR Network']['LocalAddress'])) {
+				$configdmr2nxdn['DMR Network']['LocalAddress'] = "127.0.0.1";
+			}
 		}
 
 		// DMR2YSF
 		if ($dmrMasterHostArr[0] == '127.0.0.2' && $dmrMasterHostArr[2] == '62033') {
 			unset ($configmmdvm['DMR Network']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62034";
-			$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.2";
+			if (isset($configdmr2ysf['DMR Network']['LocalAddress'])) {
+				$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.2";
+			}
+		}
+
+		// DMR2NXDN
+		if ($dmrMasterHostArr[0] == '127.0.0.3' && $dmrMasterHostArr[2] == '62035') {
+			unset ($configmmdvm['DMR Network']['Options']);
+			$configmmdvm['DMR Network']['Local'] = "62036";
+			if (isset($configdmr2nxdn['DMR Network']['LocalAddress'])) {
+				$configdmr2nxdn['DMR Network']['LocalAddress'] = "127.0.0.2";
+			}
 		}
 
 		// Set the DMR+ Options= line
@@ -1834,6 +1857,42 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                 }
         }
 
+	// dmr2nxdn config file wrangling
+        $dmr2nxdnContent = "";
+        foreach($configdmr2nxdn as $dmr2nxdnSection=>$dmr2nxdnValues) {
+                // UnBreak special cases
+                $dmr2nxdnSection = str_replace("_", " ", $dmr2nxdnSection);
+                $dmr2nxdnContent .= "[".$dmr2nxdnSection."]\n";
+                // append the values
+                foreach($dmr2nxdnValues as $dmr2nxdnKey=>$dmr2nxdnValue) {
+                        $dmr2nxdnContent .= $dmr2nxdnKey."=".$dmr2nxdnValue."\n";
+                        }
+                        $dmr2nxdnContent .= "\n";
+                }
+        if (!$handleDMR2NXDNconfig = fopen('/tmp/nthf&heS55HGc.tmp', 'w')) {
+                return false;
+        }
+        if (!is_writable('/tmp/nthf&heS55HGc.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+        else {
+                $success = fwrite($handleDMR2NXDNconfig, $dmr2nxdnContent);
+                fclose($handleDMR2NXDNconfig);
+                if (intval(exec('cat /tmp/nthf&heS55HGc.tmp | wc -l')) > 25 ) {
+                        exec('sudo mv /tmp/nthf&heS55HGc.tmp /etc/dmr2ysf');		// Move the file back
+                        exec('sudo chmod 644 /etc/dmr2nxdn');				// Set the correct runtime permissions
+                        exec('sudo chown root:root /etc/dmr2nxdn');			// Set the owner
+                }
+        }
+
 	// dmrgateway config file wrangling
 	$dmrgwContent = "";
         foreach($configdmrgateway as $dmrgwSection=>$dmrgwValues) {
@@ -1941,6 +2000,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl start nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
 	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
+	system('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	// Set the system timezone
@@ -2010,6 +2070,7 @@ else:
     <input type="hidden" name="MMDVMModeYSF2NXDN" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2P25" value="OFF" />
     <input type="hidden" name="MMDVMModeDMR2YSF" value="OFF" />
+    <input type="hidden" name="MMDVMModeDMR2NXDN" value="OFF" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -2132,6 +2193,20 @@ else:
 		}
 	else {
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" /><label for=\"toggle-dmr2ysf\"></label></div></td>\n";
+	}
+    ?>
+    <td>Uses TG7 on DMRGateway</td>
+    </tr>
+    <?php } ?>
+    <?php if (file_exists('/etc/dmr2nxdn')) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR2NXDN:<span><b>DMR2NXDN Mode</b>Turn on DMR2NXDN Features</span></a></td>
+    <?php
+	if ( $configdmr2nxdn['Enabled']['Enabled'] == 1 ) {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmr2nxdn\"></label></div></td>\n";
+		}
+	else {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" /><label for=\"toggle-dmr2nxdn\"></label></div></td>\n";
 	}
     ?>
     <td>Uses TG7 on DMRGateway</td>
