@@ -102,8 +102,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
   </div>
   <div class="contentwide">
   <table width="100%">
-  <tr><th>Update Running</th></tr>
-  <tr><td align="left"><div id="tail">Starting update, please wait...<br /></div></td></tr>
+  <tr><th>Upgrade Running</th></tr>
+  <tr><td align="left"><div id="tail">Starting upgrade, please wait...<br /></div></td></tr>
   </table>
   </div>
   <div class="footer">
