@@ -878,12 +878,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			$configmmdvm['DMR Network']['Local'] = "62032";
 			unset ($configysf2dmr['DMR Network']['Options']);
 			$configysf2dmr['DMR Network']['Local'] = "62032";
+			$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.1";
 		}
 
 		// DMR2YSF
 		if ($dmrMasterHostArr[0] == '127.0.0.2' && $dmrMasterHostArr[2] == '62033') {
 			unset ($configmmdvm['DMR Network']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62034";
+			$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.2";
 		}
 
 		// Set the DMR+ Options= line
