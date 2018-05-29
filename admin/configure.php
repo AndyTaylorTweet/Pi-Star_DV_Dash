@@ -907,7 +907,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			unset ($configmmdvm['DMR Network']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62036";
 			if (isset($configdmr2nxdn['DMR Network']['LocalAddress'])) {
-				$configdmr2nxdn['DMR Network']['LocalAddress'] = "127.0.0.2";
+				$configdmr2nxdn['DMR Network']['LocalAddress'] = "127.0.0.3";
 			}
 		}
 
