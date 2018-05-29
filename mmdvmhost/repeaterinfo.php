@@ -35,21 +35,31 @@ if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
 
-//Load the dmr2ysf config file
-//$dmr2ysfConfigFile = '/etc/dmr2ysf';
-//if (fopen($dmr2ysfConfigFile,'r')) { $dmr2ysfConfig = parse_ini_file($dmr2ysfConfigFile, true); }
-
-//Load the dmr2nxdn config file
-//$dmr2nxdnConfigFile = '/etc/dmr2nxdn';
-//if (fopen($dmr2nxdnConfigFile,'r')) { $dmr2nxdnConfig = parse_ini_file($dmr2nxdnConfigFile, true); }
-
-//Load the ysf2nxdn config file
-//$ysf2nxdnConfigFile = '/etc/ysf2nxdn';
-//if (fopen($ysf2nxdnConfigFile,'r')) { $ysf2nxdnConfig = parse_ini_file($ysf2nxdnConfigFile, true); }
-
-//Load the ysf2p25 config file
-//$ysf2p25ConfigFile = '/etc/ysf2p25';
-//if (fopen($ysf2p25ConfigFile,'r')) { $ysf2p25Config = parse_ini_file($ysf2p25ConfigFile, true); }
+// Load the ysf2dmr config file
+if (file_exists('/etc/ysf2dmr')) {
+	$ysf2dmrConfigFile = '/etc/ysf2dmr';
+	if (fopen($ysf2dmrConfigFile,'r')) { $configysf2dmr = parse_ini_file($ysf2dmrConfigFile, true); }
+}
+// Load the ysf2nxdn config file
+if (file_exists('/etc/ysf2nxdn')) {
+	$ysf2nxdnConfigFile = '/etc/ysf2nxdn';
+	if (fopen($ysf2nxdnConfigFile,'r')) { $configysf2nxdn = parse_ini_file($ysf2nxdnConfigFile, true); }
+}
+// Load the ysf2p25 config file
+if (file_exists('/etc/ysf2p25')) {
+	$ysf2p25ConfigFile = '/etc/ysf2p25';
+	if (fopen($ysf2p25ConfigFile,'r')) { $configysf2p25 = parse_ini_file($ysf2p25ConfigFile, true); }
+}
+// Load the dmr2ysf config file
+if (file_exists('/etc/dmr2ysf')) {
+	$dmr2ysfConfigFile = '/etc/dmr2ysf';
+	if (fopen($dmr2ysfConfigFile,'r')) { $configdmr2ysf = parse_ini_file($dmr2ysfConfigFile, true); }
+}
+// Load the dmr2nxdn config file
+if (file_exists('/etc/dmr2nxdn')) {
+	$dmr2nxdnConfigFile = '/etc/dmr2nxdn';
+	if (fopen($dmr2nxdnConfigFile,'r')) { $configdmr2nxdn = parse_ini_file($dmr2nxdnConfigFile, true); }
+}
 ?>
 
 <table>
@@ -224,7 +234,7 @@ echo "</table>\n";
 }
 
 $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
-//$testDMR2YSF = getConfigItem("Enabled", "Enabled", $dmr2ysfConfig);
+if ( isset($configdmr2ysf['Enabled']['Enabled']) ) { $testDMR2YSF = $configdmr2ysf['Enabled']['Enabled']; }
 if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
         $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
         $ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
@@ -249,8 +259,8 @@ if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Net
 }
 
 $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
-//$testYSF2P25 = getConfigItem("Enabled", "Enabled", $ysf2p25Config);
-if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode not enabled.
+if ( isset($configysf2p25['Enabled']['Enabled']) ) { $testYSF2P25 = $configysf2p25['Enabled']['Enabled']; }
+if ( $testMMDVModeP25 == 1 || $testYSF2P25 ) { //Hide the P25 information when P25 Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
@@ -263,9 +273,9 @@ if ( $testMMDVModeP25 == 1 ) { //Hide the P25 information when P25 Network mode 
 }
 
 $testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
-//$testDMR2NXDN = getConfigItem("Enabled", "Enabled", $dmr2nxdnConfig);
-//$testYSF2NXDN = getConfigItem("Enabled", "Enabled", $ysf2nxdnConfig);
-if ( $testMMDVModeNXDN == 1 ) { //Hide the NXDN information when NXDN Network mode not enabled.
+if ( isset($configysf2nxdn['Enabled']['Enabled']) ) { $testYSF2NXDN = $configysf2nxdn['Enabled']['Enabled']; }
+if ( isset($configdmr2nxdn['Enabled']['Enabled']) ) { $testDMR2NXDN = $configdmr2nxdn['Enabled']['Enabled']; }
+if ( $testMMDVModeNXDN == 1 || $testYSF2NXDN || $testDMR2NXDN ) { //Hide the NXDN information when NXDN Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
