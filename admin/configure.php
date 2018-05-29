@@ -1281,7 +1281,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set MMDVMHost DMR Mode
 	if (empty($_POST['MMDVMModeDMR']) != TRUE ) {
-	  if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'ON' )  { $configmmdvm['DMR']['Enable'] = "1"; $configmmdvm['DMR Network']['Enable'] = "1"; }
+	  if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'ON' )  { $configmmdvm['DMR']['Enable'] = "1"; $configmmdvm['DMR Network']['Enable'] = "1"; $configysf2dmr['Enabled']['Enabled'] = "0";}
 	  if (escapeshellcmd($_POST['MMDVMModeDMR']) == 'OFF' ) { $configmmdvm['DMR']['Enable'] = "0"; $configmmdvm['DMR Network']['Enable'] = "0"; }
 	}
 
@@ -1293,37 +1293,37 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set MMDVMHost Fusion Mode
 	if (empty($_POST['MMDVMModeFUSION']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeFUSION']) == 'ON' )  { $configmmdvm['System Fusion']['Enable'] = "1"; $configmmdvm['System Fusion Network']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeFUSION']) == 'ON' )  { $configmmdvm['System Fusion']['Enable'] = "1"; $configmmdvm['System Fusion Network']['Enable'] = "1"; $configdmr2ysf['Enabled']['Enabled'] = "0"; }
           if (escapeshellcmd($_POST['MMDVMModeFUSION']) == 'OFF' ) { $configmmdvm['System Fusion']['Enable'] = "0"; $configmmdvm['System Fusion Network']['Enable'] = "0"; }
 	}
 
 	// Set MMDVMHost P25 Mode
 	if (empty($_POST['MMDVMModeP25']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeP25']) == 'ON' )  { $configmmdvm['P25']['Enable'] = "1"; $configmmdvm['P25 Network']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeP25']) == 'ON' )  { $configmmdvm['P25']['Enable'] = "1"; $configmmdvm['P25 Network']['Enable'] = "1"; $configysf2p25['Enabled']['Enabled'] = "0"; }
           if (escapeshellcmd($_POST['MMDVMModeP25']) == 'OFF' ) { $configmmdvm['P25']['Enable'] = "0"; $configmmdvm['P25 Network']['Enable'] = "0"; }
 	}
 	
 	// Set MMDVMHost NXDN Mode
 	if (empty($_POST['MMDVMModeNXDN']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "1"; $configysf2nxdn['Enabled']['Enabled'] = "0"; }
           if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'OFF' ) { $configmmdvm['NXDN']['Enable'] = "0"; $configmmdvm['NXDN Network']['Enable'] = "0"; }
 	}
 
 	// Set YSF2DMR Mode
 	if (empty($_POST['MMDVMModeYSF2DMR']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeYSF2DMR']) == 'ON' )  { $configysf2dmr['Enabled']['Enabled'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeYSF2DMR']) == 'ON' )  { $configysf2dmr['Enabled']['Enabled'] = "1"; $configmmdvm['DMR']['Enable'] = "0"; $configmmdvm['DMR Network']['Enable'] = "0";}
           if (escapeshellcmd($_POST['MMDVMModeYSF2DMR']) == 'OFF' ) { $configysf2dmr['Enabled']['Enabled'] = "0"; }
 	}
 
 	// Set YSF2NXDN Mode
 	if (empty($_POST['MMDVMModeYSF2NXDN']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeYSF2NXDN']) == 'ON' )  { $configysf2nxdn['Enabled']['Enabled'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeYSF2NXDN']) == 'ON' )  { $configysf2nxdn['Enabled']['Enabled'] = "1"; $configmmdvm['NXDN']['Enable'] = "0"; $configmmdvm['NXDN Network']['Enable'] = "0";}
           if (escapeshellcmd($_POST['MMDVMModeYSF2NXDN']) == 'OFF' ) { $configysf2nxdn['Enabled']['Enabled'] = "0"; }
 	}
 
 	// Set YSF2P25 Mode
 	if (empty($_POST['MMDVMModeYSF2P25']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'ON' )  { $configysf2p25['Enabled']['Enabled'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'ON' )  { $configysf2p25['Enabled']['Enabled'] = "1"; $configmmdvm['P25']['Enable'] = "0"; $configmmdvm['P25 Network']['Enable'] = "0"; }
           if (escapeshellcmd($_POST['MMDVMModeYSF2P25']) == 'OFF' ) { $configysf2p25['Enabled']['Enabled'] = "0"; }
 	}
 
@@ -1343,6 +1343,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		  $configdmrgateway['DMR Network 3']['Password'] = "PASSWORD";
 		  $configdmrgateway['DMR Network 3']['Location'] = "0";
 		  $configdmrgateway['DMR Network 3']['Debug'] = "0";
+		  $configmmdvm['System Fusion']['Enable'] = "0";
+		  $configmmdvm['System Fusion Network']['Enable'] = "0";
 	  }
           if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'OFF' ) {
 		  $configdmr2ysf['Enabled']['Enabled'] = "0";
