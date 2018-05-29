@@ -1912,7 +1912,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                 $success = fwrite($handleDMR2NXDNconfig, $dmr2nxdnContent);
                 fclose($handleDMR2NXDNconfig);
                 if (intval(exec('cat /tmp/nthf&heS55HGc.tmp | wc -l')) > 25 ) {
-                        exec('sudo mv /tmp/nthf&heS55HGc.tmp /etc/dmr2ysf');		// Move the file back
+                        exec('sudo mv /tmp/nthf&heS55HGc.tmp /etc/dmr2nxdn');		// Move the file back
                         exec('sudo chmod 644 /etc/dmr2nxdn');				// Set the correct runtime permissions
                         exec('sudo chown root:root /etc/dmr2nxdn');			// Set the owner
                 }
