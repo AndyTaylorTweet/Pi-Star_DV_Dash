@@ -1336,7 +1336,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set YSF2DMR Mode
 	if (empty($_POST['MMDVMModeYSF2DMR']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeYSF2DMR']) == 'ON' )  { $configysf2dmr['Enabled']['Enabled'] = "1"; $configmmdvm['DMR']['Enable'] = "0"; $configmmdvm['DMR Network']['Enable'] = "0";}
+          if (escapeshellcmd($_POST['MMDVMModeYSF2DMR']) == 'ON' )  { $configysf2dmr['Enabled']['Enabled'] = "1"; }
           if (escapeshellcmd($_POST['MMDVMModeYSF2DMR']) == 'OFF' ) { $configysf2dmr['Enabled']['Enabled'] = "0"; }
 	}
 
