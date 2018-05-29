@@ -871,12 +871,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			unset ($configysf2dmr['DMR Network']['Local']);
 		}
 
-		if ($dmrMasterHostArr[0] == '127.0.0.1') {
+		// DMR Gateway
+		if ($dmrMasterHostArr[0] == '127.0.0.1' && $dmrMasterHostArr[2] == '62031') {
 			unset ($configmmdvm['DMR Network']['Options']);
 			unset ($configdmrgateway['DMR Network 2']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62032";
 			unset ($configysf2dmr['DMR Network']['Options']);
 			$configysf2dmr['DMR Network']['Local'] = "62032";
+		}
+
+		// DMR2YSF
+		if ($dmrMasterHostArr[0] == '127.0.0.2' && $dmrMasterHostArr[2] == '62033') {
+			unset ($configmmdvm['DMR Network']['Options']);
+			$configmmdvm['DMR Network']['Local'] = "62034";
 		}
 
 		// Set the DMR+ Options= line
