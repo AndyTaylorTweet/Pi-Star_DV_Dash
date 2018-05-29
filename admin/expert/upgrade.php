@@ -75,7 +75,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
     <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
-        $.get('/admin/update.php?ajax', function(data) {
+        $.get('/admin/expert/upgrade.php?ajax', function(data) {
           if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
           var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;
