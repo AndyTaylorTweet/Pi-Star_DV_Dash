@@ -3004,7 +3004,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 	
-<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['NXDN Network']['Enable'] == 1) ) { ?>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['NXDN Network']['Enable'] == 1 || $configdmr2nxdn['Enabled']['Enabled'] == 1) ) { ?>
 	<div><b><?php echo $lang['nxdn_config'];?></b></div>
     <table>
       <tr>
@@ -3133,7 +3133,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 //	$strHWAddress = $result['1'];
 //
 //	if ( isset($strHWAddress) ) {
-	if ( file_exists('/sys/class/net/wlan0') || file_exists('/sys/class/net/wlan1') ) {
+	if ( file_exists('/sys/class/net/wlan0') || file_exists('/sys/class/net/wlan1') || file_exists('/sys/class/net/wlan0_ap') ) {
 echo '
 <br />
     <b>'.$lang['wifi_config'].'</b>
