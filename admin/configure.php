@@ -77,12 +77,6 @@ if (file_exists('/etc/dmr2ysf')) {
 	if (fopen($dmr2ysfConfigFile,'r')) { $configdmr2ysf = parse_ini_file($dmr2ysfConfigFile, true); }
 }
 
-// Load the dmr2nxdn config file
-if (file_exists('/etc/dmr2nxdn')) {
-	$dmr2nxdnConfigFile = '/etc/dmr2nxdn';
-	if (fopen($dmr2nxdnConfigFile,'r')) { $configdmr2nxdn = parse_ini_file($dmr2nxdnConfigFile, true); }
-}
-
 // Load the p25gateway config file
 $p25gatewayConfigFile = '/etc/p25gateway';
 $configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
@@ -254,7 +248,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl stop nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
 	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
-	system('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	echo "<table>\n";
@@ -1353,32 +1346,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	}
 
-	// Set DMR2NXDN Mode
-	if (empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) {
-          if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON' )  {
-		  $configdmr2nxdn['Enabled']['Enabled'] = "1";
-		  unset($configdmrgateway['DMR Network 3']);
-		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
-		  $configdmrgateway['DMR Network 3']['Name'] = "DMR2NXDN_Cross-over";
-		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
-		  $configdmrgateway['DMR Network 3']['Port'] = "62033";
-		  $configdmrgateway['DMR Network 3']['Local'] = "62034";
-		  $configdmrgateway['DMR Network 3']['TGRewrite'] = "2,7,2,700000,99999";
-		  $configdmrgateway['DMR Network 3']['SrcRewrite'] = "2,700000,2,7,99999";
-		  $configdmrgateway['DMR Network 3']['PCRewrite'] = "2,700000,2,00000,99999";
-		  $configdmrgateway['DMR Network 3']['Password'] = "PASSWORD";
-		  $configdmrgateway['DMR Network 3']['Location'] = "0";
-		  $configdmrgateway['DMR Network 3']['Debug'] = "0";
-	  }
-          if (escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'OFF' ) {
-		  $configdmr2nxdn['Enabled']['Enabled'] = "0";
-		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
-	  }
-	}
-
 	// Work out if DMR Network 3 should be ON or not
-	if ((empty($_POST['MMDVMModeDMR2NXDN']) != TRUE ) && (empty($_POST['MMDVMModeDMR2YSF']) != TRUE )) {
-		if ((escapeshellcmd($_POST['MMDVMModeDMR2NXDN']) == 'ON') || (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON')) {
+	if (empty($_POST['MMDVMModeDMR2YSF']) != TRUE ) {
+		if (escapeshellcmd($_POST['MMDVMModeDMR2YSF']) == 'ON') {
 			$configdmrgateway['DMR Network 3']['Enabled'] = "1";
 		} else {
 			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
@@ -1962,7 +1932,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl start nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
 	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
-	system('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
 
 	// Set the system timezone
@@ -2032,7 +2001,6 @@ else:
     <input type="hidden" name="MMDVMModeYSF2NXDN" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2P25" value="OFF" />
     <input type="hidden" name="MMDVMModeDMR2YSF" value="OFF" />
-    <input type="hidden" name="MMDVMModeDMR2NXDN" value="OFF" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -2157,21 +2125,7 @@ else:
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" /><label for=\"toggle-dmr2ysf\"></label></div></td>\n";
 	}
     ?>
-    <td>Requires DMRGateway - Use TG7, cannot use with DMR2NXDN enabled.</td>
-    </tr>
-    <?php } ?>
-    <?php if (file_exists('/etc/dmr2nxdn')) { ?>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR2NXDN:<span><b>DMR2NXDN Mode</b>Turn on DMR2NXDN Features</span></a></td>
-    <?php
-	if ( $configdmr2nxdn['Enabled']['Enabled'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmr2nxdn\"></label></div></td>\n";
-		}
-	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" /><label for=\"toggle-dmr2nxdn\"></label></div></td>\n";
-	}
-    ?>
-    <td>Requires DMRGateway - Use TG7, cannot use with DMR2YSF enabled.</td>
+    <td>Requires DMRGateway - Uses TG7</td>
     </tr>
     <?php } ?>
     <tr>
