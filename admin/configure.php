@@ -2134,7 +2134,7 @@ else:
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" /><label for=\"toggle-dmr2ysf\"></label></div></td>\n";
 	}
     ?>
-    <td>Requires DMRGateway - Uses TG7</td>
+    <td>Uses TG7 on DMRGateway</td>
     </tr>
     <?php } ?>
     <tr>
