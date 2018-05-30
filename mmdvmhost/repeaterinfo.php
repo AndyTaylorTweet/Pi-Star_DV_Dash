@@ -222,6 +222,9 @@ if (getEnabled("DMR Network", $mmdvmconfigs) == 1) {
 			if ($configdmrgateway['DMR Network 2']['Enabled'] == 1) {
 				echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost2."</td></tr>\n";
 			}
+			if ($configdmrgateway['DMR Network 3']['Enabled'] == 1) {
+				echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost3."</td></tr>\n";
+			}
 		}
 		else {
 			echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost."</td></tr>\n";
