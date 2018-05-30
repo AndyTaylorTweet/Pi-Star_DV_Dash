@@ -235,7 +235,7 @@ echo "</table>\n";
 
 $testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
 if ( isset($configdmr2ysf['Enabled']['Enabled']) ) { $testDMR2YSF = $configdmr2ysf['Enabled']['Enabled']; }
-if ( $testMMDVModeYSF == 1 ) { //Hide the YSF information when System Fusion Network mode not enabled.
+if ( $testMMDVModeYSF == 1 || $testDMR2YSF ) { //Hide the YSF information when System Fusion Network mode not enabled.
         $ysfHostFile = fopen("/usr/local/etc/YSFHosts.txt", "r");
         $ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
         $ysfLinkedToTxt = "null";
