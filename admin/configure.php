@@ -2227,7 +2227,7 @@ else:
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" /><label for=\"toggle-dmr2ysf\"></label></div></td>\n";
 	}
     ?>
-    <td>Uses TG7 on DMRGateway</td>
+    <td>Uses 7 prefix on DMRGateway</td>
     </tr>
     <?php } ?>
     <?php if (file_exists('/etc/dmr2nxdn')) { ?>
@@ -2241,7 +2241,7 @@ else:
 		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" /><label for=\"toggle-dmr2nxdn\"></label></div></td>\n";
 	}
     ?>
-    <td>Uses TG7 on DMRGateway</td>
+    <td>Uses 7 prefix on DMRGateway</td>
     </tr>
     <?php } ?>
     <tr>
