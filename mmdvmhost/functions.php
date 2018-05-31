@@ -176,6 +176,7 @@ function showMode($mode, $mmdvmconfigs) {
     $mode = str_replace("System Fusion", "YSF", $mode);
     $mode = str_replace("Network", "Net", $mode);
     if (strpos($mode, 'YSF2') > -1) { $mode = str_replace(" Net", "", $mode); }
+    if (strpos($mode, 'DMR2') > -1) { $mode = str_replace(" Net", "", $mode); }
     echo $mode."</td>\n";
 }
 
