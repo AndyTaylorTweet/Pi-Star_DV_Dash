@@ -156,6 +156,20 @@ function showMode($mode, $mmdvmconfigs) {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
 		}
 	}
+	elseif ( ($mode == "DMR2NXDN Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
+		if (isProcessRunning("DMR2NXDN")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+		}
+	}
+	elseif ( ($mode == "DMR2P25 Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
+		if (isProcessRunning("DMR2P25")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+		}
+	}
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
     }
