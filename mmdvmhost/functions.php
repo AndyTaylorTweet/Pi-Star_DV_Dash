@@ -822,6 +822,7 @@ function getActualLink($logLines, $mode) {
 	// New YSFGateway Format
 	// M: 2018-03-06 15:36:06.344 Linked to GB SOUTH WEST   
 	// M: 2018-03-06 15:36:06.302 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "
+	// M: 2018-05-31 13:36:02.306 Automatic (re-)connection to FCS00290
 	// M: 2018-05-03 13:02:36.904 Disconnect via DTMF has been requested by MW0MWZ
 		
          if (isProcessRunning("YSFGateway")) {
@@ -831,7 +832,12 @@ function getActualLink($logLines, $mode) {
                   $to = trim(substr($logLine, 37, 16));
                }
                if (strpos($logLine,"Automatic (re-)connection to")) {
-                  $to = substr($logLine, 56, 5);
+		  if (strpos($logLine,"Automatic (re-)connection to FCS")) {
+			$to = substr($logLine, 56, 8);
+		  }
+		  else {
+                  	$to = substr($logLine, 56, 5);
+		  }
                }
                if (strpos($logLine,"Connect to")) {
                   $to = substr($logLine, 38, 5);
