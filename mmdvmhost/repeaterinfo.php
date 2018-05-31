@@ -76,6 +76,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("System Fusion Network", $mmdvmconfigs);?><?php showMode("P25 Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?><?php showMode("YSF2P25 Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("DMR2NXDN Network", $mmdvmconfigs);?><?php showMode("DMR2P25 Network", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
