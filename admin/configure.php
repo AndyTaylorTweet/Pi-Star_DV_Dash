@@ -509,7 +509,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
 	  $configdmr2ysf['YSF Network']['Suffix'] = "RPT";
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQrx;
-	  $confignxdngateway['Info']['RXFrequency'] = $newFREQtx;
+	  $confignxdngateway['Info']['TXFrequency'] = $newFREQtx;
 	  $confignxdngateway['General']['Suffix'] = "RPT";
 
 	  system($rollFREQirc);
