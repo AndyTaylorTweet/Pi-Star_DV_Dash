@@ -609,7 +609,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['YSF Network']['Suffix'] = "ND";
 	  $configdmr2ysf['YSF Network']['Suffix'] = "ND";
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQ;
-	  $confignxdngateway['Info']['RXFrequency'] = $newFREQ;
+	  $confignxdngateway['Info']['TXFrequency'] = $newFREQ;
 	  $confignxdngateway['General']['Suffix'] = "ND";
 
 	  system($rollFREQirc);
