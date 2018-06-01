@@ -272,8 +272,8 @@ function getNXDNGatewayLog() {
         //                }
         //                fclose($log);
         //        }
-		$logPath = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "ink" $logPath | tail -5`);
+		$logPath1 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
+		$logLines1 = explode("\n", `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -5`);
         }
 	$logLines1 = array_slice($logLines1, -5);
         if (sizeof($logLines1) < 5) {
@@ -286,8 +286,8 @@ function getNXDNGatewayLog() {
                 //                }
                 //                fclose($log);
                 //        }
-			$logPath = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "ink" $logPath | tail -5`);
+			$logPath2 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = explode("\n", `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -5`);
                 }
         }
 	$logLines2 = array_slice($logLines2, -5);
@@ -881,12 +881,12 @@ function getActualLink($logLines, $mode) {
             foreach($logLines as $logLine) {
                $to = "";
                if (strpos($logLine,"Linked to")) {
-                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 47, 5));
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
                   $to = preg_replace('/[^0-9]/', '', $to);
                   return "Linked to: TG".$to;
                }
                if (strpos($logLine,"Linked at start")) {
-                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 58, 5));
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
                   $to = preg_replace('/[^0-9]/', '', $to);
                   return "Linked to: TG".$to;
                }
