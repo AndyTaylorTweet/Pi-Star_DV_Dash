@@ -375,6 +375,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2nxdn['Info']['Latitude'] = $newConfLatitude;
 	  $configysf2p25['Info']['Latitude'] = $newConfLatitude;
 	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
+	  $confignxdngateway['Info']['Latitude'] = $newConfLatitude;
 	  system($rollConfLat0);
 	  system($rollConfLat1);
 	  }
@@ -390,6 +391,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2nxdn['Info']['Longitude'] = $newConfLongitude;
 	  $configysf2p25['Info']['Longitude'] = $newConfLongitude;
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
+	  $confignxdngateway['Info']['Longitude'] = $newConfLongitude;
 	  system($rollConfLon0);
 	  system($rollConfLon1);
 	  }
@@ -405,6 +407,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configysf2nxdn['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configysf2p25['Info']['Location'] = '"'.$newConfDesc1.'"';
+	  $confignxdngateway['Info']['Name'] = '"'.$newConfDesc1.'"';
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
@@ -420,6 +423,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configysf2nxdn['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configysf2p25['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
 	  system($rollDesc22);
 	  }
@@ -504,6 +508,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQtx;
 	  $configysf2p25['YSF Network']['Suffix'] = "RPT";
 	  $configdmr2ysf['YSF Network']['Suffix'] = "RPT";
+	  $confignxdngateway['Info']['RXFrequency'] = $newFREQrx;
+	  $confignxdngateway['Info']['RXFrequency'] = $newFREQtx;
+	  $confignxdngateway['General']['Suffix'] = "RPT";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -601,6 +608,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['Info']['TXFrequency'] = $newFREQ;
 	  $configysf2p25['YSF Network']['Suffix'] = "ND";
 	  $configdmr2ysf['YSF Network']['Suffix'] = "ND";
+	  $confignxdngateway['Info']['RXFrequency'] = $newFREQ;
+	  $confignxdngateway['Info']['RXFrequency'] = $newFREQ;
+	  $confignxdngateway['General']['Suffix'] = "ND";
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -703,6 +713,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2p25['YSF Network']['Callsign'] = $newCallsignUpper;
 	  $configdmr2ysf['YSF Network']['Callsign'] = $newCallsignUpper;
+	  $confignxdngateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $confignxdngateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -1614,6 +1626,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			unset($configmmdvm['NXDN Network']['ModeHang']);
 			$configmmdvm['NXDN Network']['ModeHang'] = $nxdnNetModeHangTmp;
 		}
+		// Add in all the APRS stuff
+		if(!isset($confignxdngateway['Info']['Power'])) { $confignxdngateway['Info']['Power'] = "1"; }
+		if(!isset($confignxdngateway['Info']['Height'])) { $confignxdngateway['Info']['Height'] = "0"; }
+		if(!isset($confignxdngateway['aprs.fi']['Enable'])) { $confignxdngateway['aprs.fi']['Enable'] = "0"; }
+		if(!isset($confignxdngateway['aprs.fi']['Server'])) { $confignxdngateway['aprs.fi']['Server'] = "euro.aprs2.net"; }
+		if(!isset($confignxdngateway['aprs.fi']['Port'])) { $confignxdngateway['aprs.fi']['Port'] = "14580"; }
+		if(!isset($confignxdngateway['aprs.fi']['Password'])) { $confignxdngateway['aprs.fi']['Password'] = "9999"; }
+		if(!isset($confignxdngateway['aprs.fi']['Description'])) { $confignxdngateway['aprs.fi']['Description'] = "APRS for NXDN Gateway"; }
+		if(!isset($confignxdngateway['aprs.fi']['Suffix'])) { $confignxdngateway['aprs.fi']['Suffix'] = "N"; }
 	}
 	
 
@@ -1740,6 +1761,44 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			exec('sudo mv /tmp/eXNmZ2F0ZXdheQ.tmp /etc/ysfgateway');		// Move the file back
 			exec('sudo chmod 644 /etc/ysfgateway');					// Set the correct runtime permissions
 			exec('sudo chown root:root /etc/ysfgateway');				// Set the owner
+		}
+	}
+	
+	// NXDNGateway config file wrangling
+	$nxdngwContent = "";
+        foreach($confignxdngateway as $nxdngwSection=>$nxdngwValues) {
+                // UnBreak special cases
+                $nxdngwSection = str_replace("_", " ", $nxdngwSection);
+                $nxdngwContent .= "[".$nxdngwSection."]\n";
+                // append the values
+                foreach($nxdngwValues as $nxdngwKey=>$nxdngwValue) {
+                        $nxdngwContent .= $nxdngwKey."=".$nxdngwValue."\n";
+                        }
+                        $nxdngwContent .= "\n";
+                }
+
+        if (!$handleNXDNGWconfig = fopen('/tmp/kXKwkDKy793HF5.tmp', 'w')) {
+                return false;
+        }
+
+	if (!is_writable('/tmp/kXKwkDKy793HF5.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+	}
+	else {
+	        $success = fwrite($handleNXDNGWconfig, $nxdngwContent);
+	        fclose($handleNXDNGWconfig);
+		if ( (intval(exec('cat /tmp/kXKwkDKy793HF5.tmp | wc -l')) > 30 ) && (file_exists('/etc/nxdngateway')) ) {
+			exec('sudo mv /tmp/kXKwkDKy793HF5.tmp /etc/nxdngateway');		// Move the file back
+			exec('sudo chmod 644 /etc/nxdngateway');				// Set the correct runtime permissions
+			exec('sudo chown root:root /etc/nxdngateway');				// Set the owner
 		}
 	}
 
