@@ -273,10 +273,10 @@ function getNXDNGatewayLog() {
         //                fclose($log);
         //        }
 		$logPath = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "ink" $logPath | tail -25`);
+		$logLines1 = explode("\n", `egrep -h "ink" $logPath | tail -5`);
         }
-	$logLines1 = array_slice($logLines1, -25);
-        if (sizeof($logLines1) < 25) {
+	$logLines1 = array_slice($logLines1, -5);
+        if (sizeof($logLines1) < 5) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
                 //        if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
                 //                while ($logLine = fgets($log)) {
@@ -287,14 +287,14 @@ function getNXDNGatewayLog() {
                 //                fclose($log);
                 //        }
 			$logPath = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "ink" $logPath | tail -25`);
+			$logLines2 = explode("\n", `egrep -h "ink" $logPath | tail -5`);
                 }
         }
-	$logLines2 = array_slice($logLines2, -25);
-	$logLines1 = array_slice($logLines1, -25);
-	if (sizeof($logLines1) < 25) { $logLines = $logLines2 + $logLines1; } else { $logLines = $logLines1; }
+	$logLines2 = array_slice($logLines2, -5);
+	$logLines1 = array_slice($logLines1, -5);
+	if (sizeof($logLines1) < 5) { $logLines = $logLines2 + $logLines1; } else { $logLines = $logLines1; }
 	//$logLines = $logLines1 + $logLines2;
-	$logLines = array_slice($logLines, -25);
+	$logLines = array_slice($logLines, -5);
         return $logLines;
 }
 
@@ -891,9 +891,6 @@ function getActualLink($logLines, $mode) {
                   return "Linked to: TG".$to;
                }
                if (strpos($logLine,"unlinking")) {
-                  return "Not Linked";
-               }
-               if (strpos($logLine,"Starting NXDNGateway")) {
                   return "Not Linked";
                }
                if (strpos($logLine,"Unlinked from")) {
