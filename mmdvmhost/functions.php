@@ -287,7 +287,9 @@ function getNXDNGatewayLog() {
                 }
         }
 	$logLines2 = array_slice($logLines2, -25);
-	$logLines = $logLines2 + $logLines1;
+	$logLines1 = array_slice($logLines1, -25);
+	if (count($logLines1) < 25) { $logLines = $logLines1 + $logLines2; } else { $logLines = $logLines1; }
+	//$logLines = $logLines1 + $logLines2;
 	$logLines = array_slice($logLines, -25);
         return $logLines;
 }
