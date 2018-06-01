@@ -230,26 +230,30 @@ function getP25GatewayLog() {
 	$logLines1 = array();
 	$logLines2 = array();
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
-                if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
-                        while ($logLine = fgets($log)) {
-                                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
-                                        array_push($logLines1, substr($logLine, 3));
-                                }
-                        }
-                        fclose($log);
-                }
+                //if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
+                //        while ($logLine = fgets($log)) {
+                //                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
+                //                        array_push($logLines1, substr($logLine, 3));
+                //                }
+                //        }
+                //        fclose($log);
+                //}
+		$logPath1 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
+		$logLines1 = explode("\n", `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -5`);
         }
 	$logLines1 = array_slice($logLines1, -25);
         if (sizeof($logLines1) < 25) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
-                        if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
-                                while ($logLine = fgets($log)) {
-                                        if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
-                                        	array_push($logLines2, substr($logLine, 3));
-                                        }
-                                }
-                                fclose($log);
-                        }
+                        //if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
+                        //        while ($logLine = fgets($log)) {
+                        //                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
+                        //                	array_push($logLines2, substr($logLine, 3));
+                        //                }
+                        //        }
+                        //        fclose($log);
+                        //}
+			$logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = explode("\n", `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -5`);
                 }
         }
 	$logLines2 = array_slice($logLines2, -25);
@@ -264,28 +268,12 @@ function getNXDNGatewayLog() {
 	$logLines1 = array();
 	$logLines2 = array();
         if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
-        //        if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log", 'r')) {
-        //                while ($logLine = fgets($log)) {
-        //                        if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
-        //                                array_push($logLines1, substr($logLine, 3));
-        //                        }
-        //                }
-        //                fclose($log);
-        //        }
 		$logPath1 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
 		$logLines1 = explode("\n", `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -5`);
         }
 	$logLines1 = array_slice($logLines1, -5);
         if (sizeof($logLines1) < 5) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
-                //        if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
-                //                while ($logLine = fgets($log)) {
-                //                        if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
-                //                        	array_push($logLines2, substr($logLine, 3));
-                //                        }
-                //                }
-                //                fclose($log);
-                //        }
 			$logPath2 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
 			$logLines2 = explode("\n", `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -5`);
                 }
@@ -873,10 +861,10 @@ function getActualLink($logLines, $mode) {
      case "NXDN":
         // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
         // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-        // M: 2000-01-01 00:00:00.000 Linked at startup to reflector 65000
-        // M: 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
-        // M: 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
-        // W: 2000-01-01 00:00:00.000 No response from 10200, unlinking
+        // 2000-01-01 00:00:00.000 Linked at startup to reflector 65000
+        // 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
+        // 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
+        // 2000-01-01 00:00:00.000 No response from 10200, unlinking
         if (isProcessRunning("NXDNGateway")) {
             foreach($logLines as $logLine) {
                $to = "";
@@ -922,11 +910,8 @@ function getActualLink($logLines, $mode) {
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "Linked to: TG".$to;
                }
-	       if ( (strpos($logLine,"No response from")) && (strpos($logLine,"unlinking")) ) {
-		  return "Not Linked";
-	       }
-               if (strpos($logLine,"Starting P25Gateway")) {
-		  return "Not Linked";
+	       if (strpos($logLine,"unlinking")) {
+                  return "Not Linked";
                }
                if (strpos($logLine,"Unlinked")) {
                   return "Not Linked";
@@ -1023,6 +1008,7 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 	array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
 	$P25Gatewayconfigs = getP25GatewayConfig();
 	$logLinesP25Gateway = getP25GatewayLog();
+	array_multisort($logLinesP25Gateway,SORT_DESC);
 	$reverseLogLinesP25Gateway = array_reverse(getP25GatewayLog());
 	$NXDNGatewayconfigs = getNXDNGatewayConfig();
 	$logLinesNXDNGateway = getNXDNGatewayLog();
