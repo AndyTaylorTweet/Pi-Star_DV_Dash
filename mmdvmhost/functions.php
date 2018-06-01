@@ -1026,6 +1026,7 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 	$reverseLogLinesP25Gateway = array_reverse(getP25GatewayLog());
 	$NXDNGatewayconfigs = getNXDNGatewayConfig();
 	$logLinesNXDNGateway = getNXDNGatewayLog();
+	array_multisort($logLinesNXDNGateway,SORT_DESC);
 	$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
 }
 ?>
