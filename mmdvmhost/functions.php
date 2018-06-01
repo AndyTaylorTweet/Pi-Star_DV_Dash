@@ -264,26 +264,30 @@ function getNXDNGatewayLog() {
 	$logLines1 = array();
 	$logLines2 = array();
         if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
-                if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log", 'r')) {
-                        while ($logLine = fgets($log)) {
-                                if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
-                                        array_push($logLines1, substr($logLine, 3));
-                                }
-                        }
-                        fclose($log);
-                }
+        //        if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log", 'r')) {
+        //                while ($logLine = fgets($log)) {
+        //                        if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
+        //                                array_push($logLines1, substr($logLine, 3));
+        //                        }
+        //                }
+        //                fclose($log);
+        //        }
+		$logPath = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
+		$logLines1 = explode("\n", `egrep -h "ink" $logPath | tail -25`);
         }
 	$logLines1 = array_slice($logLines1, -25);
         if (sizeof($logLines1) < 25) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
-                        if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
-                                while ($logLine = fgets($log)) {
-                                        if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
-                                        	array_push($logLines2, substr($logLine, 3));
-                                        }
-                                }
-                                fclose($log);
-                        }
+                //        if ($log = fopen("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
+                //                while ($logLine = fgets($log)) {
+                //                        if ( (startsWith($logLine,"M:") && !strpos($logLine,"Opening")) || (startsWith($logLine,"W:")) ) {
+                //                        	array_push($logLines2, substr($logLine, 3));
+                //                        }
+                //                }
+                //                fclose($log);
+                //        }
+			$logPath = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = explode("\n", `egrep -h "ink" $logPath | tail -25`);
                 }
         }
 	$logLines2 = array_slice($logLines2, -25);
