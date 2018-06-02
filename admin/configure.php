@@ -1066,6 +1066,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0;
 	  }
 
 	  if ( $confHardware == 'dvmpid' ) {
@@ -1077,6 +1078,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'dvmuadu' ) {
@@ -1088,6 +1090,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'dvmuada' ) {
@@ -1099,6 +1102,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'dvmbss' ) {
@@ -1110,6 +1114,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'dvmbsd' ) {
@@ -1121,6 +1126,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollDVMegaPort);
 	    system($rollDVMegaVariant);
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'dvmuagmsku' ) {
@@ -1183,6 +1189,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'zumspotusb' ) {
@@ -1190,6 +1197,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'zumspotgpio' ) {
@@ -1197,6 +1205,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'zumradiopigpio' ) {
@@ -1234,6 +1243,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'mmdvmhshatd' ) {
@@ -1248,6 +1258,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'mmdvmvyehat' ) {
@@ -1255,6 +1266,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'mnnano-spot' ) {
@@ -1262,6 +1274,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 
 	  if ( $confHardware == 'mnnano-teensy' ) {
@@ -1269,6 +1282,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
 	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot2'] = 0
 	  }
 	}
 
