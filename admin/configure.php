@@ -1412,6 +1412,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 				$configdmr2ysf['Enabled']['Enabled'] = "0";
 		  	}
 	  	  }
+		  if (empty($_POST['MMDVMModeYSF2NXDN']) != TRUE ) {
+		  	if (escapeshellcmd($_POST['MMDVMModeYSF2NXDN']) == 'ON' )  {
+				$configysf2nxdn['Enabled']['Enabled'] = "0";
+		  	}
+	  	  }
 		  $configdmr2nxdn['Enabled']['Enabled'] = "1";
 		  unset($configdmrgateway['DMR Network 3']);
 		  $configdmrgateway['DMR Network 3']['Enabled'] = "0";
