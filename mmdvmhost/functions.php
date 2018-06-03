@@ -230,37 +230,21 @@ function getP25GatewayLog() {
 	$logLines1 = array();
 	$logLines2 = array();
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
-                //if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log", 'r')) {
-                //        while ($logLine = fgets($log)) {
-                //                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
-                //                        array_push($logLines1, substr($logLine, 3));
-                //                }
-                //        }
-                //        fclose($log);
-                //}
 		$logPath1 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
 		$logLines1 = explode("\n", `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -5`);
         }
 	$logLines1 = array_slice($logLines1, -5);
         if (sizeof($logLines1) < 5) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
-                        //if ($log = fopen(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log", 'r')) {
-                        //        while ($logLine = fgets($log)) {
-                        //                if ( (startsWith($logLine,"M:")) || (startsWith($logLine,"W:")) ) {
-                        //                	array_push($logLines2, substr($logLine, 3));
-                        //                }
-                        //        }
-                        //        fclose($log);
-                        //}
-			$logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+                        $logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
 			$logLines2 = explode("\n", `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -5`);
                 }
         }
 	$logLines2 = array_slice($logLines2, -5);
 	$logLines1 = array_slice($logLines1, -5);
-	if (sizeof($logLines1) < 5) { $logLines = $logLines2 + $logLines1; } else { $logLines = $logLines1; }
+	if (sizeof($logLines1) < 5) { $logLines = $logLines1 + $logLines2; } else { $logLines = $logLines1; }
 	//$logLines = $logLines1 + $logLines2;
-	$logLines = array_slice($logLines, -5);
+	$logLines = array_filter(array_slice($logLines, -5));
         return $logLines;
 }
 
@@ -282,9 +266,8 @@ function getNXDNGatewayLog() {
         }
 	$logLines2 = array_slice($logLines2, -5);
 	$logLines1 = array_slice($logLines1, -5);
-	if (sizeof($logLines1) < 5) { $logLines = $logLines2 + $logLines1; } else { $logLines = $logLines1; }
-	//$logLines = $logLines1 + $logLines2;
-	$logLines = array_slice($logLines, -5);
+	if (sizeof($logLines1) < 5) { $logLines = $logLines1 + $logLines2; } else { $logLines = $logLines1; }
+	$logLines = array_filter(array_slice($logLines, -5));
         return $logLines;
 }
 
