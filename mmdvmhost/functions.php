@@ -243,9 +243,8 @@ function getP25GatewayLog() {
 	$logLines2 = array_slice($logLines2, -5);
 	$logLines1 = array_slice($logLines1, -5);
 	if (sizeof($logLines1) < 5) { $logLines = $logLines1 + $logLines2; } else { $logLines = $logLines1; }
-	//$logLines = $logLines1 + $logLines2;
-	$logLines = array_filter(array_slice($logLines, -5));
-        return $logLines;
+	$logLines = array_slice($logLines, -5);
+        return array_filter($logLines);
 }
 
 function getNXDNGatewayLog() {
@@ -267,8 +266,8 @@ function getNXDNGatewayLog() {
 	$logLines2 = array_slice($logLines2, -5);
 	$logLines1 = array_slice($logLines1, -5);
 	if (sizeof($logLines1) < 5) { $logLines = $logLines1 + $logLines2; } else { $logLines = $logLines1; }
-	$logLines = array_filter(array_slice($logLines, -5));
-        return $logLines;
+	$logLines = array_slice($logLines, -5);
+        return array_filter($logLines);
 }
 
 
