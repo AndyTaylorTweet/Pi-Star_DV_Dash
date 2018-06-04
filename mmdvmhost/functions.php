@@ -231,19 +231,15 @@ function getP25GatewayLog() {
 	$logLines2 = array();
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath1 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -5`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -1`);
         }
-	$logLines1 = array_slice($logLines1, -5);
-        if (sizeof($logLines1) < 5) {
+        if (sizeof($logLines1) == 0) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         $logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -5`);
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -1`);
                 }
         }
-	$logLines2 = array_slice($logLines2, -5);
-	$logLines1 = array_slice($logLines1, -5);
-	if (sizeof($logLines1) < 5) { $logLines = $logLines1 + $logLines2; } else { $logLines = $logLines1; }
-	$logLines = array_slice($logLines, -5);
+	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
         return array_filter($logLines);
 }
 
@@ -988,7 +984,6 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 	array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
 	$P25Gatewayconfigs = getP25GatewayConfig();
 	$logLinesP25Gateway = getP25GatewayLog();
-	array_multisort($logLinesP25Gateway,SORT_DESC);
 	$reverseLogLinesP25Gateway = array_reverse(getP25GatewayLog());
 	$NXDNGatewayconfigs = getNXDNGatewayConfig();
 	$logLinesNXDNGateway = getNXDNGatewayLog();
