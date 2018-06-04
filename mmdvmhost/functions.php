@@ -231,12 +231,12 @@ function getP25GatewayLog() {
 	$logLines2 = array();
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath1 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -1`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
         }
         if (sizeof($logLines1) == 0) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         $logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -1`);
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
                 }
         }
 	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
@@ -888,6 +888,9 @@ function getActualLink($logLines, $mode) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "Linked to: TG".$to;
+               }
+	       if (strpos($logLine,"Starting P25Gateway")) {
+                  return "Not Linked";
                }
 	       if (strpos($logLine,"unlinking")) {
                   return "Not Linked";
