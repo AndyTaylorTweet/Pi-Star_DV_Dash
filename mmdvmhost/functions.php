@@ -250,12 +250,12 @@ function getNXDNGatewayLog() {
 	$logLines2 = array();
         if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
 		$logPath1 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink" $logPath1 | cut -d" " -f2- | tail -1`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
         }
         if (sizeof($logLines1) == 0) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath2 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink" $logPath2 | cut -d" " -f2- | tail -1`);
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
                 }
         }
 	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
@@ -853,6 +853,9 @@ function getActualLink($logLines, $mode) {
                   $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
                   $to = preg_replace('/[^0-9]/', '', $to);
                   return "Linked to: TG".$to;
+               }
+	       if (strpos($logLine,"Starting NXDNGateway")) {
+                  return "Not Linked";
                }
                if (strpos($logLine,"unlinking")) {
                   return "Not Linked";
