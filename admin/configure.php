@@ -753,11 +753,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
 	  if (file_exists('/etc/nxdngateway')) {
 		if ($newNXDNStartupHost === "NONE") {
-			$rollNXDNStartup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/nxdngateway';
+			unset($confignxdngateway['Network']['Startup']);
 		} else {
-			$rollNXDNStartup = 'sudo sed -i "/Startup=/c\\Startup='.$newNXDNStartupHost.'" /etc/nxdngateway';
+			$confignxdngateway['Network']['Startup'] = $newNXDNStartupHost;
 	  	}
-	  	system($rollNXDNStartup);
 	  } else {
 		$configmmdvm['NXDN Network']['GatewayAddress'] = $newNXDNStartupHost;
 		$configmmdvm['NXDN Network']['GatewayPort'] = "41007";
