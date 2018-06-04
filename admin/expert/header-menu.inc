@@ -17,7 +17,8 @@
     <a href="edit_mmdvmhost.php" style="color: #ffffff;">MMDVMHost</a> |
     <a href="edit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
-    <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a><br />
+    <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a><br /> |
+    <a href="edit_nxdngateway.php" style="color: #ffffff;">NXDNGateway</a><br />
     <b>Full Editors:</b>
     <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
