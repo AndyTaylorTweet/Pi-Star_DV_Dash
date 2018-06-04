@@ -11,16 +11,16 @@
   </p>
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <b>Quick Edit:</b>
-    <a href="edit_dstarrepeater.php" style="color: #ffffff;">DStarRptr</a> |
-    <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGtwy</a> |
+    <a href="edit_dstarrepeater.php" style="color: #ffffff;">DStarRepeater</a> |
+    <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
     <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a> |
     <a href="edit_mmdvmhost.php" style="color: #ffffff;">MMDVMHost</a> |
-    <a href="edit_dmrgateway.php" style="color: #ffffff;">DMRGtwy</a> |
-    <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGtwy</a> |
-    <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gtwy</a> |
-    <a href="edit_nxdngateway.php" style="color: #ffffff;">NXDNGtwy</a><br />
+    <a href="edit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
+    <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGateway</a> |
+    <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gateway</a> |
+    <a href="edit_nxdngateway.php" style="color: #ffffff;">NXDNGateway</a><br />
     <b>Full Edit:</b>
-    <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGtwy</a> |
+    <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGateway</a> |
     <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
     <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi</a> |
     <a href="fulledit_bmapikey.php" style="color: #ffffff;">BM API</a> |
