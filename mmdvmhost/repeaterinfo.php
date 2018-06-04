@@ -177,10 +177,10 @@ if ($dmrMasterHost == '127.0.0.1') {
 			if ((strpos($dmrMasterHostF[0], 'DMR+_') === 0) && ($dmrMasterHost2 == $dmrMasterHostF[2])) { $dmrMasterHost2 = str_replace('_', ' ', $dmrMasterHostF[0]); }
 		}
 	}
-	if (strlen($xlxMasterHost1) > 21) { $xlxMasterHost1 = substr($xlxMasterHost1, 0, 19) . '..'; }
-	if (strlen($dmrMasterHost1) > 21) { $dmrMasterHost1 = substr($dmrMasterHost1, 0, 19) . '..'; }
-	if (strlen($dmrMasterHost2) > 21) { $dmrMasterHost2 = substr($dmrMasterHost2, 0, 19) . '..'; }
-	if (strlen($dmrMasterHost3) > 21) { $dmrMasterHost3 = substr($dmrMasterHost3, 0, 19) . '..'; }
+	if (strlen($xlxMasterHost1) > 19) { $xlxMasterHost1 = substr($xlxMasterHost1, 0, 17) . '..'; }
+	if (strlen($dmrMasterHost1) > 19) { $dmrMasterHost1 = substr($dmrMasterHost1, 0, 17) . '..'; }
+	if (strlen($dmrMasterHost2) > 19) { $dmrMasterHost2 = substr($dmrMasterHost2, 0, 17) . '..'; }
+	if (strlen($dmrMasterHost3) > 19) { $dmrMasterHost3 = substr($dmrMasterHost3, 0, 17) . '..'; }
 }
 else {
 	while (!feof($dmrMasterFile)) {
@@ -190,7 +190,7 @@ else {
 			if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
 		}
 	}
-	if (strlen($dmrMasterHost) > 21) { $dmrMasterHost = substr($dmrMasterHost, 0, 19) . '..'; }
+	if (strlen($dmrMasterHost) > 19) { $dmrMasterHost = substr($dmrMasterHost, 0, 17) . '..'; }
 }
 fclose($dmrMasterFile);
 
@@ -256,7 +256,7 @@ if ( $testMMDVModeYSF == 1 || $testDMR2YSF ) { //Hide the YSF information when S
         }
         if ($ysfLinkedToTxt != "null") { $ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt; } else { $ysfLinkedToTxt = "Linked to: ".$ysfLinkedTo; }
         $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
-        if (strlen($ysfLinkedToTxt) > 21) { $ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 19) . '..'; }
+        if (strlen($ysfLinkedToTxt) > 19) { $ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 17) . '..'; }
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
