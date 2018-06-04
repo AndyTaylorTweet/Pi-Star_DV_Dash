@@ -17,7 +17,7 @@
     <a href="edit_mmdvmhost.php" style="color: #ffffff;">MMDVMHost</a> |
     <a href="edit_dmrgateway.php" style="color: #ffffff;">DMRGtwy</a> |
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSFGtwy</a> |
-    <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gtwy</a><br /> |
+    <a href="edit_p25gateway.php" style="color: #ffffff;">P25Gtwy</a> |
     <a href="edit_nxdngateway.php" style="color: #ffffff;">NXDNGtwy</a><br />
     <b>Full Edit:</b>
     <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMRGtwy</a> |
