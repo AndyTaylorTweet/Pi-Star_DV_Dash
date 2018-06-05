@@ -191,8 +191,8 @@ $MYCALL=strtoupper($callsign);
 		}
 	}
 	function showPosition(position) {
-		document.getElementById("confLatitude").value = position.coords.latitude;
-		document.getElementById("confLongitude").value = position.coords.longitude;
+		document.getElementById("confLatitude").value = position.coords.latitude.toFixed(5);
+		document.getElementById("confLongitude").value = position.coords.longitude.toFixed(5);
 	}
     </script>
     <script type="text/javascript" src="/functions.js?version=1.2"></script>
@@ -2404,11 +2404,11 @@ else:
 	}
 ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['lattitude'];?>:<span><b>Gateway Latitude</b>This is the latitude where the<br />gateway is located (positive<br />number for North, negative<br />number for South)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['lattitude'];?>:<button onclick="getLocation()">Auto</button><span><b>Gateway Latitude</b>This is the latitude where the<br />gateway is located (positive<br />number for North, negative<br />number for South)</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confLatitude" size="13" maxlength="9" value="<?php echo $configs['latitude'] ?>" />degrees (positive value for North, negative for South)</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['longitude'];?>:<span><b>Gateway Longitude</b>This is the longitude where the<br />gateway is located (positive<br />number for East, negative<br />number for West)</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['longitude'];?>:<button onclick="getLocation()">Auto</button><span><b>Gateway Longitude</b>This is the longitude where the<br />gateway is located (positive<br />number for East, negative<br />number for West)</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confLongitude" size="13" maxlength="9" value="<?php echo $configs['longitude'] ?>" />degrees (positive value for East, negative for West)</td>
     </tr>
     <tr>
