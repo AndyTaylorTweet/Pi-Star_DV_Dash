@@ -752,7 +752,7 @@ function getActualLink($logLines, $mode) {
 						continue;
 					}
 					if ($to === "TG 4000") {
-						return "not linked";
+						return "No TG";
 					}
 					if (strpos($to, ',') !== false) {
 						$to = substr($to, 0, strpos($to, ','));
@@ -761,7 +761,7 @@ function getActualLink($logLines, $mode) {
 				}
 	        	}
 		}
-		return "not linked";
+		return "No TG";
         break;
     case "DMR Slot 2":
         foreach ($logLines as $logLine) {
@@ -777,7 +777,7 @@ function getActualLink($logLines, $mode) {
 						continue;
 					}
 					if ($to === "TG 4000") {
-						return "not linked";
+						return "No TG";
 					}
 					if (strpos($to, ',') !== false) {
 						$to = substr($to, 0, strpos($to, ','));
@@ -786,7 +786,7 @@ function getActualLink($logLines, $mode) {
 				}
         		}
 		}
-		return "not linked";
+		return "No TG";
         break;
 
     case "YSF":
@@ -932,14 +932,14 @@ function getActualReflector($logLines, $mode) {
 			$from = substr($logLine, strpos($logLine,"from") + 5, strpos($logLine,"to") - strpos($logLine,"from") - 6);
 			if (strlen($from) == 4 && startsWith($from,"4")) {
 				if ($from == "4000") {
-					return "not linked";
+					return "No Ref";
 				} else {
 					return "Ref ".$from;
 				}
 			}
 		}
 	}
-	return "not linked";
+	return "No Ref";
 }
 
 function getActiveYSFReflectors($logLines) {
