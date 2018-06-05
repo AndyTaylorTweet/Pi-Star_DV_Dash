@@ -29,7 +29,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['backup_restore'];?></title>
-    <link rel="stylesheet" type="text/css" href="css/ircddb.css?version=1.3" />
+    <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
   </head>
   <body>
   <div class="container">
@@ -47,10 +47,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   <div class="contentwide">
 <?php if (!empty($_POST)) {
   echo '<table width="100%">'."\n";
-
         if ( escapeshellcmd($_POST["action"]) == "download" ) {
           echo "<tr><th colspan=\"2\">".$lang['backup_restore']."</th></tr>\n";
-
           $output = "Finding config files to be backed up\n";
           $backupDir = "/tmp/config_backup";
           $backupZip = "/tmp/config_backup.zip";
@@ -64,6 +62,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
@@ -71,6 +70,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	  $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/hosts $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/hostname $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1");
           $output .= "Compressing backup files\n";
@@ -80,7 +81,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
           
           if (file_exists($backupZip)) {
-            $utc_time = gmdate();
+            $utc_time = gmdate('Y-m-d H:i:s');
             $utc_tz =  new DateTimeZone('UTC');
             $local_tz = new DateTimeZone(date_default_timezone_get ());
             $dt = new DateTime($utc_time, $utc_tz);
@@ -99,12 +100,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             readfile($backupZip);
             exit;
           }
-
         };
         if ( escapeshellcmd($_POST["action"]) == "restore" ) {
           echo "<tr><th colspan=\"2\">Config Restore</th></tr>\n";
           $output = "Uploading your Config data\n";
-
           $target_dir = "/tmp/config_restore/";
           shell_exec("sudo rm -rf $target_dir 2>&1");
           shell_exec("mkdir $target_dir 2>&1");
@@ -148,6 +147,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl stop pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
 			shell_exec('sudo systemctl stop pistar-remote.service 2>&1');	//PiStar-Remote Service
 			shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
+			shell_exec('sudo systemctl stop ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
 			
 			// Make the disk Writable
@@ -159,6 +159,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			$output .= shell_exec("sudo mv -f /tmp/config_restore/ircddblocal.php /var/www/dashboard/config/ 2>&1")."\n";
 			$output .= shell_exec("sudo mv -f /tmp/config_restore/config.php /var/www/dashboard/config/ 2>&1")."\n";
 			$output .= shell_exec("sudo mv -v -f /tmp/config_restore/wpa_supplicant.conf /etc/wpa_supplicant/ 2>&1")."\n";
+			$output .= shell_exec("sudo mv -v -f /tmp/config_restore/RSSI.dat /usr/local/etc/ 2>&1")."\n";
 			$output .= shell_exec("sudo mv -v -f /tmp/config_restore/* /etc/ 2>&1")."\n";
 			
 			//Restore the Timezone Config
@@ -169,7 +170,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			//Restore ircDDGBateway Link Manager Password
 			$ircRemotePassword = shell_exec('grep remotePassword /etc/ircddbgateway | awk -F\'=\' \'{print $2}\'');
 			shell_exec('sudo sed -i "/password=/c\\password='.$ircRemotePassword.'" /root/.Remote\ Control');
-
 			// Make the disk Read-Only
 			shell_exec('sudo mount -o remount,ro / 2>&1');
 			
@@ -181,8 +181,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start timeserver.service 2>&1');		//Time Server Service
 			shell_exec('sudo systemctl start pistar-watchdog.service 2>&1');	//PiStar-Watchdog Service
 			shell_exec('sudo systemctl start pistar-remote.service 2>&1');		//PiStar-Remote Service
-			shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
+			if (substr(exec('grep "pistar-upnp.service" /etc/crontab | cut -c 1'), 0, 1) !== '#') {
+				shell_exec('sudo systemctl start pistar-upnp.service 2>&1');		//PiStar-UPnP Service
+			}
 			shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
+			shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
 			shell_exec('sudo systemctl start cron.service 2>&1');			//Cron
 			
@@ -200,7 +203,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		}
 	  echo "<tr><td align=\"left\"><pre>$output</pre></td></tr>\n";
   };
-
   echo "</table>\n";
   } else { ?>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
