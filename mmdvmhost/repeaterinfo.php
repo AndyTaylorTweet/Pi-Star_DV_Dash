@@ -281,7 +281,7 @@ if ( $testMMDVModeP25 == 1 || $testYSF2P25 ) { //Hide the P25 information when P
 $testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
 if ( isset($configysf2nxdn['Enabled']['Enabled']) ) { $testYSF2NXDN = $configysf2nxdn['Enabled']['Enabled']; }
 if ( isset($configdmr2nxdn['Enabled']['Enabled']) ) { $testDMR2NXDN = $configdmr2nxdn['Enabled']['Enabled']; }
-if ( $testMMDVModeNXDN == 1 || $testYSF2NXDN || $testDMR2NXDN ) { //Hide the NXDN information when NXDN Network mode not enabled.
+if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { //Hide the NXDN information when NXDN Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
