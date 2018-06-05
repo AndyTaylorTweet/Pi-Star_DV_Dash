@@ -158,36 +158,41 @@ $MYCALL=strtoupper($callsign);
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
     <script type="text/javascript">
-	function disablesubmitbuttons()
-	{
-	  var inputs = document.getElementsByTagName('input');
-	  for (var i = 0; i < inputs.length; i++) {
-	    if (inputs[i].type === 'button') {
-	        inputs[i].disabled = true;
-	    }
-	  }
+	function disablesubmitbuttons() {
+		var inputs = document.getElementsByTagName('input');
+		for (var i = 0; i < inputs.length; i++) {
+			if (inputs[i].type === 'button') {
+				inputs[i].disabled = true;
+			}
+		}
 	}
-	function submitform()
-	{
-	  disablesubmitbuttons();
-	  document.getElementById("config").submit();
+	function submitform() {
+		disablesubmitbuttons();
+		document.getElementById("config").submit();
 	}
-	function submitPassform()
-	{
-	  disablesubmitbuttons();
-	  document.getElementById("adminPassForm").submit();
+	function submitPassform() {
+		disablesubmitbuttons();
+		document.getElementById("adminPassForm").submit();
 	}
-	function factoryReset()
-	{
-	  if (confirm('WARNING: This will set all your settings back to factory defaults. WiFi setup will be retained to maintain network access to this Pi.\n\nAre you SURE you want to do this?\n\nPress OK to restore the factory configuration\nPress Cancel to go back.')) {
-	    document.getElementById("factoryReset").submit();
-	    } else {
-	    return false;
-	    }
+	function factoryReset() {
+		if (confirm('WARNING: This will set all your settings back to factory defaults. WiFi setup will be retained to maintain network access to this Pi.\n\nAre you SURE you want to do this?\n\nPress OK to restore the factory configuration\nPress Cancel to go back.')) {
+			document.getElementById("factoryReset").submit();
+		} else {
+			return false;
+		}
 	}
 	function resizeIframe(obj) {
-	  var numpix = parseInt(obj.contentWindow.document.body.scrollHeight, 10);
-	  obj.style.height = numpix + 'px';
+		var numpix = parseInt(obj.contentWindow.document.body.scrollHeight, 10);
+		obj.style.height = numpix + 'px';
+	}
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		}
+	}
+	function showPosition(position) {
+		document.getElementById("confLatitude").value = position.coords.latitude;
+		document.getElementById("confLongitude").value = position.coords.longitude;
 	}
     </script>
     <script type="text/javascript" src="/functions.js?version=1.2"></script>
