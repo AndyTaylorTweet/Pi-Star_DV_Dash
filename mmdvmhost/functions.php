@@ -791,6 +791,7 @@ function getActualLink($logLines, $mode) {
 	// M: 2016-10-01 17:52:36.586 Automatic connection to 62829
 	// New YSFGateway Format
 	// M: 2018-03-06 15:36:06.344 Linked to GB SOUTH WEST   
+	// M: 2018-06-05 02:44:40.010 Linked to FCS002-90
 	// M: 2018-03-06 15:36:06.302 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "
 	// M: 2018-05-31 13:36:02.306 Automatic (re-)connection to FCS00290
 	// M: 2018-05-03 13:02:36.904 Disconnect via DTMF has been requested by MW0MWZ
@@ -800,6 +801,7 @@ function getActualLink($logLines, $mode) {
             foreach($logLines as $logLine) {
                if ( (strpos($logLine,"Linked to")) && (!strpos($logLine,"Linked to MMDVM")) ) {
                   $to = trim(substr($logLine, 37, 16));
+		  if (substr($to, 0, 3) === "FCS") { str_replace(' ', '', str_replace('-', '', $to)); }
                }
                if (strpos($logLine,"Automatic (re-)connection to")) {
 		  if (strpos($logLine,"Automatic (re-)connection to FCS")) {
