@@ -209,19 +209,24 @@ function getYSFGatewayLog() {
 	$logLines2 = array();
 	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath | tail -250`);
+		//$logLines1 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath | tail -250`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `grep -E "onnection to|onnect to|ink|isconnect|Opening YSF network" | tail -1`);
 	}
-	$logLines1 = array_slice($logLines1, -250);
-	if (sizeof($logLines1) < 250) {
+	//$logLines1 = array_slice($logLines1, -250);
+	//if (sizeof($logLines1) < 250) {
+	if (sizeof($logLines1) == 0) {
 		if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath | tail -250`);
+			//$logLines2 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath | tail -250`);
+			$logLines1 = preg_split('/\r\n|\r|\n/', `grep -E "onnection to|onnect to|ink|isconnect|Opening YSF network" | tail -1`);
 		}
 	}
-	$logLines2 = array_slice($logLines2, -250);
-	$logLines = $logLines1 + $logLines2;
-	$logLines = array_slice($logLines, -250);
-	return $logLines;
+	//$logLines2 = array_slice($logLines2, -250);
+	//$logLines = $logLines1 + $logLines2;
+	//$logLines = array_slice($logLines, -250);
+	//return $logLines;
+	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
+        return array_filter($logLines);
 }
 
 function getP25GatewayLog() {
@@ -787,14 +792,17 @@ function getActualLink($logLines, $mode) {
     case "YSF":
 	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-	// M: 2016-09-25 16:08:05.811 Connect to 62829 has been requested by DG9VH
-	// M: 2016-10-01 17:52:36.586 Automatic connection to 62829
+	// M: 0000-00-00 00:00:00.000 Connect to 62829 has been requested by M1ABC
+	// M: 0000-00-00 00:00:00.000 Automatic connection to 62829
 	// New YSFGateway Format
-	// M: 2018-03-06 15:36:06.344 Linked to GB SOUTH WEST   
-	// M: 2018-06-05 02:44:40.010 Linked to FCS002-90
-	// M: 2018-03-06 15:36:06.302 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "
-	// M: 2018-05-31 13:36:02.306 Automatic (re-)connection to FCS00290
-	// M: 2018-05-03 13:02:36.904 Disconnect via DTMF has been requested by MW0MWZ
+	// M: 0000-00-00 00:00:00.000 Opening YSF network connection
+	// M: 0000-00-00 00:00:00.000 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "
+	// M: 0000-00-00 00:00:00.000 Automatic (re-)connection to FCS00290
+	// M: 0000-00-00 00:00:00.000 Linked to GB SOUTH WEST   
+	// M: 0000-00-00 00:00:00.000 Linked to FCS002-90
+	// M: 0000-00-00 00:00:00.000 Disconnect via DTMF has been requested by M1ABC
+	// M: 0000-00-00 00:00:00.000 Connect to 00003 - "YSF2NXDN        " has been requested by M1ABC
+	// M: 0000-00-00 00:00:00.000 Link has failed, polls lost
 		
          if (isProcessRunning("YSFGateway")) {
             $to = "";
@@ -821,6 +829,9 @@ function getActualLink($logLines, $mode) {
                   $to = "not linked";
                }
                if (strpos($logLine,"Opening YSF network connection")) {
+                  $to = "not linked";
+               }
+	       if (strpos($logLine,"Link has failed")) {
                   $to = "not linked";
                }
                if (strpos($logLine,"DISCONNECT Reply")) {
