@@ -801,7 +801,7 @@ function getActualLink($logLines, $mode) {
             foreach($logLines as $logLine) {
                if ( (strpos($logLine,"Linked to")) && (!strpos($logLine,"Linked to MMDVM")) ) {
                   $to = trim(substr($logLine, 37, 16));
-		  if (substr($to, 0, 3) === "FCS") { str_replace(' ', '', str_replace('-', '', $to)); }
+		  if (substr($to, 0, 3) === "FCS") { $to = str_replace(' ', '', str_replace('-', '', $to)); }
                }
                if (strpos($logLine,"Automatic (re-)connection to")) {
 		  if (strpos($logLine,"Automatic (re-)connection to FCS")) {
