@@ -804,7 +804,7 @@ function getActualLink($logLines, $mode) {
 	// M: 0000-00-00 00:00:00.000 Disconnect via DTMF has been requested by M1ABC
 	// M: 0000-00-00 00:00:00.000 Connect to 00003 - "YSF2NXDN        " has been requested by M1ABC
 	// M: 0000-00-00 00:00:00.000 Link has failed, polls lost
-		
+
          if (isProcessRunning("YSFGateway")) {
             $to = "";
             foreach($logLines as $logLine) {
@@ -882,7 +882,7 @@ function getActualLink($logLines, $mode) {
             return "Service Not Started";
         }
         break;
-			
+
     case "P25":
 	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
