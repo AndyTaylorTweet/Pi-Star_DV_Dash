@@ -916,7 +916,7 @@ function getActualLink($logLines, $mode) {
 	} else {
             return "Service Not Started";
         }
-	break;		
+	break;
 	}
 	return "Service Not Started";
 }
