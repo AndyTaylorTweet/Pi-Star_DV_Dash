@@ -333,6 +333,7 @@ function getDVModemFirmware() {
 	}
 	return $modemFirmware;
 }
+
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // M: 2016-04-29 00:15:00.013 D-Star, received network header from DG9VH   /ZEIT to CQCQCQ   via DCS002 S
@@ -676,7 +677,6 @@ function getDSTARLinks() {
 	if (filesize(LINKLOGPATH."/Links.log") == 0) {
 		return "not linked";
 	}
-//	$out = "<table>";
 	if ($linkLog = fopen(LINKLOGPATH."/Links.log",'r')) {
 		while ($linkLine = fgets($linkLog)) {
 			$linkDate	= "&nbsp;";
@@ -718,12 +718,9 @@ function getDSTARLinks() {
 				$linkDest	= $linx[4][0];
 				$linkDir	= $linx[5][0];
 			}
-//MW0MWZ Mods		$out .= "<tr><td>" . $linkSource . "</td><td>&nbsp;" . $protocol . "-link</td><td>&nbsp;to&nbsp;</td><td>" . $linkDest . "</td><td>&nbsp;" . $linkDir . "</td></tr>";
 			$out = "Linked to <b>" . $linkDest . "</b><br />\n(" . $protocol . " " . $linkDir . ")";
 		}
 	}
-//	$out .= "</table>";
-
 	fclose($linkLog);
 	return $out;
 }
@@ -930,7 +927,6 @@ function getActualReflector($logLines, $mode) {
 	// M: 2016-05-02 07:04:10.504 D-Star link status set to "Verlinkt zu DCS002 S"
 	// M: 2016-04-03 16:16:18.638 DMR Slot 2, received network voice header from 4000 to 2625094
 	// M: 2016-04-03 19:30:03.099 DMR Slot 2, received network voice header from 4020 to 2625094
-	
 	foreach ($logLines as $logLine) {
 		if (substr($logLine, 27, strpos($logLine,",") - 27) == $mode) {
 			$from = substr($logLine, strpos($logLine,"from") + 5, strpos($logLine,"to") - strpos($logLine,"from") - 6);
@@ -959,7 +955,6 @@ function getActiveYSFReflectors($logLines) {
 			$timestamp2 = new DateTime($timestamp);
 			$now =  new DateTime();
 			$timestamp2->add(new DateInterval('PT2H'));
-		
 			if ($now->format('U') <= $timestamp2->format('U')) {
 				$str = substr($logLine, 60);
 				$id = strtok($str, "/");
@@ -978,20 +973,20 @@ function getActiveYSFReflectors($logLines) {
 }
 
 // Not used - to be removed
-function getName($callsign) {
-	$callsign = trim($callsign);
-	if (strpos($callsign,"-")) {
-		$callsign = substr($callsign,0,strpos($callsign,"-"));
-	}
-	exec("grep ".$callsign." ".DMRIDDATPATH, $output);
-	$delimiter =" ";
-	if (strpos($output[0],"\t")) {
-	$delimiter = "\t";
-	}
-	$name = substr($output[0], strpos($output[0],$delimiter)+1);
-	$name = substr($name, strpos($name,$delimiter)+1);
-	return $name;
-}
+//function getName($callsign) {
+//	$callsign = trim($callsign);
+//	if (strpos($callsign,"-")) {
+//		$callsign = substr($callsign,0,strpos($callsign,"-"));
+//	}
+//	exec("grep ".$callsign." ".DMRIDDATPATH, $output);
+//	$delimiter =" ";
+//	if (strpos($output[0],"\t")) {
+//	$delimiter = "\t";
+//	}
+//	$name = substr($output[0], strpos($output[0],$delimiter)+1);
+//	$name = substr($name, strpos($name,$delimiter)+1);
+//	return $name;
+//}
 
 //Some basic inits
 $mmdvmconfigs = getMMDVMConfig();
