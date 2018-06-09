@@ -1000,15 +1000,19 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 	$reverseLogLinesMMDVM = $logLinesMMDVM;
 	array_multisort($reverseLogLinesMMDVM,SORT_DESC);
 	$lastHeard = getLastHeard($reverseLogLinesMMDVM);
-	$YSFGatewayconfigs = getYSFGatewayConfig();
-	$logLinesYSFGateway = getYSFGatewayLog();
-	$reverseLogLinesYSFGateway = $logLinesYSFGateway;
-	array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
-	$P25Gatewayconfigs = getP25GatewayConfig();
-	$logLinesP25Gateway = getP25GatewayLog();
-	$reverseLogLinesP25Gateway = array_reverse(getP25GatewayLog());
-	$NXDNGatewayconfigs = getNXDNGatewayConfig();
-	$logLinesNXDNGateway = getNXDNGatewayLog();
-	$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
+
+	// Only need these in repeaterinfo.php
+	if (strpos($_SERVER["PHP_SELF"], 'repeaterinfo.php')) {
+		//$YSFGatewayconfigs = getYSFGatewayConfig();
+		$logLinesYSFGateway = getYSFGatewayLog();
+		$reverseLogLinesYSFGateway = $logLinesYSFGateway;
+		array_multisort($reverseLogLinesYSFGateway,SORT_DESC);
+		//$P25Gatewayconfigs = getP25GatewayConfig();
+		$logLinesP25Gateway = getP25GatewayLog();
+		//$reverseLogLinesP25Gateway = array_reverse(getP25GatewayLog());
+		//$NXDNGatewayconfigs = getNXDNGatewayConfig();
+		$logLinesNXDNGateway = getNXDNGatewayLog();
+		//$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
+	}
 }
 ?>
