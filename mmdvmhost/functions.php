@@ -508,7 +508,7 @@ function getHeardList($logLines) {
 				}
 			}
 		}
-		
+
 		$timestamp = substr($logLine, 3, 19);
 		$mode = substr($logLine, 27, strpos($logLine,",") - 27);
 		$callsign2 = substr($logLine, strpos($logLine,"from") + 5, strpos($logLine,"to") - strpos($logLine,"from") - 6);
@@ -517,19 +517,19 @@ function getHeardList($logLines) {
 			$callsign = substr($callsign2, 0, strpos($callsign2,"/"));
 		}
 		$callsign = trim($callsign);
-		
+
 		$id ="";
 		if ($mode == "D-Star") {
 			$id = substr($callsign2, strpos($callsign2,"/") + 1);
 		}
-		
+
 		$target = substr($logLine, strpos($logLine, "to") + 3);
 		//$target = preg_replace('!\s+!', ' ', $target);
 		$source = "RF";
 		if (strpos($logLine,"network") > 0 ) {
 			$source = "Net";
 		}
-		
+
 		switch ($mode) {
 			case "D-Star":
 				$duration	= $dstarduration;
@@ -572,7 +572,7 @@ function getHeardList($logLines) {
 				$rssi		= $nxdnrssi;
                 		break;
 		}
-		
+
 		// Callsign or ID should be less than 11 chars long, otherwise it could be errorneous
 		if ( strlen($callsign) < 11 ) {
 			array_push($heardList, array($timestamp, $mode, $callsign, $id, $target, $source, $duration, $loss, $ber, $rssi));
@@ -943,34 +943,34 @@ function getActualReflector($logLines, $mode) {
 }
 
 // Not used - to be removed
-function getActiveYSFReflectors($logLines) {
+//function getActiveYSFReflectors($logLines) {
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // D: 2016-06-11 19:09:31.371 Have reflector status reply from 89164/FUSIONBE2       /FusionBelgium /002
-	$reflectors = Array();
-	$reflectorlist = Array();
-	foreach ($logLines as $logLine) {
-		if (strpos($logLine, "Have reflector status reply from")) {
-			$timestamp = substr($logLine, 3, 19);
-			$timestamp2 = new DateTime($timestamp);
-			$now =  new DateTime();
-			$timestamp2->add(new DateInterval('PT2H'));
-			if ($now->format('U') <= $timestamp2->format('U')) {
-				$str = substr($logLine, 60);
-				$id = strtok($str, "/");
-				$name = strtok("/");
-				$description = strtok("/");
-				$concount = strtok("/");
-				if(!(array_search($name, $reflectors) > -1)) {
-					array_push($reflectors,$name);
-					array_push($reflectorlist, array($name, $description, $id, $concount, $timestamp));
-				}
-			}
-		}
-	}
-	array_multisort($reflectorlist);
-	return $reflectorlist;
-}
+//	$reflectors = Array();
+//	$reflectorlist = Array();
+//	foreach ($logLines as $logLine) {
+//		if (strpos($logLine, "Have reflector status reply from")) {
+//			$timestamp = substr($logLine, 3, 19);
+//			$timestamp2 = new DateTime($timestamp);
+//			$now =  new DateTime();
+//			$timestamp2->add(new DateInterval('PT2H'));
+//			if ($now->format('U') <= $timestamp2->format('U')) {
+//				$str = substr($logLine, 60);
+//				$id = strtok($str, "/");
+//				$name = strtok("/");
+//				$description = strtok("/");
+//				$concount = strtok("/");
+//				if(!(array_search($name, $reflectors) > -1)) {
+//					array_push($reflectors,$name);
+//					array_push($reflectorlist, array($name, $description, $id, $concount, $timestamp));
+//				}
+//			}
+//		}
+//	}
+//	array_multisort($reflectorlist);
+//	return $reflectorlist;
+//}
 
 // Not used - to be removed
 //function getName($callsign) {
