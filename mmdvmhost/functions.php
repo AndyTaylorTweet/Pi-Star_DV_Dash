@@ -47,10 +47,11 @@ function getNXDNGatewayConfig() {
 	return $conf;
 }
 
-function getCallsign($mmdvmconfigs) {
-	// returns Callsign from MMDVM-config
-	return getConfigItem("General", "Callsign", $mmdvmconfigs);
-}
+// Not used - to be removed
+//function getCallsign($mmdvmconfigs) {
+//	// returns Callsign from MMDVM-config
+//	return getConfigItem("General", "Callsign", $mmdvmconfigs);
+//}
 
 function getConfigItem($section, $key, $configs) {
 	// retrieves the corresponding config-entry within a [section]
