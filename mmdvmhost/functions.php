@@ -946,6 +946,7 @@ function getActualReflector($logLines, $mode) {
 	return "No Ref";
 }
 
+// Not used - to be removed
 function getActiveYSFReflectors($logLines) {
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
@@ -976,8 +977,7 @@ function getActiveYSFReflectors($logLines) {
 	return $reflectorlist;
 }
 
-
-
+// Not used - to be removed
 function getName($callsign) {
 	$callsign = trim($callsign);
 	if (strpos($callsign,"-")) {
