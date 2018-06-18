@@ -15,9 +15,9 @@ header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Cache-Control: private', false);
 header('Content-Type: text/plain');
 
-header('Content-Disposition: attachment; filename="'. basename($logfile) . '";');
-header('Content-Transfer-Encoding: binary');
-header('Content-Length: ' . filesize($logfile));
+header('Content-Disposition: attachment; filename="Pi-Star_'.basename($logfile).'";');
+//header('Content-Transfer-Encoding: binary');
+header('Content-Length: '.filesize($logfile));
 
 readfile($logfile);
 
