@@ -18,16 +18,24 @@ header('Content-Disposition: attachment; filename="Pi-Star_'.basename($logfile).
 header('Content-Length: '.filesize($logfile));
 header('Accept-Ranges: bytes');
 
-//readfile($logfile);
+// User Agent Detection
+if (strpos($_SERVER['HTTP_USER_AGENT'], 'indows') !== false) {
+	$userAgent = "Windows";
+} else {
+	$userAgent = "NonWindows";
+}
 
+// Pre-flight checks done, send the output.
 set_time_limit(0);
 $file = @fopen($logfile,"rb");
 while(!feof($file)) {
-	print(str_replace("\n", "\r\n", @fread($file, 1024*8)));
-	//print(@fread($file, 1024*8));
+	if ($userAgent == "Windows") { print(str_replace("\n", "\r\n", @fread($file, 1024*8))); }
+	if ($userAgent == "NonWindows") { print(@fread($file, 1024*8)); }
 	ob_flush();
 	flush();
 }
 
+// Ok we are done, close the file and clean up.
+@fclose($file);
 exit;
 ?>
