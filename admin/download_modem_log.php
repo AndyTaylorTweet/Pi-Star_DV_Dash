@@ -1,9 +1,9 @@
 <?php
 if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-  $logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
+	$logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
 }
 elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
-  $logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
+	$logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
 }
 
 $unixfile = file_get_contents($logfile);
@@ -23,8 +23,8 @@ header('Accept-Ranges: bytes');
 set_time_limit(0);
 $file = @fopen($logfile,"rb");
 while(!feof($file)) {
-  //print(str_replace("\n", "\r\n", @fread($file, 1024*8)));
-	print(@fread($file, 1024*8));
+	print(str_replace("\n", "\r\n", @fread($file, 1024*8)));
+	//print(@fread($file, 1024*8));
 	ob_flush();
 	flush();
 }
