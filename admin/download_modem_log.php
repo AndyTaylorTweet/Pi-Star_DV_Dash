@@ -1,5 +1,4 @@
 <?php
-
 if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 $logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
 }
@@ -20,7 +19,7 @@ header('Content-Disposition: attachment; filename="'. basename($logfile) . '";')
 header('Content-Transfer-Encoding: binary');
 header('Content-Length: ' . filesize($dosfile));
 
-readfile($dosfile);
+readfile($unixfile);
 
 exit;
 ?>
