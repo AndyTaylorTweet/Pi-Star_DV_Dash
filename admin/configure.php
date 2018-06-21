@@ -687,7 +687,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set Callsign
 	if (empty($_POST['confCallsign']) != TRUE ) {
 	  $newCallsignUpper = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $_POST['confCallsign']));
-	  if (preg_match("/^[0-9]/", $newCallsignUpper)) { $newCallsignUpperIRC = 'r'.$newCallsignUpper; } else { $newCallsignUpperIRC = $newCallsignUpper; }
+	  // Removed the need for the r prefix - OpenQuad have fixed up the servers not to require it.
+	  // if (preg_match("/^[0-9]/", $newCallsignUpper)) { $newCallsignUpperIRC = 'r'.$newCallsignUpper; } else { $newCallsignUpperIRC = $newCallsignUpper; }
+	  $newCallsignUpperIRC = $newCallsignUpper;
 
 	  $rollGATECALL = 'sudo sed -i "/gatewayCallsign=/c\\gatewayCallsign='.$newCallsignUpper.'" /etc/ircddbgateway';
 	  $rollDPLUSLOGIN = 'sudo sed -i "/dplusLogin=/c\\dplusLogin='.$newCallsignUpper.'" /etc/ircddbgateway';
