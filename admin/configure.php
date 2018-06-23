@@ -1512,7 +1512,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollMotd);
 	  if (file_exists('/etc/hostapd/hostapd.conf')) {
 		  // Update the Hotspot name to the Hostname
-		  $rollApSsid = 'sudo sed -i "/ssid=/c\\ssid='.$newHostnameLower.'" /etc/hostapd/hostapd.conf';
+		  $rollApSsid = 'sudo sed -i "/^ssid=/c\\ssid='.$newHostnameLower.'" /etc/hostapd/hostapd.conf';
 		  system($rollApSsid);
 	  }
 	}
