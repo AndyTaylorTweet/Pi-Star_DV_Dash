@@ -2259,6 +2259,7 @@ else:
     <input type="hidden" name="MMDVMModeYSF2P25" value="OFF" />
     <input type="hidden" name="MMDVMModeDMR2YSF" value="OFF" />
     <input type="hidden" name="MMDVMModeDMR2NXDN" value="OFF" />
+    <input type="hidden" name="MMDVMModePOCSAG" value="OFF" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -2398,6 +2399,20 @@ else:
 	}
     ?>
     <td>Uses 7 prefix on DMRGateway</td>
+    </tr>
+    <?php } ?>
+    <?php if (file_exists('/etc/dapnetgateway')) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">POCSAG:<span><b>POCSAG Mode</b>Turn on POCSAG Features</span></a></td>
+    <?php
+	if ( $configmmdvm['POCSAG']['Enable'] == 1 ) {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-pocsag\"></label></div></td>\n";
+		}
+	else {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" /><label for=\"toggle-pocsag\"></label></div></td>\n";
+	}
+    ?>
+    <td>POCSAG Paging Features</td>
     </tr>
     <?php } ?>
     <tr>
