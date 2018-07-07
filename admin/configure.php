@@ -731,6 +731,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $confignxdngateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $confignxdngateway['General']['Callsign'] = $newCallsignUpper;
+	  $configdapnetgw['General']['Callsign'] = $newCallsignUpper;
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -1461,6 +1462,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		} else {
 			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
 		}
+	}
+	
+	// Set POCSAG Mode
+	if (empty($_POST['MMDVMModePOCSAG']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModePOCSAG']) == 'ON' )  { $configmmdvm['POCSAG']['Enable'] = "1"; $configmmdvm['POCSAG Network']['Enable'] = "1";}
+          if (escapeshellcmd($_POST['MMDVMModePOCSAG']) == 'OFF' ) { $configmmdvm['POCSAG']['Enable'] = "0"; $configmmdvm['POCSAG Network']['Enable'] = "0";}
 	}
 
 	// Set the MMDVMHost Display Type
