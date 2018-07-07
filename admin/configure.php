@@ -2073,7 +2073,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         else {
                 $success = fwrite($handledapnetconfig, $dapnetContent);
                 fclose($handledapnetconfig);
-                if (intval(exec('cat /tmp/lsHWie734HS.tmp | wc -l')) > 25 ) {
+                if (intval(exec('cat /tmp/lsHWie734HS.tmp | wc -l')) > 19 ) {
                         exec('sudo mv /tmp/lsHWie734HS.tmp /etc/dapnetgateway');		// Move the file back
                         exec('sudo chmod 644 /etc/dapnetgateway');				// Set the correct runtime permissions
                         exec('sudo chown root:root /etc/dapnetgateway');			// Set the owner
