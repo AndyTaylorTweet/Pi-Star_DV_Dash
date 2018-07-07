@@ -269,6 +269,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
+	system('sudo systemctl stop dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
 
 	echo "<table>\n";
 	echo "<tr><th>Working...</th></tr>\n";
@@ -2043,6 +2044,42 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                 }
         }
 
+	// DAPNet Gateway Config file wragling
+	$dapnetContent = "";
+        foreach($configdapnetgw as $dapnetSection=>$dapnetValues) {
+                // UnBreak special cases
+                $dapnetSection = str_replace("_", " ", $dapnetSection);
+                $dapnetContent .= "[".$dapnetSection."]\n";
+                // append the values
+                foreach($dapnetValues as $dapnetKey=>$dapnetValue) {
+                        $dapnetContent .= $dapnetKey."=".$dapnetValue."\n";
+                        }
+                        $dapnetContent .= "\n";
+                }
+        if (!$handledapnetconfig = fopen('/tmp/lsHWie734HS.tmp', 'w')) {
+                return false;
+        }
+        if (!is_writable('/tmp/lsHWie734HS.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+        else {
+                $success = fwrite($handledapnetconfig, $dapnetContent);
+                fclose($handledapnetconfig);
+                if (intval(exec('cat /tmp/lsHWie734HS.tmp | wc -l')) > 25 ) {
+                        exec('sudo mv /tmp/lsHWie734HS.tmp /etc/dapnetgateway');		// Move the file back
+                        exec('sudo chmod 644 /etc/dapnetgateway');				// Set the correct runtime permissions
+                        exec('sudo chown root:root /etc/dapnetgateway');			// Set the owner
+                }
+        }
+
 	// dmrgateway config file wrangling
 	$dmrgwContent = "";
         foreach($configdmrgateway as $dmrgwSection=>$dmrgwValues) {
@@ -2152,6 +2189,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
+	system('sudo systemctl start dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
 
 	// Set the system timezone
 	$rollTimeZone = 'sudo timedatectl set-timezone '.escapeshellcmd($_POST['systemTimezone']);
