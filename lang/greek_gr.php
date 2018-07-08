@@ -27,6 +27,7 @@ $lang = array (
   "ysf_config"                  =>  "Ρυθμίσεις Fusion",
   "p25_config"                  =>  "Ρυθμίσεις P25",
   "nxdn_config"                 =>  "Ρυθμίσεις NXDN",
+  "pocsag_config"               =>  "Ρυθμίσεις POCSAG",
   "wifi_config"                 =>  "Ρυθμίσεις WiFi",
   "fw_config"                   =>  "Ρυθμίσεις Τείχους Προστασίας",
   "remote_access_pw"            =>  "Κωδικός Πρόσβασης",
