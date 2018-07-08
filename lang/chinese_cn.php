@@ -28,6 +28,7 @@ $lang = array (
   "ysf_config"                  =>  "Yaesu System Fusion 配置",
   "p25_config"                  =>  "P25 配置",
   "nxdn_config"                 =>  "NXDN 配置",
+  "pocsag_config"               =>  "POCSAG 配置",
   "fw_config"                   =>  "防火墙配置",
   "remote_access_pw"            =>  "远程访问密码",
   // Config Page - Section General
