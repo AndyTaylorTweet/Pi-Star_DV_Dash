@@ -3238,6 +3238,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><b><?php echo $lang['pocsag_config'];?></b></div>
     <table>
       <tr>
+        <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+        <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+      <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_freq'];?>:<span><b>POCSAG Frequency</b>Set your paging frequency<br /> here</span></a></td>
         <td align="left"><input type="text" name="pocsag_freq" size="13" maxlength="12" value="<?php echo number_format($configmmdvm['POCSAG']['Frequency'], 0, '.', '.');?>" /></td>
       </tr>
