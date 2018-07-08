@@ -3233,7 +3233,18 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
-	
+
+<?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?>
+	<div><b><?php echo $lang['pocsag_config'];?></b></div>
+    <table>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_freq'];?>:<span><b>POCSAG Frequency</b>Set your paging frequency<br /> here</span></a></td>
+        <td align="left"><input type="text" name="pocsag_freq" size="13" maxlength="12" value="<?php echo number_format($configmmdvm['POCSAG']['Frequency'], 0, '.', '.');?>" /></td>
+      </tr>
+    </table>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
+<?php } ?>	
+
 	<div><b><?php echo $lang['fw_config'];?></b></div>
     <table>
     <tr>
