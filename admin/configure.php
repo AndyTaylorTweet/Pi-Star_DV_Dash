@@ -488,6 +488,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system($rollTimeserverBandD);
 	system($rollTimeserverBandE);
 
+	// Set the POCSAG Frequency
+	if (empty($_POST['pocsagFrequency']) != TRUE ) {
+	  $newPocsagFREQ = preg_replace('/[^0-9\.]/', '', $_POST['pocsagFrequency']);
+	  $newPocsagFREQ = str_pad(str_replace(".", "", $newPocsagFREQ), 9, "0");
+	  $newPocsagFREQ = mb_strimwidth($newPocsagFREQ, 0, 9);
+	  $configmmdvm['POCSAG']['Frequency'] = $newPocsagFREQ;
+	}
+
+	// Set the POCSAG AuthKey
+	if (empty($_POST['pocsagAuthKey']) != TRUE ) {
+	  $configdapnetgw['DAPNET']['AuthKey'] = escapeshellcmd($_POST['pocsagAuthKey']);
+	}
+
 	// Set the Frequency for Duplex
 	if (empty($_POST['confFREQtx']) != TRUE && empty($_POST['confFREQrx']) != TRUE ) {
 	  if (empty($_POST['confHardware']) != TRUE ) { $confHardware = escapeshellcmd($_POST['confHardware']); }
@@ -3243,11 +3256,11 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_freq'];?> POCSAG:<span><b>POCSAG Frequency</b>Set your paging frequency<br /> here</span></a></td>
-        <td align="left"><input type="text" name="pocsag_freq" size="13" maxlength="12" value="<?php echo number_format($configmmdvm['POCSAG']['Frequency'], 0, '.', '.');?>" /></td>
+        <td align="left"><input type="text" name="pocsagFrequency" size="13" maxlength="12" value="<?php echo number_format($configmmdvm['POCSAG']['Frequency'], 0, '.', '.');?>" /></td>
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#">DAPNet <?php echo $lang['password'];?>:<span><b>DAPNet Secret</b>Set your DAPNet Secret<br /> here</span></a></td>
-        <td align="left"><input type="password" name="pocsag_freq" size="30" maxlength="50" value="<?php echo $configdapnetgw['DAPNET']['AuthKey'];?>" /></td>
+        <td align="left"><input type="password" name="pocsagAuthKey" size="30" maxlength="50" value="<?php echo $configdapnetgw['DAPNET']['AuthKey'];?>" /></td>
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
