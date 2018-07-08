@@ -27,6 +27,7 @@ $lang = array (
   "ysf_config"                  =>  "Yaesu System Fusion Config",
   "p25_config"                  =>  "P25 Config",
   "nxdn_config"                 =>  "NXDN Config",
+  "pocsag_config"               =>  "POCSAG Config",
   "wifi_config"                 =>  "Wireless Config",
   "fw_config"                   =>  "Firewall Config",
   "remote_access_pw"            =>  "Password Accesso Remoto",
