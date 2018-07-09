@@ -32,59 +32,49 @@ function ConvertToChannel($freq) {
 		"2467" => "2.4GHz Ch12",
 		"2472" => "2.4GHz Ch13",
 		"2484" => "2.4GHz Ch14",
-		"5035" => "5GHz Ch7",
-		"5040" => "5GHz Ch8",
-		"5045" => "5GHz Ch9",
-		"5055" => "5GHz Ch11",
-		"5060" => "5GHz Ch12",
-		"5080" => "5GHz Ch16",
-		"5170" => "5GHz Ch34",
-		"5180" => "5GHz Ch36",
-		"5190" => "5GHz Ch38",
-		"5200" => "5GHz Ch40",
-		"5210" => "5GHz Ch42",
-		"5220" => "5GHz Ch44",
-		"5230" => "5GHz Ch46",
-		"5240" => "5GHz Ch48",
-		"5260" => "5GHz Ch52",
-		"5280" => "5GHz Ch56",
-		"5300" => "5GHz Ch60",
-		"5320" => "5GHz Ch64",
-		"5500" => "5GHz Ch100",
-		"5520" => "5GHz Ch104",
-		"5540" => "5GHz Ch108",
-		"5560" => "5GHz Ch112",
-		"5580" => "5GHz Ch116",
-		"5600" => "5GHz Ch120",
-		"5620" => "5GHz Ch124",
-		"5640" => "5GHz Ch128",
-		"5660" => "5GHz Ch132",
-		"5680" => "5GHz Ch136",
-		"5700" => "5GHz Ch140",
-		"5745" => "5GHz Ch149",
-		"5765" => "5GHz Ch153",
-		"5785" => "5GHz Ch157",
-		"5805" => "5GHz Ch161",
-		"5825" => "5GHz Ch165",
-		"4915" => "5GHz Ch183",
-		"4920" => "5GHz Ch184",
-		"4925" => "5GHz Ch185",
-		"4935" => "5GHz Ch187",
-		"4940" => "5GHz Ch188",
-		"4945" => "5GHz Ch189",
-		"4960" => "5GHz Ch192",
-		"4980" => "5GHz Ch196"
+		"5035" => "5.0GHz Ch7",
+		"5040" => "5.0GHz Ch8",
+		"5045" => "5.0GHz Ch9",
+		"5055" => "5.0GHz Ch11",
+		"5060" => "5.0GHz Ch12",
+		"5080" => "5.0GHz Ch16",
+		"5170" => "5.0GHz Ch34",
+		"5180" => "5.0GHz Ch36",
+		"5190" => "5.0GHz Ch38",
+		"5200" => "5.0GHz Ch40",
+		"5210" => "5.0GHz Ch42",
+		"5220" => "5.0GHz Ch44",
+		"5230" => "5.0GHz Ch46",
+		"5240" => "5.0GHz Ch48",
+		"5260" => "5.0GHz Ch52",
+		"5280" => "5.0GHz Ch56",
+		"5300" => "5.0GHz Ch60",
+		"5320" => "5.0GHz Ch64",
+		"5500" => "5.0GHz Ch100",
+		"5520" => "5.0GHz Ch104",
+		"5540" => "5.0GHz Ch108",
+		"5560" => "5.0GHz Ch112",
+		"5580" => "5.0GHz Ch116",
+		"5600" => "5.0GHz Ch120",
+		"5620" => "5.0GHz Ch124",
+		"5640" => "5.0GHz Ch128",
+		"5660" => "5.0GHz Ch132",
+		"5680" => "5.0GHz Ch136",
+		"5700" => "5.0GHz Ch140",
+		"5745" => "5.0GHz Ch149",
+		"5765" => "5.0GHz Ch153",
+		"5785" => "5.0GHz Ch157",
+		"5805" => "5.0GHz Ch161",
+		"5825" => "5.0GHz Ch165",
+		"4915" => "5.0GHz Ch183",
+		"4920" => "5.0GHz Ch184",
+		"4925" => "5.0GHz Ch185",
+		"4935" => "5.0GHz Ch187",
+		"4940" => "5.0GHz Ch188",
+		"4945" => "5.0GHz Ch189",
+		"4960" => "5.0GHz Ch192",
+		"4980" => "5.0GHz Ch196"
 	);
-//	$base = 2412;
-//	$channel = 1;
-//	for($x = 0; $x < 13; $x++) {
-//		if($freq != $base) {
-//			$base = $base + 5;
-//			$channel++;
-//		} else {
-//			return $channel;
-//		}
-//	}
 	if ($wifiFreqToChan[$freq]) { return $wifiFreqToChan[$freq]; }
 	else { return "Invalid Channel"; }
 }
@@ -135,22 +125,6 @@ function ConvertToSecurity($security) {
 		break;
 	}
 }
-
-/*
-1*	2412	Yes	Yes	YesD
-2	2417	Yes	Yes	YesD
-3	2422	Yes	Yes	YesD
-4	2427	Yes	Yes	YesD
-5*	2432	Yes	Yes	Yes
-6	2437	Yes	Yes	Yes
-7	2442	Yes	Yes	Yes
-8	2447	Yes	Yes	Yes
-9*	2452	Yes	Yes	Yes
-10	2457	Yes	Yes	Yes
-11	2462	Yes	Yes	Yes
-12	2467	NoB	Yes	Yes
-13*	2472	NoB	Yes	Yes
-*/
 
 ?>
 
