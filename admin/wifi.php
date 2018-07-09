@@ -265,7 +265,7 @@ echo '<br />
 			echo '<tr>';
 			echo '<td style="text-align: left;"><input type="button" value="Select" onclick="AddScanned(\''.$ssid.'\')" /></td>';
 			echo '<td style="text-align: left;">'.$ssid.'</td>';
-			echo '<td style="text-align: left;">Channel '.$channel.'</td>';
+			echo '<td style="text-align: left;">'.$channel.'</td>';
 			echo '<td>'.$signal.'</td>';
 			echo '<td style="text-align: left;">'.$security.'</td>';
 			echo '</tr>'."\n";
