@@ -3267,7 +3267,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <td align="left"><input type="text" name="pocsagFrequency" size="13" maxlength="12" value="<?php echo number_format($configmmdvm['POCSAG']['Frequency'], 0, '.', '.');?>" /></td>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#">DAPNet AuthKey:<span><b>DAPNet Secret</b>Set your DAPNet Secret<br /> here</span></a></td>
+        <td align="left"><a class="tooltip2" href="#">DAPNET AuthKey:<span><b>DAPNET AuthKey</b>Set your DAPNET AuthKey<br /> here</span></a></td>
         <td align="left"><input type="password" name="pocsagAuthKey" size="30" maxlength="50" value="<?php echo $configdapnetgw['DAPNET']['AuthKey'];?>" /></td>
       </tr>
     </table>
