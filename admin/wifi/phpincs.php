@@ -17,6 +17,22 @@ function ParseConfig($arrConfig) {
 }
 
 function ConvertToChannel($freq) {
+	$wifiFreqToChan = array (
+		"2412" => "2.4GHz Ch1",
+		"2417" => "2.4GHz Ch2",
+		"2422" => "2.4GHz Ch3",
+		"2427" => "2.4GHz Ch4",
+		"2432" => "2.4GHz Ch5",
+		"2437" => "2.4GHz Ch6",
+		"2442" => "2.4GHz Ch7",
+		"2447" => "2.4GHz Ch8",
+		"2452" => "2.4GHz Ch9",
+		"2457" => "2.4GHz Ch10",
+		"2462" => "2.4GHz Ch11",
+		"2467" => "2.4GHz Ch12",
+		"2472" => "2.4GHz Ch13",
+		"2484" => "2.4GHz Ch14"
+	);
 //	$base = 2412;
 //	$channel = 1;
 //	for($x = 0; $x < 13; $x++) {
@@ -77,23 +93,6 @@ function ConvertToSecurity($security) {
 		break;
 	}
 }
-
-$wifiFreqToChan = array (
-	"2412" => "2.4GHz Ch1",
-	"2417" => "2.4GHz Ch2",
-	"2422" => "2.4GHz Ch3",
-	"2427" => "2.4GHz Ch4",
-	"2432" => "2.4GHz Ch5",
-	"2437" => "2.4GHz Ch6",
-	"2442" => "2.4GHz Ch7",
-	"2447" => "2.4GHz Ch8",
-	"2452" => "2.4GHz Ch9",
-	"2457" => "2.4GHz Ch10",
-	"2462" => "2.4GHz Ch11",
-	"2467" => "2.4GHz Ch12",
-	"2472" => "2.4GHz Ch13",
-	"2484" => "2.4GHz Ch14",
-);
 
 /*
 1*	2412	Yes	Yes	YesD
