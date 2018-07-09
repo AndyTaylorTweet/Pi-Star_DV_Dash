@@ -52,11 +52,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   <?php
         if ( escapeshellcmd($_POST["action"]) == "reboot" ) {
                 echo '<tr><td colspan="2" style="background: #000000; color: #00ff00;"><br /><br />Reboot command has been sent to your Pi,
-                        <br />please wait 40 secs for it to reboot.<br />
+                        <br />please wait 50 secs for it to reboot.<br />
                         <br />You will be re-directed back to the
-                        <br />dashboard automatically in 40 seconds.<br /><br /><br />
+                        <br />dashboard automatically in 50 seconds.<br /><br /><br />
                         <script language="JavaScript" type="text/javascript">
-                                setTimeout("location.href = \'/index.php\'",40000);
+                                setTimeout("location.href = \'/index.php\'",50000);
                         </script>
                         </td></tr>';
                 system('sudo mount -o remount,ro / > /dev/null &');
