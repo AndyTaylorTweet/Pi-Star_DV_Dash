@@ -500,6 +500,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['pocsagAuthKey']) != TRUE ) {
 	  $configdapnetgw['DAPNET']['AuthKey'] = escapeshellcmd($_POST['pocsagAuthKey']);
 	}
+	
+	// Set the POCSAG Callsign
+	if (empty($_POST['pocsagCallsign']) != TRUE ) {
+		$configdapnetgw['General']['Callsign'] = strtolower(escapeshellcmd($_POST['pocsagCallsign']));
+	}
 
 	// Set the Frequency for Duplex
 	if (empty($_POST['confFREQtx']) != TRUE && empty($_POST['confFREQrx']) != TRUE ) {
@@ -744,7 +749,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $confignxdngateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $confignxdngateway['General']['Callsign'] = $newCallsignUpper;
-	  $configdapnetgw['General']['Callsign'] = $newCallsignUpper;
 
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
@@ -3253,6 +3257,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       <tr>
         <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
         <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?> POCSAG:<span><b>POCSAG Callsign</b>Set your paging callsign<br /> here</span></a></td>
+        <td align="left"><input type="text" name="pocsagCallsign" size="13" maxlength="12" value="<?php echo $configdapnetgw['General']['Callsign'];?>" /></td>
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_freq'];?> POCSAG:<span><b>POCSAG Frequency</b>Set your paging frequency<br /> here</span></a></td>
