@@ -370,7 +370,7 @@ function getDVModemFirmware() {
 // M: 2017-04-18 08:00:43.728 NXDN, received network transmission from 10999 to TG 65000
 // M: 2017-04-18 08:00:45.172 NXDN, network end of transmission, 1.8 seconds, 0% packet loss
 // M: 2018-07-13 10:35:18.411 POCSAG, transmitted 1 frame(s) of data from 1 message(s)
-function getHeardList($logLines) {
+function getHeardList($logLines, $mmdvmconfigs) {
 	//array_multisort($logLines,SORT_DESC);
 	$heardList = array();
 	$ts1duration	= "";
@@ -511,7 +511,7 @@ function getHeardList($logLines) {
 						$nxdnrssi	= $rssi;
 						break;
 					case "POCSAG":
-						$pocsagduration	= "1.0";
+						$pocsagduration	= "n/a";
 						break;						
 				}
 			}
@@ -580,7 +580,7 @@ function getHeardList($logLines) {
 				$rssi		= $nxdnrssi;
                 		break;
 			case "POCSAG":
-				$callsign	= "Unknown";
+				$callsign	= getConfigItem("General", "Callsign", $mmdvmconfigs)
 				$target		= "DAPNET User";
 				$duration	= $pocsagduration;
 				$loss		= "n/a";
