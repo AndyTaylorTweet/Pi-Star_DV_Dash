@@ -510,6 +510,9 @@ function getHeardList($logLines) {
 						$nxdnber	= $ber;
 						$nxdnrssi	= $rssi;
 						break;
+					case "POCSAG":
+						$pocsagduration	= "1.0";
+						break;						
 				}
 			}
 		}
