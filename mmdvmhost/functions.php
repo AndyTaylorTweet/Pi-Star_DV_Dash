@@ -662,6 +662,9 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 		else if ($source == "Net" && $mode === "NXDN") {
 			$hangtime = getConfigItem("NXDN Network", "ModeHang", $mmdvmconfigs);
 		}
+		else if ($source == "Net" && $mode === "POCSAG") {
+			$hangtime = getConfigItem("POCSAG Network", "ModeHang", $mmdvmconfigs);
+		}
 		else {
 			$hangtime = getConfigItem("General", "RFModeHang", $mmdvmconfigs);
 		}
