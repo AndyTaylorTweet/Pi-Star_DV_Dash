@@ -511,8 +511,6 @@ function getHeardList($logLines) {
 						$nxdnrssi	= $rssi;
 						break;
 					case "POCSAG":
-						$target		= "unknown";
-						$callsign	= "unknown";
 						$pocsagduration	= "PAGER";
 						break;
 				}
@@ -582,8 +580,8 @@ function getHeardList($logLines) {
 				$rssi		= $nxdnrssi;
                 		break;
 			case "POCSAG":
-				$callsign	= "unknown";
-				$target		= "unknown";
+				$callsign	= "";
+				$target		= "";
 				$duration	= $pocsagduration;
 				$loss		= "";
                 		$ber		= "";
