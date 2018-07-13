@@ -126,6 +126,9 @@ if (isset($lastHeard[0])) {
         	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'NXDN') {
         	        echo "<td style=\"background:#c9f;\">Listening NXDN</td>";
         	        }
+		elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'POCSAG') {
+        	        echo "<td style=\"background:#4aa361;\">Wait POCSAG</td>";
+        	        }
         	else {
         	        echo "<td>".getActualMode($lastHeard, $mmdvmconfigs)."</td>";
         	        }
