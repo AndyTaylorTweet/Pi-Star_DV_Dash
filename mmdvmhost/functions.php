@@ -580,8 +580,8 @@ function getHeardList($logLines) {
 				$rssi		= $nxdnrssi;
                 		break;
 			case "POCSAG":
-				$callsign	= "";
-				$target		= "";
+				$callsign	= getConfigItem("General", "Callsign", $mmdvmconfigs);
+				$target		= "DAPNET User";
 				$duration	= $pocsagduration;
 				$loss		= "";
                 		$ber		= "";
