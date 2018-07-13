@@ -369,6 +369,7 @@ function getDVModemFirmware() {
 // M: 2017-04-18 08:00:42.337 NXDN, received RF end of transmission, 0.4 seconds, BER: 0.0%
 // M: 2017-04-18 08:00:43.728 NXDN, received network transmission from 10999 to TG 65000
 // M: 2017-04-18 08:00:45.172 NXDN, network end of transmission, 1.8 seconds, 0% packet loss
+// M: 2018-07-13 10:35:18.411 POCSAG, transmitted 1 frame(s) of data from 1 message(s)
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
 	$heardList = array();
@@ -507,6 +508,9 @@ function getHeardList($logLines) {
 						$nxdnloss	= $loss;
 						$nxdnber	= $ber;
 						$nxdnrssi	= $rssi;
+						break;
+					case "POCSAG":
+						$pocsagduration	= "PAGER";
 						break;
 				}
 			}
