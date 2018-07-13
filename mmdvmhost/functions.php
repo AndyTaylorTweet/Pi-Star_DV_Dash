@@ -583,8 +583,8 @@ function getHeardList($logLines) {
 				$callsign	= "DAPNET";
 				$target		= "DAPNET User";
 				$duration	= "0.0";
-				$loss		= "0";
-                		$ber		= "0.0";
+				$loss		= "0%";
+                		$ber		= "0.0%";
 				break;
 		}
 
