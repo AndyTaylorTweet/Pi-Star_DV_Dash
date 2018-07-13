@@ -511,7 +511,7 @@ function getHeardList($logLines) {
 						$nxdnrssi	= $rssi;
 						break;
 					case "POCSAG":
-						$pocsagduration	= "n/a";
+						$pocsagduration	= "";
 						break;						
 				}
 			}
@@ -582,9 +582,9 @@ function getHeardList($logLines) {
 			case "POCSAG":
 				$callsign	= "DAPNET";
 				$target		= "DAPNET User";
-				$duration	= $pocsagduration;
-				$loss		= "n/a";
-                		$ber		= "n/a";
+				$duration	= "";
+				$loss		= "";
+                		$ber		= "";
 				break;
 		}
 
