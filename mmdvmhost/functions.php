@@ -397,6 +397,7 @@ function getHeardList($logLines) {
         $nxdnloss	= "";
         $nxdnber	= "";
 	$nxdnrssi	= "";
+	$pocsagduration	= "";
 	foreach ($logLines as $logLine) {
 		$duration	= "";
 		$loss		= "";
@@ -578,6 +579,12 @@ function getHeardList($logLines) {
                 		$ber		= $nxdnber;
 				$rssi		= $nxdnrssi;
                 		break;
+			case "POCSAG":
+				$duration	= $pocsagduration;
+				$loss		= "";
+                		$ber		= "";
+				$rssi		= "";
+				break;
 		}
 
 		// Callsign or ID should be less than 11 chars long, otherwise it could be errorneous
