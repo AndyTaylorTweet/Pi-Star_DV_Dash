@@ -57,8 +57,8 @@ if($_POST) {
 
 		foreach($data as $section=>$values) {
 			// UnBreak special cases
-			$section = str_replace("_", " ", $section);
-			$content .= "[".$section."]\n";
+			if (strpos($section, 'aprs') !== false) { $section = str_replace("_", ".", $section); }
+			else { $section = str_replace("_", " ", $section); $section = str_replace(".", " ", $section); }
 			//append the values
 			foreach($values as $key=>$value) {
 				$content .= $key."=".$value."\n";
