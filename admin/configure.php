@@ -1269,6 +1269,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	  }
 
+	  if ( $confHardware == 'f4mf7m' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	    system($rollModemType);
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyUSB0";
+	    $configmmdvm['General']['Duplex'] = 1;
+	  }
+
 	  if ( $confHardware == 'mmdvmhshat' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    system($rollModemType);
@@ -2567,6 +2574,7 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mnnano-spot') { echo ' selected="selected"';}?> value="mnnano-spot">MicroNode Nano-Spot (Built In)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mnnano-teensy') { echo ' selected="selected"';}?> value="mnnano-teensy">MicroNode Teensy (USB)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'f4mgpio') { echo ' selected="selected"';}?> value="f4mgpio">MMDVM F4M-GPIO (GPIO)</option>
+	        <option<?php if ($configModem['Modem']['Hardware'] === 'f4mf7m') { echo ' selected="selected"';}?> value="f4mf7m">MMDVM F4M/F7M (F0DEI) for USB</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmhshat') { echo ' selected="selected"';}?> value="mmdvmhshat">MMDVM_HS_Hat (DB9MAT & DF2ET) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmhshatd') { echo ' selected="selected"';}?> value="mmdvmhshatd">MMDVM_HS_Dual_Hat (DB9MAT, DF2ET & DO7EN) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmmdohat') { echo ' selected="selected"';}?> value="mmdvmmdohat">MMDVM_HS_MDO Hat (BG3MDO) for Pi (GPIO)</option>
