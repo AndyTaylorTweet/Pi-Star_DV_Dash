@@ -1322,6 +1322,22 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 0;
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	  }
+	  
+	  if ( $confHardware == 'nanodv' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	    system($rollModemType);
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot1'] = 0;
+	  }
+
+	  if ( $confHardware == 'nanodvusb' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	    system($rollModemType);
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot1'] = 0;
+	  }
 	}
 
 	// Set the Dashboard Public
@@ -2580,6 +2596,8 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmhshatd') { echo ' selected="selected"';}?> value="mmdvmhshatd">MMDVM_HS_Dual_Hat (DB9MAT, DF2ET & DO7EN) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmmdohat') { echo ' selected="selected"';}?> value="mmdvmmdohat">MMDVM_HS_MDO Hat (BG3MDO) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehat') { echo ' selected="selected"';}?> value="mmdvmvyehat">MMDVM_HS_NPi Hat (VR2VYE) for Nano Pi (GPIO)</option>
+	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodv') { echo ' selected="selected"';}?> value="nanodv">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (GPIO)</option>
+	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodvusb') { echo ' selected="selected"';}?> value="nanodv">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (USB)</option>
     </select></td>
     </tr>
     <tr>
