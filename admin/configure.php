@@ -2597,7 +2597,7 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmmdohat') { echo ' selected="selected"';}?> value="mmdvmmdohat">MMDVM_HS_MDO Hat (BG3MDO) for Pi (GPIO)</option>
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehat') { echo ' selected="selected"';}?> value="mmdvmvyehat">MMDVM_HS_NPi Hat (VR2VYE) for Nano Pi (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodv') { echo ' selected="selected"';}?> value="nanodv">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (GPIO)</option>
-	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodvusb') { echo ' selected="selected"';}?> value="nanodv">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (USB)</option>
+	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodvusb') { echo ' selected="selected"';}?> value="nanodvusb">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (USB)</option>
     </select></td>
     </tr>
     <tr>
