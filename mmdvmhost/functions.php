@@ -288,6 +288,7 @@ function getNXDNGatewayLog() {
 // I: 2018-05-22 10:22:12.137 MMDVM protocol version: 1, description: MMDVM_HS_Dual_Hat-v1.3.6 20180521 dual ADF7021 FW by CA6JAU GitID #bd6217a
 // I: 2018-03-06 12:12:14.960 MMDVM protocol version: 1, description: Nano_hotSPOT-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
 // I: 2018-03-06 12:12:14.960 MMDVM protocol version: 1, description: Nano-Spot-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
+// I: 2018-07-21 16:27:46.768 MMDVM protocol version: 1, description: Nano_DV-v1.4.3 20180716 12.2880MHz ADF7021 FW by CA6JAU GitID #6729d23
 
 function getDVModemFirmware() {
 	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
@@ -332,6 +333,9 @@ function getDVModemFirmware() {
 		}
 		if (strpos($logLine, 'description: Nano-Spot-')) {
 			$modemFirmware = "NanoSpot:".strtok(substr($logLine, 77, 12), ' ');
+		}
+		if (strpos($logLine, 'description: Nano_DV-')) {
+			$modemFirmware = "NanoDV:".strtok(substr($logLine, 75, 12), ' ');
 		}
 	}
 	return $modemFirmware;
