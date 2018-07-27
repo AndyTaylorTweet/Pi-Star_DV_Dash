@@ -40,7 +40,7 @@ if(isset($_POST['data'])) {
         // Open the file and write the data
         $filepath = '/tmp/a8h4d8n3c83h4.tmp';
         $fh = fopen($filepath, 'w');
-        fwrite($fh, $_POST['data']);
+        fwrite($fh, str_replace("\r", "", $_POST['data']));
         fclose($fh);
         exec('sudo mount -o remount,rw /');
         exec('sudo cp /tmp/a8h4d8n3c83h4.tmp /etc/crontab');
