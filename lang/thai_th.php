@@ -30,7 +30,7 @@ $lang = array (
   "pocsag_config"               =>  "ตั้งค่า POCSAG",
   "wifi_config"                 =>  "ตั้งค่าวายฟาย",
   "fw_config"                   =>  "ตั้งค่าระบบป้องกัน",
-  "remote_access_pw"            =>  "รหัสผ่านเข้าถึงจากภายนอก",
+  "remote_access_pw"            =>  "ตั้งรหัสผ่าน",
   // Config Page - Section General
   "setting"                     =>  "ตั้งค่า",
   "value"                       =>  "ค่า",
@@ -50,7 +50,7 @@ $lang = array (
   "ysf_mode"                    =>  "YSF",
   "p25_mode"                    =>  "P25",
   "nxdn_mode"                   =>  "NXDN",
-  "mmdvm_display"               =>  "ชนิดหน้าจอสำหรับ MMDVM",
+  "mmdvm_display"               =>  "หน้าจอ MMDVM",
   "mode_hangtime"               =>  "Hangtime",
   // Config Page - General Configuration
   "node_call"                   =>  "นามเรียกขานของสถานี",
@@ -99,7 +99,7 @@ $lang = array (
   // Config Page - Password
   "user"                        =>  "ชื่อผู้ใช้",
   "password"                    =>  "รหัสผ่าน",
-  "set_password"                =>  "ตั้งรหัสผ่าน",
+  "set_password"                =>  "ยืนยัน",
   // Dashboard Front Page - Repeater Info Pannel
   "modes_enabled"               =>  "โหมดที่เปิดใช้งาน",
   "net_status"                  =>  "สถานะเครือข่าย",
@@ -107,22 +107,22 @@ $lang = array (
   "radio_info"                  =>  "ข้อมูลวิทยุ",
   "dstar_repeater"              =>  "รีพีทเตอร์ D-Star",
   "dstar_net"                   =>  "เครือข่าย D-Star",
-  "dmr_repeater"                =>  "DMR Repeater",
+  "dmr_repeater"                =>  "รีพีทเตอร์ DMR",
   "dmr_master"                  =>  "DMR Master",
-  "ysf_net"                     =>  "YSF Network",
-  "p25_radio"                   =>  "P25 Radio",
-  "p25_net"                     =>  "P25 Network",
-  "nxdn_radio"                  =>  "NXDN Radio",
-  "nxdn_net"                    =>  "NXDN Network",
+  "ysf_net"                     =>  "เครือข่าย YSF",
+  "p25_radio"                   =>  "วิทยุ P25",
+  "p25_net"                     =>  "เครือข่าย P25",
+  "nxdn_radio"                  =>  "วิทยุ NXDN",
+  "nxdn_net"                    =>  "เครือข่าย NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "เวลา",
   "mode"                        =>  "โหมด",
   "callsign"                    =>  "นามเรียกขาน",
   "target"                      =>  "เป้าหมาย",
-  "src"                         =>  "จาก",        // Short version of "Source"
-  "dur"                         =>  "ถึง",        // Short version of "Duration"
-  "loss"                        =>  "สัญญาณเน็ตสูญเสีย",
-  "ber"                         =>  "อัตราความผิดพลาด",        // Short version of "Bit Error Rate"
+  "src"                         =>  "สัญญาณจาก",        // Short version of "Source"
+  "dur"                         =>  "ระยะเวลา",        // Short version of "Duration"
+  "loss"                        =>  "สัญญาณสูญเสีย",
+  "ber"                         =>  "สัญญาณผิดพลาด",        // Short version of "Bit Error Rate"
   // Dashboard - Extra Info
   "group"                       =>  "กลุ่ม",
   "logoff"                      =>  "ออกจากระบบ",
