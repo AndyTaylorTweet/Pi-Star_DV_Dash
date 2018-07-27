@@ -2,7 +2,7 @@
 //
 // Thai TH Language Pack
 // Napont Kitiwiriyakul (E24YUJ)
-// Updated: 23July2018
+// Updated: 27July2018
 //
 $lang = array (
   // Banner texts
