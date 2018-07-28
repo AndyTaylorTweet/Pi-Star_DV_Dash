@@ -512,6 +512,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set the POCSAG Server
+	if (isset($configdapnetgw['DAPNET']['Address'])) { unset($configdapnetgw['DAPNET']['Address']); }
 	if (empty($_POST['pocsagServer']) != TRUE ) {
 	  $configdapnetgw['DAPNET']['Address'] = escapeshellcmd($_POST['pocsagServer']);
 	}
