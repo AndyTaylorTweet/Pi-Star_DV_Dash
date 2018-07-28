@@ -3290,6 +3290,8 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <td align="left"><a class="tooltip2" href="#">POCSAG Server:<span><b>POCSAG Server</b>Set the POCSAG Network<br /> here</span></a></td>
 	<td style="text-align: left;"><select name="pocsagServer">
         	<option value="<?php echo $configdapnetgw['DAPNET']['Address'];?>" selected="selected"><?php echo $configdapnetgw['DAPNET']['Address'];?></option>
+		<option value="dapnet.afu.rwth-aachen.de">dapnet.afu.rwth-aachen.de</option>
+		<option value="node1.dapnet-italia.it">node1.dapnet-italia.it</option>
 		</select></td>
       </tr>
       <tr>
