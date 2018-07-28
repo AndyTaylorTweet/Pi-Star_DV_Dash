@@ -37,7 +37,7 @@ if (!file_exists('/etc/dapnetapi.key')) {
 	exec('sudo mount -o remount,rw /');
 	exec('sudo touch /etc/dapnetapi.key');
 	$fp = fopen('/etc/dapnetapi.key', 'a');
-	$fileContent = "[DAPNETAPI]\n"
+	$fileContent = "[DAPNETAPI]\n";
 	fwrite($fp, $fileContent);
 }
 
