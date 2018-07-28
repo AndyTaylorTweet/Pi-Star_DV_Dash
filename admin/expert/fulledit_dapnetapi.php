@@ -39,8 +39,10 @@ if (file_exists('/etc/dapnetapi.key')) {
 } else {
 	exec('sudo touch /tmp/jsADGHwf9sj294.tmp');
 	exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
-	$fileContent = '[DAPNETAPI]'.PHP_EOL;
-	file_put_contents('/tmp/jsADGHwf9sj294.tmp', $fileContent);
+	exec('echo "[DAPNETAPI]" > /tmp/jsADGHwf9sj294.tmp');
+	exec('echo "USER=" >> /tmp/jsADGHwf9sj294.tmp');
+	exec('echo "PASS=" >> /tmp/jsADGHwf9sj294.tmp');
+	exec('echo "TRXAREA=" >> /tmp/jsADGHwf9sj294.tmp');
 }
 
 //Do some file wrangling...
