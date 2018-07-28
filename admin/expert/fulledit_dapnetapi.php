@@ -33,16 +33,17 @@ require_once('../config/version.php');
 
 <?php
 // Make the bare config if we dont have one
-if (!file_exists('/etc/dapnetapi.key')) {
-	exec('sudo mount -o remount,rw /');
-	exec('sudo touch /etc/dapnetapi.key');
+if (file_exists('/etc/dapnetapi.key')) {
+	exec('sudo cp /etc/dapnetapi.key /tmp/jsADGHwf9sj294.tmp');
+	exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
+} else {
+	exec('sudo touch /tmp/jsADGHwf9sj294.tmp');
+	exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
 	$fileContent = '[DAPNETAPI]'.PHP_EOL;
-	file_put_contents('/etc/dapnetapi.key', $fileContent);
+	file_put_contents('/tmp/jsADGHwf9sj294.tmp', $fileContent);
 }
 
 //Do some file wrangling...
-exec('sudo cp /etc/dapnetapi.key /tmp/jsADGHwf9sj294.tmp');
-exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
 exec('sudo chmod 664 /tmp/jsADGHwf9sj294.tmp');
 
 //ini file to open
