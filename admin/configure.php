@@ -3306,11 +3306,11 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 		</select></td>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?> POCSAG:<span><b>POCSAG Callsign</b>Set your paging callsign<br /> here</span></a></td>
+        <td align="left"><a class="tooltip2" href="#">POCSAG <?php echo $lang['node_call'];?>:<span><b>POCSAG Callsign</b>Set your paging callsign<br /> here</span></a></td>
         <td align="left"><input type="text" name="pocsagCallsign" size="13" maxlength="12" value="<?php echo $configdapnetgw['General']['Callsign'];?>" /></td>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_freq'];?> POCSAG:<span><b>POCSAG Frequency</b>Set your paging frequency<br /> here</span></a></td>
+        <td align="left"><a class="tooltip2" href="#">POCSAG <?php echo $lang['radio_freq'];?>:<span><b>POCSAG Frequency</b>Set your paging frequency<br /> here</span></a></td>
         <td align="left"><input type="text" name="pocsagFrequency" size="13" maxlength="12" value="<?php echo number_format($configmmdvm['POCSAG']['Frequency'], 0, '.', '.');?>" /></td>
       </tr>
       <tr>
