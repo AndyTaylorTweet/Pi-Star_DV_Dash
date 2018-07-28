@@ -507,12 +507,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set the POCSAG Whitelist
+	if (isset($configdapnetgw['DAPNET']['WhiteList'])) { unset($configdapnetgw['DAPNET']['WhiteList']); }
 	if (empty($_POST['pocsagWhitelist']) != TRUE ) {
 	  $configdapnetgw['General']['WhiteList'] = preg_replace('/[^0-9\,]/', '', escapeshellcmd($_POST['pocsagWhitelist']));
 	}
 
 	// Set the POCSAG Server
-	if (isset($configdapnetgw['DAPNET']['Address'])) { unset($configdapnetgw['DAPNET']['Address']); }
 	if (empty($_POST['pocsagServer']) != TRUE ) {
 	  $configdapnetgw['DAPNET']['Address'] = escapeshellcmd($_POST['pocsagServer']);
 	}
