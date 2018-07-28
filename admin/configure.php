@@ -3287,6 +3287,12 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
       </tr>
       <tr>
+        <td align="left"><a class="tooltip2" href="#">POCSAG Server:<span><b>POCSAG Server</b>Set the POCSAG Network<br /> here</span></a></td>
+	<td style="text-align: left;"><select name="pocsagServer">
+        	<option value="<?php echo $configdapnetgw['DAPNET']['Address'];?>" selected="selected"><?php echo $configdapnetgw['DAPNET']['Address'];?></option>
+		</select></td>
+      </tr>
+      <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?> POCSAG:<span><b>POCSAG Callsign</b>Set your paging callsign<br /> here</span></a></td>
         <td align="left"><input type="text" name="pocsagCallsign" size="13" maxlength="12" value="<?php echo $configdapnetgw['General']['Callsign'];?>" /></td>
       </tr>
