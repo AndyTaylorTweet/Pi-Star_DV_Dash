@@ -36,7 +36,9 @@ require_once('../config/version.php');
 if (!file_exists('/etc/dapnetapi.key')) {
 	exec('sudo mount -o remount,rw /');
 	exec('sudo touch /etc/dapnetapi.key');
-	exec('sudo echo "[DAPNETAPI]" > /etc/dapnetapi.key');
+	$fp = fopen('/etc/dapnetapi.key', 'a');
+	$fileContent = "[DAPNETAPI]\n"
+	fwrite($fp, $fileContent);
 }
 
 //Do some file wrangling...
