@@ -3311,6 +3311,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <td align="left"><a class="tooltip2" href="#">DAPNET AuthKey:<span><b>DAPNET AuthKey</b>Set your DAPNET AuthKey<br /> here</span></a></td>
         <td align="left"><input type="password" name="pocsagAuthKey" size="30" maxlength="50" value="<?php echo $configdapnetgw['DAPNET']['AuthKey'];?>" /></td>
       </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#">DAPNET Whitelist:<span><b>DAPNET Whitelist</b>Set your DAPNET RICs<br /> here</span></a></td>
+        <td align="left"><input type="text" name="pocsagWhitelist" size="30" maxlength="50" value="<?php echo $configdapnetgw['General']['WhiteList'];?>" /></td>
+      </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>	
