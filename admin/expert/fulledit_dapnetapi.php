@@ -32,6 +32,12 @@ require_once('../config/version.php');
   <div class="contentwide">
 
 <?php
+// Make the bare config if we dont have one
+if (!file_exists('/etc/dapnetapi.key')) {
+	exec('sudo mount -o remount,rw /');
+	exec('sudo echo "[DAPNETAPI]\nUSER=\nPASS=TRXAREA=\n" > /etc/dapnetapi.key');
+}
+
 //Do some file wrangling...
 exec('sudo cp /etc/dapnetapi.key /tmp/jsADGHwf9sj294.tmp');
 exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
