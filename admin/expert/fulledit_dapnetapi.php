@@ -35,7 +35,8 @@ require_once('../config/version.php');
 // Make the bare config if we dont have one
 if (!file_exists('/etc/dapnetapi.key')) {
 	exec('sudo mount -o remount,rw /');
-	exec('echo "[DAPNETAPI]\nUSER=\nPASS=TRXAREA=\n" > /tmp/jsADGHwf9sj294.tmp');
+	exec('sudo touch /etc/dapnetapi.key');
+	exec('echo "[DAPNETAPI]\nUSER=\nPASS=TRXAREA=\n" > /etc/dapnetapi.key');
 }
 
 //Do some file wrangling...
