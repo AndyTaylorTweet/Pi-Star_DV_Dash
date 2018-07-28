@@ -503,7 +503,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	
 	// Set the POCSAG Callsign
 	if (empty($_POST['pocsagCallsign']) != TRUE ) {
-		$configdapnetgw['General']['Callsign'] = strtoupper(escapeshellcmd($_POST['pocsagCallsign']));
+	  $configdapnetgw['General']['Callsign'] = strtoupper(escapeshellcmd($_POST['pocsagCallsign']));
+	}
+
+	// Set the POCSAG Server
+	if (empty($_POST['pocsagServer']) != TRUE ) {
+	  $configdapnetgw['DAPNET']['Address'] = escapeshellcmd($_POST['pocsagServer']);
 	}
 
 	// Set the Frequency for Duplex
