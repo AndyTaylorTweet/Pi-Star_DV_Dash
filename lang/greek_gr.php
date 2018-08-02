@@ -94,7 +94,7 @@ $lang = array (
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Πρόσβαση στον Πίνακα Ελέγχου",
-  "fw_irc"                      =>  "Απομακρυσμένος ircDDGBateway",
+  "fw_irc"                      =>  "Απομακρυσμένος ircDDBGateway",
   "fw_ssh"                      =>  "Πρόσβαση SSH",
   // Config Page - Password
   "user"                        =>  "Ονομα Χρήστη",
