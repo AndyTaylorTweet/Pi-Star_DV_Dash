@@ -94,7 +94,7 @@ $lang = array (
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "การเข้าถึงแผงควบคุม",
-  "fw_irc"                      =>  "การเข้าถึง ircDDGBateway",
+  "fw_irc"                      =>  "การเข้าถึง ircDDBGateway",
   "fw_ssh"                      =>  "การเข้าถึง SSH",
   // Config Page - Password
   "user"                        =>  "ชื่อผู้ใช้",
