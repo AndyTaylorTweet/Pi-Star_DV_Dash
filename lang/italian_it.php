@@ -94,7 +94,7 @@ $lang = array (
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Accesso Cruscotto",
-  "fw_irc"                      =>  "ircDDGBateway Remote",
+  "fw_irc"                      =>  "ircDDBGateway Remote",
   "fw_ssh"                      =>  "Accesso SSH",
   // Config Page - Password
   "user"                        =>  "Nome Utente",
