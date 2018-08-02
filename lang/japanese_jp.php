@@ -94,7 +94,7 @@ $lang = array (
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "ダッシュボード　アクセス",
-  "fw_irc"                      =>  "ircDDGBateway リモート",
+  "fw_irc"                      =>  "ircDDBGateway リモート",
   "fw_ssh"                      =>  "SSH アクセス",
   // Config Page - Password
   "user"                        =>  "ユーザー名",
