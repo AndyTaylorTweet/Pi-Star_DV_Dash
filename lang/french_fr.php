@@ -94,7 +94,7 @@ $lang = array (
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Acc&egrave;s Console",
-  "fw_irc"                      =>  "Commande &agrave; distance ircDDGBateway",
+  "fw_irc"                      =>  "Commande &agrave; distance ircDDBGateway",
   "fw_ssh"                      =>  "Acc&egrave;s SSH",
   // Config Page - Password
   "user"                        =>  "Nom d'utilisateur",
