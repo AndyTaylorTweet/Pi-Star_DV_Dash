@@ -93,7 +93,7 @@ $lang = array (
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Dashboard toegang",
-  "fw_irc"                      =>  "ircDDGBateway op afstand",
+  "fw_irc"                      =>  "ircDDBGateway op afstand",
   "fw_ssh"                      =>  "SSH toegang",
   // Config Page - Password
   "user"                        =>  "Gebruikersnaam",
