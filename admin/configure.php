@@ -1704,6 +1704,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			$confignxdngateway['Network']['HostsFile1'] = $confignxdngateway['Network']['HostsFile'];
 			$confignxdngateway['Network']['HostsFile2'] = "/usr/local/etc/NXDNHostsLocal.txt";
 			unset($confignxdngateway['Network']['HostsFile']);
+			if (!file_exists('/usr/local/etc/NXDNHostsLocal.txt')) { exec('sudo touch /usr/local/etc/NXDNHostsLocal.txt'); }
 		}
 		$configmmdvm['NXDN Network']['LocalAddress'] = "127.0.0.1";
 		$configmmdvm['NXDN Network']['LocalPort'] = "14021";
