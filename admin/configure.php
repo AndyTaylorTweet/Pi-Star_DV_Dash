@@ -1700,6 +1700,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	
 	// Clean up for NXDN Gateway
 	if (file_exists('/etc/nxdngateway')) {
+		if (isset($configmmdvm['NXDN Network']['HostsFile'])) {
+			$configmmdvm['NXDN Network']['HostsFile1'] = $configmmdvm['NXDN Network']['HostsFile'];
+			unset($configmmdvm['NXDN Network']['HostsFile']);
+		}
 		$configmmdvm['NXDN Network']['LocalAddress'] = "127.0.0.1";
 		$configmmdvm['NXDN Network']['LocalPort'] = "14021";
 		$configmmdvm['NXDN Network']['GatewayAddress'] = "127.0.0.1";
