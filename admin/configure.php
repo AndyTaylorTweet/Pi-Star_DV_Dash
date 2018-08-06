@@ -3149,17 +3149,6 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 }
         }
         fclose($nxdnHosts);
-	if (file_exists('/usr/local/etc/NXDNHostsLocal.txt')) {
-		$nxdnHosts2 = fopen("/usr/local/etc/NXDNHostsLocal.txt", "r");
-		while (!feof($nxdnHosts2)) {
-                	$nxdnHostsLine2 = fgets($nxdnHosts2);
-                	$nxdnHost2 = preg_split('/\s+/', $nxdnHostsLine2);
-                	if ((strpos($nxdnHost2[0], '#') === FALSE ) && ($nxdnHost2[0] != '')) {
-                	       	if ($testNXDNHost == $nxdnHost2[0]) { echo "      <option value=\"$nxdnHost2[0]\" selected=\"selected\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
-                	       	else { echo "      <option value=\"$nxdnHost2[0]\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
-                	}
-		}
-	fclose($nxdnHosts2);
 ?>
         </select></td>
       </tr>
