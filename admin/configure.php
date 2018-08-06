@@ -3287,7 +3287,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
                 		$nxdnHost2 = preg_split('/\s+/', $nxdnHostsLine2);
                 		if ((strpos($nxdnHost2[0], '#') === FALSE ) && ($nxdnHost2[0] != '')) {
                 	        	if ($testNXDNHost == $nxdnHost2[0]) { echo "      <option value=\"$nxdnHost2[0]\" selected=\"selected\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
-                	        	else { echo "      <option value=\"$nxdnHost2[0]\">$ndxnHost2[0] - $nxdnHost2[1]</option>\n"; }
+                	        	else { echo "      <option value=\"$nxdnHost2[0]\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
                 		}
 			}
 		fclose($nxdnHosts2);
