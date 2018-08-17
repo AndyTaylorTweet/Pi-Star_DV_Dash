@@ -1044,6 +1044,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (escapeshellcmd($_POST['dmrDumpTAData']) == 'OFF' ) { $configmmdvm['DMR']['DumpTAData'] = "0"; }
 	}
 
+	// Set the DMR+ DMRGateway Master On or Off
+	if (empty($_POST['dmrMasterHost2En']) != TRUE ) {
+	  if (escapeshellcmd($_POST['dmrMasterHost2En']) == 'ON' ) { $configdmrgateway['DMR Network 2']['Enabled'] = "1"; }
+	  if (escapeshellcmd($_POST['dmrMasterHost2En']) == 'OFF' ) { $configdmrgateway['DMR Network 2']['Enabled'] = "0"; }
+	}
+
 	// Set the XLX DMRGateway Master On or Off
 	if (empty($_POST['dmrGatewayXlxEn']) != TRUE ) {
 	  if (escapeshellcmd($_POST['dmrGatewayXlxEn']) == 'ON' ) { $configdmrgateway['XLX Network 1']['Enabled'] = "1"; $configdmrgateway['XLX Network']['Enabled'] = "1"; }
@@ -2665,6 +2671,7 @@ else:
 	<div><b><?php echo $lang['dmr_config'];?></b></div>
     <input type="hidden" name="dmrEmbeddedLCOnly" value="OFF" />
     <input type="hidden" name="dmrDumpTAData" value="OFF" />
+    <input type="hidden" name="dmrMasterHost2En" value="OFF" />
     <input type="hidden" name="dmrGatewayXlxEn" value="OFF" />
     <input type="hidden" name="dmrDMRnetJitterBufer" value="OFF" />
     <table>
@@ -2741,6 +2748,13 @@ else:
     Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="<?php if (isset($configdmrgateway['DMR Network 2']['Options'])) { echo $configdmrgateway['DMR Network 2']['Options']; } ?>" />
     </td>
     </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR+ Master Enable:<span><b>DMR+ Master Enable</b></span></a></td>
+    <td align="left">
+    <?php
+    if ((isset($configdmrgateway['DMR Network 2']['Enabled'])) && ($configdmrgateway['DMR Network 2']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrMasterHost2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrMasterHost2En\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrMasterHost2En\"></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrMasterHost2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrMasterHost2En\" value=\"ON\" /><label for=\"toggle-dmrMasterHost2En\"></label></div>\n"; } ?>
+    </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your prefered XLX<br /> master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost3">
