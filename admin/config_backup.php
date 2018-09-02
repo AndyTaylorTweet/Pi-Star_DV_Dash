@@ -99,7 +99,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	    else {
 		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
 	    }
-            header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
             header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
