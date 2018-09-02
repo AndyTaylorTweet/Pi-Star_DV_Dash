@@ -94,7 +94,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
 	    if ($hostNameInfo != "pi-star") {
-		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$hostNameInfo_$local_time.zip").'"');
+		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_".$hostNameInfo."_".$local_time.".zip").'"');
 	    }
 	    else {
 		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
