@@ -54,6 +54,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output = "Finding config files to be backed up\n";
           $backupDir = "/tmp/config_backup";
           $backupZip = "/tmp/config_backup.zip";
+	  $hostNameInfo = exec('cat /etc/hostname');
           
           $output .= shell_exec("sudo rm -rf $backupZip 2>&1");
           $output .= shell_exec("sudo rm -rf $backupDir 2>&1");
@@ -92,6 +93,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             $local_time = $dt->format('d-M-Y');
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
+	    if ($hostNameInfo != "pi-star") {
+		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$hostNameInfo_$local_time.zip").'"');
+	    }
+	    else {
+		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
+	    }
             header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
             header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
