@@ -35,6 +35,12 @@ if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
 
+// Load the dapnet gateway (POCSAG) config file
+if (file_exists('/etc/dapnetgateway')) {
+	$dapnetGatewayConfigFile = '/etc/dapnetgateway';
+	if (fopen($dapnetGatewayConfigFile,'r')) { $configdapnetgateway = parse_ini_file($dapnetGatewayConfigFile, true); }
+}
+
 // Load the ysf2dmr config file
 if (file_exists('/etc/ysf2dmr')) {
 	$ysf2dmrConfigFile = '/etc/ysf2dmr';
@@ -67,6 +73,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("D-Star", $mmdvmconfigs);?><?php showMode("DMR", $mmdvmconfigs);?></tr>
   <tr><?php showMode("System Fusion", $mmdvmconfigs);?><?php showMode("P25", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF XMode", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("POCSAG", $mmdvmconfigs);?><td style="background:#606060; width:50%;">&nbsp;</td></tr>
 </table>
 <br />
 
@@ -77,6 +84,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?><?php showMode("YSF2P25 Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("DMR2NXDN Network", $mmdvmconfigs);?><?php showMode("DMR2YSF Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("POCSAG Network", $mmdvmconfigs);?><td style="background:#606060; width:50%;">&nbsp;</td></tr>
 </table>
 <br />
 
@@ -303,4 +311,34 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	}
 	echo "</table>\n";
 }
+
+$testMMDVModePOCSAG1 = getConfigItem("POCSAG", "Enable", $mmdvmconfigs);
+$testMMDVModePOCSAG2 = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
+if (($testMMDVModePOCSAG1 == 1) && ($testMMDVModePOCSAG2 == 1 )) {
+
+  $pocsagFrequencyCfg = getMHZ(getConfigItem("POCSAG", "Frequency", $mmdvmconfigs));
+  if ( isset($pocsagFrequencyCfg) ) {
+    $pocsagFrequencyDisplay = getMHZ(str_replace(".", "", $pocsagFrequencyCfg));
+  } else {
+    $pocsagFrequencyDisplay = "<em>Error</em>";
+  }
+
+  echo "<br />\n";
+  echo "<table>\n";
+  echo "<tr><th colspan=\"2\">POCSAG Paging</th></tr>\n";
+  echo "<tr><th>Tx</th><td style=\"background: #ffffff;\">" . $pocsagFrequencyDisplay . "</td></tr>";
+  if (isset($configdapnetgateway['General']['Callsign'])) {
+      echo "<tr><th>Callsign</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configdapnetgateway['General']['Callsign'])."</td></tr>\n";
+  }
+  if (isset($configdapnetgateway['General']['WhiteList'])) {
+    $whitelistedRics = explode(",", $configdapnetgateway['General']['WhiteList']);
+    echo "<tr><th>Whitelist</th><td style=\"background: #ffffff; text-align: center;\">";
+    foreach($whitelistedRics as $currentRic) {
+      echo sprintf("%07d", trim($currentRic)) . "<br/>";
+    }
+    echo "</td></tr>\n";
+  }
+  echo "</table>\n";
+}
+
 ?>

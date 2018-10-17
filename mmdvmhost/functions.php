@@ -47,6 +47,18 @@ function getNXDNGatewayConfig() {
 	return $conf;
 }
 
+function getDapnetGatewayConfig() {
+  // loads "etc/dapnetgateway" config file into array for further use
+  $conf = array();
+  if ($configs = @fopen('/etc/dapnetateway', 'r')) {
+    while ($config = fgets($configs)) {
+      array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+    }
+    fclose($configs);
+  }
+  return $conf;
+}
+
 // Not used - to be removed
 //function getCallsign($mmdvmconfigs) {
 //	// returns Callsign from MMDVM-config
@@ -103,6 +115,15 @@ function showMode($mode, $mmdvmconfigs) {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
 		}
+    elseif (($mode == "POCSAG") || ($mode == "POCSAG Network")) {
+      if (getEnabled("POCSAG", $mmdvmconfigs) == 1) {
+        if (isProcessRunning("DAPNETGateway")) {
+          echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+        } else {
+          echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+        }
+      }
+    }
 		elseif ($mode == "DMR Network") {
 			if (getConfigItem("DMR Network", "Address", $mmdvmconfigs) == '127.0.0.1') {
 				if (isProcessRunning("DMRGateway")) {
@@ -120,7 +141,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 		else {
-			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN") {
+			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG" ) {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 				} else {
@@ -164,16 +185,25 @@ function showMode($mode, $mmdvmconfigs) {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
 		}
 	}
+  /*
+  elseif ( ($mode == "POCSAG Network") && (getEnabled("POCSAG Network", $mmdvmconfigs) == 1) ) {
+		if (isProcessRunning("DAPNETGateway")) {
+			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+		} else {
+			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+		}
+	}
+  */
 	elseif ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("DMR2YSF")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
 		}
-	}
+  }
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
-    }
+  }
     $mode = str_replace("System Fusion", "YSF", $mode);
     $mode = str_replace("Network", "Net", $mode);
     if (strpos($mode, 'YSF2') > -1) { $mode = str_replace(" Net", "", $mode); }
@@ -274,6 +304,10 @@ function getNXDNGatewayLog() {
         return array_filter($logLines);
 }
 
+function getDAPNETGatewayLog() {
+  //TODO: Ben Horan <benh@geeksforhire.com.au> 2018-10-17
+  //TODO: Write log parser for DAPNETGateway log in tmp folder (extract RICs and recent Tx'd msgs for Dashboard display)
+}
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
@@ -516,7 +550,7 @@ function getHeardList($logLines) {
 						break;
 					case "POCSAG":
 						$pocsagduration	= "";
-						break;						
+						break;
 				}
 			}
 		}
@@ -631,7 +665,7 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
         $local_tz = new DateTimeZone(date_default_timezone_get ());
         $listElem = $metaLastHeard[0];
         $timestamp = new DateTime($listElem[0], $utc_tz);
-        $timestamp->setTimeZone($local_tz); 
+        $timestamp->setTimeZone($local_tz);
         $mode = $listElem[1];
 	if (startsWith($mode, "DMR")) {
 		$mode = "DMR";
@@ -729,7 +763,7 @@ function getDSTARLinks() {
 				$linkDest	= $linx[4][0];
 				$linkDir	= $linx[5][0];
 			}
-// Dongle-Link, sample: 
+// Dongle-Link, sample:
 // 2011-09-24 07:26:59: DPlus link - Type: Dongle User: DC1PIA	Dir: Incoming
 // 2012-03-14 21:32:18: DPlus link - Type: Dongle User: DC1PIA Dir: Incoming
 			if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*User: (.{6,8}).*Dir: (.*)$/',$linkLine,$linx) > 0){
@@ -821,7 +855,7 @@ function getActualLink($logLines, $mode) {
 	// M: 0000-00-00 00:00:00.000 Opening YSF network connection
 	// M: 0000-00-00 00:00:00.000 Automatic (re-)connection to 16710 - "GB SOUTH WEST   "
 	// M: 0000-00-00 00:00:00.000 Automatic (re-)connection to FCS00290
-	// M: 0000-00-00 00:00:00.000 Linked to GB SOUTH WEST   
+	// M: 0000-00-00 00:00:00.000 Linked to GB SOUTH WEST
 	// M: 0000-00-00 00:00:00.000 Linked to FCS002-90
 	// M: 0000-00-00 00:00:00.000 Disconnect via DTMF has been requested by M1ABC
 	// M: 0000-00-00 00:00:00.000 Connect to 00003 - "YSF2NXDN        " has been requested by M1ABC
@@ -1030,6 +1064,7 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 		//$NXDNGatewayconfigs = getNXDNGatewayConfig();
 		$logLinesNXDNGateway = getNXDNGatewayLog();
 		//$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
+
 	}
 }
 ?>

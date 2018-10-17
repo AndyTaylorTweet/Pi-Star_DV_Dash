@@ -7,6 +7,7 @@
     <th><a class=tooltip href="#">timeserver<span><b>timeserver</b></span></th>
     <th><a class=tooltip href="#">pistar-watchdog<span><b>pistar-watchdog</b></span></th>
     <th><a class=tooltip href="#">pistar-keeper<span><b>pistar-keeper</b></span></th>
+    <th><a class=tooltip href="#">DAPNETGateway<span><b>DAPNETGateway</b></span></th>
   </tr>
   <tr>
     <td><?php exec ("pgrep dstarrepeaterd", $dstarrepeaterpid); if (!empty($dstarrepeaterpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
@@ -15,6 +16,7 @@
     <td><?php exec ("pgrep timeserverd", $timeserverpid); if (!empty($timeserverpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
     <td><?php exec ("pgrep -f -a /usr/local/sbin/pistar-watchdog | sed '/pgrep/d'", $watchdogpid); if (!empty($watchdogpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
     <td><?php exec ("pgrep -f -a /usr/local/sbin/pistar-keeper | sed '/pgrep/d'", $keeperpid); if (!empty($keeperpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
+    <td><?php exec ("pgrep -f -a /usr/local/bin/DAPNETGateway | sed '/pgrep/d'", $keeperpid); if (!empty($keeperpid)) { echo "<img src=\"images/20green.png\">"; } else { echo "<img src=\"images/20red.png\">"; } ?></td>
   </tr>
 </table>
 <br />
