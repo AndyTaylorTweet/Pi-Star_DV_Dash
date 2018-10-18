@@ -158,6 +158,10 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '  $("#lastHerd").load("/mmdvmhost/lh.php",function(){ setTimeout(reloadLastHerd,1500) });'."\n";
 	echo '}'."\n";
 	echo 'setTimeout(reloadLastHerd,1500);'."\n";
+  echo 'function reloadDapnetTx(){'."\n";
+	echo '  $("#dapnetTxs").load("/mmdvmhost/dapnetTx.php",function(){ setTimeout(reloadDapnetTx,1500) });'."\n";
+	echo '}'."\n";
+	echo 'setTimeout(reloadDapnetTx,1500);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
 	echo '<div id="lastHerd">'."\n";
@@ -167,7 +171,10 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '<div id="localTxs">'."\n";
 	include 'mmdvmhost/localtx.php';				// MMDVMDash Local Trasmissions
 	echo '</div>'."\n";
-
+  echo "<br />\n";
+  echo '<div id="dapnetTxs">'."\n";
+  include 'mmdvmhost/dapnetTx.php';				// DAPNET / POCSAG Local Message Trasmissions
+  echo '</div>'."\n";
 
 } elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
         echo '<div class="contentwide">'."\n";
@@ -239,7 +246,7 @@ Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y
 ircDDBGateway Dashboard by Hans-J. Barthen (DL5DI),<br />
 MMDVMDash developed by Kim Huebel (DG9VH), <br />
 Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Facebook Group</a><br />
-or Click <a style="color: #ffffff;" href="https://forum.pistar.uk/" target="_new">here to join the Support Forum</a><br />	
+or Click <a style="color: #ffffff;" href="https://forum.pistar.uk/" target="_new">here to join the Support Forum</a><br />
 Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_new">here</a>.<br />
 </div>
 

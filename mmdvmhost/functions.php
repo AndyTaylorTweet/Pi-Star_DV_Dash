@@ -116,7 +116,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
     elseif (($mode == "POCSAG") || ($mode == "POCSAG Network")) {
-      if (getEnabled("POCSAG", $mmdvmconfigs) == 1) {
+      if ((getEnabled("POCSAG", $mmdvmconfigs) == 1) && (getEnabled("POCSAG Network", $mmdvmconfigs) == 1)) {
         if (isProcessRunning("DAPNETGateway")) {
           echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
         } else {
@@ -185,15 +185,6 @@ function showMode($mode, $mmdvmconfigs) {
 			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
 		}
 	}
-  /*
-  elseif ( ($mode == "POCSAG Network") && (getEnabled("POCSAG Network", $mmdvmconfigs) == 1) ) {
-		if (isProcessRunning("DAPNETGateway")) {
-			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
-		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
-		}
-	}
-  */
 	elseif ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("DMR2YSF")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
@@ -204,8 +195,9 @@ function showMode($mode, $mmdvmconfigs) {
 	else {
 		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
   }
-    $mode = str_replace("System Fusion", "YSF", $mode);
-    $mode = str_replace("Network", "Net", $mode);
+  $mode = str_replace("System Fusion", "YSF", $mode);
+  $mode = str_replace("POCSAG Network", "DAPNET GW", $mode);
+  $mode = str_replace("Network", "Net", $mode);
     if (strpos($mode, 'YSF2') > -1) { $mode = str_replace(" Net", "", $mode); }
     if (strpos($mode, 'DMR2') > -1) { $mode = str_replace(" Net", "", $mode); }
     echo $mode."</td>\n";
@@ -284,29 +276,67 @@ function getP25GatewayLog() {
 }
 
 function getNXDNGatewayLog() {
-        // Open Logfile and copy loglines into LogLines-Array()
-        $logLines = array();
+  // Open Logfile and copy loglines into LogLines-Array()
+  $logLines = array();
 	$logLines1 = array();
 	$logLines2 = array();
-        if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
-		$logPath1 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
-        }
+
+  if (file_exists(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+		  $logPath1 = NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
+		  $logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
+  }
 	$logLines1 = array_filter($logLines1);
-        if (sizeof($logLines1) == 0) {
-                if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
-			$logPath2 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
-                }
-		$logLines2 = array_filter($logLines2);
-        }
+  if (sizeof($logLines1) == 0) {
+      if (file_exists(NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
+			    $logPath2 = NXDNGATEWAYLOGPATH."/".NXDNGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+			    $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
+      }
+	    $logLines2 = array_filter($logLines2);
+  }
 	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
-        return array_filter($logLines);
+  return array_filter($logLines);
 }
 
-function getDAPNETGatewayLog() {
-  //TODO: Ben Horan <benh@geeksforhire.com.au> 2018-10-17
-  //TODO: Write log parser for DAPNETGateway log in tmp folder (extract RICs and recent Tx'd msgs for Dashboard display)
+function getDAPNETGatewayMessageLog() {
+  $logLines = array();
+  $messageLog = array();
+
+  if (file_exists(DAPNETGATEWAYLOGPATH."/".DAPNETGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+		  $logPath = DAPNETGATEWAYLOGPATH."/".DAPNETGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
+		  $logLines = preg_split('/\r\n|\r|\n/', `egrep -H "Sending message" $logPath | cut -d" " -f2,3,8,10,15- | tail -25`);
+
+      // Sample log entry:
+      // M: 2018-10-18 00:32:25.601 Sending message in slot 8 to 0065123, type 6, func Alphanumeric: "VK9ZZZ: Test message 123... Test message 123... Test message 123... Test message"
+      foreach ($logLines as $currentLogLine) {
+        if (strlen($currentLogLine) == 0) {
+          break;
+        }
+
+        $tmpLogData = explode(" ", $currentLogLine);
+
+        $tmpLogElements = count($tmpLogData);
+        $tmpMessageContents = "";
+
+        for ($i = 4; $i < $tmpLogElements; $i++) {
+          if (($i == 4) || ($i == ($tmpLogElements-1))) {
+              $tmpLogData[$i] = str_replace("\"","", $tmpLogData[$i]);
+          }
+          $tmpMessageContents .= $tmpLogData[$i];
+          if ($i < $tmpLogElements) {
+              $tmpMessageContents .= " ";
+          }
+        }
+        // $tmpLogData Array fields:  0 = Date, 1 = Time, 2 = Transmitter TimeSlot, 3 = RIC of Recipient (with trailing comma to be stripped), 4 to ArrLength = Pager message (ending in " to be stripped)
+        $newMessageEntry = array("Date"=> $tmpLogData[0], "Time"=> $tmpLogData[1], "TxTimeSlot"=> $tmpLogData[2], "RIC"=> (str_replace(",", "", $tmpLogData[3])), "Message"=> $tmpMessageContents);
+        array_push($messageLog, $newMessageEntry);
+      }
+  }
+  if (count($messageLog) > 0) {
+      return ($messageLog);
+  }
+  else {
+      return (null);
+  }
 }
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
@@ -1064,7 +1094,9 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 		//$NXDNGatewayconfigs = getNXDNGatewayConfig();
 		$logLinesNXDNGateway = getNXDNGatewayLog();
 		//$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
-
+    //$dapnetMessageLog = getDAPNETGatewayMessageLog();
+    //$reverseDapnetMessageLog = $dapnetMessageLog;
+    //array_multisort($reverseDapnetMessageLog, SORT_DESC);
 	}
 }
 ?>
