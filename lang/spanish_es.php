@@ -124,6 +124,7 @@ $lang = array (
   "loss"                        =>  "Perdida",
   "ber"                         =>  "BER",        //version corta de "Error de bit"
   // POCSAG Specific
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
