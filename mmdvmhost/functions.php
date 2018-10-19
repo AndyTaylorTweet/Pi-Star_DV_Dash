@@ -1072,7 +1072,7 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 		//$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
 	}
 	// Only need these in index.php
-	if (strpos(strpos($_SERVER["PHP_SELF"], 'index.php') !== false) {
+	if (strpos(strpos($_SERVER["PHP_SELF"], 'index.php') !== false)) {
 		$logLinesDAPNETGateway = getDAPNETGatewayLog();
 		//$reverseLogLinesDAPNETGateway = array_reverse(getDAPNETGatewayLog());
 	}
