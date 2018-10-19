@@ -318,6 +318,7 @@ if ( $testMMDVModePOCSAG == 1 ) { //Hide the POCSAG information when POCSAG Netw
 	if (isset($configdapnetgateway['DAPNET']['Address'])) {
 		$dapnetGatewayRemoteAddr = $configdapnetgateway['DAPNET']['Address'];
 		if (strlen($dapnetGatewayRemoteAddr) > 19) { $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 17) . '..'; }
+		echo "<tr><th colspan=\"2\">POCSAG Master</th></tr>\n";
 		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
 	}
 	echo "</table>\n";
