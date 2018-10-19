@@ -123,7 +123,10 @@ $lang = array (
   "src"                         =>  "SRC",  
   "dur"                         =>  "DUR",  
   "loss"                        =>  "Pèrdua",
-  "ber"                         =>  "BER",  
+  "ber"                         =>  "BER",
+  // POCSAG Specific
+  "pocsag_timeslot"             =>  "Time Slot",
+  "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
   "group"                       =>  "Grup",
   "logoff"                      =>  "Finalitzar",
