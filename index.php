@@ -86,6 +86,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'config/config.php';					// MMDVMDash Config
 	include_once 'mmdvmhost/tools.php';				// MMDVMDash Tools
 
+	$mmdvmconfigs = getMMDVMConfig();
 	function getMMDVMConfig() {
 		// loads /etc/mmdvmhost into array for further use
 		$conf = array();
@@ -97,7 +98,6 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		}
 		return $conf;
 	}
-	$mmdvmconfigs = getMMDVMConfig();
 
 	echo '<div class="nav">'."\n";					// Start the Side Menu
 	echo '<script type="text/javascript">'."\n";
