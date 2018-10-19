@@ -10,9 +10,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 <table>
   <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['timeslot'];?><span><b>Message Mode</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['pager_ric'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['message_text'];?><span><b>Message contents</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['pocsag_timeslot'];?><span><b>Message Mode</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['pocsag_ric'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['pocsag_msg'];?><span><b>Message contents</b></span></a></th>
   </tr>
 
 <?php
