@@ -71,6 +71,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("D-Star", $mmdvmconfigs);?><?php showMode("DMR", $mmdvmconfigs);?></tr>
   <tr><?php showMode("System Fusion", $mmdvmconfigs);?><?php showMode("P25", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF XMode", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
