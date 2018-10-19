@@ -303,4 +303,13 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	}
 	echo "</table>\n";
 }
+
+$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
+if ( $testMMDVModePOCSAG == 1 ) { //Hide the POCSAG information when POCSAG Network mode not enabled.
+	echo "<br />\n";
+	echo "<table>\n";
+	echo "<tr><th colspan=\"2\">POCSAG</th></tr>\n";
+	echo "<tr><th style=\"width:70px\">Tx</th><td>".getMHZ(getConfigItem("POCSAG", "Frequency", $mmdvmconfigs))."</td></tr>\n";
+	echo "</table>\n";
+}
 ?>
