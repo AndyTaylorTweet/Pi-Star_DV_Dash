@@ -311,8 +311,9 @@ function getDAPNETGatewayLog() {
                 }
 		$logLines2 = array_filter($logLines2);
         }
-	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
-        return array_filter($logLines);
+	$logLines = $logLines1 + $logLines2;
+	$logLines = array_slice($logLines, -20);
+	return array_filter($logLines);
 }
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
