@@ -16,9 +16,9 @@ if ($isPocsagEnabled) {
     //TODO: Add language internationalisation functionality and language packs rather than hardcoded English labels
 ?>
 
-<b>POCSAG Message Transmission History</b>
+<b>POCSAG Paging Message Tx Activity</b>
 
-<table style="width: 644px;">
+<table>
   <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
     <th><a class="tooltip" href="#">TimeSlot<span><b>Message Mode</b></span></a></th>
