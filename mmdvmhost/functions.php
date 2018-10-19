@@ -1,6 +1,6 @@
 <?php
 function getMMDVMConfig() {
-	// loads MMDVM.ini into array for further use
+	// loads /etc/mmdvmhost into array for further use
 	$conf = array();
 	if ($configs = @fopen(MMDVMINIPATH."/".MMDVMINIFILENAME, 'r')) {
 		while ($config = fgets($configs)) {
@@ -12,7 +12,7 @@ function getMMDVMConfig() {
 }
 
 function getYSFGatewayConfig() {
-	// loads MMDVM.ini into array for further use
+	// loads /etc/ysfgateway into array for further use
 	$conf = array();
 	if ($configs = @fopen(YSFGATEWAYINIPATH."/".YSFGATEWAYINIFILENAME, 'r')) {
 		while ($config = fgets($configs)) {
@@ -24,7 +24,7 @@ function getYSFGatewayConfig() {
 }
 
 function getP25GatewayConfig() {
-	// loads MMDVM.ini into array for further use
+	// loads /etc/p25gateway into array for further use
 	$conf = array();
 	if ($configs = @fopen(P25GATEWAYINIPATH."/".P25GATEWAYINIFILENAME, 'r')) {
 		while ($config = fgets($configs)) {
@@ -36,7 +36,7 @@ function getP25GatewayConfig() {
 }
 
 function getNXDNGatewayConfig() {
-	// loads MMDVM.ini into array for further use
+	// loads /etc/nxdngateway into array for further use
 	$conf = array();
 	if ($configs = @fopen('/etc/nxdngateway', 'r')) {
 		while ($config = fgets($configs)) {
@@ -47,11 +47,17 @@ function getNXDNGatewayConfig() {
 	return $conf;
 }
 
-// Not used - to be removed
-//function getCallsign($mmdvmconfigs) {
-//	// returns Callsign from MMDVM-config
-//	return getConfigItem("General", "Callsign", $mmdvmconfigs);
-//}
+function getDAPNETGatewayConfig() {
+	// loads /etc/dapnetgateway into array for further use
+	$conf = array();
+	if ($configs = @fopen('/etc/dapnetgateway', 'r')) {
+		while ($config = fgets($configs)) {
+			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+		}
+		fclose($configs);
+	}
+	return $conf;
+}
 
 function getConfigItem($section, $key, $configs) {
 	// retrieves the corresponding config-entry within a [section]
@@ -98,6 +104,13 @@ function showMode($mode, $mmdvmconfigs) {
 		}
 		elseif ($mode == "NXDN Network") {
 			if (isProcessRunning("NXDNGateway")) {
+				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			} else {
+				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+			}
+		}
+		elseif ($mode == "DAPNET Network") {
+			if (isProcessRunning("DAPNETGateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
@@ -274,6 +287,26 @@ function getNXDNGatewayLog() {
         return array_filter($logLines);
 }
 
+function getDAPNETGatewayLog() {
+        // Open Logfile and copy loglines into LogLines-Array()
+        $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
+        if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
+		$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath1 | cut -d" " -f2- | tail -n 20`);
+        }
+	$logLines1 = array_filter($logLines1);
+        if (sizeof($logLines1) == 0) {
+                if (file_exists("/var/log/pi-starDAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+			$logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath2 | cut -d" " -f2- | tail -n 20`);
+                }
+		$logLines2 = array_filter($logLines2);
+        }
+	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
+        return array_filter($logLines);
+}
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
