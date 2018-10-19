@@ -11,7 +11,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
   <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['pocsag_timeslot'];?><span><b>Message Mode</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['pocsag_ric'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['pocsag_msg'];?><span><b>Message contents</b></span></a></th>
   </tr>
 
@@ -32,7 +32,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 
   <tr>
     <td style="width: 140px; vertical-align: top; text-align: left;"><?php echo $local_time; ?></td>
-    <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "TS ".$pocsag_timeslot; ?></td>
+    <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "Slot ".$pocsag_timeslot; ?></td>
     <td style="width: 90px; vertical-align: top; text-align: center;"><?php echo $pocsag_ric; ?></td>
     <td style="width: max-content; vertical-align: top; text-align: center; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
   </tr>
