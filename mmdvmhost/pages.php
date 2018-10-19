@@ -19,7 +19,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 
 <?php
   foreach ($logLinesDAPNETGateway as $dapnetMessageEntry) {
-      $utc_time = $dapnetMessageEntry["Date"]." ".substr($dapnetMessageEntry["Time"],0,-4);
+      $utc_time = $dapnetMessageEntry["0"]." ".substr($dapnetMessageEntry["1"],0,-4);
       $utc_tz =  new DateTimeZone('UTC');
       $local_tz = new DateTimeZone(date_default_timezone_get ());
       $dt = new DateTime($utc_time, $utc_tz);
@@ -29,7 +29,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 
   <tr>
     <td style="width: 140px; vertical-align: top; text-align: center;"><?php echo $local_time ?></td>
-    <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "TS ".$dapnetMessageEntry["TxTimeSlot"] ?></td>
+    <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "TS ".$dapnetMessageEntry["6"] ?></td>
     <td style="width: 90px; vertical-align: top; text-align: center;"><?php echo $dapnetMessageEntry["RIC"] ?></td>
     <td style="width: max-content; vertical-align: top; text-align: center; word-wrap: break-word; white-space: normal !important;"><?php echo $dapnetMessageEntry["Message"] ?></td>
     <td style="width: 60px; vertical-align: top; text-align: center;">DAPNET</td>
