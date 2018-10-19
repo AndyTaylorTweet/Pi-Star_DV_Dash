@@ -133,7 +133,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 		else {
-			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN") {
+			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG") {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 				} else {
