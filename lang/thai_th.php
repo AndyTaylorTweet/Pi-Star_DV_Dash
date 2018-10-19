@@ -123,6 +123,9 @@ $lang = array (
   "dur"                         =>  "ระยะเวลา",        // Short version of "Duration"
   "loss"                        =>  "สัญญาณสูญเสีย",
   "ber"                         =>  "สัญญาณผิดพลาด",        // Short version of "Bit Error Rate"
+  // POCSAG Specific
+  "pocsag_timeslot"             =>  "Time Slot",
+  "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
   "group"                       =>  "กลุ่ม",
   "logoff"                      =>  "ออกจากระบบ",
