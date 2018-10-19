@@ -122,6 +122,9 @@ $lang = array (
   "dur"                         =>  "Duur",        // Short version of "Duration"
   "loss"                        =>  "Verlies", 
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
+  // POCSAG Specific
+  "pocsag_timeslot"             =>  "Time Slot",
+  "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
   "group"                       =>  "Groep",
   "logoff"                      =>  "Uitloggen",
