@@ -309,7 +309,7 @@ if ( $testMMDVModePOCSAG == 1 ) { //Hide the POCSAG information when POCSAG Netw
 	echo "<br />\n";
 	echo "<table>\n";
 	echo "<tr><th colspan=\"2\">POCSAG</th></tr>\n";
-	echo "<tr><th style=\"width:70px\">Tx</th><td>".getMHZ(getConfigItem("POCSAG", "Frequency", $mmdvmconfigs))."</td></tr>\n";
+	echo "<tr><th>Tx</th><td>".getMHZ(getConfigItem("POCSAG", "Frequency", $mmdvmconfigs))."</td></tr>\n";
 	echo "</table>\n";
 }
 ?>
