@@ -28,7 +28,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
       $local_time = $dt->format('H:i:s M jS');
       $pocsag_timeslot = $dapnetMessageArr["6"];
       $pocsag_ric = $dapnetMessageArr["8"];
-      $pocsag_msg = $dapnetMessageTxtArr["0"];
+      $pocsag_msg = $dapnetMessageTxtArr["1"];
 ?>
 
   <tr>
