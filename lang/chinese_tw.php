@@ -112,6 +112,12 @@ $lang = array (
   "p25_net"                     =>  "P25 網路",
   "nxdn_radio"                  =>  "NXDN 電台",
   "nxdn_net"                    =>  "NXDN 網路",
+
+  // TODO: Needs experienced language translation
+  "pocsag_paging"               =>  "POCSAG Paging",
+  "dapnet_net"                  =>  "DAPNET Gateway",
+  // TODO: ----
+
   // Dashboard Front Page - Calls
   "time"                        =>  "時間",
   "mode"                        =>  "模式",
@@ -134,6 +140,15 @@ $lang = array (
   "active_starnet_members"      =>  "啟用 Starnet 成員",
   "d-star_link_manager"         =>  "D-Star 連線管理",
   "d-star_link_status"          =>  "D-Star 連線狀態",
-  "service_status"              =>  "服務狀態"
+  "service_status"              =>  "服務狀態",
+  // Dashboard - POCSAG / DAPNET Status and Activity
+
+  // TODO: Needs experienced language translation
+  "dapnet_activity_hdr"         =>  "POCSAG Paging Message Tx Activity",
+  "timeslot"                    =>  "TimeSlot",
+  "pager_ric"                   =>  "Pager RIC",
+  "message_text"                =>  "Message Text",
+  "whitelist"                   =>  "Whitelist"
+  // TODO: ----
 );
 ?>

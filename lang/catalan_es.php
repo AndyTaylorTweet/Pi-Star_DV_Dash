@@ -115,21 +115,26 @@ $lang = array (
   "p25_net"                     =>  "Xarxa P25",
   "nxdn_radio"                  =>  "Radio NXDN",
   "nxdn_net"                    =>  "Xarxa NXDN",
+  // TODO: Needs experienced language translation
+  "pocsag_paging"               =>  "POCSAG Paging",
+  "dapnet_net"                  =>  "DAPNET Gateway",
+  // TODO: ----
+
   // Dashboard Front Page - Calls
   "time"                        =>  "Hora",
   "mode"                        =>  "Mode",
   "callsign"                    =>  "Indicatiu",
   "target"                      =>  "Destí",
-  "src"                         =>  "SRC",  
-  "dur"                         =>  "DUR",  
+  "src"                         =>  "SRC",
+  "dur"                         =>  "DUR",
   "loss"                        =>  "Pèrdua",
-  "ber"                         =>  "BER",  
+  "ber"                         =>  "BER",
   // Dashboard - Extra Info
   "group"                       =>  "Grup",
   "logoff"                      =>  "Finalitzar",
   "info"                        =>  "Informació",
-  "utot"                        =>  "UTOT", 
-  "gtot"                        =>  "GTOT", 
+  "utot"                        =>  "UTOT",
+  "gtot"                        =>  "GTOT",
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Últimes 20 trucades rebudes",
   "local_tx_list"               =>  "Últimes 20 trucades rebudes via radio",
@@ -137,6 +142,15 @@ $lang = array (
   "active_starnet_members"      =>  "Membres actius grup Starnet",
   "d-star_link_manager"         =>  "Gestor d'enllaços D-Star",
   "d-star_link_status"          =>  "Informació d'enllaços D-Star",
-  "service_status"              =>  "Estat del servei"
+  "service_status"              =>  "Estat del servei",
+  // Dashboard - POCSAG / DAPNET Status and Activity
+
+  // TODO: Needs experienced language translation
+  "dapnet_activity_hdr"         =>  "POCSAG Paging Message Tx Activity",
+  "timeslot"                    =>  "TimeSlot",
+  "pager_ric"                   =>  "Pager RIC",
+  "message_text"                =>  "Message Text",
+  "whitelist"                   =>  "Whitelist"
+  // TODO: ----
 );
 ?>

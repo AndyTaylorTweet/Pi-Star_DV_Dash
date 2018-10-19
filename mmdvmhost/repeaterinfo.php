@@ -325,14 +325,14 @@ if (($testMMDVModePOCSAG1 == 1) && ($testMMDVModePOCSAG2 == 1 )) {
 
   echo "<br />\n";
   echo "<table>\n";
-  echo "<tr><th colspan=\"2\">POCSAG Paging</th></tr>\n";
+  echo "<tr><th colspan=\"2\">".$lang['pocsag_paging']."</th></tr>\n";
   echo "<tr><th>Tx</th><td style=\"background: #ffffff;\">" . $pocsagFrequencyDisplay . "</td></tr>";
   if (isset($configdapnetgateway['General']['Callsign'])) {
-      echo "<tr><th>Callsign</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configdapnetgateway['General']['Callsign'])."</td></tr>\n";
+      echo "<tr><th>".$lang['callsign']."</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configdapnetgateway['General']['Callsign'])."</td></tr>\n";
   }
   if (isset($configdapnetgateway['General']['WhiteList'])) {
     $whitelistedRics = explode(",", $configdapnetgateway['General']['WhiteList']);
-    echo "<tr><th>Whitelist</th><td style=\"background: #ffffff; text-align: center;\">";
+    echo "<tr><th>".$lang['whitelist']."</th><td style=\"background: #ffffff; text-align: center;\">";
     foreach($whitelistedRics as $currentRic) {
       echo sprintf("%07d", trim($currentRic)) . "<br/>";
     }

@@ -113,6 +113,8 @@ $lang = array (
   "p25_net"                     =>  "P25 netwerk",
   "nxdn_radio"                  =>  "NXDN Radio",
   "nxdn_net"                    =>  "NXDN netwerk",
+  "pocsag_paging"               =>  "POCSAG Paging",
+  "dapnet_net"                  =>  "DAPNET Gateway",
   // Dashboard Front Page - Calls
   "time"                        =>  "Tijd",
   "mode"                        =>  "Mode",
@@ -120,7 +122,7 @@ $lang = array (
   "target"                      =>  "Doel",
   "src"                         =>  "Bron",        // Short version of "Source"
   "dur"                         =>  "Duur",        // Short version of "Duration"
-  "loss"                        =>  "Verlies", 
+  "loss"                        =>  "Verlies",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // Dashboard - Extra Info
   "group"                       =>  "Groep",
@@ -135,6 +137,12 @@ $lang = array (
   "active_starnet_members"      =>  "Actieve Starnet groepsleden",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Informatie",
-  "service_status"              =>  "Service Status"
+  "service_status"              =>  "Service Status",
+  // Dashboard - POCSAG / DAPNET Status and Activity
+  "dapnet_activity_hdr"         =>  "POCSAG Paging-bericht Tx-activiteit",
+  "timeslot"                    =>  "Tijdslot",
+  "pager_ric"                   =>  "Pager RIC",
+  "message_text"                =>  "Bericht Tekst",
+  "whitelist"                   =>  "Whitelist"
 );
 ?>

@@ -2,7 +2,7 @@
 // Chinese HK (Traditional Chinese characters) Language Pack
 // Translated by Le Peng（BD7KLE）, Email: bd7kle@gmail.com
 //               Yuan Wang（BG3MDO）, Email: bg3mdo@gmail.com
-// Maintained by Yuan Wang（BG3MDO）, Email: bg3mdo@gmail.com 
+// Maintained by Yuan Wang（BG3MDO）, Email: bg3mdo@gmail.com
 // Last update on 03/08/2017
 
 $lang = array (
@@ -114,6 +114,12 @@ $lang = array (
   "p25_net"                     =>  "P25 網絡",
   "nxdn_radio"                  =>  "NXDN 電臺",
   "nxdn_net"                    =>  "NXDN 網絡",
+
+    // TODO: Needs experienced language translation
+    "pocsag_paging"               =>  "POCSAG Paging",
+    "dapnet_net"                  =>  "DAPNET Gateway",
+    // TODO: ----
+      
   // Dashboard Front Page - Calls
   "time"                        =>  "時間",
   "mode"                        =>  "模式",
@@ -136,6 +142,15 @@ $lang = array (
   "active_starnet_members"      =>  "激活 Starnet 組成員",
   "d-star_link_manager"         =>  "D-Star 連接管理器",
   "d-star_link_status"          =>  "D-Star 連接信息",
-  "service_status"              =>  "服務狀態"
+  "service_status"              =>  "服務狀態",
+  // Dashboard - POCSAG / DAPNET Status and Activity
+
+  // TODO: Needs experienced language translation
+  "dapnet_activity_hdr"         =>  "POCSAG Paging Message Tx Activity",
+  "timeslot"                    =>  "TimeSlot",
+  "pager_ric"                   =>  "Pager RIC",
+  "message_text"                =>  "Message Text",
+  "whitelist"                   =>  "Whitelist"
+  // TODO: ----
 );
 ?>

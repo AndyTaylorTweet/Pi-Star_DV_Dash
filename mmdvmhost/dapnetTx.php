@@ -12,18 +12,16 @@ $reverseDapnetMessageLog = $dapnetMessageLog;
 array_multisort($reverseDapnetMessageLog, SORT_DESC);
 
 if ($isPocsagEnabled) {
-    //TODO: Ben Horan <benh@geeksforhire.com.au> 2018-10-20
-    //TODO: Add language internationalisation functionality and language packs rather than hardcoded English labels
 ?>
 
-<b>POCSAG Paging Message Tx Activity</b>
+<b><?php echo $lang['dapnet_activity_hdr'];?></b>
 
 <table>
   <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
-    <th><a class="tooltip" href="#">TimeSlot<span><b>Message Mode</b></span></a></th>
-    <th><a class="tooltip" href="#">Pager RIC<span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
-    <th><a class="tooltip" href="#">Message<span><b>Message contents</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['timeslot'];?><span><b>Message Mode</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['pager_ric'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
+    <th><a class="tooltip" href="#"><?php echo $lang['message_text'];?><span><b>Message contents</b></span></a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Recieved from source</b></span></a></th>
   </tr>
 
@@ -35,8 +33,6 @@ if ($isPocsagEnabled) {
       $dt = new DateTime($utc_time, $utc_tz);
       $dt->setTimeZone($local_tz);
       $local_time = $dt->format('H:i:s M jS');
-      //DEBUG:
-      //echo '<!-- DEBUG:  $utc_time = ' . $utc_time . ', $local_time = ' . $local_time . '-->';
 ?>
 
   <tr>

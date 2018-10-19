@@ -114,6 +114,8 @@ $lang = array (
   "p25_net"                     =>  "P25 Network",
   "nxdn_radio"                  =>  "NXDN Radio",
   "nxdn_net"                    =>  "NXDN Network",
+  "pocsag_paging"               =>  "POCSAG Paging",
+  "dapnet_net"                  =>  "DAPNET Gateway",
   // Dashboard Front Page - Calls
   "time"                        =>  "Ora",
   "mode"                        =>  "Modo",
@@ -136,6 +138,12 @@ $lang = array (
   "active_starnet_members"      =>  "Menbri Attivi Nel Gruppo Starnet",
   "d-star_link_manager"         =>  "Gestione D-Star Link",
   "d-star_link_status"          =>  "Info D-Star Link",
-  "service_status"              =>  "Stato Servizi"
+  "service_status"              =>  "Stato Servizi",
+  // Dashboard - POCSAG / DAPNET Status and Activity
+  "dapnet_activity_hdr"         =>  "POCSAG Attività di Ricerca Messaggi di Paging",
+  "timeslot"                    =>  "Fascia Oraria",
+  "pager_ric"                   =>  "Pager RIC",
+  "message_text"                =>  "Messaggio di testo",
+  "whitelist"                   =>  "Lista bianca"
 );
 ?>

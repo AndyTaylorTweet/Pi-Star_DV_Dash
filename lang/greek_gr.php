@@ -114,6 +114,12 @@ $lang = array (
   "p25_net"                     =>  "Δίκτυο P25",
   "nxdn_radio"                  =>  "Ασύρματος NXDN",
   "nxdn_net"                    =>  "Δίκτυο NXDN",
+
+  // TODO: Needs Greek language translation
+  "pocsag_paging"               =>  "POCSAG Paging",
+  "dapnet_net"                  =>  "DAPNET Gateway",
+  // TODO: ----
+
   // Dashboard Front Page - Calls
   "time"                        =>  "Ωρα",
   "mode"                        =>  "Λειτουργία",
@@ -136,6 +142,15 @@ $lang = array (
   "active_starnet_members"      =>  "Ενεργά Μέλη Ομάδων Starnet",
   "d-star_link_manager"         =>  "Διαχειριστής Ζεύζης D-Star",
   "d-star_link_status"          =>  "Πληροφορίες Ζεύξης D-Star",
-  "service_status"              =>  "Κατάσταση Υπηρεσίας"
+  "service_status"              =>  "Κατάσταση Υπηρεσίας",
+  // Dashboard - POCSAG / DAPNET Status and Activity
+
+  // TODO: Needs Greek language translation
+  "dapnet_activity_hdr"         =>  "POCSAG Paging Message Tx Activity",
+  "timeslot"                    =>  "TimeSlot",
+  "pager_ric"                   =>  "Pager RIC",
+  "message_text"                =>  "Message Text",
+  "whitelist"                   =>  "Whitelist"
+  // TODO: ----
 );
 ?>
