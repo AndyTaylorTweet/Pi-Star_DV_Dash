@@ -13,7 +13,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
     <th><a class="tooltip" href="#"><?php echo $lang['timeslot'];?><span><b>Message Mode</b></span></a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['pager_ric'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['message_text'];?><span><b>Message contents</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Recieved from source</b></span></a></th>
   </tr>
 
 <?php
@@ -36,7 +35,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
     <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "TS ".$pocsag_timeslot; ?></td>
     <td style="width: 90px; vertical-align: top; text-align: center;"><?php echo $pocsag_ric; ?></td>
     <td style="width: max-content; vertical-align: top; text-align: center; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
-    <td style="width: 60px; vertical-align: top; text-align: center;">Net</td>
   </tr>
 
 <?php
