@@ -86,18 +86,18 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'config/config.php';					// MMDVMDash Config
 	include_once 'mmdvmhost/tools.php';				// MMDVMDash Tools
 
-	$mmdvmconfigs = getMMDVMConfig();
-	function getMMDVMConfig() {
-		// loads /etc/mmdvmhost into array for further use
-		$conf = array();
-		if ($configs = @fopen('/etc/mmdvmhost', 'r')) {
-			while ($config = fgets($configs)) {
-				array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-			}
-			fclose($configs);
-		}
-		return $conf;
-	}
+	//$mmdvmconfigs = getMMDVMConfig();
+	//function getMMDVMConfig() {
+	//	// loads /etc/mmdvmhost into array for further use
+	//	$conf = array();
+	//	if ($configs = @fopen('/etc/mmdvmhost', 'r')) {
+	//		while ($config = fgets($configs)) {
+	//			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+	//		}
+	//		fclose($configs);
+	//	}
+	//	return $conf;
+	//}
 
 	echo '<div class="nav">'."\n";					// Start the Side Menu
 	echo '<script type="text/javascript">'."\n";
@@ -181,21 +181,21 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	echo '</div>'."\n";
 	
 	// If POCSAG is enabled, show the information pannel
-	$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
-	if ( $testMMDVModePOCSAG == 1 ) {
-		echo '<script type="text/javascript">'."\n";
-		echo 'function reloadPages(){'."\n";
-		echo '  $("#Pages").load("/mmdvmhost/pages.php",function(){ setTimeout(reloadPages,5000) });'."\n";
-		echo '}'."\n";
-		echo 'setTimeout(reloadPages,5000);'."\n";
-		echo '$(window).trigger(\'resize\');'."\n";
-		echo '</script>'."\n";
-		echo "<br />\n";
-		echo '<div id="Pages">'."\n";
-		include 'mmdvmhost/pages.php';				// POCSAG Messages
-		echo '</div>'."\n";
+	//$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
+	//if ( $testMMDVModePOCSAG == 1 ) {
+	//	echo '<script type="text/javascript">'."\n";
+	//	echo 'function reloadPages(){'."\n";
+	//	echo '  $("#Pages").load("/mmdvmhost/pages.php",function(){ setTimeout(reloadPages,5000) });'."\n";
+	//	echo '}'."\n";
+	//	echo 'setTimeout(reloadPages,5000);'."\n";
+	//	echo '$(window).trigger(\'resize\');'."\n";
+	//	echo '</script>'."\n";
+	//	echo "<br />\n";
+	//	echo '<div id="Pages">'."\n";
+	//	include 'mmdvmhost/pages.php';				// POCSAG Messages
+	//	echo '</div>'."\n";
 		
-	}
+	//}
 
 } elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
         echo '<div class="contentwide">'."\n";
