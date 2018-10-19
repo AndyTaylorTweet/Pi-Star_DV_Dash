@@ -124,6 +124,7 @@ $lang = array (
   "loss"                        =>  "丢失",
   "ber"                         =>  "误码率",    // Short version of "Bit Error Rate"
   // POCSAG Specific
+  "pocsag_list"                 =>  "DAPNET Gateway Activity",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
