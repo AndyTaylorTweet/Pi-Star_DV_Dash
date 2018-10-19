@@ -35,6 +35,10 @@ if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
 
+//Load the dapnetgateway config file
+$dapnetGatewayConfigFile = '/etc/dapnetgateway';
+if (fopen($dapnetGatewayConfigFile,'r')) { $configdapnetgateway = parse_ini_file($dapnetGatewayConfigFile, true); }
+
 // Load the ysf2dmr config file
 if (file_exists('/etc/ysf2dmr')) {
 	$ysf2dmrConfigFile = '/etc/ysf2dmr';
@@ -310,6 +314,11 @@ if ( $testMMDVModePOCSAG == 1 ) { //Hide the POCSAG information when POCSAG Netw
 	echo "<table>\n";
 	echo "<tr><th colspan=\"2\">POCSAG</th></tr>\n";
 	echo "<tr><th>Tx</th><td>".getMHZ(getConfigItem("POCSAG", "Frequency", $mmdvmconfigs))."</td></tr>\n";
+	if (isset($configdapnetgateway['DAPNET']['Address'])) {
+		$dapnetGatewayRemoteAddr = $configdapnetgateway['DAPNET']['Address'];
+		if (strlen($dapnetGatewayRemoteAddr) > 19) { $dapnetGatewayRemoteAddr = substr($dapnetGatewayRemoteAddr, 0, 17) . '..'; }
+		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$dapnetGatewayRemoteAddr."</td></tr>\n";
+	}
 	echo "</table>\n";
 }
 ?>
