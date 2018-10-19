@@ -7,7 +7,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
 ?>
 <b><?php echo $lang['dapnet_activity_hdr'];?></b>
-
 <table>
   <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
@@ -20,6 +19,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
 <?php
   foreach ($logLinesDAPNETGateway as $dapnetMessageLine) {
       $dapnetMessageArr = explode(" ", $dapnetMessageLine);
+      $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
       $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
       $utc_tz =  new DateTimeZone('UTC');
       $local_tz = new DateTimeZone(date_default_timezone_get ());
@@ -28,6 +28,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
       $local_time = $dt->format('H:i:s M jS');
       $pocsag_timeslot = $dapnetMessageArr["6"];
       $pocsag_ric = $dapnetMessageArr["8"];
+      $pocsag_msg = $dapnetMessageTxtArr["0"];
 ?>
 
   <tr>
