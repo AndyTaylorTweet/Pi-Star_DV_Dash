@@ -18,7 +18,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translat
   </tr>
 
 <?php
-  foreach ($reverseDapnetMessageLog as $dapnetMessageEntry) {
+  foreach ($logLinesDAPNETGateway as $dapnetMessageEntry) {
       $utc_time = $dapnetMessageEntry["Date"]." ".substr($dapnetMessageEntry["Time"],0,-4);
       $utc_tz =  new DateTimeZone('UTC');
       $local_tz = new DateTimeZone(date_default_timezone_get ());
