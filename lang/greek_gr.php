@@ -123,6 +123,9 @@ $lang = array (
   "dur"                         =>  "Διάρκεια",    // Short version of "Duration"
   "loss"                        =>  "Απώλεια",
   "ber"                         =>  "Σφάλματα",    // Short version of "Bit Error Rate"
+  // POCSAG Specific
+  "pocsag_timeslot"             =>  "Time Slot",
+  "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
   "group"                       =>  "Ομάδα",
   "logoff"                      =>  "Αποσύνδεση",
