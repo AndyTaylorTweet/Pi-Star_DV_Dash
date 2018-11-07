@@ -1682,8 +1682,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['NXDN Id Lookup']['File'])) { $configmmdvm['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv"; }
 	if (!isset($configmmdvm['NXDN Id Lookup']['Time'])) { $configmmdvm['NXDN Id Lookup']['Time'] = "24"; }
 	if (!isset($configmmdvm['System Fusion']['TXHang'])) { $configmmdvm['System Fusion']['TXHang'] = "3"; }
-	if (!isset($configmmdvm['Lock File']['Enable']}} { $configmmdvm['Lock File']['Enable'] = "0"; }
-	if (!isset($configmmdvm['Lock File']['File']}} { $configmmdvm['Lock File']['File'] = "/tmp/MMDVMHost.lock"; }
+	if (!isset($configmmdvm['Lock File']['Enable'])) { $configmmdvm['Lock File']['Enable'] = "0"; }
+	if (!isset($configmmdvm['Lock File']['File'])) { $configmmdvm['Lock File']['File'] = "/tmp/MMDVMHost.lock"; }
 	if (!isset($configmmdvm['Mobile GPS']['Enable'])) { $configmmdvm['Mobile GPS']['Enable'] = "0"; }
  	if (!isset($configmmdvm['Mobile GPS']['Address'])) { $configmmdvm['Mobile GPS']['Address'] = "127.0.0.1"; }
 	if (!isset($configmmdvm['Mobile GPS']['Port'])) { $configmmdvm['Mobile GPS']['Port'] = "7834"; }
