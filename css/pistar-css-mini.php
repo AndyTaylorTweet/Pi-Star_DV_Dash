@@ -36,7 +36,7 @@ if (file_exists('/etc/pistar-css.ini')) {
 }
 ?>
 .container {
-    width: 820px;
+    width: 100%;
     text-align: left;
     margin: auto;
 }
@@ -57,6 +57,7 @@ body, font {
  }
 
 .nav {
+    display: none;
     float : left;
     margin : 0;
     padding : 3px 3px 3px 3px;
@@ -67,11 +68,11 @@ body, font {
 }
 
 .content {
-    margin : 0 0 0 166px;
-    padding : 1px 5px 5px 5px;
+    padding : 5px 5px 5px 5px;
     color : #<?php echo $textContent; ?>;
     background : #<?php echo $backgroundContent; ?>;
     text-align: center;
+    font-size: 1.4em;
 }
 
 .contentwide {
@@ -79,6 +80,7 @@ body, font {
     color: #<?php echo $textContent; ?>;
     background: #<?php echo $backgroundContent; ?>;
     text-align: center;
+    font-size: 1.4em;
 }
 
 .footer {
