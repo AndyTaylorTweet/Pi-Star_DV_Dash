@@ -149,6 +149,10 @@ else {
 if (getDVModemFirmware()) {
 echo '<tr><th>FW</th><td style="background: #ffffff;">'.getDVModemFirmware().'</td></tr>'."\n";
 } ?>
+<?php
+if (getDVModemTCXOFreq()) {
+echo '<tr><th>TCXO</th><td style="background: #ffffff;">'.getDVModemTCXOFreq().'</td></tr>'."\n";
+} ?>
 </table>
 
 <?php

@@ -382,6 +382,23 @@ function getDVModemFirmware() {
 	return $modemFirmware;
 }
 
+function getDVModemTCXOFreq() {
+	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
+	$logMMDVMPrevious = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
+	$logSearchString = "MMDVM protocol version";
+	$logLine = '';
+	$modemTCXOFreq = 'TCXO';
+
+	$logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMNow." | tail -1");
+	if (!$logLine) { $logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1"); }
+
+	if ($logLine) {
+		$modemTCXOFreq = $logLine;
+		$modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}MHz).*/', "$1", $modemTCXOFreq);
+	}
+	return $modemTCXOFreq;
+}
+
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // M: 2016-04-29 00:15:00.013 D-Star, received network header from DG9VH   /ZEIT to CQCQCQ   via DCS002 S
