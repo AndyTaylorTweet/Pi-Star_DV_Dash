@@ -387,7 +387,7 @@ function getDVModemTCXOFreq() {
 	$logMMDVMPrevious = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
 	$logSearchString = "MMDVM protocol version";
 	$logLine = '';
-	$modemTCXOFreq = 'TCXO';
+	$modemTCXOFreq = '';
 
 	$logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMNow." | tail -1");
 	if (!$logLine) { $logLine = exec("grep \"".$logSearchString."\" ".$logMMDVMPrevious." | tail -1"); }
