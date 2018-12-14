@@ -395,7 +395,7 @@ function getDVModemTCXOFreq() {
 	if ($logLine) {
 		if (strpos($logLine, 'MHz') !== false && strpos($logLine, 'MMDVM_HS') !== false) {
 			$modemTCXOFreq = $logLine;
-			$modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}MHz).*/', "$1", $modemTCXOFreq);
+			$modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}\s{0,1}MHz).*/', "$1", $modemTCXOFreq);
 		}
 	}
 	return $modemTCXOFreq;
