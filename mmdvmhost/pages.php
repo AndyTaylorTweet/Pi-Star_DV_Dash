@@ -34,7 +34,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
     <td style="width: 140px; vertical-align: top; text-align: left;"><?php echo $local_time; ?></td>
     <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "Slot ".$pocsag_timeslot; ?></td>
     <td style="width: 90px; vertical-align: top; text-align: center;"><?php echo $pocsag_ric; ?></td>
-    <td style="width: max-content; vertical-align: top; text-align: center; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
+    <td style="width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
   </tr>
 
 <?php
