@@ -30,7 +30,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
       $pocsag_msg = $dapnetMessageTxtArr["1"];
       // Formatting long messages without spaces
       if (strpos($pocsag_msg, ' ') !== false && strlen($pocsag_msg) >= 45) {
-        $pocsag_msg = chunk_split($pocsag_msg, 45, ' ');
+        $pocsag_msg = wordwrap($pocsag_msg, 45, ' ', true);
       }
 ?>
 
