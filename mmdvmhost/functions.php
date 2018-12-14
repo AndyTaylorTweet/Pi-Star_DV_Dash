@@ -484,6 +484,12 @@ function getHeardList($logLines) {
 				$ber = "??%";
 			}
 
+			// if RF-Packet with no BER reported (e.g. YSF Wires-X commands) then RSSI is in LOSS position
+			if (startsWith($loss,"RSSI")) {
+				$lineTokens[4] = $loss; //move RSSI to the position expected on code below
+				$loss = 'BER: ??%';
+			}
+
 			// if RF-Packet, no LOSS would be reported, so BER is in LOSS position
 			if (startsWith($loss,"BER")) {
 				$ber = substr($loss, 5);
