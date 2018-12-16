@@ -27,7 +27,7 @@ function checkFrequency(){
   var freqRX = document.getElementById('confFREQrx');
   var freqTX = document.getElementById('confFREQtx');
   if(freqTRX){
-    var intFreqTRX = parseFloat(freqTRX); // Swap to float
+    var intFreqTRX = parseFloat(freqTRX.value); // Swap to float
     // TRX Good
     if (144 < intFreqTRX && intFreqTRX < 148)   { confFREQ.style.backgroundColor = goodColor; }
     if (219 < intFreqTRX && intFreqTRX < 225)   { confFREQ.style.backgroundColor = goodColor; }
