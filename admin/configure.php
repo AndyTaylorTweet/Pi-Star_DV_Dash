@@ -201,7 +201,7 @@ $MYCALL=strtoupper($callsign);
 		document.getElementById("confLongitude").value = position.coords.longitude.toFixed(5);
 	}
     </script>
-    <script type="text/javascript" src="/functions.js?version=1.2"></script>
+    <script type="text/javascript" src="/functions.js?version=1.3"></script>
 </head>
 <body>
 <div class="container">
