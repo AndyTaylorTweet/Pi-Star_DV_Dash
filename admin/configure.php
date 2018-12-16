@@ -203,7 +203,7 @@ $MYCALL=strtoupper($callsign);
     </script>
     <script type="text/javascript" src="/functions.js?version=1.3"></script>
 </head>
-<body>
+<body onload="checkFrequency(); return false;">
 <div class="container">
 <div class="header">
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
