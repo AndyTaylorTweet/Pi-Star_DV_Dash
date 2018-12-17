@@ -26,6 +26,7 @@ function checkFrequency(){
   var freqTRX = document.getElementById('confFREQ');
   var freqRX = document.getElementById('confFREQrx');
   var freqTX = document.getElementById('confFREQtx');
+  var freqPOCSAG = document.getElementById('pocsagFrequency');
   if(freqTRX){
     var intFreqTRX = parseFloat(freqTRX.value); // Swap to float
     // TRX Good
@@ -58,5 +59,16 @@ function checkFrequency(){
     // TX Bad
     if (145.8 < intFreqTX && intFreqTX < 146) { confFREQtx.style.backgroundColor = badColor; }
     if (435 < intFreqTX && intFreqTX < 438)   { confFREQtx.style.backgroundColor = badColor; }
+  }
+  if(freqPOCSAG){
+    var intFreqPOCSAG = parseFloat(freqPOCSAG.value); // Swap to float
+    // TX Good
+    if (144 < intFreqPOCSAG && intFreqPOCSAG < 148)   { pocsagFrequency.style.backgroundColor = goodColor; }
+    if (219 < intFreqPOCSAG && intFreqPOCSAG < 225)   { pocsagFrequency.style.backgroundColor = goodColor; }
+    if (420 < intFreqPOCSAG && intFreqPOCSAG < 475)   { pocsagFrequency.style.backgroundColor = goodColor; }
+    if (842 < intFreqPOCSAG && intFreqPOCSAG < 950)   { pocsagFrequency.style.backgroundColor = goodColor; }
+    // TX Bad
+    if (145.8 < intFreqPOCSAG && intFreqPOCSAG < 146) { pocsagFrequency.style.backgroundColor = badColor; }
+    if (435 < intFreqPOCSAG && intFreqPOCSAG < 438)   { pocsagFrequency.style.backgroundColor = badColor; }
   }
 }
