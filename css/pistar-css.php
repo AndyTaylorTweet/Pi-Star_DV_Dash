@@ -144,7 +144,6 @@ table td {
     font-family: "Lucidia Console",Monaco,monospace;
     text-decoration: none;
     border: 1px solid #000000;
-    overflow-x: hidden;
 }
 
 body {
@@ -189,13 +188,18 @@ a.tooltip:hover span {
     position: absolute;
     top: 20px;
     left: 0;
-    width: 200px;
     z-index: 100;
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
     font: 12px Verdana, sans-serif; 
     text-align: left;
+    white-space: nowrap;
+}
+
+th:last-child a.tooltip:hover span {
+    left: auto;
+    right: 0;
 }
 
 a.tooltip span b {
@@ -240,13 +244,14 @@ a.tooltip2:hover span {
     position: absolute;
     top: 20px;
     left: 0;
-    width: 200px;
+    width: 202px;
     z-index: 100;
     color: #000000;
     border:1px solid #000000;
     background: #f7f7f7;
     font: 12px Verdana, sans-serif; 
     text-align: left;
+    white-space: normal;
 }
 
 a.tooltip2 span b {
