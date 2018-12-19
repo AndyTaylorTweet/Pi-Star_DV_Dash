@@ -2817,6 +2817,15 @@ else:
     </td>
     </tr>
     <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Enable:<span><b>DMR+ Network Enable</b></span></a></td>
+    <td align="left">
+    <?php
+    if ((isset($configdmrgateway['DMR Network 2']['Enabled'])) && ($configdmrgateway['DMR Network 2']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-ddmrGatewayNet2En\"></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" /><label for=\"toggle-dmrGatewayNet2En\"></label></div>\n"; } ?>
+    </td></tr>
+    <?php if (isset($configdmrgateway['XLX Network 1']['Startup'])) { ?>
+    <tr>
+    <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your prefered XLX master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost3">
 <?php
@@ -2835,13 +2844,6 @@ else:
 	fclose($dmrMasterFile3);
 ?>
     </select></td></tr>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Enable:<span><b>DMR+ Network Enable</b></span></a></td>
-    <td align="left">
-    <?php
-    if ((isset($configdmrgateway['DMR Network 2']['Enabled'])) && ($configdmrgateway['DMR Network 2']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-ddmrGatewayNet2En\"></label></div>\n"; }
-    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" /><label for=\"toggle-dmrGatewayNet2En\"></label></div>\n"; } ?>
-    </td></tr>
     <?php if (isset($configdmrgateway['XLX Network 1']['Startup'])) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">XLX Startup TG:<span><b>XLX Startup TG</b></span></a></td>
