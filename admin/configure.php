@@ -2816,8 +2816,6 @@ else:
     Options=<input type="text" name="dmrNetworkOptions" size="68" maxlength="100" value="<?php if (isset($configdmrgateway['DMR Network 2']['Options'])) { echo $configdmrgateway['DMR Network 2']['Options']; } ?>" />
     </td>
     </tr>
-    <?php if (isset($configdmrgateway['XLX Network 1']['Startup'])) { ?>
-    <tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_master'];?>:<span><b>XLX Master</b>Set your prefered XLX master here</span></a></td>
     <td style="text-align: left;"><select name="dmrMasterHost3">
