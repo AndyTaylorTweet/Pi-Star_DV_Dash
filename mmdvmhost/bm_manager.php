@@ -110,7 +110,7 @@ if ( $testMMDVModeDMR == 1 ) {
       echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
       echo '<table>
       <tr>
-        <th><a class=tooltip href="#">Tools<span><b>DMR ID</b></span></a></th>
+        <th><a class=tooltip href="#">Tools<span><b>Tools</b></span></a></th>
         <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
         <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
         <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
