@@ -21,7 +21,17 @@ require_once('../config/version.php');
     <meta name="KeyWords" content="Pi-Star" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
+<?php
+if (file_exists('/etc/dstar-radio.mmdvmhost')) {
+?>
     <meta http-equiv="refresh" content="10; URL=/admin/logs/log.php?log=MMDVMHost" />
+<?php
+} elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
+?>
+    <meta http-equiv="refresh" content="10; URL=/admin/logs/log.php?log=DStarRepeater" />
+<?php
+}
+?>
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - Digital Voice Dashboard - Live Logs</title>
@@ -37,7 +47,17 @@ require_once('../config/version.php');
     <tr><td align="center">
       <br />
       Please select the log you want to monitor from the sub menu<br />
+<?php
+if (file_exists('/etc/dstar-radio.mmdvmhost')) {
+?>
       This page will forward to MMDVMHost log in 10 seconds
+<?php
+} elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
+?>
+      This page will forward to DStarRepeater log in 10 seconds
+<?php
+}
+?>
       <br />
       <br />
     </td></tr>
