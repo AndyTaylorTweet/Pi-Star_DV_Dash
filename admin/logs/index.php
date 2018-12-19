@@ -32,7 +32,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 <?php
 }
 ?>
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - Digital Voice Dashboard - Live Logs</title>
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
