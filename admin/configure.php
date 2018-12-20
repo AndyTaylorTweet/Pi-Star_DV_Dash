@@ -22,7 +22,7 @@ $configdstar = array();
 if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
         while ($line1 = fgets($configdstarfile)) {
 		if (strpos($line1, '=') !== false) {
-                	list($key1,$value1) = split("=",$line1);
+                	list($key1,$value1) = preg_split('/=/',$line1);
                 	$value1 = trim(str_replace('"','',$value1));
                 	if (strlen($value1) > 0)
                 	$configdstar[$key1] = $value1;
@@ -36,7 +36,7 @@ $configs = array();
 if ($configfile = fopen($gatewayConfigPath,'r')) {
         while ($line = fgets($configfile)) {
 		if (strpos($line, '=') !== false) {
-                	list($key,$value) = split("=",$line);
+                	list($key,$value) = preg_split('/=/',$line);
                 	$value = trim(str_replace('"','',$value));
                 	if ($key != 'ircddbPassword' && strlen($value) > 0)
                 	$configs[$key] = $value;
