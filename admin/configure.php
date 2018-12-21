@@ -1343,7 +1343,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollModemType);
 	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
 	    $configmmdvm['General']['Duplex'] = 1;
-	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	  }
 
 	  if ( $confHardware == 'mnnano-spot' ) {
