@@ -1110,6 +1110,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	  }
 
+	  if ( $confHardware == 'icomTerminal' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=Icom Access Point\/Terminal Mode" /etc/dstarrepeater';
+	    $rollIcomPort = 'sudo sed -i "/icomPort=/c\\icomPort=/dev/ttyUSB0" /etc/dstarrepeater';
+	    system($rollModemType);
+	    system($rollIcomPort);
+	  }
+
 	  if ( $confHardware == 'dvmpis' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyAMA0" /etc/dstarrepeater';
