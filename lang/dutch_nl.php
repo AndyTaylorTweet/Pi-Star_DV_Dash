@@ -3,6 +3,8 @@
 // Dutch NL Language Pack for Pi-Star translated by Rob van Rheenen P0DIB
 // Updated: 04-Aug-2017
 //
+// 20181230 Lieven De Samblanx ON7LDS
+//
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Digital Voice",
@@ -141,4 +143,17 @@ $lang = array (
   "d-star_link_status"          =>  "D-Star Link Informatie",
   "service_status"              =>  "Service Status"
 );
+
+$lang2 = array (
+  //files page
+  "copyfiles"                   =>  "Kopieer Bestanden",
+  "mount"                       =>  "Koppel",
+  "unmount"                     =>  "Ontkoppel",
+  "tobig"                       =>  "'Pi-Star' map is groter dan ",
+  "copyfailed"                  =>  "Bestanden kopiëren mislukt",
+  "copied"                      =>  "Gekopieerd:",
+  "nodir"                       =>  "Geen 'Pi-Star' map gevonden",
+  "nodrives"                    =>  "Geen USB schijven gevonden"
+);
+
 ?>

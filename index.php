@@ -59,6 +59,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <?php if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
   echo ' <a href="/admin/live_modem_log.php" style="color: #ffffff;">'.$lang['live_logs'].'</a> |'."\n";
   echo ' <a href="/admin/power.php" style="color: #ffffff;">'.$lang['power'].'</a> |'."\n";
+  echo ' <a href="/admin/copy_files.php" style="color: #ffffff;">'.$lang['copyfiles'].'</a> |'."\n";
   echo ' <a href="/admin/update.php" style="color: #ffffff;">'.$lang['update'].'</a> |'."\n";
   } ?>
  <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>

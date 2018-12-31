@@ -120,6 +120,7 @@ function formatSize( $bytes ) {
     <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
     <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
     <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
+    <a href="/admin/copy_files.php" style="color: #ffffff;"><?php echo $lang['copyfiles'];?></a> |
     <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
     <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
   </p>

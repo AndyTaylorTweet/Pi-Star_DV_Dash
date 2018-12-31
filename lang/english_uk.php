@@ -4,6 +4,8 @@
 // Andy Taylor (MW0MWZ)
 // Updated: 02-Aug-2017
 //
+// 20181230 Lieven De Samblanx ON7LDS
+//
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Digital Voice",
@@ -13,6 +15,7 @@ $lang = array (
   "dashboard"                   =>  "Dashboard",
   "admin"                       =>  "Admin",
   "power"                       =>  "Power",
+  "copyfiles"                   =>  "Copy Files",
   "update"                      =>  "Update",
   "backup_restore"              =>  "Backup/Restore",
   "factory_reset"               =>  "Factory Reset",
@@ -141,5 +144,18 @@ $lang = array (
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
   "service_status"              =>  "Service Status"
+);
+
+$lang2 = array(
+  //files page
+  "copyfiles"                   =>  "Copy Files",
+  "mount"                       =>  "Mount",
+  "unmount"                     =>  "Unmount",
+  "tobig"                       =>  "Size of the 'Pi-Star' folder exceeds ",
+  "copyfailed"                  =>  "Copying failed",
+  "copied"                      =>  "Copied:",
+  "nodir"                       =>  "No 'Pi-Star' folder found",
+  "nodrives"                    =>  "No USB disks found"
+
 );
 ?>

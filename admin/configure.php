@@ -213,6 +213,7 @@ $MYCALL=strtoupper($callsign);
  <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
  <a href="/admin/expert/" style="color: #ffffff;">Expert</a> |
  <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
+ <a href="/admin/copy_files.php" style="color: #ffffff;"><?php echo $lang['copyfiles'];?></a> |
  <a href="/admin/update.php" style="color: #ffffff;"><?php echo $lang['update'];?></a> |
  <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
  <a href="javascript:factoryReset();" style="color: #ffffff;"><?php echo $lang['factory_reset'];?></a>
