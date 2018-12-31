@@ -1110,7 +1110,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	  }
 
-	  if ( $confHardware == 'icomTerminal' ) {
+	  if ( $confHardware == 'icomTerminalUSB0' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=Icom Access Point\/Terminal Mode" /etc/dstarrepeater';
 	    $rollIcomPort = 'sudo sed -i "/icomPort=/c\\icomPort=/dev/ttyUSB0" /etc/dstarrepeater';
 	    system($rollModemType);
