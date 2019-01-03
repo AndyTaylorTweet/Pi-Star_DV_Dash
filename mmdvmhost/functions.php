@@ -601,8 +601,7 @@ function getHeardList($logLines) {
 			$id = substr($callsign2, strpos($callsign2,"/") + 1);
 		}
 
-		$target = substr($logLine, strpos($logLine, "to") + 3);
-		//$target = preg_replace('!\s+!', ' ', $target);
+		$target = trim(substr($logLine, strpos($logLine, "to") + 3));
 		$source = "RF";
 		if (strpos($logLine,"network") > 0 || strpos($logLine,"POCSAG") > 0) {
 			$source = "Net";
