@@ -776,11 +776,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           $newP25StartupHost = strtoupper(escapeshellcmd($_POST['p25StartupHost']));
           if ($newP25StartupHost === "NONE") {
 		  $rollP25Startup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/p25gateway';
+		  unset($configysf2p25['P25 Network']['StartupDstId']);
 	  } else {
 		  $rollP25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newP25StartupHost.'" /etc/p25gateway';
+		  $configysf2p25['P25 Network']['StartupDstId'] = $newP25StartupHost;
 	  }
 	  system($rollP25Startup);
-	  $configysf2p25['P25 Network']['StartupDstId'] = $newP25StartupHost;
 	}
 
 	// Set P25 NAC
@@ -857,8 +858,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the YSF2P25 Master
 	if (empty($_POST['ysf2p25StartupDstId']) != TRUE ) {	
 	  $newYSF2P25StartupHost = strtoupper(escapeshellcmd($_POST['ysf2p25StartupDstId']));
-	  $configysf2p25['P25 Network']['StartupDstId'] = $newYSF2P25StartupHost;
-	  if ($newYSF2P25StartupHost === "NONE") { unset($configysf2p25['P25 Network']['StartupDstId']); }
+
+	  if ($newYSF2P25StartupHost === "NONE") {
+		  $rollYSF2P25Startup = 'sudo sed -i "/Startup=/c\\#Startup=" /etc/p25gateway';
+		  unset($configysf2p25['P25 Network']['StartupDstId']);
+	  } else {
+		  $rollYSF2P25Startup = 'sudo sed -i "/Startup=/c\\Startup='.$newYSF2P25StartupHost.'" /etc/p25gateway';
+		  $configysf2p25['P25 Network']['StartupDstId'] = $newYSF2P25StartupHost;
+	  }
+	  system($rollYSF2P25Startup);
 	}
 	
 	// Set the YSF2P25 P25Id
