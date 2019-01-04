@@ -3324,7 +3324,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (YSF2DMR)</b>Set your prefered DMR master here</span></a></td>
-    <td style="text-align: left;"><select name="ysf2dmrMasterHost">
+    <td colspan="2" style="text-align: left;"><select name="ysf2dmrMasterHost">
 <?php
         $testMMDVMysf2dmrMaster = $configysf2dmr['DMR Network']['Address'];
         while (!feof($dmrMasterFile)) {
@@ -3351,7 +3351,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </tr>
     <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_startup_host'];?>:<span><b>NXDN Host</b>Set your prefered NXDN Host here</span></a></td>
-        <td style="text-align: left;"><select name="ysf2nxdnStartupDstId">
+        <td colspan="2" style="text-align: left;"><select name="ysf2nxdnStartupDstId">
 <?php
 	$nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
 	$testNXDNHost = $configysf2nxdn['NXDN Network']['StartupDstId'];
@@ -3391,7 +3391,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </tr>
     <tr>
       <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered P25 Host here</span></a></td>
-      <td style="text-align: left;"><select name="ysf2p25StartupDstId">
+      <td colspan="2" style="text-align: left;"><select name="ysf2p25StartupDstId">
 <?php
 	$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");									       
 	$testP25Host = $configysf2p25['P25 Network']['StartupDstId'];
