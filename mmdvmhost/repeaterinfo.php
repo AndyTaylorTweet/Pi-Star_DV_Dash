@@ -297,6 +297,7 @@ if ( $testYSF2DMR ) { //Hide the YSF2DMR information when YSF2DMR Network mode n
         echo "<br />\n";
         echo "<table>\n";
         echo "<tr><th colspan=\"2\">YSF2".$lang['dmr_master']."</th></tr>\n";
+	echo "<tr><th>DMR ID</th><td style=\"background: #ffffff;\">".$configysf2dmr['DMR Network']['Id']."</td></tr>\n";
         echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$dmrMasterHost."</td></tr>\n";
         echo "</table>\n";
 }
