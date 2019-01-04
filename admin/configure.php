@@ -1987,6 +1987,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 	}
 
+	// Create the hostfiles.ysfupper file if required
+	if (empty($_POST['confHostFilesYSFUpper']) != TRUE ) {
+		if (escapeshellcmd($_POST['confHostFilesYSFUpper']) == 'ON' )  {
+			if (!file_exists('/etc/hostfiles.ysfupper')) { system('sudo touch /etc/hostfiles.ysfupper'); }
+		}
+		if (escapeshellcmd($_POST['confHostFilesYSFUpper']) == 'OFF' )  {
+			if (file_exists('/etc/hostfiles.ysfupper')) { system('sudo rm -rf /etc/hostfiles.ysfupper'); }
+		}
+	}
+
 	// Continue Page Output
 	echo "<br />";
 	echo "<table>\n";
