@@ -31,7 +31,7 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 		echo"<tr>";
 		echo"<td align=\"left\">$local_time</td>";
 		echo"<td align=\"left\">$listElem[1]</td>";
-		if (is_numeric($listElem[2])) {
+		if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 			echo "<td align=\"left\">$listElem[2]</td>";
 		} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
                         echo "<td align=\"left\">$listElem[2]</td>";
