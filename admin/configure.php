@@ -811,7 +811,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set NXDN RAN
 	if (empty($_POST['nxdnran']) != TRUE ) {
 	  $nxdnranNew = strtolower(escapeshellcmd($_POST['nxdnran']));
-	  if (preg_match('/[a-f0-9]{2}/', $nxdnranNew)) {
+	  $nxdnranNew = preg_replace('/[^0-9]/', '', $nxdnranNew);
+	  if (preg_match('/[0-9]{2}/', $nxdnranNew)) {
 	    $configmmdvm['NXDN']['RAN'] = $nxdnranNew;
 	  }
 	}
