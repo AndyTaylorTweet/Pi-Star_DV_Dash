@@ -811,7 +811,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set NXDN RAN
 	if (empty($_POST['nxdnran']) != TRUE ) {
 	  $nxdnranNew = strtolower(escapeshellcmd($_POST['nxdnran']));
-	  if (preg_match('/[a-f0-9]{1}/', $nxdnranNew)) {
+	  if (preg_match('/[a-f0-9]{2}/', $nxdnranNew)) {
 	    $configmmdvm['NXDN']['RAN'] = $nxdnranNew;
 	  }
 	}
@@ -3532,7 +3532,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <?php if ($configmmdvm['NXDN']['RAN']) { ?>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_ran'];?>:<span><b>NXDN RAN</b>Set your RAN code here</span></a></td>
-        <td align="left"><input type="text" name="nxdnran" size="13" maxlength="1" value="<?php echo $configmmdvm['NXDN']['RAN'];?>" /></td>
+        <td align="left"><input type="text" name="nxdnran" size="13" maxlength="2" value="<?php echo $configmmdvm['NXDN']['RAN'];?>" /></td>
       </tr>
     <?php } ?>
     </table>
