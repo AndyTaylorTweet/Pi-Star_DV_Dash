@@ -812,8 +812,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['nxdnran']) != TRUE ) {
 	  $nxdnranNew = strtolower(escapeshellcmd($_POST['nxdnran']));
 	  $nxdnranNew = preg_replace('/[^0-9]/', '', $nxdnranNew);
-	  if (preg_match('/[0-9]{2}/', $nxdnranNew)) {
-	    $configmmdvm['NXDN']['RAN'] = $nxdnranNew;
+	  if (($nxdnranNew >= 1) && ($nxdnranNew <= 64)) {
+	      $configmmdvm['NXDN']['RAN'] = $nxdnranNew;
 	  }
 	}
 
