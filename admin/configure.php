@@ -1522,7 +1522,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['General']['Duplex'] = 0;
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
-	  }	
+	  }
+
+	  // Set the Service start delay
+	  system($rollDstarRepeaterStartDelay);
+	  system($rollMMDVMHostStartDelay);
 	}
 
 	// Set the Dashboard Public
