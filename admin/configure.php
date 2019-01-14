@@ -761,6 +761,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $confignxdngateway['General']['Callsign'] = $newCallsignUpper;
 
+	  // If ircDDBGateway config supports APRS Password
+	  if ($configs['aprsPassword']) {
+		  $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
+		  system($rollircDDBGatewayAprsPassword);
+	  }
+
 	  system($rollGATECALL);
 	  system($rollIRCUSER);
 	  system($rollDPLUSLOGIN);
