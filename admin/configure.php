@@ -1119,8 +1119,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['confHardware']) != TRUE ) {
 	$confHardware = escapeshellcmd($_POST['confHardware']);
 	$configModem['Modem']['Hardware'] = $confHardware;
+	// Set the Start delay
 	$rollDstarRepeaterStartDelay = 'sudo sed -i "/OnStartupSec=/c\\OnStartupSec=30" /lib/systemd/system/dstarrepeater.timer';
 	$rollMMDVMHostStartDelay = 'sudo sed -i "/OnStartupSec=/c\\OnStartupSec=30" /lib/systemd/system/mmdvmhost.timer';
+	// Turn on RPT1 Validation in DStarRepeater
+	$rollRpt1Validation = 'sudo sed -i "/rpt1Validation=/c\\rpt1Validation=1" /etc/dstarrepeater';
 
 	  if ( $confHardware == 'idrp2c' ) {
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=1" /etc/ircddbgateway';
@@ -1130,6 +1133,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if ( $confHardware == 'icomTerminalAuto' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=Icom Access Point\/Terminal Mode" /etc/dstarrepeater';
 	    $rollIcomPort = 'sudo sed -i "/icomPort=/c\\icomPort=/dev/icom_ta" /etc/dstarrepeater';
+	    $rollRpt1Validation = 'sudo sed -i "/rpt1Validation=/c\\rpt1Validation=0" /etc/dstarrepeater';
 	    system($rollModemType);
 	    system($rollIcomPort);
 	  }
@@ -1533,6 +1537,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  // Set the Service start delay
 	  system($rollDstarRepeaterStartDelay);
 	  system($rollMMDVMHostStartDelay);
+	  // Turn on RPT1 validation on DStarRepeater
+	  system($rollRpt1Validation);
 	}
 
 	// Set the Dashboard Public
