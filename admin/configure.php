@@ -3034,36 +3034,37 @@ else:
 <?php
 	if (isset($configdmrgateway['XLX Network']['Module'])) {
 		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
+		echo '        <option value="Default">Default</option>'."\n";
 	} else {
 		echo '        <option value="Default" selected="selected">Default</option>'."\n";
 	}
 ?>
-	<option>A</option>
-        <option>B</option>
-        <option>C</option>
-        <option>D</option>
-        <option>E</option>
-        <option>F</option>
-        <option>G</option>
-        <option>H</option>
-        <option>I</option>
-        <option>J</option>
-        <option>K</option>
-        <option>L</option>
-        <option>M</option>
-        <option>N</option>
-        <option>O</option>
-        <option>P</option>
-        <option>Q</option>
-        <option>R</option>
-        <option>S</option>
-        <option>T</option>
-        <option>U</option>
-        <option>V</option>
-        <option>W</option>
-        <option>X</option>
-        <option>Y</option>
-        <option>Z</option>
+	<option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+        <option value="H">H</option>
+        <option value="I">I</option>
+        <option value="J">J</option>
+        <option value="K">K</option>
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="N">N</option>
+        <option value="O">O</option>
+        <option value="P">P</option>
+        <option value="Q">Q</option>
+        <option value="R">R</option>
+        <option value="S">S</option>
+        <option value="T">T</option>
+        <option value="U">U</option>
+        <option value="V">V</option>
+        <option value="W">W</option>
+        <option value="X">X</option>
+        <option value="Y">Y</option>
+        <option value="Z">Z</option>
     </select></td>
     </tr>
     <tr>
