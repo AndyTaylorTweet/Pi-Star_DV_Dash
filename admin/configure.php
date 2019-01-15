@@ -3028,6 +3028,7 @@ else:
 ?>
     </select></td></tr>
     <?php } ?>
+    <?php if (isset($configdmrgateway['XLX Network']['TG'])) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">XLX Startup Module:<span><b>XLX Startup Module override</b>Default will use the host file option, or override it here.</span></a></td>
     <td align="left"><select name="dmrMasterHost3StartupModule">
@@ -3067,6 +3068,7 @@ else:
         <option value="Z">Z</option>
     </select></td>
     </tr>
+    <?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_enable'];?>:<span><b>XLX Master Enable</b>Turn your XLX connection on or off.</span></a></td>
     <td align="left">
