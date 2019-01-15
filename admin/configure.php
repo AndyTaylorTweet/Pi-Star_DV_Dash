@@ -1039,6 +1039,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	  else { unset($configdmrgateway['XLX Network 1']['Startup']); }
 	}
+	
+	// XLX Module Override
+	if (empty($_POST['dmrMasterHost3StartupModule']) != TRUE ) {
+	  $dmrMasterHost3StartupModule = escapeshellcmd($_POST['dmrMasterHost3StartupModule']);
+	  if ($dmrMasterHost3Startup == "Default") {
+	    unset($configdmrgateway['XLX Network']['Module']);
+	  } else {
+	    $configdmrgateway['XLX Network']['Module'] = $dmrMasterHost3StartupModule;
+	  }
+	}
 
 	// Set JutterBuffer Option
 	//if (empty($_POST['dmrDMRnetJitterBufer']) != TRUE ) {
@@ -3025,7 +3035,7 @@ else:
 	if (isset($configdmrgateway['XLX Network']['Module'])) {
 		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
 	} else {
-		echo '        <option value="None" selected="selected">None</option>'."\n";
+		echo '        <option value="Default" selected="selected">Default</option>'."\n";
 	}
 ?>
 	<option>A</option>
