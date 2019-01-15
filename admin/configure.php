@@ -3029,7 +3029,7 @@ else:
     </select></td></tr>
     <?php } ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">XLX Startup Module:<span><b>XLX Startup Module override</b></span></a></td>
+    <td align="left"><a class="tooltip2" href="#">XLX Startup Module:<span><b>XLX Startup Module override</b>Default will use the host file option, or override it here.</span></a></td>
     <td align="left"><select name="dmrMasterHost3StartupModule">
 <?php
 	if (isset($configdmrgateway['XLX Network']['Module'])) {
