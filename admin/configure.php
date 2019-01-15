@@ -1043,7 +1043,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// XLX Module Override
 	if (empty($_POST['dmrMasterHost3StartupModule']) != TRUE ) {
 	  $dmrMasterHost3StartupModule = escapeshellcmd($_POST['dmrMasterHost3StartupModule']);
-	  if ($dmrMasterHost3Startup == "Default") {
+	  if ($dmrMasterHost3StartupModule == "Default") {
 	    unset($configdmrgateway['XLX Network']['Module']);
 	  } else {
 	    $configdmrgateway['XLX Network']['Module'] = $dmrMasterHost3StartupModule;
