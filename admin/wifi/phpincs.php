@@ -1,4 +1,4 @@
-<?
+<?php
 
 function GetDistString($input,$string,$offset,$separator) {
 	$string = substr($input,strpos($input,$string)+$offset,strpos(substr($input,strpos($input,$string)+$offset),$separator));

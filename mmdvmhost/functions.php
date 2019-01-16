@@ -396,6 +396,7 @@ function getDVModemTCXOFreq() {
 		if (strpos($logLine, 'MHz') !== false) {
 			$modemTCXOFreq = $logLine;
 			$modemTCXOFreq = preg_replace('/.*(\d{2}\.\d{3,4}\s{0,1}MHz).*/', "$1", $modemTCXOFreq);
+			$modemTCXOFreq = str_replace("MHz"," MHz", $modemTCXOFreq);
 		}
 	}
 	return $modemTCXOFreq;
@@ -601,8 +602,7 @@ function getHeardList($logLines) {
 			$id = substr($callsign2, strpos($callsign2,"/") + 1);
 		}
 
-		$target = substr($logLine, strpos($logLine, "to") + 3);
-		//$target = preg_replace('!\s+!', ' ', $target);
+		$target = trim(substr($logLine, strpos($logLine, "to") + 3));
 		$source = "RF";
 		if (strpos($logLine,"network") > 0 || strpos($logLine,"POCSAG") > 0) {
 			$source = "Net";

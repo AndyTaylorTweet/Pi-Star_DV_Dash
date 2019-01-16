@@ -59,6 +59,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo rm -rf $backupZip 2>&1");
           $output .= shell_exec("sudo rm -rf $backupDir 2>&1");
           $output .= shell_exec("sudo mkdir $backupDir 2>&1");
+	  if (shell_exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
+		  $output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1");
+	  }
           $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1");
@@ -254,7 +257,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
   </div>
   <div class="footer">
   Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-  Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistar/" target="_new">here for the Support Group</a><br />
+  Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
   Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
   <br />
   </div>

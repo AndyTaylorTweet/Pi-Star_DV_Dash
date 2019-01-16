@@ -3,7 +3,7 @@ $configs = array();
 
 if ($configfile = fopen($gatewayConfigPath,'r')) {
         while ($line = fgets($configfile)) {
-                list($key,$value) = split("=",$line);
+                list($key,$value) = preg_split('/=/',$line);
                 $value = trim(str_replace('"','',$value));
                 if ($key != 'ircddbPassword' && strlen($value) > 0)
                 $configs[$key] = $value;

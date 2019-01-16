@@ -10,7 +10,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/ircddblocal.php');
 $configs = array();
 if ($configfile = fopen($gatewayConfigPath,'r')) {
         while ($line = fgets($configfile)) {
-                list($key,$value) = split("=",$line);
+                list($key,$value) = preg_split('/=/',$line);
                 $value = trim(str_replace('"','',$value));
                 if ($key != 'ircddbPassword' && strlen($value) > 0)
                 $configs[$key] = $value;
@@ -23,7 +23,7 @@ $configdstar = array();
 if ($configdstarfile = fopen('/etc/dstarrepeater','r')) {
         while ($line1 = fgets($configdstarfile)) {
 		if (strpos($line1, '=') !== false) {
-                	list($key1,$value1) = split("=",$line1);
+                	list($key1,$value1) = preg_split('/=/',$line1);
                 	$value1 = trim(str_replace('"','',$value1));
                 	if (strlen($value1) > 0)
                 	$configdstar[$key1] = $value1;
@@ -277,6 +277,29 @@ if ( $testMMDVModeYSF == 1 || $testDMR2YSF ) { //Hide the YSF information when S
         echo "<table>\n";
         echo "<tr><th colspan=\"2\">".$lang['ysf_net']."</th></tr>\n";
         echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$ysfLinkedToTxt."</td></tr>\n";
+        echo "</table>\n";
+}
+
+if ( isset($configysf2dmr['Enabled']['Enabled']) ) { $testYSF2DMR = $configysf2dmr['Enabled']['Enabled']; }
+if ( $testYSF2DMR ) { //Hide the YSF2DMR information when YSF2DMR Network mode not enabled.
+        $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
+        $dmrMasterHost = $configysf2dmr['DMR Network']['Address'];
+        while (!feof($dmrMasterFile)) {
+                $dmrMasterLine = fgets($dmrMasterFile);
+                $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
+                if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
+                        if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
+                }
+        }
+        if (strlen($dmrMasterHost) > 19) { $dmrMasterHost = substr($dmrMasterHost, 0, 17) . '..'; }
+        fclose($dmrMasterFile);
+
+        echo "<br />\n";
+        echo "<table>\n";
+        echo "<tr><th colspan=\"2\">YSF2DMR</th></tr>\n";
+	echo "<tr><th>DMR ID</th><td style=\"background: #ffffff;\">".$configysf2dmr['DMR Network']['Id']."</td></tr>\n";
+	echo "<tr><th colspan=\"2\">YSF2".$lang['dmr_master']."</th></tr>\n";
+        echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$dmrMasterHost."</td></tr>\n";
         echo "</table>\n";
 }
 
