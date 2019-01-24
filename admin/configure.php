@@ -838,6 +838,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	}
 
+	// Remove hostfiles.ysfupper and use the new YSFGateway Feature
+	if (empty($_POST['confHostFilesYSFUpper']) != TRUE ) {
+		if (escapeshellcmd($_POST['confHostFilesYSFUpper']) == 'ON' )   { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
+		if (escapeshellcmd($_POST['confHostFilesYSFUpper']) == 'OFF' )  { $configysfgateway['General']['WiresXMakeUpper'] = "0"; }
+		if (file_exists('/etc/hostfiles.ysfupper')) { system('sudo rm -rf /etc/hostfiles.ysfupper'); }
+	}
+
 	// Set the YSF2DMR Master
 	if (empty($_POST['ysf2dmrMasterHost']) != TRUE ) {
 	  $ysf2dmrMasterHostArr = explode(',', escapeshellcmd($_POST['ysf2dmrMasterHost']));
@@ -1845,6 +1852,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['Remote Control']['Port'])) { $configmmdvm['Remote Control']['Port'] = "7642"; }
 
 	// Add missing options to YSFGateway
+	if (!isset($configysfgateway['General']['WiresXMakeUpper'])) { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
 	if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
 	if (!isset($configysfgateway['Network']['Port'])) { $configysfgateway['Network']['Port'] = "42000"; }
 	if (!isset($configysfgateway['Network']['YSF2DMRAddress'])) { $configysfgateway['Network']['YSF2DMRAddress'] = "127.0.0.1"; }
@@ -2020,16 +2028,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'OFF' )  {
 			if (file_exists('/etc/hostfiles.nodextra')) { system('sudo rm -rf /etc/hostfiles.nodextra'); }
-		}
-	}
-
-	// Create the hostfiles.ysfupper file if required
-	if (empty($_POST['confHostFilesYSFUpper']) != TRUE ) {
-		if (escapeshellcmd($_POST['confHostFilesYSFUpper']) == 'ON' )  {
-			if (!file_exists('/etc/hostfiles.ysfupper')) { system('sudo touch /etc/hostfiles.ysfupper'); }
-		}
-		if (escapeshellcmd($_POST['confHostFilesYSFUpper']) == 'OFF' )  {
-			if (file_exists('/etc/hostfiles.ysfupper')) { system('sudo rm -rf /etc/hostfiles.ysfupper'); }
 		}
 	}
 
