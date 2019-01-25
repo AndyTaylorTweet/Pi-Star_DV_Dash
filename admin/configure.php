@@ -862,6 +862,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the YSF2NXDN Master
 	if (empty($_POST['ysf2nxdnStartupDstId']) != TRUE ) {
 	  $configysf2nxdn['NXDN Network']['StartupDstId'] = escapeshellcmd($_POST['ysf2nxdnStartupDstId']);
+	  if (file_exists('/etc/nxdngateway')) {
+	    if (escapeshellcmd($_POST['ysf2nxdnStartupDstId']) === "none") {
+	      unset($confignxdngateway['Network']['Startup']);
+	    } else {
+	      $confignxdngateway['Network']['Startup'] = escapeshellcmd($_POST['ysf2nxdnStartupDstId']);
+	    }
+	  }
 	}
 
 	// Set the YSF2NXDN Id
