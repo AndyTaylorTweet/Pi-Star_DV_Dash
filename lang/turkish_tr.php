@@ -40,7 +40,7 @@ $lang = array (
   "kernel"                      =>  "Çekirdek Sürümü",
   "platform"                    =>  "Altyapı",
   "cpu_load"                    =>  "CPU Kullanımı",
-  "cpu_temp"                    =>  "CPU Isısı",
+  "cpu_temp"                    =>  "CPU Sıcaklığı",
   // Config Page - Control Software
   "controller_software"         =>  "Kontrolcünün Yazılımı",
   "controller_mode"             =>  "Kontrolcünün Modu",
@@ -99,7 +99,7 @@ $lang = array (
   // Config Page - Password
   "user"                        =>  "Kullanıcı Adı",
   "password"                    =>  "Parola",
-  "set_password"                =>  "Parola Tekrar",
+  "set_password"                =>  "Parolayı Uygula",
   // Dashboard Front Page - Repeater Info Pannel
   "modes_enabled"               =>  "Etkin Modlar",
   "net_status"                  =>  "Ağ Durumu",
