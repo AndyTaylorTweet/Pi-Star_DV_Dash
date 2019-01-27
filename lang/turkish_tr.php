@@ -101,7 +101,7 @@ $lang = array (
   "password"                    =>  "Parola",
   "set_password"                =>  "Parola Tekrar",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Etkinleştirilmiş Modlar",
+  "modes_enabled"               =>  "Etkin Modlar",
   "net_status"                  =>  "Ağ Durumu",
   "internet"                    =>  "İnternet",
   "radio_info"                  =>  "Radyo Bilgisi",
