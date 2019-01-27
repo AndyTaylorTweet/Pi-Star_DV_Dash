@@ -3482,8 +3482,12 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
       <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_startup_host'];?>:<span><b>P25 Host</b>Set your prefered P25 Host here</span></a></td>
       <td colspan="2" style="text-align: left;"><select name="ysf2p25StartupDstId">
 <?php
-	$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");									       
-	$testP25Host = $configysf2p25['P25 Network']['StartupDstId'];
+	$p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
+	if (isset($configysf2p25['P25 Network']['StartupDstId'])) {
+		$testP25Host = $configysf2p25['P25 Network']['StartupDstId'];
+	} else {
+		$testP25Host = "";
+	}
 	if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
         else { echo "      <option value=\"none\">None</option>\n"; }
 	if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
