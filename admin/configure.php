@@ -3363,7 +3363,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 	if ($testYSFHost == "YSF2P25")  {
 		echo "      <option value=\"00004,YSF2P25\"  selected=\"selected\">YSF00004 - Link YSF2P25</option>\n";
 	} else {
-		echo "      <option value=\"00004;YSF2P25\">YSF00004 - Link YSF2P25</option>\n";
+		echo "      <option value=\"00004,YSF2P25\">YSF00004 - Link YSF2P25</option>\n";
 	}
         while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
