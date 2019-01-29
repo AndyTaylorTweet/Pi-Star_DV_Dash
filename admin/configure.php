@@ -417,7 +417,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollDesc11 = 'sudo sed -i "/description1_1=/c\\description1_1='.$newConfDesc1.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configdmrgateway['Info']['Location'] = '"'.$newConfDesc1.'"';
-          $configysfgateway['Info']['Name'] = '"'.$newConfDesc1.'"';
 	  $configysf2dmr['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configysf2nxdn['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configysf2p25['Info']['Location'] = '"'.$newConfDesc1.'"';
@@ -434,9 +433,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
           $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
-	  $configysf2dmr['Info']['Description'] = '"'.$newConfDesc2.'"';
-	  $configysf2nxdn['Info']['Description'] = '"'.$newConfDesc2.'"';
-	  $configysf2p25['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  system($rollDesc2);
 	  system($rollDesc22);
@@ -465,6 +461,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  $configysf2nxdn['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
 	  $configysf2p25['aprs.fi']['Server'] = escapeshellcmd($_POST['selectedAPRSHost']);
+	  $configysf2dmr['aprs.fi']['Enable'] = "0";
+	  $configysf2nxdn['aprs.fi']['Enable'] = "0";
+	  $configysf2p25['aprs.fi']['Enable'] = "0";
 	  }
 
 	// Set ircDDBGateway and TimeServer language
@@ -760,6 +759,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $confignxdngateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $confignxdngateway['General']['Callsign'] = $newCallsignUpper;
+	  $configysfgateway['Info']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $configysf2dmr['Info']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $configysf2nxdn['Info']['Description'] = $newCallsignUpper."_Pi-Star";
+	  $configysf2p25['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 
 	  // If ircDDBGateway config supports APRS Password
 	  if ($configs['aprsPassword']) {
@@ -2027,7 +2030,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
 	if (!isset($configmmdvm['POCSAG Network']['Debug'])) { $configmmdvm['POCSAG Network']['Debug'] = "0"; }
 	if (isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
-
+	
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
 		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
