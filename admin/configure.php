@@ -3431,7 +3431,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <td>Note: Update Required if changed</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">WiresX YSF2xxx Passthrough:<span><b>WiresX Auto Passthrough</b>Use this to automatically send WiresX commands through to YSF2xxx cross-over modes.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">WiresX Passthrough:<span><b>WiresX Auto Passthrough</b>Use this to automatically send WiresX commands through to YSF2xxx cross-over modes.</span></a></td>
     <?php
 	if ( isset($configysfgateway['General']['WiresXCommandPassthrough']) ) {
 		if ( $configysfgateway['General']['WiresXCommandPassthrough'] ) {
