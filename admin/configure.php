@@ -841,6 +841,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	}
 
+	// Set YSFGateway to automatically pass through WiresX
+	if (empty($_POST['wiresXCommandPassthrough']) != TRUE ) {
+	  if (escapeshellcmd($_POST['wiresXCommandPassthrough']) == 'ON' )  { $configysfgateway['General']['WiresXCommandPassthrough'] = "1"; }
+	  if (escapeshellcmd($_POST['wiresXCommandPassthrough']) == 'OFF' ) { $configysfgateway['General']['WiresXCommandPassthrough'] = "0"; }
+	}
+
 	// Remove hostfiles.ysfupper and use the new YSFGateway Feature
 	if (empty($_POST['confHostFilesYSFUpper']) != TRUE ) {
 		if (escapeshellcmd($_POST['confHostFilesYSFUpper']) == 'ON' )   { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
@@ -3332,6 +3338,7 @@ fclose($dextraFile);
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['System Fusion Network']['Enable'] == 1 || $configdmr2ysf['Enabled']['Enabled'] == 1 )) {
 $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 	<input type="hidden" name="confHostFilesYSFUpper" value="OFF" />
+	<input type="hidden" name="wiresXCommandPassthrough" value="OFF" />
 	<div><b><?php echo $lang['ysf_config'];?></b></div>
     <table>
     <tr>
@@ -3422,6 +3429,21 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 	}
     ?>
     <td>Note: Update Required if changed</td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">WiresX YSF2xxx Passthrough:<span><b>WiresX Auto Passthrough</b>Use this to automatically send WiresX commands through to YSF2xxx cross-over modes.</span></a></td>
+    <?php
+	if ( isset($configysfgateway['General']['WiresXCommandPassthrough']) ) {
+		if ( $configysfgateway['General']['WiresXCommandPassthrough'] ) {
+			echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-confWiresXCommandPassthrough\"></label></div></td>\n";
+		}
+		else {
+			echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" /><label for=\"toggle-confWiresXCommandPassthrough\"></label></div></td>\n";
+		}
+	} else {
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" /><label for=\"toggle-confWiresXCommandPassthrough\"></label></div></td>\n";
+	}
+    ?>
     </tr>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2dmr['Enabled']['Enabled'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
