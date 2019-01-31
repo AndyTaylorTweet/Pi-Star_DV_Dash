@@ -3357,10 +3357,10 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 $testYSFHost = "none";
                 echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
     		}
-	if ($testYSFHost == "Parrot")  {
-		echo "      <option value=\"00001,Parrot\"  selected=\"selected\">YSF00001 - Parrot</option>\n";
+	if ($testYSFHost == "PARROT")  {
+		echo "      <option value=\"00001,PARROT\"  selected=\"selected\">YSF00001 - PARROT</option>\n";
 	} else {
-		echo "      <option value=\"00001,Parrot\">YSF00001 - Parrot</option>\n";
+		echo "      <option value=\"00001,PARROT\">YSF00001 - PARROT</option>\n";
 	}
 	if ($testYSFHost == "YSF2DMR")  {
 		echo "      <option value=\"00002,YSF2DMR\"  selected=\"selected\">YSF00002 - Link YSF2DMR</option>\n";
