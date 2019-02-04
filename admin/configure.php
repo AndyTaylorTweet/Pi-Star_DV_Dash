@@ -1872,6 +1872,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configdmr2ysf['DMR Network']['DefaultDstTG'])) { $configdmr2ysf['DMR Network']['DefaultDstTG'] = "9"; }
 	if (!isset($configdmr2ysf['DMR Network']['TGUnlink'])) { $configdmr2ysf['DMR Network']['TGUnlink'] = "4000"; }
 	if (!isset($configdmr2ysf['DMR Network']['TGListFile'])) { $configdmr2ysf['DMR Network']['TGListFile'] = "/usr/local/etc/TGList_YSF.txt"; }
+	$configdmr2ysf['Log']['DisplayLevel'] = "0";
+	$configdmr2ysf['Log']['FileLevel'] = "0";
 
 	// Add missing options to YSFGateway
 	if (!isset($configysfgateway['General']['WiresXMakeUpper'])) { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
@@ -1914,7 +1916,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2dmr['Enabled']['Enabled'])) { $configysf2dmr['Enabled']['Enabled'] = "0"; }
 	unset($configysf2dmr['Info']['Enabled']);
 	unset($configysf2dmr['DMR Network']['JitterEnabled']);
-	$configysf2dmr['Log']['FileLevel'] = "2";
+	$configysf2dmr['Log']['DisplayLevel'] = "0";
+	$configysf2dmr['Log']['FileLevel'] = "0";
+	$configysf2dmr['aprs.fi']['Enable'] = "0";
 
 	// Add missing options to YSF2NXDN
 	$configysf2nxdn['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2NXDNPort'];
@@ -1924,10 +1928,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2nxdn['Enabled']['Enabled'])) { $configysf2nxdn['Enabled']['Enabled'] = "0"; }
 	$configysf2nxdn['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv";
 	$configysf2nxdn['NXDN Network']['TGListFile'] = "/usr/local/etc/TGList_NXDN.txt";
-	$configysf2nxdn['Log']['DisplayLevel'] = "1";
-	$configysf2nxdn['Log']['FileLevel'] = "2";
+	$configysf2nxdn['Log']['DisplayLevel'] = "0";
+	$configysf2nxdn['Log']['FileLevel'] = "0";
 	$configysf2nxdn['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2nxdn['Log']['FileRoot'] = "YSF2NXDN";
+	$configysf2nxdn['aprs.fi']['Enable'] = "0";
 
 	// Add missing options to YSF2P25
 	$configysf2p25['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2P25Port'];
@@ -1937,8 +1942,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2p25['Enabled']['Enabled'])) { $configysf2p25['Enabled']['Enabled'] = "0"; }
 	$configysf2p25['DMR Id Lookup']['File'] = "/usr/local/etc/DMRIds.dat";
 	$configysf2p25['P25 Network']['TGListFile'] = "/usr/local/etc/TGList_P25.txt";
-	$configysf2p25['Log']['DisplayLevel'] = "1";
-	$configysf2p25['Log']['FileLevel'] = "2";
+	$configysf2p25['Log']['DisplayLevel'] = "0";
+	$configysf2p25['Log']['FileLevel'] = "0";
 	$configysf2p25['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2p25['Log']['FileRoot'] = "YSF2P25";	
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
