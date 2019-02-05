@@ -293,6 +293,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  exec('sudo unzip -o /usr/local/bin/config_clean.zip -d /etc/');
 	  exec('sudo rm -rf /etc/dstar-radio.*');
 	  exec('sudo rm -rf /etc/pistar-css.ini');
+	  exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git update-index --assume-unchanged pistar-upnp.service');
+	  exec('sudo git --work-tree=/usr/local/sbin --git-dir=/usr/local/sbin/.git reset --hard origin/master');
+	  exec('sudo git --work-tree=/usr/local/bin --git-dir=/usr/local/bin/.git reset --hard origin/master');
+	  exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  // Make the root filesystem read-only
           system('sudo mount -o remount,ro /');
