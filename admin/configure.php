@@ -1718,9 +1718,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		  $configdmrgateway['DMR Network 3']['Address'] = "127.0.0.1";
 		  $configdmrgateway['DMR Network 3']['Port'] = "62035";
 		  $configdmrgateway['DMR Network 3']['Local'] = "62036";
-		  $configdmrgateway['DMR Network 3']['TGRewrite0'] = "2,700001,2,1,99999";
-		  $configdmrgateway['DMR Network 3']['SrcRewrite0'] = "2,1,2,700001,99999";
-		  $configdmrgateway['DMR Network 3']['PCRewrite0'] = "2,700001,2,1,99999";
+		  $configdmrgateway['DMR Network 3']['TGRewrite0'] = "2,7000001,2,1,999998";
+		  $configdmrgateway['DMR Network 3']['SrcRewrite0'] = "2,1,2,7000001,999998";
+		  $configdmrgateway['DMR Network 3']['PCRewrite0'] = "2,7000001,2,1,999998";
 		  $configdmrgateway['DMR Network 3']['Password'] = '"'."PASSWORD".'"';
 		  $configdmrgateway['DMR Network 3']['Location'] = "0";
 		  $configdmrgateway['DMR Network 3']['Debug'] = "0";
