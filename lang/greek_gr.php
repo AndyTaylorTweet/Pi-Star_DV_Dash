@@ -55,6 +55,7 @@ $lang = array (
   // Config Page - General Configuration
   "node_call"                   =>  "Διακριτικό Κόμβου",
   "dmr_id"                      =>  "Ταυτότητα CCS7/DMR",
+  "hotspot_id"                  =>  "Hotspot ID",
   "radio_freq"                  =>  "Συχνότητα",
   "lattitude"                   =>  "Γεωγραφικό Πλάτος",
   "longitude"                   =>  "Γεωγραφικό Μήκος",

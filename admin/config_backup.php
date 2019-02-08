@@ -62,6 +62,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	  if (shell_exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
 		  $output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1");
 	  }
+          if (file_exists('/etc/hotspot_id')) {
+	          $output .= shell_exec("sudo cp /etc/hotspot_id $backupDir 2>&1");
+	  }
           $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1");

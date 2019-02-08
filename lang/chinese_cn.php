@@ -55,6 +55,7 @@ $lang = array (
   // Config Page - General Configuration
   "node_call"                   =>  "节点呼号",
   "dmr_id"                      =>  "CCS7/DMR ID",
+  "hotspot_id"                  =>  "Hotspot ID",
   "radio_freq"                  =>  "电台频率",
   "lattitude"                   =>  "纬度",
   "longitude"                   =>  "经度",
