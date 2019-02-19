@@ -12,19 +12,20 @@
   <p style="padding-right: 5px; text-align: right; color: #ffffff;">
     <b>Quick Edit:</b>
     <a href="edit_dstarrepeater.php" style="color: #ffffff;">DStarRepeater</a> |
-    <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDBGateway</a> |
+    <a href="edit_ircddbgateway.php" style="color: #ffffff;">ircDDB GW</a> |
     <a href="edit_timeserver.php" style="color: #ffffff;">TimeServer</a> |
     <a href="edit_mmdvmhost.php" style="color: #ffffff;">MMDVMHost</a> |
     <a href="edit_dmrgateway.php" style="color: #ffffff;">DMR GW</a> |
     <a href="edit_ysfgateway.php" style="color: #ffffff;">YSF GW</a> |
     <a href="edit_p25gateway.php" style="color: #ffffff;">P25 GW</a> |
-    <a href="edit_nxdngateway.php" style="color: #ffffff;">NXDN GW</a><br />
+    <a href="edit_nxdngateway.php" style="color: #ffffff;">NXDN GW</a> |
+    DAPNet [<a href="edit_dapnetgateway.php" style="color: #ffffff;">GW</a>|<a href="edit_dapnetapi.php" style="color: #ffffff;">API</a>]<br /> 
     <b>Full Edit:</b>
     <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMR GW</a> |
     <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
     <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi</a> |
     <a href="fulledit_bmapikey.php" style="color: #ffffff;">BM API</a> |
-    <a href="fulledit_dapnetapi.php" style="color: #ffffff;">DAPNET API</a> |
+     DAPNet [<a href="fulledit_dapnetgateway.php" style="color: #ffffff;">GW</a>|<a href="fulledit_dapnetapi.php" style="color: #ffffff;">API</a>] |
     <a href="fulledit_cron.php" style="color: #ffffff;">System Cron</a> |
     <a href="fulledit_rssidat.php" style="color: #ffffff;">RSSI Dat</a>
     &emsp;<b>Tools:</b>

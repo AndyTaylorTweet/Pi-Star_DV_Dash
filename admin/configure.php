@@ -107,6 +107,31 @@ if (file_exists('/etc/dapnetgateway')) {
 	if (fopen($configDAPNetConfigFile,'r')) { $configdapnetgw = parse_ini_file($configDAPNetConfigFile, true); }
 }
 
+// POCSAG
+if ( $configmmdvm['POCSAG']['Enable'] == 1 ) {
+    // DAPNet API config (create default file)
+    if (!file_exists('/etc/dapnetapi.key')) {
+        exec('sudo touch /tmp/jsADGHwf9sj294.tmp');
+        exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
+        exec('echo "[DAPNETAPI]" > /tmp/jsADGHwf9sj294.tmp');
+        exec('echo "USER=" >> /tmp/jsADGHwf9sj294.tmp');
+        exec('echo "PASS=" >> /tmp/jsADGHwf9sj294.tmp');
+        exec('echo "TRXAREA=" >> /tmp/jsADGHwf9sj294.tmp');
+        
+        exec('sudo mount -o remount,rw /');
+        exec('sudo cp /tmp/jsADGHwf9sj294.tmp /etc/dapnetapi.key');
+        exec('sudo chmod 644 /etc/dapnetapi.key');
+        exec('sudo chown root:root /etc/dapnetapi.key');
+        exec('sudo mount -o remount,ro /');
+    }
+    
+    // DAPNet API config 
+    if (file_exists('/etc/dapnetapi.key')) {
+        $configDAPNetAPIConfigFile = '/etc/dapnetapi.key';
+        if (fopen($configDAPNetAPIConfigFile,'r')) { $configdapnetapi = parse_ini_file($configDAPNetAPIConfigFile, true); }
+    }
+}
+
 // Load the dmrgateway config file
 $dmrGatewayConfigFile = '/etc/dmrgateway';
 if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }
@@ -510,7 +535,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set the POCSAG Whitelist
-	if (isset($configdapnetgw['General']['WhiteList'])) { unset($configdapnetgw['General']['WhiteList']); }
+	if ((escapeshellcmd($_POST['MMDVMModePOCSAG']) == 'ON') && (isset($configdapnetgw['General']['WhiteList'])) && (empty($_POST['pocsagWhitelist']) == TRUE)) { unset($configdapnetgw['General']['WhiteList']); }
 	if (empty($_POST['pocsagWhitelist']) != TRUE ) {
 	  $configdapnetgw['General']['WhiteList'] = preg_replace('/[^0-9\,]/', '', escapeshellcmd($_POST['pocsagWhitelist']));
 	}
@@ -518,6 +543,21 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the POCSAG Server
 	if (empty($_POST['pocsagServer']) != TRUE ) {
 	  $configdapnetgw['DAPNET']['Address'] = escapeshellcmd($_POST['pocsagServer']);
+	}
+
+	// Set the POCSAG API Transmitter Group
+	if (empty($_POST['pocsagAPITrxGroup']) != TRUE ) {
+	  $configdapnetapi['DAPNETAPI']['TRXAREA'] = '"'.strtolower(escapeshellcmd($_POST['pocsagAPITrxGroup'])).'"';
+	}
+
+	// Set the POCSAG API Password
+	if (empty($_POST['pocsagAPIPass']) != TRUE ) {
+	  $configdapnetapi['DAPNETAPI']['PASS'] = escapeshellcmd($_POST['pocsagAPIPass']);
+	}
+
+	// Set the POCSAG API Username
+	if (empty($_POST['pocsagAPIUser']) != TRUE ) {
+	  $configdapnetapi['DAPNETAPI']['USER'] = escapeshellcmd($_POST['pocsagAPIUser']);
 	}
 
 	// Set the Frequency for Duplex
@@ -769,7 +809,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 
 	  // If ircDDBGateway config supports APRS Password
-	  if ($configs['aprsPassword']) {
+	  if (isset($configs['aprsPassword'])) {
 		  $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
 		  system($rollircDDBGatewayAprsPassword);
 	  }
@@ -2405,6 +2445,43 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                         exec('sudo chown root:root /etc/dapnetgateway');			// Set the owner
                 }
         }
+	// DAPNet API Key file wragling
+        if ( isset($configdapnetapi) ) {
+		$dapnetAPIContent = "";
+		foreach($configdapnetapi as $dapnetAPISection=>$dapnetAPIValues) {
+			// UnBreak special cases
+			$dapnetAPISection = str_replace("_", " ", $dapnetAPISection);
+			$dapnetAPIContent .= "[".$dapnetAPISection."]\n";
+			// append the values
+			foreach($dapnetAPIValues as $dapnetAPIKey=>$dapnetAPIValue) {
+				$dapnetAPIContent .= $dapnetAPIKey."=".$dapnetAPIValue."\n";
+			}
+			$dapnetAPIContent .= "\n";
+		}
+		if (!$handledapnetapi = fopen('/tmp/jsADGHwf9sj294.tmp', 'w')) {
+			return false;
+		}
+		if (!is_writable('/tmp/jsADGHwf9sj294.tmp')) {
+			echo "<br />\n";
+			echo "<table>\n";
+			echo "<tr><th>ERROR</th></tr>\n";
+			echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+			echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+			echo "</table>\n";
+			unset($_POST);
+			echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+			die();
+		}
+		else {
+			$success = fwrite($handledapnetapi, $dapnetAPIContent);
+			fclose($handledapnetapi);
+			if (intval(exec('cat /tmp/jsADGHwf9sj294.tmp | wc -l')) > 3 ) {
+				exec('sudo mv /tmp/jsADGHwf9sj294.tmp /etc/dapnetapi.key');		// Move the file back
+				exec('sudo chmod 644 /etc/dapnetapi.key');				// Set the correct runtime permissions
+				exec('sudo chown root:root /etc/dapnetapi.key');			// Set the owner
+			}
+		}
+	}
 
 	// dmrgateway config file wrangling
 	$dmrgwContent = "";
@@ -2586,6 +2663,7 @@ else:
     <input type="hidden" name="MMDVMModeDMR2YSF" value="OFF" />
     <input type="hidden" name="MMDVMModeDMR2NXDN" value="OFF" />
     <input type="hidden" name="MMDVMModePOCSAG" value="OFF" />
+    <input type="hidden" name="pocsagWhitelist" value="<?php if (isset($configdapnetgw['General']['WhiteList'])) { echo $configdapnetgw['General']['WhiteList']; } else { echo ""; } ?>" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -3706,7 +3784,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
-<?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?>
+<?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?> <!-- RMB -->
 	<div><b><?php echo $lang['pocsag_config'];?></b></div>
     <table>
       <tr>
@@ -3736,6 +3814,19 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       <tr>
         <td align="left"><a class="tooltip2" href="#">POCSAG Whitelist:<span><b>POCSAG Whitelist</b>Set your POCSAG RICs here</span></a></td>
         <td align="left"><input type="text" name="pocsagWhitelist" size="30" maxlength="50" value="<?php if (isset($configdapnetgw['General']['WhiteList'])) { echo $configdapnetgw['General']['WhiteList']; } ?>" /></td>
+      </tr>
+
+      <tr>
+        <td align="left"><a class="tooltip2" href="#">POCSAG API Username:<span><b>POCSAG API Username</b>Set your POCSAG API Username here</span></a></td>
+        <td align="left"><input type="text" name="pocsagAPIUser" size="13" maxlength="12" value="<?php if (isset($configdapnetapi['DAPNETAPI']['USER'])) { echo $configdapnetapi['DAPNETAPI']['USER']; } ?>" /></td>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#">DAPNET API Password:<span><b>DAPNET API Password</b>Set your DAPNET API password here</span></a></td>
+        <td align="left"><input type="password" name="pocsagAPIPass" size="30" maxlength="50" value="<?php if (isset($configdapnetapi['DAPNETAPI']['PASS'])) { echo $configdapnetapi['DAPNETAPI']['PASS']; } ?>" /></td>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#">POCSAG API Trx Group:<span><b>POCSAG API Transmitter Group</b>Set the desired transmitter group here</span></a></td> <!-- f1rmb: only one group ATM -->
+        <td align="left"><input type="text" name="pocsagAPITrxGroup" size="13" maxlength="12" value="<?php if (isset($configdapnetapi['DAPNETAPI']['TRXAREA'])) { echo $configdapnetapi['DAPNETAPI']['TRXAREA']; } ?>" /></td>
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
