@@ -32,45 +32,38 @@ require_once('../config/version.php');
   <div class="contentwide">
 
 <?php
-// Make the bare config if we dont have one
-if (file_exists('/etc/dapnetapi.key')) {
-	exec('sudo cp /etc/dapnetapi.key /tmp/jsADGHwf9sj294.tmp');
-	exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
-} else {
-	exec('sudo touch /tmp/jsADGHwf9sj294.tmp');
-	exec('sudo chown www-data:www-data /tmp/jsADGHwf9sj294.tmp');
-	exec('echo "[DAPNETAPI]" > /tmp/jsADGHwf9sj294.tmp');
-	exec('echo "USER=" >> /tmp/jsADGHwf9sj294.tmp');
-	exec('echo "PASS=" >> /tmp/jsADGHwf9sj294.tmp');
-	exec('echo "TRXAREA=" >> /tmp/jsADGHwf9sj294.tmp');
-}
-
-//Do some file wrangling...
-exec('sudo chmod 664 /tmp/jsADGHwf9sj294.tmp');
-
-//ini file to open
-$filepath = '/tmp/jsADGHwf9sj294.tmp';
-
 if(isset($_POST['data'])) {
+        // File Wrangling
+        exec('sudo cp /etc/dapnetgateway /tmp/cVKu8oJJKWqe.tmp');
+        exec('sudo chown www-data:www-data /tmp/cVKu8oJJKWqe.tmp');
+        exec('sudo chmod 664 /tmp/cVKu8oJJKWqe.tmp');
+
         // Open the file and write the data
+        $filepath = '/tmp/cVKu8oJJKWqe.tmp';
         $fh = fopen($filepath, 'w');
         fwrite($fh, $_POST['data']);
         fclose($fh);
         exec('sudo mount -o remount,rw /');
-        exec('sudo cp /tmp/jsADGHwf9sj294.tmp /etc/dapnetapi.key');
-        exec('sudo chmod 644 /etc/dapnetapi.key');
-        exec('sudo chown root:root /etc/dapnetapi.key');
+        exec('sudo cp /tmp/cVKu8oJJKWqe.tmp /etc/dapnetgateway');
+        exec('sudo chmod 644 /etc/dapnetgateway');
+        exec('sudo chown root:root /etc/dapnetgateway');
         exec('sudo mount -o remount,ro /');
   
         // Reload the affected daemon
-		exec('sudo systemctl restart dapnetgateway.service'); // Reload the daemon
+		    exec('sudo systemctl restart dapnetgateway.service');		    // Reload the daemon
 
         // Re-open the file and read it
         $fh = fopen($filepath, 'r');
         $theData = fread($fh, filesize($filepath));
 
 } else {
+        // File Wrangling
+        exec('sudo cp /etc/dapnetgateway /tmp/cVKu8oJJKWqe.tmp');
+        exec('sudo chown www-data:www-data /tmp/cVKu8oJJKWqe.tmp');
+        exec('sudo chmod 664 /tmp/cVKu8oJJKWqe.tmp');
+
         // Open the file and read it
+        $filepath = '/tmp/cVKu8oJJKWqe.tmp';
         $fh = fopen($filepath, 'r');
         $theData = fread($fh, filesize($filepath));
 }
@@ -78,10 +71,9 @@ fclose($fh);
 
 ?>
 <form name="test" method="post" action="">
-    <textarea name="data" cols="80" rows="45"><?php echo $theData; ?></textarea><br />
+<textarea name="data" cols="80" rows="45"><?php echo $theData; ?></textarea><br />
 <input type="submit" name="submit" value="<?php echo $lang['apply']; ?>" />
-    </form>
-
+</form>
 </div>
 
 <div class="footer">

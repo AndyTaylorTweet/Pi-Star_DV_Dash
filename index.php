@@ -183,6 +183,13 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	// If POCSAG is enabled, show the information pannel
 	$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigfile);
 	if ( $testMMDVModePOCSAG == 1 ) {
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {  // Admin Only Options
+			echo "<br />\n";
+            echo '<div id="dapnetMsgr">'."\n";
+            include 'mmdvmhost/dapnet_messenger.php';
+            echo '</div>'."\n";
+        }
+
 		echo '<script type="text/javascript">'."\n";
 		echo 'function reloadPages(){'."\n";
 		echo '  $("#Pages").load("/mmdvmhost/pages.php",function(){ setTimeout(reloadPages,5000) });'."\n";

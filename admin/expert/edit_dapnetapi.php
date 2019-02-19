@@ -51,37 +51,73 @@ exec('sudo chmod 664 /tmp/jsADGHwf9sj294.tmp');
 //ini file to open
 $filepath = '/tmp/jsADGHwf9sj294.tmp';
 
-if(isset($_POST['data'])) {
-        // Open the file and write the data
-        $fh = fopen($filepath, 'w');
-        fwrite($fh, $_POST['data']);
-        fclose($fh);
-        exec('sudo mount -o remount,rw /');
-        exec('sudo cp /tmp/jsADGHwf9sj294.tmp /etc/dapnetapi.key');
-        exec('sudo chmod 644 /etc/dapnetapi.key');
-        exec('sudo chown root:root /etc/dapnetapi.key');
-        exec('sudo mount -o remount,ro /');
-  
-        // Reload the affected daemon
-		exec('sudo systemctl restart dapnetgateway.service'); // Reload the daemon
-
-        // Re-open the file and read it
-        $fh = fopen($filepath, 'r');
-        $theData = fread($fh, filesize($filepath));
-
-} else {
-        // Open the file and read it
-        $fh = fopen($filepath, 'r');
-        $theData = fread($fh, filesize($filepath));
+//after the form submit
+if($_POST) {
+	$data = $_POST;
+	//update ini file, call function
+	update_ini_file($data, $filepath);
 }
-fclose($fh);
 
+//this is the function going to update your ini file
+	function update_ini_file($data, $filepath) {
+		$content = "";
+
+		//parse the ini file to get the sections
+		//parse the ini file using default parse_ini_file() PHP function
+		$parsed_ini = parse_ini_file($filepath, true);
+
+		foreach($data as $section=>$values) {
+			// UnBreak special cases
+			$section = str_replace("_", " ", $section);
+			$content .= "[".$section."]\n";
+			//append the values
+			foreach($values as $key=>$value) {
+                if (strcmp($key, 'TRXAREA') == 0)
+                    $content .= $key."=\"".$value."\"\n";
+                else
+                    $content .= $key."=".$value."\n";
+			}
+			$content .= "\n";
+		}
+
+		//write it into file
+		if (!$handle = fopen($filepath, 'w')) {
+			return false;
+		}
+
+		$success = fwrite($handle, $content);
+		fclose($handle);
+
+		// Updates complete - copy the working file back to the proper location
+		exec('sudo mount -o remount,rw /');                         // Make rootfs writable
+		exec('sudo cp /tmp/jsADGHwf9sj294.tmp /etc/dapnetapi.key'); // Move the file back
+		exec('sudo chmod 644 /etc/dapnetapi.key');                  // Set the correct runtime permissions
+		exec('sudo chown root:root /etc/dapnetapi.key');            // Set the owner
+		exec('sudo mount -o remount,ro /');                         // Make rootfs read-only
+
+		return $success;
+	}
+
+//parse the ini file using default parse_ini_file() PHP function
+$parsed_ini = parse_ini_file($filepath, true);
+
+echo '<form action="" method="post">'."\n";
+	foreach($parsed_ini as $section=>$values) {
+		// keep the section as hidden text so we can update once the form submitted
+		echo "<input type=\"hidden\" value=\"$section\" name=\"$section\" />\n";
+		echo "<table>\n";
+		echo "<tr><th colspan=\"2\">$section</th></tr>\n";
+		// print all other values as input fields, so can edit. 
+		// note the name='' attribute it has both section and key
+		foreach($values as $key=>$value) {
+            echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
+		}
+		echo "</table>\n";
+		echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";
+		echo "<br />\n";
+	}
+echo "</form>";
 ?>
-<form name="test" method="post" action="">
-    <textarea name="data" cols="80" rows="45"><?php echo $theData; ?></textarea><br />
-<input type="submit" name="submit" value="<?php echo $lang['apply']; ?>" />
-    </form>
-
 </div>
 
 <div class="footer">
