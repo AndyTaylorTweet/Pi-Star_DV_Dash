@@ -4,7 +4,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/download_modem_log.php") {
 		$logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
 	}
 	elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
-		$logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
+		if (file_exists("/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log")) {$logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";}
+		if (file_exists("/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log")) {$logfile = "/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log";}
 	}
 
 	$unixfile = file_get_contents($logfile);

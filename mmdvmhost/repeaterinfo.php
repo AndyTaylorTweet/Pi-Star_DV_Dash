@@ -280,6 +280,29 @@ if ( $testMMDVModeYSF == 1 || $testDMR2YSF ) { //Hide the YSF information when S
         echo "</table>\n";
 }
 
+if ( isset($configysf2dmr['Enabled']['Enabled']) ) { $testYSF2DMR = $configysf2dmr['Enabled']['Enabled']; }
+if ( $testYSF2DMR ) { //Hide the YSF2DMR information when YSF2DMR Network mode not enabled.
+        $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
+        $dmrMasterHost = $configysf2dmr['DMR Network']['Address'];
+        while (!feof($dmrMasterFile)) {
+                $dmrMasterLine = fgets($dmrMasterFile);
+                $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
+                if ((strpos($dmrMasterHostF[0], '#') === FALSE) && ($dmrMasterHostF[0] != '')) {
+                        if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
+                }
+        }
+        if (strlen($dmrMasterHost) > 19) { $dmrMasterHost = substr($dmrMasterHost, 0, 17) . '..'; }
+        fclose($dmrMasterFile);
+
+        echo "<br />\n";
+        echo "<table>\n";
+        echo "<tr><th colspan=\"2\">YSF2DMR</th></tr>\n";
+	echo "<tr><th>DMR ID</th><td style=\"background: #ffffff;\">".$configysf2dmr['DMR Network']['Id']."</td></tr>\n";
+	echo "<tr><th colspan=\"2\">YSF2".$lang['dmr_master']."</th></tr>\n";
+        echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".$dmrMasterHost."</td></tr>\n";
+        echo "</table>\n";
+}
+
 $testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
 if ( isset($configysf2p25['Enabled']['Enabled']) ) { $testYSF2P25 = $configysf2p25['Enabled']['Enabled']; }
 if ( $testMMDVModeP25 == 1 || $testYSF2P25 ) { //Hide the P25 information when P25 Network mode not enabled.
