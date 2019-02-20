@@ -27,7 +27,7 @@ if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAP
     if ((empty($_POST) != TRUE) && (isset($_POST["dapSubmit"]) && (empty($_POST["dapSubmit"]) != TRUE)) && (isset($_POST["dapToCallsign"]) && (empty($_POST["dapToCallsign"]) != TRUE)) && (isset($_POST["dapMsgContent"]) && (empty($_POST["dapMsgContent"]) != TRUE))) {
         
         $dapnetTo = escapeshellcmd($_POST['dapToCallsign']);
-        $dapnetContent = trim($_POST['dapMsgContent']);
+	$dapnetContent = str_replace(array("\r\n", "\n", "\r"), "", $_POST['dapMsgContent']);
 
         $dapnetCmd = 'sudo /usr/local/sbin/pistar-dapnetapi '.$dapnetTo.' "'.$dapnetContent.'" nohost 2>&1';
         
