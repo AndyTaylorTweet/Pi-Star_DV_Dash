@@ -3825,7 +3825,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
-<?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?>
+<?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?> <!-- RMB -->
 	<div><b><?php echo $lang['pocsag_config'];?></b></div>
     <table>
       <tr>
