@@ -971,6 +971,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set DMR / CCS7 ID
 	if (empty($_POST['dmrId']) != TRUE ) {
 	  $newPostDmrId = preg_replace('/[^0-9]/', '', $_POST['dmrId']);
+	  $hotspotId = (strlen($_POST['hotspotId'])) ? $_POST['hotspotId'] : '-1';
+	  $hotspotId = ((((intval($hotspotId) >= 0) && (intval($hotspotId <= 9))) || (intval($hotspotId) == -1)) ? $hotspotId : '-1');
+	  $ccs7extra = ((intval($hotspotId) != -1) ? $hotspotId : '');
+	  
 	  //$configmmdvm['DMR']['Id'] = $newPostDmrId;
 	  unset($configmmdvm['DMR']['Id']);
 	  if (empty($_POST['dmrMasterHost']) != TRUE ) {
@@ -981,7 +985,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysfgateway['General']['Id'] = $newPostDmrId;
 	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
-	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
+	  $configdmrgateway['DMR Network 1']['Id'] = substr($newPostDmrId.$ccs7extra,0);
+	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId.$ccs7extra,0);
 	  $configdmr2ysf['DMR Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmr2nxdn['DMR Network']['Id'] = substr($newPostDmrId,0,7);
 	}
@@ -1839,8 +1844,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set the Hostname
-	if (empty($_POST['confHostame']) != TRUE ) {
-	  $newHostnameLower = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['confHostame']));
+	if (empty($_POST['confHostname']) != TRUE ) {
+	  $newHostnameLower = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $_POST['confHostname']));
 	  $currHostname = exec('cat /etc/hostname');
 	  $rollHostname = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hostname';
 	  $rollHosts = 'sudo sed -i "s/'.$currHostname.'/'.$newHostnameLower.'/" /etc/hosts';
@@ -2566,7 +2571,38 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                         exec('sudo chown root:root $modemConfigFileMMDVMHost');			// Set the owner
                     }
 		}
+    }
+
+	// Set the Hotspot ID
+	if (strlen($_POST['hotspotId'])) {
+        $hotspotId = $_POST['hotspotId'];
+        $hotspotId = ((((intval($hotspotId) >= 0) && (intval($hotspotId <= 9))) || (intval($hotspotId) == -1)) ? $hotspotId : '-1');
+	  
+        if (!$handleHotspotIdConfig = fopen('/tmp/cyJpZ8TDxkV9tJwQ.tmp', 'w')) {
+            return false;
         }
+
+        if (!is_writable('/tmp/cyJpZ8TDxkV9tJwQ.tmp')) {
+            echo "<br />\n";
+            echo "<table>\n";
+            echo "<tr><th>ERROR</th></tr>\n";
+            echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+            echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+            echo "</table>\n";
+            unset($_POST);
+            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+            die();
+        }
+        else {
+            $success = fwrite($handleHotspotIdConfig, $hotspotId.PHP_EOL);
+            fclose($handleHotspotIdConfig);
+            if (intval(exec('cat /tmp/cyJpZ8TDxkV9tJwQ.tmp | wc -l')) > 0 ) {
+                exec('sudo mv /tmp/cyJpZ8TDxkV9tJwQ.tmp /etc/hotspot_id');		// Move the file back
+                exec('sudo chmod 644 /etc/hotspot_id');				// Set the correct runtime permissions
+                exec('sudo chown root:root /etc/hotspot_id');			// Set the owner
+            }
+        }
+    }
 
 	// Start the DV Services
 	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');			// Restart Systemd to account for any service changes
@@ -2861,9 +2897,14 @@ else:
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
     </tr>
+    <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['DMR']['Enable'] == 1) && ($configmmdvm['DMR Network']['Address'] == '127.0.0.1') && ($configmmdvm['DMR Network']['Port'] == '62031')) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['hotspot_id'];?>:<span><b>Hotspot ID</b>Enter your Hotspot ID (0 to 9, -1 to disable)</span></a></td>
+    <td align="left" colspan="2"><input type="text" name="hotspotId" size="13" maxlength="2" value="<?php if (file_exists('/etc/hotspot_id')) { echo exec('cat /etc/hotspot_id'); } else { echo "-1"; } ?>" /></td>
+    </tr><?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Hostname:<span><b>System Hostname</b>This is the system hostname, used for access to the dashboard etc.</span></a></td>
-    <td align="left" colspan="2"><input type="text" name="confHostame" size="13" maxlength="15" value="<?php echo exec('cat /etc/hostname'); ?>" />Do not add suffixes such as .local</td>
+    <td align="left" colspan="2"><input type="text" name="confHostname" size="13" maxlength="15" value="<?php echo exec('cat /etc/hostname'); ?>" />Do not add suffixes such as .local</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_call'];?>:<span><b>Gateway Callsign</b>This is your licenced callsign for use on this gateway, do not append the "G"</span></a></td>
@@ -2879,7 +2920,7 @@ else:
       <td align="left"><a class="tooltip2" href="#">NXDN ID:<span><b>NXDN ID</b>Enter your NXDN ID here</span></a></td>
       <td align="left" colspan="2"><input type="text" name="nxdnId" size="13" maxlength="5" value="<?php if (isset($configmmdvm['NXDN']['Id'])) { echo $configmmdvm['NXDN']['Id']; } ?>" /></td>
     </tr><?php } ?>
-<?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
+    <?php if ($configmmdvm['Info']['TXFrequency'] === $configmmdvm['Info']['RXFrequency']) {
 	echo "    <tr>\n";
 	echo "    <td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['radio_freq'].":<span><b>Radio Frequency</b>This is the Frequency your<br />Pi-Star is on</span></a></td>\n";
 	echo "    <td align=\"left\" colspan=\"2\"><input type=\"text\" id=\"confFREQ\" onkeyup=\"checkFrequency(); return false;\" name=\"confFREQ\" size=\"13\" maxlength=\"12\" value=\"".number_format($configmmdvm['Info']['RXFrequency'], 0, '.', '.')."\" />MHz</td>\n";
@@ -3073,8 +3114,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?>:<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td>
     <td>
-      <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Repeater Information</a> |
-      <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
+      <a href="https://brandmeister.network/?page=hotspot&amp;id=<?php $ccs7extra=''; if (file_exists('/etc/hotspot_id') && ($configmmdvm['DMR Network']['Address'] == '127.0.0.1') && ($configmmdvm['DMR Network']['Port'] == '62031')) { $ccs7extra=exec('cat /etc/hotspot_id'); }; if ($ccs7extra == '-1') { $ccs7extra = ''; }; echo $configmmdvm['General']['Id'].$ccs7extra; ?>" target="_new" style="color: #000;">Repeater Information</a> |
+      <a href="https://brandmeister.network/?page=hotspot-edit&amp;id=<?php $ccs7extra=''; if (file_exists('/etc/hotspot_id') && ($configmmdvm['DMR Network']['Address'] == '127.0.0.1') && ($configmmdvm['DMR Network']['Port'] == '62031')) { $ccs7extra=exec('cat /etc/hotspot_id'); }; if ($ccs7extra == '-1') { $ccs7extra = ''; }; echo $configmmdvm['General']['Id'].$ccs7extra; ?>" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>
     <tr>

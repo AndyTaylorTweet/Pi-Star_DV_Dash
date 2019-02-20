@@ -19,7 +19,7 @@ if ( $testMMDVModeDMR == 1 ) {
 
   // Get the current DMR Master from the config
   $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
-  if ( $dmrMasterHost == '127.0.0.1' ) { $dmrMasterHost = $configdmrgateway['DMR Network 1']['Address']; }
+  if ( $dmrMasterHost == '127.0.0.1' ) { $dmrMasterHost = $configdmrgateway['DMR Network 1']['Address']; $dmrGWID = $configdmrgateway['DMR Network 1']['Id']; }
 
   // Store the DMR Master IP, we will need this for the JSON lookup
   $dmrMasterHostIP = $dmrMasterHost;
@@ -36,7 +36,7 @@ if ( $testMMDVModeDMR == 1 ) {
 
   if (substr($dmrMasterHost, 0, 2) == "BM") {
   // DMR ID, we will need this for the JSON lookup
-  $dmrID = getConfigItem("General", "Id", $mmdvmconfigs);
+  $dmrID = ( ! empty($dmrGWID) ? $dmrGWID : getConfigItem("General", "Id", $mmdvmconfigs));
 
   // Use BM API to get information about current TGs
   $jsonContext = stream_context_create(array('http'=>array('timeout' => 2) )); // Add Timout
