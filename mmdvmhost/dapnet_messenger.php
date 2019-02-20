@@ -55,7 +55,7 @@ if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAP
 		<tr>
 			<th><a class=tooltip href="#">To<span><b>Enter the destination callsign</b></span></a></th>
 			<th><a class=tooltip href="#">Message<span><b>Enter the message content</b></span></a></th>
-			<th><a class=tooltip href="#">Send<span><b>Send the message</b></span></a></th>
+			<th><a class=tooltip href="#">Action<span><b>Send the message</b></span></a></th>
 		</tr>'."\n";
         echo '  <tr>';
         echo '    <td><input type="text" name="dapToCallsign" size="13" maxlength="12" value="" /></td>';
