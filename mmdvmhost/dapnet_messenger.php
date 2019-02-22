@@ -26,9 +26,12 @@ if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAP
     // Data has been posted for this page (POST)
     if ((empty($_POST) != TRUE) && (isset($_POST["dapSubmit"]) && (empty($_POST["dapSubmit"]) != TRUE)) && (isset($_POST["dapToCallsign"]) && (empty($_POST["dapToCallsign"]) != TRUE)) && (isset($_POST["dapMsgContent"]) && (empty($_POST["dapMsgContent"]) != TRUE))) {
         
-        $dapnetTo = escapeshellcmd($_POST['dapToCallsign']);
-	$filteredChars = array('\''=>'\\\'', '"'=>'\\\\\\"');
-	$dapnetContent = strtr(str_replace(array("\r\n", "\n", "\r"), "", iconv('UTF-8','ASCII//TRANSLIT', $_POST['dapMsgContent'])), $filteredChars);
+        $dapnetTo = preg_replace('/[^,:space:[:alnum:]]/', "", trim($_POST['dapToCallsign'])); // Only A-Z a-z 0-9 and , allowed
+        while (preg_match('/,,/', $dapnetTo)) { $dapnetTo = preg_replace('/,,/', ",", $dapnetTo); } // replace any double comma with single comma
+        $dapnetTo = rtrim($dapnetTo, ","); // remove comma at the end of the string, if any.
+
+        $filteredChars = array('\''=>'\\\'', '"'=>'\\\\\\"');
+        $dapnetContent = strtr(str_replace(array("\r\n", "\n", "\r"), "", iconv('UTF-8','ASCII//TRANSLIT', $_POST['dapMsgContent'])), $filteredChars);
 
         $dapnetCmd = 'sudo /usr/local/sbin/pistar-dapnetapi '.$dapnetTo.' "'.$dapnetContent.'" nohost 2>&1';
         
@@ -54,12 +57,12 @@ if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAP
         echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
         echo '<table>
 		<tr>
-			<th><a class=tooltip href="#">To<span><b>Enter the destination callsign</b></span></a></th>
-			<th><a class=tooltip href="#">Message<span><b>Enter the message content</b></span></a></th>
+			<th><a class=tooltip href="#">To<span><b>Enter the destination callsign(s)</b>You can set many callsigns, comma separated</span></a></th>
+			<th><a class=tooltip href="#">Message<span><b>Enter the message content</b>Length is limited to '.$maxlength.' characters (splitted in 5 POCSAG pages)</span></a></th>
 			<th><a class=tooltip href="#">Action<span><b>Send the message</b></span></a></th>
 		</tr>'."\n";
         echo '  <tr>';
-        echo '    <td><input type="text" name="dapToCallsign" size="13" maxlength="12" value="" /></td>';
+        echo '    <td><input type="text" name="dapToCallsign" size="13" maxlength="70" value="" /></td>';
         echo '    <td><textarea maxlength="'.$maxlength.'" name="dapMsgContent" cols="60" rows="3" style="overflow:scroll;" value="" /></textarea></td>';
         echo '    <td><input type="submit" value="Send" name="dapSubmit" /></td>';
         echo '  </tr>'."\n";
