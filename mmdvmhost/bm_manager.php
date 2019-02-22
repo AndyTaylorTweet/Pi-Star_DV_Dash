@@ -63,13 +63,18 @@ if ( $testMMDVModeDMR == 1 ) {
     if ( (isset($_POST["reflectorNr"])) && (isset($_POST["refSubmit"])) && ($_POST["REFmgr"] == "LINK")) { $targetREF = preg_replace("/[^0-9]/", "", $_POST["reflectorNr"]); }
     // Build the Data
     if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) ) {
-      $postDataTG = array(
-        'talkgroup' => $targetTG,
-        'timeslot' => $targetSlot,
-      );
-      $postDataREF = array(
-        'reflector' => $targetREF,
-      );
+        if (isset($_POST["tgSubmit"])) {
+            $postDataTG = array(
+                'talkgroup' => $targetTG,
+                'timeslot' => $targetSlot,
+            );
+        }
+
+        if (isset($_POST["refSubmit"])) {
+            $postDataREF = array(
+                'reflector' => $targetREF,
+            );
+        }
     }
     // Build the Query
     $postData = '';
