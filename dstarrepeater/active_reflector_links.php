@@ -101,7 +101,7 @@ $MYCALL=strtoupper($callsign);
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // 2012-05-08 21:16:31: DExtra link - Type: Repeater Rptr: DB0LJ  A Refl: DB0MYK B Dir: Incoming
 // 2012-05-08 21:16:31: DPlus link - Type: Dongle User: W1CDG  H Dir: Incoming
-	    if ($linkLog = fopen($linkLogPath,'r')) {
+	    if (file_exists($linkLogPath)  && ($linkLog = fopen($linkLogPath,'r'))) {
 		while ($linkLine = fgets($linkLog)) {
 		    $statimg = "Down";
                     $linkDate = "&nbsp;";
@@ -144,7 +144,7 @@ $MYCALL=strtoupper($callsign);
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 // 2012-05-08 21:16:31: DExtra link - Type: Repeater Rptr: DB0LJ  A Refl: DB0MYK B Dir: Incoming
 // 2012-05-08 21:16:31: DPlus link - Type: Dongle User: W1CDG  H Dir: Incoming
-            if ($linkLog = fopen($linkLogPath,'r')) {
+        if (file_exists($linkLogPath) && ($linkLog = fopen($linkLogPath,'r'))) {
                 while ($linkLine = fgets($linkLog)) {
                     $statimg = "Down";
                     $linkDate = "&nbsp;";
