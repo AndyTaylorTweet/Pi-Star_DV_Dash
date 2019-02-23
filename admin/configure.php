@@ -546,18 +546,24 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set the POCSAG API Transmitter Group
-	if (empty($_POST['pocsagAPITrxGroup']) != TRUE ) {
-	  $configdapnetapi['DAPNETAPI']['TRXAREA'] = '"'.strtolower(escapeshellcmd($_POST['pocsagAPITrxGroup'])).'"';
+	if (empty($_POST['dapnetAPITrxGroup']) != TRUE ) {
+        $dapnetapitrxgrp = preg_replace('/[^,:space:[:alnum:]-]/', "", trim(strtolower($_POST['dapnetAPITrxGroup']))); // Only A-Z a-z 0-9 - and , allowed
+        while (preg_match('/,,/', $dapnetapitrxgrp)) { $dapnetapitrxgrp = preg_replace('/,,/', ",", $dapnetapitrxgrp); } // Replace any double comma with single comma
+        while (preg_match('/--/', $dapnetapitrxgrp)) { $dapnetapitrxgrp = preg_replace('/--/', "-", $dapnetapitrxgrp); } // Replace any double dash with single dash
+        $dapnetapitrxgrp = rtrim($dapnetapitrxgrp, ","); // Remove comma at the end of the string, if any.
+
+        // Store cleaned TRX Group(s)
+        $configdapnetapi['DAPNETAPI']['TRXAREA'] = '"'.$dapnetapitrxgrp.'"';
 	}
 
 	// Set the POCSAG API Password
-	if (empty($_POST['pocsagAPIPass']) != TRUE ) {
-	  $configdapnetapi['DAPNETAPI']['PASS'] = escapeshellcmd($_POST['pocsagAPIPass']);
+	if (empty($_POST['dapnetAPIPass']) != TRUE ) {
+        $configdapnetapi['DAPNETAPI']['PASS'] = escapeshellcmd(trim($_POST['dapnetAPIPass']));
 	}
 
 	// Set the POCSAG API Username
-	if (empty($_POST['pocsagAPIUser']) != TRUE ) {
-	  $configdapnetapi['DAPNETAPI']['USER'] = escapeshellcmd($_POST['pocsagAPIUser']);
+	if (empty($_POST['dapnetAPIUser']) != TRUE ) {
+        $configdapnetapi['DAPNETAPI']['USER'] = escapeshellcmd(trim($_POST['dapnetAPIUser']));
 	}
 
 	// Set the Frequency for Duplex
@@ -3817,16 +3823,16 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       </tr>
 
       <tr>
-        <td align="left"><a class="tooltip2" href="#">POCSAG API Username:<span><b>POCSAG API Username</b>Set your POCSAG API Username here</span></a></td>
-        <td align="left"><input type="text" name="pocsagAPIUser" size="13" maxlength="12" value="<?php if (isset($configdapnetapi['DAPNETAPI']['USER'])) { echo $configdapnetapi['DAPNETAPI']['USER']; } ?>" /></td>
+        <td align="left"><a class="tooltip2" href="#">DAPNET API Username:<span><b>POCSAG API Username</b>Set your POCSAG API Username here</span></a></td>
+        <td align="left"><input type="text" name="dapnetAPIUser" size="13" maxlength="12" value="<?php if (isset($configdapnetapi['DAPNETAPI']['USER'])) { echo $configdapnetapi['DAPNETAPI']['USER']; } ?>" /></td>
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#">DAPNET API Password:<span><b>DAPNET API Password</b>Set your DAPNET API password here</span></a></td>
-        <td align="left"><input type="password" name="pocsagAPIPass" size="30" maxlength="50" value="<?php if (isset($configdapnetapi['DAPNETAPI']['PASS'])) { echo $configdapnetapi['DAPNETAPI']['PASS']; } ?>" /></td>
+        <td align="left"><input type="password" name="dapnetAPIPass" size="30" maxlength="50" value="<?php if (isset($configdapnetapi['DAPNETAPI']['PASS'])) { echo $configdapnetapi['DAPNETAPI']['PASS']; } ?>" /></td>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#">POCSAG API Trx Group:<span><b>POCSAG API Transmitter Group</b>Set the desired transmitter group here</span></a></td> <!-- f1rmb: only one group ATM -->
-        <td align="left"><input type="text" name="pocsagAPITrxGroup" size="13" maxlength="12" value="<?php if (isset($configdapnetapi['DAPNETAPI']['TRXAREA'])) { echo $configdapnetapi['DAPNETAPI']['TRXAREA']; } ?>" /></td>
+        <td align="left"><a class="tooltip2" href="#">DAPNET API Trx Group:<span><b>POCSAG API Transmitter Group</b>Set the desired transmitter group here</span></a></td> <!-- f1rmb: only one group ATM -->
+        <td align="left"><input type="text" name="dapnetAPITrxGroup" size="13" maxlength="30" value="<?php if (isset($configdapnetapi['DAPNETAPI']['TRXAREA'])) { echo $configdapnetapi['DAPNETAPI']['TRXAREA']; } ?>" /></td>
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
