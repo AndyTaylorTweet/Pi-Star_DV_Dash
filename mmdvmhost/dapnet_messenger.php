@@ -8,9 +8,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 
 // DAPNet API config 
 if (! isset($configdapnetapi)) {
-
     if (file_exists('/etc/dapnetapi.key')) {
-        
         $configDAPNetAPIConfigFile = '/etc/dapnetapi.key';
         
         if (fopen($configDAPNetAPIConfigFile,'r')) {
@@ -21,11 +19,14 @@ if (! isset($configdapnetapi)) {
 
 if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAPNETAPI']['USER']) != TRUE)):
 
+    // Max length for the textarea (pistar-dapnetapi will split in 5 messages maximum * 80 characters. 
     $maxlength = (5 * (80 - (strlen($configdapnetapi['DAPNETAPI']['USER']) + 2 /* 'CALLSIGN: ' prefix */ + 4 /* 'x/n ' count */)));
     
     // Data has been posted for this page (POST)
-    if ((empty($_POST) != TRUE) && (isset($_POST['dapSubmit']) && (empty($_POST['dapSubmit']) != TRUE)) && (isset($_POST['dapToCallsign']) && (empty($_POST['dapToCallsign']) != TRUE)) && (isset($_POST['dapMsgContent']) && (empty($_POST['dapMsgContent']) != TRUE))) {
-        
+    if ((empty($_POST) != TRUE) && (isset($_POST['dapSubmit']) && (empty($_POST['dapSubmit']) != TRUE)) &&
+          (isset($_POST['dapToCallsign']) && (empty($_POST['dapToCallsign']) != TRUE)) && (isset($_POST['dapMsgContent']) && (empty($_POST['dapMsgContent']) != TRUE))) {
+
+        // A little bit of cleaning
         $dapnetTo = preg_replace('/[^,:space:[:alnum:]]/', "", trim($_POST['dapToCallsign'])); // Only A-Z a-z 0-9 and , allowed
         while (preg_match('/,,/', $dapnetTo)) { $dapnetTo = preg_replace('/,,/', ",", $dapnetTo); } // replace any double comma with single comma
         $dapnetTo = rtrim($dapnetTo, ","); // remove comma at the end of the string, if any.
@@ -33,7 +34,7 @@ if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAP
         $filteredChars = array('\''=>'\\\'', '"'=>'\\\\\\"');
         $dapnetContent = strtr(str_replace(array("\r\n", "\n", "\r"), "", iconv('UTF-8','ASCII//TRANSLIT', $_POST['dapMsgContent'])), $filteredChars);
 
-        // TRX AREA
+        // TRX AREA turn
         $dapnetTrx=((isset($_POST['dapToTrxArea']) && (empty($_POST['dapToTrxArea']) != TRUE)) ? preg_replace('/[^,:space:[:alnum:]-]/', "", trim(strtolower(trim($_POST['dapToTrxArea'])))) : "");
         while (preg_match('/,,/', $dapnetTrx)) { $dapnetTrx = preg_replace('/,,/', ",", $dapnetTrx); } // Replace any double comma with single comma
         while (preg_match('/--/', $dapnetTrx)) { $dapnetTrx = preg_replace('/--/', "-", $dapnetTrx); } // Replace any double dash with single dash
@@ -67,7 +68,8 @@ if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAP
 
     }
     else {
-        $dapnetTrxAreas=(isset($configdapnetapi['DAPNETAPI']['TRXAREA']) && (! empty($configdapnetapi['DAPNETAPI']['TRXAREA'])) ? $configdapnetapi['DAPNETAPI']['TRXAREA'] : "");
+
+        $dapnetTrxAreas = (isset($configdapnetapi['DAPNETAPI']['TRXAREA']) && (! empty($configdapnetapi['DAPNETAPI']['TRXAREA'])) ? $configdapnetapi['DAPNETAPI']['TRXAREA'] : "");
             
         echo '<b>DAPNET Messenger</b>'."\n";
         echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
@@ -78,24 +80,26 @@ if (isset($configdapnetapi['DAPNETAPI']['USER']) && (empty($configdapnetapi['DAP
 			<th><a class=tooltip href="#">Action<span><b>Send the message</b></span></a></th>
 		</tr>'."\n";
         echo '  <tr>';
-        echo '    <td><input type="text" name="dapToCallsign" size="10" maxlength="70" value="" /></td>';
+        echo '    <td><input type="text" name="dapToCallsign" size="10" maxlength="70" title="Define the Callsign(s) here." value="" /></td>';
         echo '    <td rowspan="2"><textarea maxlength="'.$maxlength.'" name="dapMsgContent" cols="55" rows="3" style="overflow:scroll;" value="" /></textarea></td>';
         echo '    <td rowspan="2" style="vertical-align:bottom;padding:5px;"><input type="submit" value="Send" name="dapSubmit" /></td>';
         echo '  </tr>'."\n";
         echo '  <tr>';
-        echo '    <td><input type="text" name="dapToTrxArea" size="5" maxlength="50" value="'.$dapnetTrxAreas.'" /></tr>';
+        echo '    <td><input type="text" name="dapToTrxArea" size="5" maxlength="50" value="'.$dapnetTrxAreas.'" title="Override the Transmitter Group(s) here." /></tr>';
         echo '  </tr>';
         echo '</table>'."\n";
-
 
     }
 
 else:
+
     // Output to the browser
     echo '<b>DAPNET Messenger</b>'."\n";
     echo "<table>\n<tr><th>DISABLED</th></tr>\n<tr><td>";
     print "DAPNET API configuration is incomplete";
     echo "</td></tr>\n</table>\n";
     echo "<br />\n";
+
 endif;
+
 ?>
