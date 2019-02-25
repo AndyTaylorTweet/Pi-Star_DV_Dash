@@ -125,6 +125,7 @@ $lang = array (
   "ber"                         =>  "BHO",        // Short version of "Bit Error Rate"
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNET Ağ Geçidi Etkinliği",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Zaman Aralığı",
   "pocsag_msg"                  =>  "Mesaj",
   // Dashboard - Extra Info

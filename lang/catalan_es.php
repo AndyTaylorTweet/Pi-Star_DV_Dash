@@ -126,6 +126,7 @@ $lang = array (
   "ber"                         =>  "BER",
   // POCSAG Specific
   "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_persolist"            =>  "DAPNET Personnal Messages",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info

@@ -23,7 +23,7 @@ if (strcmp($origin, "admin") == 0) {
 
 <div>
 
-  <b><?php echo "POCSAG Personnal Messages";?></b>
+  <b><?php echo $lang['pocsag_persolist'];?></b>
 
   <div>
     <table>

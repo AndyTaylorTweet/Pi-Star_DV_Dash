@@ -124,7 +124,8 @@ $lang = array (
   "loss"                        =>  "Pertes",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "Activit&eacute; Passerelle DAPNET",
+  "pocsag_persolist"            =>  "Messages Personnels DAPNET",
   "pocsag_timeslot"             =>  "Time Slot",
   "pocsag_msg"                  =>  "Message",
   // Dashboard - Extra Info
