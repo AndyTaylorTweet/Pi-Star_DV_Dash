@@ -59,6 +59,20 @@ function getDAPNETGatewayConfig() {
 	return $conf;
 }
 
+function getDAPNETAPIConfig() {
+	// loads /etc/dapnetapi.key into array for further use
+	$conf = array();
+    if (file_exists('/etc/dapnetapi.key')) {
+        if ($configs = @fopen('/etc/dapnetapi.key', 'r')) {
+            while ($config = fgets($configs)) {
+                array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+            }
+            fclose($configs);
+        }
+    }
+	return $conf;
+}
+
 function getConfigItem($section, $key, $configs) {
 	// retrieves the corresponding config-entry within a [section]
 	$sectionpos = array_search("[" . $section . "]", $configs) + 1;
@@ -294,26 +308,67 @@ function getNXDNGatewayLog() {
         return array_filter($logLines);
 }
 
-function getDAPNETGatewayLog() {
-        // Open Logfile and copy loglines into LogLines-Array()
-        $logLines = array();
+function getDAPNETGatewayLog($myRIC) {
+    // Open Logfile and copy loglines into LogLines-Array()
+    $logLines = array();
 	$logLines1 = array();
 	$logLines2 = array();
-        if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
+    
+    if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
 		$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath1 | cut -d" " -f2- | tail -n 20 | tac`);
-        }
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath1 | cut -d" " -f2- | tail -n 200 | tac`);
+    }
+    
 	$logLines1 = array_filter($logLines1);
-        if (sizeof($logLines1) == 0) {
+
+    if (sizeof($logLines1) == 0) {
                 if (file_exists("/var/log/pi-starDAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
-			$logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath2 | cut -d" " -f2- | tail -n 20 | tac`);
+                    $logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
+                    $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath2 | cut -d" " -f2- | tail -n 200 | tac`);
                 }
-		$logLines2 = array_filter($logLines2);
-        }
+
+                $logLines2 = array_filter($logLines2);
+    }
+    
 	$logLines = $logLines1 + $logLines2;
-	$logLines = array_slice($logLines, -20);
-	return array_filter($logLines);
+
+    if (isset($myRIC) && ! empty($myRIC)) {
+        $logLinesPersonnal = array();
+
+        // Traverse the whole array to extract personnal RIC messages
+        foreach($logLines as $key => $entry) {
+
+            // Extract RIC number
+            $dMsgArr = explode(" ", $entry);
+            $pocsag_ric = str_replace(',', '', $dMsgArr["8"]);
+            
+            // if RICs matches, move entry to Personnal array
+            if ($pocsag_ric == $myRIC) {
+                array_push($logLinesPersonnal, $entry);
+                unset($logLines[$key]);
+            }
+
+        }
+
+        $logLines = array_filter($logLines);
+
+        // Is there any message for my RIC ?
+        if (sizeof($logLinesPersonnal) > 0) {
+            $logLines = array_slice($logLines, -20);
+            
+            // Add that special separator entry
+            array_push($logLines, '<MY_RIC>');
+
+            $logLinesPersonnal = array_slice($logLinesPersonnal, -20);
+            $logLines = array_merge($logLines, $logLinesPersonnal);
+        }
+        
+    }
+    else {
+        $logLines = array_slice($logLines, -20);
+    }
+    
+	return $logLines; //array_filter($logLines);
 }
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
@@ -1097,9 +1152,14 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 		$logLinesNXDNGateway = getNXDNGatewayLog();
 		//$reverseLogLinesNXDNGateway = array_reverse(getNXDNGatewayLog());
 	}
+    
 	// Only need these in index.php
 	if (strpos($_SERVER["PHP_SELF"], 'index.php') !== false || strpos($_SERVER["PHP_SELF"], 'pages.php') !== false) {
-		$logLinesDAPNETGateway = getDAPNETGatewayLog();
+
+        // Will separate personnal and global messages only in Admin page, if MY_RIC is defined in dapnetapi.key.
+        $origin = (isset($_GET['origin']) ? $_GET['origin'] : (isset($myOrigin) ? $myOrigin : "unknown"));
+        
+		$logLinesDAPNETGateway = getDAPNETGatewayLog(($origin == "admin" ?  getConfigItem("DAPNETAPI", "MY_RIC", getDAPNETAPIConfig()) : null));
 	}
 }
 ?>

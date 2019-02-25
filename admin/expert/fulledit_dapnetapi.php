@@ -43,6 +43,7 @@ if (file_exists('/etc/dapnetapi.key')) {
 	exec('echo "USER=" >> /tmp/jsADGHwf9sj294.tmp');
 	exec('echo "PASS=" >> /tmp/jsADGHwf9sj294.tmp');
 	exec('echo "TRXAREA=" >> /tmp/jsADGHwf9sj294.tmp');
+	exec('echo "MY_RIC=" >> /tmp/jsADGHwf9sj294.tmp');
 }
 
 //Do some file wrangling...

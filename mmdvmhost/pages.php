@@ -6,32 +6,208 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 ?>
-<b><?php echo $lang['pocsag_list'];?></b>
-<table>
-  <tr>
-    <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['pocsag_timeslot'];?><span><b>Message Mode</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['pocsag_msg'];?><span><b>Message contents</b></span></a></th>
-  </tr>
 
 <?php
-  foreach ($logLinesDAPNETGateway as $dapnetMessageLine) {
-      $dapnetMessageArr = explode(" ", $dapnetMessageLine);
-      $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
-      $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
-      $utc_tz =  new DateTimeZone('UTC');
-      $local_tz = new DateTimeZone(date_default_timezone_get ());
-      $dt = new DateTime($utc_time, $utc_tz);
-      $dt->setTimeZone($local_tz);
-      $local_time = $dt->format('H:i:s M jS');
-      $pocsag_timeslot = $dapnetMessageArr["6"];
-      $pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
-      $pocsag_msg = $dapnetMessageTxtArr["1"];
-      // Formatting long messages without spaces
-      if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
-        $pocsag_msg = wordwrap($pocsag_msg, 45, ' ', true);
-      }
+
+// Get origin of the page loading
+$origin = (isset($_GET['origin']) ? $_GET['origin'] : (isset($myOrigin) ? $myOrigin : "unknown"));
+
+if (strcmp($origin, "admin") == 0) {
+    $myRIC = getConfigItem("DAPNETAPI", "MY_RIC", getDAPNETAPIConfig());
+
+    if ($myRIC) {
+?>
+
+
+<!-- Personnal messages-->
+
+<div>
+
+  <b><?php echo "POCSAG Personnal Messages";?></b>
+
+  <div>
+    <table>
+      <thread>
+        <tr>
+          <th style="width: 140px;" ><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
+          <th style="width: max-content;" ><a class="tooltip" href="#"><?php echo $lang['pocsag_msg'];?><span><b>Message contents</b></span></a></th>
+        </tr>
+      </thread>
+    </table>
+  </div>
+
+  <div style="max-height:190px; overflow-y:auto;" >
+    <table>
+      <thread>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </thread>
+      
+      <tbody>
+
+<?php
+
+        $found = false;
+  
+        foreach ($logLinesDAPNETGateway as $dapnetMessageLine) {
+
+            // After this, only messages for my RIC are stored
+            if (!$found && strcmp($dapnetMessageLine, '<MY_RIC>') == 0) {
+                $found = true;
+                continue;
+            }
+
+            if ($found) {
+                $dapnetMessageArr = explode(" ", $dapnetMessageLine);
+                $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
+                $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
+                $utc_tz =  new DateTimeZone('UTC');
+                $local_tz = new DateTimeZone(date_default_timezone_get ());
+                $dt = new DateTime($utc_time, $utc_tz);
+                $dt->setTimeZone($local_tz);
+                $local_time = $dt->format('H:i:s M jS');
+                $pocsag_msg = $dapnetMessageTxtArr["1"];
+
+                // Formatting long messages without spaces
+                if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 70) {
+                    $pocsag_msg = wordwrap($pocsag_msg, 70, ' ', true);
+                }
+
+?>
+
+        <tr>
+          <td style="width: 140px; vertical-align: top; text-align: left;"><?php echo $local_time; ?></td>
+          <td style="width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
+        </tr>
+
+<?php
+            } // $found
+        } // foreach
+?>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <br />
+    
+<?php
+    } // $myRIC
+?>
+    
+  <div>
+
+<!-- Activity -->
+  <b><?php echo $lang['pocsag_list'];?></b>
+
+  <div>
+    <table>
+      <thread>
+        <tr>
+          <th style="width: 140px;" ><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
+          <th style="width: 70px;" ><a class="tooltip" href="#"><?php echo $lang['pocsag_timeslot'];?><span><b>Message Mode</b></span></a></th>
+          <th style="width: 90px;" ><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
+          <th style="width: max-content;" ><a class="tooltip" href="#"><?php echo $lang['pocsag_msg'];?><span><b>Message contents</b></span></a></th>
+        </tr>
+      </thread>
+    </table>
+  </div>
+
+  <div style="max-height:190px; overflow-y:auto;" >
+    <table>
+      <thread>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thread>
+      <tbody>
+
+<?php
+
+    foreach($logLinesDAPNETGateway as $dapnetMessageLine) {
+
+        // After this, only messages for my RIC are stored
+        if (strcmp($dapnetMessageLine, '<MY_RIC>') == 0)
+            break;
+      
+        $dapnetMessageArr = explode(" ", $dapnetMessageLine);
+        $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
+        $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
+        $utc_tz =  new DateTimeZone('UTC');
+        $local_tz = new DateTimeZone(date_default_timezone_get ());
+        $dt = new DateTime($utc_time, $utc_tz);
+        $dt->setTimeZone($local_tz);
+        $local_time = $dt->format('H:i:s M jS');
+        $pocsag_timeslot = $dapnetMessageArr["6"];
+        $pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
+        $pocsag_msg = $dapnetMessageTxtArr["1"];
+        
+        // Formatting long messages without spaces
+        if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
+            $pocsag_msg = wordwrap($pocsag_msg, 45, ' ', true);
+        }
+
+?>
+
+        <tr>
+          <td style="width: 140px; vertical-align: top; text-align: left;"><?php echo $local_time; ?></td>
+          <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "Slot ".$pocsag_timeslot; ?></td>
+          <td style="width: 90px; vertical-align: top; text-align: center;"><?php echo $pocsag_ric; ?></td>
+          <td style="width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
+        </tr>
+
+<?php
+    } // foreach
+?>
+
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<?php
+}
+else { // origin == "admin"
+?>
+
+<b><?php echo $lang['pocsag_list'];?></b>
+
+<table>
+    <tr>
+      <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['pocsag_timeslot'];?><span><b>Message Mode</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>RIC / CapCode of the receiving Pager</b></span></a></th>
+      <th><a class="tooltip" href="#"><?php echo $lang['pocsag_msg'];?><span><b>Message contents</b></span></a></th>
+    </tr>
+
+<?php
+    
+    foreach($logLinesDAPNETGateway as $dapnetMessageLine) {
+        $dapnetMessageArr = explode(" ", $dapnetMessageLine);
+        $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
+        $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
+        $utc_tz =  new DateTimeZone('UTC');
+        $local_tz = new DateTimeZone(date_default_timezone_get ());
+        $dt = new DateTime($utc_time, $utc_tz);
+        $dt->setTimeZone($local_tz);
+        $local_time = $dt->format('H:i:s M jS');
+        $pocsag_timeslot = $dapnetMessageArr["6"];
+        $pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
+        $pocsag_msg = $dapnetMessageTxtArr["1"];
+        
+        // Formatting long messages without spaces
+        if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
+            $pocsag_msg = wordwrap($pocsag_msg, 45, ' ', true);
+        }
+        
 ?>
 
   <tr>
@@ -40,9 +216,13 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
     <td style="width: 90px; vertical-align: top; text-align: center;"><?php echo $pocsag_ric; ?></td>
     <td style="width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
   </tr>
-
+        
 <?php
-  } // foreach
+    } // foreach
 ?>
 
 </table>
+
+<?php
+} // origin == "admin"
+?>

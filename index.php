@@ -189,12 +189,13 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
             include 'mmdvmhost/dapnet_messenger.php';
             echo '</div>'."\n";
         }
+		$myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
 
 		echo '<script type="text/javascript">'."\n";
-		echo 'function reloadPages(){'."\n";
-		echo '  $("#Pages").load("/mmdvmhost/pages.php",function(){ setTimeout(reloadPages,5000) });'."\n";
+		echo 'function reloadPages(OptStr){'."\n";
+		echo '  $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
 		echo '}'."\n";
-		echo 'setTimeout(reloadPages,5000);'."\n";
+		echo 'setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
 		echo "<br />\n";

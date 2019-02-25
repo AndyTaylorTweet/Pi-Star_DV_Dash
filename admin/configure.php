@@ -117,6 +117,7 @@ if ( $configmmdvm['POCSAG']['Enable'] == 1 ) {
         exec('echo "USER=" >> /tmp/jsADGHwf9sj294.tmp');
         exec('echo "PASS=" >> /tmp/jsADGHwf9sj294.tmp');
         exec('echo "TRXAREA=" >> /tmp/jsADGHwf9sj294.tmp');
+        exec('echo "MY_RIC=" >> /tmp/jsADGHwf9sj294.tmp');
         
         exec('sudo mount -o remount,rw /');
         exec('sudo cp /tmp/jsADGHwf9sj294.tmp /etc/dapnetapi.key');
@@ -545,7 +546,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdapnetgw['DAPNET']['Address'] = escapeshellcmd($_POST['pocsagServer']);
 	}
 
-	// Set the POCSAG API Transmitter Group
+	// Set the DAPNET RIC
+	if (empty($_POST['dapnetAPIRic']) != TRUE ) {
+        $configdapnetapi['DAPNETAPI']['MY_RIC'] = escapeshellcmd(trim($_POST['dapnetAPIRic']));
+	}
+
+	// Set the DAPNET API Transmitter Group
 	if (empty($_POST['dapnetAPITrxGroup']) != TRUE ) {
         $dapnetapitrxgrp = preg_replace('/[^,:space:[:alnum:]-]/', "", trim(strtolower($_POST['dapnetAPITrxGroup']))); // Only A-Z a-z 0-9 - and , allowed
         while (preg_match('/,,/', $dapnetapitrxgrp)) { $dapnetapitrxgrp = preg_replace('/,,/', ",", $dapnetapitrxgrp); } // Replace any double comma with single comma
@@ -556,12 +562,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         $configdapnetapi['DAPNETAPI']['TRXAREA'] = '"'.$dapnetapitrxgrp.'"';
 	}
 
-	// Set the POCSAG API Password
+	// Set the DAPNET API Password
 	if (empty($_POST['dapnetAPIPass']) != TRUE ) {
         $configdapnetapi['DAPNETAPI']['PASS'] = escapeshellcmd(trim($_POST['dapnetAPIPass']));
 	}
 
-	// Set the POCSAG API Username
+	// Set the DAPNET API Username
 	if (empty($_POST['dapnetAPIUser']) != TRUE ) {
         $configdapnetapi['DAPNETAPI']['USER'] = escapeshellcmd(trim($_POST['dapnetAPIUser']));
 	}
@@ -3831,8 +3837,12 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <td align="left"><input type="password" name="dapnetAPIPass" size="30" maxlength="50" value="<?php if (isset($configdapnetapi['DAPNETAPI']['PASS'])) { echo $configdapnetapi['DAPNETAPI']['PASS']; } ?>" /></td>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#">DAPNET API Trx Group:<span><b>POCSAG API Transmitter Group</b>Set the desired transmitter group here</span></a></td> <!-- f1rmb: only one group ATM -->
+        <td align="left"><a class="tooltip2" href="#">DAPNET API Trx Group:<span><b>POCSAG API Transmitter Group</b>Set the desired transmitter group here</span></a></td>
         <td align="left"><input type="text" name="dapnetAPITrxGroup" size="13" maxlength="30" value="<?php if (isset($configdapnetapi['DAPNETAPI']['TRXAREA'])) { echo $configdapnetapi['DAPNETAPI']['TRXAREA']; } ?>" /></td>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#">DAPNET API RIC:<span><b>POCSAG API RIC</b>Set the RIC that is considered as personnal message destination</span></a></td>
+        <td align="left"><input type="text" name="dapnetAPIRic" size="13" maxlength="7" value="<?php if (isset($configdapnetapi['DAPNETAPI']['MY_RIC'])) { echo $configdapnetapi['DAPNETAPI']['MY_RIC']; } ?>" /></td>
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
