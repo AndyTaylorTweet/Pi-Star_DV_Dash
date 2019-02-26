@@ -15,7 +15,8 @@ $origin = (isset($_GET['origin']) ? $_GET['origin'] : (isset($myOrigin) ? $myOri
 if (strcmp($origin, "admin") == 0) {
     $myRIC = getConfigItem("DAPNETAPI", "MY_RIC", getDAPNETAPIConfig());
 
-    if ($myRIC) {
+    // Display personnal messages only if RIC has been defined, and some personnal messages are available
+    if ($myRIC && (array_search('<MY_RIC>', $logLinesDAPNETGateway) != FALSE)) {
 ?>
 
 
