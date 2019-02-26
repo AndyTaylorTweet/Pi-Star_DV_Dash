@@ -311,64 +311,64 @@ function getNXDNGatewayLog() {
 function getDAPNETGatewayLog($myRIC) {
     // Open Logfile and copy loglines into LogLines-Array()
     $logLines = array();
-	$logLines1 = array();
-	$logLines2 = array();
+    $logLines1 = array();
+    $logLines2 = array();
     
     if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
-		$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath1 | cut -d" " -f2- | tail -n 200 | tac`);
+	$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
+	$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath1 | cut -d" " -f2- | tail -n 200 | tac`);
     }
     
-	$logLines1 = array_filter($logLines1);
+    $logLines1 = array_filter($logLines1);
 
     if (sizeof($logLines1) == 0) {
-                if (file_exists("/var/log/pi-starDAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
-                    $logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
-                    $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath2 | cut -d" " -f2- | tail -n 200 | tac`);
-                }
-
-                $logLines2 = array_filter($logLines2);
+        if (file_exists("/var/log/pi-starDAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+            $logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
+            $logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath2 | cut -d" " -f2- | tail -n 200 | tac`);
+        }
+	
+        $logLines2 = array_filter($logLines2);
     }
-    
-	$logLines = $logLines1 + $logLines2;
 
+    $logLines = $logLines1 + $logLines2;
+    
     if (isset($myRIC) && ! empty($myRIC)) {
         $logLinesPersonnal = array();
 
         // Traverse the whole array to extract personnal RIC messages
         foreach($logLines as $key => $entry) {
-
+	    
             // Extract RIC number
             $dMsgArr = explode(" ", $entry);
             $pocsag_ric = str_replace(',', '', $dMsgArr["8"]);
             
             // if RICs matches, move entry to Personnal array
             if ($pocsag_ric == $myRIC) {
-                array_push($logLinesPersonnal, $entry);
-                unset($logLines[$key]);
+		$logLinesPersonnal['X'.$key] = $entry;
+		$logLines[$key] = '';
             }
-
         }
 
         $logLines = array_filter($logLines);
+        $logLinesPersonnal = array_filter($logLinesPersonnal);
 
+        $logLines = array_slice($logLines, 0, 20);
+	
         // Is there any message for my RIC ?
         if (sizeof($logLinesPersonnal) > 0) {
-            $logLines = array_slice($logLines, -20);
-            
+
             // Add that special separator entry
             array_push($logLines, '<MY_RIC>');
 
-            $logLinesPersonnal = array_slice($logLinesPersonnal, -20);
+            $logLinesPersonnal = array_slice($logLinesPersonnal, 0, 20);
             $logLines = array_merge($logLines, $logLinesPersonnal);
         }
-        
     }
     else {
-        $logLines = array_slice($logLines, -20);
+        $logLines = array_slice($logLines, 0, 20);
     }
     
-	return $logLines; //array_filter($logLines);
+    return $logLines;
 }
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
