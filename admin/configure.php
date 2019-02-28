@@ -535,7 +535,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdapnetgw['General']['Callsign'] = strtoupper(escapeshellcmd($_POST['pocsagCallsign']));
 	}
 
-	// Set the POCSAG Whitelist
+	// Set the POCSAG BlackList
+	if ((escapeshellcmd($_POST['MMDVMModePOCSAG']) == 'ON') && (isset($configdapnetgw['General']['BlackList'])) && (empty($_POST['pocsagBlacklist']) == TRUE)) { unset($configdapnetgw['General']['BlackList']); }
+	if (empty($_POST['pocsagBlacklist']) != TRUE ) {
+	  $configdapnetgw['General']['BlackList'] = preg_replace('/[^0-9\,]/', '', escapeshellcmd($_POST['pocsagBlacklist']));
+	}
+
+	// Set the POCSAG WhiteList
 	if ((escapeshellcmd($_POST['MMDVMModePOCSAG']) == 'ON') && (isset($configdapnetgw['General']['WhiteList'])) && (empty($_POST['pocsagWhitelist']) == TRUE)) { unset($configdapnetgw['General']['WhiteList']); }
 	if (empty($_POST['pocsagWhitelist']) != TRUE ) {
 	  $configdapnetgw['General']['WhiteList'] = preg_replace('/[^0-9\,]/', '', escapeshellcmd($_POST['pocsagWhitelist']));
@@ -2676,6 +2682,7 @@ else:
     <input type="hidden" name="MMDVMModeDMR2NXDN" value="OFF" />
     <input type="hidden" name="MMDVMModePOCSAG" value="OFF" />
     <input type="hidden" name="pocsagWhitelist" value="<?php if (isset($configdapnetgw['General']['WhiteList'])) { echo $configdapnetgw['General']['WhiteList']; } else { echo ""; } ?>" />
+    <input type="hidden" name="pocsagBlacklist" value="<?php if (isset($configdapnetgw['General']['BlackList'])) { echo $configdapnetgw['General']['BlackList']; } else { echo ""; } ?>" />
 	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
     <table>
     <tr>
@@ -3827,7 +3834,15 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
         <td align="left"><a class="tooltip2" href="#">POCSAG Whitelist:<span><b>POCSAG Whitelist</b>Set your POCSAG RICs here</span></a></td>
         <td align="left"><input type="text" name="pocsagWhitelist" size="30" maxlength="50" value="<?php if (isset($configdapnetgw['General']['WhiteList'])) { echo $configdapnetgw['General']['WhiteList']; } ?>" /></td>
       </tr>
-
+      <?php
+      if (isset($configdapnetgw['General']['BlackList'])) { ?>
+	  <tr>
+              <td align="left"><a class="tooltip2" href="#">POCSAG Blacklist:<span><b>POCSAG Blacklist</b>Set blacklisted POCSAG RICs here</span></a></td>
+              <td align="left"><input type="text" name="pocsagBlacklist" size="30" maxlength="50" value="<?php if (isset($configdapnetgw['General']['BlackList'])) { echo $configdapnetgw['General']['BlackList']; } ?>" /></td>
+	  </tr>
+      <?php
+      }
+      ?>
       <tr>
         <td align="left"><a class="tooltip2" href="#">DAPNET API Username:<span><b>POCSAG API Username</b>Set your POCSAG API Username here</span></a></td>
         <td align="left"><input type="text" name="dapnetAPIUser" size="13" maxlength="12" value="<?php if (isset($configdapnetapi['DAPNETAPI']['USER'])) { echo $configdapnetapi['DAPNETAPI']['USER']; } ?>" /></td>
