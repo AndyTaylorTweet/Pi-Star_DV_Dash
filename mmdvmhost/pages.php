@@ -62,15 +62,17 @@ if (strcmp($origin, "admin") == 0) {
 
             if ($found) {
                 $dapnetMessageArr = explode(" ", $dapnetMessageLine);
-                $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
                 $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
                 $utc_tz =  new DateTimeZone('UTC');
                 $local_tz = new DateTimeZone(date_default_timezone_get ());
                 $dt = new DateTime($utc_time, $utc_tz);
                 $dt->setTimeZone($local_tz);
                 $local_time = $dt->format('H:i:s M jS');
-                $pocsag_msg = $dapnetMessageTxtArr["1"];
 
+                $pos = strpos($dapnetMessageLine, '"');
+                $len = strlen($dapnetMessageLine);
+                $pocsag_msg = substr($dapnetMessageLine, ($pos - $len) + 1, ($len - $pos) - 2);
+                
                 // Formatting long messages without spaces
                 if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 70) {
                     $pocsag_msg = wordwrap($pocsag_msg, 70, ' ', true);
@@ -138,7 +140,6 @@ if (strcmp($origin, "admin") == 0) {
             break;
       
         $dapnetMessageArr = explode(" ", $dapnetMessageLine);
-        $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
         $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
         $utc_tz =  new DateTimeZone('UTC');
         $local_tz = new DateTimeZone(date_default_timezone_get ());
@@ -147,7 +148,10 @@ if (strcmp($origin, "admin") == 0) {
         $local_time = $dt->format('H:i:s M jS');
         $pocsag_timeslot = $dapnetMessageArr["6"];
         $pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
-        $pocsag_msg = $dapnetMessageTxtArr["1"];
+
+        $pos = strpos($dapnetMessageLine, '"');
+        $len = strlen($dapnetMessageLine);
+        $pocsag_msg = substr($dapnetMessageLine, ($pos - $len) + 1, ($len - $pos) - 2);
         
         // Formatting long messages without spaces
         if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
@@ -192,8 +196,7 @@ else { // origin == "admin"
 <?php
     
     foreach($logLinesDAPNETGateway as $dapnetMessageLine) {
-        $dapnetMessageArr = explode(" ", $dapnetMessageLine);
-        $dapnetMessageTxtArr = explode('"', $dapnetMessageLine);
+        $dapnetMessageArr = explode(' ', $dapnetMessageLine);
         $utc_time = $dapnetMessageArr["0"]." ".substr($dapnetMessageArr["1"],0,-4);
         $utc_tz =  new DateTimeZone('UTC');
         $local_tz = new DateTimeZone(date_default_timezone_get ());
@@ -202,7 +205,10 @@ else { // origin == "admin"
         $local_time = $dt->format('H:i:s M jS');
         $pocsag_timeslot = $dapnetMessageArr["6"];
         $pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
-        $pocsag_msg = $dapnetMessageTxtArr["1"];
+
+        $pos = strpos($dapnetMessageLine, '"');
+        $len = strlen($dapnetMessageLine);
+        $pocsag_msg = substr($dapnetMessageLine, ($pos - $len) + 1, ($len - $pos) - 2);
         
         // Formatting long messages without spaces
         if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
