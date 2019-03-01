@@ -54,7 +54,7 @@ $MYCALL=strtoupper($callsign);
 	    if($t > 12){ $t = 12; }
 	    print "<td>$tot[$t]</td>";
 	    $j=0;
-	    if ($linkLog = fopen($linkLogPath,'r')) {
+	    if (file_exists($linkLogPath) && (($linkLog = fopen($linkLogPath,'r')))) {
 		while ($linkLine = fgets($linkLog)) {
 		    //$statimg = "<img src=\"images/20red.png\">";
 		    $statimg = "Down";
