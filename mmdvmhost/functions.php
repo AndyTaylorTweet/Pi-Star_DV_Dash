@@ -352,7 +352,7 @@ function getDAPNETGatewayLog($myRIC) {
         $logLines = array_filter($logLines);
         $logLinesPersonnal = array_filter($logLinesPersonnal);
 
-        $logLines = array_slice($logLines, 0, 20);
+        $logLines = array_slice($logLines, 0, 40);
 	
         // Is there any message for my RIC ?
         if (sizeof($logLinesPersonnal) > 0) {
@@ -360,7 +360,7 @@ function getDAPNETGatewayLog($myRIC) {
             // Add that special separator entry
             array_push($logLines, '<MY_RIC>');
 
-            $logLinesPersonnal = array_slice($logLinesPersonnal, 0, 20);
+            $logLinesPersonnal = array_slice($logLinesPersonnal, 0, 40);
             $logLines = array_merge($logLines, $logLinesPersonnal);
         }
     }

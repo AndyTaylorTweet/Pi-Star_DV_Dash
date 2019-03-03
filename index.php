@@ -192,10 +192,19 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		$myOrigin = ($_SERVER["PHP_SELF"] == "/admin/index.php" ? "admin" : "other");
 
 		echo '<script type="text/javascript">'."\n";
+		echo 'var to;'."\n";
+		echo 'function setAutorefresh(obj) {'."\n";
+	        echo '    if (obj.checked) {'."\n";
+	        echo '        to = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+	        echo '    }'."\n";
+	        echo '    else {'."\n";
+	        echo '        clearTimeout(to);'."\n";
+	        echo '    }'."\n";
+                echo '}'."\n";
 		echo 'function reloadPages(OptStr){'."\n";
-		echo '  $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
+		echo '    $("#Pages").load("/mmdvmhost/pages.php"+OptStr, function(){ to = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'") });'."\n";
 		echo '}'."\n";
-		echo 'setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
+		echo 'to = setTimeout(reloadPages, 5000, "?origin='.$myOrigin.'");'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
 		echo "<br />\n";
