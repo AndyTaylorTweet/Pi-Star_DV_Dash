@@ -92,6 +92,45 @@ function getEnabled ($mode, $mmdvmconfigs) {
 	return getConfigItem($mode, "Enable", $mmdvmconfigs);
 }
 
+// E: 2019-02-23 16:34:03.406 Cannot connect the TCP client socket, err=111
+// or
+// M: 2019-03-05 17:27:26.410 Login failed: Invalid credentials
+function isDAPNETGatewayConnected() {
+    $logLines = array();
+    $logLines1 = array();
+    $logLines2 = array();
+
+    // Collect last four lines 
+    if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
+	$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
+	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 4 $logPath1 | cut -d" " -f2- | tac`);
+    }
+    
+    $logLines1 = array_filter($logLines1);
+
+    if (sizeof($logLines1) == 0) {
+        if (file_exists("/var/log/pi-starDAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+            $logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
+            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 4 $logPath2 | cut -d" " -f2- | tac`);
+        }
+	
+        $logLines2 = array_filter($logLines2);
+    }
+
+    $logLines = $logLines1 + $logLines2;
+
+    foreach($logLines as $dapnetMessageLine) {
+	$dapnetMessageArr = explode(" ", $dapnetMessageLine);
+
+	if (((strcmp($dapnetMessageArr["2"], "Cannot") == 0) && (strcmp($dapnetMessageArr["3"], "connect") == 0)) ||
+	    ((strcmp($dapnetMessageArr["2"], "Login") == 0) && (strncmp($dapnetMessageArr["3"], "failed", 6) == 0))) {
+	    return false;
+	}
+    }
+
+    return true;
+}
+
 function showMode($mode, $mmdvmconfigs) {
 	// shows if mode is enabled or not.
 	if (getEnabled($mode, $mmdvmconfigs) == 1) {
@@ -123,8 +162,8 @@ function showMode($mode, $mmdvmconfigs) {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
 		}
-		elseif ($mode == "DAPNET Network") {
-			if (isProcessRunning("DAPNETGateway")) {
+		elseif ($mode == "POCSAG Network") {
+			if (isProcessRunning("DAPNETGateway") && (isDAPNETGatewayConnected() == 1)) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";

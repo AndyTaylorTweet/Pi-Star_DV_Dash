@@ -82,6 +82,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?><?php showMode("YSF2P25 Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("DMR2NXDN Network", $mmdvmconfigs);?><?php showMode("DMR2YSF Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("POCSAG Network", $mmdvmconfigs);?><!-- empty "cell": dummy but nicer --><td style="background:#606060; color:#b0b0b0;"></td></tr>
 </table>
 <br />
 

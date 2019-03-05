@@ -31,18 +31,18 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
     <th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><br /><span><b>System IP Address:<br /><?php echo str_replace(',', ',<br />', exec('hostname -I'));?></b></span></a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['kernel'];?><span><b>Release</b></span></a></th>
     <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['platform'];?><span><b>Uptime:<br /><?php echo str_replace(',', ',<br />', exec('uptime -p'));?></b></span></a></th>
-    <th><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
+    <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['cpu_load'];?><span><b>CPU Load</b></span></a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['cpu_temp'];?><span><b>CPU Temp</b></span></a></th>
   </tr>
   <tr>
     <td><?php echo php_uname('n');?></td>
     <td><?php echo php_uname('r');?></td>
     <td colspan="2"><?php echo exec('platformDetect.sh');?></td>
-    <td><?php echo $cpuLoad[0];?> / <?php echo $cpuLoad[1];?> / <?php echo $cpuLoad[2];?></td>
+    <td colspan="2">1m:<?php echo $cpuLoad[0];?> / 5m:<?php echo $cpuLoad[1];?> / 15m:<?php echo $cpuLoad[2];?></td>
     <?php echo $cpuTempHTML; ?>
   </tr>
   <tr>
-    <th colspan="6"><?php echo $lang['service_status'];?></th>
+    <th colspan="7"><?php echo $lang['service_status'];?></th>
   </tr>
   <tr>
     <td style="background: #<?php if (isProcessRunning('MMDVMHost')) { echo "1d1"; } else { echo "b55"; } ?>">MMDVMHost</td>
@@ -51,6 +51,7 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
     <td style="background: #<?php if (isProcessRunning('YSFParrot')) { echo "1d1"; } else { echo "b55"; } ?>">YSFParrot</td>
     <td style="background: #<?php if (isProcessRunning('P25Gateway')) { echo "1d1"; } else { echo "b55"; } ?>">P25Gateway</td>
     <td style="background: #<?php if (isProcessRunning('P25Parrot')) { echo "1d1"; } else { echo "b55"; } ?>">P25Parrot</td>
+    <td style="background: #<?php if (isProcessRunning('DAPNETGateway')) { echo "1d1"; } else { echo "b55"; } ?>">DAPNETGateway</td>
   </tr>
   <tr>
     <td style="background: #<?php if (isProcessRunning('dstarrepeaterd')) { echo "1d1"; } else { echo "b55"; } ?>">DStarRepeater</td>
@@ -59,6 +60,7 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
     <td style="background: #<?php if (isProcessRunning('/usr/local/sbin/pistar-watchdog',true)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Watchdog</td>
     <td style="background: #<?php if (isProcessRunning('/usr/local/sbin/pistar-remote',true)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Remote</td>
     <td style="background: #<?php if (isProcessRunning('/usr/local/sbin/pistar-keeper',true)) { echo "1d1"; } else { echo "b55"; } ?>">PiStar-Keeper</td>
+    <td style="background: #606060;"></td>
   </tr>
 </table>
 <br />
