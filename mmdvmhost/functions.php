@@ -94,16 +94,24 @@ function getEnabled ($mode, $mmdvmconfigs) {
 
 // E: 2019-02-23 16:34:03.406 Cannot connect the TCP client socket, err=111
 // or
-// M: 2019-03-05 17:27:26.410 Login failed: Invalid credentials
+//E: 2019-03-06 03:35:52.712 Cannot connect the TCP client socket, err=110
+//M: 2019-03-06 03:35:52.712 Closing DAPNET connection
+//M: 2019-03-06 03:35:52.713 Opening DAPNET connection
+//M: 2019-03-06 03:35:52.758 Logging into DAPNET
+//E: 2019-03-06 03:37:55.622 Error returned from recv, err=104
+//M: 2019-03-06 03:37:55.622 Closing DAPNET connection
+//M: 2019-03-06 03:37:55.622 Opening DAPNET connection
+//M: 2019-03-06 03:37:55.670 Logging into DAPNET
+//E: 2019-03-06 03:39:58.494 Error returned from recv, err=104
 function isDAPNETGatewayConnected() {
     $logLines = array();
     $logLines1 = array();
     $logLines2 = array();
 
-    // Collect last four lines 
+    // Collect last 20 lines 
     if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
 	$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
-	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 4 $logPath1 | cut -d" " -f2- | tac`);
+	$logLines1 = preg_split('/\r\n|\r|\n/', `tail -n 20 $logPath1 | cut -d" " -f2- | tac`);
     }
     
     $logLines1 = array_filter($logLines1);
@@ -111,7 +119,7 @@ function isDAPNETGatewayConnected() {
     if (sizeof($logLines1) == 0) {
         if (file_exists("/var/log/pi-starDAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
             $logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
-            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 4 $logPath2 | cut -d" " -f2- | tac`);
+            $logLines2 = preg_split('/\r\n|\r|\n/', `tail -n 20 $logPath2 | cut -d" " -f2- | tac`);
         }
 	
         $logLines2 = array_filter($logLines2);
