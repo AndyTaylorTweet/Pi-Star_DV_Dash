@@ -931,17 +931,25 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set DMR / CCS7 ID
 	if (empty($_POST['dmrId']) != TRUE ) {
 	  $newPostDmrId = preg_replace('/[^0-9]/', '', $_POST['dmrId']);
+
+      $dmrpCCSlen = 7;
+      if (isset($_POST['dmrGatewayNet2CCS7Extra'])) {
+          if (escapeshellcmd($_POST['dmrGatewayNet2CCS7Extra']) == 'ON' ) { $dmrpCCSlen = 9; }
+      }
+
 	  //$configmmdvm['DMR']['Id'] = $newPostDmrId;
 	  unset($configmmdvm['DMR']['Id']);
 	  if (empty($_POST['dmrMasterHost']) != TRUE ) {
 		  $dmrMasterHostArrTest = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
 		  if (substr($dmrMasterHostArrTest[3], 0, 4) == 'DMR+') { $newPostDmrId = substr($newPostDmrId, 0, 7); }
 	  }
+
+
 	  $configmmdvm['General']['Id'] = $newPostDmrId;
 	  $configysfgateway['General']['Id'] = $newPostDmrId;
 	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
-	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
+	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId, 0, $dmrpCCSlen);
 	  $configdmr2ysf['DMR Network']['Id'] = substr($newPostDmrId,0,7);
 	  $configdmr2nxdn['DMR Network']['Id'] = substr($newPostDmrId,0,7);
 	}
@@ -2940,6 +2948,7 @@ else:
     <input type="hidden" name="dmrGatewayXlxEn" value="OFF" />
     <input type="hidden" name="dmrGatewayNet1En" value="OFF" />
     <input type="hidden" name="dmrGatewayNet2En" value="OFF" />
+    <input type="hidden" name="dmrGatewayNet2CCS7Extra" value="OFF" />
     <input type="hidden" name="dmrDMRnetJitterBufer" value="OFF" />
     <table>
     <tr>
@@ -3027,6 +3036,16 @@ else:
     <td align="left">
     <?php if ($configdmrgateway['DMR Network 2']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayNet2En\"></label></div>\n"; }
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" /><label for=\"toggle-dmrGatewayNet2En\"></label></div>\n"; } ?>
+    </td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Extended CCS7:<span><b>DMR+ Network Extented CCS7</b></span></a></td>
+    <td align="left">
+    <?php
+    if (!isset($configdmrgateway['DMR Network 2']['Id'])) { $configdmrgateway['DMR Network 2']['Id'] = ""; }
+    // Enabled ??
+    if (strlen($configdmrgateway['DMR Network 2']['Id']) > 7) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2CCS7Extra\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2CCS7Extra\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayNet2CCS7Extra\"></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2CCS7Extra\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2CCS7Extra\" value=\"ON\" /><label for=\"toggle-dmrGatewayNet2CCS7Extra\"></label></div>\n"; } ?>
     </td>
     </tr>
     <tr>
