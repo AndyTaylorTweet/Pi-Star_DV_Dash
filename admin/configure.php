@@ -1958,14 +1958,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2p25['Log']['FileRoot'] = "YSF2P25";	
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
 
-	// Add missing options to P25Gateway
-	if (!isset($configp25gateway['Voice'])) {
-		$rollP25Voice1 = 'sudo sed -i "$a\" /etc/p25gateway';
-		$rollP25Voice2 = 'sudo sed -i "$a[Voice]\nenabled=1\nLanguage=en_GB\nDirectory=/usr/local/etc/P25_Audio\n" /etc/p25gateway';
-		system($rollP25Voice1);
-		system($rollP25Voice2);
-	}
-
 	// Clean up for NXDN Gateway
 	if (file_exists('/etc/nxdngateway')) {
 		if (isset($confignxdngateway['Network']['HostsFile'])) {
