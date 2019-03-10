@@ -1959,7 +1959,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
 
 	// Add missing options to P25Gateway
-	if (!isset($configp25gateway['Voice']['Enabled'])) {
+	if (!isset($configp25gateway['Voice'])) {
 		$rollP25Voice1 = 'sudo sed -i "$a\" /etc/p25gateway';
 		$rollP25Voice2 = 'sudo sed -i "$a[Voice]\nenabled=1\nLanguage=en_GB\nDirectory=/usr/local/etc/P25_Audio\n" /etc/p25gateway';
 		system($rollP25Voice1);
