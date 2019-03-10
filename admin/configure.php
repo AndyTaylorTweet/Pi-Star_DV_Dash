@@ -1957,6 +1957,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2p25['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2p25['Log']['FileRoot'] = "YSF2P25";	
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
+
+	// Add missing options to P25Gateway
+	if (!isset($configp25gateway['Voice']['Enabled']))   { $configp25gateway['Voice']['Enabled'] = "1"; }
+	if (!isset($configp25gateway['Voice']['Language']))  { $configp25gateway['Voice']['Language'] = "en_GB"; }
+	if (!isset($configp25gateway['Voice']['Directory'])) { $configp25gateway['Voice']['Directory'] = "/usr/local/etc/P25_Audio"; }
 	
 	// Clean up for NXDN Gateway
 	if (file_exists('/etc/nxdngateway')) {
