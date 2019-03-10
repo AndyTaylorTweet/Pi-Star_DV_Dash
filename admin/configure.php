@@ -1960,11 +1960,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Add missing options to P25Gateway
 	if (!isset($configp25gateway['Voice']['Enabled'])) {
-		system('sudo echo "" >> /etc/p25gateway');
-		system('sudo echo "[Voice]" >> /etc/p25gateway');
-		system('sudo echo "Enabled=1" >> /etc/p25gateway');
-		system('sudo echo "Language=en_GB" >> /etc/p25gateway');
-		system('sudo echo "Directory=/usr/local/etc/P25_Audio" >> /etc/p25gateway');
+		exec('sudo echo "" >> /etc/p25gateway');
+		exec('sudo echo "[Voice]" >> /etc/p25gateway');
+		exec('sudo echo "Enabled=1" >> /etc/p25gateway');
+		exec('sudo echo "Language=en_GB" >> /etc/p25gateway');
+		exec('sudo echo "Directory=/usr/local/etc/P25_Audio" >> /etc/p25gateway');
 	}
 
 	// Clean up for NXDN Gateway
