@@ -515,6 +515,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdapnetgw['General']['WhiteList'] = preg_replace('/[^0-9\,]/', '', escapeshellcmd($_POST['pocsagWhitelist']));
 	}
 
+	// Set the POCSAG Blacklist
+	if (isset($configdapnetgw['General']['BlackList'])) { unset($configdapnetgw['General']['BlackList']); }
+	if (empty($_POST['pocsagBlacklist']) != TRUE ) {
+	  $configdapnetgw['General']['BlackList'] = preg_replace('/[^0-9\,]/', '', escapeshellcmd($_POST['pocsagBlacklist']));
+	}
+
 	// Set the POCSAG Server
 	if (empty($_POST['pocsagServer']) != TRUE ) {
 	  $configdapnetgw['DAPNET']['Address'] = escapeshellcmd($_POST['pocsagServer']);
