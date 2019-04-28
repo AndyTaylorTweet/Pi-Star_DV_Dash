@@ -973,7 +973,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
 	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
 		  $configModem['BrandMeister']['Password'] = escapeshellcmd($_POST['bmHSSecurity']);
-		  $configmmdvm['DMR Network']['Password'] = '"'.escapeshellcmd($_POST['bmHSSecurity']).'"';
+		  //$configmmdvm['DMR Network']['Password'] = '"'.escapeshellcmd($_POST['bmHSSecurity']).'"';
 	  } else {
 		  unset ($configModem['BrandMeister']['Password']);
 	  }
