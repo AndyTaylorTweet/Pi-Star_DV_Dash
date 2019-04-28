@@ -971,6 +971,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
 	  $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
+	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
+		  $configModem['BrandMeister']['Password'] = escapeshellcmd($_POST['bmHSSecurity']);
+		  $configmmdvm['DMR Network']['Password'] = '"'.escapeshellcmd($_POST['bmHSSecurity']).'"';
+	  } else {
+		  unset ($configModem['BrandMeister']['Password']);
+	  }
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 			unset ($configmmdvm['DMR Network']['Options']);
@@ -2987,10 +2993,12 @@ else:
 	fclose($dmrMasterFile1);
 ?>
     </select></td></tr>
-    <!-- <tr>
-    <td align="left"><a class="tooltip2" href="#">BrandMeister Password:<span><b>BrandMeister Password</b>Override the Password for BrandMeister</span></a></td>
-    <td align="left"><input type="text" name="bmPasswordOverride" size="30" maxlength="30" value="<?php echo $configdmrgateway['DMR Network 1']['Password']; ?>"></input></td>
-    </tr> -->
+    <tr>
+      <td align="left"><a class="tooltip2" href="#">BM Hotspot Security:<span><b>BrandMeister Password</b>Override the Password for BrandMeister with your own custom password, make sure you already configured this using BM Self Care</span></a></td>
+      <td align="left">
+        <input type="password" name="bmHSSecurity" size="30" maxlength="30" value="<?php if ($configModem['BrandMeister']['Password']) {echo $configModem['BrandMeister']['Password'];} ?>"></input>
+      </td>
+    </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> Enable:<span><b>BrandMeister Network Enable</b></span></a></td>
     <td align="left">
