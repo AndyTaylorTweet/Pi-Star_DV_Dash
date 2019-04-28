@@ -8,6 +8,9 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 // Load the Version Info
 require_once('config/version.php');
 
+// Force the Locale to the stock locale just while we run the update
+setlocale(LC_ALL, "LC_CTYPE=en_GB.UTF-8;LC_NUMERIC=C;LC_TIME=C;LC_COLLATE=C;LC_MONETARY=C;LC_MESSAGES=C;LC_PAPER=C;LC_NAME=C;LC_ADDRESS=C;LC_TELEPHONE=C;LC_MEASUREMENT=C;LC_IDENTIFICATION=C");
+
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
