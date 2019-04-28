@@ -870,6 +870,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
 	  $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
 	  $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
+	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
+	    $configysf2dmr['DMR Network']['Password'] = '"'.escapeshellcmd($_POST['bmHSSecurity']).'"';
+	  }
 	}
 
 	// Set the YSF2DMR Starting TG
