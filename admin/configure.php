@@ -2026,11 +2026,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$ysfGatewayVer = exec("YSFGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($ysfGatewayVer > 20180303) {
 		if (isset($configysfgateway['Network']['Startup'])) { $ysfTmpStartup = $configysfgateway['Network']['Startup']; }
-		$configysfgateway['aprs.fi']['Enable'] = "1";
+		if (!isset($configysfgateway['aprs.fi']['Enable'])) { $configysfgateway['aprs.fi']['Enable'] = "1"; }
 		unset($configysfgateway['Network']);
 		if (isset($ysfTmpStartup)) { $configysfgateway['Network']['Startup'] = $ysfTmpStartup; }
-		$configysfgateway['Network']['InactivityTimeout'] = "0";
-		$configysfgateway['Network']['Revert'] = "0";
+		if (!isset($configysfgateway['Network']['InactivityTimeout'])) { $configysfgateway['Network']['InactivityTimeout'] = "0"; }
+		if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
 		$configysfgateway['Network']['Debug'] = "0";
 		$configysfgateway['YSF Network']['Enable'] = "1";
 		$configysfgateway['YSF Network']['Port'] = "42000";
