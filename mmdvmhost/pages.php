@@ -9,13 +9,26 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 
 // Function to reverse the ROT1 used for Skyper
 function un_skyper($s, $n = -1) {
-  static $letters = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
-  $n = (int)$n % 95;
-  if (!$n) return $s;
-  if ($n < 0) $n += 95;
-  $rep = substr($letters, $n * 1) . substr($letters, 0, $n * 1);
-  str_replace('!', ' ', $s);
-  return strtr($s, $letters, $rep);
+  $output = "";
+  $messageTextArray = str_split($message);
+  $skyperRIC = ord($messageTextArray[0]) - 31;
+  unset($messageTextArray[0]);
+
+  if (count($messageTextArray) >= 1) {
+    $skyperSlot = ord($messageTextArray[1]) - 32;
+    unset($messageTextArray[1]);
+    foreach($messageTextArray as $asciiChar) {
+    $asciiAsInt = ord($asciiChar);
+    $convretedAsciiAsInt = $asciiAsInt -1;
+    $convertedAsciiChar = chr($convretedAsciiAsInt);
+    $output .= $convertedAsciiChar;
+  }
+    $output = "Skyper RIC: $skyperRIC / Skyper Slot: $skyperSlot <br>".$output;
+    return $output;
+  } else {
+    $output = "Skyper RIC: $skyperRIC / No Message";
+    return $output;
+  }
 }
 ?>
 <b><?php echo $lang['pocsag_list'];?></b>
@@ -43,7 +56,7 @@ function un_skyper($s, $n = -1) {
     
       // Decode Skyper Messages
       if ($pocsag_ric == "0004520") {
-        $pocsag_msg = substr(un_skyper($pocsag_msg), 2);
+        $pocsag_msg = un_skyper($pocsag_msg);
       } 
    
       // Formatting long messages without spaces
