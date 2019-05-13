@@ -8,7 +8,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Function to reverse the ROT1 used for Skyper
-function un_skyper($s, $n = -1) {
+function un_skyper($message) {
   $output = "";
   $messageTextArray = str_split($message);
   $skyperRIC = ord($messageTextArray[0]) - 31;
