@@ -43,7 +43,7 @@ function un_skyper($s, $n = -1) {
     
       // Decode Skyper Messages
       if ($pocsag_ric == "0004520") {
-        $pocsag_msg = un_skyper($pocsag_msg);
+        $pocsag_msg = substr(un_skyper($pocsag_msg), 2);
       } 
    
       // Formatting long messages without spaces
