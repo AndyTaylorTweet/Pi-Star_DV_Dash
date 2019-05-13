@@ -5,6 +5,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
+
+// Function to reverse the ROT1 used for Skyper RIC 0004520
+function un_skyper($s, $n = 25) {
+        static $letters = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+        $n = (int)$n % 26;
+        if (!$n) return $s;
+        if ($n < 0) $n += 26;
+        $rep = substr($letters, $n * 2) . substr($letters, 0, $n * 2);
+        return strtr($s, $letters, $rep);
+}
 ?>
 <b><?php echo $lang['pocsag_list'];?></b>
 <table>
@@ -38,7 +48,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
     <td style="width: 140px; vertical-align: top; text-align: left;"><?php echo $local_time; ?></td>
     <td style="width: 70px; vertical-align: top; text-align: center;"><?php echo "Slot ".$pocsag_timeslot; ?></td>
     <td style="width: 90px; vertical-align: top; text-align: center;"><?php echo $pocsag_ric; ?></td>
-    <td style="width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;"><?php echo $pocsag_msg; ?></td>
+    <td style="width: max-content; vertical-align: top; text-align: left; word-wrap: break-word; white-space: normal !important;"><?php if ($pocsag_ric == "0004520") { echo un_skyper($pocsag_msg); } else { echo $pocsag_msg; } ?></td>
   </tr>
 
 <?php
