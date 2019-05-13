@@ -13,6 +13,7 @@ function un_skyper($s, $n = 25) {
         if (!$n) return $s;
         if ($n < 0) $n += 26;
         $rep = substr($letters, $n * 2) . substr($letters, 0, $n * 2);
+        str_replace('!', ' ', $s);
         return strtr($s, $letters, $rep);
 }
 ?>
