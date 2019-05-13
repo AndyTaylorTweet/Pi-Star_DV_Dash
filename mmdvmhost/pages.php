@@ -23,10 +23,10 @@ function un_skyper($message) {
     $convertedAsciiChar = chr($convretedAsciiAsInt);
     $output .= $convertedAsciiChar;
   }
-    $output = "Skyper RIC: $skyperRIC / Skyper Slot: $skyperSlot <br>".$output;
+    $output = "[Skyper] RIC:$skyperRIC Slot:$skyperSlot - ".$output;
     return $output;
   } else {
-    $output = "Skyper RIC: $skyperRIC / No Message";
+    $output = "[Skyper] RIC:$skyperRIC - No Message";
     return $output;
   }
 }
