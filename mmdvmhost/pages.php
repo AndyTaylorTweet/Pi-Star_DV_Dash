@@ -19,7 +19,7 @@ function un_skyper($message, $pocsagric) {
     if (count($messageTextArray) >= 1) {
       $skyperSlot = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[1]);
-      if ($pocsag_ric == "0004512") { // Drop the unknown 3rd char on Rubric Index until I know what it is.
+      if ($pocsagric == "0004512") { // Drop the unknown 3rd char on Rubric Index until I know what it is.
         unset($messageTextArray[2]);
       }
       foreach($messageTextArray as $asciiChar) {
@@ -36,7 +36,7 @@ function un_skyper($message, $pocsagric) {
       return $output;
     }
   }
-  if ($pocsag_ric == "0002504") { // Skyper OTA TimeSync
+  if ($pocsagric == "0002504") { // Skyper OTA TimeSync
     $output = "[Skyper OTA Time] ".$message;
     return $output;
   }
