@@ -88,8 +88,14 @@ function skyper($message, $pocsagric) {
       $local_time = $dt->format('H:i:s M jS');
       $pocsag_timeslot = $dapnetMessageArr["6"];
       $pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
-      $pocsag_msg = $dapnetMessageTxtArr[1];
-      if (isset($dapnetMessageTxtArr[3])) { $pocsag_msg .= '"'.$dapnetMessageTxtArr[2]; }
+      // Fix incorrectly truncated strings containing double quotes
+      unset($dapnetMessageTxtArr[0]);
+      if (count($dapnetMessageTxtArr) > 2) {
+        unset($dapnetMessageTxtArr[count($dapnetMessageTxtArr)]);
+        $pocsag_msg = implode('"', $dapnetMessageTxtArr);
+      } else {
+        $pocsag_msg = $dapnetMessageTxtArr[1];
+      }
 
       // Decode Skyper Messages
       if ( ($pocsag_ric == "0004520") || ($pocsag_ric == "0004512") || ($pocsag_ric == "0002504") ) {
