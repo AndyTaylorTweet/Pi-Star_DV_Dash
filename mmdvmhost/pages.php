@@ -41,10 +41,10 @@ function un_skyper($message, $pocsagric) {
         $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
         return $output;
       }
-    }
-    else {                                        // There was no message
-      $output = "[Skyper] RIC:$skyperRIC - No Message";
-      return $output;
+      else {                                        // There was no message
+        $output = "[Skyper] RIC:$skyperRIC - No Message";
+        return $output;
+      }
     }
   }
 }
