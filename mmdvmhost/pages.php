@@ -22,10 +22,10 @@ function un_skyper($message, $pocsagric) {
     unset($messageTextArray[0]);
 
     if (count($messageTextArray) >= 1) {
-      $skyperSlot = ord($messageTextArray[1]) - 32;
+      $skyperMsgNr = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[1]);
       if ($pocsagric == "0004512") { // Skyper Rubric Index
-        unset($messageTextArray[2]); // Drop the 3rd charicter until I know what it is
+        unset($messageTextArray[2]); // remove the single char
       }
       foreach($messageTextArray as $asciiChar) {
         $asciiAsInt = ord($asciiChar);
@@ -33,7 +33,7 @@ function un_skyper($message, $pocsagric) {
         $convertedAsciiChar = chr($convretedAsciiAsInt);
         $output .= $convertedAsciiChar;
       }
-      $output = "[Skyper] RIC:$skyperRIC Slot:$skyperSlot - ".$output;
+      $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
       return $output;
     }
     else {
