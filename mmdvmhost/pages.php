@@ -31,19 +31,18 @@ function un_skyper($message, $pocsagric) {
       if (count($messageTextArray) >= 1) {        // Make sure the array is large enough
         $skyperMsgNr = ord($messageTextArray[1]) - 32;
         unset($messageTextArray[1]);
+        
+        foreach($messageTextArray as $asciiChar) {// Decode the message
+          $asciiAsInt = ord($asciiChar);
+          $convretedAsciiAsInt = $asciiAsInt -1;
+          $convertedAsciiChar = chr($convretedAsciiAsInt);
+          $output .= $convertedAsciiChar;
+        }
+        $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
+        eturn $output;
       }
     }
-    if (count($messageTextArray) >= 1) {          // If there is a message, decode it
-      foreach($messageTextArray as $asciiChar) {  // Decode the message
-        $asciiAsInt = ord($asciiChar);
-        $convretedAsciiAsInt = $asciiAsInt -1;
-        $convertedAsciiChar = chr($convretedAsciiAsInt);
-        $output .= $convertedAsciiChar;
-      }
-      $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
-      return $output;
-    }
-    else {
+    else {                                        // There was no message
       $output = "[Skyper] RIC:$skyperRIC - No Message";
       return $output;
     }
