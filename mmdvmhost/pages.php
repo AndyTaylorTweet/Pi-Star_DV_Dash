@@ -12,7 +12,7 @@ function un_skyper($message, $pocsagric) {
   $output = "";
   $messageTextArray = str_split($message);
   
-  if ( ($pocsag_ric == "0004520") || ($pocsag_ric == "0004512") ) { // Skyper Message or Rubric Index
+  if ( ($pocsagric == "0004520") || ($pocsagric == "0004512") ) { // Skyper Message or Rubric Index
     $skyperRIC = ord($messageTextArray[0]) - 31;
     unset($messageTextArray[0]);
 
