@@ -27,9 +27,11 @@ function un_skyper($message, $pocsagric) {
     }
     else {                                        // Normal Message
       $skyperRIC = ord($messageTextArray[0]) - 31;
-      $skyperMsgNr = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[0]);
-      unset($messageTextArray[1]);
+      if (count($messageTextArray) >= 1) {        // Make sure the array is large enough
+        $skyperMsgNr = ord($messageTextArray[1]) - 32;
+        unset($messageTextArray[1]);
+      }
     }
     if (count($messageTextArray) >= 1) {          // If there is a message, decode it
       $skyperMsgNr = ord($messageTextArray[1]) - 32;
