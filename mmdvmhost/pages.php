@@ -8,25 +8,36 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Function to reverse the ROT1 used for Skyper
-function un_skyper($message) {
+function un_skyper($message, $pocsagric) {
   $output = "";
   $messageTextArray = str_split($message);
-  $skyperRIC = ord($messageTextArray[0]) - 31;
-  unset($messageTextArray[0]);
+  
+  if ( ($pocsag_ric == "0004520") || ($pocsag_ric == "0004512") ) { // Skyper Message or Rubric Index
+    $skyperRIC = ord($messageTextArray[0]) - 31;
+    unset($messageTextArray[0]);
 
-  if (count($messageTextArray) >= 1) {
-    $skyperSlot = ord($messageTextArray[1]) - 32;
-    unset($messageTextArray[1]);
-    foreach($messageTextArray as $asciiChar) {
-    $asciiAsInt = ord($asciiChar);
-    $convretedAsciiAsInt = $asciiAsInt -1;
-    $convertedAsciiChar = chr($convretedAsciiAsInt);
-    $output .= $convertedAsciiChar;
+    if (count($messageTextArray) >= 1) {
+      $skyperSlot = ord($messageTextArray[1]) - 32;
+      unset($messageTextArray[1]);
+      if ($pocsag_ric == "0004512") ) { // Drop the unknown 3rd char on Rubric Index until I know what it is.
+        unset($messageTextArray[2]);
+      }
+      foreach($messageTextArray as $asciiChar) {
+        $asciiAsInt = ord($asciiChar);
+        $convretedAsciiAsInt = $asciiAsInt -1;
+        $convertedAsciiChar = chr($convretedAsciiAsInt);
+        $output .= $convertedAsciiChar;
+      }
+      $output = "[Skyper] RIC:$skyperRIC Slot:$skyperSlot - ".$output;
+      return $output;
+    }
+    else {
+      $output = "[Skyper] RIC:$skyperRIC - No Message";
+      return $output;
+    }
   }
-    $output = "[Skyper] RIC:$skyperRIC Slot:$skyperSlot - ".$output;
-    return $output;
-  } else {
-    $output = "[Skyper] RIC:$skyperRIC - No Message";
+  if ($pocsag_ric == "0002504") { // Skyper OTA TimeSync
+    $output = "[Skyper OTA Time] ".$message;
     return $output;
   }
 }
@@ -55,8 +66,8 @@ function un_skyper($message) {
       $pocsag_msg = $dapnetMessageTxtArr["1"];
     
       // Decode Skyper Messages
-      if ( ($pocsag_ric == "0004520") || ($pocsag_ric == "0004512") ) {
-        $pocsag_msg = un_skyper($pocsag_msg);
+      if ( ($pocsag_ric == "0004520") || ($pocsag_ric == "0004512") || ($pocsag_ric == "0002504") ) {
+        $pocsag_msg = un_skyper($pocsag_msg, $pocsag_ric);
       } 
    
       // Formatting long messages without spaces
