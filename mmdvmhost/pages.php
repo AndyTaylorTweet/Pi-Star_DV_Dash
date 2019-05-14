@@ -35,7 +35,7 @@ function un_skyper($message, $pocsagric) {
       $skyperMsgNr = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[1]);
 
-      foreach($messageTextArray as $asciiChar) {
+      foreach($messageTextArray as $asciiChar) {  // Decode the message
         $asciiAsInt = ord($asciiChar);
         $convretedAsciiAsInt = $asciiAsInt -1;
         $convertedAsciiChar = chr($convretedAsciiAsInt);
