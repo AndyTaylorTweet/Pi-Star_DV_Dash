@@ -55,7 +55,7 @@ function un_skyper($message) {
       $pocsag_msg = $dapnetMessageTxtArr["1"];
     
       // Decode Skyper Messages
-      if ($pocsag_ric == "0004520") {
+      if ( ($pocsag_ric == "0004520") || ($pocsag_ric == "0004512") ) {
         $pocsag_msg = un_skyper($pocsag_msg);
       } 
    
