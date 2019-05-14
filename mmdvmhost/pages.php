@@ -18,7 +18,8 @@ function un_skyper($message, $pocsagric) {
   }
   else {                                          // All other Skyper Messages
     if ($pocsagric == "0002504") {                // Skyper Rubric Index
-      $skyperRIC = ord($messageTextArray[0]) - 31.ord($messageTextArray[1]) - 31;
+      $skyperRIC = ord($messageTextArray[0]) - 31;
+      $skyperRIC .= ord($messageTextArray[1]) - 31;
       $skyperMsgNr = ord($messageTextArray[2]) - 32;
       unset($messageTextArray[0]);
       unset($messageTextArray[1]);
