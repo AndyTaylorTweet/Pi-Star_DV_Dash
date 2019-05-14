@@ -39,10 +39,10 @@ function skyper($message, $pocsagric) {
     unset($messageTextArray[0]);
     $skyperRIC .= ord($messageTextArray[1]) - 31;
     unset($messageTextArray[1]);
-    $skyperMsgNr = ord($messageTextArray[2]) - 32;
-    unset($messageTextArray[2]);
 
     if (count($messageTextArray) >= 1) {                              // Check to see if there is a message to decode
+      $skyperMsgNr = ord($messageTextArray[2]) - 32;
+      unset($messageTextArray[2]);
       $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".un_rot($message);
     }
     else {
@@ -54,10 +54,10 @@ function skyper($message, $pocsagric) {
   if ($pocsagric == "0004520") {                                      // Skyper Message
     $skyperRIC = ord($messageTextArray[0]) - 31;
     unset($messageTextArray[0]);
-    $skyperMsgNr = ord($messageTextArray[1]) - 32;
-    unset($messageTextArray[1]);
 
     if (count($messageTextArray) >= 1) {                              // Check to see if there is a message to decode
+      $skyperMsgNr = ord($messageTextArray[1]) - 32;
+      unset($messageTextArray[1]);
       $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".un_rot($message);
     }
     else {
