@@ -12,21 +12,28 @@ function un_skyper($message, $pocsagric) {
   $output = "";
   $messageTextArray = str_split($message);
 
-  if ($pocsagric == "0002504") { // Skyper OTA TimeSync Messages
+  if ($pocsagric == "0002504") {                  // Skyper OTA TimeSync Messages
     $output = "[Skyper OTA Time] ".$message;
     return $output;
   }
-  
-  else { // All other Skyper Messages
-    $skyperRIC = ord($messageTextArray[0]) - 31;
-    unset($messageTextArray[0]);
-
-    if (count($messageTextArray) >= 1) {
+  else {                                          // All other Skyper Messages
+    if ($pocsagric == "0002504") {                // Skyper Rubric Index
+      $skyperRIC = ord($messageTextArray[0]) - 31.ord($messageTextArray[1]) - 31;
+      $skyperMsgNr = ord($messageTextArray[2]) - 32;
+      unset($messageTextArray[0]);
+      unset($messageTextArray[1]);
+      unset($messageTextArray[2]);
+    }
+    else {                                        // Normal Message
+      $skyperRIC = ord($messageTextArray[0]) - 31;
+      $skyperMsgNr = ord($messageTextArray[1]) - 32;
+      unset($messageTextArray[0]);
+      unset($messageTextArray[1]);
+    }
+    if (count($messageTextArray) >= 1) {          // If there is a message, decode it
       $skyperMsgNr = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[1]);
-      if ($pocsagric == "0004512") { // Skyper Rubric Index
-        unset($messageTextArray[2]); // remove the single char
-      }
+
       foreach($messageTextArray as $asciiChar) {
         $asciiAsInt = ord($asciiChar);
         $convretedAsciiAsInt = $asciiAsInt -1;
