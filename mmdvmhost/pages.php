@@ -39,7 +39,7 @@ function un_skyper($message, $pocsagric) {
           $output .= $convertedAsciiChar;
         }
         $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
-        eturn $output;
+        return $output;
       }
     }
     else {                                        // There was no message
