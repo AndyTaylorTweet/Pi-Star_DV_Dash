@@ -11,16 +11,21 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Transla
 function un_skyper($message, $pocsagric) {
   $output = "";
   $messageTextArray = str_split($message);
+
+  if ($pocsagric == "0002504") { // Skyper OTA TimeSync Messages
+    $output = "[Skyper OTA Time] ".$message;
+    return $output;
+  }
   
-  if ( ($pocsagric == "0004520") || ($pocsagric == "0004512") ) { // Skyper Message or Rubric Index
+  else { // All other Skyper Messages
     $skyperRIC = ord($messageTextArray[0]) - 31;
     unset($messageTextArray[0]);
 
     if (count($messageTextArray) >= 1) {
       $skyperSlot = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[1]);
-      if ($pocsagric == "0004512") { // Drop the unknown 3rd char on Rubric Index until I know what it is.
-        unset($messageTextArray[2]);
+      if ($pocsagric == "0004512") { // Skyper Rubric Index
+        unset($messageTextArray[2]); // Drop the 3rd charicter until I know what it is
       }
       foreach($messageTextArray as $asciiChar) {
         $asciiAsInt = ord($asciiChar);
@@ -35,10 +40,6 @@ function un_skyper($message, $pocsagric) {
       $output = "[Skyper] RIC:$skyperRIC - No Message";
       return $output;
     }
-  }
-  if ($pocsagric == "0002504") { // Skyper OTA TimeSync
-    $output = "[Skyper OTA Time] ".$message;
-    return $output;
   }
 }
 ?>
