@@ -24,6 +24,19 @@ function un_skyper($message, $pocsagric) {
       unset($messageTextArray[0]);
       unset($messageTextArray[1]);
       unset($messageTextArray[2]);
+      if (count($messageTextArray) >= 1) {        // Make sure the array is large enough
+        $skyperMsgNr = ord($messageTextArray[1]) - 32;
+        unset($messageTextArray[1]);
+        
+        foreach($messageTextArray as $asciiChar) {// Decode the message
+          $asciiAsInt = ord($asciiChar);
+          $convretedAsciiAsInt = $asciiAsInt -1;
+          $convertedAsciiChar = chr($convretedAsciiAsInt);
+          $output .= $convertedAsciiChar;
+        }
+        $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
+        return $output;
+      }
     }
     else {                                        // Normal Message
       $skyperRIC = ord($messageTextArray[0]) - 31;
