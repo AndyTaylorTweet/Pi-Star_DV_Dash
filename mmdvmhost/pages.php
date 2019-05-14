@@ -19,7 +19,7 @@ function un_skyper($message, $pocsagric) {
     if (count($messageTextArray) >= 1) {
       $skyperSlot = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[1]);
-      if ($pocsag_ric == "0004512") ) { // Drop the unknown 3rd char on Rubric Index until I know what it is.
+      if ($pocsag_ric == "0004512") { // Drop the unknown 3rd char on Rubric Index until I know what it is.
         unset($messageTextArray[2]);
       }
       foreach($messageTextArray as $asciiChar) {
