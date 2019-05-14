@@ -8,57 +8,62 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Function to reverse the ROT1 used for Skyper
-function un_skyper($message, $pocsagric) {
+function un_rot($message) {
   $output = "";
   $messageTextArray = str_split($message);
 
-  if ($pocsagric == "0002504") {                  // Skyper OTA TimeSync Messages
+  // ROT -1
+  foreach($messageTextArray as $asciiChar) {
+    $asciiAsInt = ord($asciiChar);
+    $convretedAsciiAsInt = $asciiAsInt -1;
+    $convertedAsciiChar = chr($convretedAsciiAsInt);
+    $output .= $convertedAsciiChar;
+  }
+
+  // Return the clear text
+  return $output;
+}
+
+// Function to handle Skyper Messages
+function skyper($message, $pocsagric) {
+  $output = "";
+  $messageTextArray = str_split($message);
+
+  if ($pocsagric == "0002504") {                                      // Skyper OTA TimeSync Messages
     $output = "[Skyper OTA Time] ".$message;
     return $output;
   }
-  else {                                          // All other Skyper Messages
-    if ($pocsagric == "0002504") {                // Skyper Rubric Index
-      $skyperRIC = ord($messageTextArray[0]) - 31;
-      $skyperRIC .= ord($messageTextArray[1]) - 31;
-      $skyperMsgNr = ord($messageTextArray[2]) - 32;
-      unset($messageTextArray[0]);
-      unset($messageTextArray[1]);
-      unset($messageTextArray[2]);
-      if (count($messageTextArray) >= 1) {        // Make sure the array is large enough
-        $skyperMsgNr = ord($messageTextArray[1]) - 32;
-        unset($messageTextArray[1]);
-        
-        foreach($messageTextArray as $asciiChar) {// Decode the message
-          $asciiAsInt = ord($asciiChar);
-          $convretedAsciiAsInt = $asciiAsInt -1;
-          $convertedAsciiChar = chr($convretedAsciiAsInt);
-          $output .= $convertedAsciiChar;
-        }
-        $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
-        return $output;
-      }
+
+  if ($pocsagric == "0004512") {                                      // Skyper Rubric Index
+    $skyperRIC = ord($messageTextArray[0]) - 31;
+    unset($messageTextArray[0]);
+    $skyperRIC .= ord($messageTextArray[1]) - 31;
+    unset($messageTextArray[1]);
+    $skyperMsgNr = ord($messageTextArray[2]) - 32;
+    unset($messageTextArray[2]);
+
+    if (count($messageTextArray) >= 1) {                              // Check to see if there is a message to decode
+      $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".un_rot($message);
     }
-    else {                                        // Normal Message
-      $skyperRIC = ord($messageTextArray[0]) - 31;
-      unset($messageTextArray[0]);
-      if (count($messageTextArray) >= 1) {        // Make sure the array is large enough
-        $skyperMsgNr = ord($messageTextArray[1]) - 32;
-        unset($messageTextArray[1]);
-        
-        foreach($messageTextArray as $asciiChar) {// Decode the message
-          $asciiAsInt = ord($asciiChar);
-          $convretedAsciiAsInt = $asciiAsInt -1;
-          $convertedAsciiChar = chr($convretedAsciiAsInt);
-          $output .= $convertedAsciiChar;
-        }
-        $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".$output;
-        return $output;
-      }
-      else {                                        // There was no message
-        $output = "[Skyper] RIC:$skyperRIC - No Message";
-        return $output;
-      }
+    else {
+      $output = "[Skyper] RIC:$skyperRIC - No Message";
     }
+    return $output;
+  }
+
+  if ($pocsagric == "0004520") {                                      // Skyper Message
+    $skyperRIC = ord($messageTextArray[0]) - 31;
+    unset($messageTextArray[0]);
+    $skyperMsgNr = ord($messageTextArray[1]) - 32;
+    unset($messageTextArray[1]);
+
+    if (count($messageTextArray) >= 1) {                              // Check to see if there is a message to decode
+      $output = "[Skyper] RIC:$skyperRIC Msg:$skyperMsgNr - ".un_rot($message);
+    }
+    else {
+      $output = "[Skyper] RIC:$skyperRIC - No Message";
+    }
+    return $output;
   }
 }
 ?>
@@ -84,12 +89,12 @@ function un_skyper($message, $pocsagric) {
       $pocsag_timeslot = $dapnetMessageArr["6"];
       $pocsag_ric = str_replace(',', '', $dapnetMessageArr["8"]);
       $pocsag_msg = $dapnetMessageTxtArr["1"];
-    
+
       // Decode Skyper Messages
       if ( ($pocsag_ric == "0004520") || ($pocsag_ric == "0004512") || ($pocsag_ric == "0002504") ) {
-        $pocsag_msg = un_skyper($pocsag_msg, $pocsag_ric);
-      } 
-   
+        $pocsag_msg = skyper($pocsag_msg, $pocsag_ric);
+      }
+
       // Formatting long messages without spaces
       if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
         $pocsag_msg = wordwrap($pocsag_msg, 45, ' ', true);
