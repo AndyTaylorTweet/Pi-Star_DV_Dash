@@ -35,14 +35,14 @@ function skyper($message, $pocsagric) {
   }
 
   if ($pocsagric == "0004512") {                                      // Skyper Rubric Index
-    if (isset($messageTextArray[0])) {                         // This is hard coded to 1 for rubric index
+    if (isset($messageTextArray[0])) {                                // This is hard coded to 1 for rubric index
       unset($messageTextArray[0]);
     }
-    if (isset($messageTextArray[1])) {                         // Rubric Number
+    if (isset($messageTextArray[1])) {                                // Rubric Number
       $skyperRubric = ord($messageTextArray[1]) - 31;
       unset($messageTextArray[1]);
     }
-    if (isset($messageTextArray[2])) {                         // Message number, hard coded to 10 for Rubric Index
+    if (isset($messageTextArray[2])) {                                // Message number, hard coded to 10 for Rubric Index
       unset($messageTextArray[2]);
     }
 
