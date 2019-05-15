@@ -35,29 +35,37 @@ function skyper($message, $pocsagric) {
   }
 
   if ($pocsagric == "0004512") {                                      // Skyper Rubric Index
-    $skyperRubric = ord($messageTextArray[0]) - 31;
-    unset($messageTextArray[0]);
-    $skyperRubric .= ord($messageTextArray[1]) - 31;
-    unset($messageTextArray[1]);
+    if (isset($messageTextArray[0])) {                         // This is hard coded to 1 for rubric index
+      unset($messageTextArray[0]);
+    }
+    if (isset($messageTextArray[1])) {                         // Rubric Number
+      $skyperRubric = ord($messageTextArray[1]) - 31;
+      unset($messageTextArray[1]);
+    }
+    if (isset($messageTextArray[2])) {                         // Message number, hard coded to 10 for Rubric Index
+      unset($messageTextArray[2]);
+    }
 
     if (count($messageTextArray) >= 1) {                              // Check to see if there is a message to decode
-      $skyperMsgNr = ord($messageTextArray[2]) - 32;
-      unset($messageTextArray[2]);
-      $output = "[Skyper Rubric:$skyperRubric Msg:$skyperMsgNr] ".un_rot(implode($messageTextArray));
+      $output = "[Skyper Index Rubric:$skyperRubric] ".un_rot(implode($messageTextArray));
     }
     else {
-      $output = "[Skyper Rubric:$skyperRubric] No Message";
+      $output = "[Skyper Index Rubric:$skyperRubric] No Name";
     }
     return $output;
   }
 
   if ($pocsagric == "0004520") {                                      // Skyper Message
-    $skyperRubric = ord($messageTextArray[0]) - 31;
-    unset($messageTextArray[0]);
-
-    if (count($messageTextArray) >= 1) {                              // Check to see if there is a message to decode
+    if (isset($messageTextArray[0])) {                                // Rubric Number
+      $skyperRubric = ord($messageTextArray[0]) - 31;
+      unset($messageTextArray[0]);
+    }
+    if (isset($messageTextArray[1])) {                                // Message number
       $skyperMsgNr = ord($messageTextArray[1]) - 32;
       unset($messageTextArray[1]);
+    }
+    
+    if (count($messageTextArray) >= 1) {                              // Check to see if there is a message to decode
       $output = "[Skyper Rubric:$skyperRubric Msg:$skyperMsgNr] ".un_rot(implode($messageTextArray));
     }
     else {
