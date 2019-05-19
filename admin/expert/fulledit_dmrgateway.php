@@ -49,7 +49,8 @@ if(isset($_POST['data'])) {
         exec('sudo mount -o remount,ro /');
   
         // Reload the affected daemon
-		    exec('sudo systemctl restart dmrgateway.service');		    // Reload the daemon
+	exec('sudo systemctl restart mmdvmhost.service');		    // Reload MMDVMHost
+	exec('sudo systemctl restart dmrgateway.service');		    // Reload DMRGateway
 
         // Re-open the file and read it
         $fh = fopen($filepath, 'r');
