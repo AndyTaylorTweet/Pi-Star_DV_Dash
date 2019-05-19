@@ -3258,6 +3258,8 @@ else:
     </td>
     </tr>'."\n";}
 ?>
+
+<?php if ($dmrMasterNow !== "DMRGateway") { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR ESSID:<span><b>DMR Extended ID</b>This is the extended ID, to make your DMR ID 8 or 9 digits long</span></a></td>
     <td align="left"><select name="dmrExtendedId">
@@ -3302,6 +3304,7 @@ else:
 ?>
     </select></td></tr>
     <tr>
+<?php } ?>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_cc'];?>:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
     <td style="text-align: left;"><select name="dmrColorCode">
 	<?php for ($dmrColorCodeInput = 0; $dmrColorCodeInput <= 15; $dmrColorCodeInput++) {
