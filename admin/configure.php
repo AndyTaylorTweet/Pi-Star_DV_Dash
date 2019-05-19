@@ -503,7 +503,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['pocsagAuthKey']) != TRUE ) {
 	  $configdapnetgw['DAPNET']['AuthKey'] = escapeshellcmd($_POST['pocsagAuthKey']);
 	}
-	
+
 	// Set the POCSAG Callsign
 	if (empty($_POST['pocsagCallsign']) != TRUE ) {
 	  $configdapnetgw['General']['Callsign'] = strtoupper(escapeshellcmd($_POST['pocsagCallsign']));
@@ -899,7 +899,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set the YSF2P25 Master
-	if (empty($_POST['ysf2p25StartupDstId']) != TRUE ) {	
+	if (empty($_POST['ysf2p25StartupDstId']) != TRUE ) {
 	  $newYSF2P25StartupHost = strtoupper(escapeshellcmd($_POST['ysf2p25StartupDstId']));
 
 	  if ($newYSF2P25StartupHost === "NONE") {
@@ -911,7 +911,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	  system($rollYSF2P25Startup);
 	}
-	
+
 	// Set the YSF2P25 P25Id
 	if (empty($_POST['ysf2p25Id']) != TRUE ) {
 	  $configysf2p25['P25 Network']['Id'] = preg_replace('/[^0-9]/', '', $_POST['ysf2p25Id']);
@@ -940,24 +940,36 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set DMR / CCS7 ID
 	if (empty($_POST['dmrId']) != TRUE ) {
 	  $newPostDmrId = preg_replace('/[^0-9]/', '', $_POST['dmrId']);
-	  //$configmmdvm['DMR']['Id'] = $newPostDmrId;
-	  unset($configmmdvm['DMR']['Id']);
-	  if (empty($_POST['dmrMasterHost']) != TRUE ) {
-		  $dmrMasterHostArrTest = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
-		  if (substr($dmrMasterHostArrTest[3], 0, 4) == 'DMR+') { $newPostDmrId = substr($newPostDmrId, 0, 7); }
-	  }
+	  $newPostDmrId = substr($newPostDmrId, 0, 7);
 	  $configmmdvm['General']['Id'] = $newPostDmrId;
+	  $configmmdvm['DMR']['Id'] = $newPostDmrId;
 	  $configysfgateway['General']['Id'] = $newPostDmrId;
-	  $configdmrgateway['XLX Network']['Id'] = substr($newPostDmrId,0,7);
-	  $configdmrgateway['XLX Network 1']['Id'] = substr($newPostDmrId,0,7);
-	  $configdmrgateway['DMR Network 2']['Id'] = substr($newPostDmrId,0,7);
-	  $configdmr2ysf['DMR Network']['Id'] = substr($newPostDmrId,0,7);
-	  $configdmr2nxdn['DMR Network']['Id'] = substr($newPostDmrId,0,7);
+	  $configdmrgateway['XLX Network']['Id'] = $newPostDmrId;
+	  $configdmr2ysf['DMR Network']['Id'] = $newPostDmrId;
+	  $configdmr2nxdn['DMR Network']['Id'] = $newPostDmrId;
+	}
+
+	// Set DMR Extended ID
+	if (empty($_POST['dmrExtendedId']) != TRUE ) {
+	  $newPostdmrExtendedId = preg_replace('/[^0-9]/', '', $_POST['dmrExtendedId']);
+	  $configmmdvm['DMR']['Id'] = $configmmdvm['General']['Id'].$newPostdmrExtendedId;
+	}
+
+	// Set BrandMeister Extended ID
+	if (empty($_POST['bmExtendedId']) != TRUE ) {
+	  $newPostbmExtendedId = preg_replace('/[^0-9]/', '', $_POST['bmExtendedId']);
+	  $configdmrgateway['DMR Network 1']['Id'] = $configmmdvm['General']['Id'].$newPostbmExtendedId;
+	}
+
+	// Set DMR Plus Extended ID
+	if (empty($_POST['dmrPlusExtendedId']) != TRUE ) {
+	  $newPostdmrPlusExtendedId = preg_replace('/[^0-9]/', '', $_POST['dmrPlusExtendedId']);
+	  $configdmrgateway['DMR Network 2']['Id'] = $configmmdvm['General']['Id'].$newPostdmrPlusExtendedId;
 	}
 
 	// Set YSF2DMR ID
 	if (empty($_POST['ysf2dmrId']) != TRUE ) {
-	  $newPostYsf2DmrId = preg_replace('/[^0-9]/', '', $_POST['ysf2dmrId']);	
+	  $newPostYsf2DmrId = preg_replace('/[^0-9]/', '', $_POST['ysf2dmrId']);
 	  $configysf2dmr['DMR Network']['Id'] = $newPostYsf2DmrId;
 	}
 
@@ -1084,7 +1096,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	  else { unset($configdmrgateway['XLX Network 1']['Startup']); }
 	}
-	
+
 	// XLX Module Override
 	if (empty($_POST['dmrMasterHost3StartupModule']) != TRUE ) {
 	  $dmrMasterHost3StartupModule = escapeshellcmd($_POST['dmrMasterHost3StartupModule']);
@@ -1532,7 +1544,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 0;
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	  }
-	  
+
 	  if ( $confHardware == 'nanodv' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -1580,7 +1592,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 0;
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	  }
-            
+
 	  if ( $confHardware == 'dvmpicasthd' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=DVMEGA" /etc/dstarrepeater';
 	    $rollDVMegaPort = 'sudo sed -i "/dvmegaPort=/c\\dvmegaPort=/dev/ttyS2" /etc/dstarrepeater';
@@ -1669,7 +1681,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeP25']) == 'ON' )  { $configmmdvm['P25']['Enable'] = "1"; $configmmdvm['P25 Network']['Enable'] = "1"; $configysf2p25['Enabled']['Enabled'] = "0"; }
           if (escapeshellcmd($_POST['MMDVMModeP25']) == 'OFF' ) { $configmmdvm['P25']['Enable'] = "0"; $configmmdvm['P25 Network']['Enable'] = "0"; }
 	}
-	
+
 	// Set MMDVMHost NXDN Mode
 	if (empty($_POST['MMDVMModeNXDN']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "1"; $configysf2nxdn['Enabled']['Enabled'] = "0"; }
@@ -1765,7 +1777,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			$configdmrgateway['DMR Network 3']['Enabled'] = "0";
 		}
 	}
-	
+
 	// Set POCSAG Mode
 	if (empty($_POST['MMDVMModePOCSAG']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModePOCSAG']) == 'ON' )  { $configmmdvm['POCSAG']['Enable'] = "1"; $configmmdvm['POCSAG Network']['Enable'] = "1"; }
@@ -2166,7 +2178,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			exec('sudo chown root:root /etc/ysfgateway');				// Set the owner
 		}
 	}
-	
+
 	// NXDNGateway config file wrangling
 	$nxdngwContent = "";
         foreach($confignxdngateway as $nxdngwSection=>$nxdngwValues) {
@@ -2314,7 +2326,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                         exec('sudo chown root:root /etc/ysf2p25');                              // Set the owner
                 }
         }
-	
+
 	// dmr2ysf config file wrangling
         $dmr2ysfContent = "";
         foreach($configdmr2ysf as $dmr2ysfSection=>$dmr2ysfValues) {
@@ -3023,7 +3035,40 @@ else:
       </td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> Enable:<span><b>BrandMeister Network Enable</b></span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> ESSID:<span><b>BrandMeister Extended ID</b>This is the extended ID, to make your DMR ID 9 digits long</span></a></td>
+    <td align="left"><select name="bmExtendedId">
+<?php
+	if (isset($configdmrgateway['DMR Network 1']['Id'])) {
+		if (strlen($configdmrgateway['DMR Network 1']['Id']) == 9) {
+			$brandMeisterESSID = substr($configdmrgateway['DMR Network 1']['Id'], -2);
+		} else {
+			$brandMeisterESSID = "None";
+		}
+	} else {
+		if (isset($configmmdvm['General']['Id'])) {
+			if (strlen($configmmdvm['General']['Id']) == 9) {
+				$brandMeisterESSID = substr($configmmdvm['General']['Id'], -2);
+			} else {
+				$brandMeisterESSID = "None";
+			}
+		} else {
+			$brandMeisterESSID = "None";
+		}
+	}
+
+	if ($brandMeisterESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
+	for ($brandMeisterESSIDInput = 1; $brandMeisterESSIDInput <= 99; $brandMeisterESSIDInput++) {
+		$brandMeisterESSIDInput = str_pad($brandMeisterESSIDInput, 2, "0", STR_PAD_LEFT);
+		if ($brandMeisterESSID == $brandMeisterESSIDInput) {
+			echo "      <option value=\"$brandMeisterESSIDInput\" selected=\"selected\">$brandMeisterESSIDInput</option>\n";
+		} else {
+			echo "      <option value=\"$brandMeisterESSIDInput\">$brandMeisterESSIDInput</option>\n";
+		}
+	}
+?>
+    </select></td></tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> Enable:<span><b>BrandMeister Network Enable</b>Enable or disable BrandMeister Network</span></a></td>
     <td align="left">
     <?php if ($configdmrgateway['DMR Network 1']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" checked=\"checked\" /><label for=\"toggle-dmrGatewayNet1En\"></label></div>\n"; }
     else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" /><label for=\"toggle-dmrGatewayNet1En\"></label></div>\n"; } ?>
@@ -3059,6 +3104,38 @@ else:
     Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="<?php if (isset($configdmrgateway['DMR Network 2']['Options'])) { echo $configdmrgateway['DMR Network 2']['Options']; } ?>" />
     </td>
     </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> ESSID:<span><b>DMR Plus Extended ID</b>This is the extended ID, to make your DMR ID 8 digits long</span></a></td>
+    <td align="left"><select name="dmrPlusExtendedId">
+<?php
+	if (isset($configdmrgateway['DMR Network 2']['Id'])) {
+		if (strlen($configdmrgateway['DMR Network 2']['Id']) == 8) {
+			$dmrPlusESSID = substr($configdmrgateway['DMR Network 2']['Id'], -1);
+		} else {
+			$dmrPlusESSID = "None";
+		}
+	} else {
+		if (isset($configmmdvm['General']['Id'])) {
+			if (strlen($configmmdvm['General']['Id']) == 8) {
+				$dmrPlusESSID = substr($configmmdvm['General']['Id'], -1);
+			} else {
+				$dmrPlusESSID = "None";
+			}
+		} else {
+			$dmrPlusESSID = "None";
+		}
+	}
+
+	if ($dmrPlusESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
+	for ($dmrPlusESSIDInput = 1; $dmrPlusESSIDInput <= 9; $dmrPlusESSIDInput++) {
+		if ($dmrPlusESSID == $dmrPlusESSIDInput) {
+			echo "      <option value=\"$dmrPlusESSIDInput\" selected=\"selected\">$dmrPlusESSIDInput</option>\n";
+		} else {
+			echo "      <option value=\"$dmrPlusESSIDInput\">$dmrPlusESSIDInput</option>\n";
+		}
+	}
+?>
+    </select></td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Enable:<span><b>DMR+ Network Enable</b></span></a></td>
     <td align="left">
@@ -3181,6 +3258,49 @@ else:
     </td>
     </tr>'."\n";}
 ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR ESSID:<span><b>DMR Extended ID</b>This is the extended ID, to make your DMR ID 8 or 9 digits long</span></a></td>
+    <td align="left"><select name="dmrExtendedId">
+<?php
+	if (isset($configmmdvm['DMR']['Id'])) {
+		if (strlen($configmmdvm['DMR']['Id']) == 8) {
+			$dmrESSID = substr($configmmdvm['DMR']['Id'], -1);
+		} elseif (strlen($configmmdvm['DMR']['Id']) == 9) {
+			$dmrESSID = substr($configmmdvm['DMR']['Id'], -2);
+		} else {
+			$dmrESSID = "None";
+		}
+	}
+	elseif (isset($configmmdvm['General']['Id'])) {
+		if (strlen($configmmdvm['General']['Id']) == 8) {
+			$dmrESSID = substr($configmmdvm['General']['Id'], -1);
+		} elseif (strlen($configmmdvm['General']['Id']) == 9) {
+			$dmrESSID = substr($configmmdvm['General']['Id'], -2);
+		} else {
+			$dmrESSID = "None";
+		}
+	} else {
+		$dmrESSID = "None";
+	}
+
+	if ($dmrESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
+	for ($dmrESSIDInput = 1; $dmrESSIDInput <= 9; $dmrESSIDInput++) {
+		if ($dmrESSID == $dmrESSIDInput) {
+			echo "      <option value=\"$dmrESSIDInput\" selected=\"selected\">$dmrESSIDInput (DMR Plus)</option>\n";
+		} else {
+			echo "      <option value=\"$dmrESSIDInput\">$dmrESSIDInput (DMR Plus)</option>\n";
+		}
+	}
+	for ($dmrESSIDInput = 1; $dmrESSIDInput <= 99; $dmrESSIDInput++) {
+		$dmrESSIDInput = str_pad($dmrESSIDInput, 2, "0", STR_PAD_LEFT);
+		if ($dmrESSID == $dmrESSIDInput) {
+			echo "      <option value=\"$dmrESSIDInput\" selected=\"selected\">$dmrESSIDInput (BM/TGIF)</option>\n";
+		} else {
+			echo "      <option value=\"$dmrESSIDInput\">$dmrESSIDInput (BM/TGIF)</option>\n";
+		}
+	}
+?>
+    </select></td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_cc'];?>:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
     <td style="text-align: left;"><select name="dmrColorCode">
