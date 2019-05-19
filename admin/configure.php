@@ -3061,7 +3061,7 @@ else:
 	if ($brandMeisterESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
 	for ($brandMeisterESSIDInput = 1; $brandMeisterESSIDInput <= 99; $brandMeisterESSIDInput++) {
 		$brandMeisterESSIDInput = str_pad($brandMeisterESSIDInput, 2, "0", STR_PAD_LEFT);
-		if ($brandMeisterESSID == $brandMeisterESSIDInput) {
+		if ($brandMeisterESSID === $brandMeisterESSIDInput) {
 			echo "      <option value=\"$brandMeisterESSIDInput\" selected=\"selected\">$brandMeisterESSIDInput</option>\n";
 		} else {
 			echo "      <option value=\"$brandMeisterESSIDInput\">$brandMeisterESSIDInput</option>\n";
@@ -3133,7 +3133,7 @@ else:
 	echo "<select name=\"dmrPlusExtendedId\">\n";
 	if ($dmrPlusESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
 	for ($dmrPlusESSIDInput = 1; $dmrPlusESSIDInput <= 9; $dmrPlusESSIDInput++) {
-		if ($dmrPlusESSID == $dmrPlusESSIDInput) {
+		if ($dmrPlusESSID === $dmrPlusESSIDInput) {
 			echo "      <option value=\"$dmrPlusESSIDInput\" selected=\"selected\">$dmrPlusESSIDInput</option>\n";
 		} else {
 			echo "      <option value=\"$dmrPlusESSIDInput\">$dmrPlusESSIDInput</option>\n";
@@ -3295,7 +3295,7 @@ else:
 	echo "<select name=\"dmrExtendedId\">\n";
 	if ($dmrESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
 	for ($dmrESSIDInput = 1; $dmrESSIDInput <= 9; $dmrESSIDInput++) {
-		if ($dmrESSID == $dmrESSIDInput) {
+		if ($dmrESSID === $dmrESSIDInput) {
 			echo "      <option value=\"$dmrESSIDInput\" selected=\"selected\">$dmrESSIDInput (DMR Plus)</option>\n";
 		} else {
 			echo "      <option value=\"$dmrESSIDInput\">$dmrESSIDInput (DMR Plus)</option>\n";
@@ -3303,7 +3303,7 @@ else:
 	}
 	for ($dmrESSIDInput = 1; $dmrESSIDInput <= 99; $dmrESSIDInput++) {
 		$dmrESSIDInput = str_pad($dmrESSIDInput, 2, "0", STR_PAD_LEFT);
-		if ($dmrESSID == $dmrESSIDInput) {
+		if ($dmrESSID === $dmrESSIDInput) {
 			echo "      <option value=\"$dmrESSIDInput\" selected=\"selected\">$dmrESSIDInput (BM/TGIF)</option>\n";
 		} else {
 			echo "      <option value=\"$dmrESSIDInput\">$dmrESSIDInput (BM/TGIF)</option>\n";
@@ -3617,9 +3617,42 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2dmr['Enabled']['Enabled'] == 1) {
     $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r"); ?>
     <tr>
-      <td align="left"><a class="tooltip2" href="#">(YSF2DMR)<?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
-      <td align="left" colspan="2"><input type="text" name="ysf2dmrId" size="13" maxlength="9" value="<?php if (isset($configysf2dmr['DMR Network']['Id'])) { echo $configysf2dmr['DMR Network']['Id']; } ?>" /></td>
-    </tr>
+    <td align="left"><a class="tooltip2" href="#">(YSF2DMR)<?php echo $lang['dmr_id'];?>:<span><b>CCS7/DMR ID</b>Enter your CCS7 / DMR ID here</span></a></td>
+    <td align="left" colspan="2">
+<?php
+	if (isset($configysf2dmr['DMR Network']['Id'])) {
+		if (strlen($configysf2dmr['DMR Network']['Id']) == 8) {
+			$ysf2dmrESSID = substr($configysf2dmr['DMR Network']['Id'], -1);
+		} elseif (strlen($configysf2dmr['DMR Network']['Id']) == 9) {
+			$ysf2dmrESSID = substr($configysf2dmr['DMR Network']['Id'], -2);
+		} else {
+			$ysf2dmrESSID = "None";
+		}
+	} else {
+		$ysf2dmrESSID = "None";
+	}
+
+	if (isset($configysf2dmr['DMR Network']['Id'])) { if ($configysf2dmr['DMR Network']['Id'] !== "1234567") { echo substr($configysf2dmr['DMR Network']['Id'], 0, 7); } $ysf2dmrIdBase = substr($configysf2dmr['DMR Network']['Id'], 0, 7); }
+	echo "<select name=\"ysf2dmrId\">\n";
+	if ($ysf2dmrESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
+	for ($ysf2dmrESSIDInput = 1; $ysf2dmrESSIDInput <= 9; $ysf2dmrESSIDInput++) {
+		if ($ysf2dmrESSID === $ysf2dmrESSIDInput) {
+			echo "      <option value=\"$ysf2dmrIdBase$ysf2dmrESSIDInput\" selected=\"selected\">$ysf2dmrESSIDInput (DMR Plus)</option>\n";
+		} else {
+			echo "      <option value=\"$ysf2dmrIdBase$ysf2dmrESSIDInput\">$ysf2dmrESSIDInput (DMR Plus)</option>\n";
+		}
+	}
+	for ($ysf2dmrESSIDInput = 1; $ysf2dmrESSIDInput <= 99; $ysf2dmrESSIDInput++) {
+		$ysf2dmrESSIDInput = str_pad($ysf2dmrESSIDInput, 2, "0", STR_PAD_LEFT);
+		if ($ysf2dmrESSID === $ysf2dmrESSIDInput) {
+			echo "      <option value=\"$ysf2dmrIdBase$ysf2dmrESSIDInput\" selected=\"selected\">$ysf2dmrESSIDInput (BM/TGIF)</option>\n";
+		} else {
+			echo "      <option value=\"$ysf2dmrIdBase$ysf2dmrESSIDInput\">$ysf2dmrESSIDInput (BM/TGIF)</option>\n";
+		}
+	}
+	echo "</select>\n";
+?>
+    </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_master'];?>:<span><b>DMR Master (YSF2DMR)</b>Set your prefered DMR master here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ysf2dmrMasterHost">
