@@ -1929,7 +1929,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2dmr['DMR Network']['Jitter'])) { $configysf2dmr['DMR Network']['Jitter'] = "500"; }
 	if (!isset($configysf2dmr['DMR Network']['EnableUnlink'])) { $configysf2dmr['DMR Network']['EnableUnlink'] = "1"; }
 	if (!isset($configysf2dmr['DMR Network']['TGUnlink'])) { $configysf2dmr['DMR Network']['TGUnlink'] = "4000"; }
-	if (!isset($configysf2dmr['DMR Network']['PCUnlink'])) { $configysf2dmr['DMR Network']['PCUnlink'] = "0"; }	
+	if (!isset($configysf2dmr['DMR Network']['PCUnlink'])) { $configysf2dmr['DMR Network']['PCUnlink'] = "0"; }
 	if (!isset($configysf2dmr['DMR Network']['Debug'])) { $configysf2dmr['DMR Network']['Debug'] = "0"; }
 	if ( (!isset($configysf2dmr['DMR Network']['TGListFile'])) && (file_exists('/usr/local/etc/TGList_BM.txt')) ) { $configysf2dmr['DMR Network']['TGListFile'] = "/usr/local/etc/TGList_BM.txt"; }
 	if (!isset($configysf2dmr['DMR Id Lookup']['File'])) { $configysf2dmr['DMR Id Lookup']['File'] = "/usr/local/etc/DMRIds.dat"; }
@@ -1946,7 +1946,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	unset($configysf2dmr['DMR Network']['JitterEnabled']);
 	$configysf2dmr['Log']['DisplayLevel'] = "0";
 	$configysf2dmr['Log']['FileLevel'] = "0";
-	$configysf2dmr['aprs.fi']['Enable'] = "0";
+	if (!isset($configysf2dmr['aprs.fi']['Enable'])) { $configysf2dmr['aprs.fi']['Enable'] = "0"; }
 
 	// Add missing options to YSF2NXDN
 	$configysf2nxdn['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2NXDNPort'];
@@ -1960,7 +1960,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2nxdn['Log']['FileLevel'] = "0";
 	$configysf2nxdn['Log']['FilePath'] = "/var/log/pi-star";
 	$configysf2nxdn['Log']['FileRoot'] = "YSF2NXDN";
-	$configysf2nxdn['aprs.fi']['Enable'] = "0";
+	if (!isset($configysf2nxdn['aprs.fi']['Enable'])) { $configysf2nxdn['aprs.fi']['Enable'] = "0"; }
 
 	// Add missing options to YSF2P25
 	$configysf2p25['YSF Network']['LocalPort'] = $configysfgateway['YSF Network']['YSF2P25Port'];
@@ -1973,7 +1973,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$configysf2p25['Log']['DisplayLevel'] = "0";
 	$configysf2p25['Log']['FileLevel'] = "0";
 	$configysf2p25['Log']['FilePath'] = "/var/log/pi-star";
-	$configysf2p25['Log']['FileRoot'] = "YSF2P25";	
+	$configysf2p25['Log']['FileRoot'] = "YSF2P25";
 	if (isset($configysf2p25['aprs.fi'])) { unset($configysf2p25['aprs.fi']); }
 
 	// Clean up for NXDN Gateway
@@ -2013,7 +2013,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		if(!isset($confignxdngateway['aprs.fi']['Description'])) { $confignxdngateway['aprs.fi']['Description'] = "APRS for NXDN Gateway"; }
 		if(!isset($confignxdngateway['aprs.fi']['Suffix'])) { $confignxdngateway['aprs.fi']['Suffix'] = "N"; }
 	}
-	
 
 	// Clean up legacy options
 	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
@@ -2021,7 +2020,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		unset($configdmrgateway['XLX Network 1']);
 		unset($configdmrgateway['XLX Network 2']);
 	}
-	
+
 	// Migrate YSFGateway Config
 	$ysfGatewayVer = exec("YSFGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($ysfGatewayVer > 20180303) {
@@ -2048,7 +2047,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configysfgateway['FCS Network']['Port'] = "42001";
 		$configysfgateway['FCS Network']['Rooms'] = "/usr/local/etc/FCSHosts.txt";
 	}
-	
+
 	// Add the DAPNet Config
 	if (!isset($configdapnetgw['General']['Callsign'])) { $configdapnetgw['General']['Callsign'] = "M1ABC"; }
 	if (!isset($configdapnetgw['General']['RptAddress'])) { $configdapnetgw['General']['RptAddress'] = "127.0.0.1"; }
@@ -2075,7 +2074,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
 	if (!isset($configmmdvm['POCSAG Network']['Debug'])) { $configmmdvm['POCSAG Network']['Debug'] = "0"; }
 	if (isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
-	
+
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
 		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
@@ -2914,6 +2913,24 @@ else:
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
     </tr>
     <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
+    <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
+<?php
+        $testAPSRHost = $configs['aprsHostname'];
+    	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
+        while (!feof($aprsHostFile)) {
+                $aprsHostFileLine = fgets($aprsHostFile);
+                $aprsHost = preg_split('/:/', $aprsHostFileLine);
+                if ((strpos($aprsHost[0], ';') === FALSE ) && ($aprsHost[0] != '')) {
+                        if ($testAPSRHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected=\"selected\">$aprsHost[0]</option>\n"; }
+                        else { echo "      <option value=\"$aprsHost[0]\">$aprsHost[0]</option>\n"; }
+                }
+        }
+        fclose($aprsHostFile);
+        ?>
+    </select></td>
+    </tr>
+    <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['timezone'];?>:<span><b>System TimeZone</b>Set the system timezone</span></a></td>
     <td style="text-align: left;" colspan="2"><select name="systemTimezone">
 <?php
@@ -3322,24 +3339,6 @@ fclose($dextraFile);
     <input type="radio" name="confDefRefAuto" value="OFF"<?php if ($configs['atStartup1'] == '0') {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
     <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
-    <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
-<?php
-        $testAPSRHost = $configs['aprsHostname'];
-    	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
-        while (!feof($aprsHostFile)) {
-                $aprsHostFileLine = fgets($aprsHostFile);
-                $aprsHost = preg_split('/:/', $aprsHostFileLine);
-                if ((strpos($aprsHost[0], ';') === FALSE ) && ($aprsHost[0] != '')) {
-                        if ($testAPSRHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected=\"selected\">$aprsHost[0]</option>\n"; }
-                        else { echo "      <option value=\"$aprsHost[0]\">$aprsHost[0]</option>\n"; }
-                }
-        }
-        fclose($aprsHostFile);
-        ?>
-    </select></td>
-    </tr>
-    <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_lang'];?>:<span><b>ircDDBGateway Language</b>Set your prefered language here</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="ircDDBGatewayAnnounceLanguage">
 <?php
@@ -3449,24 +3448,6 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 }
                 fclose($fcsHosts);
         }
-        ?>
-    </select></td>
-    </tr>
-    <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
-    <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
-<?php
-        $testAPSRHost = $configs['aprsHostname'];
-    	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
-        while (!feof($aprsHostFile)) {
-                $aprsHostFileLine = fgets($aprsHostFile);
-                $aprsHost = preg_split('/:/', $aprsHostFileLine);
-                if ((strpos($aprsHost[0], ';') === FALSE ) && ($aprsHost[0] != '')) {
-                        if ($testAPSRHost == $aprsHost[0]) { echo "      <option value=\"$aprsHost[0]\" selected=\"selected\">$aprsHost[0]</option>\n"; }
-                        else { echo "      <option value=\"$aprsHost[0]\">$aprsHost[0]</option>\n"; }
-                }
-        }
-        fclose($aprsHostFile);
         ?>
     </select></td>
     </tr>
