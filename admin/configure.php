@@ -3036,7 +3036,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> ESSID:<span><b>BrandMeister Extended ID</b>This is the extended ID, to make your DMR ID 9 digits long</span></a></td>
-    <td align="left"><select name="bmExtendedId">
+    <td align="left">
 <?php
 	if (isset($configdmrgateway['DMR Network 1']['Id'])) {
 		if (strlen($configdmrgateway['DMR Network 1']['Id']) == 9) {
@@ -3056,6 +3056,8 @@ else:
 		}
 	}
 
+	if (isset($configmmdvm['General']['Id'])) { if ($configmmdvm['General']['Id'] !== "1234567") { echo substr($configmmdvm['General']['Id'], 0, 7); } }
+	echo "<select name=\"bmExtendedId\">\n";
 	if ($brandMeisterESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
 	for ($brandMeisterESSIDInput = 1; $brandMeisterESSIDInput <= 99; $brandMeisterESSIDInput++) {
 		$brandMeisterESSIDInput = str_pad($brandMeisterESSIDInput, 2, "0", STR_PAD_LEFT);
@@ -3065,8 +3067,9 @@ else:
 			echo "      <option value=\"$brandMeisterESSIDInput\">$brandMeisterESSIDInput</option>\n";
 		}
 	}
+	echo "</select>\n";
 ?>
-    </select></td></tr>
+    </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> Enable:<span><b>BrandMeister Network Enable</b>Enable or disable BrandMeister Network</span></a></td>
     <td align="left">
@@ -3106,7 +3109,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> ESSID:<span><b>DMR Plus Extended ID</b>This is the extended ID, to make your DMR ID 8 digits long</span></a></td>
-    <td align="left"><select name="dmrPlusExtendedId">
+    <td align="left">
 <?php
 	if (isset($configdmrgateway['DMR Network 2']['Id'])) {
 		if (strlen($configdmrgateway['DMR Network 2']['Id']) == 8) {
@@ -3126,6 +3129,8 @@ else:
 		}
 	}
 
+	if (isset($configmmdvm['General']['Id'])) { if ($configmmdvm['General']['Id'] !== "1234567") { echo substr($configmmdvm['General']['Id'], 0, 7); } }
+	echo "<select name=\"dmrPlusExtendedId\">\n";
 	if ($dmrPlusESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
 	for ($dmrPlusESSIDInput = 1; $dmrPlusESSIDInput <= 9; $dmrPlusESSIDInput++) {
 		if ($dmrPlusESSID == $dmrPlusESSIDInput) {
@@ -3134,8 +3139,9 @@ else:
 			echo "      <option value=\"$dmrPlusESSIDInput\">$dmrPlusESSIDInput</option>\n";
 		}
 	}
+	echo "</select>\n";
 ?>
-    </select></td></tr>
+    </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Enable:<span><b>DMR+ Network Enable</b></span></a></td>
     <td align="left">
@@ -3262,7 +3268,7 @@ else:
 <?php if ($dmrMasterNow !== "DMRGateway") { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#">DMR ESSID:<span><b>DMR Extended ID</b>This is the extended ID, to make your DMR ID 8 or 9 digits long</span></a></td>
-    <td align="left"><select name="dmrExtendedId">
+    <td align="left">
 <?php
 	if (isset($configmmdvm['DMR']['Id'])) {
 		if (strlen($configmmdvm['DMR']['Id']) == 8) {
@@ -3285,6 +3291,8 @@ else:
 		$dmrESSID = "None";
 	}
 
+	if (isset($configmmdvm['General']['Id'])) { if ($configmmdvm['General']['Id'] !== "1234567") { echo substr($configmmdvm['General']['Id'], 0, 7); } }
+	echo "<select name=\"dmrExtendedId\">\n";
 	if ($dmrESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
 	for ($dmrESSIDInput = 1; $dmrESSIDInput <= 9; $dmrESSIDInput++) {
 		if ($dmrESSID == $dmrESSIDInput) {
@@ -3301,8 +3309,9 @@ else:
 			echo "      <option value=\"$dmrESSIDInput\">$dmrESSIDInput (BM/TGIF)</option>\n";
 		}
 	}
+	echo "</select>\n";
 ?>
-    </select></td></tr>
+    </td></tr>
     <tr>
 <?php } ?>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_cc'];?>:<span><b>DMR Color Code</b>Set your DMR Color Code here</span></a></td>
