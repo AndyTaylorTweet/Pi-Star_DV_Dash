@@ -843,11 +843,23 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  //if ($newYSFStartupHost == "NONE") { unset($configysfgateway['Network']['Startup']); }
 	  //else { $configysfgateway['Network']['Startup'] = $newYSFStartupHost; }
 	  if (isset($configysfgateway['FCS Network'])) {
-		if ($newYSFStartupHostArr[0] == "none") { unset($configysfgateway['Network']['Startup']); }
-	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1]; }
+		if ($newYSFStartupHostArr[0] == "none") {
+			unset($configysfgateway['Network']['Startup']);
+			$configdmr2ysf['DMR Network']['DefaultDstTG'] = "9";
+		}
+	  	else {
+			$configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[1];
+			$configdmr2ysf['DMR Network']['DefaultDstTG'] = str_replace("FCS", "1", $newYSFStartupHostArr[0]);
+		}
 	  } else {
-	  	if ($newYSFStartupHostArr[0] == "none") { unset($configysfgateway['Network']['Startup']); }
-	  	else { $configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[0]; }
+	  	if ($newYSFStartupHostArr[0] == "none") {
+			unset($configysfgateway['Network']['Startup']);
+			$configdmr2ysf['DMR Network']['DefaultDstTG'] = "9";
+		}
+	  	else {
+			$configysfgateway['Network']['Startup'] = $newYSFStartupHostArr[0];
+			$configdmr2ysf['DMR Network']['DefaultDstTG'] = str_replace("FCS", "1", $newYSFStartupHostArr[0]);
+		}
 	  }
 	}
 
