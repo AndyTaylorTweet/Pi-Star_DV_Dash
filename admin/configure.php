@@ -2959,6 +2959,7 @@ else:
     <td style="text-align: left;" colspan="2"><select name="systemTimezone">
 <?php
   exec('timedatectl list-timezones', $tzList);
+  if (!in_array("UTC", $tzList)) { array_push($tzList, "UTC"); }
   exec('cat /etc/timezone', $tzCurrent);
     foreach ($tzList as $timeZone) {
       if ($timeZone == $tzCurrent[0]) { echo "      <option selected=\"selected\" value=\"".$timeZone."\">".$timeZone."</option>\n"; }
