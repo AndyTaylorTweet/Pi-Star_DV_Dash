@@ -3618,8 +3618,9 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <td align="left" colspan="2">
 <?php
 	if (isset($configysf2dmr['DMR Network']['Id'])) {
-		if (strlen($configysf2dmr['DMR Network']['Id']) == 9) {
-			$ysf2dmrESSID = substr($configysf2dmr['DMR Network']['Id'], -2);
+		if (strlen($configysf2dmr['DMR Network']['Id']) > strlen($configmmdvm['General']['Id'])) {
+			$essidYSF2DMRLen = strlen($configysf2dmr['DMR Network']['Id']) - strlen($configmmdvm['General']['Id']);
+			$ysf2dmrESSID = substr($configysf2dmr['DMR Network']['Id'], -$essidYSF2DMRLen);
 		} else {
 			$ysf2dmrESSID = "None";
 		}
