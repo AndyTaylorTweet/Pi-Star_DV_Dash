@@ -1931,8 +1931,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysfgateway['General']['WiresXMakeUpper'])) { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
 	if (!isset($configysfgateway['Network']['Revert'])) { $configysfgateway['Network']['Revert'] = "0"; }
 	if (!isset($configysfgateway['Network']['Port'])) { $configysfgateway['Network']['Port'] = "42000"; }
-	if (!isset($configysfgateway['Network']['YSF2DMRAddress'])) { $configysfgateway['Network']['YSF2DMRAddress'] = "127.0.0.1"; }
-	if (!isset($configysfgateway['Network']['YSF2DMRPort'])) { $configysfgateway['Network']['YSF2DMRPort'] = "42013"; }
+	if (isset($configysfgateway['Network']['YSF2DMRAddress'])) { unset($configysfgateway['Network']['YSF2DMRAddress']); }
+	if (isset($configysfgateway['Network']['YSF2DMRPort'])) { unset($configysfgateway['Network']['YSF2DMRPort']); }
 	unset($configysfgateway['Network']['DataPort']);
 	unset($configysfgateway['Network']['StatusPort']);
 	if (!isset($configysfgateway['Mobile GPS']['Enable'])) { $configysfgateway['Mobile GPS']['Enable'] = "0"; }
