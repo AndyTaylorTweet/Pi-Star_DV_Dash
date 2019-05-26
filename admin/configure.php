@@ -3637,7 +3637,8 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
 		$ysf2dmrESSID = "None";
 	}
 
-	if (isset($configysf2dmr['DMR Network']['Id'])) { if ($configysf2dmr['DMR Network']['Id'] !== "1234567") { echo substr($configysf2dmr['DMR Network']['Id'], 0, 7); } $ysf2dmrIdBase = substr($configysf2dmr['DMR Network']['Id'], 0, 7); }
+	echo substr($configmmdvm['General']['Id'], 0, 7);
+	$ysf2dmrIdBase = substr($configmmdvm['General']['Id'], 0, 7);
 	echo "<select name=\"ysf2dmrId\">\n";
 	if ($ysf2dmrESSID == "None") { echo "      <option value=\"None\" selected=\"selected\">None</option>\n"; } else { echo "      <option value=\"None\">None</option>\n"; }
 	for ($ysf2dmrESSIDInput = 1; $ysf2dmrESSIDInput <= 99; $ysf2dmrESSIDInput++) {
