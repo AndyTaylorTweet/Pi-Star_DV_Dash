@@ -3052,7 +3052,7 @@ else:
     <td align="left">
 <?php
 	if (isset($configdmrgateway['DMR Network 1']['Id'])) {
-		if (strlen($configdmrgateway['DMR Network 1']['Id']) == 9) {
+		if (strlen($configdmrgateway['DMR Network 1']['Id']) > strlen($configmmdvm['General']['Id'])) {
 			$brandMeisterESSID = substr($configdmrgateway['DMR Network 1']['Id'], -2);
 		} else {
 			$brandMeisterESSID = "None";
@@ -3125,7 +3125,7 @@ else:
     <td align="left">
 <?php
 	if (isset($configdmrgateway['DMR Network 2']['Id'])) {
-		if (strlen($configdmrgateway['DMR Network 2']['Id']) == 9) {
+		if (strlen($configdmrgateway['DMR Network 2']['Id']) > strlen($configmmdvm['General']['Id'])) {
 			$dmrPlusESSID = substr($configdmrgateway['DMR Network 2']['Id'], -2);
 		} else {
 			$dmrPlusESSID = "None";
@@ -3285,19 +3285,9 @@ else:
     <td align="left">
 <?php
 	if (isset($configmmdvm['DMR']['Id'])) {
-		if (strlen($configmmdvm['DMR']['Id']) == 8) {
-			$dmrESSID = substr($configmmdvm['DMR']['Id'], -1);
-		} elseif (strlen($configmmdvm['DMR']['Id']) == 9) {
-			$dmrESSID = substr($configmmdvm['DMR']['Id'], -2);
-		} else {
-			$dmrESSID = "None";
-		}
-	}
-	elseif (isset($configmmdvm['General']['Id'])) {
-		if (strlen($configmmdvm['General']['Id']) == 8) {
-			$dmrESSID = substr($configmmdvm['General']['Id'], -1);
-		} elseif (strlen($configmmdvm['General']['Id']) == 9) {
-			$dmrESSID = substr($configmmdvm['General']['Id'], -2);
+		if (strlen($configmmdvm['DMR']['Id']) > strlen($configmmdvm['General']['Id'])) {
+			$essidLen = strlen($configmmdvm['DMR']['Id']) - strlen($configmmdvm['General']['Id']);
+			$dmrESSID = substr($configmmdvm['DMR']['Id'], - $essidLen);
 		} else {
 			$dmrESSID = "None";
 		}
