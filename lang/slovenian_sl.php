@@ -1,25 +1,25 @@
 <?php
 //
-// English UK Language Pack
-// Andy Taylor (MW0MWZ)
-// Updated: 02-Aug-2017
+// Slovenian HR Language Pack
+// Deni Bacic (S55DB)
+// Updated: 20-Jun-2019
 //
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Digital Voice",
   "configuration"               =>  "Nastavitev",
-  "dashboard_for"               =>  "Dashboard for",
+  "dashboard_for"               =>  "Nadzorna plošča ya",
   // Banner links
-  "dashboard"                   =>  "Dashboard",
+  "dashboard"                   =>  "Nadzorna plošča",
   "admin"                       =>  "Admin",
-  "power"                       =>  "Power",
+  "power"                       =>  "Vklop/Izklop",
   "update"                      =>  "Posodobitev",
-  "backup_restore"              =>  "Varnostna Kopija/Obnova iz varnostne kopije",
-  "factory_reset"               =>  "Povrnitev na tovarniške nastavitve",
+  "backup_restore"              =>  "Varnostno Kopiranje",
+  "factory_reset"               =>  "Tovarniške nastavitve",
   "live_logs"                   =>  "Live Logs",
   // Config page section headdings
   "hardware_info"               =>  "Informacije o strojni opremi prehoda",
-  "control_software"            =>  "Control Software",
+  "control_software"            =>  "Nadzorna programska oprema",
   "mmdvmhost_config"            =>  "MMDVMHost nastavitve",
   "general_config"              =>  "Splošne nastavitve",
   "dmr_config"                  =>  "DMR nastavitve",
@@ -38,12 +38,12 @@ $lang = array (
   // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Ime gostitelja",
   "kernel"                      =>  "Jedro",
-  "platform"                    =>  "Platform",
+  "platform"                    =>  "Platforma",
   "cpu_load"                    =>  "Obremenitev procesorja",
   "cpu_temp"                    =>  "Temperatura procesorja",
   // Config Page - Control Software
-  "controller_software"         =>  "Controller Software",
-  "controller_mode"             =>  "Controller Mode",
+  "controller_software"         =>  "Programska oprema krmilnika",
+  "controller_mode"             =>  "Način krmilnika",
   // Config Page - MMDVMHost Configuration
   "dmr_mode"                    =>  "DMR način",
   "d-star_mode"                 =>  "D-Star način",
@@ -53,7 +53,7 @@ $lang = array (
   "mmdvm_display"               =>  "Tip MMDVM zaslona",
   "mode_hangtime"               =>  "Mode Hangtime",
   // Config Page - General Configuration
-  "node_call"                   =>  "Node Callsign",
+  "node_call"                   =>  "Klicni znak vozlišča",
   "dmr_id"                      =>  "CCS7/DMR ID",
   "radio_freq"                  =>  "Frekvenca",
   "lattitude"                   =>  "Zemljepisna širina",
@@ -61,29 +61,29 @@ $lang = array (
   "town"                        =>  "Kraj",
   "country"                     =>  "Država",
   "url"                         =>  "URL",
-  "radio_type"                  =>  "Radio/Modem Type",
-  "node_type"                   =>  "Node Type",
+  "radio_type"                  =>  "Vrsta sprejemnika/modema",
+  "node_type"                   =>  "Vrsta vozlišča",
   "timezone"                    =>  "Časovni pas",
-  "dash_lang"                   =>  "Dashboard Language",
+  "dash_lang"                   =>  "Jezik nadzorne plošče",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR Master (MMDVMHost)",
   "bm_master"                   =>  "BrandMeister Master",
-  "bm_network"                  =>  "BrandMeister Network",
+  "bm_network"                  =>  "BrandMeister omrežje",
   "dmr_plus_master"             =>  "DMR+ Master",
-  "dmr_plus_network"            =>  "DMR+ Network",
+  "dmr_plus_network"            =>  "DMR+ omrežje",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Enable",
   "dmr_cc"                      =>  "DMR Colour Code",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
   // Config Page - D-Star Configuration
-  "dstar_rpt1"                  =>  "RPT1 Callsign",
-  "dstar_rpt2"                  =>  "RPT2 Callsign",
-  "dstar_irc_password"          =>  "Remote Password",
-  "dstar_default_ref"           =>  "Default Reflector",
-  "aprs_host"                   =>  "APRS Host",
-  "dstar_irc_lang"              =>  "ircDDBGateway Language",
-  "dstar_irc_time"              =>  "Time Announcements",
+  "dstar_rpt1"                  =>  "Klicni znak RPT1",
+  "dstar_rpt2"                  =>  "Klicni znak RPT2",
+  "dstar_irc_password"          =>  "Geslo za oddaljen dostop",
+  "dstar_default_ref"           =>  "Privzeti replektor",
+  "aprs_host"                   =>  "APRS gostitelj",
+  "dstar_irc_lang"              =>  "Jezik ircDDBGateway",
+  "dstar_irc_time"              =>  "Napoved časa",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "YSF Startup Host",
   // Config Page - P25 Configuration
@@ -97,49 +97,49 @@ $lang = array (
   "fw_irc"                      =>  "ircDDBGateway Remote",
   "fw_ssh"                      =>  "SSH Access",
   // Config Page - Password
-  "user"                        =>  "User Name",
-  "password"                    =>  "Password",
-  "set_password"                =>  "Set Password",
+  "user"                        =>  "Uporabniški ime",
+  "password"                    =>  "Geslo",
+  "set_password"                =>  "Nastavi geslo",
   // Dashboard Front Page - Repeater Info Pannel
   "modes_enabled"               =>  "Modes Enabled",
-  "net_status"                  =>  "Network Status",
+  "net_status"                  =>  "Stanje omrežja",
   "internet"                    =>  "Internet",
-  "radio_info"                  =>  "Radio Info",
-  "dstar_repeater"              =>  "D-Star Repeater",
-  "dstar_net"                   =>  "D-Star Network",
-  "dmr_repeater"                =>  "DMR Repeater",
+  "radio_info"                  =>  "Informacije o sprejemniku",
+  "dstar_repeater"              =>  "D-Star Repetitor",
+  "dstar_net"                   =>  "D-Star Omrežje",
+  "dmr_repeater"                =>  "DMR Repetitor",
   "dmr_master"                  =>  "DMR Master",
-  "ysf_net"                     =>  "YSF Network",
+  "ysf_net"                     =>  "YSF Omrežje",
   "p25_radio"                   =>  "P25 Radio",
-  "p25_net"                     =>  "P25 Network",
+  "p25_net"                     =>  "P25 Omrežje",
   "nxdn_radio"                  =>  "NXDN Radio",
-  "nxdn_net"                    =>  "NXDN Network",
+  "nxdn_net"                    =>  "NXDN Omrežje",
   // Dashboard Front Page - Calls
-  "time"                        =>  "Time",
-  "mode"                        =>  "Mode",
-  "callsign"                    =>  "Callsign",
-  "target"                      =>  "Target",
-  "src"                         =>  "Src",        // Short version of "Source"
-  "dur"                         =>  "Dur",        // Short version of "Duration"
-  "loss"                        =>  "Loss",
-  "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
+  "time"                        =>  "Čas",
+  "mode"                        =>  "Način",
+  "callsign"                    =>  "Klicni znak",
+  "target"                      =>  "Cilj",
+  "src"                         =>  "Vir",        // Short version of "Source"
+  "dur"                         =>  "Dol",        // Short version of "Duration"
+  "loss"                        =>  "Izguba",
+  "ber"                         =>  "DNB",        // Short version of "Bit Error Rate" - delež napačnih bitov
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "Aktivnost DAPNET prehoda",
   "pocsag_timeslot"             =>  "Time Slot",
-  "pocsag_msg"                  =>  "Message",
+  "pocsag_msg"                  =>  "Sporočilo",
   // Dashboard - Extra Info
-  "group"                       =>  "Group",
-  "logoff"                      =>  "LogOff",
-  "info"                        =>  "Information",
+  "group"                       =>  "Skupina",
+  "logoff"                      =>  "Odjava",
+  "info"                        =>  "Informacija",
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Gateway Activity",
-  "local_tx_list"               =>  "Local RF Activity",
-  "active_starnet_groups"       =>  "Active Starnet Groups",
-  "active_starnet_members"      =>  "Active Starnet Group Members",
+  "last_heard_list"             =>  "Aktivnost prehoda",
+  "local_tx_list"               =>  "Lokalna RF aktivnost",
+  "active_starnet_groups"       =>  "Aktivne skupine Starnet",
+  "active_starnet_members"      =>  "Aktivni uporabniki Starnet",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Service Status"
+  "service_status"              =>  "Stanje storive"
 );
 ?>
