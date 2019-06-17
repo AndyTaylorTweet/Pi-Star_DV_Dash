@@ -7,8 +7,8 @@
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Digital Voice",
-  "configuration"               =>  "Nastavitev",
-  "dashboard_for"               =>  "Nadzorna plošča ya",
+  "configuration"               =>  "Nastavitve",
+  "dashboard_for"               =>  "Nadzorna plošča za",
   // Banner links
   "dashboard"                   =>  "Nadzorna plošča",
   "admin"                       =>  "Admin",
@@ -39,8 +39,8 @@ $lang = array (
   "hostname"                    =>  "Ime gostitelja",
   "kernel"                      =>  "Jedro",
   "platform"                    =>  "Platforma",
-  "cpu_load"                    =>  "Obremenitev procesorja",
-  "cpu_temp"                    =>  "Temperatura procesorja",
+  "cpu_load"                    =>  "Obremenitev proc.",
+  "cpu_temp"                    =>  "Temperatura proc.",
   // Config Page - Control Software
   "controller_software"         =>  "Programska oprema krmilnika",
   "controller_mode"             =>  "Način krmilnika",
@@ -104,7 +104,7 @@ $lang = array (
   "modes_enabled"               =>  "Modes Enabled",
   "net_status"                  =>  "Stanje omrežja",
   "internet"                    =>  "Internet",
-  "radio_info"                  =>  "Informacije o sprejemniku",
+  "radio_info"                  =>  "Info o sprejemniku",
   "dstar_repeater"              =>  "D-Star Repetitor",
   "dstar_net"                   =>  "D-Star Omrežje",
   "dmr_repeater"                =>  "DMR Repetitor",
@@ -140,6 +140,6 @@ $lang = array (
   "active_starnet_members"      =>  "Aktivni uporabniki Starnet",
   "d-star_link_manager"         =>  "D-Star Link Manager",
   "d-star_link_status"          =>  "D-Star Link Information",
-  "service_status"              =>  "Stanje storive"
+  "service_status"              =>  "Stanje storitev"
 );
 ?>
