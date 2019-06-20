@@ -1,6 +1,6 @@
 <?php
 //
-// Slovenian HR Language Pack
+// Slovenian SL Language Pack
 // Deni Bacic (S55DB)
 // Updated: 20-Jun-2019
 //
@@ -16,18 +16,18 @@ $lang = array (
   "update"                      =>  "Posodobitev",
   "backup_restore"              =>  "Varnostno Kopiranje",
   "factory_reset"               =>  "Tovarniške nastavitve",
-  "live_logs"                   =>  "Live Logs",
+  "live_logs"                   =>  "Dnevnik",
   // Config page section headdings
   "hardware_info"               =>  "Informacije o strojni opremi prehoda",
   "control_software"            =>  "Nadzorna programska oprema",
-  "mmdvmhost_config"            =>  "MMDVMHost nastavitve",
+  "mmdvmhost_config"            =>  "Nastavitve MMDVMHost",
   "general_config"              =>  "Splošne nastavitve",
-  "dmr_config"                  =>  "DMR nastavitve",
-  "dstar_config"                =>  "D-Star nastavitve",
-  "ysf_config"                  =>  "Yaesu System Fusion nastavitve",
-  "p25_config"                  =>  "P25 nastavitve",
-  "nxdn_config"                 =>  "NXDN nastavitve",
-  "pocsag_config"               =>  "POCSAG nastavitve",
+  "dmr_config"                  =>  "Nastavitve DMR",
+  "dstar_config"                =>  "Nastavitve D-Star",
+  "ysf_config"                  =>  "Nastavitve Yaesu System Fusion",
+  "p25_config"                  =>  "Nastavitve P25",
+  "nxdn_config"                 =>  "Nastavitve NXDN",
+  "pocsag_config"               =>  "Nastavitve POCSAG",
   "wifi_config"                 =>  "Nastavitve brezžičnega omrežja",
   "fw_config"                   =>  "Nastavitve požarnega zidu",
   "remote_access_pw"            =>  "Geslo za oddaljeni dostop",
@@ -45,13 +45,13 @@ $lang = array (
   "controller_software"         =>  "Programska oprema krmilnika",
   "controller_mode"             =>  "Način krmilnika",
   // Config Page - MMDVMHost Configuration
-  "dmr_mode"                    =>  "DMR način",
-  "d-star_mode"                 =>  "D-Star način",
-  "ysf_mode"                    =>  "YSF način",
-  "p25_mode"                    =>  "P25 način",
-  "nxdn_mode"                   =>  "NXDN način",
+  "dmr_mode"                    =>  "Način DMR",
+  "d-star_mode"                 =>  "Način D-Star",
+  "ysf_mode"                    =>  "Način YSF",
+  "p25_mode"                    =>  "Način P25",
+  "nxdn_mode"                   =>  "Način NXDN",
   "mmdvm_display"               =>  "Tip MMDVM zaslona",
-  "mode_hangtime"               =>  "Mode Hangtime",
+  "mode_hangtime"               =>  "Obstanek načina",
   // Config Page - General Configuration
   "node_call"                   =>  "Klicni znak vozlišča",
   "dmr_id"                      =>  "CCS7/DMR ID",
@@ -73,47 +73,47 @@ $lang = array (
   "dmr_plus_network"            =>  "DMR+ omrežje",
   "xlx_master"                  =>  "XLX Master",
   "xlx_enable"                  =>  "XLX Master Enable",
-  "dmr_cc"                      =>  "DMR Colour Code",
+  "dmr_cc"                      =>  "DMR Barvna Koda (CC)",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
   // Config Page - D-Star Configuration
   "dstar_rpt1"                  =>  "Klicni znak RPT1",
   "dstar_rpt2"                  =>  "Klicni znak RPT2",
-  "dstar_irc_password"          =>  "Geslo za oddaljen dostop",
-  "dstar_default_ref"           =>  "Privzeti replektor",
-  "aprs_host"                   =>  "APRS gostitelj",
+  "dstar_irc_password"          =>  "Geslo za oddaljeni dostop",
+  "dstar_default_ref"           =>  "Privzeti reflektor",
+  "aprs_host"                   =>  "Gostitelj APRS",
   "dstar_irc_lang"              =>  "Jezik ircDDBGateway",
   "dstar_irc_time"              =>  "Napoved časa",
   // Config Page - YSF Configuration
-  "ysf_startup_host"            =>  "YSF Startup Host",
+  "ysf_startup_host"            =>  "YSF zagonski gostitelj",
   // Config Page - P25 Configuration
-  "p25_startup_host"            =>  "P25 Startup Host",
+  "p25_startup_host"            =>  "P25 zagonski gostitelj",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "NXDN Startup Host",
+  "nxdn_startup_host"            =>  "NXDN zagonski gostitelj",
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "Dashboard Access",
-  "fw_irc"                      =>  "ircDDBGateway Remote",
-  "fw_ssh"                      =>  "SSH Access",
+  "fw_dash"                     =>  "Dostop do nadzorne plošče",
+  "fw_irc"                      =>  "Dostop ircDDBGateway",
+  "fw_ssh"                      =>  "Dostop SSH",
   // Config Page - Password
   "user"                        =>  "Uporabniški ime",
   "password"                    =>  "Geslo",
   "set_password"                =>  "Nastavi geslo",
   // Dashboard Front Page - Repeater Info Pannel
-  "modes_enabled"               =>  "Modes Enabled",
+  "modes_enabled"               =>  "Omogočeni načini",
   "net_status"                  =>  "Stanje omrežja",
   "internet"                    =>  "Internet",
   "radio_info"                  =>  "Info o sprejemniku",
-  "dstar_repeater"              =>  "D-Star Repetitor",
+  "dstar_repeater"              =>  "Repetitor D-Star",
   "dstar_net"                   =>  "D-Star Omrežje",
-  "dmr_repeater"                =>  "DMR Repetitor",
-  "dmr_master"                  =>  "DMR Master",
-  "ysf_net"                     =>  "YSF Omrežje",
-  "p25_radio"                   =>  "P25 Radio",
-  "p25_net"                     =>  "P25 Omrežje",
-  "nxdn_radio"                  =>  "NXDN Radio",
-  "nxdn_net"                    =>  "NXDN Omrežje",
+  "dmr_repeater"                =>  "Repetitor DMR",
+  "dmr_master"                  =>  "Master DMR",
+  "ysf_net"                     =>  "Omrežje YSF",
+  "p25_radio"                   =>  "Radio P25",
+  "p25_net"                     =>  "Omrežje P25",
+  "nxdn_radio"                  =>  "Radio NXDN",
+  "nxdn_net"                    =>  "Omrežje NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Čas",
   "mode"                        =>  "Način",
@@ -125,7 +125,7 @@ $lang = array (
   "ber"                         =>  "DNB",        // Short version of "Bit Error Rate" - delež napačnih bitov
   // POCSAG Specific
   "pocsag_list"                 =>  "Aktivnost DAPNET prehoda",
-  "pocsag_timeslot"             =>  "Time Slot",
+  "pocsag_timeslot"             =>  "Časovno okno (TS)",
   "pocsag_msg"                  =>  "Sporočilo",
   // Dashboard - Extra Info
   "group"                       =>  "Skupina",
@@ -139,7 +139,7 @@ $lang = array (
   "active_starnet_groups"       =>  "Aktivne skupine Starnet",
   "active_starnet_members"      =>  "Aktivni uporabniki Starnet",
   "d-star_link_manager"         =>  "D-Star Link Manager",
-  "d-star_link_status"          =>  "D-Star Link Information",
+  "d-star_link_status"          =>  "D-Star Link Informacije",
   "service_status"              =>  "Stanje storitev"
 );
 ?>
