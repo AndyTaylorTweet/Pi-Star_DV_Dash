@@ -6,9 +6,9 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Digitalno glasovno",
+  "digital_voice"               =>  "DV",
   "configuration"               =>  "Nastavitve",
-  "dashboard_for"               =>  "Nadzorna plošča za",
+  "dashboard_for"               =>  "Nadzorna plošča",
   // Banner links
   "dashboard"                   =>  "Nadzorna plošča",
   "admin"                       =>  "Skrbniški način",
