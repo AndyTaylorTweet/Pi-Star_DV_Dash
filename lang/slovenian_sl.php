@@ -6,15 +6,15 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Digital Voice",
+  "digital_voice"               =>  "Digitalno glasovno",
   "configuration"               =>  "Nastavitve",
   "dashboard_for"               =>  "Nadzorna plošča za",
   // Banner links
   "dashboard"                   =>  "Nadzorna plošča",
-  "admin"                       =>  "Admin",
+  "admin"                       =>  "Skrbniški način",
   "power"                       =>  "Vklop/Izklop",
   "update"                      =>  "Posodobitev",
-  "backup_restore"              =>  "Varnostno Kopiranje",
+  "backup_restore"              =>  "Varnostno kopiranje",
   "factory_reset"               =>  "Tovarniške nastavitve",
   "live_logs"                   =>  "Dnevnik",
   // Config page section headdings
