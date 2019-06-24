@@ -318,18 +318,19 @@ function getDAPNETGatewayLog() {
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-// I: 2017-05-18 07:03:43.365 MMDVM protocol version: 1, description: DVMEGA HR3.14
-// I: 2017-05-20 19:36:19.575 MMDVM protocol version: 1, description: MMDVM_HS-ADF7021 20170414 (D-Star/DMR/YSF/P25) (Build: 20:16:25 May 20 2017)
-// I: 2017-07-06 10:55:45.791 MMDVM protocol version: 1, description: MMDVM 20170206 TCXO (D-Star/DMR/System Fusion/P25/RSSI/CW Id)
-// I: 2017-08-05 06:54:45.757 MMDVM protocol version: 1, description: ZUMspot ADF7021 v1.0.0 20170728 (DStar/DMR/YSF/P25) GitID #c16dd5a
-// I: 2017-11-30 15:32:10.046 MMDVM protocol version: 1, description: MMDVM_MDO ADF7021 v1.0.1 20170826 (DStar/DMR/YSF/P25) GitID #BD7KLE
-// I: 2017-12-26 20:04:04.069 MMDVM protocol version: 1, description: ZUMspot-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
-// I: 2017-12-26 19:31:10.880 MMDVM protocol version: 1, description: MMDVM_HS_Hat-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
-// I: 2017-12-26 18:31:17.960 MMDVM protocol version: 1, description: MMDVM_HS-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
-// I: 2018-05-22 10:22:12.137 MMDVM protocol version: 1, description: MMDVM_HS_Dual_Hat-v1.3.6 20180521 dual ADF7021 FW by CA6JAU GitID #bd6217a
-// I: 2018-03-06 12:12:14.960 MMDVM protocol version: 1, description: Nano_hotSPOT-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
-// I: 2018-03-06 12:12:14.960 MMDVM protocol version: 1, description: Nano-Spot-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
-// I: 2018-07-21 16:27:46.768 MMDVM protocol version: 1, description: Nano_DV-v1.4.3 20180716 12.2880MHz ADF7021 FW by CA6JAU GitID #6729d23
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: DVMEGA HR3.14
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: MMDVM_HS-ADF7021 20170414 (D-Star/DMR/YSF/P25) (Build: 20:16:25 May 20 2017)
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: MMDVM 20170206 TCXO (D-Star/DMR/System Fusion/P25/RSSI/CW Id)
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: ZUMspot ADF7021 v1.0.0 20170728 (DStar/DMR/YSF/P25) GitID #c16dd5a
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: MMDVM_MDO ADF7021 v1.0.1 20170826 (DStar/DMR/YSF/P25) GitID #BD7KLE
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: ZUMspot-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: MMDVM_HS_Hat-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: MMDVM_HS-v1.0.3 20171226 ADF7021 FW by CA6JAU GitID #bfb82b4
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: MMDVM_HS_Dual_Hat-v1.3.6 20180521 dual ADF7021 FW by CA6JAU GitID #bd6217a
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: D2RG_MMDVM_HS-v1.4.17 20190529 14.7456MHz ADF7021 FW by CA6JAU GitID #cc451c4
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano_hotSPOT-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano-Spot-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano_DV-v1.4.3 20180716 12.2880MHz ADF7021 FW by CA6JAU GitID #6729d23
 
 function getDVModemFirmware() {
 	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
@@ -365,6 +366,9 @@ function getDVModemFirmware() {
 		}
 		if (strpos($logLine, 'description: MMDVM_HS_Dual_Hat-')) {
 			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 85, 12), ' ');
+		}
+		if (strpos($logLine, 'description: D2RG_MMDVM_HS-')) {
+			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 81, 12), ' ');
 		}
 		if (strpos($logLine, 'description: MMDVM_HS-')) {
 			$modemFirmware = "MMDVM_HS:".strtok(substr($logLine, 76, 12), ' ');
