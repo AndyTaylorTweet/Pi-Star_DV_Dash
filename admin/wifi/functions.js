@@ -41,19 +41,13 @@ function AddScanned(network) {
 }
 
 function CheckSSID(ssid) {
-	if(ssid.value.length>31) {
-		ssid.style.background='#FFD0D0';
-		document.getElementById('Save').disabled = true;
-	} else {
-		if(ssid.value.match(/^[a-z\d\-_\s]+$/i)){
-			ssid.style.background='#D0FFD0'
-			document.getElementById('Save').disabled = false;
-		}
-		else {
-			ssid.style.background='#FFD0D0';
-			document.getElementById('Save').disabled = true;
-		}
-	}
+        if(ssid.value.length>31) {
+                ssid.style.background='#FFD0D0';
+                document.getElementById('Save').disabled = true;
+        } else {
+                ssid.style.background='#D0FFD0';
+                document.getElementById('Save').disabled = false;
+        }
 }
 
 function CheckPSK(psk) {
