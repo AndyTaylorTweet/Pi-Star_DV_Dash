@@ -285,7 +285,7 @@ echo '<br />
 			$signal = $arrNetwork[2] . " dBm";
 			$security = ConvertToSecurity($arrNetwork[3]);
 			$ssid = $arrNetwork[4];
-			$ssidCleaned =  str_replace('\\xe2\\x80\\x99','\'',$arrNetwork[4]);
+			$ssidCleaned =  htmlentities(str_replace('\\xe2\\x80\\x99','\'',$arrNetwork[4]));
 
 			echo '<tr>';
 			echo '<td style="text-align: left;"><input type="button" value="Select" onclick="AddScanned(\''.$ssid.'\')" /></td>';
