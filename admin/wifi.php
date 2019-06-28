@@ -254,6 +254,7 @@ echo '<br />
 			elseif ($ssid && !$psk) { $config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"\"\n\tkey_mgmt=NONE\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n"; }
 			elseif ($ssid && $psk) {
 				$pskSalted = hash_pbkdf2("sha1",$psk, $ssid, 4096, 64);
+				$ssidHex = exec('python -c \'print("'.$ssid.'".encode("hex"));\'');
 				$config .= "network={\n\tssid=\"$ssid\"\n\t#psk=\"$psk\"\n\tpsk=$pskSalted\n\tid_str=\"$x\"\n\tpriority=$priority\n}\n\n";
 			}
 		}
