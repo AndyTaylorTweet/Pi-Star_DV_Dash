@@ -22,6 +22,7 @@ function AddNetwork() {
 }
 
 function AddScanned(network) {
+	network = network.replace('\xe2\x80\x99','\x27');
 	existing = document.getElementById("networkbox").getElementsByTagName('div').length;
         var Networks = document.getElementById('Networks').value;
 	if(existing != 0) {
