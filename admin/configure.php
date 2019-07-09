@@ -1218,7 +1218,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollRepeaterAddress1 = 'sudo sed -i "/repeaterAddress1=/c\\repeaterAddress1=172.16.0.1" /etc/ircddbgateway';
 	    $rollRepeaterPort1 = 'sudo sed -i "/repeaterPort1=/c\\repeaterPort1=20000" /etc/ircddbgateway';
 	    system($rollRepeaterType1);
-	    if( exec('grep "eth0:1" /etc/network/interfaces | wc -l') == "0" ) {
+	    $testNetworkConfig = exec('grep "eth0:1" /etc/network/interfaces | wc -l');
+	    if( $testNetworkConfig == "0" ) {
 	      exec('sudo echo "" >> /etc/network/interfaces');
 	      exec('sudo echo "auto eth0:1" >> /etc/network/interfaces');
 	      exec('sudo echo "allow-hotplug eth0:1" >> /etc/network/interfaces');
