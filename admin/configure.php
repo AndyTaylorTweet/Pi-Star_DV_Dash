@@ -1219,7 +1219,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollRepeaterPort1 = 'sudo sed -i "/repeaterPort1=/c\\repeaterPort1=20000" /etc/ircddbgateway';
 	    system($rollRepeaterType1);
 	    $testNetworkConfig = exec('grep "eth0:1" /etc/network/interfaces | wc -l');
-	    if( $testNetworkConfig == "0" ) {
+	    if( $testNetworkConfig === '0' ) {
 	      exec('sudo echo "" >> /etc/network/interfaces');
 	      exec('sudo echo "auto eth0:1" >> /etc/network/interfaces');
 	      exec('sudo echo "allow-hotplug eth0:1" >> /etc/network/interfaces');
