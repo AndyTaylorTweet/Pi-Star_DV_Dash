@@ -125,6 +125,13 @@ while (!feof($dextraFile)) {
 }
 fclose($dextraFile);
 
+while (!feof($dcsFile)) {
+	$dcsLine = fgets($dcsFile);
+	if (strpos($dcsLine, 'XLX') !== FALSE && strpos($dcsLine, '#') === FALSE)
+		echo "	<option value=\"".substr($dcsLine, 0, 6)."\">".substr($dcsLine, 0, 6)."</option>\n";
+}
+fclose($dcsFile);
+
 ?>
     </select><input name="RefName" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
             onblur="if(this.value==''){toggleField(this,this.previousSibling);}" />
