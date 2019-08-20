@@ -102,8 +102,12 @@ echo "    <option value=\"customOption\">Text Entry</option>\n";
 
 while (!feof($dcsFile)) {
 	$dcsLine = fgets($dcsFile);
-	if (strpos($dcsLine, 'DCS') !== FALSE && strpos($dcsLine, '#') === FALSE)
+	if (strpos($dcsLine, 'DCS') !== FALSE && strpos($dcsLine, '#') === FALSE) {
 		echo "	<option value=\"".substr($dcsLine, 0, 6)."\">".substr($dcsLine, 0, 6)."</option>\n";
+	}
+		if (strpos($dcsLine, 'XLX') !== FALSE && strpos($dcsLine, '#') === FALSE) {
+		echo "	<option value=\"".substr($dcsLine, 0, 6)."\">".substr($dcsLine, 0, 6)."</option>\n";
+	}
 }
 fclose($dcsFile);
 
@@ -124,13 +128,6 @@ while (!feof($dextraFile)) {
 		echo "	<option value=\"".substr($dextraLine, 0, 6)."\">".substr($dextraLine, 0, 6)."</option>\n";
 }
 fclose($dextraFile);
-
-while (!feof($dcsFile)) {
-	$dcsLine = fgets($dcsFile);
-	if (strpos($dcsLine, 'XLX') !== FALSE && strpos($dcsLine, '#') === FALSE)
-		echo "	<option value=\"".substr($dcsLine, 0, 6)."\">".substr($dcsLine, 0, 6)."</option>\n";
-}
-fclose($dcsFile);
 
 ?>
     </select><input name="RefName" style="display:none;" disabled="disabled" type="text" size="7" maxlength="7"
