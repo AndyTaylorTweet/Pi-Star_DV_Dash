@@ -1637,6 +1637,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 0;
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	  }
+	  
+	  if ( $confHardware == 'opengd77' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
+	    system($rollModemType);
+	    system($rollRepeaterType1);
+	    $configmmdvm['Modem']['Port'] = "/dev/ttyACM0";
+	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot1'] = 0;
+	  }
 
 	  // Set the Service start delay
 	  system($rollDstarRepeaterStartDelay);
@@ -2952,6 +2962,7 @@ else:
 	        <option<?php if ($configModem['Modem']['Hardware'] === 'mmdvmvyehatdual') {	echo ' selected="selected"';}?> value="mmdvmvyehatdual">MMDVM_HS_Hat_Dual Hat (VR2VYE) for Pi (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodv') {		echo ' selected="selected"';}?> value="nanodv">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (GPIO)</option>
 	    	<option<?php if ($configModem['Modem']['Hardware'] === 'nanodvusb') {		echo ' selected="selected"';}?> value="nanodvusb">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (USB)</option>
+			<option<?php if ($configModem['Modem']['Hardware'] === 'opengd77') {	echo ' selected="selected"';}?> value="opengd77">OpenGD77 DMR hotspot (USB)</option>
     </select></td>
     </tr>
     <tr>
