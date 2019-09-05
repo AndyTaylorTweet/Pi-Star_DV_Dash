@@ -382,6 +382,9 @@ function getDVModemFirmware() {
 		if (strpos($logLine, 'description: Nano_DV-')) {
 			$modemFirmware = "NanoDV:".strtok(substr($logLine, 75, 12), ' ');
 		}
+		if (strpos($logLine, 'description: OpenGD77 Hotspot')) {
+			$modemFirmware = "OpenGD77:".strtok(substr($logLine, 83, 12), ' ');
+		}
 	}
 	return $modemFirmware;
 }
