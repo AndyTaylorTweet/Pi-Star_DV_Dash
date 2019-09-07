@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
+include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tgNames.php';      // TalkGroup Names
 ?>
 <b><?php echo $lang['last_heard_list'];?></b>
   <table>
@@ -49,7 +50,19 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 		if ( substr($listElem[4], 0, 6) === 'CQCQCQ' ) {
 			echo "<td align=\"left\">$listElem[4]</td>";
 		} else {
-			echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
+			//echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
+            $TGid = explode(" ",$listElem[4])[1];
+            if(substr($listElem[4],0,3) == "TG "){
+                if ( $TGid == "9" || $TGid == "2" ) {
+                    echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])." (".$tgNames[$TGid].")</td>";
+                } else {
+                    echo "<td align=\"left\"><a href=\"http://hose.brandmeister.network/$TGid/\" target=\"_blank\">$listElem[4]</a> (".$tgNames[$TGid].")</td>";
+                }
+            } elseif ($listElem[4] == "9990") {
+                echo "<td align=\"left\"><a href=\"http://hose.brandmeister.network/9990/\" target=\"_blank\">9990</a> (Parrot)</td>";
+            } else {
+                echo "<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
+            }
 		}
 
 
