@@ -591,7 +591,7 @@ function getHeardList($logLines) {
 						break;
 					case "POCSAG":
 						$pocsagduration	= "";
-						break;						
+						break;
 				}
 			}
 		}
@@ -611,6 +611,9 @@ function getHeardList($logLines) {
 		}
 
 		$target = trim(substr($logLine, strpos($logLine, "to") + 3));
+		// Handle more verbose logging from MMDVMHost
+                if (strpos($target,",") !== 'false') { $target = explode(",", $target)[0]; }
+		
 		$source = "RF";
 		if (strpos($logLine,"network") > 0 || strpos($logLine,"POCSAG") > 0) {
 			$source = "Net";
