@@ -39,6 +39,13 @@ if (file_exists('/etc/pistar-css.ini')) {
     width: 820px;
     text-align: left;
     margin: auto;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px; 
+    -khtml-border-radius: 10px 10px 10px 10px;
+    -ms-border-radius: 10px 10px 10px 10px;
+    box-shadow: 3px 3px 3px #707070;
+    background : #<?php echo $backgroundContent; ?>;
 }
 
 body, font {
@@ -53,7 +60,11 @@ body, font {
     font-family : verdana, arial, sans-serif;
     text-align : left;
     padding : 5px 0px 5px 0px;
-    border-radius : 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px; 
+    -khtml-border-radius: 10px 10px 0px 0px;
+    -ms-border-radius: 10px 10px 0px 0px;
  }
 
 .nav {
@@ -89,7 +100,11 @@ body, font {
     font-size : 9px;
     text-align : center;
     padding : 10px 0 10px 0;
-    border-radius : 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0px 0px 10px 10px;
+    -webkit-border-radius: 0px 0px 10px 10px; 
+    -khtml-border-radius: 0px 0px 10px 10px;
+    -ms-border-radius: 0px 0px 10px 10px;
     clear : both;
 }
 
