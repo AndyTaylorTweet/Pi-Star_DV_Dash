@@ -383,3 +383,16 @@ input.toggle-round-flat:checked + label:after {
     margin-left: 14px;
     background-color: #<?php echo $backgroundBanners; ?>;
 }
+
+/* Aria CSS Here */
+[role="checkbox"] {
+    padding:5px;
+}
+
+[aria-checked="true"]::before {
+    content: "[x]";
+}
+
+[aria-checked="false"]::before {
+    content: "[ ]";
+}
