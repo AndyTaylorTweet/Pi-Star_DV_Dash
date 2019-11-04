@@ -162,7 +162,7 @@ $MYCALL=strtoupper($callsign);
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
-    <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
+    <link rel="stylesheet" type="text/css" href="css/pistar-css.php?version=0.91" />
     <script type="text/javascript">
 	function disablesubmitbuttons() {
 		var inputs = document.getElementsByTagName('input');
@@ -199,6 +199,17 @@ $MYCALL=strtoupper($callsign);
 	function showPosition(position) {
 		document.getElementById("confLatitude").value = position.coords.latitude.toFixed(5);
 		document.getElementById("confLongitude").value = position.coords.longitude.toFixed(5);
+	}
+	function changeToggledmrCheckbox(event) {
+	    let item = document.getElementById('toggle-dmr');
+	    switch(item.getAttribute('aria-checked')) {
+		case "true":
+		    item.setAttribute('aria-checked', "false");
+		    break;
+		case "false":
+		    item.setAttribute('aria-checked', "true");
+		    break;
+	    }
 	}
     </script>
     <script type="text/javascript" src="/functions.js?version=1.6"></script>
@@ -2672,10 +2683,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_mode'];?>:<span><b>DMR Mode</b>Turn on DMR Features</span></a></td>
     <?php
 	if ( $configmmdvm['DMR']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" checked=\"checked\" role=\"checkbox\" aria-checked=\"true\" /><label for=\"toggle-dmr\" aria-label=\"DMR Mode\"></label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" checked=\"checked\" role=\"checkbox\" aria-checked=\"true\" aria-labelledby=\"toggle-dmr-label\" onclick=\"changeToggledmrCheckbox()\" /><label id=\"toggle-dmr-label\" for=\"toggle-dmr\" onclick=\"changeToggledmrCheckbox()\"></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" role=\"checkbox\" aria-checked=\"false\" /><label for=\"toggle-dmr\" aria-label=\"DMR Mode\"></label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" role=\"checkbox\" aria-checked=\"true\" aria-labelledby=\"toggle-dmr-label\" onclick=\"changeToggledmrCheckbox()\" /><label id=\"toggle-dmr-label\" for=\"toggle-dmr\" onclick=\"changeToggledmrCheckbox()\"></label></div></td>\n";
 	}
     ?>
     <td>RF Hangtime: <input type="text" name="dmrRfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['DMR']['ModeHang'])) { echo $configmmdvm['DMR']['ModeHang']; } else { echo "20"; } ?>" />
