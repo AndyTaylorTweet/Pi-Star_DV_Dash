@@ -201,7 +201,7 @@ $MYCALL=strtoupper($callsign);
 		document.getElementById("confLongitude").value = position.coords.longitude.toFixed(5);
 	}
     </script>
-    <script type="text/javascript" src="/functions.js?version=1.703"></script>
+    <script type="text/javascript" src="/functions.js?version=1.704"></script>
 </head>
 <body onload="checkFrequency(); return false;">
 <div class="container">
