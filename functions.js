@@ -215,3 +215,36 @@ function togglePOCSAGCheckbox(event) {
   }
   if(event.keyCode == '32') { document.getElementById('aria-toggle-pocsag').click(); }
 }
+function toggleDmrGatewayNet1EnCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmrGatewayNet1En').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrGatewayNet1En').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrGatewayNet1En').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrGatewayNet1En').click(); }
+}
+function toggleDmrGatewayNet2EnCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmrGatewayNet2En').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrGatewayNet2En').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrGatewayNet2En').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrGatewayNet2En').click(); }
+}
+function toggleDmrGatewayXlxEnCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmrGatewayXlxEn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrGatewayXlxEn').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrGatewayXlxEn').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrGatewayXlxEn').click(); }
+}
