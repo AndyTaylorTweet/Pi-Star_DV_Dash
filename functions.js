@@ -144,6 +144,18 @@ function toggleYSF2DMRCheckbox(event) {
       break;
   }
 }
+function toggleYSF2NXDNCheckbox(event) {
+  switch(document.getElementById('aria-toggle-ysf2nxdn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf2nxdn').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-ysf2nxdn').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf2nxdn').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-ysf2nxdn').checked = true;
+      break;
+  }
+}
 function toggleYSF2P25Checkbox(event) {
   switch(document.getElementById('aria-toggle-ysf2p25').getAttribute('aria-checked')) {
     case "true":
