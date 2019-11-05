@@ -292,3 +292,25 @@ function toggleWiresXCommandPassthrough(event) {
   }
   if(event.keyCode == '32') { document.getElementById('aria-toggle-confWiresXCommandPassthrough').click(); }
 }
+function toggleDstarTimeAnnounce(event) {
+  switch(document.getElementById('aria-toggle-timeAnnounce').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-timeAnnounce').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-timeAnnounce').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-timeAnnounce').click(); }
+}
+function toggleDstarDplusHostfiles(event) {
+  switch(document.getElementById('aria-toggle-dplusHostFiles').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dplusHostFiles').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dplusHostFiles').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dplusHostFiles').click(); }
+}
