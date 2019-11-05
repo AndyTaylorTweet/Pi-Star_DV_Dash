@@ -248,3 +248,25 @@ function toggleDmrGatewayXlxEnCheckbox(event) {
   }
   if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrGatewayXlxEn').click(); }
 }
+function toggleDmrEmbeddedLCOnly(event) {
+  switch(document.getElementById('aria-toggle-dmrEmbeddedLCOnly').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrEmbeddedLCOnly').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrEmbeddedLCOnly').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrEmbeddedLCOnly').click(); }
+}
+function toggleDmrDumpTAData(event) {
+  switch(document.getElementById('aria-toggle-dmrDumpTAData').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmrDumpTAData').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmrDumpTAData').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrDumpTAData').click(); }
+}
