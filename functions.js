@@ -270,3 +270,25 @@ function toggleDmrDumpTAData(event) {
   }
   if(event.keyCode == '32') { document.getElementById('aria-toggle-dmrDumpTAData').click(); }
 }
+function toggleHostFilesYSFUpper(event) {
+  switch(document.getElementById('aria-toggle-confHostFilesYSFUpper').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-confHostFilesYSFUpper').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-confHostFilesYSFUpper').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-confHostFilesYSFUpper').click(); }
+}
+function toggleWiresXCommandPassthrough(event) {
+  switch(document.getElementById('aria-toggle-confWiresXCommandPassthrough').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-confWiresXCommandPassthrough').setAttribute('aria-checked', "false");
+      break;
+    case "false":
+      document.getElementById('aria-toggle-confWiresXCommandPassthrough').setAttribute('aria-checked', "true");
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-confWiresXCommandPassthrough').click(); }
+}
