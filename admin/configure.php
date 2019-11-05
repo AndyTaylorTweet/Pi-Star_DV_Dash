@@ -201,7 +201,7 @@ $MYCALL=strtoupper($callsign);
 		document.getElementById("confLongitude").value = position.coords.longitude.toFixed(5);
 	}
     </script>
-    <script type="text/javascript" src="/functions.js?version=1.704"></script>
+    <script type="text/javascript" src="/functions.js?version=1.705"></script>
 </head>
 <body onload="checkFrequency(); return false;">
 <div class="container">
@@ -3529,10 +3529,10 @@ fclose($dextraFile);
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_time'];?>:<span><b>Time Announce</b>Announce time hourly</span></a></td>
     <?php
 	if ( !file_exists('/etc/timeserver.dissable') ) {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label for=\"toggle-timeAnnounce\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-timeAnnounce\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Time Announcements\" aria-checked=\"true\" onKeyPress=\"toggleDstarTimeAnnounce()\" onclick=\"toggleDstarTimeAnnounce()\" for=\"toggle-timeAnnounce\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" aria-hidden=\"true\" /><label for=\"toggle-timeAnnounce\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-timeAnnounce\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Time Announcements\" aria-checked=\"false\" onKeyPress=\"toggleDstarTimeAnnounce()\" onclick=\"toggleDstarTimeAnnounce()\" for=\"toggle-timeAnnounce\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
 	}
     ?>
     </tr>
@@ -3540,10 +3540,10 @@ fclose($dextraFile);
     <td align="left"><a class="tooltip2" href="#">Use DPlus for XRF:<span><b>No DExtra</b>Should host files use DPlus Protocol for XRFs</span></a></td>
     <?php
 	if ( file_exists('/etc/hostfiles.nodextra') ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label for=\"toggle-dplusHostFiles\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dplusHostFiles\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use D-Plus for XRF Hosts\" aria-checked=\"true\" onKeyPress=\"toggleDstarDplusHostfiles()\" onclick=\"toggleDstarDplusHostfiles()\" for=\"toggle-dplusHostFiles\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" aria-hidden=\"true\" /><label for=\"toggle-dplusHostFiles\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dplusHostFiles\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use D-Plus for XRF Hosts\" aria-checked=\"false\" onKeyPress=\"toggleDstarDplusHostfiles()\" onclick=\"toggleDstarDplusHostfiles()\" for=\"toggle-dplusHostFiles\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
 	}
     ?>
     <td>Note: Update Required if changed</td>
