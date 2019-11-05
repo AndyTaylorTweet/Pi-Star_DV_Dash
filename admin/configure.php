@@ -162,7 +162,7 @@ $MYCALL=strtoupper($callsign);
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
-    <link rel="stylesheet" type="text/css" href="css/pistar-css.php?version=0.91" />
+    <link rel="stylesheet" type="text/css" href="css/pistar-css.php?version=0.92" />
     <script type="text/javascript">
 	function disablesubmitbuttons() {
 		var inputs = document.getElementsByTagName('input');
