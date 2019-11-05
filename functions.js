@@ -76,131 +76,142 @@ function toggleDMRCheckbox(event) {
   switch(document.getElementById('aria-toggle-dmr').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-dmr').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-dmr').click();
+      //document.getElementById('toggle-dmr').click();
       break;
     case "false":
       document.getElementById('aria-toggle-dmr').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-dmr').click();
+      //document.getElementById('toggle-dmr').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmr').click(); }
 }
 function toggleDSTARCheckbox(event) {
   switch(document.getElementById('aria-toggle-dstar').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-dstar').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-dstar').click();
+      //document.getElementById('toggle-dstar').click();
       break;
     case "false":
       document.getElementById('aria-toggle-dstar').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-dstar').click();
+      //document.getElementById('toggle-dstar').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-star').click(); }
 }
 function toggleYSFCheckbox(event) {
   switch(document.getElementById('aria-toggle-ysf').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-ysf').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-ysf').click();
+      //document.getElementById('toggle-ysf').click();
       break;
     case "false":
       document.getElementById('aria-toggle-ysf').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-ysf').click();
+      //document.getElementById('toggle-ysf').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf').click(); }
 }
 function toggleP25Checkbox(event) {
   switch(document.getElementById('aria-toggle-p25').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-p25').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-p25').click();
+      //document.getElementById('toggle-p25').click();
       break;
     case "false":
       document.getElementById('aria-toggle-p25').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-p25').click();
+      //document.getElementById('toggle-p25').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-p25').click(); }
 }
 function toggleNXDNCheckbox(event) {
   switch(document.getElementById('aria-toggle-nxdn').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-nxdn').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-nxdn').click();
+      //document.getElementById('toggle-nxdn').click();
       break;
     case "false":
       document.getElementById('aria-toggle-nxdn').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-nxdn').click();
+      //document.getElementById('toggle-nxdn').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-nxdn').click(); }
 }
 function toggleYSF2DMRCheckbox(event) {
   switch(document.getElementById('aria-toggle-ysf2dmr').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-ysf2dmr').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-ysf2dmr').click();
+      //document.getElementById('toggle-ysf2dmr').click();
       break;
     case "false":
       document.getElementById('aria-toggle-ysf2dmr').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-ysf2dmr').click();
+      //document.getElementById('toggle-ysf2dmr').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf2dmr').click(); }
 }
 function toggleYSF2NXDNCheckbox(event) {
   switch(document.getElementById('aria-toggle-ysf2nxdn').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-ysf2nxdn').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-ysf2nxdn').click();
+      //document.getElementById('toggle-ysf2nxdn').click();
       break;
     case "false":
       document.getElementById('aria-toggle-ysf2nxdn').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-ysf2nxdn').click();
+      //document.getElementById('toggle-ysf2nxdn').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf2nxdn').click(); }
 }
 function toggleYSF2P25Checkbox(event) {
   switch(document.getElementById('aria-toggle-ysf2p25').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-ysf2p25').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-ysf2p25').click();
+      //document.getElementById('toggle-ysf2p25').click();
       break;
     case "false":
       document.getElementById('aria-toggle-ysf2p25').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-ysf2p25').click();
+      //document.getElementById('toggle-ysf2p25').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-ysf2p25').click(); }
 }
 function toggleDMR2YSFCheckbox(event) {
   switch(document.getElementById('aria-toggle-dmr2ysf').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-dmr2ysf').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-dmr2ysf').click();
+      //document.getElementById('toggle-dmr2ysf').click();
       break;
     case "false":
       document.getElementById('aria-toggle-dmr2ysf').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-dmr2ysf').click();
+      //document.getElementById('toggle-dmr2ysf').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmr2ysf').click(); }
 }
 function toggleDMR2NXDNCheckbox(event) {
   switch(document.getElementById('aria-toggle-dmr2nxdn').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-dmr2nxdn').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-dmr2nxdn').click();
+      //document.getElementById('toggle-dmr2nxdn').click();
       break;
     case "false":
       document.getElementById('aria-toggle-dmr2nxdn').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-dmr2nxdn').click();
+      //document.getElementById('toggle-dmr2nxdn').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dmr2nxdn').click(); }
 }
 function togglePOCSAGCheckbox(event) {
   switch(document.getElementById('aria-toggle-pocsag').getAttribute('aria-checked')) {
     case "true":
       document.getElementById('aria-toggle-pocsag').setAttribute('aria-checked', "false");
-      document.getElementById('toggle-pocsag').click();
+      //document.getElementById('toggle-pocsag').click();
       break;
     case "false":
       document.getElementById('aria-toggle-pocsag').setAttribute('aria-checked', "true");
-      document.getElementById('toggle-pocsag').click();
+      //document.getElementById('toggle-pocsag').click();
       break;
   }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-pocsag').click(); }
 }
