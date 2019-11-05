@@ -72,3 +72,123 @@ function checkFrequency(){
     if (435 <= intFreqPOCSAG && intFreqPOCSAG <= 438)   { pocsagFrequency.style.backgroundColor = badColor; }
   }
 }
+function toggleDMRCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmr').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmr').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-dmr').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmr').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-dmr').checked = true;
+      break;
+  }
+}
+function toggleDSTARCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dstar').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dstar').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-dstar').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dstar').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-dstar').checked = true;
+      break;
+  }
+}
+function toggleYSFCheckbox(event) {
+  switch(document.getElementById('aria-toggle-ysf').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-ysf').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-ysf').checked = true;
+      break;
+  }
+}
+function toggleP25Checkbox(event) {
+  switch(document.getElementById('aria-toggle-p25').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-p25').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-p25').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-p25').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-p25').checked = true;
+      break;
+  }
+}
+function toggleNXDNCheckbox(event) {
+  switch(document.getElementById('aria-toggle-nxdn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-nxdn').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-nxdn').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-nxdn').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-nxdn').checked = true;
+      break;
+  }
+}
+function toggleYSF2DMRCheckbox(event) {
+  switch(document.getElementById('aria-toggle-ysf2dmr').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf2dmr').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-ysf2dmr').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf2dmr').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-ysf2dmr').checked = true;
+      break;
+  }
+}
+function toggleYSF2P25Checkbox(event) {
+  switch(document.getElementById('aria-toggle-ysf2p25').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-ysf2p25').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-ysf2p25').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-ysf2p25').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-ysf2p25').checked = true;
+      break;
+  }
+}
+function toggleDMR2YSFCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmr2ysf').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmr2ysf').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-dmr2ysf').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmr2ysf').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-dmr2ysf').checked = true;
+      break;
+  }
+}
+function toggleDMR2NXDNCheckbox(event) {
+  switch(document.getElementById('aria-toggle-dmr2nxdn').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-dmr2nxdn').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-dmr2nxdn').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-dmr2nxdn').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-dmr2nxdn').checked = true;
+      break;
+  }
+}
+function togglePOCSAGCheckbox(event) {
+  switch(document.getElementById('aria-toggle-pocsag').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-pocsag').setAttribute('aria-checked', "false");
+      document.getElementById('toggle-pocsag').checked = false;        
+      break;
+    case "false":
+      document.getElementById('aria-toggle-pocsag').setAttribute('aria-checked', "true");
+      document.getElementById('toggle-pocsag').checked = true;
+      break;
+  }
+}
