@@ -97,6 +97,8 @@ body, font {
     font: 1em verdana,arial,sans-serif;
     text-align: center;
     font-weight: bold;
+    padding: 0px;
+    margin: 0px;
 }
 
 
