@@ -2672,10 +2672,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_mode'];?>:<span><b>DMR Mode</b>Turn on DMR Features</span></a></td>
     <?php
 	if ( $configmmdvm['DMR']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Mode\" aria-checked=\"true\" onKeyPress=\"toggleDMRCheckbox()\" onclick=\"toggleDMRCheckbox()\" for=\"toggle-dmr\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Mode\" aria-checked=\"true\" onKeyPress=\"toggleDMRCheckbox()\" onclick=\"toggleDMRCheckbox()\" for=\"toggle-dmr\"><font style=\"font-size:0px\">DMR Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Mode\" aria-checked=\"false\" onKeyPress=\"toggleDMRCheckbox()\" onclick=\"toggleDMRCheckbox()\" for=\"toggle-dmr\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Mode\" aria-checked=\"false\" onKeyPress=\"toggleDMRCheckbox()\" onclick=\"toggleDMRCheckbox()\" for=\"toggle-dmr\"><font style=\"font-size:0px\">DMR Mode</font></label></div></td>\n";
 	}
     ?>
     <td>RF Hangtime: <input type="text" name="dmrRfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['DMR']['ModeHang'])) { echo $configmmdvm['DMR']['ModeHang']; } else { echo "20"; } ?>" />
@@ -2686,10 +2686,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['d-star_mode'];?>:<span><b>D-Star Mode</b>Turn on D-Star Features</span></a></td>
     <?php
 	if ( $configmmdvm['D-Star']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dstar\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Mode\" aria-checked=\"true\" onKeyPress=\"toggleDSTARCheckbox()\" onclick=\"toggleDSTARCheckbox()\" for=\"toggle-dstar\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dstar\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Mode\" aria-checked=\"true\" onKeyPress=\"toggleDSTARCheckbox()\" onclick=\"toggleDSTARCheckbox()\" for=\"toggle-dstar\"><font style=\"font-size:0px\">D-Star Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dstar\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Mode\" aria-checked=\"false\" onKeyPress=\"toggleDSTARCheckbox()\" onclick=\"toggleDSTARCheckbox()\" for=\"toggle-dstar\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dstar\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDSTAR\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dstar\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Mode\" aria-checked=\"false\" onKeyPress=\"toggleDSTARCheckbox()\" onclick=\"toggleDSTARCheckbox()\" for=\"toggle-dstar\"><font style=\"font-size:0px\">D-Star Mode</font></label></div></td>\n";
 	}
     ?>
     <td>RF Hangtime: <input type="text" name="dstarRfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['D-Star']['ModeHang'])) { echo $configmmdvm['D-Star']['ModeHang']; } else { echo "20"; } ?>" />
@@ -2700,10 +2700,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['ysf_mode'];?>:<span><b>YSF Mode</b>Turn on YSF Features</span></a></td>
     <?php
 	if ( $configmmdvm['System Fusion']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSFCheckbox()\" onclick=\"toggleYSFCheckbox()\" for=\"toggle-ysf\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSFCheckbox()\" onclick=\"toggleYSFCheckbox()\" for=\"toggle-ysf\"><font style=\"font-size:0px\">Y-S-F Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSFCheckbox()\" onclick=\"toggleYSFCheckbox()\" for=\"toggle-ysf\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeFUSION\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSFCheckbox()\" onclick=\"toggleYSFCheckbox()\" for=\"toggle-ysf\"><font style=\"font-size:0px\">Y-S-F Mode</font></label></div></td>\n";
 	}
     ?>
     <td>RF Hangtime: <input type="text" name="ysfRfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['System Fusion']['ModeHang'])) { echo $configmmdvm['System Fusion']['ModeHang']; } else { echo "20"; } ?>" />
@@ -2714,10 +2714,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['p25_mode'];?>:<span><b>P25 Mode</b>Turn on P25 Features</span></a></td>
     <?php
 	if ( $configmmdvm['P25']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"P25 Mode\" aria-checked=\"true\" onKeyPress=\"toggleP25Checkbox()\" onclick=\"toggleP25Checkbox()\" for=\"toggle-p25\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"P-25 Mode\" aria-checked=\"true\" onKeyPress=\"toggleP25Checkbox()\" onclick=\"toggleP25Checkbox()\" for=\"toggle-p25\"><font style=\"font-size:0px\">P-25 Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"P25 Mode\" aria-checked=\"false\" onKeyPress=\"toggleP25Checkbox()\" onclick=\"toggleP25Checkbox()\" for=\"toggle-p25\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeP25\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"P-25 Mode\" aria-checked=\"false\" onKeyPress=\"toggleP25Checkbox()\" onclick=\"toggleP25Checkbox()\" for=\"toggle-p25\"><font style=\"font-size:0px\">P-25 Mode</font></label></div></td>\n";
 	}
     ?>
     <td>RF Hangtime: <input type="text" name="p25RfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['P25']['ModeHang'])) { echo $configmmdvm['P25']['ModeHang']; } else { echo "20"; } ?>" />
@@ -2728,10 +2728,10 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['nxdn_mode'];?>:<span><b>NXDN Mode</b>Turn on NXDN Features</span></a></td>
     <?php
 	if ( $configmmdvm['NXDN']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeNXDN\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"NXDN Mode\" aria-checked=\"true\" onKeyPress=\"toggleNXDNCheckbox()\" onclick=\"toggleNXDNCheckbox()\" for=\"toggle-nxdn\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeNXDN\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"NXDN Mode\" aria-checked=\"true\" onKeyPress=\"toggleNXDNCheckbox()\" onclick=\"toggleNXDNCheckbox()\" for=\"toggle-nxdn\"><font style=\"font-size:0px\">NXDN Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeNXDN\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"NXDN Mode\" aria-checked=\"false\" onKeyPress=\"toggleNXDNCheckbox()\" onclick=\"toggleNXDNCheckbox()\" for=\"toggle-nxdn\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeNXDN\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"NXDN Mode\" aria-checked=\"false\" onKeyPress=\"toggleNXDNCheckbox()\" onclick=\"toggleNXDNCheckbox()\" for=\"toggle-nxdn\"><font style=\"font-size:0px\">NXDN Mode</font></label></div></td>\n";
 	}
     ?>
     <td>RF Hangtime: <input type="text" name="nxdnRfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['NXDN']['ModeHang'])) { echo $configmmdvm['NXDN']['ModeHang']; } else { echo "20"; } ?>" />
@@ -2742,10 +2742,10 @@ else:
     <td align="left"><a class="tooltip2" href="#">YSF2DMR:<span><b>YSF2DMR Mode</b>Turn on YSF2DMR Features</span></a></td>
     <?php
 	if ( $configysf2dmr['Enabled']['Enabled'] == 1 ) {
-		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2DMR\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF2DMR Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSF2DMRCheckbox()\" onclick=\"toggleYSF2DMRCheckbox()\" for=\"toggle-ysf2dmr\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2DMR\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F 2 DMR Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSF2DMRCheckbox()\" onclick=\"toggleYSF2DMRCheckbox()\" for=\"toggle-ysf2dmr\"><font style=\"font-size:0px\">Y-S-F 2 DMR Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2DMR\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF2DMR Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSF2DMRCheckbox()\" onclick=\"toggleYSF2DMRCheckbox()\" for=\"toggle-ysf2dmr\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2dmr\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2DMR\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2dmr\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F 2 2DMR Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSF2DMRCheckbox()\" onclick=\"toggleYSF2DMRCheckbox()\" for=\"toggle-ysf2dmr\"><font style=\"font-size:0px\">Y-S-F 2 DMR Mode</font></label></div></td>\n";
 	}
     ?>
     </tr>
@@ -2754,10 +2754,10 @@ else:
     <td align="left"><a class="tooltip2" href="#">YSF2NXDN:<span><b>YSF2NXDN Mode</b>Turn on YSF2NXDN Features</span></a></td>
     <?php
 	if ( $configysf2nxdn['Enabled']['Enabled'] == 1 ) {
-		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2NXDN\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF2NXDN Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSF2NXDNCheckbox()\" onclick=\"toggleYSF2NXDNCheckbox()\" for=\"toggle-ysf2nxdn\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2NXDN\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F 2 NXDN Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSF2NXDNCheckbox()\" onclick=\"toggleYSF2NXDNCheckbox()\" for=\"toggle-ysf2nxdn\"><font style=\"font-size:0px\">Y-S-F 2 NXDN Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2NXDN\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF2NXDN Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSF2NXDNCheckbox()\" onclick=\"toggleYSF2NXDNCheckbox()\" for=\"toggle-ysf2nxdn\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2NXDN\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F 2 NXDN Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSF2NXDNCheckbox()\" onclick=\"toggleYSF2NXDNCheckbox()\" for=\"toggle-ysf2nxdn\"><font style=\"font-size:0px\">Y-S-F 2 NXDN Mode</font></label></div></td>\n";
 	}
     ?>
     </tr>
@@ -2767,10 +2767,10 @@ else:
     <td align="left"><a class="tooltip2" href="#">YSF2P25:<span><b>YSF2P25 Mode</b>Turn on YSF2P25 Features</span></a></td>
     <?php
 	if ( $configysf2p25['Enabled']['Enabled'] == 1 ) {
-		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2P25\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF2P25 Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSF2P25Checkbox()\" onclick=\"toggleYSF2P25Checkbox()\" for=\"toggle-ysf2p25\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2P25\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F 2 P-25 Mode\" aria-checked=\"true\" onKeyPress=\"toggleYSF2P25Checkbox()\" onclick=\"toggleYSF2P25Checkbox()\" for=\"toggle-ysf2p25\"><font style=\"font-size:0px\">Y-S-F 2 P-25 Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2P25\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"YSF2P25 Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSF2P25Checkbox()\" onclick=\"toggleYSF2P25Checkbox()\" for=\"toggle-ysf2p25\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td colspan=\"2\" align=\"left\"><div class=\"switch\"><input id=\"toggle-ysf2p25\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeYSF2P25\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-ysf2p25\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Y-S-F 2 P-25 Mode\" aria-checked=\"false\" onKeyPress=\"toggleYSF2P25Checkbox()\" onclick=\"toggleYSF2P25Checkbox()\" for=\"toggle-ysf2p25\"><font style=\"font-size:0px\">Y-S-F 2 P-25 Mode</font></label></div></td>\n";
 	}
     ?>
     </tr>
@@ -2780,10 +2780,10 @@ else:
     <td align="left"><a class="tooltip2" href="#">DMR2YSF:<span><b>DMR2YSF Mode</b>Turn on DMR2YSF Features</span></a></td>
     <?php
 	if ( $configdmr2ysf['Enabled']['Enabled'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR2YSF Mode\" aria-checked=\"true\" onKeyPress=\"toggleDMR2YSFCheckbox()\" onclick=\"toggleDMR2YSFCheckbox()\" for=\"toggle-dmr2ysf\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR 2 Y-S-F Mode\" aria-checked=\"true\" onKeyPress=\"toggleDMR2YSFCheckbox()\" onclick=\"toggleDMR2YSFCheckbox()\" for=\"toggle-dmr2ysf\"><font style=\"font-size:0px\">DMR 2 Y-S-F Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR2YSF Mode\" aria-checked=\"false\" onKeyPress=\"toggleDMR2YSFCheckbox()\" onclick=\"toggleDMR2YSFCheckbox()\" for=\"toggle-dmr2ysf\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2ysf\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2YSF\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2ysf\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR 2 Y-S-F Mode\" aria-checked=\"false\" onKeyPress=\"toggleDMR2YSFCheckbox()\" onclick=\"toggleDMR2YSFCheckbox()\" for=\"toggle-dmr2ysf\"><font style=\"font-size:0px\">DMR 2 Y-S-F Mode</font></label></div></td>\n";
 	}
     ?>
     <td>Uses 7 prefix on DMRGateway</td>
@@ -2794,10 +2794,10 @@ else:
     <td align="left"><a class="tooltip2" href="#">DMR2NXDN:<span><b>DMR2NXDN Mode</b>Turn on DMR2NXDN Features</span></a></td>
     <?php
 	if ( $configdmr2nxdn['Enabled']['Enabled'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR2NXDN Mode\" aria-checked=\"true\" onKeyPress=\"toggleDMR2NXDNCheckbox()\" onclick=\"toggleDMR2NXDNCheckbox()\" for=\"toggle-dmr2nxdn\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR 2 NXDN Mode\" aria-checked=\"true\" onKeyPress=\"toggleDMR2NXDNCheckbox()\" onclick=\"toggleDMR2NXDNCheckbox()\" for=\"toggle-dmr2nxdn\"><font style=\"font-size:0px\">DMR 2 NXDN Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR2NXDN Mode\" aria-checked=\"false\" onKeyPress=\"toggleDMR2NXDNCheckbox()\" onclick=\"toggleDMR2NXDNCheckbox()\" for=\"toggle-dmr2nxdn\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dmr2nxdn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeDMR2NXDN\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmr2nxdn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR 2 NXDN Mode\" aria-checked=\"false\" onKeyPress=\"toggleDMR2NXDNCheckbox()\" onclick=\"toggleDMR2NXDNCheckbox()\" for=\"toggle-dmr2nxdn\"><font style=\"font-size:0px\">DMR 2 NXDN Mode</font></label></div></td>\n";
 	}
     ?>
     <td>Uses 7 prefix on DMRGateway</td>
@@ -2808,10 +2808,10 @@ else:
     <td align="left"><a class="tooltip2" href="#">POCSAG:<span><b>POCSAG Mode</b>Turn on POCSAG Features</span></a></td>
     <?php
 	if ( $configmmdvm['POCSAG']['Enable'] == 1 ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-pocsag\" role=\"checkbox\" tabindex=\"0\" aria-label=\"POCSAG Mode\" aria-checked=\"true\" onKeyPress=\"togglePOCSAGCheckbox()\" onclick=\"togglePOCSAGCheckbox()\" for=\"toggle-pocsag\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-pocsag\" role=\"checkbox\" tabindex=\"0\" aria-label=\"POCSAG Mode\" aria-checked=\"true\" onKeyPress=\"togglePOCSAGCheckbox()\" onclick=\"togglePOCSAGCheckbox()\" for=\"toggle-pocsag\"><font style=\"font-size:0px\">POCSAG Mode</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-pocsag\" role=\"checkbox\" tabindex=\"0\" aria-label=\"POCSAG Mode\" aria-checked=\"false\" onKeyPress=\"togglePOCSAGCheckbox()\" onclick=\"togglePOCSAGCheckbox()\" for=\"toggle-pocsag\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-pocsag\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModePOCSAG\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-pocsag\" role=\"checkbox\" tabindex=\"0\" aria-label=\"POCSAG Mode\" aria-checked=\"false\" onKeyPress=\"togglePOCSAGCheckbox()\" onclick=\"togglePOCSAGCheckbox()\" for=\"toggle-pocsag\"><font style=\"font-size:0px\">POCSAG Mode</font></label></div></td>\n";
 	}
     ?>
     <td>POCSAG Paging Features</td>
@@ -3123,8 +3123,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?> Enable:<span><b>BrandMeister Network Enable</b>Enable or disable BrandMeister Network</span></a></td>
     <td align="left">
-    <?php if ($configdmrgateway['DMR Network 1']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet1En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable BrandMeister DMR\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayNet1EnCheckbox()\" onclick=\"toggleDmrGatewayNet1EnCheckbox()\" for=\"toggle-dmrGatewayNet1En\">&nbsp;&nbsp;&nbsp;</label></div>\n"; }
-    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet1En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable BrandMeister DMR\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayNet1EnCheckbox()\" onclick=\"toggleDmrGatewayNet1EnCheckbox()\" for=\"toggle-dmrGatewayNet1En\">&nbsp;&nbsp;&nbsp;</label></div>\n"; } ?>
+    <?php if ($configdmrgateway['DMR Network 1']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet1En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable BrandMeister DMR\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayNet1EnCheckbox()\" onclick=\"toggleDmrGatewayNet1EnCheckbox()\" for=\"toggle-dmrGatewayNet1En\"><font style=\"font-size:0px\">Enable Brandmeister DMR</font></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet1En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet1En\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet1En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable BrandMeister DMR\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayNet1EnCheckbox()\" onclick=\"toggleDmrGatewayNet1EnCheckbox()\" for=\"toggle-dmrGatewayNet1En\"><font style=\"font-size:0px\">Enable Brandmeister DMR</font></label></div>\n"; } ?>
     </td>
     </tr>
     <tr>
@@ -3196,8 +3196,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?> Enable:<span><b>DMR+ Network Enable</b></span></a></td>
     <td align="left">
-    <?php if ($configdmrgateway['DMR Network 2']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet2En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR+\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayNet2EnCheckbox()\" onclick=\"toggleDmrGatewayNet2EnCheckbox()\" for=\"toggle-dmrGatewayNet2En\">&nbsp;&nbsp;&nbsp;</label></div>\n"; }
-    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet2En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR+\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayNet2EnCheckbox()\" onclick=\"toggleDmrGatewayNet2EnCheckbox()\" for=\"toggle-dmrGatewayNet2En\">&nbsp;&nbsp;&nbsp;</label></div>\n"; } ?>
+    <?php if ($configdmrgateway['DMR Network 2']['Enabled'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet2En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR+\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayNet2EnCheckbox()\" onclick=\"toggleDmrGatewayNet2EnCheckbox()\" for=\"toggle-dmrGatewayNet2En\"><font style=\"font-size:0px\">Enable DMR+</font></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayNet2En\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayNet2En\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayNet2En\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR+\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayNet2EnCheckbox()\" onclick=\"toggleDmrGatewayNet2EnCheckbox()\" for=\"toggle-dmrGatewayNet2En\"><font style=\"font-size:0px\">Enable DMR+</font></label></div>\n"; } ?>
     </td>
     </tr>
     <tr>
@@ -3287,9 +3287,9 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['xlx_enable'];?>:<span><b>XLX Master Enable</b>Turn your XLX connection on or off.</span></a></td>
     <td align="left">
     <?php
-    if ((isset($configdmrgateway['XLX Network 1']['Enabled'])) && ($configdmrgateway['XLX Network 1']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\">&nbsp;&nbsp;&nbsp;</label></div>\n"; }
-    else if ((isset($configdmrgateway['XLX Network']['Enabled'])) && ($configdmrgateway['XLX Network']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\">&nbsp;&nbsp;&nbsp;</label></div>\n"; }
-    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\">&nbsp;&nbsp;&nbsp;</label></div>\n"; } ?>
+    if ((isset($configdmrgateway['XLX Network 1']['Enabled'])) && ($configdmrgateway['XLX Network 1']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\"><font style=\"font-size:0px\">Enable XLX via DMR</font></label></div>\n"; }
+    else if ((isset($configdmrgateway['XLX Network']['Enabled'])) && ($configdmrgateway['XLX Network']['Enabled'] == 1)) { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"true\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\"><font style=\"font-size:0px\">Enable XLX via DMR</font></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrGatewayXlxEn\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrGatewayXlxEn\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrGatewayXlxEn\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable XLX Network\" aria-checked=\"false\" onKeyPress=\"toggleDmrGatewayXlxEnCheckbox()\" onclick=\"toggleDmrGatewayXlxEnCheckbox()\" for=\"toggle-dmrGatewayXlxEn\"><font style=\"font-size:0px\">Enable XLX via DMR</font></label></div>\n"; } ?>
     </td></tr>
 <?php }
     if (substr($dmrMasterNow, 0, 2) == "BM") { echo '    <tr>
@@ -3359,14 +3359,14 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_embeddedlconly'];?>:<span><b>DMR EmbeddedLCOnly</b>Turn ON to disable extended message support, including GPS and Talker Alias data. This can help reduce problems with some DMR Radios that do not support such features.</span></a></td>
     <td align="left">
-    <?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrEmbeddedLCOnly\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrEmbeddedLCOnly\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrEmbeddedLCOnly\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR Embedded LC Only\" aria-checked=\"true\" onKeyPress=\"toggleDmrEmbeddedLCOnly()\" onclick=\"toggleDmrEmbeddedLCOnly()\" for=\"toggle-dmrEmbeddedLCOnly\">&nbsp;&nbsp;&nbsp;</label></div>\n"; }
-    else { echo "<div class=\"switch\"><input id=\"toggle-dmrEmbeddedLCOnly\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrEmbeddedLCOnly\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrEmbeddedLCOnly\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR Embedded LC Only\" aria-checked=\"false\" onKeyPress=\"toggleDmrEmbeddedLCOnly()\" onclick=\"toggleDmrEmbeddedLCOnly()\" for=\"toggle-dmrEmbeddedLCOnly\">&nbsp;&nbsp;&nbsp;</label></div>\n"; } ?>
+    <?php if ($configmmdvm['DMR']['EmbeddedLCOnly'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrEmbeddedLCOnly\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrEmbeddedLCOnly\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrEmbeddedLCOnly\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR Embedded LC Only\" aria-checked=\"true\" onKeyPress=\"toggleDmrEmbeddedLCOnly()\" onclick=\"toggleDmrEmbeddedLCOnly()\" for=\"toggle-dmrEmbeddedLCOnly\"><font style=\"font-size:0px\">Enable DMR Embedded LC only</font></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrEmbeddedLCOnly\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrEmbeddedLCOnly\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrEmbeddedLCOnly\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Enable DMR Embedded LC Only\" aria-checked=\"false\" onKeyPress=\"toggleDmrEmbeddedLCOnly()\" onclick=\"toggleDmrEmbeddedLCOnly()\" for=\"toggle-dmrEmbeddedLCOnly\"><font style=\"font-size:0px\">Enable DMR Embedded LC Only</font></label></div>\n"; } ?>
     </td></tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_dumptadata'];?>:<span><b>DMR DumpTAData</b>Turn ON to dump GPS and Talker Alias data to MMDVMHost log file.</span></a></td>
     <td align="left">
-    <?php if ($configmmdvm['DMR']['DumpTAData'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrDumpTAData\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Dump TA Data\" aria-checked=\"true\" onKeyPress=\"toggleDmrDumpTAData()\" onclick=\"toggleDmrDumpTAData()\" for=\"toggle-dmrDumpTAData\">&nbsp;&nbsp;&nbsp;</label></div>\n"; }
-    else { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrDumpTAData\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Dump TA Data\" aria-checked=\"false\" onKeyPress=\"toggleDmrDumpTAData()\" onclick=\"toggleDmrDumpTAData()\" for=\"toggle-dmrDumpTAData\">&nbsp;&nbsp;&nbsp;</label></div>\n"; } ?>
+    <?php if ($configmmdvm['DMR']['DumpTAData'] == 1) { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrDumpTAData\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Dump TA Data\" aria-checked=\"true\" onKeyPress=\"toggleDmrDumpTAData()\" onclick=\"toggleDmrDumpTAData()\" for=\"toggle-dmrDumpTAData\"><font style=\"font-size:0px\">DMR Dump T-A Data</font></label></div>\n"; }
+    else { echo "<div class=\"switch\"><input id=\"toggle-dmrDumpTAData\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"dmrDumpTAData\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dmrDumpTAData\" role=\"checkbox\" tabindex=\"0\" aria-label=\"DMR Dump TA Data\" aria-checked=\"false\" onKeyPress=\"toggleDmrDumpTAData()\" onclick=\"toggleDmrDumpTAData()\" for=\"toggle-dmrDumpTAData\"><font style=\"font-size:0px\">DMR Dump T-A Data</font></label></div>\n"; } ?>
     </td></tr>
     <!-- <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo "DMR JitterBuffer";?>:<span><b>DMR JitterBuffer</b>Turn on for improved network resiliancy, in high Latency networks.</span></a></td>
@@ -3529,10 +3529,10 @@ fclose($dextraFile);
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dstar_irc_time'];?>:<span><b>Time Announce</b>Announce time hourly</span></a></td>
     <?php
 	if ( !file_exists('/etc/timeserver.dissable') ) {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-timeAnnounce\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Time Announcements\" aria-checked=\"true\" onKeyPress=\"toggleDstarTimeAnnounce()\" onclick=\"toggleDstarTimeAnnounce()\" for=\"toggle-timeAnnounce\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-timeAnnounce\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Time Announcements\" aria-checked=\"true\" onKeyPress=\"toggleDstarTimeAnnounce()\" onclick=\"toggleDstarTimeAnnounce()\" for=\"toggle-timeAnnounce\"><font style=\"font-size:0px\">D-Star Time Announcements</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-timeAnnounce\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Time Announcements\" aria-checked=\"false\" onKeyPress=\"toggleDstarTimeAnnounce()\" onclick=\"toggleDstarTimeAnnounce()\" for=\"toggle-timeAnnounce\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-timeAnnounce\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Time Announcements\" aria-checked=\"false\" onKeyPress=\"toggleDstarTimeAnnounce()\" onclick=\"toggleDstarTimeAnnounce()\" for=\"toggle-timeAnnounce\"><font style=\"font-size:0px\">D-Star Time Annoucements</font></label></div></td>\n";
 	}
     ?>
     </tr>
@@ -3540,10 +3540,10 @@ fclose($dextraFile);
     <td align="left"><a class="tooltip2" href="#">Use DPlus for XRF:<span><b>No DExtra</b>Should host files use DPlus Protocol for XRFs</span></a></td>
     <?php
 	if ( file_exists('/etc/hostfiles.nodextra') ) {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dplusHostFiles\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use D-Plus for XRF Hosts\" aria-checked=\"true\" onKeyPress=\"toggleDstarDplusHostfiles()\" onclick=\"toggleDstarDplusHostfiles()\" for=\"toggle-dplusHostFiles\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-dplusHostFiles\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use D-Plus for XRF Hosts\" aria-checked=\"true\" onKeyPress=\"toggleDstarDplusHostfiles()\" onclick=\"toggleDstarDplusHostfiles()\" for=\"toggle-dplusHostFiles\"><font style=\"font-size:0px\">Use D-Plus for XRF Hosts</font></label></div></td>\n";
 		}
 	else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dplusHostFiles\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use D-Plus for XRF Hosts\" aria-checked=\"false\" onKeyPress=\"toggleDstarDplusHostfiles()\" onclick=\"toggleDstarDplusHostfiles()\" for=\"toggle-dplusHostFiles\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-dplusHostFiles\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesNoDExtra\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-dplusHostFiles\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use D-Plus for XRF Hosts\" aria-checked=\"false\" onKeyPress=\"toggleDstarDplusHostfiles()\" onclick=\"toggleDstarDplusHostfiles()\" for=\"toggle-dplusHostFiles\"><font style=\"font-size:0px\">Use D-Plus for XRF Hosts</font></label></div></td>\n";
 	}
     ?>
     <td>Note: Update Required if changed</td>
@@ -3622,13 +3622,13 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <?php
 	if ( isset($configysfgateway['General']['WiresXMakeUpper']) ) {
 		if ( $configysfgateway['General']['WiresXMakeUpper'] ) {
-			echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confHostFilesYSFUpper\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesYSFUpper\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-confHostFilesYSFUpper\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Uppercase Host Files\" aria-checked=\"true\" onKeyPress=\"toggleHostFilesYSFUpper()\" onclick=\"toggleHostFilesYSFUpper()\" for=\"toggle-confHostFilesYSFUpper\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+			echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confHostFilesYSFUpper\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesYSFUpper\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-confHostFilesYSFUpper\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Uppercase Host Files\" aria-checked=\"true\" onKeyPress=\"toggleHostFilesYSFUpper()\" onclick=\"toggleHostFilesYSFUpper()\" for=\"toggle-confHostFilesYSFUpper\"><font style=\"font-size:0px\">Uppercase Host Files</font></label></div></td>\n";
 		}
 		else {
-			echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confHostFilesYSFUpper\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesYSFUpper\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confHostFilesYSFUpper\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Uppercase Host Files\" aria-checked=\"false\" onKeyPress=\"toggleHostFilesYSFUpper()\" onclick=\"toggleHostFilesYSFUpper()\" for=\"toggle-confHostFilesYSFUpper\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+			echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confHostFilesYSFUpper\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesYSFUpper\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confHostFilesYSFUpper\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Uppercase Host Files\" aria-checked=\"false\" onKeyPress=\"toggleHostFilesYSFUpper()\" onclick=\"toggleHostFilesYSFUpper()\" for=\"toggle-confHostFilesYSFUpper\"><font style=\"font-size:0px\">Uppercase Host Files</font></label></div></td>\n";
 		}
 	} else {
-		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confHostFilesYSFUpper\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesYSFUpper\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confHostFilesYSFUpper\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Uppercase Host Files\" aria-checked=\"false\" onKeyPress=\"toggleHostFilesYSFUpper()\" onclick=\"toggleHostFilesYSFUpper()\" for=\"toggle-confHostFilesYSFUpper\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confHostFilesYSFUpper\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confHostFilesYSFUpper\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confHostFilesYSFUpper\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Uppercase Host Files\" aria-checked=\"false\" onKeyPress=\"toggleHostFilesYSFUpper()\" onclick=\"toggleHostFilesYSFUpper()\" for=\"toggle-confHostFilesYSFUpper\"><font style=\"font-size:0px\">Uppercase Host files</font></label></div></td>\n";
 	}
     ?>
     <td>Note: Update Required if changed</td>
@@ -3638,13 +3638,13 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     <?php
 	if ( isset($configysfgateway['General']['WiresXCommandPassthrough']) ) {
 		if ( $configysfgateway['General']['WiresXCommandPassthrough'] ) {
-			echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-confWiresXCommandPassthrough\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Wires-X Command Passthrough\" aria-checked=\"true\" onKeyPress=\"toggleWiresXCommandPassthrough()\" onclick=\"toggleWiresXCommandPassthrough()\" for=\"toggle-confWiresXCommandPassthrough\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+			echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" /><label id=\"aria-toggle-confWiresXCommandPassthrough\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Wires-X Command Passthrough\" aria-checked=\"true\" onKeyPress=\"toggleWiresXCommandPassthrough()\" onclick=\"toggleWiresXCommandPassthrough()\" for=\"toggle-confWiresXCommandPassthrough\"><font style=\"font-size:0px\">Wires-X Command Passthrough</font></label></div></td>\n";
 		}
 		else {
-			echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confWiresXCommandPassthrough\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Wires-X Command Passthrough\" aria-checked=\"false\" onKeyPress=\"toggleWiresXCommandPassthrough()\" onclick=\"toggleWiresXCommandPassthrough()\" for=\"toggle-confWiresXCommandPassthrough\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+			echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confWiresXCommandPassthrough\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Wires-X Command Passthrough\" aria-checked=\"false\" onKeyPress=\"toggleWiresXCommandPassthrough()\" onclick=\"toggleWiresXCommandPassthrough()\" for=\"toggle-confWiresXCommandPassthrough\"><font style=\"font-size:0px\">Wires-X Command Passthrough</font></label></div></td>\n";
 		}
 	} else {
-		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confWiresXCommandPassthrough\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Wires-X Command Passthrough\" aria-checked=\"false\" onKeyPress=\"toggleWiresXCommandPassthrough()\" onclick=\"toggleWiresXCommandPassthrough()\" for=\"toggle-confWiresXCommandPassthrough\">&nbsp;&nbsp;&nbsp;</label></div></td>\n";
+		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-confWiresXCommandPassthrough\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"wiresXCommandPassthrough\" value=\"ON\" aria-hidden=\"true\" /><label id=\"aria-toggle-confWiresXCommandPassthrough\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Wires-X Command Passthrough\" aria-checked=\"false\" onKeyPress=\"toggleWiresXCommandPassthrough()\" onclick=\"toggleWiresXCommandPassthrough()\" for=\"toggle-confWiresXCommandPassthrough\"><font style=\"font-size:0px\">Wires-X Command Passthrough</font></label></div></td>\n";
 	}
     ?>
     </tr>
