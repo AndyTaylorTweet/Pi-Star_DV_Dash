@@ -96,7 +96,7 @@ function toggleDSTARCheckbox(event) {
       //document.getElementById('toggle-dstar').click();
       break;
   }
-  if(event.keyCode == '32') { document.getElementById('aria-toggle-star').click(); }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-dstar').click(); }
 }
 function toggleYSFCheckbox(event) {
   switch(document.getElementById('aria-toggle-ysf').getAttribute('aria-checked')) {
