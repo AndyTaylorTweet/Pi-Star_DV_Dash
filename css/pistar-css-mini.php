@@ -94,6 +94,15 @@ body, font {
     font-size: 1.4em;
 }
 
+.contentwide h2 {
+    color: #<?php echo $textContent; ?>;
+    font: 1em verdana,arial,sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+}
+
 .footer {
     background : #<?php echo $backgroundBanners; ?>;
     text-decoration : none;
