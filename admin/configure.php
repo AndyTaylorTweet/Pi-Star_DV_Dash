@@ -224,7 +224,7 @@ $MYCALL=strtoupper($callsign);
 if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 //HTML output starts here
 ?>
-    <b><?php echo $lang['hardware_info'];?></b>
+    <h2><?php echo $lang['hardware_info'];?></h2>
     <table style="table-layout: fixed;">
     <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['hostname'];?><span><b>Hostname</b>The name of host<br />running the Pi-Star Software.</span></a></th>
