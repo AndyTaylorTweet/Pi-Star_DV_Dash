@@ -49,7 +49,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
 					echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
 				}
 			}
-			if (strlen($listElem[4]) == 1) { str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
+			if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
 			echo"<td align=\"left\">".str_replace(" ","&nbsp;", $listElem[4])."</td>";
 			if ($listElem[5] == "RF"){
 				echo "<td style=\"background:#1d1;\">RF</td>";
