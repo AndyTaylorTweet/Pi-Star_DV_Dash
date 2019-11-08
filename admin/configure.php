@@ -2705,7 +2705,7 @@ else:
     <input type="hidden" name="MMDVMModeDMR2YSF" value="OFF" />
     <input type="hidden" name="MMDVMModeDMR2NXDN" value="OFF" />
     <input type="hidden" name="MMDVMModePOCSAG" value="OFF" />
-	<div><b><?php echo $lang['mmdvmhost_config'];?></b></div>
+	<h2><?php echo $lang['mmdvmhost_config'];?></h2>
     <table>
     <tr>
     <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
