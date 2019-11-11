@@ -537,12 +537,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newFREQrx = mb_strimwidth($newFREQrx, 0, 9);
 	  $newFREQirc = substr_replace($newFREQtx, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
+	  $newFREQOffset = $newFREQtx - $newFREQrx;
+	  $newFREQOffset = mb_strimwidth($newFREQOffset, 0, 9);
 	  $rollFREQirc = 'sudo sed -i "/frequency1=/c\\frequency1='.$newFREQirc.'" /etc/ircddbgateway';
 	  $rollFREQdvap = 'sudo sed -i "/dvapFrequency=/c\\dvapFrequency='.$newFREQrx.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaRx = 'sudo sed -i "/dvmegaRXFrequency=/c\\dvmegaRXFrequency='.$newFREQrx.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaTx = 'sudo sed -i "/dvmegaTXFrequency=/c\\dvmegaTXFrequency='.$newFREQtx.'" /etc/dstarrepeater';
 	  $rollModeDuplex = 'sudo sed -i "/mode=/c\\mode=0" /etc/dstarrepeater';
 	  $rollGatewayType = 'sudo sed -i "/gatewayType=/c\\gatewayType=0" /etc/ircddbgateway';
+	  $rollFREQOffset = 'sudo sed -i "/offset1=/c\\offset1='.$newFREQOffset.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['RXFrequency'] = $newFREQrx;
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQtx;
 	  $configdmrgateway['Info']['RXFrequency'] = $newFREQrx;
@@ -570,6 +573,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollFREQdvmegaTx);
 	  system($rollModeDuplex);
 	  system($rollGatewayType);
+	  system($rollFREQOffset);
 
 	// Set RPT1 and RPT2
 	  if (empty($_POST['confDStarModuleSuffix'])) {
@@ -637,12 +641,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newFREQ = mb_strimwidth($newFREQ, 0, 9);
 	  $newFREQirc = substr_replace($newFREQ, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
+	  $newFREQOffset = $newFREQtx - $newFREQrx;
+	  $newFREQOffset = mb_strimwidth($newFREQOffset, 0, 9);
 	  $rollFREQirc = 'sudo sed -i "/frequency1=/c\\frequency1='.$newFREQirc.'" /etc/ircddbgateway';
 	  $rollFREQdvap = 'sudo sed -i "/dvapFrequency=/c\\dvapFrequency='.$newFREQ.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaRx = 'sudo sed -i "/dvmegaRXFrequency=/c\\dvmegaRXFrequency='.$newFREQ.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaTx = 'sudo sed -i "/dvmegaTXFrequency=/c\\dvmegaTXFrequency='.$newFREQ.'" /etc/dstarrepeater';
 	  $rollModeSimplex = 'sudo sed -i "/mode=/c\\mode=1" /etc/dstarrepeater';
 	  $rollGatewayType = 'sudo sed -i "/gatewayType=/c\\gatewayType=1" /etc/ircddbgateway';
+	  $rollFREQOffset = 'sudo sed -i "/offset1=/c\\offset1='.$newFREQOffset.'" /etc/ircddbgateway';
 	  $configmmdvm['Info']['RXFrequency'] = $newFREQ;
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
 	  $configdmrgateway['Info']['RXFrequency'] = $newFREQ;
@@ -670,6 +677,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollFREQdvmegaTx);
 	  system($rollModeSimplex);
 	  system($rollGatewayType);
+	  system($rollFREQOffset);
 
 	// Set RPT1 and RPT2
 	  if (empty($_POST['confDStarModuleSuffix'])) {
