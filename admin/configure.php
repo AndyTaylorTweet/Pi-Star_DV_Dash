@@ -537,9 +537,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newFREQrx = mb_strimwidth($newFREQrx, 0, 9);
 	  $newFREQirc = substr_replace($newFREQtx, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
-	  $newFREQOffset = $newFREQrx - $newFREQtx;
-	  $newFREQOffset = substr_replace($newFREQOffset, '.', '1', 0);
-	  $newFREQOffset = mb_strimwidth($newFREQOffset, 0, 6);
+	  $newFREQOffset = ($newFREQrx - $newFREQtx)/1000000;
+	  $newFREQOffset = mb_strimwidth($newFREQOffset, 0, 5);
 	  $rollFREQirc = 'sudo sed -i "/frequency1=/c\\frequency1='.$newFREQirc.'" /etc/ircddbgateway';
 	  $rollFREQdvap = 'sudo sed -i "/dvapFrequency=/c\\dvapFrequency='.$newFREQrx.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaRx = 'sudo sed -i "/dvmegaRXFrequency=/c\\dvmegaRXFrequency='.$newFREQrx.'" /etc/dstarrepeater';
@@ -642,9 +641,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newFREQ = mb_strimwidth($newFREQ, 0, 9);
 	  $newFREQirc = substr_replace($newFREQ, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
-	  $newFREQOffset = $newFREQrx - $newFREQtx;
-	  $newFREQOffset = substr_replace($newFREQOffset, '.', '1', 0);
-	  $newFREQOffset = mb_strimwidth($newFREQOffset, 0, 6);
+	  $newFREQOffset = "0.0000";
 	  $rollFREQirc = 'sudo sed -i "/frequency1=/c\\frequency1='.$newFREQirc.'" /etc/ircddbgateway';
 	  $rollFREQdvap = 'sudo sed -i "/dvapFrequency=/c\\dvapFrequency='.$newFREQ.'" /etc/dstarrepeater';
 	  $rollFREQdvmegaRx = 'sudo sed -i "/dvmegaRXFrequency=/c\\dvmegaRXFrequency='.$newFREQ.'" /etc/dstarrepeater';
