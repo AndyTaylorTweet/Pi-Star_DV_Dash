@@ -146,53 +146,53 @@ function showMode($mode, $mmdvmconfigs) {
 		if ( (isProcessRunning("MMDVMHost")) && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25")) ) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\"";
 		}
 	}
 	elseif ( ($mode == "DMR XMode") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if ( (isProcessRunning("MMDVMHost")) && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN")) ) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
 		}
 	}
 	elseif ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("YSF2DMR")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
 		}
 	}
 	elseif ( ($mode == "YSF2NXDN Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("YSF2NXDN")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
 		}
 	}
 	elseif ( ($mode == "YSF2P25 Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("YSF2P25")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
 		}
 	}
 	elseif ( ($mode == "DMR2NXDN Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("DMR2NXDN")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
 		}
 	}
 	elseif ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("DMR2YSF")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
 		}
 	}
 	else {
-		echo "<td style=\"background:#606060; color:#b0b0b0;\">";
+		echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
     }
     $mode = str_replace("System Fusion", "YSF", $mode);
     $mode = str_replace("Network", "Net", $mode);
