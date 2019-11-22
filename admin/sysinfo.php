@@ -154,7 +154,7 @@ if (count($system['partitions']) > 0) {
 // Binary Information
 echo "  <tr><td><b>Binary</b></td><td><b>Version</b></td></tr>\n";
 if (is_executable('/usr/local/bin/MMDVMHost')) {
-    $MMDVMHost_Ver = exec('/usr/local/bin/MMDVMHost -v');
+    $MMDVMHost_Ver = exec('/usr/local/bin/MMDVMHost -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">MMDVMHost</td><td align=\"left\">".$MMDVMHost_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/DMRGateway')) {
