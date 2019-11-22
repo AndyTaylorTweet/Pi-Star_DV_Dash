@@ -158,43 +158,43 @@ if (is_executable('/usr/local/bin/MMDVMHost')) {
     echo "  <tr><td align=\"left\">MMDVMHost</td><td align=\"left\">".$MMDVMHost_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/DMRGateway')) {
-    $DMRGateway_Ver = exec('/usr/local/bin/DMRGateway -v');
+    $DMRGateway_Ver = exec('/usr/local/bin/DMRGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">DMRGateway</td><td align=\"left\">".$DMRGateway_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/DMR2YSF')) {
-    $DMR2YSF_Ver = exec('/usr/local/bin/DMR2YSF -v');
+    $DMR2YSF_Ver = exec('/usr/local/bin/DMR2YSF -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">DMR2YSF</td><td align=\"left\">".$DMR2YSF_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/DMR2NXDN')) {
-    $DMR2NXDN_Ver = exec('/usr/local/bin/DMR2NXDN -v');
+    $DMR2NXDN_Ver = exec('/usr/local/bin/DMR2NXDN -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">DMR2NXDN</td><td align=\"left\">".$DMR2NXDN_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/YSFGateway')) {
-    $YSFGateway_Ver = exec('/usr/local/bin/YSFGateway -v');
+    $YSFGateway_Ver = exec('/usr/local/bin/YSFGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">YSFGateway</td><td align=\"left\">".$YSFGateway_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/YSF2DMR')) {
-    $YSF2DMR_Ver = exec('/usr/local/bin/YSF2DMR -v');
+    $YSF2DMR_Ver = exec('/usr/local/bin/YSF2DMR -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">YSF2DMR</td><td align=\"left\">".$YSF2DMR_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/YSF2P25')) {
-    $YSF2P25_Ver = exec('/usr/local/bin/YSF2P25 -v');
+    $YSF2P25_Ver = exec('/usr/local/bin/YSF2P25 -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">YSF2P25</td><td align=\"left\">".$YSF2P25_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/YSF2NXDN')) {
-    $YSF2NXDN_Ver = exec('/usr/local/bin/YSF2NXDN -v');
+    $YSF2NXDN_Ver = exec('/usr/local/bin/YSF2NXDN -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">YSF2NXDN</td><td align=\"left\">".$YSF2NXDN_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/P25Gateway')) {
-    $P25Gateway_Ver = exec('/usr/local/bin/P25Gateway -v');
+    $P25Gateway_Ver = exec('/usr/local/bin/P25Gateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">P25Gateway</td><td align=\"left\">".$P25Gateway_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/NXDNGateway')) {
-    $NXDNGateway_Ver = exec('/usr/local/bin/YSFGateway -v');
+    $NXDNGateway_Ver = exec('/usr/local/bin/YSFGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">NXDNGateway</td><td align=\"left\">".$NXDNGateway_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/DAPNETGateway')) {
-    $DAPNETGateway_Ver = exec('/usr/local/bin/DAPNETGateway -v');
+    $DAPNETGateway_Ver = exec('/usr/local/bin/DAPNETGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">DAPNETGateway</td><td align=\"left\">".$DAPNETGateway_Ver."</td></tr>\n";
 }
 ?>
