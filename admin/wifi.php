@@ -237,7 +237,7 @@ echo '<br />
 <div class="network" id="networkbox">'."\n";
 		$output .= 'WiFi Regulatory Domain : <select name="wifiCountryCode">
 <option value="'.$wifiCountry.'" selected>'.$wifiCountry.'</option>'."\n";
-		exec('grep "^[^#]" /usr/share/zoneinfo/zone.tab', $regDomains);
+		exec('grep "^[^#]" /usr/share/zoneinfo/zone.tab | awk \'{print $1" - "$3}\'', $regDomains);
 		foreach($regDomains as $regDomain) {
 			$regDomainCountryCode = explode(" ", $regDomain);
 			$output .= '<option value="'.$regDomainCountryCode[0].'">'.$regDomain.'</option>'."\n";
