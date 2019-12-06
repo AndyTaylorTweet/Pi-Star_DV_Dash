@@ -172,8 +172,7 @@ Signal Level : ' . $strSignalLevel . '<br />
 <br />';
 if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; } else { echo "<br />\n"; }
 if ($strLinkQuality) { echo 'Link Quality : ' . $strLinkQuality . '<br />'."\n"; } else { echo "<br />\n"; }
-echo '<br />
-<br />'."\n";
+echo '<br />'."\n";
 if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
 	exec('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf', $wifiCountryArr);
 	}
@@ -181,9 +180,9 @@ if (isset($wifiCountryArr)) {
 	$wifiCountry = explode("=", $wifiCountryArr[0]);
 	echo 'WiFi Country : '.$wifiCountry[1]."<br />\n";
 	}
-echo '<!-- <br /> -->
-<br />
+echo '<br />
 </div>
+<br />
 </div>
 <div class="intfooter">Information provided by ifconfig and iwconfig</div>';
 	break;
