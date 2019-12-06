@@ -229,7 +229,10 @@ echo '<br />
 		$output = '<form method="post" action="'.$_SERVER['PHP_SELF'].'?page=wpa_conf" id="wpa_conf_form">
 <input type="button" value="WiFi Info" name="wlan0_info" onclick="document.location=\'?page=\'+this.name" /><br />
 <input type="hidden" id="Networks" name="Networks" />
-<div class="network" id="networkbox">';
+<div class="network" id="networkbox">'."\n";
+		$output .= '<select name="wifiCountryCode">
+<option value="'.$wifiCountry[1].'">'.$wifiCountry[1].'</option>
+</select><br />'."\n";
 
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
 			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids."\n";
