@@ -176,7 +176,7 @@ echo '<br />'."\n";
 if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
 	exec('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf', $wifiCountryArr);
 	}
-if (isset($wifiCountryArr)) {
+if (isset($wifiCountryArr[0])) {
 	$wifiCountry = explode("=", $wifiCountryArr[0]);
 	if (isset($wifiCountry[1])) {
 		echo 'WiFi Country : '.$wifiCountry[1]."<br />\n";
