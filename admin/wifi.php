@@ -175,9 +175,11 @@ if ($strLinkQuality) { echo 'Link Quality : ' . $strLinkQuality . '<br />'."\n";
 echo '<br />
 <br />'."\n";
 if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
-	$wifiCountry = system('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf');
+	exec('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf', $wifiCountry);
 	}
-if (isset($wifiCountry)) { echo 'WiFi Country : '.$wifiCountry."\n"; }
+if (isset($wifiCountry)) {
+	echo 'WiFi Country : '.$wifiCountry."\n";
+	}
 echo '<!-- <br /> -->
 <br />
 </div>
