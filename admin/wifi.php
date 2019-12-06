@@ -178,8 +178,8 @@ if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
 	exec('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf', $wifiCountryArr);
 	}
 if (isset($wifiCountryArr)) {
-	$wifiCountry = $wifiCountryArr[1];
-	echo 'WiFi Country : '.$wifiCountry."\n";
+	$wifiCountry = explode("=", $wifiCountryArr[0]);
+	echo 'WiFi Country : '.$wifiCountry[1]."<br />\n";
 	}
 echo '<!-- <br /> -->
 <br />
