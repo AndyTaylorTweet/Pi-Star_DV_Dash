@@ -173,8 +173,12 @@ Signal Level : ' . $strSignalLevel . '<br />
 if ($strTxPower) { echo 'Transmit Power : ' . $strTxPower .'<br />'."\n"; } else { echo "<br />\n"; }
 if ($strLinkQuality) { echo 'Link Quality : ' . $strLinkQuality . '<br />'."\n"; } else { echo "<br />\n"; }
 echo '<br />
-<br />
-<br />
+<br />'."\n";
+if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
+	$wifiCountry = system('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf | awk -F "=" \'{print $2}\'');
+};
+if (isset($wifiCountry)) { echo 'WiFi Country : '.$wifiCountry."\n"; }
+echo '<!-- <br /> -->
 <br />
 </div>
 </div>
