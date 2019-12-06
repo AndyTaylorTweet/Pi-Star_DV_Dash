@@ -193,6 +193,11 @@ echo '<br />
 		$ssid = array();
 		$psk = array();
 		foreach($return as $a) {
+			if(preg_match('/country="/i',$a)) {
+				$wifiCountryArr = explode("=",$a);
+				$wifiCountry = $wifiCountryArr[1];
+			}
+			
 			// Make sure we only put ONE SSID and matching PSK into the arrays
                         if ( ( isset($curssidplain) || isset($curssidalt) ) && ( isset($curpskplain) || isset($curpskalt) ) ) {
                                 if (isset($curssidplain)) { $ssid[] = $curssidplain; unset($curssidplain); unset($curssidalt); }
@@ -224,12 +229,6 @@ echo '<br />
                                         if (!isset($curpskplain)) { $curpskalt = str_replace('"','',$arrpsk[1]); }
                                 }
                         }
-			if (!isset($wifiCountry)) {
-				if(preg_match('/country="/i',$a)) {
-					$wifiCountryArr = explode("=",$a);
-					$wifiCountry = $wifiCountryArr[1];
-				}
-			}
 		}
 		$numSSIDs = count($ssid);
 		$output = '<form method="post" action="'.$_SERVER['PHP_SELF'].'?page=wpa_conf" id="wpa_conf_form">
