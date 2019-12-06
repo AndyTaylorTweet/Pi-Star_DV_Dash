@@ -235,7 +235,7 @@ echo '<br />
 <input type="button" value="WiFi Info" name="wlan0_info" onclick="document.location=\'?page=\'+this.name" /><br />
 <input type="hidden" id="Networks" name="Networks" />
 <div class="network" id="networkbox">'."\n";
-		$output .= 'WiFi Regulatory Domain : <select name="wifiCountryCode">
+		$output .= 'WiFi Regulatory Domain (Country Code) : <select name="wifiCountryCode">
 <option value="'.$wifiCountry.'" selected>'.$wifiCountry.'</option>'."\n";
 		exec('grep "^[^#]" /usr/share/zoneinfo/zone.tab | awk \'{print $1" - "$3}\'', $regDomains);
 		foreach($regDomains as $regDomain) {
