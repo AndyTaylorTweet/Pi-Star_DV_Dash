@@ -238,11 +238,14 @@ echo '<br />
 <input type="hidden" id="Networks" name="Networks" />
 <div class="network" id="networkbox">'."\n";
 		if (!isset($wifiCountry)) { $wifiCountry = "JP"; }
-		$output .= 'WiFi Regulatory Domain (Country Code) : <select name="wifiCountryCode">
-<option value="'.$wifiCountry.'" selected>'.$wifiCountry.'</option>'."\n";
+		$output .= 'WiFi Regulatory Domain (Country Code) : <select name="wifiCountryCode">'."\n";
 		exec('regdbdump /lib/crda/regulatory.bin | fgrep country | cut -b 9-10', $regDomains);
 		foreach($regDomains as $regDomain) {
-			$output .= '<option value="'.$regDomain.'">'.$regDomain.'</option>'."\n";
+			if ($regDomain == $wifiCountry) {
+				$output .= '<option value="'.$regDomain.'" selected>'.$regDomain.'</option>'."\n";
+			} else {
+				$output .= '<option value="'.$regDomain.'">'.$regDomain.'</option>'."\n";
+			}
 		}
 		$output .= '</select><br />'."\n";
 
