@@ -240,10 +240,9 @@ echo '<br />
 		if (!isset($wifiCountry)) { $wifiCountry = "JP"; }
 		$output .= 'WiFi Regulatory Domain (Country Code) : <select name="wifiCountryCode">
 <option value="'.$wifiCountry.'" selected>'.$wifiCountry.'</option>'."\n";
-		exec('grep "^[^#]" /usr/share/zoneinfo/zone.tab | awk \'{print $1" - "$3}\'', $regDomains);
+		exec('regdbdump /lib/crda/regulatory.bin | fgrep country | cut -b 9-10', $regDomains);
 		foreach($regDomains as $regDomain) {
-			$regDomainCountryCode = explode(" ", $regDomain);
-			$output .= '<option value="'.$regDomainCountryCode[0].'">'.$regDomain.'</option>'."\n";
+			$output .= '<option value="'.$regDomain.'">'.$regDomain.'</option>'."\n";
 		}
 		$output .= '</select><br />'."\n";
 
