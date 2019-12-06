@@ -181,6 +181,7 @@ if (isset($wifiCountryArr)) {
 	echo 'WiFi Country : '.$wifiCountry[1]."<br />\n";
 	}
 echo '<br />
+<br />
 </div>
 <br />
 </div>
