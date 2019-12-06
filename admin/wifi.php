@@ -193,7 +193,7 @@ echo '<br />
 		$ssid = array();
 		$psk = array();
 		foreach($return as $a) {
-			if(preg_match('/country="/i',$a)) {
+			if(preg_match('/country=/i',$a)) {
 				$wifiCountryArr = explode("=",$a);
 				$wifiCountry = $wifiCountryArr[1];
 			}
@@ -235,7 +235,7 @@ echo '<br />
 <input type="button" value="WiFi Info" name="wlan0_info" onclick="document.location=\'?page=\'+this.name" /><br />
 <input type="hidden" id="Networks" name="Networks" />
 <div class="network" id="networkbox">'."\n";
-		$output .= '<select name="wifiCountryCode">
+		$output .= 'WiFi Regulatory Domain : <select name="wifiCountryCode">
 <option value="'.$wifiCountry.'">'.$wifiCountry.'</option>
 </select><br />'."\n";
 
