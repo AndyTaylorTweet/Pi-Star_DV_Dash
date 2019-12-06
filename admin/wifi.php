@@ -224,6 +224,12 @@ echo '<br />
                                         if (!isset($curpskplain)) { $curpskalt = str_replace('"','',$arrpsk[1]); }
                                 }
                         }
+			if (!isset($wifiCountry)) {
+				if(preg_match('/country="/i',$a)) {
+					$wifiCountryArr = explode("=",$a);
+					$wifiCountry = $wifiCountryArr[1];
+				}
+			}
 		}
 		$numSSIDs = count($ssid);
 		$output = '<form method="post" action="'.$_SERVER['PHP_SELF'].'?page=wpa_conf" id="wpa_conf_form">
@@ -231,7 +237,7 @@ echo '<br />
 <input type="hidden" id="Networks" name="Networks" />
 <div class="network" id="networkbox">'."\n";
 		$output .= '<select name="wifiCountryCode">
-<option value="'.$wifiCountry[1].'">'.$wifiCountry[1].'</option>
+<option value="'.$wifiCountry.'">'.$wifiCountry.'</option>
 </select><br />'."\n";
 
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
