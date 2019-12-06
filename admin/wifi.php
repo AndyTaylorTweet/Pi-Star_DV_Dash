@@ -242,7 +242,7 @@ echo '<br />
 			$regDomainCountryCode = explode(" ", $regDomain);
 			$output .= '<option value="'.$regDomainCountryCode[0].'">'.$regDomain.'</option>'."\n";
 		}
-		$output .= </select><br />'."\n";
+		$output .= '</select><br />'."\n";
 
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
 			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids."\n";
