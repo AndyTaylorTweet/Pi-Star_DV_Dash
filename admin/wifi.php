@@ -197,7 +197,7 @@ echo '<br />
 				$wifiCountryArr = explode("=",$a);
 				$wifiCountry = $wifiCountryArr[1];
 			}
-			
+
 			// Make sure we only put ONE SSID and matching PSK into the arrays
                         if ( ( isset($curssidplain) || isset($curssidalt) ) && ( isset($curpskplain) || isset($curpskalt) ) ) {
                                 if (isset($curssidplain)) { $ssid[] = $curssidplain; unset($curssidplain); unset($curssidalt); }
@@ -263,7 +263,7 @@ echo '<br />
 	echo '<script type="text/Javascript">UpdateNetworks()</script>';
 
 	if(isset($_POST['SaveWPAPSKSettings'])) {
-		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\nap_scan=1\nfast_reauth=1\ncountry=JP\n\n";
+		$config = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\nap_scan=1\nfast_reauth=1\ncountry=".$_POST['wifiCountryCode']."\n\n";
 		$networks = $_POST['Networks'];
 
 		//Reworked WiFi Starts Here
