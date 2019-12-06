@@ -236,8 +236,13 @@ echo '<br />
 <input type="hidden" id="Networks" name="Networks" />
 <div class="network" id="networkbox">'."\n";
 		$output .= 'WiFi Regulatory Domain : <select name="wifiCountryCode">
-<option value="'.$wifiCountry.'">'.$wifiCountry.'</option>
-</select><br />'."\n";
+<option value="'.$wifiCountry.'" selected>'.$wifiCountry.'</option>'."\n";
+		exec('grep "^[^#]" /usr/share/zoneinfo/zone.tab', $regDomains);
+		foreach($regDomains as $regDomain) {
+			$regDomainCountryCode = explode(" ", $regDomain);
+			$output .= '<option value="'.$regDomainCountryCode[0].'">'.$regDomain.'</option>'."\n";
+		}
+		$output .= </select><br />'."\n";
 
 		for($ssids = 0; $ssids < $numSSIDs; $ssids++) {
 			$output .= '<div id="Networkbox'.$ssids.'" class="NetworkBoxes">Network '.$ssids."\n";
