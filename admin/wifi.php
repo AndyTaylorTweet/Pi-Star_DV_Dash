@@ -292,7 +292,7 @@ echo '<br />
 		if (!file_exists('/sys/class/net/wlan0_ap')) {
 			system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		}
-		header("Refresh:1");
+		echo "<script>window.location.reload();</script>";
 
 	} elseif(isset($_POST['Scan'])) {
 		$return = '';
