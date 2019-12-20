@@ -290,7 +290,7 @@ echo '<br />
 		echo "Wifi Settings Updated Successfully\n";
 		// If Auto AP is on, dont restart the WiFi Card
 		if (!file_exists('/sys/class/net/wlan0_ap')) {
-			system('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
+			exec('sudo ifdown wlan0 && sleep 3 && sudo ifup wlan0');
 		}
 		echo "<script>window.location.reload();</script>";
 
