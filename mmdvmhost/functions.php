@@ -385,6 +385,9 @@ function getDVModemFirmware() {
 		if (strpos($logLine, 'description: OpenGD77 Hotspot')) {
 			$modemFirmware = "OpenGD77:".strtok(substr($logLine, 83, 12), ' ');
 		}
+		if (strpos($logLine, 'description: OpenGD77_HS ')) {
+			$modemFirmware = "OpenGD77:".strtok(substr($logLine, 79, 12), ' ');
+		}		
 	}
 	return $modemFirmware;
 }
