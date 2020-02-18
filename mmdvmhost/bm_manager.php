@@ -84,7 +84,7 @@ if ( $testMMDVModeDMR == 1 ) {
       'Content-Type: application/x-www-form-urlencoded',
       'Content-Length: '.strlen($postData),
       'Authorization: Basic '.base64_encode($bmAPIkey.':'),
-      'User-Agent: Pi-Star Dashboard for '.$dmrID',
+      'User-Agent: Pi-Star Dashboard for '.$dmrID,
     );
     
     $opts = array(
