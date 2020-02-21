@@ -1867,12 +1867,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if  (empty($_POST['mmdvmDisplayType']) != TRUE ) {
 	  if (substr($_POST['mmdvmDisplayType'] , 0, 4 ) === "OLED") {
 		  $configmmdvm['General']['Display'] = "OLED";
-		  if (substr($_POST['mmdvmDisplayType'] , 0, 5 ) === "OLED3") {
-			  $configmmdvm['OLED']['Type'] = "3";
-		  }
-		  if (substr($_POST['mmdvmDisplayType'] , 0, 5 ) === "OLED6") {
-			  $configmmdvm['OLED']['Type'] = "6";
-		  }
+		  $configmmdvm['OLED']['Type'] = substr($_POST['mmdvmDisplayType'] , 4, 1 );
 	  }
 	  else {
 		  $configmmdvm['General']['Display'] = escapeshellcmd($_POST['mmdvmDisplayType']);
