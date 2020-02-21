@@ -1865,7 +1865,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the MMDVMHost Display Type
 	if  (empty($_POST['mmdvmDisplayType']) != TRUE ) {
-	  $configmmdvm['General']['Display'] = escapeshellcmd($_POST['mmdvmDisplayType']);
+	  if (substr($_POST['mmdvmDisplayType'] , 0, 4 ) === "OLED") {
+		  $configmmdvm['General']['Display'] = "OLED";
+		  if (substr($_POST['mmdvmDisplayType'] , 0, 5 ) === "OLED3") {
+			  $configmmdvm['OLED']['Type'] = "3";
+		  }
+		  if (substr($_POST['mmdvmDisplayType'] , 0, 5 ) === "OLED6") {
+			  $configmmdvm['OLED']['Type'] = "6";
+		  }
+	  }
+	  else {
+		  $configmmdvm['General']['Display'] = escapeshellcmd($_POST['mmdvmDisplayType']);
+	  }
 	}
 
 	// Set the MMDVMHost Display Type
@@ -2899,7 +2910,8 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mmdvm_display'];?>:<span><b>Display Type</b>Choose your display type, if you have one.</span></a></td>
     <td align="left" colspan="2"><select name="mmdvmDisplayType">
 	    <option <?php if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "") ) {echo 'selected="selected" ';}; ?>value="None">None</option>
-	    <option <?php if ($configmmdvm['General']['Display'] == "OLED") {echo 'selected="selected" ';}; ?>value="OLED">OLED</option>
+	    <option <?php if (($configmmdvm['General']['Display'] == "OLED") && ($configmmdvm['OLED']['Type'] == "3")) {echo 'selected="selected" ';}; ?>value="OLED3">OLED Type 3</option>
+	    <option <?php if (($configmmdvm['General']['Display'] == "OLED") && ($configmmdvm['OLED']['Type'] == "6")) {echo 'selected="selected" ';}; ?>value="OLED6">OLED Type 6</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "Nextion") {echo 'selected="selected" ';}; ?>value="Nextion">Nextion</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "HD44780") {echo 'selected="selected" ';}; ?>value="HD44780">HD44780</option>
 	    <option <?php if ($configmmdvm['General']['Display'] == "TFT Serial") {echo 'selected="selected" ';}; ?>value="TFT Serial">TFT Serial</option>
