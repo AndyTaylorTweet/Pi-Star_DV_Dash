@@ -18,6 +18,8 @@ if ( $testMMDVModeYSF == 1 ) {
       // Handle Posted Data
     } else {
       // Output HTML
+      $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r");
+      
       ?>
       <b>YSF Link Manager</b>
       <form action="http://<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
@@ -29,6 +31,18 @@ if ( $testMMDVModeYSF == 1 ) {
         </tr>
         <tr>
           <td>
+            <select name="ysfLinkHost">
+            <?php
+              while (!feof($ysfHosts)) {
+                $ysfHostsLine = fgets($ysfHosts);
+                $ysfHost = preg_split('/;/', $ysfHostsLine);
+                if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
+                  if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0],$ysfHost[1]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
+			            else { echo "      <option value=\"$ysfHost[0],$ysfHost[1]\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
+                }
+              }
+              fclose($ysfHosts);
+            ?>
           </td>
           <td>
             <input type="radio" name="Link" value="LINK" checked="checked" />Link
