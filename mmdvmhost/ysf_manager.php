@@ -40,6 +40,7 @@ if ( $testMMDVModeYSF == 1 ) {
         </tr>
       </table>
       </form>
+      <br />
       <?php
     }
   }
