@@ -164,16 +164,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	$testMMDVModeYSFnet = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
         if ( $testMMDVModeYSFnet == 1 ) {				// If YSF network is enabled, add these extra features.
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 	// Admin Only Option
-			echo '<script type="text/javascript">'."\n";
-			echo 'function reloadysfConnections(){'."\n";
-			echo '  $("#ysfConnects").load("/mmdvmhost/ysf_manager.php",function(){ setTimeout(reloadysfConnections,5000) });'."\n";
-			echo '}'."\n";
-			echo 'setTimeout(reloadysfConnections,5000);'."\n";
-			echo '$(window).trigger(\'resize\');'."\n";
-			echo '</script>'."\n";
-			echo '<div id="ysfConnects">'."\n";
 			include 'mmdvmhost/ysf_manager.php';		// YSF Links
-			echo '</div>'."\n";
 		}
 	}
 	echo '<script type="text/javascript">'."\n";
