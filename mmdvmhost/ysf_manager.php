@@ -18,7 +18,7 @@ if ( $testMMDVModeYSF == 1 ) {
     if (!empty($_POST) && isset($_POST["ysfMgrSubmit"])) {
       // Handle Posted Data
       if ($_POST["Link"] == "LINK") {
-	if (preg_match('/[^A-Za-z0-9 ]/',$_POST['ysfLinkHost'])) {
+	if (preg_match('/[^A-Za-z0-9]/',$_POST['ysfLinkHost'])) {
 	  unset ($_POST['ysfLinkHost']);
 	} elseif ($_POST['ysfLinkHost'] == "none") {
 	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
@@ -30,16 +30,16 @@ if ( $testMMDVModeYSF == 1 ) {
       } else {
 	echo "<b>YSF Link Manager</b>\n";
 	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-        echo "Somthing wrong with your input, try again";
-	echo "</td></tr>\n</table>\n";
+        echo "Somthing wrong with your input, (Neither Link nor Unlink Sent) - please try again";
+	echo "</td></tr>\n</table>\n<br />\n";
 	unset($_POST);
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
       }
       if (empty($_POST['ysfLinkHost'])) {
 	echo "<b>YSF Link Manager</b>\n";
         echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-	echo "Somthing wrong with your input, try again";
-	echo "</td></tr>\n</table>\n";
+	echo "Somthing wrong with your input, (No target specified) -  please try again";
+	echo "</td></tr>\n</table>\n<br />\n";
 	unset($_POST);
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
       }
@@ -47,7 +47,7 @@ if ( $testMMDVModeYSF == 1 ) {
         echo "<b>YSF Link Manager</b>\n";
 	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
 	echo exec($remoteCommand);
-	echo "</td></tr>\n</table>\n";
+	echo "</td></tr>\n</table>\n<br />\n";
       }
     } else {
       // Output HTML
