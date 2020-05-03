@@ -18,8 +18,6 @@ if ( $testMMDVModeYSF == 1 ) {
       // Handle Posted Data
     } else {
       // Output HTML
-      $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r");
-      
       ?>
       <b>YSF Link Manager</b>
       <form action="http://<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
@@ -33,6 +31,7 @@ if ( $testMMDVModeYSF == 1 ) {
           <td>
             <select name="ysfLinkHost">
             <?php
+	      $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r");
               while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
