@@ -25,7 +25,7 @@ if ( $testMMDVModeYSF == 1 ) {
 	  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Link".$_POST['ysfLinkHost'];
 	}
       } elseif ($_POST["Link"] == "UNLINK") {
-	$remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
+	$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
       } else {
 	echo "<b>YSF Link Manager</b>\n";
 	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
