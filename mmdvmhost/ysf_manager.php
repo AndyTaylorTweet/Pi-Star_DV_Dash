@@ -28,14 +28,20 @@ if ( $testMMDVModeYSF == 1 ) {
       } elseif ($_POST["Link"] == "UNLINK") {
 	$remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
       } else {
+	echo "<b>YSF Link Manager</b>\n";
+	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
         echo "Somthing wrong with your input, try again";
+	echo "</td></tr>\n</table>\n";
 	unset($_POST);
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
       }
       if (empty($_POST['ysfLinkHost'])) {
-	      echo "Somthing wrong with your input, try again";
-	      unset($_POST);
-	      echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+	echo "<b>YSF Link Manager</b>\n";
+        echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+	echo "Somthing wrong with your input, try again";
+	echo "</td></tr>\n</table>\n";
+	unset($_POST);
+	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
       }
       if (isset($remoteCommand)) {
         echo "<b>YSF Link Manager</b>\n";
