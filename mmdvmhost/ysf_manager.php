@@ -14,8 +14,35 @@ if ( $testMMDVModeYSF == 1 ) {
 
   // Check that the remote is enabled
   if ( $configysfgateway['Remote Commands']['Enable'] == 1 ) {
+    $remotePort = $configysfgateway['Remote Commands']['Port'];
     if (!empty($_POST) && isset($_POST["ysfMgrSubmit"])) {
       // Handle Posted Data
+      if ($_POST["Link"] == "LINK") {
+	if (preg_match('/[^A-Za-z0-9 ]/',$_POST['ysfLinkHost'])) {
+	  unset ($_POST['ysfLinkHost']);
+	} elseif ($_POST['ysfLinkHost'] == "none") {
+	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
+	} else {
+	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." ".$_POST['ysfLinkHost'];
+	}
+      } elseif ($_POST["Link"] == "UNLINK") {
+	$remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
+      } else {
+        echo "Somthing wrong with your input, try again";
+	unset($_POST);
+	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+      }
+      if (empty($_POST['ysfLinkHost'])) {
+	      echo "Somthing wrong with your input, try again";
+	      unset($_POST);
+	      echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},2000);</script>';
+      }
+      if (isset($remoteCommand)) {
+        echo "<b>YSF Link Manager</b>\n";
+	echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+	echo exec($remoteCommand);
+	echo "</td></tr>\n</table>\n";
+      }
     } else {
       // Output HTML
       ?>
