@@ -17,10 +17,9 @@ if ( $testMMDVModeYSF == 1 ) {
     $remotePort = $configysfgateway['Remote Commands']['Port'];
     if (!empty($_POST) && isset($_POST["ysfMgrSubmit"])) {
       // Handle Posted Data
+      if (preg_match('/[^A-Za-z0-9]/',$_POST['ysfLinkHost'])) { unset ($_POST['ysfLinkHost']);}
       if ($_POST["Link"] == "LINK") {
-	if (preg_match('/[^A-Za-z0-9]/',$_POST['ysfLinkHost'])) {
-	  unset ($_POST['ysfLinkHost']);
-	} elseif ($_POST['ysfLinkHost'] == "none") {
+	if ($_POST['ysfLinkHost'] == "none") {
 	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 	} else {
 	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." ".$_POST['ysfLinkHost'];
@@ -73,32 +72,32 @@ if ( $testMMDVModeYSF == 1 ) {
                 echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
     		}
 		if ($testYSFHost == "ZZ Parrot")  {
-			echo "      <option value=\"YSF00001,ZZ Parrot\" selected=\"selected\">YSF00001 - Parrot</option>\n";
+			echo "      <option value=\"YSF00001\" selected=\"selected\">YSF00001 - Parrot</option>\n";
 		} else {
-			echo "      <option value=\"YSF00001,ZZ Parrot\">YSF00001 - Parrot</option>\n";
+			echo "      <option value=\"YSF00001\">YSF00001 - Parrot</option>\n";
 		}
 		if ($testYSFHost == "YSF2DMR")  {
-			echo "      <option value=\"YSF00002,YSF2DMR\"  selected=\"selected\">YSF00002 - Link YSF2DMR</option>\n";
+			echo "      <option value=\"YSF00002\"  selected=\"selected\">YSF00002 - Link YSF2DMR</option>\n";
 		} else {
-			echo "      <option value=\"YSF00002,YSF2DMR\">YSF00002 - Link YSF2DMR</option>\n";
+			echo "      <option value=\"YSF00002\">YSF00002 - Link YSF2DMR</option>\n";
 		}
 		if ($testYSFHost == "YSF2NXDN") {
-			echo "      <option value=\"YSF00003,YSF2NXDN\" selected=\"selected\">YSF00003 - Link YSF2NXDN</option>\n";
+			echo "      <option value=\"YSF00003\" selected=\"selected\">YSF00003 - Link YSF2NXDN</option>\n";
 		} else {
-			echo "      <option value=\"YSF00003,YSF2NXDN\">YSF00003 - Link YSF2NXDN</option>\n";
+			echo "      <option value=\"YSF00003\">YSF00003 - Link YSF2NXDN</option>\n";
 		}
 		if ($testYSFHost == "YSF2P25")  {
-			echo "      <option value=\"YSF00004,YSF2P25\"  selected=\"selected\">YSF00004 - Link YSF2P25</option>\n";
+			echo "      <option value=\"YSF00004\"  selected=\"selected\">YSF00004 - Link YSF2P25</option>\n";
 		} else {
-			echo "      <option value=\"YSF00004,YSF2P25\">YSF00004 - Link YSF2P25</option>\n";
+			echo "      <option value=\"YSF00004\">YSF00004 - Link YSF2P25</option>\n";
 		}
 	      $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r");
               while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
                 $ysfHost = preg_split('/;/', $ysfHostsLine);
                 if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
-                  if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"YSF$ysfHost[0],$ysfHost[1]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
-			            else { echo "      <option value=\"YSF$ysfHost[0],$ysfHost[1]\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
+                  if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"YSF$ysfHost[0]\" selected=\"selected\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
+			            else { echo "      <option value=\"YSF$ysfHost[0]\">YSF$ysfHost[0] - ".htmlspecialchars($ysfHost[1])." - ".htmlspecialchars($ysfHost[2])."</option>\n"; }
                 }
               }
               fclose($ysfHosts);
@@ -108,8 +107,8 @@ if ( $testMMDVModeYSF == 1 ) {
                         $ysfHostsLine = fgets($fcsHosts);
                         $ysfHost = preg_split('/;/', $ysfHostsLine);
                         if (substr($ysfHost[0], 0, 3) == "FCS") {
-                                if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
-                                else { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
+                                if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
+                                else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
                         }
                 }
                 fclose($fcsHosts);
