@@ -31,6 +31,34 @@ if ( $testMMDVModeYSF == 1 ) {
           <td>
             <select name="ysfLinkHost">
             <?php
+	      if (isset($configysfgateway['Network']['Startup'])) {
+                $testYSFHost = $configysfgateway['Network']['Startup'];
+                echo "      <option value=\"none\">None</option>\n";
+        	}
+        else {
+                $testYSFHost = "none";
+                echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
+    		}
+		if ($testYSFHost == "ZZ Parrot")  {
+			echo "      <option value=\"00001,ZZ Parrot\" selected=\"selected\">YSF00001 - Parrot</option>\n";
+		} else {
+			echo "      <option value=\"00001,ZZ Parrot\">YSF00001 - Parrot</option>\n";
+		}
+		if ($testYSFHost == "YSF2DMR")  {
+			echo "      <option value=\"00002,YSF2DMR\"  selected=\"selected\">YSF00002 - Link YSF2DMR</option>\n";
+		} else {
+			echo "      <option value=\"00002,YSF2DMR\">YSF00002 - Link YSF2DMR</option>\n";
+		}
+		if ($testYSFHost == "YSF2NXDN") {
+			echo "      <option value=\"00003,YSF2NXDN\" selected=\"selected\">YSF00003 - Link YSF2NXDN</option>\n";
+		} else {
+			echo "      <option value=\"00003,YSF2NXDN\">YSF00003 - Link YSF2NXDN</option>\n";
+		}
+		if ($testYSFHost == "YSF2P25")  {
+			echo "      <option value=\"00004,YSF2P25\"  selected=\"selected\">YSF00004 - Link YSF2P25</option>\n";
+		} else {
+			echo "      <option value=\"00004,YSF2P25\">YSF00004 - Link YSF2P25</option>\n";
+		}
 	      $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r");
               while (!feof($ysfHosts)) {
                 $ysfHostsLine = fgets($ysfHosts);
