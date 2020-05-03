@@ -42,6 +42,18 @@ if ( $testMMDVModeYSF == 1 ) {
                 }
               }
               fclose($ysfHosts);
+	      if (file_exists("/usr/local/etc/FCSHosts.txt")) {
+                $fcsHosts = fopen("/usr/local/etc/FCSHosts.txt", "r");
+                while (!feof($fcsHosts)) {
+                        $ysfHostsLine = fgets($fcsHosts);
+                        $ysfHost = preg_split('/;/', $ysfHostsLine);
+                        if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
+                                if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
+                                else { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
+                        }
+                }
+                fclose($fcsHosts);
+              }
             ?>
           </td>
           <td>
