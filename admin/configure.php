@@ -2124,6 +2124,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		unset($configdmrgateway['XLX Network 2']);
 	}
 
+	// Add P25Gateway Options
+	$p25GatewayVer = exec("P25Gateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($p25GatewayVer > 20200502) {
+		if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
+		if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
+	}
+
+	// Add NXDNGateway Options
+	$nxdnGatewayVer = exec("NXDNGateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($nxdnGatewayVer > 20200502) {
+		if (!isset($confignxdngateway['Remote Commands']['Enable'])) { $confignxdngateway['Remote Commands']['Enable'] = "1"; }
+		if (!isset($confignxdngateway['Remote Commands']['Port'])) { $confignxdngateway['Remote Commands']['Port'] = "6075"; }
+	}
+
 	// Migrate YSFGateway Config
 	$ysfGatewayVer = exec("YSFGateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($ysfGatewayVer > 20180303) {
