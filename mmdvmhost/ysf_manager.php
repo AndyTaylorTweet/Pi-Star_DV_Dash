@@ -20,9 +20,9 @@ if ( $testMMDVModeYSF == 1 ) {
       if (preg_match('/[^A-Za-z0-9]/',$_POST['ysfLinkHost'])) { unset ($_POST['ysfLinkHost']);}
       if ($_POST["Link"] == "LINK") {
 	if ($_POST['ysfLinkHost'] == "none") {
-	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
+	  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 	} else {
-	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." Link".$_POST['ysfLinkHost'];
+	  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Link".$_POST['ysfLinkHost'];
 	}
       } elseif ($_POST["Link"] == "UNLINK") {
 	$remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
