@@ -22,7 +22,7 @@ if ( $testMMDVModeYSF == 1 ) {
 	if ($_POST['ysfLinkHost'] == "none") {
 	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 	} else {
-	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." ".$_POST['ysfLinkHost'];
+	  $remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." Link".$_POST['ysfLinkHost'];
 	}
       } elseif ($_POST["Link"] == "UNLINK") {
 	$remoteCommand = "sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
