@@ -175,12 +175,6 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 			include 'mmdvmhost/ysf_manager.php';		// YSF Links
 			echo '</div>'."\n";
 		}
-		if ($_SERVER["PHP_SELF"] == "/admin/index.php") {	// Admin Only Option
-			echo '<div id="ysfControl">'."\n";
-			include 'mmdvmhost/ysf_manager.php';
-			echo '</div>'."\n";
-			echo "<br />\n";
-		}
 	}
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
