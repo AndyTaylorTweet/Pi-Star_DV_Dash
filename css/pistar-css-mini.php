@@ -391,10 +391,7 @@ input.toggle-round-flat:checked + label:after {
 }
 
 /* Tame Firefox Buttons */
-button::-moz-focus-inner,
-input[type="button"]::-moz-focus-inner,
-input[type="submit"]::-moz-focus-inner,
-input[type="reset"]::-moz-focus-inner {
-    padding: 0 !important;
-    border: 0 none !important;
+button::-moz-focus-inner {
+    border:0;
+    padding:0;
 }
