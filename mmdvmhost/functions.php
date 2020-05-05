@@ -930,22 +930,22 @@ function getActualLink($logLines, $mode) {
                   $to = substr($logLine, 51, 5);
                }
                if (strpos($logLine,"Disconnect via DTMF")) {
-                  $to = "not linked";
+                  $to = "Not Linked";
                }
                if (strpos($logLine,"Opening YSF network connection")) {
-                  $to = "not linked";
+                  $to = "Not Linked";
                }
 	       if (strpos($logLine,"Link has failed")) {
-                  $to = "not linked";
+                  $to = "Not Linked";
                }
                if (strpos($logLine,"DISCONNECT Reply")) {
-                  $to = "not linked";
+                  $to = "Not Linked";
                }
                if ($to !== "") {
                   return $to;
                }
             }
-            return "not linked";
+            return "Not Linked";
          } else {
             return "Service Not Started";
          }
