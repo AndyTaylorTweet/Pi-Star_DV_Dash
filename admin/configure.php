@@ -3977,7 +3977,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 <?php
 	if (file_exists('/etc/nxdngateway')) {
 		$nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
-		if (isset($confignxdngateway['Network']['Startup'])) { $testNXDNHost = $confignxdngateway['Network']['Startup']; } else { $testNXDNHost == ""; }
+		if (isset($confignxdngateway['Network']['Startup'])) { $testNXDNHost = $confignxdngateway['Network']['Startup']; } else { $testNXDNHost = ""; }
 		if ($testNXDNHost == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
 	        else { echo "      <option value=\"none\">None</option>\n"; }
 		if ($testNXDNHost == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
