@@ -395,9 +395,19 @@ input.toggle-round-flat:checked + label:after {
 }
 
 /* Tame Firefox Buttons */
-button::-moz-focus-inner {
-    border:0;
-    padding:0;
+@-moz-document url-prefix() {
+    select,
+    input {
+        margin : 0;
+        padding : 0;
+        border-width : 1px;
+        font : 12px verdana,arial,sans-serif;
+    }
+    input[type="button"], button, input[type="submit"] {
+        padding : 0px 3px 0px 3px;
+        border-radius : 3px 3px 3px 3px;
+        -moz-border-radius : 3px 3px 3px 3px;
+    }
 }
 
 /* Aria CSS Here
