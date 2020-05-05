@@ -3719,7 +3719,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
                 while (!feof($fcsHosts)) {
                         $ysfHostsLine = fgets($fcsHosts);
                         $ysfHost = preg_split('/;/', $ysfHostsLine);
-                        if ((strpos($ysfHost[0], '#') === FALSE ) && ($ysfHost[0] != '')) {
+			if (substr($ysfHost[0], 0, 3) == "FCS") {
                                 if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
                                 else { echo "      <option value=\"$ysfHost[0],$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
                         }
