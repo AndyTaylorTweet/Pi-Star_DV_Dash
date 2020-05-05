@@ -394,6 +394,15 @@ input.toggle-round-flat:checked + label:after {
     background-color: #<?php echo $backgroundBanners; ?>;
 }
 
+/* Tame Firefox Buttons */
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner {
+    padding: 0 !important;
+    border: 0 none !important;
+}
+
 /* Aria CSS Here
 [role="checkbox"] {
     padding:5px;
