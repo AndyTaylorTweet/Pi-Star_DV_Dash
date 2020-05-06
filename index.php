@@ -173,6 +173,12 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 			include 'mmdvmhost/p25_manager.php';		// P25 Links
 		}
 	}
+	$testMMDVModeNXDNnet = getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
+        if ( $testMMDVModeNXDNnet == 1 ) {				// If NXDN network is enabled, add these extra features.
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 	// Admin Only Option
+			include 'mmdvmhost/nxdn_manager.php';		// NXDN Links
+		}
+	}
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
 	echo '  $("#localTxs").load("/mmdvmhost/localtx.php",function(){ setTimeout(reloadLocalTx,1500) });'."\n";
