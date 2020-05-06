@@ -5,7 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Check if YSF is Enabled
-$testMMDVModeYSF = getConfigItem("System Fusion", "Enable", $mmdvmconfigs);
+$testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModeYSF == 1 ) {
 
   //Load the ysfgateway config file
