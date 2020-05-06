@@ -66,27 +66,28 @@ if ( $testMMDVModeP25 == 1 ) {
             <?php
               $testP25Host = $configp25gateway['Network']['Startup'];
               if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
-                    else { echo "      <option value=\"none\">None</option>\n"; }
+              else { echo "      <option value=\"none\">None</option>\n"; }
               if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
-                    else { echo "      <option value=\"10\">10 - Parrot</option>\n"; }
-                    while (!feof($p25Hosts)) {
-                            $p25HostsLine = fgets($p25Hosts);
-                            $p25Host = preg_split('/\s+/', $p25HostsLine);
-                            if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
-                                    if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
-                                    else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
-                            }
-                    }
-                    fclose($p25Hosts);
-                    if (file_exists('/usr/local/etc/P25HostsLocal.txt')) {
-                $p25Hosts2 = fopen("/usr/local/etc/P25HostsLocal.txt", "r");
+              else { echo "      <option value=\"10\">10 - Parrot</option>\n"; }
+	      $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
+              while (!feof($p25Hosts)) {
+              	$p25HostsLine = fgets($p25Hosts);
+                $p25Host = preg_split('/\s+/', $p25HostsLine);
+                if ((strpos($p25Host[0], '#') === FALSE ) && ($p25Host[0] != '')) {
+                	if ($testP25Host == $p25Host[0]) { echo "      <option value=\"$p25Host[0]\" selected=\"selected\">$p25Host[0] - $p25Host[1]</option>\n"; }
+                        else { echo "      <option value=\"$p25Host[0]\">$p25Host[0] - $p25Host[1]</option>\n"; }
+                }
+              }
+              fclose($p25Hosts);
+              if (file_exists('/usr/local/etc/P25HostsLocal.txt')) {
+              	$p25Hosts2 = fopen("/usr/local/etc/P25HostsLocal.txt", "r");
                 while (!feof($p25Hosts2)) {
-                              $p25HostsLine2 = fgets($p25Hosts2);
-                              $p25Host2 = preg_split('/\s+/', $p25HostsLine2);
-                              if ((strpos($p25Host2[0], '#') === FALSE ) && ($p25Host2[0] != '')) {
-                                      if ($testP25Host == $p25Host2[0]) { echo "      <option value=\"$p25Host2[0]\" selected=\"selected\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
-                                      else { echo "      <option value=\"$p25Host2[0]\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
-                              }
+                	$p25HostsLine2 = fgets($p25Hosts2);
+                        $p25Host2 = preg_split('/\s+/', $p25HostsLine2);
+                        if ((strpos($p25Host2[0], '#') === FALSE ) && ($p25Host2[0] != '')) {
+                        	if ($testP25Host == $p25Host2[0]) { echo "      <option value=\"$p25Host2[0]\" selected=\"selected\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
+                                else { echo "      <option value=\"$p25Host2[0]\">$p25Host2[0] - $p25Host2[1]</option>\n"; }
+                        }
                 }
                 fclose($p25Hosts2);
               }
