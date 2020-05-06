@@ -65,7 +65,6 @@ if ( $testMMDVModeP25 == 1 ) {
             <select name="p25LinkHost">
             <?php
 	      if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; } else { $testP25Host = "none"; }
-              $testP25Host = $configp25gateway['Network']['Startup'];
               if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
               else { echo "      <option value=\"none\">None</option>\n"; }
               if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
