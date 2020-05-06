@@ -167,6 +167,12 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 			include 'mmdvmhost/ysf_manager.php';		// YSF Links
 		}
 	}
+	$testMMDVModeP25net = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
+        if ( $testMMDVModeP25net == 1 ) {				// If P25 network is enabled, add these extra features.
+		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 	// Admin Only Option
+			include 'mmdvmhost/p25_manager.php';		// P25 Links
+		}
+	}
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadLocalTx(){'."\n";
 	echo '  $("#localTxs").load("/mmdvmhost/localtx.php",function(){ setTimeout(reloadLocalTx,1500) });'."\n";
