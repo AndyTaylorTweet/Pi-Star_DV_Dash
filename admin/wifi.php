@@ -112,9 +112,11 @@ switch($page) {
 				$strSignalLevel = $result[1]; }
 				if (preg_match('/signal:\ (-[0-9]+ dBm)/i',$strWlan0,$result)) {
 				$strSignalLevel = $result[1]; }
-				if (preg_match('/Frequency:([0-9].[0-9][0-9][0-9])/i',$strWlan0,$result)) {
+				if (preg_match('/Frequency:([0-9.]+ GHz)/i',$strWlan0,$result)) {
                                 $strWifiFreq = $result[1];
-                                $strWifiChan = ConvertToChannel(str_replace(".", "", $strWifiFreq)); }
+				$strWifiChan = str_replace(" GHz", "", $strWifiFreq);
+                                $strWifiChan = str_replace(".", "", $strWifiChan);
+				ConvertToChannel(str_replace(".", "", $strWifiFreq)); }
 		}
 		else {
 			$strStatus = '<span style="color:red">Interface is down</span>';
