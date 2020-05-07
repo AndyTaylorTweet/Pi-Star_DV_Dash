@@ -37,7 +37,7 @@ switch($page) {
 		$strTxPower = NULL;
 		$strLinkQuality = NULL;
 		$strSignalLevel = NULL;
-		$strWifiChan = NULL;
+		$strWifiFreq = NULL;
 
 		exec('ifconfig wlan0',$return);
 		exec('iwconfig wlan0',$return);
@@ -111,8 +111,9 @@ switch($page) {
 				$strSignalLevel = $result[1]; }
 				if (preg_match('/signal:\ (-[0-9]+ dBm)/i',$strWlan0,$result)) {
 				$strSignalLevel = $result[1]; }
-				if (preg_match('/Frequency:([0-9\.]+ GHz)/i',$strWlan0,$result)) {
-				$strWifiChan = $result[1]; }
+				if (preg_match('/Frequency:([0-9\.])/i',$strWlan0,$result)) {
+				$strWifiFreq = $result[1];
+				$strWifiChan = ConvertToChannel($strWifiFreq); }
 		}
 		else {
 			$strStatus = '<span style="color:red">Interface is down</span>';
@@ -175,7 +176,7 @@ switch($page) {
 <br />';
 if ($strTxPower) { echo '&nbsp;Transmit Power : ' . $strTxPower .'<br />'."\n"; } else { echo "<br />\n"; }
 if ($strLinkQuality) { echo '&nbsp;&nbsp;&nbsp;Link Quality : ' . $strLinkQuality . '<br />'."\n"; } else { echo "<br />\n"; }
-if ($strWifiChan) { echo '&nbsp;&nbsp;&nbsp;Channel Info : ' . $strWifiChan . '<br />'."\n"; } else { echo "<br />\n"; }
+if ($strWifiFreq) { echo '&nbsp;&nbsp;&nbsp;Channel Info : ' . $strWifiFreq . ' GHz / ' . $strWifiChan . '<br />'."\n"; } else { echo "<br />\n"; }
 if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
         exec('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf', $wifiCountryArr);
         }
