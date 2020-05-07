@@ -38,6 +38,7 @@ switch($page) {
 		$strLinkQuality = NULL;
 		$strSignalLevel = NULL;
 		$strWifiFreq = NULL;
+		$strWifiChan = NULL;
 
 		exec('ifconfig wlan0',$return);
 		exec('iwconfig wlan0',$return);
@@ -111,7 +112,7 @@ switch($page) {
 				$strSignalLevel = $result[1]; }
 				if (preg_match('/signal:\ (-[0-9]+ dBm)/i',$strWlan0,$result)) {
 				$strSignalLevel = $result[1]; }
-				if (preg_match('/Frequency:([0-9\.])/i',$strWlan0,$result)) {
+				if (preg_match('/Frequency:([0-9.])/i',$strWlan0,$result)) {
 				$strWifiFreq = $result[1];
 				$strWifiChan = ConvertToChannel($strWifiFreq); }
 		}
