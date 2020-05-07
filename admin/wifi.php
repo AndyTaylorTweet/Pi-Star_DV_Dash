@@ -116,7 +116,7 @@ switch($page) {
                                 $strWifiFreq = $result[1];
 				$strWifiChan = str_replace(" GHz", "", $strWifiFreq);
                                 $strWifiChan = str_replace(".", "", $strWifiChan);
-				$strWifiChan = ConvertToChannel(str_replace(".", "", $strWifiFreq)); }
+				$strWifiChan = ConvertToChannel(str_replace(".", "", $strWifiChan)); }
 		}
 		else {
 			$strStatus = '<span style="color:red">Interface is down</span>';
