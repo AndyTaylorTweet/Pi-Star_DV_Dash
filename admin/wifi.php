@@ -179,7 +179,11 @@ switch($page) {
 <br />';
 if ($strTxPower) { echo '&nbsp;Transmit Power : ' . $strTxPower .'<br />'."\n"; } else { echo "<br />\n"; }
 if ($strLinkQuality) { echo '&nbsp;&nbsp;&nbsp;Link Quality : ' . $strLinkQuality . '<br />'."\n"; } else { echo "<br />\n"; }
-if ($strWifiFreq) { echo '&nbsp;&nbsp;&nbsp;Channel Info : ' . $strWifiChan . ' (' . $strWifiFreq . ')<br />'."\n"; } else { echo "<br />\n"; }
+if (($strWifiFreq) && ($strWifiChan) && ($strWifiChan != "Invalid Channel")) {
+	echo '&nbsp;&nbsp;&nbsp;Channel Info : ' . $strWifiChan . ' (' . $strWifiFreq . ')<br />'."\n";
+} else {
+	echo "<br />\n";
+}
 if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
         exec('grep "country" /etc/wpa_supplicant/wpa_supplicant.conf', $wifiCountryArr);
         }
