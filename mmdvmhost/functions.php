@@ -527,15 +527,15 @@ function getHeardList($logLines) {
 				$loss = "0%";
 				if (array_key_exists(4,$lineTokens) && startsWith($lineTokens[4],"RSSI")) {
 					$rssi = substr($lineTokens[4], 6);
-					$rssi = substr($rssi, strrpos($rssi,'/')+1); //average only
-					$relint = intval($rssi) + 93;
+					$dBraw = substr($rssi, strrpos($rssi,'/')+1); //average only
+					$relint = intval($dBraw) + 93;
 					$signal = round(($relint/6)+9, 0);
 					if ($signal < 0) $signal = 0;
 					if ($signal > 9) $signal = 9;
 					if ($relint > 0) {
-						$rssi = "S{$signal}+{$relint}dB";
+						$rssi = "S{$signal}+{$relint}dB ({$dBraw})";
 					} else {
-						$rssi = "S{$signal}";
+						$rssi = "S{$signal} ({$dBraw})";
 					}
 				}
 			} else {
