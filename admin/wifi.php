@@ -108,7 +108,7 @@ switch($page) {
 				        $strLinkQuality = $result[1];
                                         if (strpos($strLinkQuality, "/")) {
                                                 $arrLinkQuality = explode("/", $strLinkQuality);
-                                                $strLinkQuality = number_format(($arrLinkQuality[0] / $arrLinkQuality[1]) * 100)."&#37;";
+                                                $strLinkQuality = number_format(($arrLinkQuality[0] / $arrLinkQuality[1]) * 100)." &#37;";
                                         }
                                 }
 				if (preg_match('/Signal Level=(-[0-9]+ dBm)/i',$strWlan0,$result)) {
