@@ -105,7 +105,7 @@ function ConvertToChannel($freq) {
 		"4960" => "5.0GHz Ch192",
 		"4980" => "5.0GHz Ch196"
 	);
-	if ($wifiFreqToChan[$freq]) { return $wifiFreqToChan[$freq]; }
+	if (array_key_exists($freq, $wifiFreqToChan)) { return $wifiFreqToChan[$freq]; }
 	else { return "Invalid Channel"; }
 }
 
