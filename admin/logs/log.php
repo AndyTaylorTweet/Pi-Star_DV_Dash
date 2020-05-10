@@ -1,15 +1,20 @@
 <?php
 // Load the language support
-require_once('config/language.php');
+require_once('../config/language.php');
 // Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
 $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 // Load the Version Info
-require_once('config/version.php');
+require_once('../config/version.php');
+if (!isset($_GET["log"])) {
+  $log = "MMDVMHost";
+} else {
+  $log = $_GET["log"];
+}
 
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/logs/log.php") {
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
@@ -20,15 +25,35 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     //$_SESSION['offset'] = 0;
   }
 
+  switch ($log) {
+    case "MMDVMHost":
+      $logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
+      break;
+    case "DStarRepeater":
+      $logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
+      break;
+    case "DMRGateway":
+      $logfile = "/var/log/pi-star/DMRGateway-".gmdate('Y-m-d').".log";
+      break;
+    case "YSFGateway":
+      $logfile = "/var/log/pi-star/YSFGateway-".gmdate('Y-m-d').".log";
+      break;
+    case "ircDDBGateway":
+      $logfile = "/var/log/pi-star/ircDDBGateway-".gmdate('Y-m-d').".log";
+      break;
+    case "P25Gateway":
+      $logfile = "/var/log/pi-star/P25Gateway-".gmdate('Y-m-d').".log";
+      break;
+    case "NXDNGateway":
+      $logfile = "/var/log/pi-star/NXDNGateway-".gmdate('Y-m-d').".log";
+      break;
+    case "DAPNETGateway":
+      $logfile = "/var/log/pi-star/DAPNETGateway-".gmdate('Y-m-d').".log";
+      break;
+  }
+
   if (isset($_GET['ajax'])) {
     //session_start();
-    if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-      $logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
-    }
-    elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
-      if (file_exists("/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log")) {$logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";}
-      if (file_exists("/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log")) {$logfile = "/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log";}
-    }
     
     if (empty($logfile) || !file_exists($logfile)) {
       exit();
@@ -64,16 +89,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
     <meta name="KeyWords" content="Pi-Star" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <meta http-equiv="Expires" content="0" />
-    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['live_logs'];?></title>
-    <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
+    <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['live_logs']." ".$log?></title>
+    <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="http://creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
     <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
-        $.get('/admin/live_modem_log.php?ajax', function(data) {
+        $.get('/admin/logs/log.php?log=<?php echo "$log";?>&ajax', function(data) {
           if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
           var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;
@@ -87,22 +112,24 @@ if ($_SERVER["PHP_SELF"] == "/admin/live_modem_log.php") {
   </head>
   <body>
   <div class="container">
-  <div class="header">
-  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
-  <h1>Pi-Star <?php echo $lang['digital_voice']." - ".$lang['live_logs'];?></h1>
-  <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
-    <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
-    <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
-    <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
-    <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
-  </p>
-  </div>
+  <?php include './header-menu.inc'; ?>
   <div class="contentwide">
   <table width="100%">
-  <tr><th><?php echo $lang['live_logs'];?></th></tr>
-  <tr><td align="left"><div id="tail">Starting logging, please wait...<br /></div></td></tr>
-  <tr><th>Download the log: <a href="/admin/download_modem_log.php" style="color: #ffffff;">here</a></th></tr>
+  <tr><th><?php echo $lang['live_logs']." ".$log;?></th></tr>
+  <tr><td align="left"><div id="tail">Starting <?php echo $log;?> logging, please wait...<br />
+  <?php
+    if (!file_exists($logfile)) {
+      print "File $logfile not found!";
+    }
+  ?>
+  </div></td></tr>
+  <?php
+    if (file_exists($logfile)) {
+  ?>
+  <tr><th>Download the log: <a href="/admin/logs/download_log.php?log=<?php echo $log;?>" style="color: #ffffff;">here</a></th></tr>
+  <?php
+    }
+  ?>
   </table>
   </div>
   <div class="footer">

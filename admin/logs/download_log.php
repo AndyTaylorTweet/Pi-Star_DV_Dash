@@ -1,11 +1,30 @@
 <?php
-if ($_SERVER["PHP_SELF"] == "/admin/download_modem_log.php") {
-	if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-		$logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
-	}
-	elseif (file_exists('/etc/dstar-radio.dstarrepeater')) {
-		if (file_exists("/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log")) {$logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";}
-		if (file_exists("/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log")) {$logfile = "/var/log/pi-star/dstarrepeaterd-".gmdate('Y-m-d').".log";}
+if ($_SERVER["PHP_SELF"] == "/admin/logs/download_log.php") {
+	switch ($_GET["log"]) {
+		case "MMDVMHost":
+			$logfile = "/var/log/pi-star/MMDVM-".gmdate('Y-m-d').".log";
+			break;
+		case "DStarRepeater":
+			$logfile = "/var/log/pi-star/DStarRepeater-".gmdate('Y-m-d').".log";
+			break;
+		case "DMRGateway":
+			$logfile = "/var/log/pi-star/DMRGateway-".gmdate('Y-m-d').".log";
+			break;
+		case "ircDDBGateway":
+			$logfile = "/var/log/pi-star/ircDDBGateway-".gmdate('Y-m-d').".log";
+			break;
+		case "YSFGateway":
+			$logfile = "/var/log/pi-star/YSFGateway-".gmdate('Y-m-d').".log";
+			break;
+		case "P25Gateway":
+			$logfile = "/var/log/pi-star/P25Gateway-".gmdate('Y-m-d').".log";
+			break;
+		case "NXDNGateway":
+			$logfile = "/var/log/pi-star/NXDNGateway-".gmdate('Y-m-d').".log";
+			break;
+		case "DAPNETGateway":
+			$logfile = "/var/log/pi-star/DAPNETGateway-".gmdate('Y-m-d').".log";
+			break;
 	}
 
 	$unixfile = file_get_contents($logfile);
