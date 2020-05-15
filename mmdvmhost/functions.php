@@ -964,12 +964,12 @@ function getActualLink($logLines, $mode) {
                if (strpos($logLine,"Linked to")) {
                   $to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
                   $to = preg_replace('/[^0-9]/', '', $to);
-                  return "Linked to: TG".$to;
+                  return "Linked to TG".$to;
                }
                if (strpos($logLine,"Linked at start")) {
                   $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
                   $to = preg_replace('/[^0-9]/', '', $to);
-                  return "Linked to: TG".$to;
+                  return "Linked to TG".$to;
                }
 	       if (strpos($logLine,"Starting NXDNGateway")) {
                   return "Not Linked";
@@ -999,12 +999,12 @@ function getActualLink($logLines, $mode) {
                if (strpos($logLine,"Linked to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 44, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
-		  return "Linked to: TG".$to;
+		  return "Linked to TG".$to;
                }
                if (strpos($logLine,"Linked at startup to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
-		  return "Linked to: TG".$to;
+		  return "Linked to TG".$to;
                }
 	       if (strpos($logLine,"Starting P25Gateway")) {
                   return "Not Linked";
