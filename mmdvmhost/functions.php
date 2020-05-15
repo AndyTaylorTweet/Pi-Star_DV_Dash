@@ -146,7 +146,7 @@ function showMode($mode, $mmdvmconfigs) {
 		if ( (isProcessRunning("MMDVMHost")) && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25")) ) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\"";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
 		}
 	}
 	elseif ( ($mode == "DMR XMode") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
