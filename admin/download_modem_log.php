@@ -18,9 +18,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/download_modem_log.php") {
 	header('Cache-Control: private', false);
 	header('Content-Type: text/plain');
 	if ($hostNameInfo != "pi-star") {
-		header('Content-Disposition: attachment; filename="Pi-Star_'.basename($logfile).'";');
-	} else {
 		header('Content-Disposition: attachment; filename="Pi-Star_'.$hostNameInfo.'_'.basename($logfile).'";');
+	} else {
+		header('Content-Disposition: attachment; filename="Pi-Star_'.basename($logfile).'";');
 	}
 	header('Content-Length: '.filesize($logfile));
 	header('Accept-Ranges: bytes');
