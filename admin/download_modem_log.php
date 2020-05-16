@@ -10,13 +10,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/download_modem_log.php") {
 
 	$unixfile = file_get_contents($logfile);
 	$dosfile = str_replace("\n", "\r\n", $unixfile);
+	$hostNameInfo = exec('cat /etc/hostname');
 
 	header('Pragma: public');
 	header('Expires: 0');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Cache-Control: private', false);
 	header('Content-Type: text/plain');
-	header('Content-Disposition: attachment; filename="Pi-Star_'.basename($logfile).'";');
+	if ($hostNameInfo != "pi-star") {
+		header('Content-Disposition: attachment; filename="Pi-Star_'.basename($logfile).'";');
+	} else {
+		header('Content-Disposition: attachment; filename="Pi-Star_'.$hostNameInfo.'_'.basename($logfile).'";');
+	}
 	header('Content-Length: '.filesize($logfile));
 	header('Accept-Ranges: bytes');
 
