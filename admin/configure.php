@@ -2937,13 +2937,12 @@ else:
 	    <option <?php if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "") ) {echo 'selected="selected" ';}; ?>value="None">None</option>
 	    <option <?php if ($configmmdvm['Nextion']['Port'] == "modem") {echo 'selected="selected" ';}; ?>value="modem">Modem</option>
 	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyAMA0") {echo 'selected="selected" ';}; ?>value="/dev/ttyAMA0">/dev/ttyAMA0</option>
-	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyUSB0") {echo 'selected="selected" ';}; ?>value="/dev/ttyUSB0">/dev/ttyUSB0</option>
-	    <?php if (file_exists('/dev/ttyS2')) { ?>
-	    	<option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyS2") {echo 'selected="selected" ';}; ?>value="/dev/ttyS2">/dev/ttyS2</option>
-    	    <?php } ?>
-	    <?php if (file_exists('/dev/ttyNextionDriver')) { ?>
-	    	<option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyNextionDriver") {echo 'selected="selected" ';}; ?>value="/dev/ttyNextionDriver">/dev/ttyNextionDriver</option>
-    	    <?php } ?>
+	    <?php if (file_exists('/dev/ttyUSB0')) $ACT=""; else $ACT=" (not present now)"; ?>
+	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyUSB0") {echo 'selected="selected" ';}; ?>value="/dev/ttyUSB0">/dev/ttyUSB0<?php print $ACT; ?></option>
+	    <?php if (file_exists('/dev/ttyS2')) $ACT=""; else $ACT=" (not present now)"; ?>
+	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyS2") {echo 'selected="selected" ';}; ?>value="/dev/ttyS2">/dev/ttyS2<?php print $ACT; ?></option>
+	    <?php if (file_exists('/dev/ttyNextionDriver')) $ACT=""; else $ACT=" (not active now)"; ?>
+	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyNextionDriver") {echo 'selected="selected" ';}; ?>value="/dev/ttyNextionDriver">/dev/ttyNextionDriver<?php print $ACT; ?></option>
 	    </select>
 	    Nextion Layout: <select name="mmdvmNextionDisplayType">
 	    <option <?php if ($configmmdvm['Nextion']['ScreenLayout'] == "0") {echo 'selected="selected" ';}; ?>value="G4KLX">G4KLX</option>
