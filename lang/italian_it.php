@@ -28,6 +28,7 @@ $lang = array (
   "p25_config"                  =>  "P25 Config",
   "nxdn_config"                 =>  "NXDN Config",
   "pocsag_config"               =>  "POCSAG Config",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Wireless Config",
   "fw_config"                   =>  "Firewall Config",
   "remote_access_pw"            =>  "Password Accesso Remoto",
@@ -92,6 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "Room NXDN Di Partenza",
   "nxdn_ran"                     =>  "NXDN RAN",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Accesso Cruscotto",
   "fw_irc"                      =>  "ircDDBGateway Remote",

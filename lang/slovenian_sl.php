@@ -28,6 +28,7 @@ $lang = array (
   "p25_config"                  =>  "Nastavitve P25",
   "nxdn_config"                 =>  "Nastavitve NXDN",
   "pocsag_config"               =>  "Nastavitve POCSAG",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Nastavitve brezžičnega omrežja",
   "fw_config"                   =>  "Nastavitve požarnega zidu",
   "remote_access_pw"            =>  "Geslo za oddaljeni dostop",
@@ -92,6 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN zagonski gostitelj",
   "nxdn_ran"                     =>  "NXDN RAN",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Dostop do nadzorne plošče",
   "fw_irc"                      =>  "Dostop ircDDBGateway",

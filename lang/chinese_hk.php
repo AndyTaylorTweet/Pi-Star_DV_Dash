@@ -29,6 +29,7 @@ $lang = array (
   "p25_config"                  =>  "P25 設定",
   "nxdn_config"                 =>  "NXDN 設定",
   "pocsag_config"               =>  "POCSAG 設定",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "fw_config"                   =>  "防火墻設定",
   "remote_access_pw"            =>  "遠程訪問密碼",
   // Config Page - Section General
@@ -92,6 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN 默認服務器",
   "nxdn_ran"                     =>  "NXDN RAN",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "儀表盤訪問",
   "fw_irc"                      =>  "ircDDBGateway 遠程",

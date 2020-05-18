@@ -28,6 +28,7 @@ $lang = array (
   "p25_config"                  =>  "ตั้งค่า P25",
   "nxdn_config"                 =>  "ตั้งค่า NXDN",
   "pocsag_config"               =>  "ตั้งค่า POCSAG",
+  "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "ตั้งค่าวายฟาย",
   "fw_config"                   =>  "ตั้งค่าระบบป้องกัน",
   "remote_access_pw"            =>  "ตั้งรหัสผ่าน",
@@ -92,6 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN Startup Host",
   "nxdn_ran"                     =>  "NXDN RAN",
+  // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "MobileGPS Enable",
+  "mobilegps_port"              =>  "GPS Port",
+  "mobilegps_speed"             =>  "GPS Port Speed",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "การเข้าถึงแผงควบคุม",
   "fw_irc"                      =>  "การเข้าถึง ircDDBGateway",
