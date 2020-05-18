@@ -2221,8 +2221,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			}
 		}
 		if (empty($_POST['mobilegps_port']) != TRUE ) {
-			$newMobileGPSport = preg_replace('/[^\/a-zA-Z0-9]/', '', $_POST['mobilegps_port']);
-			system('sudo sed -i "/Port=/dev/c\\Port='.$newMobileGPSport.'" /etc/mobilegps');
+			$newMobileGPSport = preg_replace('/[^a-zA-Z0-9]/', '', $_POST['mobilegps_port']);
+			system('sudo sed -i "/Port=/dev/c\\Port=/dev/'.$newMobileGPSport.'" /etc/mobilegps');
 		}
 		if (empty($_POST['mobilegps_speed']) != TRUE ) {
 			$newMobileGPSspeed = preg_replace('/[^0-9]/', '', $_POST['mobilegps_speed']);
@@ -4120,7 +4120,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mobilegps_port'];?>:<span><b>GPS Port</b>The port used by the Mobile GPS service.</span></a></td>
-	<td align="left"><input type="text" name="mobilegps_port" size="13" maxlength="13" value="<?php echo exec('grep "Port=/dev/" /etc/mobilegps | awk -F "=" \'{print $2}\''); ?>" /></td>
+	<td align="left"><select name="mobilegps_port">
+		<option value="<?php echo exec('grep "Port=/dev/" /etc/mobilegps | awk -F "=" \'{print $2}\' | awk -F "/" \'{print $3}\''); ?>" selected="selected"><?php echo exec('grep "Port=/dev/" /etc/mobilegps | awk -F "=" \'{print $2}\''); ?></option>
+		<option value="ttyACM0">/dev/ttyACM0</option>
+		</select></td>
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mobilegps_speed'];?>:<span><b>GPS Port Speed</b>Port speed for the Mobile GPS port.</span></a></td>
