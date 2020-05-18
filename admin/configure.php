@@ -2694,6 +2694,7 @@ else:
 		$toggleWiresXCommandPassthroughCr	= 'onclick="toggleWiresXCommandPassthrough()"';
 		$toggleDstarTimeAnnounceCr		= 'onclick="toggleDstarTimeAnnounce()"';
 		$toggleDstarDplusHostfilesCr		= 'onclick="toggleDstarDplusHostfiles()"';
+		$toggleMobilegps_enableCr		= 'onclick="toggleMobilegps_enable()"';
 	} else {
 		$toggleDMRCheckboxCr			= "";
 		$toggleDSTARCheckboxCr			= "";
@@ -2715,6 +2716,7 @@ else:
 		$toggleWiresXCommandPassthroughCr	= "";
 		$toggleDstarTimeAnnounceCr		= "";
 		$toggleDstarDplusHostfilesCr		= "";
+		$toggleMobilegps_enableCr		= "";
 	}
 ?>
 <form id="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
