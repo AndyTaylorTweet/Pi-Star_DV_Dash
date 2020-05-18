@@ -2221,7 +2221,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			}
 		}
 		if (empty($_POST['mobilegps_port']) != TRUE ) {
-			$newMobileGPSport = preg_replace('/[^a-zA-Z0-9]/', '', $_POST['mobilegps_port']);
+			$newMobileGPSport = preg_replace('/[^a-z0-9]/i', '', $_POST['mobilegps_port']);
 			system('sudo sed -i "/Port=/dev/c\\Port=/dev/'.$newMobileGPSport.'" /etc/mobilegps');
 		}
 		if (empty($_POST['mobilegps_speed']) != TRUE ) {
