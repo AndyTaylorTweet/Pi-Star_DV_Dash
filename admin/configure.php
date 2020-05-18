@@ -2203,13 +2203,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			if (!isset($configmmdvm['Mobile GPS']['Enable'])) { $configmmdvm['Mobile GPS']['Enable'] = "0"; }
 			if (!isset($configmmdvm['Mobile GPS']['Address'])) { $configmmdvm['Mobile GPS']['Address'] = "127.0.0.1"; }
 			if (!isset($configmmdvm['Mobile GPS']['Port'])) { $configmmdvm['Mobile GPS']['Port'] = "7834"; }
-			
+
 			// Clean up MobilGPS config
+			system('sudo sed -i "/Daemon=/c\\Daemon=1" /etc/mobilegps');
 			system('sudo sed -i "/Debug=/c\\Debug=0" /etc/mobilegps');
 			system('sudo sed -i "/DisplayLevel=/c\\DisplayLevel=0" /etc/mobilegps');
 			system('sudo sed -i "/FileLevel=/c\\FileLevel=1" /etc/mobilegps');
 			system('sudo sed -i "/FilePath=/c\\FilePath=/var/log/pi-star" /etc/mobilegps');
-			
+
 			// Enable or Disable MobileGPS
 			if (escapeshellcmd($_POST['mobilegps_enable']) == 'ON' )  {
 				$configmmdvm['Mobile GPS']['Enable'] = "1";
