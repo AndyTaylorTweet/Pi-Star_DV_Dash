@@ -4060,11 +4060,35 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 <?php } ?>
 
 <?php if ( file_exists('/etc/mobilegps') ) { ?>
-    <h2>Mobile GPS</h2>
+    <input type="hidden" name="mobilegps_enable" value="OFF" />
+    <h2><?php echo $lang['mobilegps_config'];?></h2>
     <table>
       <tr>
         <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
         <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mobilegps_enable'];?>:<span><b>MobileGPS</b>Enable the MobileGPS service, this uses a GPS dongle to update the position information in MMDVMHost.</span></a></td>
+	<?php
+	if ( isset($configmmdvm['Mobile GPS']['Enable']) ) {
+		if ( $configmmdvm['Mobile GPS']['Enable'] ) {
+			echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confMobilegps_enable\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"mobilegps_enable\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleMobilegps_enableCr." /><label id=\"aria-toggle-confMobilegps_enable\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Mobile GPS\" aria-checked=\"true\" onKeyPress=\"toggleMobilegps_enable()\" onclick=\"toggleMobilegps_enable()\" for=\"toggle-confMobilegps_enable\"><font style=\"font-size:0px\">Mobile GPS</font></label></div></td>\n";
+		}
+		else {
+			echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confMobilegps_enable\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"mobilegps_enable\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleMobilegps_enableCr." /><label id=\"aria-toggle-confMobilegps_enable\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Mobile GPS\" aria-checked=\"false\" onKeyPress=\"toggleMobilegps_enable()\" onclick=\"toggleMobilegps_enable()\" for=\"toggle-confMobilegps_enable\"><font style=\"font-size:0px\">Mobile GPS</font></label></div></td>\n";
+		}
+	} else {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-confMobilegps_enable\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"mobilegps_enable\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleMobilegps_enableCr." /><label id=\"aria-toggle-confMobilegps_enable\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Mobile GPS\" aria-checked=\"false\" onKeyPress=\"toggleMobilegps_enable()\" onclick=\"toggleMobilegps_enable()\" for=\"toggle-confMobilegps_enable\"><font style=\"font-size:0px\">Mobile GPS</font></label></div></td>\n";
+	}
+	?>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mobilegps_port'];?>:<span><b>GPS Port</b>The port used by the Mobile GPS service.</span></a></td>
+	<td align="left"><input type="text" name="mobilegps_port" size="13" maxlength="13" value="<?php exec('grep "Port" /etc/mobilegps | awk -F "=" \'{print $2}\'') ?>" /></td>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mobilegps_speed'];?>:<span><b>GPS Port Speed</b>Port speed for the Mobile GPS port.</span></a></td>
+	<td align="left"><input type="text" name="mobilegps_speed" size="13" maxlength="6" value="<?php exec('grep "Speed" /etc/mobilegps | awk -F "=" \'{print $2}\'') ?>" /></td>
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
