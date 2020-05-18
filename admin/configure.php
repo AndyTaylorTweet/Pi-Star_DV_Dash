@@ -4057,7 +4057,18 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
-<?php } ?>	
+<?php } ?>
+
+<?php if ( file_exists('/etc/mobilegps') { ?>
+    <h2>Mobile GPS</h2>
+    <table>
+      <tr>
+        <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+        <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+    </table>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
 
 	<h2><?php echo $lang['fw_config'];?></h2>
     <table>
