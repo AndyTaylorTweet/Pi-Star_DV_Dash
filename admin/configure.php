@@ -2203,6 +2203,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			if (!isset($configmmdvm['Mobile GPS']['Enable'])) { $configmmdvm['Mobile GPS']['Enable'] = "0"; }
 			if (!isset($configmmdvm['Mobile GPS']['Address'])) { $configmmdvm['Mobile GPS']['Address'] = "127.0.0.1"; }
 			if (!isset($configmmdvm['Mobile GPS']['Port'])) { $configmmdvm['Mobile GPS']['Port'] = "7834"; }
+			// Add missing lines to YSFGateway Config
+			if (!isset($configysfgateway['Mobile GPS']['Enable'])) { $configysfgateway['Mobile GPS']['Enable'] = "0"; }
+			if (!isset($configysfgateway['Mobile GPS']['Address'])) { $configysfgateway['Mobile GPS']['Address'] = "127.0.0.1"; }
+			if (!isset($configysfgateway['Mobile GPS']['Port'])) { $configysfgateway['Mobile GPS']['Port'] = "7834"; }
+			// Add missing lines to NXDNGateway Config
+			if (!isset($confignxdngateway['Mobile GPS']['Enable'])) { $confignxdngateway['Mobile GPS']['Enable'] = "0"; }
+			if (!isset($confignxdngateway['Mobile GPS']['Address'])) { $confignxdngateway['Mobile GPS']['Address'] = "127.0.0.1"; }
+			if (!isset($confignxdngateway['Mobile GPS']['Port'])) { $confignxdngateway['Mobile GPS']['Port'] = "7834"; }
 
 			// Clean up MobilGPS config
 			system('sudo sed -i "/Daemon=/c\\Daemon=0" /etc/mobilegps');
@@ -2214,9 +2222,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			// Enable or Disable MobileGPS
 			if (escapeshellcmd($_POST['mobilegps_enable']) == 'ON' )  {
 				$configmmdvm['Mobile GPS']['Enable'] = "1";
+				$configysfgateway['Mobile GPS']['Enable'] = "1";
+				$confignxdngateway['Mobile GPS']['Enable'] = "1";
 				system('sudo sed -i "/Enabled=/c\\Enabled=1" /etc/mobilegps');
 			} else {
 				$configmmdvm['Mobile GPS']['Enable'] = "0";
+				$configysfgateway['Mobile GPS']['Enable'] = "0";
+				$confignxdngateway['Mobile GPS']['Enable'] = "0";
 				system('sudo sed -i "/Enabled=/c\\Enabled=0" /etc/mobilegps');
 			}
 		}
