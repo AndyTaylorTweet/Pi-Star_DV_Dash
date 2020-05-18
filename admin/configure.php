@@ -4095,7 +4095,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
-<?php if ( file_exists('/etc/mobilegps') ) { ?>
+<?php if ( file_exists('/etc/mobilegps') && file_exists('/etc/dstar-radio.mmdvmhost') ) { ?>
     <input type="hidden" name="mobilegps_enable" value="OFF" />
     <h2><?php echo $lang['mobilegps_config'];?></h2>
     <table>
