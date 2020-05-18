@@ -4124,7 +4124,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 		<option value="<?php echo exec('grep "Port=/dev/" /etc/mobilegps | awk -F "=" \'{print $2}\' | awk -F "/" \'{print $3}\''); ?>" selected="selected"><?php echo exec('grep "Port=/dev/" /etc/mobilegps | awk -F "=" \'{print $2}\''); ?></option>
 		<?php
 		  exec('ls /dev/ | egrep -h "ttyA|ttyUSB"', $mobileGPSPorts);
-		  foreach(preg_split("/((\r?\n)|(\r\n?))/", $mobileGPSPorts) as $port) {
+		  foreach($mobileGPSPorts as $port) {
 			  echo "		<option value=\"$port\">/dev/$port</option>\n";
 		  }
 		?>
