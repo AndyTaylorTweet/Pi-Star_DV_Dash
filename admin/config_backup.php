@@ -72,6 +72,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 	  $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /etc/mobilegps $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
@@ -166,6 +167,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl stop ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
 			shell_exec('sudo systemctl stop dapnetgateway.service 2>&1');	//DAPNETGateway
+			shell_exec('sudo systemctl stop mobilegps.service 2>&1');	//MobileGPS
 			
 			// Make the disk Writable
 			shell_exec('sudo mount -o remount,rw / 2>&1');
@@ -206,6 +208,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
 			shell_exec('sudo systemctl start dapnetgateway.service 2>&1');		//DAPNETGateway
+			shell_exec('sudo systemctl start mobilegps.service 2>&1');		//MobileGPS
 			shell_exec('sudo systemctl start cron.service 2>&1');			//Cron
 			
 			// Complete
