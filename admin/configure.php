@@ -2196,6 +2196,39 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['POCSAG Network']['Debug'])) { $configmmdvm['POCSAG Network']['Debug'] = "0"; }
 	if (isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
 
+	// MobileGPS Setup
+	if (file_exists('/etc/mobilegps')) {
+		if (empty($_POST['mobilegps_enable']) != TRUE ) {
+			// Add missing lines to MMDVMHost Config
+			if (!isset($configmmdvm['Mobile GPS']['Enable'])) { $configmmdvm['Mobile GPS']['Enable'] = "0"; }
+			if (!isset($configmmdvm['Mobile GPS']['Address'])) { $configmmdvm['Mobile GPS']['Address'] = "127.0.0.1"; }
+			if (!isset($configmmdvm['Mobile GPS']['Port'])) { $configmmdvm['Mobile GPS']['Port'] = "7834"; }
+			
+			// Clean up MobilGPS config
+			system('sudo sed -i "/Debug=/c\\Debug=0" /etc/mobilegps');
+			system('sudo sed -i "/DisplayLevel=/c\\DisplayLevel=0" /etc/mobilegps');
+			system('sudo sed -i "/FileLevel=/c\\FileLevel=1" /etc/mobilegps');
+			system('sudo sed -i "/FilePath=/c\\FilePath=/var/log/pi-star" /etc/mobilegps');
+			
+			// Enable or Disable MobileGPS
+			if (escapeshellcmd($_POST['mobilegps_enable']) == 'ON' )  {
+				$configmmdvm['Mobile GPS']['Enable'] = "1";
+				system('sudo sed -i "/Enabled=/c\\Enabled=1" /etc/mobilegps');
+			} else {
+				$configmmdvm['Mobile GPS']['Enable'] = "0";
+				system('sudo sed -i "/Enabled=/c\\Enabled=0" /etc/mobilegps');
+			}
+		}
+		if (empty($_POST['mobilegps_port']) != TRUE ) {
+			$newMobileGPSport = preg_replace('/[^/a-zA-Z0-9]/', '', $_POST['mobilegps_port']);
+			system('sudo sed -i "/Port=/dev/c\\Port='.$newMobileGPSport.'" /etc/mobilegps');
+		}
+		if (empty($_POST['mobilegps_speed']) != TRUE ) {
+			$newMobileGPSspeed = preg_replace('/[^0-9]/', '', $_POST['mobilegps_speed']);
+			system('sudo sed -i "/Speed=/c\\Speed='.$newMobileGPSspeed.'" /etc/mobilegps');
+		}
+	}
+
 	// Create the hostfiles.nodextra file if required
 	if (empty($_POST['confHostFilesNoDExtra']) != TRUE ) {
 		if (escapeshellcmd($_POST['confHostFilesNoDExtra']) == 'ON' )  {
