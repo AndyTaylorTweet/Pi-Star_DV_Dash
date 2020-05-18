@@ -4059,7 +4059,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
-<?php if ( file_exists('/etc/mobilegps') { ?>
+<?php if ( file_exists('/etc/mobilegps') ) { ?>
     <h2>Mobile GPS</h2>
     <table>
       <tr>
