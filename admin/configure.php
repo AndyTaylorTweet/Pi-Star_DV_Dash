@@ -4086,11 +4086,11 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mobilegps_port'];?>:<span><b>GPS Port</b>The port used by the Mobile GPS service.</span></a></td>
-	<td align="left"><input type="text" name="mobilegps_port" size="13" maxlength="13" value="<?php exec('grep "Port" /etc/mobilegps | awk -F "=" \'{print $2}\''); ?>" /></td>
+	<td align="left"><input type="text" name="mobilegps_port" size="13" maxlength="13" value="<?php echo exec('grep "Port" /etc/mobilegps | awk -F "=" \'{print $2}\''); ?>" /></td>
       </tr>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mobilegps_speed'];?>:<span><b>GPS Port Speed</b>Port speed for the Mobile GPS port.</span></a></td>
-	<td align="left"><input type="text" name="mobilegps_speed" size="13" maxlength="6" value="<?php exec('grep "Speed" /etc/mobilegps | awk -F "=" \'{print $2}\''); ?>" /></td>
+	<td align="left"><input type="text" name="mobilegps_speed" size="13" maxlength="6" value="<?php echo exec('grep "Speed" /etc/mobilegps | awk -F "=" \'{print $2}\''); ?>" /></td>
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
