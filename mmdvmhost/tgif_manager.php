@@ -107,10 +107,10 @@ if ( $testMMDVModeDMR == 1 ) {
       $dmrID = getConfigItem("General", "Id", $mmdvmconfigs);
     }
   }
-}
 
-// Work out if the data has been posted or not
-if ( !empty($_POST) && isset($_POST["tgifSubmit"]) ): // Data has been posted for this page
+
+  // Work out if the data has been posted or not
+  if ( !empty($_POST) && isset($_POST["tgifSubmit"]) ): // Data has been posted for this page
     // Are we a repeater
     if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
         $targetSlot = "1";
@@ -140,7 +140,7 @@ if ( !empty($_POST) && isset($_POST["tgifSubmit"]) ): // Data has been posted fo
     // Clean up...
     unset($_POST);
     echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-else: // Do this when we are not handling post data
+  else: // Do this when we are not handling post data
     echo '<b>TGIF Manager</b>'."\n";
     echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
     echo '<table>
@@ -157,5 +157,6 @@ else: // Do this when we are not handling post data
       <td><input type="submit" value="Modify Reflector" name="tgifSubmit" /></td>
     </tr>
     </table><br />'."\n";
-endif;
-
+  endif;
+}
+?>
