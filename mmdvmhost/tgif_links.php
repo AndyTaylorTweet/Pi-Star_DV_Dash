@@ -62,7 +62,7 @@ if ( $testMMDVModeDMR == 1 ) {
   $jsonrows = count($json)-1;
 
   // Pull the information form JSON
-  if (count($json) > 0) {
+  if ((count($json) > 0) && ($dmrID > 0)) {
     for ($counter = 0; $counter <= $jsonrows; $counter++) {
       $obj = $json[$counter];
       if ($obj->repeater_id == $dmrID) {
