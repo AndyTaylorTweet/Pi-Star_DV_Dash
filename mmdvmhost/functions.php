@@ -347,8 +347,7 @@ function getDVModemFirmware() {
 			$modemFirmware = substr($logLine, 67, 15);
 		}
 		if (strpos($logLine, 'description: MMDVM_HS')) {
-			$modemFirmware = "MMDVM_HS:".substr($logLine, 84, 8);
-			$modemFirmware = ltrim($modemFirmware, 'v');
+			$modemFirmware = "MMDVM_HS:".ltrim(substr($logLine, 84, 8), 'v');
 		}
 		if (strpos($logLine, 'description: MMDVM ')) {
 			$modemFirmware = "MMDVM:".substr($logLine, 73, 8);
@@ -357,31 +356,25 @@ function getDVModemFirmware() {
 			$modemFirmware = "ZUMspot:".strtok(substr($logLine, 83, 12), ' ');
 		}
 		if (strpos($logLine, 'description: MMDVM_MDO ')) {
-			$modemFirmware = "MMDVM_MDO:".strtok(substr($logLine, 85, 12), ' ');
-			$modemFirmware = ltrim($modemFirmware, 'v');
+			$modemFirmware = "MMDVM_MDO:".ltrim(strtok(substr($logLine, 85, 12), ' '), 'v');
 		}
 		if (strpos($logLine, 'description: ZUMspot-')) {
 			$modemFirmware = "ZUMspot:".strtok(substr($logLine, 75, 12), ' ');
 		}
 		if (strpos($logLine, 'description: MMDVM_HS_Hat-')) {
 			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 80, 12), ' ');
-			$modemFirmware = ltrim($modemFirmware, 'v');
 		}
 		if (strpos($logLine, 'description: MMDVM_HS_Dual_Hat-')) {
 			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 85, 12), ' ');
-			$modemFirmware = ltrim($modemFirmware, 'v');
 		}
 		if (strpos($logLine, 'description: D2RG_MMDVM_HS-')) {
 			$modemFirmware = "HS_Hat:".strtok(substr($logLine, 81, 12), ' ');
-			$modemFirmware = ltrim($modemFirmware, 'v');
 		}
 		if (strpos($logLine, 'description: MMDVM_HS-')) {
-			$modemFirmware = "MMDVM_HS:".strtok(substr($logLine, 76, 12), ' ');
-			$modemFirmware = ltrim($modemFirmware, 'v');
+			$modemFirmware = "MMDVM_HS:".ltrim(strtok(substr($logLine, 76, 12), ' '), 'v');
 		}
 		if (strpos($logLine, 'description: Nano_hotSPOT-')) {
-			$modemFirmware = "MMDVM_HS:".strtok(substr($logLine, 80, 12), ' ');
-			$modemFirmware = ltrim($modemFirmware, 'v');
+			$modemFirmware = "MMDVM_HS:".ltrim(strtok(substr($logLine, 80, 12), ' '), 'v');
 		}
 		if (strpos($logLine, 'description: Nano-Spot-')) {
 			$modemFirmware = "NanoSpot:".strtok(substr($logLine, 77, 12), ' ');
