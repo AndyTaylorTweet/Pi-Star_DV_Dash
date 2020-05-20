@@ -93,6 +93,10 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "Startowy Host NXDN",
   "nxdn_ran"                     =>  "NXDN RAN",
+    // Config Page - MobileGPS Configuration
+  "mobilegps_enable"            =>  "Włączony MobileGPS",
+  "mobilegps_port"              =>  "Port GPS",
+  "mobilegps_speed"             =>  "Prędkość portu GPS",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Dostęp Do Tablicy",
   "fw_irc"                      =>  "Zdalny ircDDBGateway",
