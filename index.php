@@ -159,7 +159,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		echo '</div>'."\n";
 	}
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
-                include 'mmdvmhost/bm_manager.php';                     // DMR Link Manager
+                include 'mmdvmhost/bm_manager.php';                     // BM DMR Link Manager
         }
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
 		echo '<script type="text/javascript">'."\n";
@@ -173,6 +173,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 		include 'mmdvmhost/tgif_links.php';			// TGIF Links
 		echo '</div>'."\n";
 	}
+	if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
+                include 'mmdvmhost/tgif_manager.php';			// TGIF DMR Link Manager
+        }
 	$testMMDVModeYSFnet = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
         if ( $testMMDVModeYSFnet == 1 ) {				// If YSF network is enabled, add these extra features.
 		if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 	// Admin Only Option
