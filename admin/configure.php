@@ -3071,6 +3071,7 @@ else:
     <input type="radio" name="urlAuto" value="auto"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) !== FALSE) {echo ' checked="checked"';} ?> />Auto
     <input type="radio" name="urlAuto" value="man"<?php if (strpos($configs['url'], 'www.qrz.com/db/'.$configmmdvm['General']['Callsign']) == FALSE) {echo ' checked="checked"';} ?> />Manual</td>
     </tr>
+<?php if ( (file_exists('/etc/dstar-radio.dstarrepeater')) || (file_exists('/etc/dstar-radio.mmdvmhost')) ) { ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['radio_type'];?>:<span><b>Radio/Modem</b>What kind of radio or modem hardware do you have?</span></a></td>
     <td align="left" colspan="2"><select name="confHardware">
@@ -3124,6 +3125,7 @@ else:
 		<option<?php if ($configModem['Modem']['Hardware'] === 'opengd77') {		echo ' selected="selected"';}?> value="opengd77">OpenGD77 DMR hotspot (USB)</option>
     </select></td>
     </tr>
+<?php } ?>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['node_type'];?>:<span><b>Node Lock</b>Set the public/private node type. Public should only be used with the correct licence.</span></a></td>
     <td align="left" colspan="2">
