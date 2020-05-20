@@ -107,8 +107,9 @@ if ( $testMMDVModeDMR == 1 ) {
       $dmrID = getConfigItem("General", "Id", $mmdvmconfigs);
     }
   }
+}
 
-
+if ( $dmrID ) {
   // Work out if the data has been posted or not
   if ( !empty($_POST) && isset($_POST["tgifSubmit"]) ): // Data has been posted for this page
     // Are we a repeater
