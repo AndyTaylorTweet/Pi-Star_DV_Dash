@@ -67,8 +67,8 @@ if ( $testMMDVModeDMR == 1 ) {
       $obj = $json[$counter];
       if ($obj->repeater_id == $dmrID) {
         $repeaterid = $obj->repeater_id;
-        $slot1tg = $obj->tg0;
-        $slot2tg = $obj->tg;
+        $slot1tg = "TG".$obj->tg0;
+        $slot2tg = "TG".$obj->tg;
       }
     }
 
