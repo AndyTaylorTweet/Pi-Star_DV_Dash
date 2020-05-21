@@ -2373,7 +2373,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$p25gwContent = "";
         foreach($configp25gateway as $p25gwSection=>$p25gwValues) {
                 // UnBreak special cases
-                $p25gwSection = str_replace("_", " ", $nxdngwSection);
+                $p25gwSection = str_replace("_", " ", $p25gwSection);
                 $p25gwContent .= "[".$p25gwSection."]\n";
                 // append the values
                 foreach($p25gwValues as $p25gwKey=>$p25gwValue) {
