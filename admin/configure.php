@@ -1876,8 +1876,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the MMDVMHost Display Type
 	if  (empty($_POST['mmdvmDisplayPort']) != TRUE ) {
-	  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort'];
-	  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort'];
+	  $configmmdvm['TFT Serial']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
+	  $configmmdvm['Nextion']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
 	}
 
 	// Set the Nextion Display Layout
@@ -3030,19 +3030,20 @@ else:
                         echo '      <option value="modem">modem</option>'."\n";
                 }
                 if (strpos($configmmdvm['Nextion']['Port'], "one") !== FALSE) {
-                        echo '      <option selected="selected" value="'.$configmmdvm['Nextion']['Port'].'">'.$configmmdvm['Nextion']['Port'].'</option>'."\n";
+			$currentPort = str_replace($configmmdvm['Nextion']['Port'], "/dev/", "");
+                        echo '      <option selected="selected" value="'.$currentPort.'">'.$configmmdvm['Nextion']['Port'].'</option>'."\n";
                 }
             }
             exec('ls /dev/ | egrep -h "ttyA|ttyUSB"', $availablePorts);
             foreach($availablePorts as $port) {
-                 echo "     <option value=\"/dev/$port\">/dev/$port</option>\n";
+                 echo "     <option value=\"$port\">/dev/$port</option>\n";
             }
 	    ?>
 	    <?php if (file_exists('/dev/ttyS2')) { ?>
-	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyS2") {echo 'selected="selected" ';}; ?>value="/dev/ttyS2">/dev/ttyS2</option>
+	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyS2") {echo 'selected="selected" ';}; ?>value="ttyS2">/dev/ttyS2</option>
     	    <?php } ?>
 	    <?php if (file_exists('/dev/ttyNextionDriver')) { ?>
-	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyNextionDriver") {echo 'selected="selected" ';}; ?>value="/dev/ttyNextionDriver">/dev/ttyNextionDriver</option>
+	    <option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyNextionDriver") {echo 'selected="selected" ';}; ?>value="ttyNextionDriver">/dev/ttyNextionDriver</option>
     	    <?php } ?>
 	    </select>
 	    Nextion Layout: <select name="mmdvmNextionDisplayType">
