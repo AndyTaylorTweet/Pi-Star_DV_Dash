@@ -3024,7 +3024,8 @@ else:
 	        echo '	    <option value="None">None</option>'."\n";
             }
 	    if (isset($configmmdvm['Nextion']['Port'])) {
-	    	if ($configmmdvm['Nextion']['Port'] == "modem") {
+		if ($configmmdvm['Nextion']['Port'] == "None") { }
+	    	elseif ($configmmdvm['Nextion']['Port'] == "modem") {
 			echo '	    <option selected="selected" value="modem">modem</option>'."\n";
 		} else {
 			echo '	    <option value="modem">modem</option>'."\n";
