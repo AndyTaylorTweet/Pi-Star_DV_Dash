@@ -2994,12 +2994,12 @@ else:
 		} else {
 			echo '      <option value="modem">Modem</option>'."\n";	 
 		}
-                echo '      <option selected="selected" value="'.$configmmdvm['Nextion']['Port'].'">'.$configmmdvm['Nextion']['Port'].'</option>'."\n"; }
+                echo '      <option selected="selected" value="'.$configmmdvm['Nextion']['Port'].'">'.$configmmdvm['Nextion']['Port'].'</option>'."\n";
     	    }
 	    exec('ls /dev/ | egrep -h "ttyA|ttyUSB"', $availablePorts);
 		  foreach($availablePorts as $port) {
 			  echo "      <option value=\"/dev/$port\">/dev/$port</option>\n";
-	    }
+	          }
 	    ?>
 	    <?php if (file_exists('/dev/ttyS2')) { ?>
 	    	<option <?php if ($configmmdvm['Nextion']['Port'] == "/dev/ttyS2") {echo 'selected="selected" ';}; ?>value="/dev/ttyS2">/dev/ttyS2</option>
