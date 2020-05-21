@@ -2982,17 +2982,23 @@ else:
 	    <option <?php if ($configmmdvm['General']['Display'] == "LCDproc") {echo 'selected="selected" ';}; ?>value="LCDproc">LCDproc</option>
 	    </select>
 	    Port: <select name="mmdvmDisplayPort">
-	    <?php if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "") ) {echo '	    <option selected="selected" value="None">None</option>';}; ?>
-	    <?php if (isset($configmmdvm['Nextion']['Port'])) {
-	    	if ($configmmdvm['Nextion']['Port'] == "modem") { echo '	    <option selected="selected" value="modem">Modem</option>'; }
-	    	else { echo '	    <option selected="selected" value="'.$configmmdvm['Nextion']['Port'].'">'.$configmmdvm['Nextion']['Port'].'</option>'; } 
-    		} ?>
-	    <option value="None">None</option>
-	    <option value="modem">Modem</option>
 	    <?php
+            if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "") ) {
+	    	echo '      <option selected="selected" value="None">None</option>'."\n";
+    	    } else {
+	        echo '      <option value="None">None</option>'."\n";
+            }
+	    if (isset($configmmdvm['Nextion']['Port'])) {
+	    	if ($configmmdvm['Nextion']['Port'] == "modem") {
+			echo '      <option selected="selected" value="modem">Modem</option>'."\n";
+		} else {
+			echo '      <option value="modem">Modem</option>'."\n";	 
+		}
+                echo '      <option selected="selected" value="'.$configmmdvm['Nextion']['Port'].'">'.$configmmdvm['Nextion']['Port'].'</option>'."\n"; }
+    	    }
 	    exec('ls /dev/ | egrep -h "ttyA|ttyUSB"', $availablePorts);
 		  foreach($availablePorts as $port) {
-			  echo "		<option value=\"/dev/$port\">/dev/$port</option>\n";
+			  echo "      <option value=\"/dev/$port\">/dev/$port</option>\n";
 	    }
 	    ?>
 	    <?php if (file_exists('/dev/ttyS2')) { ?>
