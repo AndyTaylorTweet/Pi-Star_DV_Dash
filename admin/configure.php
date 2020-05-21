@@ -86,13 +86,13 @@ if (file_exists('/etc/dmr2nxdn')) {
 // Load the p25gateway config file
 if (file_exists('/etc/p25gateway')) {
 	$p25gatewayConfigFile = '/etc/p25gateway';
-	$configp25gateway = parse_ini_file($p25gatewayConfigFile, true);
+	if (fopen($p25gatewayConfigFile,'r')) { $configp25gateway = parse_ini_file($p25gatewayConfigFile, true); }
 }
 
 // Load the nxdngateway config file
 if (file_exists('/etc/nxdngateway')) {
 	$nxdngatewayConfigFile = '/etc/nxdngateway';
-	$confignxdngateway = parse_ini_file($nxdngatewayConfigFile, true);
+	if (fopen($nxdngatewayConfigFile,'r')) { $confignxdngateway = parse_ini_file($nxdngatewayConfigFile, true); }
 }
 
 // Load the nxdn2dmr config file
@@ -2127,15 +2127,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Add P25Gateway Options
 	$p25GatewayVer = exec("P25Gateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($p25GatewayVer > 20200502) {
-		if (!isset($configp25gateway['Remote Commands']['Enable'])) {
-			system('sed -i "\$a[Remote Commands]" /etc/p25gateway');
-			system('sed -i "\$aEnable=1" /etc/p25gateway');
-			system('sed -i "\$aPort=6074" /etc/p25gateway');
-			$configp25gateway['Remote Commands']['Enable'] = "1";
-		}
-		if (!isset($configp25gateway['Remote Commands']['Port'])) {
-			$configp25gateway['Remote Commands']['Port'] = "6074"; 
-		}
+		if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
+		if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
 	}
 
 	// Add NXDNGateway Options
@@ -2376,6 +2369,44 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			exec('sudo mv /tmp/kXKwkDKy793HF5.tmp /etc/nxdngateway');		// Move the file back
 			exec('sudo chmod 644 /etc/nxdngateway');				// Set the correct runtime permissions
 			exec('sudo chown root:root /etc/nxdngateway');				// Set the owner
+		}
+	}
+
+	// P25Gateway config file wrangling
+	$p25gwContent = "";
+        foreach($configp25gateway as $p25gwSection=>$p25gwValues) {
+                // UnBreak special cases
+                $p25gwSection = str_replace("_", " ", $nxdngwSection);
+                $p25gwContent .= "[".$p25gwSection."]\n";
+                // append the values
+                foreach($p25gwValues as $p25gwKey=>$p25gwValue) {
+                        $p25gwContent .= $p25gwKey."=".$p25gwValue."\n";
+                        }
+                        $p25gwContent .= "\n";
+                }
+
+        if (!$handleP25GWconfig = fopen('/tmp/sJSySkheSgrelJX.tmp', 'w')) {
+                return false;
+        }
+
+	if (!is_writable('/tmp/sJSySkheSgrelJX.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+	}
+	else {
+	        $success = fwrite($handleP25GWconfig, $p25gwContent);
+	        fclose($handleP25GWconfig);
+		if ( (intval(exec('cat /tmp/sJSySkheSgrelJX.tmp | wc -l')) > 30 ) && (file_exists('/etc/p25gateway')) ) {
+			exec('sudo mv /tmp/sJSySkheSgrelJX.tmp /etc/p25gateway');		// Move the file back
+			exec('sudo chmod 644 /etc/p25gateway');					// Set the correct runtime permissions
+			exec('sudo chown root:root /etc/p25gateway');				// Set the owner
 		}
 	}
 
