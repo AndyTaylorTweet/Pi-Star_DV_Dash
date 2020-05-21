@@ -2127,8 +2127,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Add P25Gateway Options
 	$p25GatewayVer = exec("P25Gateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($p25GatewayVer > 20200502) {
-		if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
-		if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
+		if (!isset($configp25gateway['Remote Commands']['Enable'])) {
+			system('echo "[Remote Commands]" >> /etc/p25gateway');
+			system('echo "Enable=1" >> /etc/p25gateway');
+			system('echo "Port=6074" >> /etc/p25gateway');
+			$configp25gateway['Remote Commands']['Enable'] = "1";
+		}
+		if (!isset($configp25gateway['Remote Commands']['Port'])) {
+			$configp25gateway['Remote Commands']['Port'] = "6074"; 
+		}
 	}
 
 	// Add NXDNGateway Options
