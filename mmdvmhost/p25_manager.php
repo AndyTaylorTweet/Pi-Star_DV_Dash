@@ -53,7 +53,7 @@ if ( $testMMDVModeP25 == 1 ) {
       // Output HTML
       ?>
       <b>P25 Link Manager</b>
-      <form action="http://<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+      <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
       <table>
         <tr>
           <th width="150"><a class="tooltip" href="#">Reflector<span><b>Reflector</b></span></a></th>
