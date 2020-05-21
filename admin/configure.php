@@ -3018,7 +3018,7 @@ else:
 	    </select>
 	    Port: <select name="mmdvmDisplayPort">
 	    <?php
-            if (( strpos($configmmdvm['General']['Display'], 'one') !== FALSE ) || ($configmmdvm['General']['Display'] == "") ) {
+            if (($configmmdvm['General']['Display'] == "None") || ($configmmdvm['General']['Display'] == "")) {
 	    	echo '	    <option selected="selected" value="None">None</option>'."\n";
     	    } else {
 	        echo '	    <option value="None">None</option>'."\n";
