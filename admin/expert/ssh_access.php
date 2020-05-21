@@ -51,7 +51,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     } ?>
   </div></td></tr>
   </table>
-  <?php if (isset($shellPort)) { echo "<a href=\"http://".$_SERVER['HTTP_HOST'].":".$shellPort."\">Click here for fullscreen SSH client</a><br />\n"; } ?>
+  <?php if (isset($shellPort)) { echo "<a href=\"//".$_SERVER['HTTP_HOST'].":".$shellPort."\">Click here for fullscreen SSH client</a><br />\n"; } ?>
   </div>
   <div class="footer">
   Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
