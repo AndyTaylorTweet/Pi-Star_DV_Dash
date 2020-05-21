@@ -2128,9 +2128,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	$p25GatewayVer = exec("P25Gateway -v | awk {'print $3'} | cut -c 1-8");
 	if ($p25GatewayVer > 20200502) {
 		if (!isset($configp25gateway['Remote Commands']['Enable'])) {
-			system('echo "[Remote Commands]" >> /etc/p25gateway');
-			system('echo "Enable=1" >> /etc/p25gateway');
-			system('echo "Port=6074" >> /etc/p25gateway');
+			system('sed -i "\$a[Remote Commands]" /etc/p25gateway');
+			system('sed -i "\$aEnable=1" /etc/p25gateway');
+			system('sed -i "\$aPort=6074" /etc/p25gateway');
 			$configp25gateway['Remote Commands']['Enable'] = "1";
 		}
 		if (!isset($configp25gateway['Remote Commands']['Port'])) {
