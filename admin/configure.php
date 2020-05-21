@@ -3029,7 +3029,7 @@ else:
                 } else {
                         echo '      <option value="modem">modem</option>'."\n";
                 }
-                if (strpos($configmmdvm['Nextion']['Port'], "one") !== FALSE) {
+                if ($configmmdvm['Nextion']['Port'] != "None") {
 			$currentPort = str_replace($configmmdvm['Nextion']['Port'], "/dev/", "");
                         echo '      <option selected="selected" value="'.$currentPort.'">'.$configmmdvm['Nextion']['Port'].'</option>'."\n";
                 }
