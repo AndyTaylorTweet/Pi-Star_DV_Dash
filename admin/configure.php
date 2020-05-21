@@ -1876,8 +1876,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the MMDVMHost Display Type
 	if  (empty($_POST['mmdvmDisplayPort']) != TRUE ) {
-	  $configmmdvm['TFT Serial']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
-	  $configmmdvm['Nextion']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
+	  if ($_POST['mmdvmDisplayPort'] == "None") {
+		  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort'];
+		  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort'];
+	  } else {
+		  $configmmdvm['TFT Serial']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
+		  $configmmdvm['Nextion']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
+	  }
 	}
 
 	// Set the Nextion Display Layout
