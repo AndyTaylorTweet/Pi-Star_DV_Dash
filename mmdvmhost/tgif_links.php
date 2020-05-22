@@ -78,7 +78,7 @@ if ( $testMMDVModeDMR == 1 ) {
         <th><a class=tooltip href="#">DMR Master<span><b>Connected Master</b></span></a></th>
         <th><a class=tooltip href="#">Repeater ID<span><b>The ID for this Repeater/Hotspot</b></span></a></th>
         <th><a class=tooltip href="#">Slot1 TG<span><b>TG linked to Slot 1</b></span></a></th>
-        <th><a class=tooltip href="#">SLot2 TG<span><b>TG linked to Slot 2</b></span></a></th>
+        <th><a class=tooltip href="#">Slot2 TG<span><b>TG linked to Slot 2</b></span></a></th>
       </tr>'."\n";
 
     echo '    <tr>'."\n";
