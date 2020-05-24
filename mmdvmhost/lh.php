@@ -60,10 +60,17 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 			echo "<td>$listElem[5]</td>";
 		}
 		if ($listElem[6] == null) {
-				echo "<td style=\"background:#f33;\">TX</td><td></td><td></td>";
-			} else if ($listElem[6] == "SMS") {
-				echo "<td style=\"background:#1d1;\">SMS</td><td></td><td></td>";
-			} else {
+			// Live duration
+			$utc_time = $listElem[0];
+			$utc_tz =  new DateTimeZone('UTC');
+			$now = new DateTime("now", $utc_tz);
+			$dt = new DateTime($utc_time, $utc_tz);
+			$duration = $now->getTimestamp() - $dt->getTimestamp();
+			$duration_string = $duration<999 ? round($duration) . "+" : "&infin";
+			echo "<td style=\"background:#f33;\">" . $duration_string . "</td><td></td><td></td>";
+		} else if ($listElem[6] == "SMS") {
+			echo "<td style=\"background:#1d1;\">SMS</td><td></td><td></td>";
+		} else {
 			echo "<td>$listElem[6]</td>";
 
 			// Colour the Loss Field
