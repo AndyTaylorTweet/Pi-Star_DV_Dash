@@ -64,9 +64,9 @@ for ($i = 0; $i < count($localTXList); $i++) {
 				$dt = new DateTime($utc_time, $utc_tz);
 				$duration = $now->getTimestamp() - $dt->getTimestamp();
 				$duration_string = $duration<999 ? round($duration) . "+" : "&infin";
-				echo "<td style=\"background:#f33;\">" . $duration_string . "</td><td></td><td></td>";
+				echo "<td colspan=\"3\" style=\"background:#f33;\">TX " . $duration_string . "</td>";
 			} else if ($listElem[6] == "SMS") {
-				echo "<td>SMS</td><td></td><td></td>";
+				echo "<td colspan=\"3\">SMS</td>";
 			} else {
 				echo"<td>$listElem[6]</td>"; //duration
 				
