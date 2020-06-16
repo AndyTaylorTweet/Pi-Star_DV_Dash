@@ -1117,4 +1117,98 @@ if (!in_array($_SERVER["PHP_SELF"],array('/mmdvmhost/bm_links.php','/mmdvmhost/b
 		$logLinesDAPNETGateway = getDAPNETGatewayLog();
 	}
 }
+
+function isDStarEnabled(){
+	$mmdvmconfigs = getMMDVMConfig();
+	return getConfigItem("D-Star", "Enable", $mmdvmconfigs);
+}
+
+function isYSFEnabled(){
+	$mmdvmconfigs = getMMDVMConfig();
+	return getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
+}
+
+function isP25Enabled(){
+	$mmdvmconfigs = getMMDVMConfig();
+	return getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
+}
+
+function isNXDNEnabled(){
+	$mmdvmconfigs = getMMDVMConfig();
+	return getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
+}
+
+function isDMREnabled(){
+	$mmdvmconfigs = getMMDVMConfig();
+	return getConfigItem("DMR", "Enable", $mmdvmconfigs);
+}
+
+function isPOCSAGEnabled(){
+	$mmdvmconfigs = getMMDVMConfig();
+	return getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
+}
+
+function isYSF2DMREnabled(){
+	$file = '/etc/ysf2dmr';
+	return isx2xEnabled($file);
+}
+
+function isYSF2P25Enabled(){
+	$file = '/etc/ysf2p25';
+	return isx2xEnabled($file);
+}
+
+function isYSF2NXDNEnabled(){
+	$file = '/etc/ysf2nxdn';
+	return isx2xEnabled($file);
+}
+
+function isDMR2YSFEnabled(){
+	$file = '/etc/dmr2ysf';
+	return isx2xEnabled($file);
+}
+
+function isDMR2NXDNEnabled(){
+	$file = '/etc/dmr2nxdn';
+	return isx2xEnabled($file);
+}
+
+function isP252DMREnabled(){
+	$file = '/etc/p252dmr';
+	return isx2xEnabled($file);
+}
+
+function isx2xEnabled($file){
+	if (fopen($file,'r')) {
+		$x2xGatewayConfig = parse_ini_file($file, true);
+		return $x2xGatewayConfig['Enabled']['Enabled'];
+	} else {
+		return false;
+	}
+}
+
+function getP25ConfigItem($section, $key) {
+	//Load the p25gateway config file
+	$p25GatewayConfigFile = '/etc/p25gateway';
+	if (fopen($p25GatewayConfigFile,'r')) { $configp25gateway = parse_ini_file($p25GatewayConfigFile, true); }
+
+	return $configp25gateway[$section][$key];
+}
+
+function getYSFConfigItem($section, $key) {
+	//Load the ysfgateway config file
+	$ysfGatewayConfigFile = '/etc/ysfgateway';
+	if (fopen($ysfGatewayConfigFile,'r')) { $configysfgateway = parse_ini_file($ysfGatewayConfigFile, true); }
+
+	return $configysfgateway[$section][$key];
+}
+
+function getNXDNConfigItem($section, $key) {
+	//Load the nxdngateway config file
+	$nxdnGatewayConfigFile = '/etc/nxdngateway';
+	if (fopen($nxdnGatewayConfigFile,'r')) { $confignxdngateway = parse_ini_file($nxdnGatewayConfigFile, true); }
+
+	return $confignxdngateway[$section][$key];
+}
+
 ?>

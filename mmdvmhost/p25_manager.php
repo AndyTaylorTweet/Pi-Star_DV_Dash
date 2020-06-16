@@ -5,16 +5,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Check if P25 is Enabled
-$testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeP25 == 1 ) {
-
-  //Load the p25gateway config file
-  $p25GatewayConfigFile = '/etc/p25gateway';
-  if (fopen($p25GatewayConfigFile,'r')) { $configp25gateway = parse_ini_file($p25GatewayConfigFile, true); }
+if ( isP25Enabled() || isYSF2P25Enabled()) {
 
   // Check that the remote is enabled
-  if ( $configp25gateway['Remote Commands']['Enable'] == 1 ) {
-    $remotePort = $configp25gateway['Remote Commands']['Port'];
+  if ( getP25ConfigItem('Remote Commands','Enable') == 1 ) {
+    $remotePort = getP25ConfigItem('Remote Commands', 'Port');
     if (!empty($_POST) && isset($_POST["p25MgrSubmit"])) {
       // Handle Posted Data
       if (preg_match('/[^A-Za-z0-9]/',$_POST['p25LinkHost'])) { unset ($_POST['p25LinkHost']);}
@@ -22,7 +17,12 @@ if ( $testMMDVModeP25 == 1 ) {
 	if ($_POST['p25LinkHost'] == "none") {
 	  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup9999";
 	} else {
-	  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['p25LinkHost'];
+	  if(isP25Enabled() == 0 && isYSF2P25Enabled() == 1){
+	    $ysfRemotePort = getYSFConfigItem('Remote Commands', 'Port');
+	    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$ysfRemotePort." LinkYSF00004 && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['p25LinkHost'];
+	  } else {
+	    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['p25LinkHost'];
+	  }
 	}
       } elseif ($_POST["Link"] == "UNLINK") {
 	$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup9999";
@@ -64,12 +64,12 @@ if ( $testMMDVModeP25 == 1 ) {
           <td>
             <select name="p25LinkHost">
             <?php
-	      if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; } else { $testP25Host = "none"; }
+			  $testP25Host = getP25ConfigItem('Network', 'Startup');
               if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
               else { echo "      <option value=\"none\">None</option>\n"; }
               if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
               else { echo "      <option value=\"10\">10 - Parrot</option>\n"; }
-	      $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
+	      	  $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
               while (!feof($p25Hosts)) {
               	$p25HostsLine = fgets($p25Hosts);
                 $p25Host = preg_split('/\s+/', $p25HostsLine);

@@ -140,7 +140,7 @@ if (isset($lastHeard[0])) {
 		}
 	}
 else {
-	echo "<td></td>";
+    echo "<td style=\"background:#0b0; color:#030;\">Listening</td>";
 }
 ?></tr>
 <tr><th>Tx</th><td style="background: #ffffff;"><?php echo getMHZ(getConfigItem("Info", "TXFrequency", $mmdvmconfigs)); ?></td></tr>
@@ -156,8 +156,7 @@ echo '<tr><th>TCXO</th><td style="background: #ffffff;">'.getDVModemTCXOFreq().'
 </table>
 
 <?php
-$testMMDVModeDSTAR = getConfigItem("D-Star", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeDSTAR == 1 ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
+if ( isDStarEnabled() ) { //Hide the D-Star Reflector information when D-Star Network not enabled.
 echo "<br />\n";
 echo "<table>\n";
 echo "<tr><th colspan=\"2\">".$lang['dstar_repeater']."</th></tr>\n";
@@ -170,8 +169,7 @@ echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reve
 echo "</table>\n";
 }
 
-$testMMDVModeDMR = getConfigItem("DMR", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeDMR == 1 ) { //Hide the DMR information when DMR mode not enabled.
+if ( isDMREnabled() ) { //Hide the DMR information when DMR mode not enabled.
 $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
 $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
 $dmrMasterPort = getConfigItem("DMR Network", "Port", $mmdvmconfigs);
@@ -264,9 +262,7 @@ if (getEnabled("DMR Network", $mmdvmconfigs) == 1) {
 echo "</table>\n";
 }
 
-$testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
-if ( isset($configdmr2ysf['Enabled']['Enabled']) ) { $testDMR2YSF = $configdmr2ysf['Enabled']['Enabled']; }
-if ( $testMMDVModeYSF == 1 || $testDMR2YSF ) { //Hide the YSF information when System Fusion Network mode not enabled.
+if ( isYSFEnabled() || isDMR2YSFEnabled() ) { //Hide the YSF information when System Fusion Network mode not enabled.
         $ysfLinkedTo = getActualLink($reverseLogLinesYSFGateway, "YSF");
         if ($ysfLinkedTo == 'Not Linked' || $ysfLinkedTo == 'Service Not Started') {
                 $ysfLinkedToTxt = $ysfLinkedTo;
@@ -293,8 +289,7 @@ if ( $testMMDVModeYSF == 1 || $testDMR2YSF ) { //Hide the YSF information when S
         echo "</table>\n";
 }
 
-if ( isset($configysf2dmr['Enabled']['Enabled']) ) { $testYSF2DMR = $configysf2dmr['Enabled']['Enabled']; }
-if ( $testYSF2DMR ) { //Hide the YSF2DMR information when YSF2DMR Network mode not enabled.
+if ( isYSF2DMREnabled() ) { //Hide the YSF2DMR information when YSF2DMR Network mode not enabled.
         $dmrMasterFile = fopen("/usr/local/etc/DMR_Hosts.txt", "r");
         $dmrMasterHost = $configysf2dmr['DMR Network']['Address'];
         while (!feof($dmrMasterFile)) {
@@ -316,9 +311,7 @@ if ( $testYSF2DMR ) { //Hide the YSF2DMR information when YSF2DMR Network mode n
         echo "</table>\n";
 }
 
-$testMMDVModeP25 = getConfigItem("P25 Network", "Enable", $mmdvmconfigs);
-if ( isset($configysf2p25['Enabled']['Enabled']) ) { $testYSF2P25 = $configysf2p25['Enabled']['Enabled']; }
-if ( $testMMDVModeP25 == 1 || $testYSF2P25 ) { //Hide the P25 information when P25 Network mode not enabled.
+if ( isP25Enabled() || isYSF2P25Enabled() ) { //Hide the P25 information when P25 Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
@@ -330,10 +323,7 @@ if ( $testMMDVModeP25 == 1 || $testYSF2P25 ) { //Hide the P25 information when P
 	echo "</table>\n";
 }
 
-$testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
-if ( isset($configysf2nxdn['Enabled']['Enabled']) ) { if ($configysf2nxdn['Enabled']['Enabled'] == 1) { $testYSF2NXDN = 1; } }
-if ( isset($configdmr2nxdn['Enabled']['Enabled']) ) { if ($configdmr2nxdn['Enabled']['Enabled'] == 1) { $testDMR2NXDN = 1; } }
-if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { //Hide the NXDN information when NXDN Network mode not enabled.
+if ( isNXDNEnabled() || isYSF2NXDNEnabled() || isDMR2NXDNEnabled() ) { //Hide the NXDN information when NXDN Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
@@ -349,8 +339,7 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	echo "</table>\n";
 }
 
-$testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
-if ( $testMMDVModePOCSAG == 1 ) { //Hide the POCSAG information when POCSAG Network mode not enabled.
+if ( isPOCSAGEnabled() ) { //Hide the POCSAG information when POCSAG Network mode not enabled.
 	echo "<br />\n";
 	echo "<table>\n";
 	echo "<tr><th colspan=\"2\">POCSAG</th></tr>\n";

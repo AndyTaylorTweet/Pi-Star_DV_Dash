@@ -5,16 +5,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Check if YSF is Enabled
-$testMMDVModeYSF = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeYSF == 1 ) {
-
-  //Load the ysfgateway config file
-  $ysfGatewayConfigFile = '/etc/ysfgateway';
-  if (fopen($ysfGatewayConfigFile,'r')) { $configysfgateway = parse_ini_file($ysfGatewayConfigFile, true); }
+if ( isYSFEnabled() ) {
 
   // Check that the remote is enabled
-  if ( $configysfgateway['Remote Commands']['Enable'] == 1 ) {
-    $remotePort = $configysfgateway['Remote Commands']['Port'];
+  if ( getYSFConfigItem('Remote Commands','Enable') == 1 ) {
+    $remotePort = getYSFConfigItem('Remote Commands','Port');
     if (!empty($_POST) && isset($_POST["ysfMgrSubmit"])) {
       // Handle Posted Data
       if (preg_match('/[^A-Za-z0-9]/',$_POST['ysfLinkHost'])) { unset ($_POST['ysfLinkHost']);}
@@ -64,8 +59,8 @@ if ( $testMMDVModeYSF == 1 ) {
           <td>
             <select name="ysfLinkHost">
             <?php
-	      if (isset($configysfgateway['Network']['Startup'])) {
-                $testYSFHost = $configysfgateway['Network']['Startup'];
+	      if (getYSFConfigItem('Network', 'Startup')) {
+                $testYSFHost = getYSFConfigItem('Network','Startup');
                 echo "      <option value=\"none\">None</option>\n";
         	}
         else {

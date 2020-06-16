@@ -5,16 +5,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Check if NXDN is Enabled
-$testMMDVModeNXDN = getConfigItem("NXDN Network", "Enable", $mmdvmconfigs);
-if ( $testMMDVModeNXDN == 1 ) {
-
-  //Load the nxdngateway config file
-  $nxdnGatewayConfigFile = '/etc/nxdngateway';
-  if (fopen($nxdnGatewayConfigFile,'r')) { $confignxdngateway = parse_ini_file($nxdnGatewayConfigFile, true); }
+if ( isNXDNEnabled() || isYSF2NXDNEnabled()) {
 
   // Check that the remote is enabled
-  if ( $confignxdngateway['Remote Commands']['Enable'] == 1 ) {
-    $remotePort = $confignxdngateway['Remote Commands']['Port'];
+  if ( getNXDNConfigItem('Remote Commands', 'Enable') == 1 ) {
+    $remotePort = getNXDNConfigItem('Remote Commands', 'Port');
     if (!empty($_POST) && isset($_POST["nxdnMgrSubmit"])) {
       // Handle Posted Data
       if (preg_match('/[^A-Za-z0-9]/',$_POST['nxdnLinkHost'])) { unset ($_POST['nxdnLinkHost']);}
@@ -22,7 +17,12 @@ if ( $testMMDVModeNXDN == 1 ) {
 	if ($_POST['nxdnLinkHost'] == "none") {
 	  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup9999";
 	} else {
-	  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['nxdnLinkHost'];
+	  if(isNXDNEnabled() == 0 && isYSF2NXDNEnabled() == 1){
+	    $ysfRemotePort = getYSFConfigItem('Remote Commands', 'Port');
+	    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$ysfRemotePort." LinkYSF00003 && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['nxdnLinkHost'];
+	  } else {
+	    $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['nxdnLinkHost'];
+	  }
 	}
       } elseif ($_POST["Link"] == "UNLINK") {
 	$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup9999";
@@ -65,7 +65,7 @@ if ( $testMMDVModeNXDN == 1 ) {
             <select name="nxdnLinkHost">
             <?php
             $nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
-            if (isset($confignxdngateway['Network']['Startup'])) { $testNXDNHost = $confignxdngateway['Network']['Startup']; } else { $testNXDNHost = ""; }
+            if (getNXDNConfigItem('Network', 'Startup')) { $testNXDNHost = getNXDNConfigItem('Network', 'Startup'); } else { $testNXDNHost = ""; }
             if ($testNXDNHost == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
                   else { echo "      <option value=\"none\">None</option>\n"; }
             if ($testNXDNHost == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }

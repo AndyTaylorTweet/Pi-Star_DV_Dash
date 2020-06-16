@@ -11,9 +11,7 @@ $slot2tg = "";
 $dmrID = "";
 
 // Check if DMR is Enabled
-$testMMDVModeDMR = getConfigItem("DMR", "Enable", $mmdvmconfigs);
-
-if ( $testMMDVModeDMR == 1 ) {
+if ( isDMREnabled() ) {
   //Load the dmrgateway config file
   $dmrGatewayConfigFile = '/etc/dmrgateway';
   if (fopen($dmrGatewayConfigFile,'r')) { $configdmrgateway = parse_ini_file($dmrGatewayConfigFile, true); }

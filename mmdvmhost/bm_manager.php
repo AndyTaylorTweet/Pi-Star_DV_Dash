@@ -5,9 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
 
 // Check if DMR is Enabled
-$testMMDVModeDMR = getConfigItem("DMR", "Enable", $mmdvmconfigs);
-
-if ( $testMMDVModeDMR == 1 ) {
+if ( isDMREnabled() ) {
   //setup BM API Key
   $bmAPIkeyFile = '/etc/bmapi.key';
   if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
