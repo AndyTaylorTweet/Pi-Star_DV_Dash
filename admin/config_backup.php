@@ -54,36 +54,38 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output = "Finding config files to be backed up\n";
           $backupDir = "/tmp/config_backup";
           $backupZip = "/tmp/config_backup.zip";
-	  $hostNameInfo = exec('cat /etc/hostname');
+          $hostNameInfo = exec('cat /etc/hostname');
           
           $output .= shell_exec("sudo rm -rf $backupZip 2>&1");
           $output .= shell_exec("sudo rm -rf $backupDir 2>&1");
           $output .= shell_exec("sudo mkdir $backupDir 2>&1");
-	  if (shell_exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
-		  $output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1");
-	  }
+          if (shell_exec('cat /etc/dhcpcd.conf | grep "static ip_address" | grep -v "#"')) {
+            $output .= shell_exec("sudo cp /etc/dhcpcd.conf $backupDir 2>&1");
+          }
           $output .= shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ircddbgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/mmdvmhost $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/mobilegps $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/nxdngateway $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/ysf2p25 $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/ysf2nxdn $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/mobilegps $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/timeserver $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/dstar-radio.* $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/hosts $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/hostname $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /etc/dapnetapi.key $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1");
-	  $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/pistar-remote $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/hosts $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/hostname $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/bmapi.key $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/dapnetapi.key $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /usr/local/etc/RSSI.dat $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /var/www/dashboard/config/ircddblocal.php $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /var/www/dashboard/config/config.php $backupDir 2>&1");
           $output .= "Compressing backup files\n";
           $output .= shell_exec("sudo zip -j $backupZip $backupDir/* 2>&1");
           $output .= "Starting download\n";
@@ -99,12 +101,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             $local_time = $dt->format('d-M-Y');
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-	    if ($hostNameInfo != "pi-star") {
-		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_".$hostNameInfo."_".$local_time.".zip").'"');
-	    }
-	    else {
-		    header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
-	    }
+            if ($hostNameInfo != "pi-star") {
+            	header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_".$hostNameInfo."_".$local_time.".zip").'"');
+            }
+            else {
+            	header('Content-Disposition: attachment; filename="'.basename("Pi-Star_Config_$local_time.zip").'"');
+            }
             header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
@@ -125,8 +127,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           shell_exec("sudo rm -rf $target_dir 2>&1");
           shell_exec("mkdir $target_dir 2>&1");
           if($_FILES["fileToUpload"]["name"]) {
-                  $filename = $_FILES["fileToUpload"]["name"];
-	  	  $source = $_FILES["fileToUpload"]["tmp_name"];
+              $filename = $_FILES["fileToUpload"]["name"];
+	  	      $source = $_FILES["fileToUpload"]["tmp_name"];
 	          $type = $_FILES["fileToUpload"]["type"];
 	
 	          $name = explode(".", $filename);
@@ -135,9 +137,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 		          if($mime_type == $type) {
 			          $okay = true;
 			          break;
-			  }
-		  }
-	  }
+			  	  }
+		  	  }
+	  	  }
 		$continue = strtolower($name[1]) == 'zip' ? true : false;
 	        if(!$continue) {
 		        $output .= "The file you are trying to upload is not a .zip file. Please try again.\n";
@@ -165,6 +167,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl stop pistar-remote.service 2>&1');	//PiStar-Remote Service
 			shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
 			shell_exec('sudo systemctl stop ysf2dmr.service 2>&1');		//YSF2DMR
+			shell_exec('sudo systemctl stop ysf2p25.service 2>&1');		//YSF2P25
+			shell_exec('sudo systemctl stop ysf2nxdn.service 2>&1');		//YSF2NXDN
 			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
 			shell_exec('sudo systemctl stop dapnetgateway.service 2>&1');	//DAPNETGateway
 			shell_exec('sudo systemctl stop mobilegps.service 2>&1');	//MobileGPS
@@ -206,6 +210,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			}
 			shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
 			shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
+			shell_exec('sudo systemctl start ysf2p25.service 2>&1');		//YSF2P25
+			shell_exec('sudo systemctl start ysf2nxdn.service 2>&1');		//YSF2NXDN
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
 			shell_exec('sudo systemctl start dapnetgateway.service 2>&1');		//DAPNETGateway
 			shell_exec('sudo systemctl start mobilegps.service 2>&1');		//MobileGPS
