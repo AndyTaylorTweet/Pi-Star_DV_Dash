@@ -73,6 +73,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ysf2p25 $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ysf2nxdn $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/dmr2ysf $backupDir 2>&1");
+          $output .= shell_exec("sudo cp /etc/dmr2nxdn $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/dmrgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/mobilegps $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/starnetserver $backupDir 2>&1");
@@ -168,7 +170,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
 			shell_exec('sudo systemctl stop ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl stop ysf2p25.service 2>&1');		//YSF2P25
-			shell_exec('sudo systemctl stop ysf2nxdn.service 2>&1');		//YSF2NXDN
+			shell_exec('sudo systemctl stop ysf2nxdn.service 2>&1');	//YSF2NXDN
+			shell_exec('sudo systemctl stop dmr2ysf.service 2>&1');		//DMR2YSF
+			shell_exec('sudo systemctl stop dmr2nxdn.service 2>&1');	//DMR2NXDN
 			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
 			shell_exec('sudo systemctl stop dapnetgateway.service 2>&1');	//DAPNETGateway
 			shell_exec('sudo systemctl stop mobilegps.service 2>&1');	//MobileGPS
@@ -212,6 +216,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl start ysf2p25.service 2>&1');		//YSF2P25
 			shell_exec('sudo systemctl start ysf2nxdn.service 2>&1');		//YSF2NXDN
+			shell_exec('sudo systemctl start dmr2ysf.service 2>&1');		//DMR2YSF
+			shell_exec('sudo systemctl start dmr2nxdn.service 2>&1');	    //DMR2NXDN
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
 			shell_exec('sudo systemctl start dapnetgateway.service 2>&1');		//DAPNETGateway
 			shell_exec('sudo systemctl start mobilegps.service 2>&1');		//MobileGPS
