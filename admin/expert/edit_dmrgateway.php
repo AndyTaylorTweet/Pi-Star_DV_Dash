@@ -61,11 +61,13 @@ if($_POST) {
 			$content .= "[".$section."]\n";
 			//append the values
 			foreach($values as $key=>$value) {
-				if (($section == "DMR Network 1" || $section == "DMR Network 2") && $key == "Options" && $value) {
+				if (($section == "DMR Network 1" || $section == "DMR Network 2") && $key == "Password" && $value) {
 					$value = str_replace('"', "", $value);
 					$content .= $key."=\"".$value."\"\n";
-				}
-				else {
+				} elseif (($section == "DMR Network 1" || $section == "DMR Network 2") && $key == "Options" && $value) {
+					$value = str_replace('"', "", $value);
+					$content .= $key."=\"".$value."\"\n";
+				} else {
 					$content .= $key."=".$value."\n";
 				}
 			}
