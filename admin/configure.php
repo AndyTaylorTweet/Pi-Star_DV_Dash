@@ -342,10 +342,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Admin Password Change
 	if (empty($_POST['adminPassword']) != TRUE ) {
-	  $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star '.escapeshellcmd($_POST['adminPassword']);
-	  system($rollAdminPass0);
-	  $rollAdminPass2 = 'sudo echo -e "'.escapeshellcmd($_POST['adminPassword']).'\n'.escapeshellcmd($_POST['adminPassword']).'" | sudo passwd pi-star';
-	  system($rollAdminPass2);
+          $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star '.escapeshellarg($_POST['adminPassword']);
+          system($rollAdminPass0);
+          $rollAdminPass2 = "sudo echo -e ".escapeshellarg($_POST['adminPassword']).'"\\n"'.escapeshellarg($_POST['adminPassword'])."|sudo passwd pi-star";
+          system($rollAdminPass2);
 	  }
 
 	// Set the ircDDBGAteway Remote Password and Port
