@@ -1,16 +1,16 @@
 <?php
 //
 // Romanian RO Language Pack
-// Stirbu Isidor (YO8TEH)
-// Updated: 02-Aug-2017
+// Isidor Stirbu (YO8TEH-M0JFF)
+// Updated: 12-Jun-2020
 //
 $lang = array (
   // Banner texts
   "digital_voice"               =>  "Voce Digitala",
   "configuration"               =>  "Configuratii",
-  "dashboard_for"               =>  "Panou Comanda pentru",
+  "dashboard_for"               =>  "Panou Control pentru",
   // Banner links
-  "dashboard"                   =>  "Panou Comanda",
+  "dashboard"                   =>  "Panou Control",
   "admin"                       =>  "Administrator",
   "power"                       =>  "Alimentare",
   "update"                      =>  "Actualizare",
@@ -28,7 +28,7 @@ $lang = array (
   "p25_config"                  =>  "Configurari P25",
   "nxdn_config"                 =>  "Configurari NXDN",
   "pocsag_config"               =>  "Configurari POCSAG",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "mobilegps_config"            =>  "Configurari Mobile GPS",
   "wifi_config"                 =>  "Configurari Retea Wireless",
   "fw_config"                   =>  "Configurari Firewall",
   "remote_access_pw"            =>  "Parola Acces Exterior",
@@ -92,11 +92,11 @@ $lang = array (
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - NXDN Configuration
   "nxdn_startup_host"           =>  "lansare Detinator NXDN",
-  "nxdn_ran"                    =>  "NXDN RAN",
+  "nxdn_ran"                    =>  "Lansare NXDN",
   // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "mobilegps_enable"            =>  "Activare Mobile GPS",
+  "mobilegps_port"              =>  "Port GPS",
+  "mobilegps_speed"             =>  "Viteza Port GPS",
   // Config Page - Firewall Configuration
   "fw_dash"                     =>  "Acces Panou Control",
   "fw_irc"                      =>  "Control Exterior ircDDBGateway",
@@ -124,20 +124,20 @@ $lang = array (
   "mode"                        =>  "Mod",
   "callsign"                    =>  "Indicativ",
   "target"                      =>  "Apel Catre",
-  "src"                         =>  "Src",        // Short version of "Source"
-  "dur"                         =>  "Dur",        // Short version of "Duration"
+  "src"                         =>  "Src",        // Prescurtare  "Sursa"
+  "dur"                         =>  "Dur",        // prescurtare "Durata"
   "loss"                        =>  "Pierderi",
-  "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
+  "ber"                         =>  "BER",        // Prescurtare "Rata Eroare Biti"
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "Activitate Gateway DAPNET",
   "pocsag_timeslot"             =>  "Time Slot",
-  "pocsag_msg"                  =>  "Message",
+  "pocsag_msg"                  =>  "Mesaj",
   // Dashboard - Extra Info
   "group"                       =>  "Grup",
   "logoff"                      =>  "Deconectare",
   "info"                        =>  "Informatii",
-  "utot"                        =>  "UTOT",       // Short for User Timeout
-  "gtot"                        =>  "GTOT",       // Short for Group Timeout
+  "utot"                        =>  "UTOT",       // Prescurtare  User Timeout
+  "gtot"                        =>  "GTOT",       // Prescurtare Group Timeout
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Ultimele 20 Apeluri Receptionate prin acest Gateway",
   "local_tx_list"               =>  "Ultimele 20 Apeluri care au accesat acest Gateway",
