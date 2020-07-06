@@ -528,7 +528,7 @@ function getHeardList($logLines) {
 				if (array_key_exists(4,$lineTokens) && startsWith($lineTokens[4],"RSSI")) {
 					$rssi = substr($lineTokens[4], 6);
 					$dBraw = substr($rssi, strrpos($rssi,'/')+1); //average only
-					$relint = intval($dBraw) + 93;
+					$relint = intval($dBraw) + 73;
 					$signal = round(($relint/6)+9, 0);
 					if ($signal < 0) $signal = 0;
 					if ($signal > 9) $signal = 9;
