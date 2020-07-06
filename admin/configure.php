@@ -4225,7 +4225,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['fw_dash'];?>:<span><b>Dashboard Access</b>Do you want the dashboard access to be publicly available? This modifies the uPNP firewall configuration.</span></a></td>
     <?php
-	$testPrvPubDash = exec('sudo sed -n 32p /usr/local/sbin/pistar-upnp.service | cut -c 1');
+	$testPrvPubDash = exec('sudo sed -n 33p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubDash, 0, 1) === '#') {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"dashAccess\" value=\"PRV\" checked=\"checked\" />Private <input type=\"radio\" name=\"dashAccess\" value=\"PUB\" />Public</td>\n";
 		}
@@ -4237,7 +4237,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['fw_irc'];?>:<span><b>ircDDBGateway Remote</b>Do you want the ircDDBGateway remote control access to be publicly available? This modifies the uPNP firewall Configuration.</span></a></td>
     <?php
-	$testPrvPubIRC = exec('sudo sed -n 33p /usr/local/sbin/pistar-upnp.service | cut -c 1');
+	$testPrvPubIRC = exec('sudo sed -n 34p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubIRC, 0, 1) === '#') {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"ircRCAccess\" value=\"PRV\" checked=\"checked\" />Private <input type=\"radio\" name=\"ircRCAccess\" value=\"PUB\" />Public</td>\n";
 		}
@@ -4249,7 +4249,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['fw_ssh'];?>:<span><b>SSH Access</b>Do you want access to be publicly available over SSH (used for support issues)? This modifies the uPNP firewall Configuration.</span></a></td>
     <?php
-	$testPrvPubSSH = exec('sudo sed -n 31p /usr/local/sbin/pistar-upnp.service | cut -c 1');
+	$testPrvPubSSH = exec('sudo sed -n 32p /usr/local/sbin/pistar-upnp.service | cut -c 1');
 	if (substr($testPrvPubSSH, 0, 1) === '#') {
 		echo "   <td align=\"left\" colspan=\"2\"><input type=\"radio\" name=\"sshAccess\" value=\"PRV\" checked=\"checked\" />Private <input type=\"radio\" name=\"sshAccess\" value=\"PUB\" />Public</td>\n";
 		}
