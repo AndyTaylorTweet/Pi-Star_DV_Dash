@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside of the admin page
   include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDash Config
   include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
   include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
