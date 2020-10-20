@@ -57,21 +57,15 @@ if ( $testMMDVModeDMR == 1 ) {
   }
 
   // Use TGIF API to get information about current TGs
-  $jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
-  $json = json_decode(@file_get_contents("http://tgif.network/RPTRR/index.php?action=getsessions", true, $jsonContext));
-  $jsonrows = count($json)-1;
-
-  // Pull the information form JSON
-  if ((count($json) > 0) && ($dmrID > 0)) {
-    for ($counter = 0; $counter <= $jsonrows; $counter++) {
-      $obj = $json[$counter];
-      if ($obj->repeater_id == $dmrID) {
-        $repeaterid = $obj->repeater_id;
-        if ($obj->tg0 == "4000") { $slot1tg = "None"; } else { $slot1tg = "TG".$obj->tg0; }
-        if ($obj->tg  == "4000") { $slot2tg = "None"; } else { $slot2tg = "TG".$obj->tg;  }
-      }
-    }
-
+   $jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
+  $json_data = file_get_contents("http://tgif.network:5040/api/sessions", false, $jsonContext);
+  $json = json_decode($json_data, false);
+  // Pull the information from JSON
+  if ($json->sessions[1]->repeater_id == $dmrID) {
+    $repeaterid = $json->sessions[1]->repeater_id;
+    if ($json->sessions[1]->tg0 == "4000") { $slot1tg = "None"; } else { $slot1tg = "TG".$json->sessions[1]->tg0; }
+    if ($json->sessions[1]->tg == "4000") { $slot2tg = "None"; } else { $slot2tg = "TG".$json->sessions[1]->tg; }
+    
     echo '<b>Active TGIF Connections</b>
     <table>
       <tr>
