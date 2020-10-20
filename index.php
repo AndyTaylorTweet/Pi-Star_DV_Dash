@@ -164,9 +164,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
 		echo '<script type="text/javascript">'."\n";
         	echo 'function reloadtgifConnections(){'."\n";
-        	echo '  $("#tgifConnects").load("/mmdvmhost/tgif_links.php",function(){ setTimeout(reloadtgifConnections,15000) });'."\n";
+        	echo '  $("#tgifConnects").load("/mmdvmhost/tgif_links.php",function(){ setTimeout(reloadtgifConnections,60000) });'."\n";
         	echo '}'."\n";
-        	echo 'setTimeout(reloadtgifConnections,15000);'."\n";
+        	echo 'setTimeout(reloadtgifConnections,60000);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
         	echo '</script>'."\n";
         	echo '<div id="tgifConnects">'."\n";
