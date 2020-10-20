@@ -510,7 +510,7 @@ function getHeardList($logLines) {
 			if (array_key_exists(3,$lineTokens)) {
 				$loss = $lineTokens[3];
 			}
-			if (strpos($logLine,"RF user has timed out")) {
+			if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired")) {
 				$duration = "TOut";
 				$ber = "??%";
 			}
