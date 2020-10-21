@@ -65,7 +65,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <div class="header">
 <div style="font-size: 8px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
 <h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." ".$MYCALL; ?></h1>
-<?php if (isset($piStarCssBannerH1)) { echo "<h1>".$piStarCssBannerH2."</h1>\n"; } ?>
+<?php if (isset($piStarCssBannerH1)) { echo "<h1>".$piStarCssBannerH1."</h1>\n"; } ?>
 <?php if (isset($piStarCssBannerExtTxt)) { echo "<p style=\"text-align: center; color: #ffffff;\">".$piStarCssBannerExtTxt."</p>\n"; }?>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
  <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
