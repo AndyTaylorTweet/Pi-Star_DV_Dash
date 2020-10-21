@@ -16,6 +16,18 @@ $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
 $MYCALL=strtoupper($callsign);
 
+// Check if the config file exists
+if (file_exists('/etc/pistar-css.ini')) {
+	$piStarCssFile = '/etc/pistar-css.ini';
+	if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
+	if ($piStarCss['BannerH2']['Enabled']) {
+		$piStarCssBannerH2 = $piStarCss['BannerH2']['Text'];
+	}
+	if ($piStarCss['BannerExtText']['Enabled']) {
+		$piStarCssBannerExtTxt = $piStarCss['BannerExtText']['Text'];
+	}
+}
+
 //Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
@@ -53,6 +65,8 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <div class="header">
 <div style="font-size: 8px; text-align: left; padding-left: 8px; float: left;">Hostname: <?php echo exec('cat /etc/hostname'); ?></div><div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
 <h1>Pi-Star <?php echo $lang['digital_voice']." ".$lang['dashboard_for']." ".$MYCALL; ?></h1>
+<?php if (isset($piStarCssBannerH2)) { echo "<h2>".$piStarCssBannerH2."</h2>\n";
+if (isset($piStarCssBannerExtTxt)) { echo "<p style=\"text-align: center; color: #ffffff;\">".$piStarCssBannerExtTxt."</p>\n"; ?>
 <p style="padding-right: 5px; text-align: right; color: #ffffff;">
  <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
  <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
