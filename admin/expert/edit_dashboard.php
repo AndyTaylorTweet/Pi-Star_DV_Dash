@@ -49,7 +49,7 @@ if (!file_exists('/etc/pistar-css.ini')) {
 	$fileContent .= "[Text]\nBanners=ffffff\nBannersDrop=303030\n\n";
 	$fileContent .= "[Tables]\nHeadDrop=8b0000\nBgEven=f7f7f7\nBgOdd=d0d0d0\n\n";
 	$fileContent .= "[Content]\nText=000000\n\n";
-	$fileContent .= "[BannerH2]\nEnabled=0\nText=\"Some Text\"\n\n";
+	$fileContent .= "[BannerH1]\nEnabled=0\nText=\"Some Text\"\n\n";
 	$fileContent .= "[BannerExtText]\nEnabled=0\nText=\"Some long text entry\"\n";
 	fwrite($outFile, $fileContent);
 	fclose($outFile);
@@ -104,6 +104,7 @@ if($_POST) {
 		foreach($data as $section=>$values) {
 			// UnBreak special cases
 			$section = str_replace("_", " ", $section);
+			$section = str_replace("BannerH2", "BannerH1", $section);
 			$content .= "[".$section."]\n";
 			//append the values
 			foreach($values as $key=>$value) {
