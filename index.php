@@ -120,9 +120,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
 		echo '<script type="text/javascript">'."\n";
 		echo 'function reloadrefLinks(){'."\n";
-		echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php",function(){ setTimeout(reloadrefLinks,2500) });'."\n";
+		echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php",function(){ setTimeout(reloadrefLinks,15000) });'."\n";
 		echo '}'."\n";
-		echo 'setTimeout(reloadrefLinks,2500);'."\n";
+		echo 'setTimeout(reloadrefLinks,15000);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
 		echo '</script>'."\n";
 		echo '<div id="refLinks">'."\n";
@@ -149,9 +149,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	if ($_SERVER["PHP_SELF"] == "/admin/index.php") { 		// Admin Only Option
 		echo '<script type="text/javascript">'."\n";
         	echo 'function reloadbmConnections(){'."\n";
-        	echo '  $("#bmConnects").load("/mmdvmhost/bm_links.php",function(){ setTimeout(reloadbmConnections,15000) });'."\n";
+        	echo '  $("#bmConnects").load("/mmdvmhost/bm_links.php",function(){ setTimeout(reloadbmConnections,30000) });'."\n";
         	echo '}'."\n";
-        	echo 'setTimeout(reloadbmConnections,15000);'."\n";
+        	echo 'setTimeout(reloadbmConnections,30000);'."\n";
 		echo '$(window).trigger(\'resize\');'."\n";
         	echo '</script>'."\n";
         	echo '<div id="bmConnects">'."\n";
@@ -234,9 +234,9 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
 	include 'dstarrepeater/gateway_software_config.php';		// dstarrepeater gateway config
 	echo '<script type="text/javascript">'."\n";
 	echo 'function reloadrefLinks(){'."\n";
-	echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php",function(){ setTimeout(reloadrefLinks,2500) });'."\n";
+	echo '  $("#refLinks").load("/dstarrepeater/active_reflector_links.php",function(){ setTimeout(reloadrefLinks,15000) });'."\n";
 	echo '}'."\n";
-	echo 'setTimeout(reloadrefLinks,2500);'."\n";
+	echo 'setTimeout(reloadrefLinks,15000);'."\n";
 	echo '$(window).trigger(\'resize\');'."\n";
 	echo '</script>'."\n";
         echo '<br />'."\n";
