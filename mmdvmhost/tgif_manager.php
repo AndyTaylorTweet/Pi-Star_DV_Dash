@@ -147,9 +147,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
 	    echo '<table>
 	    <tr>
-	      <th><a class=tooltip href="#">Talkgroup Number<span><b>Enter the Talkgroup number</b></span></a></th>
-	      <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
-	      <th><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+	      <th style="width:25%;"><a class=tooltip href="#">Talkgroup Number<span><b>Enter the Talkgroup number</b></span></a></th>
+	      <th style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
+	      <th style="width:25%;"><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
 	      <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
 	    </tr>
 	    <tr>
