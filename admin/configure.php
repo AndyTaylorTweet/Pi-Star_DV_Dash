@@ -1563,6 +1563,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	  }
 
+	  if ( $confHardware == 'sbhsdualbandgpio' ) {
+	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
+	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
+	    system($rollModemType);
+	    system($rollRepeaterType1);
+		$configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
+	    $configmmdvm['General']['Duplex'] = 0;
+	    $configmmdvm['DMR Network']['Slot1'] = 0;
+	  }
+
 	  if ( $confHardware == 'mmdvmhsdualhatgpio' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -1573,15 +1583,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 
 	  if ( $confHardware == 'lshsdualhatgpio' ) {
-	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
-	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
-	    system($rollModemType);
-	    system($rollRepeaterType1);
-	    $configmmdvm['Modem']['Port'] = "/dev/ttyAMA0";
-	    $configmmdvm['General']['Duplex'] = 1;
-	  }
-
-	  if ( $confHardware == 'sbhsdualhatgpio' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
 	    system($rollModemType);
