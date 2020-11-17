@@ -799,9 +799,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the ircDDB Callsign routing option
 	if (empty($_POST['confircddbEnabled']) != TRUE ) {
 		if (escapeshellcmd($_POST['confircddbEnabled']) == 'ON' ) {
-			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\rcddbEnabled=1" /etc/ircddbgateway';
+			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=1" /etc/ircddbgateway';
 		} else {
-			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\rcddbEnabled=0" /etc/ircddbgateway';
+			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=0" /etc/ircddbgateway';
 		}
 		system($rollconfircddbEnabled);
 	}
