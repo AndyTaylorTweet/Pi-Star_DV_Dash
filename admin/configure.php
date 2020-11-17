@@ -800,7 +800,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['confircddbEnabled']) != TRUE ) {
 		if (escapeshellcmd($_POST['confircddbEnabled']) == 'ON' ) {
 			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=1" /etc/ircddbgateway';
-		} else {
+		}
+		if (escapeshellcmd($_POST['confircddbEnabled']) == 'OFF' ) {
 			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=0" /etc/ircddbgateway';
 		}
 		system($rollconfircddbEnabled);
