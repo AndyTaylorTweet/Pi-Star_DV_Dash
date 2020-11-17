@@ -796,6 +796,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollSTARNETSERVERirc);
 	}
 
+	// Set the ircDDB Callsign routing option
+	if (empty($_POST['confircddbEnabled']) != TRUE ) {
+		if (escapeshellcmd($_POST['confircddbEnabled']) == 'ON' ) {
+			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\rcddbEnabled=1" /etc/ircddbgateway';
+		} else {
+			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\rcddbEnabled=0" /etc/ircddbgateway';
+		}
+		system($rollconfircddbEnabled);
+	}
+
 	// Set the P25 Startup Host
 	if (empty($_POST['p25StartupHost']) != TRUE ) {
           $newP25StartupHost = strtoupper(escapeshellcmd($_POST['p25StartupHost']));
@@ -2853,6 +2863,7 @@ else:
 		$toggleDstarTimeAnnounceCr		= 'onclick="toggleDstarTimeAnnounce()"';
 		$toggleDstarDplusHostfilesCr		= 'onclick="toggleDstarDplusHostfiles()"';
 		$toggleMobilegps_enableCr		= 'onclick="toggleMobilegps_enable()"';
+		$toggleircddbEnabledCr			= 'onclick="toggleircddbEnabled()"';
 	} else {
 		$toggleDMRCheckboxCr			= "";
 		$toggleDSTARCheckboxCr			= "";
@@ -2875,6 +2886,7 @@ else:
 		$toggleDstarTimeAnnounceCr		= "";
 		$toggleDstarDplusHostfilesCr		= "";
 		$toggleMobilegps_enableCr		= "";
+		$toggleircddbEnabledCr			= "";
 	}
 ?>
 <form id="factoryReset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -3832,6 +3844,18 @@ fclose($dextraFile);
 		echo "<td align=\"left\" colspan=\"2\"><div class=\"switch\"><input id=\"toggle-timeAnnounce\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confTimeAnnounce\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleDstarTimeAnnounceCr." /><label id=\"aria-toggle-timeAnnounce\" role=\"checkbox\" tabindex=\"0\" aria-label=\"D-Star Time Announcements\" aria-checked=\"false\" onKeyPress=\"toggleDstarTimeAnnounce()\" onclick=\"toggleDstarTimeAnnounce()\" for=\"toggle-timeAnnounce\"><font style=\"font-size:0px\">D-Star Time Announcements</font></label></div></td>\n";
 	}
     ?>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Enable ircDDB:<span><b>Enable ircDDB</b>Do you want callsign routing for D-Star</span></a></td>
+    <?php
+	if ( isset($configs['ircddbEnabled']) && $configs['ircddbEnabled'] == "1" ) {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-ircddbEnabled\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confircddbEnabled\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleircddbEnabledCr." /><label id=\"aria-toggle-ircddbEnabled\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use ircDDB callsign routing\" aria-checked=\"true\" onKeyPress=\"toggleircddbEnabled()\" onclick=\"toggleircddbEnabled()\" for=\"toggle-ircddbEnabled\"><font style=\"font-size:0px\">Enable ircDDB callsign routing</font></label></div></td>\n";
+		}
+	else {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-ircddbEnabled\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"confircddbEnabled\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleircddbEnabledCr." /><label id=\"aria-toggle-ircddbEnabled\" role=\"checkbox\" tabindex=\"0\" aria-label=\"Use ircDDB callsign routing\" aria-checked=\"false\" onKeyPress=\"toggleircddbEnabled()\" onclick=\"toggleircddbEnabled()\" for=\"toggle-ircddbEnabled\"><font style=\"font-size:0px\">Enable ircDDB callsign routing</font></label></div></td>\n";
+	}
+    ?>
+    <td>Callsign routing for D-Star</td>
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#">Use DPlus for XRF:<span><b>No DExtra</b>Should host files use DPlus Protocol for XRFs</span></a></td>
