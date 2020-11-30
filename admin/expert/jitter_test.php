@@ -9,12 +9,12 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 require_once('../config/version.php');
 
 // Sanity Check that this file has been opened correctly
-if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
+if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
 
   if (!isset($_GET['ajax'])) {
-    system('sudo touch /var/log/pi-star/pi-star_upgrade.log > /dev/null 2>&1 &');
-    system('sudo echo "" > /var/log/pi-star/pi-star_upgrade.log > /dev/null 2>&1 &');
-    system('sudo /usr/local/sbin/pistar-upgrade > /dev/null 2>&1 &');
+    system('sudo touch /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
+    system('sudo echo "" > /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
+    system('sudo /usr/local/sbin/pistar-jittertest > /dev/null 2>&1 &');
     }
 
   // Sanity Check Passed.
@@ -23,20 +23,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
 
   if (!isset($_GET['ajax'])) {
     //unset($_SESSION['update_offset']);
-    if (file_exists('/var/log/pi-star/pi-star_upgrade.log')) {
-      $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_upgrade.log');
+    if (file_exists('/var/log/pi-star/pi-star_icmptest.log')) {
+      $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_icmptest.log');
     } else {
       $_SESSION['update_offset'] = 0;
     }
   }
-  
+
   if (isset($_GET['ajax'])) {
     //session_start();
-    if (!file_exists('/var/log/pi-star/pi-star_upgrade.log')) {
+    if (!file_exists('/var/log/pi-star/pi-star_icmptest.log')) {
       exit();
     }
-    
-    $handle = fopen('/var/log/pi-star/pi-star_upgrade.log', 'rb');
+
+    $handle = fopen('/var/log/pi-star/pi-star_icmptest.log', 'rb');
     if (isset($_SESSION['update_offset'])) {
       fseek($handle, 0, SEEK_END);
       if ($_SESSION['update_offset'] > ftell($handle)) //log rotated/truncated
@@ -48,10 +48,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
     else {
       fseek($handle, 0, SEEK_END);
       $_SESSION['update_offset'] = ftell($handle);
-      } 
+      }
   exit();
   }
-  
+
 ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -75,7 +75,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
     <script type="text/javascript">
     $(function() {
       $.repeat(1000, function() {
-        $.get('/admin/expert/upgrade.php?ajax', function(data) {
+        $.get('/admin/expert/jitter_test.php?ajax', function(data) {
           if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
           var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;
@@ -93,7 +93,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
   <div class="contentwide">
   <table width="100%">
   <tr><th>Upgrade Running</th></tr>
-  <tr><td align="left"><div id="tail">Starting upgrade, please wait...<br /></div></td></tr>
+  <tr><td align="left"><div id="tail">Starting test, please wait...<br /></div></td></tr>
   </table>
   </div>
   <div class="footer">
