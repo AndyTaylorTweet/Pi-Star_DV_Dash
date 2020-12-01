@@ -49,7 +49,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
         $_SESSION['update_offset'] = 0; //continue at beginning of the new log
       $data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
       $_SESSION['update_offset'] += strlen($data);
-      echo nl2br($data);
+      echo "<pre>$data</pre>";
       }
     else {
       fseek($handle, 0, SEEK_END);
