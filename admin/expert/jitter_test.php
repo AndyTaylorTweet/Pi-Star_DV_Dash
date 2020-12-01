@@ -11,10 +11,16 @@ require_once('../config/version.php');
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
 
+  if (isset($_GET['group'])) {
+    if ($_GET['group'] == "BM")         { $target = "BM"; }
+    if ($_GET['group'] == "DMR+")       { $target = "DMR+"; }
+    if ($_GET['group'] == "HB")         { $target = "HB"; }
+  } else { $target = "DMR+"; }
+  
   if (!isset($_GET['ajax'])) {
     system('sudo touch /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
     system('sudo echo "" > /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
-    system('sudo /usr/local/sbin/pistar-jittertest > /dev/null 2>&1 &');
+    system('sudo /usr/local/sbin/pistar-jittertest '.$target.' > /dev/null 2>&1 &');
     }
 
   // Sanity Check Passed.
