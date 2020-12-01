@@ -16,12 +16,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
     if ($_GET['group'] == "DMR+")       { $target = "DMR+"; }
     if ($_GET['group'] == "HB")         { $target = "HB"; }
   } else { $target = "DMR+"; }
-  
+
   if (!isset($_GET['ajax'])) {
     system('sudo touch /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
     system('sudo echo "" > /var/log/pi-star/pi-star_icmptest.log > /dev/null 2>&1 &');
     system('sudo /usr/local/sbin/pistar-jittertest '.$target.' > /dev/null 2>&1 &');
-    }
+  }
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
