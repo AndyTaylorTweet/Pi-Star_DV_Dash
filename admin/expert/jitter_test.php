@@ -12,9 +12,9 @@ require_once('../config/version.php');
 if ($_SERVER["PHP_SELF"] == "/admin/expert/jitter_test.php") {
 
   if (isset($_GET['group'])) {
-    if ($_GET['group'] == "BM")         { $target = "BM"; }
-    if ($_GET['group'] == "DMR+")       { $target = "DMR+"; }
-    if ($_GET['group'] == "HB")         { $target = "HB"; }
+    if ($_GET['group'] == "brandmeister") { $target = "BM"; }
+    if ($_GET['group'] == "dmrplus")      { $target = "DMR+"; }
+    if ($_GET['group'] == "hblink")       { $target = "HB"; }
   } else { $target = "DMR+"; }
 
   if (!isset($_GET['ajax'])) {
