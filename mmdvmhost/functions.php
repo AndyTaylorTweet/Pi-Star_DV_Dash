@@ -1,62 +1,42 @@
 <?php
+
+/**
+* Parses config file into array.
+*/
+function getConfigFromFile($file) {
+$conf = array();
+if ($configs = @fopen($file, 'r')) {
+    while ($config = fgets($configs)) {
+        array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+    }
+    fclose($configs);
+}
+return $conf;
+}
+
 function getMMDVMConfig() {
 	// loads /etc/mmdvmhost into array for further use
-	$conf = array();
-	if ($configs = @fopen(MMDVMINIPATH."/".MMDVMINIFILENAME, 'r')) {
-		while ($config = fgets($configs)) {
-			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-		}
-		fclose($configs);
-	}
-	return $conf;
+	return getConfigFromFile(MMDVMINIPATH."/".MMDVMINIFILENAME);
 }
 
 function getYSFGatewayConfig() {
 	// loads /etc/ysfgateway into array for further use
-	$conf = array();
-	if ($configs = @fopen(YSFGATEWAYINIPATH."/".YSFGATEWAYINIFILENAME, 'r')) {
-		while ($config = fgets($configs)) {
-			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-		}
-		fclose($configs);
-	}
-	return $conf;
+	return getConfigFromFile(YSFGATEWAYINIPATH."/".YSFGATEWAYINIFILENAME);
 }
 
 function getP25GatewayConfig() {
 	// loads /etc/p25gateway into array for further use
-	$conf = array();
-	if ($configs = @fopen(P25GATEWAYINIPATH."/".P25GATEWAYINIFILENAME, 'r')) {
-		while ($config = fgets($configs)) {
-			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-		}
-		fclose($configs);
-	}
-	return $conf;
+	return getConfigFromFile(P25GATEWAYINIPATH."/".P25GATEWAYINIFILENAME);
 }
 
 function getNXDNGatewayConfig() {
 	// loads /etc/nxdngateway into array for further use
-	$conf = array();
-	if ($configs = @fopen('/etc/nxdngateway', 'r')) {
-		while ($config = fgets($configs)) {
-			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-		}
-		fclose($configs);
-	}
-	return $conf;
+	return getConfigFromFile('/etc/nxdngateway');
 }
 
 function getDAPNETGatewayConfig() {
 	// loads /etc/dapnetgateway into array for further use
-	$conf = array();
-	if ($configs = @fopen('/etc/dapnetgateway', 'r')) {
-		while ($config = fgets($configs)) {
-			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
-		}
-		fclose($configs);
-	}
-	return $conf;
+	return getConfigFromFile('/etc/dapnetgateway');
 }
 
 function getConfigItem($section, $key, $configs) {
