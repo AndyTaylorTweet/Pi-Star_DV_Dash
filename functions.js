@@ -18,6 +18,15 @@ function checkPass(){                   //used in confirm matching password entr
     document.getElementById('submitpwd').setAttribute("disabled","disabled");
   }
 }
+function CheckPSK(psk) {
+	if(psk.value.length > 0 && psk.value.length < 8) {
+		psk.style.background='#FFD0D0';
+		document.getElementById('Save').disabled = true;
+	} else {
+		psk.style.background='#D0FFD0';
+		document.getElementById('Save').disabled = false;
+	}
+}
 function checkPskMatch(){                   //used in confirm matching psk entries
   var psk1 = document.getElementById('psk1');
   var psk2 = document.getElementById('psk2');
