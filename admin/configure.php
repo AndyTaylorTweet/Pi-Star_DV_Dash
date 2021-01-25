@@ -4398,10 +4398,9 @@ echo '
     <table><tr><td>
     <iframe frameborder="0" scrolling="auto" name="wifi" src="wifi.php?page=wlan0_info" width="100%" onload="javascript:resizeIframe(this);">If you can see this message, your browser does not support iFrames, however if you would like to see the content please click <a href="wifi.php?page=wlan0_info">here</a>.</iframe>
     </td></tr></table>
-
     <form id="autoApPassForm" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'" method="post">
     <table>
-    <tr><th width="200">Auto AP</th><th colspan="3">PSK</th></tr>
+    <tr><th width="200">Auto AP SSID</th><th colspan="3">PSK</th></tr>
     <tr>
     <td align="left"><b>'.php_uname('n').'</b></td>
     <td align="left"><label for="psk1">Password:</label><input type="password" name="autoapPsk" id="psk1" onkeyup="CheckPSK(); return false;" size="20" />
