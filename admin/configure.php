@@ -4407,7 +4407,7 @@ echo '
     <td align="left"><label for="psk1">Password:</label><input type="password" name="autoapPsk" id="psk1" onkeyup="CheckPSK(); return false;" size="20" />
     <label for="psk2">Confirm Password:</label><input type="password" name="autoapPsk" id="psk2" onkeyup="checkPskMatch(); return false;" />
     <br /><span id="confirmMessage" class="confirmMessage"></span></td>
-    <td align="right"><input type="button" id="submitpsk" value="'.$lang['set_password'].'">" onclick="submitPskform()" disabled="disabled" /></td>
+    <td align="right"><input type="button" id="submitpsk" value="Set PSK" onclick="submitPskform()" disabled="disabled" /></td>
     </tr>
     </table>
     </form>';} ?>
