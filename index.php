@@ -57,8 +57,6 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <script type="text/javascript">
       $.ajaxSetup({ cache: false });
     </script>
-    <link href="/featherlight.css" type="text/css" rel="stylesheet" />
-    <script src="/featherlight.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="container">
