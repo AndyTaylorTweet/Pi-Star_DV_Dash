@@ -180,6 +180,10 @@ $MYCALL=strtoupper($callsign);
 		disablesubmitbuttons();
 		document.getElementById("adminPassForm").submit();
 	}
+	function submitPskform() {
+		disablesubmitbuttons();
+		document.getElementById("autoApPassForm").submit();
+	}
 	function factoryReset() {
 		if (confirm('WARNING: This will set all your settings back to factory defaults. WiFi setup will be retained to maintain network access to this Pi.\n\nAre you SURE you want to do this?\n\nPress OK to restore the factory configuration\nPress Cancel to go back.')) {
 			document.getElementById("factoryReset").submit();
@@ -4387,26 +4391,26 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     </form>
 
 <?php
-//	exec('ifconfig wlan0',$return);
-//	exec('iwconfig wlan0',$return);
-//	$strWlan0 = implode(" ",$return);
-//	$strWlan0 = preg_replace('/\s\s+/', ' ', $strWlan0);
-//	if (strpos($strWlan0,'HWaddr') !== false) {
-//		preg_match('/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result);
-//	}
-//	elseif (strpos($strWlan0,'ether') !== false) {
-//		preg_match('/ether ([0-9a-f:]+)/i',$strWlan0,$result);
-//	}
-//	$strHWAddress = $result['1'];
-//
-//	if ( isset($strHWAddress) ) {
 	if ( file_exists('/sys/class/net/wlan0') || file_exists('/sys/class/net/wlan1') || file_exists('/sys/class/net/wlan0_ap') ) {
 echo '
 <br />
     <h2>'.$lang['wifi_config'].'</h2>
     <table><tr><td>
     <iframe frameborder="0" scrolling="auto" name="wifi" src="wifi.php?page=wlan0_info" width="100%" onload="javascript:resizeIframe(this);">If you can see this message, your browser does not support iFrames, however if you would like to see the content please click <a href="wifi.php?page=wlan0_info">here</a>.</iframe>
-    </td></tr></table>'; } ?>
+    </td></tr></table>
+
+    <form id="autoApPassForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <table>
+    <tr><th width="200">Auto AP</th><th colspan="3">PSK</th></tr>
+    <tr>
+    <td align="left"><b>'.php_uname('n').'</b></td>
+    <td align="left"><label for="psk1">Password:</label><input type="password" name="autoapPsk" id="psk1" onkeyup="CheckPSK(); return false;" size="20" />
+    <label for="psk2">Confirm Password:</label><input type="password" name="autoapPsk" id="psk2" onkeyup="checkPskMatch(); return false;" />
+    <br /><span id="confirmMessage" class="confirmMessage"></span></td>
+    <td align="right"><input type="button" id="submitpsk" value="<?php echo $lang['set_password'];?>" onclick="submitPskform()" disabled="disabled" /></td>
+    </tr>
+    </table>
+    </form>';} ?>
 
 <br />
 	<h2><?php echo $lang['remote_access_pw'];?></h2>
