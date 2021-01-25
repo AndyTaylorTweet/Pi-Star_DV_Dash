@@ -325,6 +325,26 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  die();
 	}
 
+	// Admin Password Change
+	if (empty($_POST['adminPassword']) != TRUE ) {
+	  $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star \''.stripslashes(trim($_POST['adminPassword'])).'\'';
+	  system($rollAdminPass0);
+	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
+	  system($rollAdminPass2);
+	  unset($_POST);
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  die();
+	  }
+
+	// AutoAP PSK Change
+	if (empty($_POST['autoapPsk']) != TRUE ) {
+	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
+	  system($rollAutoApPsk);
+	  unset($_POST);
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  die();
+	  }
+
 	// Change Radio Control Software
 	if (empty($_POST['controllerSoft']) != TRUE ) {
 	  system('sudo rm -rf /etc/dstar-radio.*');
@@ -342,20 +362,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['dashboardLanguage']) != TRUE ) {
 	  $rollDashLang = 'sudo sed -i "/pistarLanguage=/c\\$pistarLanguage=\''.escapeshellcmd($_POST['dashboardLanguage']).'\';" /var/www/dashboard/config/language.php';
 	  system($rollDashLang);
-	  }
-
-	// Admin Password Change
-	if (empty($_POST['adminPassword']) != TRUE ) {
-	  $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star \''.stripslashes(trim($_POST['adminPassword'])).'\'';
-	  system($rollAdminPass0);
-	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
-	  system($rollAdminPass2);
-	  }
-
-	// AutoAP PSK Change
-	if (empty($_POST['autoapPsk']) != TRUE ) {
-	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
-	  system($rollAutoApPsk);
 	  }
 
 	// Set the ircDDBGAteway Remote Password and Port
