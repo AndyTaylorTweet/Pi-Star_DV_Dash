@@ -332,8 +332,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
 	  system($rollAdminPass2);
 	  unset($_POST);
-	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
-	  die();
 	  }
 
 	// AutoAP PSK Change
@@ -341,8 +339,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
 	  system($rollAutoApPsk);
 	  unset($_POST);
-	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
-	  die();
 	  }
 
 	// Change Radio Control Software
@@ -4410,6 +4406,7 @@ echo '
     <table><tr><td>
     <iframe frameborder="0" scrolling="auto" name="wifi" src="wifi.php?page=wlan0_info" width="100%" onload="javascript:resizeIframe(this);">If you can see this message, your browser does not support iFrames, however if you would like to see the content please click <a href="wifi.php?page=wlan0_info">here</a>.</iframe>
     </td></tr></table>
+    <br />
     <form id="autoApPassForm" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'" method="post">
     <table>
     <tr><th width="200">Auto AP SSID</th><th colspan="3">PSK</th></tr>
