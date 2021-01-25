@@ -257,6 +257,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
 	  system($rollAdminPass2);
 	  unset($_POST);
+	  echo "<table>\n";
+	  echo "<tr><th>Working...</th></tr>\n";
+	  echo "<tr><td>Applying your configuration changes...</td></tr>\n";
+	  echo "</table>\n";
 	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  echo "<br />\n</div>\n";
           echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
@@ -271,6 +275,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
 	  system($rollAutoApPsk);
 	  unset($_POST);
+	  echo "<table>\n";
+	  echo "<tr><th>Working...</th></tr>\n";
+	  echo "<tr><td>Applying your configuration changes...</td></tr>\n";
+	  echo "</table>\n";
 	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  echo "<br />\n</div>\n";
           echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
