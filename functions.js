@@ -18,13 +18,11 @@ function checkPass(){                   //used in confirm matching password entr
     document.getElementById('submitpwd').setAttribute("disabled","disabled");
   }
 }
-function CheckPSK(psk) {
-	if(psk.value.length > 0 && psk.value.length < 8) {
-		psk.style.background='#FFD0D0';
-		document.getElementById('Save').disabled = true;
+function checkPsk() {
+	if(psk1.value.length > 0 && psk1.value.length < 8) {
+		psk1.style.background='#ff6666';
 	} else {
-		psk.style.background='#D0FFD0';
-		document.getElementById('Save').disabled = false;
+		psk1.style.background='#66cc66';
 	}
 }
 function checkPskMatch(){                   //used in confirm matching psk entries
