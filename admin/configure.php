@@ -352,6 +352,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  system($rollAdminPass2);
 	  }
 
+	// AutoAP PSK Change
+	if (empty($_POST['autoapPsk']) != TRUE ) {
+	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
+	  system($rollAutoApPsk);
+	  }
+
 	// Set the ircDDBGAteway Remote Password and Port
 	if (empty($_POST['confPassword']) != TRUE ) {
 	  $rollConfPassword0 = 'sudo sed -i "/remotePassword=/c\\remotePassword='.escapeshellcmd($_POST['confPassword']).'" /etc/ircddbgateway';
