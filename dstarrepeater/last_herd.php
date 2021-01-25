@@ -54,7 +54,7 @@ $MYCALL=strtoupper($callsign);
                     $dt->setTimeZone($local_tz);
                     $local_time = $dt->format('H:i:s M jS');
 		print "<td align=\"left\">$local_time</td>";
-		//print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCallLink\" data-featherlight=\"iframe\" data-featherlight-iframe-min-width=\"90%\" data-featherlight-iframe-max-width=\"90%\" data-featherlight-iframe-width=\"2000\" data-featherlight-iframe-height=\"2000\">$MyCall</a>";
+		//print "<td align=\"left\" width=\"180\"><a href=\"https://database.radioid.net/database/view?callsign=$MyCallLink\" target=\"popup\" onclick=\"window.open('https://database.radioid.net/database/view?callsign=$MyCallLink','popup','width=600,height=600'); return false;\">$MyCall</a>";
 		print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCallLink\" target=\"_blank\">$MyCall</a>";
 		if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
                 print "<td align=\"left\" width=\"100\">$YourCall</td>";
