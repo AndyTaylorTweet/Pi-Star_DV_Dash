@@ -205,7 +205,7 @@ $MYCALL=strtoupper($callsign);
 		document.getElementById("confLongitude").value = position.coords.longitude.toFixed(5);
 	}
     </script>
-    <script type="text/javascript" src="/functions.js?version=1.708"></script>
+    <script type="text/javascript" src="/functions.js?version=1.709"></script>
 </head>
 <body onload="checkFrequency(); return false;">
 <div class="container">
@@ -4403,8 +4403,8 @@ echo '
     <tr><th width="200">Auto AP SSID</th><th colspan="3">PSK</th></tr>
     <tr>
     <td align="left"><b>'.php_uname('n').'</b></td>
-    <td align="left"><label for="psk1">Password:</label><input type="password" name="autoapPsk" id="psk1" onkeyup="CheckPSK(); return false;" size="20" />
-    <label for="psk2">Confirm Password:</label><input type="password" name="autoapPsk" id="psk2" onkeyup="checkPskMatch(); return false;" />
+    <td align="left"><label for="psk1">PSK:</label><input type="password" name="autoapPsk" id="psk1" onkeyup="checkPsk(); return false;" size="20" />
+    <label for="psk2">Confirm PSK:</label><input type="password" name="autoapPsk" id="psk2" onkeyup="checkPskMatch(); return false;" />
     <br /><span id="confirmMessage" class="confirmMessage"></span></td>
     <td align="right"><input type="button" id="submitpsk" value="Set PSK" onclick="submitPskform()" disabled="disabled" /></td>
     </tr>
