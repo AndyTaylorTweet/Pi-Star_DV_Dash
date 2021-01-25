@@ -250,6 +250,36 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Make the root filesystem writable
 	system('sudo mount -o remount,rw /');
 
+	// Admin Password Change
+	if (empty($_POST['adminPassword']) != TRUE ) {
+	  $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star \''.stripslashes(trim($_POST['adminPassword'])).'\'';
+	  system($rollAdminPass0);
+	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
+	  system($rollAdminPass2);
+	  unset($_POST);
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  echo "<br />\n</div>\n";
+          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistarusergroup/\" target=\"_new\">here for the Support Group</a><br />\n";
+          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
+          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
+	  die();
+	  }
+
+	// AutoAP PSK Change
+	if (empty($_POST['autoapPsk']) != TRUE ) {
+	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
+	  system($rollAutoApPsk);
+	  unset($_POST);
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  echo "<br />\n</div>\n";
+          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
+          echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistarusergroup/\" target=\"_new\">here for the Support Group</a><br />\n";
+          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
+          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
+	  die();
+	  }
+
 	// Stop Cron (occasionally remounts root as RO - would be bad if it did this at the wrong time....)
 	system('sudo systemctl stop cron.service > /dev/null 2>/dev/null &');			//Cron
 
@@ -282,7 +312,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Let the services actualy stop
 	sleep(1);
-
 
 	// Factory Reset Handler Here
 	if (empty($_POST['factoryReset']) != TRUE ) {
@@ -328,36 +357,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
           echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
 	  die();
-	}
-
-	// Admin Password Change
-	if (empty($_POST['adminPassword']) != TRUE ) {
-	  $rollAdminPass0 = 'htpasswd -b /var/www/.htpasswd pi-star \''.stripslashes(trim($_POST['adminPassword'])).'\'';
-	  system($rollAdminPass0);
-	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
-	  system($rollAdminPass2);
-	  unset($_POST);
-	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
-	  echo "<br />\n</div>\n";
-          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
-          echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistarusergroup/\" target=\"_new\">here for the Support Group</a><br />\n";
-          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
-          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
-	  die();
-	  }
-
-	// AutoAP PSK Change
-	if (empty($_POST['autoapPsk']) != TRUE ) {
-	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
-	  system($rollAutoApPsk);
-	  unset($_POST);
-	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
-	  echo "<br />\n</div>\n";
-          echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
-          echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistarusergroup/\" target=\"_new\">here for the Support Group</a><br />\n";
-          echo "Get your copy of Pi-Star from <a style=\"color: #ffffff;\" href=\"http://www.pistar.uk/downloads/\" target=\"_blank\">here</a>.<br />\n";
-          echo "<br />\n</div>\n</div>\n</body>\n</html>\n";
-	  die();
 	  }
 
 	// Change Radio Control Software
@@ -371,7 +370,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['autoAP']) != TRUE ) {
 	  if (escapeshellcmd($_POST['autoAP']) == 'OFF') { system('sudo touch /etc/hostap.off'); }
 	  if (escapeshellcmd($_POST['autoAP']) == 'ON') { system('sudo rm -rf /etc/hostap.off'); }
-	}
+	  }
 
 	// Change Dashboard Language
 	if (empty($_POST['dashboardLanguage']) != TRUE ) {
