@@ -31,6 +31,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['power'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
+    <script>
+      $('#myForm').submit(function() {
+        return confirm("Click OK to continue?");
+      });
+    </script>
   </head>
   <body>
   <div class="container">
@@ -71,7 +76,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   ?>
   </table>
 <?php } else { ?>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="myForm">
   <table width="100%">
   <tr>
     <th colspan="2"><?php echo $lang['power'];?></th>
@@ -79,20 +84,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   <tr>
     <td align="center">
       Reboot<br />
-      <button style="border: none; background: none;" name="action" value="reboot" onclick="confirm()"><img src="/images/reboot.png" border="0" alt="Reboot" /></button>
+      <button style="border: none; background: none;" name="action" value="reboot"><img src="/images/reboot.png" border="0" alt="Reboot" /></button>
     </td>
     <td align="center">
       Shutdown<br />
-      <button style="border: none; background: none;" name="action" value="shutdown" onclick="confirm()"><img src="/images/shutdown.png" border="0" alt="Shutdown" /></button>
+      <button style="border: none; background: none;" name="action" value="shutdown"><img src="/images/shutdown.png" border="0" alt="Shutdown" /></button>
     </td>
   </tr>
   </table>
   </form>
-  <script>
-    function confirm() {
-      confirm("Are you sure?");
-    }
-  </script>
 <?php } ?>
   </div>
   <div class="footer">
