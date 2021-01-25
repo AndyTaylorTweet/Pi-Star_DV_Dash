@@ -79,15 +79,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
   <tr>
     <td align="center">
       Reboot<br />
-      <button style="border: none; background: none;" name="action" value="reboot"><img src="/images/reboot.png" border="0" alt="Reboot" /></button>
+      <button style="border: none; background: none;" name="action" value="reboot" onclick="confirm()"><img src="/images/reboot.png" border="0" alt="Reboot" /></button>
     </td>
     <td align="center">
       Shutdown<br />
-      <button style="border: none; background: none;" name="action" value="shutdown"><img src="/images/shutdown.png" border="0" alt="Shutdown" /></button>
+      <button style="border: none; background: none;" name="action" value="shutdown" onclick="confirm()"><img src="/images/shutdown.png" border="0" alt="Shutdown" /></button>
     </td>
   </tr>
   </table>
   </form>
+  <script>
+    function confirm() {
+      confirm("Are you sure?");
+    }
+  </script>
 <?php } ?>
   </div>
   <div class="footer">
