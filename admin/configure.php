@@ -3660,7 +3660,7 @@ else:
     </tr>'."\n";}
     if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_")) {
       echo '    <tr>
-    <td align="left"><a class="tooltip2" href="#">'.$lang['dmr_plus_network'].':<span><b>DMR+ Network</b>Set your options= for DMR+ here</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
     <td align="left">
     Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="';
 	if (isset($configmmdvm['DMR Network']['Options'])) { echo $configmmdvm['DMR Network']['Options']; }
