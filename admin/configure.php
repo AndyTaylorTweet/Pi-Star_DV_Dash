@@ -332,6 +332,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollAdminPass2 = 'sudo echo -e \''.stripslashes(trim($_POST['adminPassword'])).'\n'.stripslashes(trim($_POST['adminPassword'])).'\' | sudo passwd pi-star';
 	  system($rollAdminPass2);
 	  unset($_POST);
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  die();
 	  }
 
 	// AutoAP PSK Change
@@ -339,6 +341,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
 	  system($rollAutoApPsk);
 	  unset($_POST);
+	  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+	  die();
 	  }
 
 	// Change Radio Control Software
