@@ -18,6 +18,19 @@ function checkPass(){                   //used in confirm matching password entr
     document.getElementById('submitpwd').setAttribute("disabled","disabled");
   }
 }
+function checkPskMatch(){                   //used in confirm matching psk entries
+  var psk1 = document.getElementById('psk1');
+  var psk2 = document.getElementById('psk2');
+  var goodColor = "#66cc66";
+  var badColor = "#ff6666";
+  if((psk1.value != '') && (psk1.value == psk2.value)){
+    psk2.style.backgroundColor = goodColor;
+    document.getElementById('submitpsk').removeAttribute("disabled");
+  }else{
+    psk2.style.backgroundColor = badColor;
+    document.getElementById('submitpsk').setAttribute("disabled","disabled");
+  }
+}
 function checkFrequency(){
   // Set the colours
   var goodColor = "#66cc66";
