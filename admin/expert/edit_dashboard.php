@@ -156,7 +156,7 @@ echo '<form action="" method="post">'."\n";
 		echo "<br /><br />\n";
 	}
 echo "</form>";
-echo "<br /><br />\n";
+echo "<br />\n";
 echo 'if you took it all too far and now it makes you feel sick, click below to reset the changes made on this page.'."\n";
 echo '<form id="factoryReset" action="" method="post">'."\n";
 echo '  <div><input type="hidden" name="factoryReset" value="1" /></div>'."\n";
