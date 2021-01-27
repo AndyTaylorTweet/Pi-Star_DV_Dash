@@ -3,8 +3,31 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/config/config.php';          // MMDVMDa
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
 include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';	      // Translation Code
-//$localTXList = getHeardList($reverseLogLinesMMDVM);
 $localTXList = $lastHeard;
+
+// Check if the config file exists
+if (file_exists('/etc/pistar-css.ini')) {
+    // Use the values from the file
+    $piStarCssFile = '/etc/pistar-css.ini';
+    if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
+
+    // Set the Values from the config file
+    if (isset($piStarCss['Lookup']['Service'])) { $callsignLookupSvc = $piStarCss['Lookup']['Service']; }		// Lookup Service "QRZ" or "RadioID"
+    else { $callsignLookupSvc = "RadioID"; }										// Set the default if its missing
+    if (isset($piStarCss['Lookup']['popupWidth'])) { $lookupPopupWidth = $piStarCss['Lookup']['popupWidth']; }		// Lookup Popup Width
+    else { $lookupPopupWidth = "600"; }											// Set the default if its missing
+    if (isset($piStarCss['Lookup']['popupHeight'])) { $lookupPopupHeight = $piStarCss['Lookup']['popupHeight']; }	// Lookup Popup Height
+    else { $lookupPopupHeight = "600"; }										// Set the default if its missing
+} else {
+    // Default values
+    $callsignLookupSvc = "RadioID";
+    $lookupPopupWidth = "600";
+    $lookupPopupHeight = "600";
+}
+
+// Setup the URL(s)
+if ($callsignLookupSvc == "RadioID") { $callsignLookupUrl = "https://database.radioid.net/database/view?callsign="; }
+if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"; }
 
 ?>
 <b><?php echo $lang['local_tx_list'];?></b>
@@ -42,11 +65,9 @@ for ($i = 0; $i < count($localTXList); $i++) {
 			} else {
 				if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 				if ($listElem[3] && $listElem[3] != '    ' ) {
-					echo "<td align=\"left\"><a href=\"https://database.radioid.net/database/view?callsign=$listElem[2]\" target=\"popup\" onclick=\"window.open('https://database.radioid.net/database/view?callsign=$listElem[2]','popup','width=600,height=600'); return false;\">$listElem[2]</a>/$listElem[3]</td>";
-					//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
+					echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a>/$listElem[3]</td>";
 				} else {
-					echo "<td align=\"left\"><a href=\"https://database.radioid.net/database/view?callsign=$listElem[2]\" target=\"popup\" onclick=\"window.open('https://database.radioid.net/database/view?callsign=$listElem[2]','popup','width=600,height=600'); return false;\">$listElem[2]</a></td>";
-					//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
+					echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a></td>";
 				}
 			}
 			if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
