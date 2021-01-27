@@ -282,7 +282,7 @@ if ( $testMMDVModeYSF == 1 || $testDMR2YSF ) { //Hide the YSF information when S
                                 break;
                         }
                 }
-                if ($ysfLinkedToTxt != "null") { $ysfLinkedToTxt = "Room: ".$ysfLinkedToTxt; } else { $ysfLinkedToTxt = "Linked to ".$ysfLinkedTo; }
+                if ($ysfLinkedToTxt != "null") { $ysfLinkedToTxt = $ysfLinkedToTxt; } else { $ysfLinkedToTxt = $ysfLinkedTo; }
                 $ysfLinkedToTxt = str_replace('_', ' ', $ysfLinkedToTxt);
         }
         if (strlen($ysfLinkedToTxt) > 19) { $ysfLinkedToTxt = substr($ysfLinkedToTxt, 0, 17) . '..'; }
@@ -344,7 +344,7 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	if (file_exists('/etc/nxdngateway')) {
 		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesNXDNGateway, "NXDN")."</td></tr>\n";
 	} else {
-		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">Linked to TG65000</td></tr>\n";
+		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">TG65000</td></tr>\n";
 	}
 	echo "</table>\n";
 }
