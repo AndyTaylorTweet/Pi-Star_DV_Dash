@@ -9,7 +9,7 @@ if (file_exists('/etc/pistar-css.ini')) {
     // Use the values from the file
     $piStarCssFile = '/etc/pistar-css.ini';
     if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
-    
+
     // Set the Values from the config file
     if (isset($piStarCss['Lookup']['Service'])) { $callsignLookupSvc = $piStarCss['Lookup']['Service']; }		// Lookup Service "QRZ" or "RadioID"
     else { $callsignLookupSvc = "RadioID"; }										// Set the default if its missing
@@ -63,13 +63,9 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 		} else {
 			if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 			if ( $listElem[3] && $listElem[3] != '    ' ) {
-				//echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a>/$listElem[3]</td>";
-				echo "<td align=\"left\"><a href=\"https://database.radioid.net/database/view?callsign=$listElem[2]\" target=\"popup\" onclick=\"window.open('https://database.radioid.net/database/view?callsign=$listElem[2]','popup','width=600,height=600'); return false;\">$listElem[2]</a>/$listElem[3]</td>";
-				//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
+				echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a>/$listElem[3]</td>";
 			} else {
-				//echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a></td>";
-				echo "<td align=\"left\"><a href=\"https://database.radioid.net/database/view?callsign=$listElem[2]\" target=\"popup\" onclick=\"window.open('https://database.radioid.net/database/view?callsign=$listElem[2]','popup','width=600,height=600'); return false;\">$listElem[2]</a></td>";
-				//echo "<td align=\"left\"><a href=\"http://www.qrz.com/db/$listElem[2]\" target=\"_blank\">$listElem[2]</a></td>";
+				echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a></td>";
 			}
 		}
 
