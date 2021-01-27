@@ -68,11 +68,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
       if ( (isset($_POST["reflectorNr"])) && (isset($_POST["refSubmit"])) && ($_POST["REFmgr"] == "LINK")) { $targetREF = preg_replace("/[^0-9]/", "", $_POST["reflectorNr"]); }
       // Build the Data
-      if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) ) {
+      if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetTG) ) {
         $postDataTG = array(
           'talkgroup' => $targetTG,
           'timeslot' => $targetSlot,
         );
+      }
+      if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetREF) ) {
         $postDataREF = array(
           'reflector' => $targetREF,
         );
@@ -105,7 +107,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       echo '<b>BrandMeister Manager</b>'."\n";
       echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
       //echo "Sending command to BrandMeister API";
-      print "BrandMeister API: ".$feeback->{'message'};
+      if (isset($feeback)) { print "BrandMeister API: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
       echo "</td></tr>\n</table>\n";
       echo "<br />\n";
       // Clean up...
