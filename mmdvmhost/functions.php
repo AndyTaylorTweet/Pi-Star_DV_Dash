@@ -820,7 +820,7 @@ function getDSTARLinks() {
 			}
 			if (strtolower(substr($linkDir, 0, 2)) == "in") { $linkDir = "In"; }
 			if (strtolower(substr($linkDir, 0, 3)) == "out") { $linkDir = "Out"; }
-			$out = $linkDest . " (" . $protocol . ") " . $linkDir . ")";
+			$out = $linkDest . " (" . $protocol . ") " . $linkDir;
 		}
 	}
 	fclose($linkLog);
