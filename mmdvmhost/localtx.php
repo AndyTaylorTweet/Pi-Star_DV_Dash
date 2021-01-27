@@ -29,6 +29,7 @@ if (file_exists('/etc/pistar-css.ini')) {
 if (($callsignLookupSvc != "RadioID") && ($callsignLookupSvc != "QRZ")) { $callsignLookupSvc = "RadioID"; }
 
 // Setup the URL(s)
+$idLookupUrl = "https://database.radioid.net/database/view?id=";
 if ($callsignLookupSvc == "RadioID") { $callsignLookupUrl = "https://database.radioid.net/database/view?callsign="; }
 if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"; }
 
@@ -61,8 +62,10 @@ for ($i = 0; $i < count($localTXList); $i++) {
 			echo"<tr>";
 			echo"<td align=\"left\">$local_time</td>";
 			echo"<td align=\"left\">$listElem[1]</td>";
-			if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
-				echo "<td align=\"left\">$listElem[2]</td>";
+			//if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
+			if (is_numeric($listElem[2])) {
+				//echo "<td align=\"left\">$listElem[2]</td>";
+				echo "<td align=\"left\"><a href=\"".$idLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$idLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a></td>";
 			} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 				echo "<td align=\"left\">$listElem[2]</td>";
 			} else {
