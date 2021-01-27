@@ -14,6 +14,31 @@ if ($configfile = fopen($gatewayConfigPath,'r')) {
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev="20141101";
 $MYCALL=strtoupper($callsign);
+
+// Check if the config file exists
+if (file_exists('/etc/pistar-css.ini')) {
+    // Use the values from the file
+    $piStarCssFile = '/etc/pistar-css.ini';
+    if (fopen($piStarCssFile,'r')) { $piStarCss = parse_ini_file($piStarCssFile, true); }
+
+    // Set the Values from the config file
+    if (isset($piStarCss['Lookup']['Service'])) { $callsignLookupSvc = $piStarCss['Lookup']['Service']; }		// Lookup Service "QRZ" or "RadioID"
+    else { $callsignLookupSvc = "RadioID"; }										// Set the default if its missing
+    if (isset($piStarCss['Lookup']['popupWidth'])) { $lookupPopupWidth = $piStarCss['Lookup']['popupWidth']; }		// Lookup Popup Width
+    else { $lookupPopupWidth = "600"; }											// Set the default if its missing
+    if (isset($piStarCss['Lookup']['popupHeight'])) { $lookupPopupHeight = $piStarCss['Lookup']['popupHeight']; }	// Lookup Popup Height
+    else { $lookupPopupHeight = "600"; }										// Set the default if its missing
+} else {
+    // Default values
+    $callsignLookupSvc = "RadioID";
+    $lookupPopupWidth = "600";
+    $lookupPopupHeight = "600";
+}
+
+// Setup the URL(s)
+if ($callsignLookupSvc == "RadioID") { $callsignLookupUrl = "https://database.radioid.net/database/view?callsign="; }
+if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"; }
+
 ?>
     <b><?php echo $lang['local_tx_list'];?></b>
     <table>
@@ -52,8 +77,7 @@ $MYCALL=strtoupper($callsign);
                     $dt->setTimeZone($local_tz);
                     $local_time = $dt->format('H:i:s M jS');
                 print "<td align=\"left\">$local_time</td>";
-		//print "<td align=\"left\" width=\"180\"><a href=\"http://www.qrz.com/db/$MyCallLink\" target=\"_blank\">$MyCall</a>";
-		print "<td align=\"left\" width=\"180\"><a href=\"https://database.radioid.net/database/view?callsign=$MyCallLink\" target=\"popup\" onclick=\"window.open('https://database.radioid.net/database/view?callsign=$MyCallLink','popup','width=600,height=600'); return false;\">$MyCall</a>";
+		print "<td align=\"left\" width=\"180\"><a href=\"".$callsignLookupUrl.$MyCallLink."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$MyCallLink."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$MyCall</a>";
                 if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
                 print "<td align=\"left\" width=\"100\">$YourCall</td>";
                 print "<td align=\"left\" width=\"100\">$Rpt1</td>";
