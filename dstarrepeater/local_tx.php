@@ -35,6 +35,9 @@ if (file_exists('/etc/pistar-css.ini')) {
     $lookupPopupHeight = "600";
 }
 
+// Safety net
+if (($callsignLookupSvc != "RadioID") && ($callsignLookupSvc != "QRZ")) { $callsignLookupSvc = "RadioID"; }
+
 // Setup the URL(s)
 if ($callsignLookupSvc == "RadioID") { $callsignLookupUrl = "https://database.radioid.net/database/view?callsign="; }
 if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"; }
