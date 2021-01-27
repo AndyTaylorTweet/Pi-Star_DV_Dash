@@ -51,6 +51,7 @@ if (!file_exists('/etc/pistar-css.ini')) {
 	$fileContent .= "[Content]\nText=000000\n\n";
 	$fileContent .= "[BannerH1]\nEnabled=0\nText=\"Some Text\"\n\n";
 	$fileContent .= "[BannerExtText]\nEnabled=0\nText=\"Some long text entry\"\n";
+	$fileContent .= "[Lookup]\nService=\"RadioID\"\npopupWidth=600\npopupHeight=600\n";
 	fwrite($outFile, $fileContent);
 	fclose($outFile);
 	
