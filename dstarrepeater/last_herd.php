@@ -48,6 +48,7 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"
     <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?></a></th>
+    <th><a class="tooltip" href="#">dPRS</a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['target'];?></a></th>
     <th><a class="tooltip" href="#">RPT 1</a></th>
     <th><a class="tooltip" href="#">RPT 2</a></th>
@@ -84,6 +85,7 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"
 		print "<td align=\"left\">$local_time</td>";
 		print "<td align=\"left\" width=\"180\"><a href=\"".$callsignLookupUrl.$MyCallLink."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$MyCallLink."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$MyCall</a>";
 		if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
+		print "<td align=\"left\" width=\"70\"><a href=\"https://aprs.fi/#!call=".$MyCallLink."\" target=\"popup\" onclick=\"window.open('https://aprs.fi/#!call=".$MyCallLink."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">dPRS</a>";
                 print "<td align=\"left\" width=\"100\">$YourCall</td>";
 		print "<td align=\"left\" width=\"100\">$Rpt1</td>";
 		print "<td align=\"left\" width=\"100\">$Rpt2</td>";
