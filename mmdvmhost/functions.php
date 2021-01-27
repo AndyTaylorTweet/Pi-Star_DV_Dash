@@ -818,7 +818,9 @@ function getDSTARLinks() {
 				$linkDest	= $linx[4][0];
 				$linkDir	= $linx[5][0];
 			}
-			$out = "Linked to <b>" . $linkDest . "</b><br />\n(" . $protocol . " " . $linkDir . ")";
+			if (strtolower(substr($linkDir, 0, 2)) == "in") { $linkDir = "In"; }
+			if (strtolower(substr($linkDir, 0, 3)) == "out") { $linkDir = "Out"; }
+			$out = $linkDest . " (" . $protocol . ") " . $linkDir . ")";
 		}
 	}
 	fclose($linkLog);
