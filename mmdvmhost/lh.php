@@ -51,9 +51,9 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
                         $dt = new DateTime($utc_time, $utc_tz);
                         $dt->setTimeZone($local_tz);
                         $local_time = $dt->format('H:i:s M jS');
-		echo"<tr>";
-		echo"<td align=\"left\">$local_time</td>";
-		echo"<td align=\"left\">$listElem[1]</td>";
+		echo "<tr>";
+		echo "<td align=\"left\">$local_time</td>";
+		echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 		//if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 		if (is_numeric($listElem[2])) {
 			// echo "<td align=\"left\">$listElem[2]</td>";
@@ -108,7 +108,7 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 			elseif (floatval($listElem[8]) >= 2.0 && floatval($listElem[8]) <= 4.9) { echo "<td style=\"background:#fa0;\">$listElem[8]</td>"; }
 			else { echo "<td style=\"background:#f33;\">$listElem[8]</td>"; }
 		}
-		echo"</tr>\n";
+		echo "</tr>\n";
 		}
 	}
 }
