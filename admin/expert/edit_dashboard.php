@@ -139,8 +139,8 @@ if($_POST) {
 
 //parse the ini file using default parse_ini_file() PHP function
 $parsed_ini = parse_ini_file($filepath, true);
-if (!isset($parsed_ini['Lookup']['popupWidth'])) { unset($parsed_ini['Lookup']['popupWidth']); }
-if (!isset($parsed_ini['Lookup']['popupHeight'])) { unset($parsed_ini['Lookup']['popupHeight']); }
+if (isset($parsed_ini['Lookup']['popupWidth']))  { unset($parsed_ini['Lookup']['popupWidth']); }
+if (isset($parsed_ini['Lookup']['popupHeight'])) { unset($parsed_ini['Lookup']['popupHeight']); }
 
 echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
