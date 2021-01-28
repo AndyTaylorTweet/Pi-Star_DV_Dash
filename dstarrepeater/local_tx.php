@@ -74,9 +74,9 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"
                     $dt->setTimeZone($local_tz);
                     $local_time = $dt->format('H:i:s M jS');
                 print "<td align=\"left\">$local_time</td>";
-		print "<td align=\"left\" width=\"180\"><a href=\"".$callsignLookupUrl.$MyCallLink."\" target=\"_blank\">$MyCall</a>";
-                if($MyId) { print "/".$MyId." &#40;<a href=\"https://aprs.fi/#!call=".$MyCallLink."*\" target=\"_blank\">dPRS</a>&#41;</td>"; }
-		     else { print " &#40;<a href=\"https://aprs.fi/#!call=".$MyCallLink."*\" target=\"_blank\">dPRS</a>&#41;</td>"; }
+		print "<td align=\"left\" width=\"180\"><div style=\"float:left;\"><a href=\"".$callsignLookupUrl.$MyCallLink."\" target=\"_blank\">$MyCall</a>";
+                if($MyId) { print "/".$MyId."</div> <div style=\"text-align:right;\">&#40;<a href=\"https://aprs.fi/#!call=".$MyCallLink."*\" target=\"_blank\">dPRS</a>&#41;</div></td>"; }
+		     else { print "</div> <div style=\"text-align:right;\">&#40;<a href=\"https://aprs.fi/#!call=".$MyCallLink."*\" target=\"_blank\">dPRS</a>&#41;</div></td>"; }
                 print "<td align=\"left\" width=\"100\">$YourCall</td>";
                 print "<td align=\"left\" width=\"100\">$Rpt1</td>";
                 print "<td align=\"left\" width=\"100\">$Rpt2</td>";
