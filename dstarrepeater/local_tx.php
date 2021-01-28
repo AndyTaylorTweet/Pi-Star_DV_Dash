@@ -34,7 +34,7 @@ if (($callsignLookupSvc != "RadioID") && ($callsignLookupSvc != "QRZ")) { $calls
 
 // Setup the URL(s)
 if ($callsignLookupSvc == "RadioID") { $callsignLookupUrl = "https://database.radioid.net/database/view?callsign="; }
-if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"; }
+if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "https://www.qrz.com/db/"; }
 
 ?>
     <b><?php echo $lang['local_tx_list'];?></b>
