@@ -51,7 +51,7 @@ if (!file_exists('/etc/pistar-css.ini')) {
 	$fileContent .= "[Content]\nText=000000\n\n";
 	$fileContent .= "[BannerH1]\nEnabled=0\nText=\"Some Text\"\n\n";
 	$fileContent .= "[BannerExtText]\nEnabled=0\nText=\"Some long text entry\"\n";
-	$fileContent .= "[Lookup]\nService=\"RadioID\"\npopupWidth=600\npopupHeight=600\n";
+	$fileContent .= "[Lookup]\nService=\"RadioID\"\n";
 	fwrite($outFile, $fileContent);
 	fclose($outFile);
 	
@@ -139,6 +139,8 @@ if($_POST) {
 
 //parse the ini file using default parse_ini_file() PHP function
 $parsed_ini = parse_ini_file($filepath, true);
+if (!isset($parsed_ini['Lookup']['popupWidth'])) { unset($parsed_ini['Lookup']['popupWidth']); }
+if (!isset($parsed_ini['Lookup']['popupHeight'])) { unset($parsed_ini['Lookup']['popupHeight']); }
 
 echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
