@@ -48,7 +48,8 @@ function checkFrequency(){
   var freqTX = document.getElementById('confFREQtx');
   var freqPOCSAG = document.getElementById('pocsagFrequency');
   if(freqTRX){
-    var intFreqTRX = parseFloat(freqTRX.value); // Swap to float
+    confFREQ.style.backgroundColor = badColor;		// Set to bad colour first, then check
+    var intFreqTRX = parseFloat(freqTRX.value);		// Swap to float
     // TRX Good
     if (144 <= intFreqTRX && intFreqTRX <= 148)   { confFREQ.style.backgroundColor = goodColor; }
     if (220 <= intFreqTRX && intFreqTRX <= 225)   { confFREQ.style.backgroundColor = goodColor; }
@@ -59,7 +60,8 @@ function checkFrequency(){
     if (435 <= intFreqTRX && intFreqTRX <= 438)   { confFREQ.style.backgroundColor = badColor; }
   }
   if(freqRX){
-    var intFreqRX = parseFloat(freqRX.value); // Swap to float
+    confFREQrx.style.backgroundColor = badColor;	// Set to bad colour first, then check
+    var intFreqRX = parseFloat(freqRX.value);		// Swap to float
     // RX Good
     if (144 <= intFreqRX && intFreqRX <= 148)   { confFREQrx.style.backgroundColor = goodColor; }
     if (220 <= intFreqRX && intFreqRX <= 225)   { confFREQrx.style.backgroundColor = goodColor; }
@@ -70,7 +72,8 @@ function checkFrequency(){
     if (435 <= intFreqRX && intFreqRX <= 438)   { confFREQrx.style.backgroundColor = badColor; }
   }
   if(freqTX){
-    var intFreqTX = parseFloat(freqTX.value); // Swap to float
+    confFREQtx.style.backgroundColor = badColor;	// Set to bad colour first, then check
+    var intFreqTX = parseFloat(freqTX.value);		// Swap to float
     // TX Good
     if (144 <= intFreqTX && intFreqTX <= 148)   { confFREQtx.style.backgroundColor = goodColor; }
     if (220 <= intFreqTX && intFreqTX <= 225)   { confFREQtx.style.backgroundColor = goodColor; }
@@ -81,7 +84,8 @@ function checkFrequency(){
     if (435 <= intFreqTX && intFreqTX <= 438)   { confFREQtx.style.backgroundColor = badColor; }
   }
   if(freqPOCSAG){
-    var intFreqPOCSAG = parseFloat(freqPOCSAG.value); // Swap to float
+    pocsagFrequency.style.backgroundColor = badColor;		// Set to bad colour first, then check
+    var intFreqPOCSAG = parseFloat(freqPOCSAG.value);		// Swap to float
     // TX Good
     if (144 <= intFreqPOCSAG && intFreqPOCSAG <= 148)   { pocsagFrequency.style.backgroundColor = goodColor; }
     if (220 <= intFreqPOCSAG && intFreqPOCSAG <= 225)   { pocsagFrequency.style.backgroundColor = goodColor; }
