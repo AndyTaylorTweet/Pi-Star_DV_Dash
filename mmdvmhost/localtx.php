@@ -13,16 +13,10 @@ if (file_exists('/etc/pistar-css.ini')) {
 
     // Set the Values from the config file
     if (isset($piStarCss['Lookup']['Service'])) { $callsignLookupSvc = $piStarCss['Lookup']['Service']; }		// Lookup Service "QRZ" or "RadioID"
-    else { $callsignLookupSvc = "RadioID"; }										// Set the default if its missing
-    if (isset($piStarCss['Lookup']['popupWidth'])) { $lookupPopupWidth = $piStarCss['Lookup']['popupWidth']; }		// Lookup Popup Width
-    else { $lookupPopupWidth = "600"; }											// Set the default if its missing
-    if (isset($piStarCss['Lookup']['popupHeight'])) { $lookupPopupHeight = $piStarCss['Lookup']['popupHeight']; }	// Lookup Popup Height
-    else { $lookupPopupHeight = "600"; }										// Set the default if its missing
+    else { $callsignLookupSvc = "RadioID"; }										// Set the default if its missing										// Set the default if its missing
 } else {
     // Default values
     $callsignLookupSvc = "RadioID";
-    $lookupPopupWidth = "600";
-    $lookupPopupHeight = "600";
 }
 
 // Safety net
@@ -65,15 +59,15 @@ for ($i = 0; $i < count($localTXList); $i++) {
 			//if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 			if (is_numeric($listElem[2])) {
 				//echo "<td align=\"left\">$listElem[2]</td>";
-				echo "<td align=\"left\"><a href=\"".$idLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$idLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a></td>";
+				echo "<td align=\"left\"><a href=\"".$idLookupUrl.$listElem[2]."\" target=\"_blank\">$listElem[2]</a></td>";
 			} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 				echo "<td align=\"left\">$listElem[2]</td>";
 			} else {
 				if (strpos($listElem[2],"-") > 0) { $listElem[2] = substr($listElem[2], 0, strpos($listElem[2],"-")); }
 				if ($listElem[3] && $listElem[3] != '    ' ) {
-					echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a>/$listElem[3]</td>";
+					echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"_blank\">$listElem[2]</a>/$listElem[3]</td>";
 				} else {
-					echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$listElem[2]."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$listElem[2]</a></td>";
+					echo "<td align=\"left\"><a href=\"".$callsignLookupUrl.$listElem[2]."\" target=\"_blank\">$listElem[2]</a></td>";
 				}
 			}
 			if (strlen($listElem[4]) == 1) { $listElem[4] = str_pad($listElem[4], 8, " ", STR_PAD_LEFT); }
