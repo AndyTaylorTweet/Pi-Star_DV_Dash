@@ -53,9 +53,9 @@ for ($i = 0; $i < count($localTXList); $i++) {
                         	$dt = new DateTime($utc_time, $utc_tz);
                         	$dt->setTimeZone($local_tz);
                         	$local_time = $dt->format('H:i:s M jS');
-			echo"<tr>";
-			echo"<td align=\"left\">$local_time</td>";
-			echo"<td align=\"left\">$listElem[1]</td>";
+			echo "<tr>";
+			echo "<td align=\"left\">$local_time</td>";
+			echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
 			//if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 			if (is_numeric($listElem[2])) {
 				//echo "<td align=\"left\">$listElem[2]</td>";
@@ -99,7 +99,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
 
 				echo"<td>$listElem[9]</td>"; //rssi
 			}
-			echo"</tr>\n";
+			echo "</tr>\n";
 			$counter++; }
 		}
 	}
