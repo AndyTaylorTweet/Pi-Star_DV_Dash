@@ -24,7 +24,7 @@ if (($callsignLookupSvc != "RadioID") && ($callsignLookupSvc != "QRZ")) { $calls
 // Setup the URL(s)
 $idLookupUrl = "https://database.radioid.net/database/view?id=";
 if ($callsignLookupSvc == "RadioID") { $callsignLookupUrl = "https://database.radioid.net/database/view?callsign="; }
-if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"; }
+if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "https://www.qrz.com/db/"; }
 
 ?>
 <b><?php echo $lang['last_heard_list'];?></b>
@@ -32,7 +32,7 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"
     <tr>
       <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)<span><b>Time in <?php echo date('T')?> time zone</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['mode'];?><span><b>Transmitted Mode</b></span></a></th>
-      <th style="min-width:15ch"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
+      <th style="min-width:13ch"><a class="tooltip" href="#"><?php echo $lang['callsign'];?><span><b>Callsign</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['target'];?><span><b>Target, D-Star Reflector, DMR Talk Group etc</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['src'];?><span><b>Received from source</b></span></a></th>
       <th><a class="tooltip" href="#"><?php echo $lang['dur'];?>(s)<span><b>Duration in Seconds</b></span></a></th>
