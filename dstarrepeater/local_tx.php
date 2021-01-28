@@ -23,16 +23,10 @@ if (file_exists('/etc/pistar-css.ini')) {
 
     // Set the Values from the config file
     if (isset($piStarCss['Lookup']['Service'])) { $callsignLookupSvc = $piStarCss['Lookup']['Service']; }		// Lookup Service "QRZ" or "RadioID"
-    else { $callsignLookupSvc = "RadioID"; }										// Set the default if its missing
-    if (isset($piStarCss['Lookup']['popupWidth'])) { $lookupPopupWidth = $piStarCss['Lookup']['popupWidth']; }		// Lookup Popup Width
-    else { $lookupPopupWidth = "600"; }											// Set the default if its missing
-    if (isset($piStarCss['Lookup']['popupHeight'])) { $lookupPopupHeight = $piStarCss['Lookup']['popupHeight']; }	// Lookup Popup Height
-    else { $lookupPopupHeight = "600"; }										// Set the default if its missing
+    else { $callsignLookupSvc = "RadioID"; }										// Set the default if its missing										// Set the default if its missing
 } else {
     // Default values
     $callsignLookupSvc = "RadioID";
-    $lookupPopupWidth = "600";
-    $lookupPopupHeight = "600";
 }
 
 // Safety net
@@ -48,7 +42,6 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"
     <tr>
     <th><a class="tooltip" href="#"><?php echo $lang['time'];?> (<?php echo date('T')?>)</a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['callsign'];?></a></th>
-    <th><a class="tooltip" href="#">dPRS</a></th>
     <th><a class="tooltip" href="#"><?php echo $lang['target'];?></a></th>
     <th><a class="tooltip" href="#">RPT 1</a></th>
     <th><a class="tooltip" href="#">RPT 2</a></th>
@@ -81,9 +74,9 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "http://www.qrz.com/db/"
                     $dt->setTimeZone($local_tz);
                     $local_time = $dt->format('H:i:s M jS');
                 print "<td align=\"left\">$local_time</td>";
-		print "<td align=\"left\" width=\"180\"><a href=\"".$callsignLookupUrl.$MyCallLink."\" target=\"popup\" onclick=\"window.open('".$callsignLookupUrl.$MyCallLink."','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">$MyCall</a>";
-                if($MyId) { print "/".$MyId."</td>"; } else { print "</td>"; }
-		print "<td align=\"left\" width=\"50\"><a href=\"https://aprs.fi/#!call=".$MyCallLink."*\" target=\"popup\" onclick=\"window.open('https://aprs.fi/#!call=".$MyCallLink."*','popup','width=".$lookupPopupWidth.",height=".$lookupPopupHeight."'); return false;\">dPRS</a>";
+		print "<td align=\"left\" width=\"180\"><a href=\"".$callsignLookupUrl.$MyCallLink."\" target=\"_blank\">$MyCall</a>";
+                if($MyId) { print "/".$MyId." <a href=\"https://aprs.fi/#!call=".$MyCallLink."*\" target=\"_blank\">(dPRS)</a></td>"; }
+		     else { print " <a href=\"https://aprs.fi/#!call=".$MyCallLink."*\" target=\"_blank\">(dPRS)</a></td>"; }
                 print "<td align=\"left\" width=\"100\">$YourCall</td>";
                 print "<td align=\"left\" width=\"100\">$Rpt1</td>";
                 print "<td align=\"left\" width=\"100\">$Rpt2</td>";
