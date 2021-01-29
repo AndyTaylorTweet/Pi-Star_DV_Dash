@@ -56,10 +56,9 @@ for ($i = 0; $i < count($localTXList); $i++) {
 			echo "<tr>";
 			echo "<td align=\"left\">$local_time</td>";
 			echo "<td align=\"left\">".str_replace('Slot ', 'TS', $listElem[1])."</td>";
-			//if (is_numeric($listElem[2]) || strpos($listElem[2], "openSPOT") !== FALSE) {
 			if (is_numeric($listElem[2])) {
-				//echo "<td align=\"left\">$listElem[2]</td>";
-				echo "<td align=\"left\"><a href=\"".$idLookupUrl.$listElem[2]."\" target=\"_blank\">$listElem[2]</a></td>";
+				if ($listElem[2] > 9999) { echo "<td align=\"left\"><a href=\"".$idLookupUrl.$listElem[2]."\" target=\"_blank\">$listElem[2]</a></td>"; }
+				else { echo "<td align=\"left\">".$listElem[2]."</td>"; }
 			} elseif (!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $listElem[2])) {
 				echo "<td align=\"left\">$listElem[2]</td>";
 			} else {
