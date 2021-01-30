@@ -159,7 +159,7 @@ echo '<form action="" method="post">'."\n";
 	}
 echo "</form>";
 echo "<br />\n";
-echo 'if you took it all too far and now it makes you feel sick, click below to reset the changes made on this page.'."\n";
+echo 'if you took it all too far and now it makes you feel sick, click below to reset the changes made on this page, this will ONLY reset the CSS settings above and will not change any other settings or configuration.'."\n";
 echo '<form id="factoryReset" action="" method="post">'."\n";
 echo '  <div><input type="hidden" name="factoryReset" value="1" /></div>'."\n";
 echo '</form>'."\n";
