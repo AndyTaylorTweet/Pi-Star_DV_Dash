@@ -111,7 +111,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				$ysfHost = preg_split('/;/', $ysfHostsLine);
 				if (substr($ysfHost[0], 0, 3) == "FCS") {
 					if (strlen($ysfHost[1]) >= 30) { $ysfHost[1] = substr($ysfHost[1], 0, 27)."..."; }
-					if ( ($testYSFHost == $ysfHost[0]) || ($testYSFHost == $ysfHost[1]) ) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
+					if ($testYSFHost == $ysfHost[0]) { echo "      <option value=\"$ysfHost[0]\" selected=\"selected\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
 					else { echo "      <option value=\"$ysfHost[0]\">$ysfHost[0] - ".htmlspecialchars($ysfHost[1])."</option>\n"; }
 				}
 			}
