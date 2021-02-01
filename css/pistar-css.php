@@ -394,6 +394,14 @@ input.toggle-round-flat:checked + label:after {
     background-color: #<?php echo $backgroundBanners; ?>;
 }
 
+#BrowserWarning {
+    margin: 0px 0px 10px 0px;
+    width: 100%;
+    background-color: #ffff90;
+    color: #906000;
+    font-weight: bold;
+}
+
 /* Tame Firefox Buttons */
 @-moz-document url-prefix() {
     select,
