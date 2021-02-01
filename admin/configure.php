@@ -843,11 +843,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollircDDBGatewayAprsPort = 'sudo sed -i "/aprsPort=/c\\aprsPort=8673" /etc/ircddbgateway';
 	    system($rollircDDBGatewayAprsPort);
 	    unset($configs['aprsPassword']);
-	    unset($configs['aprsHostname']);
 	    $rollircDDBGatewayAprsPass = 'sudo sed -i "/aprsPassword/d" /etc/ircddbgateway';
 	    system($rollircDDBGatewayAprsPass);
-	    $rollircDDBGatewayAprsHost = 'sudo sed -i "/aprsHostname/d" /etc/ircddbgateway';
-	    system($rollircDDBGatewayAprsHost);
 	    $rollAPRSGatewayEnable = 'sudo sed -i "/Enable=/c\\Enable=1" /etc/aprsgateway';
 	    system($rollAPRSGatewayEnable);
 	  }
