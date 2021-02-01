@@ -208,6 +208,18 @@ $MYCALL=strtoupper($callsign);
     <script type="text/javascript" src="/functions.js?version=1.710"></script>
 </head>
 <body onload="checkFrequency(); return false;">
+<?php
+if ( ($configPistarRelease['Pi-Star']['Version'] < 4.1) && ($configPistarRelease['Pi-Star']['Hardware'] == "RPi") ) {
+?>
+<div>
+  <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
+    <tr>
+    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: You are running an outdated version of Pi-Star, please upgrade.<br />
+    New versions are available from the here: <a href="http://www.pistar.uk/downloads/" alt="Pi-Star Downloads">http://www.pistar.uk/downloads/</a>.</td>
+    </tr>
+  </table>
+</div>
+<?php } ?>
 <div class="container">
 <div class="header">
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
