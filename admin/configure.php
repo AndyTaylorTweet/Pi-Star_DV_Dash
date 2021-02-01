@@ -850,7 +850,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 
 	  // If ircDDBGateway config supports APRS Password
-	  if ($configs['aprsPassword']) {
+	  if (isset($configs['aprsPassword'])) {
 		  $rollircDDBGatewayAprsPassword = 'sudo sed -i "/aprsPassword=/c\\aprsPassword='.aprspass($newCallsignUpper).'" /etc/ircddbgateway';
 		  system($rollircDDBGatewayAprsPassword);
 	  }
