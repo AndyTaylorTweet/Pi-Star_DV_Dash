@@ -63,9 +63,9 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 if ( ($_SERVER["PHP_SELF"] == "/admin/index.php") && ($configPistarRelease['Pi-Star']['Version'] < 4.1) && ($configPistarRelease['Pi-Star']['Hardware'] == "RPi") ) {
 ?>
 <div>
-  <table align="center" width="760px" style="background-color: #ffff90; color: #906000; margin: 0px 0px 10px 0px; width: 100%;">
+  <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
     <tr>
-    <td align="center" valign="top">Alert: You are running an old version of Pi-Star, please upgrade.<br />
+    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: You are running an outdated version of Pi-Star, please upgrade.<br />
     New versions are available from the here: <a href="http://www.pistar.uk/downloads/" alt="Pi-Star Downloads">http://www.pistar.uk/downloads/</a>.</td>
     </tr>
   </table>
