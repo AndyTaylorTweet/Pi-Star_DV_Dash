@@ -62,7 +62,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
 <?php
 if ( ($_SERVER["PHP_SELF"] == "/admin/index.php") && ($configPistarRelease['Pi-Star']['Version'] < 4.1) && ($configPistarRelease['Pi-Star']['Hardware'] == "RPi") ) {
 ?>
-<div id="BrowserWarning">
+<div>
   <table align="center" width="760px" style="background-color: #ffff90; color: #906000; margin: 0px 0px 10px 0px; width: 100%;">
     <tr>
     <td align="center" valign="top">Alert: You are running an old version of Pi-Star, please upgrade.<br />
