@@ -845,7 +845,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    unset($configs['aprsPassword']);
 	    $rollircDDBGatewayAprsPass = 'sudo sed -i "/aprsPassword/d" /etc/ircddbgateway';
 	    system($rollircDDBGatewayAprsPass);
-	    $rollAPRSGatewayEnable = 'sudo sed -i "/Enable=/c\\Enable=1" /etc/aprsgateway';
+	    $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=1" /etc/aprsgateway';
 	    system($rollAPRSGatewayEnable);
 	  }
 
