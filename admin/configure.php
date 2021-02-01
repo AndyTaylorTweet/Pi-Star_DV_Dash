@@ -519,7 +519,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['aprs.fi']['Enable'] = "0";
 	  $configysf2nxdn['aprs.fi']['Enable'] = "0";
 	  $configysf2p25['aprs.fi']['Enable'] = "0";
-	  if ($configPistarRelease['Pi-Star']['Version'] >= 4.1.4) {
+	  if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
 	    $rollAPRSGatewayHost = 'sudo sed -i "/Server=/c\\Server='.escapeshellcmd($_POST['selectedAPRSHost']).'" /etc/aprsgateway';
 	    system($rollAPRSGatewayHost);
 	  }
@@ -835,7 +835,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2nxdn['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2p25['Info']['Description'] = $newCallsignUpper."_Pi-Star";
-	  if ($configPistarRelease['Pi-Star']['Version'] >= 4.1.4) {
+	  if ($configPistarRelease['Pi-Star']['Version'] >= "4.1.4") {
 	    $rollAPRSGatewayCallsign = 'sudo sed -i "/Callsign=/c\\Callsign='.$newCallsignUpper.'" /etc/aprsgateway';
 	    system($rollAPRSGatewayCallsign);
 	    $rollAPRSGatewayPassword = 'sudo sed -i "/Password=/c\\Password='.aprspass($newCallsignUpper).'" /etc/aprsgateway';
