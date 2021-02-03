@@ -296,6 +296,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['autoapPsk']) != TRUE ) {
 	  $rollAutoApPsk = 'sudo sed -i "/wpa_passphrase=/c\\wpa_passphrase='.$_POST['autoapPsk'].'" /etc/hostapd/hostapd.conf';
 	  system($rollAutoApPsk);
+	  $rollAutoApWPA = 'sudo sed -i "/wpa=/c\\wpa=2" /etc/hostapd/hostapd.conf';
+	  system($rollAutoApWPA);
 	  unset($_POST);
 	  echo "<table>\n";
 	  echo "<tr><th>Working...</th></tr>\n";
