@@ -2403,12 +2403,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			if (escapeshellcmd($_POST['mobilegps_enable']) == 'ON' )  {
 				$configmmdvm['Mobile GPS']['Enable'] = "1";
 				if (isset($configysfgateway['Mobile GPS']['Enable'])) { $configysfgateway['Mobile GPS']['Enable'] = "1"; }
-				$confignxdngateway['Mobile GPS']['Enable'] = "1";
+				if (isset($confignxdngateway['Mobile GPS']['Enable'])) { $confignxdngateway['Mobile GPS']['Enable'] = "1"; }
 				system('sudo sed -i "/Enabled=/c\\Enabled=1" /etc/mobilegps');
 			} else {
 				$configmmdvm['Mobile GPS']['Enable'] = "0";
 				if (isset($configysfgateway['Mobile GPS']['Enable'])) { $configysfgateway['Mobile GPS']['Enable'] = "0"; }
-				$confignxdngateway['Mobile GPS']['Enable'] = "0";
+				if (isset($confignxdngateway['Mobile GPS']['Enable'])) { $confignxdngateway['Mobile GPS']['Enable'] = "0"; }
 				system('sudo sed -i "/Enabled=/c\\Enabled=0" /etc/mobilegps');
 			}
 		}
