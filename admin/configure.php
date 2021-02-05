@@ -990,9 +990,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (file_exists('/etc/nxdngateway')) {
 	    if (escapeshellcmd($_POST['ysf2nxdnStartupDstId']) === "none") {
 	      unset($confignxdngateway['Network']['Startup']);
+	      unset($confignxdngateway['Network']['Static']);
 	    } else {
 	      $confignxdngateway['Network']['Startup'] = escapeshellcmd($_POST['ysf2nxdnStartupDstId']);
-	    }
+	    }		  
 	  }
 	}
 
