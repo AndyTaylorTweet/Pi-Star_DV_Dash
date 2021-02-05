@@ -959,6 +959,7 @@ function getActualLink($logLines, $mode) {
         // 2000-01-01 00:00:00.000 No response from 10200, unlinking
 	// 2000-01-01 00:00:00.000 Switched to reflector 31672 by remote command
 	// 2000-01-01 00:00:00.000 Unlinking from 31672 due to inactivity
+	// 2000-01-01 00:00:00.000 Statically linked to reflector 31672
         if (isProcessRunning("NXDNGateway")) {
             foreach($logLines as $logLine) {
                $to = "";
@@ -968,6 +969,11 @@ function getActualLink($logLines, $mode) {
                   return "TG ".$to;
                }
                if (strpos($logLine,"Linked at start")) {
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
+                  $to = preg_replace('/[^0-9]/', '', $to);
+                  return "TG ".$to;
+               }
+	       if (strpos($logLine,"Statically linked to reflector")) {
                   $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
                   $to = preg_replace('/[^0-9]/', '', $to);
                   return "TG ".$to;
