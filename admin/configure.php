@@ -884,6 +884,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if ($newP25StartupHost === "NONE") {
 		  unset($configp25gateway['Network']['Startup']);
 		  unset($configysf2p25['P25 Network']['StartupDstId']);
+		  unset($configp25gateway['Network']['Static']);
 	  } else {
 		  $configp25gateway['Network']['Startup'] = $newP25StartupHost;
 		  $configysf2p25['P25 Network']['StartupDstId'] = $newP25StartupHost;
@@ -1008,6 +1009,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	  if ($newYSF2P25StartupHost === "NONE") {
 		  unset($configp25gateway['Network']['Startup']);
+		  unset($configp25gateway['Network']['Static']);
 		  unset($configysf2p25['P25 Network']['StartupDstId']);
 	  } else {
 		  $configp25gateway['Network']['Startup'] = $newYSF2P25StartupHost;
@@ -2283,6 +2285,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if ($p25GatewayVer > 20200502) {
 		if (!isset($configp25gateway['Remote Commands']['Enable'])) { $configp25gateway['Remote Commands']['Enable'] = "1"; }
 		if (!isset($configp25gateway['Remote Commands']['Port'])) { $configp25gateway['Remote Commands']['Port'] = "6074"; }
+	}
+	if ($p25GatewayVer > 20210201) {
+		if (isset($configp25gateway['General']['Announcements'])) { unset($configp25gateway['General']['Announcements']); }
+		if (!isset($configp25gateway['Log']['DisplayLevel'])) { $configp25gateway['Log']['DisplayLevel'] = "1"; }
+		if (!isset($configp25gateway['Log']['FileLevel'])) { $configp25gateway['Log']['FileLevel'] = "1"; }
+		if (!isset($configp25gateway['Network']['P252DMRAddress'])) { $configp25gateway['Network']['P252DMRAddress'] = "127.0.0.1"; }
+		if (!isset($configp25gateway['Network']['P252DMRPort'])) { $configp25gateway['Network']['P252DMRPort'] = "42012"; }
+		if (isset($configp25gateway['Network']['Startup'])) {
+			$configp25gateway['Network']['Static'] = $configp25gateway['Network']['Startup'];
+			unset($configp25gateway['Network']['Startup']);
+		}
 	}
 
 	// Add NXDNGateway Options
