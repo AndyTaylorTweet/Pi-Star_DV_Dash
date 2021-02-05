@@ -1279,20 +1279,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set P25 Hang Timers
 	if (empty($_POST['p25RfHangTime']) != TRUE ) {
 	  $configmmdvm['P25']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25RfHangTime']);
-	  $configp25gateway['Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['p25RfHangTime']);
+	  $configp25gateway['Network']['RFHangTime'] = "0";
 	}
 	if (empty($_POST['p25NetHangTime']) != TRUE ) {
 	  $configmmdvm['P25 Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['p25NetHangTime']);
-	  $configp25gateway['Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['p25NetHangTime']);
+	  $configp25gateway['Network']['NetHangTime'] = "0";
 	}
 	// Set NXDN Hang Timers
 	if (empty($_POST['nxdnRfHangTime']) != TRUE ) {
 	  $configmmdvm['NXDN']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnRfHangTime']);
-	  $confignxdngateway['Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['nxdnRfHangTime']);
+	  $confignxdngateway['Network']['RFHangTime'] = "0";
 	}
 	if (empty($_POST['nxdnNetHangTime']) != TRUE ) {
 	  $configmmdvm['NXDN Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnNetHangTime']);
-	  $confignxdngateway['Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['nxdnNetHangTime']);
+	  $confignxdngateway['Network']['NetHangTime'] = "0";
 	}
 
 	// Set the hardware type
