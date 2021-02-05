@@ -973,7 +973,7 @@ function getActualLink($logLines, $mode) {
                   return "TG ".$to;
                }
 	       if (strpos($logLine,"Switched to reflector")) {
-                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 45, 5));
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
                   $to = preg_replace('/[^0-9]/', '', $to);
                   return "TG ".$to;
                }
