@@ -274,13 +274,13 @@ function getNXDNGatewayLog() {
 	$logLines2 = array();
         if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
 		$logPath1 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath1 | cut -d" " -f2- | tail -1`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath1 | cut -d" " -f2- | tail -1`);
         }
 	$logLines1 = array_filter($logLines1);
         if (sizeof($logLines1) == 0) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath2 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting" $logPath2 | cut -d" " -f2- | tail -1`);
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath2 | cut -d" " -f2- | tail -1`);
                 }
 		$logLines2 = array_filter($logLines2);
         }
@@ -957,6 +957,8 @@ function getActualLink($logLines, $mode) {
         // 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
         // 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
         // 2000-01-01 00:00:00.000 No response from 10200, unlinking
+	// 2000-01-01 00:00:00.000 Switched to reflector 31672 by remote command
+	// 2000-01-01 00:00:00.000 Unlinking from 31672 due to inactivity
         if (isProcessRunning("NXDNGateway")) {
             foreach($logLines as $logLine) {
                $to = "";
@@ -970,6 +972,11 @@ function getActualLink($logLines, $mode) {
                   $to = preg_replace('/[^0-9]/', '', $to);
                   return "TG ".$to;
                }
+	       if (strpos($logLine,"Switched to reflector")) {
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 45, 5));
+                  $to = preg_replace('/[^0-9]/', '', $to);
+                  return "TG ".$to;
+               }
 	       if (strpos($logLine,"Starting NXDNGateway")) {
                   return "Not Linked";
                }
@@ -977,6 +984,9 @@ function getActualLink($logLines, $mode) {
                   return "Not Linked";
                }
                if (strpos($logLine,"Unlinked from")) {
+                  return "Not Linked";
+               }
+	       if (strpos($logLine,"Unlinking from")) {
                   return "Not Linked";
                }
             }
