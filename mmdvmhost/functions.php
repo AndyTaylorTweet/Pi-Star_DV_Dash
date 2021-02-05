@@ -1008,6 +1008,7 @@ function getActualLink($logLines, $mode) {
 	// 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
 	// 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
 	// 2000-01-01 00:00:00.000 No response from 10200, unlinking
+	// 2000-01-01 00:00:00.000 Switched to reflector 10 due to RF activity from 1
 	if (isProcessRunning("P25Gateway")) {
 	    foreach($logLines as $logLine) {
                $to = "";
@@ -1018,6 +1019,11 @@ function getActualLink($logLines, $mode) {
                }
                if (strpos($logLine,"Linked at startup to")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
+		  $to = preg_replace('/[^0-9]/', '', $to);
+		  return "TG ".$to;
+               }
+	       if (strpos($logLine,"Switched to reflector")) {
+		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "TG ".$to;
                }
