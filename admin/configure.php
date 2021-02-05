@@ -903,7 +903,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newNXDNStartupHost = strtoupper(escapeshellcmd($_POST['nxdnStartupHost']));
 	  if (file_exists('/etc/nxdngateway')) {
 		if ($newNXDNStartupHost === "NONE") {
-			unset($confignxdngateway['Network']['Startup']);
+			if (isset($confignxdngateway['Network']['Startup'])) { unset($confignxdngateway['Network']['Startup']); }
+			if (isset($confignxdngateway['Network']['Static']))  { unset($confignxdngateway['Network']['Static']); }
 		} else {
 			$confignxdngateway['Network']['Startup'] = $newNXDNStartupHost;
 	  	}
