@@ -2151,6 +2151,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configdmr2ysf['DMR Network']['TGListFile'])) { $configdmr2ysf['DMR Network']['TGListFile'] = "/usr/local/etc/TGList_YSF.txt"; }
 	$configdmr2ysf['Log']['DisplayLevel'] = "0";
 	$configdmr2ysf['Log']['FileLevel'] = "2";
+	if (!isset($configdmr2ysf['YSF Network']['DT1']))   { $configdmr2ysf['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
+	if (!isset($configdmr2ysf['YSF Network']['DT2']))   { $configdmr2ysf['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
+	if (!isset($configdmr2ysf['YSF Network']['Debug'])) { $configdmr2ysf['YSF Network']['Debug'] = "0"; }
 
 	// Add missing options to YSFGateway
 	if (!isset($configysfgateway['General']['WiresXMakeUpper'])) { $configysfgateway['General']['WiresXMakeUpper'] = "1"; }
