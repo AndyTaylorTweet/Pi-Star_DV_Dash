@@ -953,13 +953,13 @@ function getActualLink($logLines, $mode) {
      case "NXDN":
         // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
         // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
-        // 2000-01-01 00:00:00.000 Linked at startup to reflector 65000
+        // 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
         // 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
-        // 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
+        // 2000-01-01 00:00:00.000 Linked to reflector 10100 by M1ABC
         // 2000-01-01 00:00:00.000 No response from 10200, unlinking
-	// 2000-01-01 00:00:00.000 Switched to reflector 31672 by remote command
-	// 2000-01-01 00:00:00.000 Unlinking from 31672 due to inactivity
-	// 2000-01-01 00:00:00.000 Statically linked to reflector 31672
+	// 2000-01-01 00:00:00.000 Switched to reflector 10100 by remote command
+	// 2000-01-01 00:00:00.000 Unlinking from 10100 due to inactivity
+	// 2000-01-01 00:00:00.000 Statically linked to reflector 10100
         if (isProcessRunning("NXDNGateway")) {
             foreach($logLines as $logLine) {
                $to = "";
@@ -1006,10 +1006,11 @@ function getActualLink($logLines, $mode) {
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 	// 2000-01-01 00:00:00.000 Linked at startup to reflector 10100
 	// 2000-01-01 00:00:00.000 Unlinked from reflector 10100 by M1ABC
-	// 2000-01-01 00:00:00.000 Linked to reflector 10200 by M1ABC
-	// 2000-01-01 00:00:00.000 No response from 10200, unlinking
-	// 2000-01-01 00:00:00.000 Switched to reflector 10 due to RF activity from 1
-	// 2000-01-01 00:00:00.000 Unlinking from reflector 10 by 1
+	// 2000-01-01 00:00:00.000 Linked to reflector 10100 by M1ABC
+	// 2000-01-01 00:00:00.000 No response from 10100, unlinking
+	// 2000-01-01 00:00:00.000 Switched to reflector 10100 due to RF activity from 12345
+	// 2000-01-01 00:00:00.000 Unlinking from reflector 10100 by 12345
+	// 2000-01-01 00:00:00.000 Switched to reflector 10100 by remote command
 	if (isProcessRunning("P25Gateway")) {
 	    foreach($logLines as $logLine) {
                $to = "";
