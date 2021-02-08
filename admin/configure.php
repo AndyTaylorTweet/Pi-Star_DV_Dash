@@ -2007,6 +2007,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (substr($_POST['mmdvmDisplayType'] , 0, 4 ) === "OLED") {
 		  $configmmdvm['General']['Display'] = "OLED";
 		  $configmmdvm['OLED']['Type'] = substr($_POST['mmdvmDisplayType'] , 4, 1 );
+		  if ($configmmdvm['OLED']['Type'] == "6") { $configmmdvm['OLED']['Scroll'] = "0"; }
 	  }
 	  else {
 		  $configmmdvm['General']['Display'] = escapeshellcmd($_POST['mmdvmDisplayType']);
