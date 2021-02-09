@@ -115,9 +115,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
         echo '    <tr>';
         echo '<td colspan="4"><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
         echo '<tr>
-          <th><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
-          <th><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
-          <th><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
+          <th style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+          <th style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
+          <th style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
           <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
         </tr>'."\n";
         echo '    <tr>';
