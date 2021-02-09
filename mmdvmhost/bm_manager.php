@@ -109,12 +109,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
         echo '<b>BrandMeister Manager</b>'."\n";
         echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
         echo '<table>'."\n";
-        echo '    <tr>
-          <th colspan="4"><a class=tooltip href="#">Tools<span><b>Tools</b></span></a></th>
-        </tr>'."\n";
-        echo '    <tr>';
-        echo '<td colspan="4"><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
-        echo '</tr>'."\n";
         echo '<tr>
           <th style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
           <th style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
@@ -126,6 +120,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
         echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
         echo '<td><input type="radio" name="TGmgr" value="ADD" checked="checked" />Add <input type="radio" name="TGmgr" value="DEL" />Delete</td>';
         echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /></td>';
+        echo '</tr>'."\n";
+        echo '    <tr>
+          <th colspan="4"><a class=tooltip href="#">Tools<span><b>Tools</b></span></a></th>
+        </tr>'."\n";
+        echo '    <tr>';
+        echo '<td colspan="4"><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
         echo '</tr>'."\n";
         echo '  </table>'."\n";
         echo '  <br />'."\n";
