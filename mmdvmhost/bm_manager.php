@@ -108,12 +108,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       if (isset($bmAPIkey)) {
         echo '<b>BrandMeister Manager</b>'."\n";
         echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
-        echo '<table>
-        <tr>
+        echo '<table>'."\n";
+        echo '    <tr>
           <th colspan="4"><a class=tooltip href="#">Tools<span><b>Tools</b></span></a></th>
         </tr>'."\n";
         echo '    <tr>';
         echo '<td colspan="4"><input type="submit" value="Drop QSO" name="dropQso" /><input type="submit" value="Drop All Dynamic" name="dropDyn" /></td>';
+        echo '</tr>'."\n";
         echo '<tr>
           <th style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
           <th style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
