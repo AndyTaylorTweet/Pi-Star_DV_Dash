@@ -90,18 +90,14 @@ if ( $testMMDVModeDMR == 1 ) {
   <table>
     <tr>
       <th><a class=tooltip href="#">'.$lang['bm_master'].'<span><b>Connected Master</b></span></a></th>
-      <th><a class=tooltip href="#">Default Ref<span><b>Default Reflector</b></span></a></th>
-      <th><a class=tooltip href="#">Timeout(s)<span><b>Configured Timeout</b></span></a></th>
-      <th><a class=tooltip href="#">Active Ref<span><b>Active Reflector</b></span></a></th>
+      <th style="width:25%;"><a class=tooltip href="#">Repeater ID<span><b>The ID for this Repeater/Hotspot</b></span></a></th>
       <th><a class=tooltip href="#">Static TGs<span><b>Statically linked talkgroups</b></span></a></th>
       <th><a class=tooltip href="#">Dynamic TGs<span><b>Dynamically linked talkgroups</b></span></a></th>
     </tr>'."\n";
 
   echo '    <tr>'."\n";
   echo '      <td>'.$dmrMasterHost.'</td>';
-  echo '<td>'.$bmReflectorDef.'</td>';
-  echo '<td>'.$bmReflectorInterval.'</td>';
-  echo '<td>'.$bmReflectorActive.'</td>';
+  echo '<td>'.$dmrID.'</td>';
   echo '<td>'.$bmStaticTGList.'</td>';
   echo '<td>'.$bmDynamicTGList.'</td>';
   echo '</tr>'."\n";
