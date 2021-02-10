@@ -2099,6 +2099,37 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configdmrgateway['DMR Network 3']['Location'])) { $configdmrgateway['DMR Network 3']['Location'] = "0"; }
 	if (!isset($configdmrgateway['DMR Network 3']['Debug'])) { $configdmrgateway['DMR Network 3']['Debug'] = "0"; }
 	if (!isset($configdmrgateway['XLX Network']['UserControl'])) { $configdmrgateway['XLX Network']['UserControl'] = "1"; }
+	$dmrGatewayVer = exec("DMRGateway -v | awk {'print $3'} | cut -c 1-8");
+	if ($dmrGatewayVer > 20210131) {
+		if (!isset($configdmrgateway['DMR Network 1']['Location'])) { $configdmrgateway['DMR Network 1']['Location'] = "1"; }
+		if (!isset($configdmrgateway['DMR Network 2']['Location'])) { $configdmrgateway['DMR Network 2']['Location'] = "0"; }
+		if (!isset($configdmrgateway['DMR Network 3']['Location'])) { $configdmrgateway['DMR Network 3']['Location'] = "0"; }
+		if (isset($configdmrgateway['DMR Network 4'])) {
+			if (!isset($configdmrgateway['DMR Network 4']['Location'])) { $configdmrgateway['DMR Network 4']['Location'] = "0"; }
+		}
+		if (isset($configdmrgateway['DMR Network 5'])) {
+			if (!isset($configdmrgateway['DMR Network 5']['Location'])) { $configdmrgateway['DMR Network 5']['Location'] = "0"; }
+		}
+		if (isset($configdmrgateway['DMR Network 6'])) {
+			if (!isset($configdmrgateway['DMR Network 6']['Location'])) { $configdmrgateway['DMR Network 6']['Location'] = "0"; }
+		}
+		if (!isset($configdmrgateway['GPSD'])) {
+			$configdmrgateway['GPSD']['Enable'] = "0";
+			$configdmrgateway['GPSD']['Address'] = "127.0.0.1";
+			$configdmrgateway['GPSD']['Port'] = "2947";
+		}
+		if (!isset($configdmrgateway['APRS'])) {
+			$configdmrgateway['APRS']['Enable'] = "1";
+			$configdmrgateway['APRS']['Address'] = "127.0.0.1";
+			$configdmrgateway['APRS']['Port'] = "8673";
+			$configdmrgateway['APRS']['Description'] = "APRS for DMRGateway";
+			$configdmrgateway['APRS']['Suffix'] = "DMR";
+		}
+		if (!isset($configdmrgateway['Dynamic TG Control'])) {
+			$configdmrgateway['Dynamic TG Control']['Enabled'] = "1";
+			$configdmrgateway['Dynamic TG Control']['Port'] = "3769";
+		}
+	}
 
 	// Add missing options to MMDVMHost
 	if (!isset($configmmdvm['Modem']['RFLevel'])) { $configmmdvm['Modem']['RFLevel'] = "100"; }
