@@ -183,6 +183,7 @@ if ($dmrMasterHost == '127.0.0.1') {
 	$dmrMasterHost3 = str_replace('_', ' ', $configdmrgateway['DMR Network 3']['Name']);
 	if (isset($configdmrgateway['DMR Network 4']['Name'])) {$dmrMasterHost4 = str_replace('_', ' ', $configdmrgateway['DMR Network 4']['Name']);}
 	if (isset($configdmrgateway['DMR Network 5']['Name'])) {$dmrMasterHost5 = str_replace('_', ' ', $configdmrgateway['DMR Network 5']['Name']);}
+	if (isset($configdmrgateway['DMR Network 6']['Name'])) {$dmrMasterHost6 = str_replace('_', ' ', $configdmrgateway['DMR Network 6']['Name']);}
 	while (!feof($dmrMasterFile)) {
 		$dmrMasterLine = fgets($dmrMasterFile);
                 $dmrMasterHostF = preg_split('/\s+/', $dmrMasterLine);
@@ -198,6 +199,7 @@ if ($dmrMasterHost == '127.0.0.1') {
 	if (strlen($dmrMasterHost3) > 19) { $dmrMasterHost3 = substr($dmrMasterHost3, 0, 17) . '..'; }
 	if (isset($dmrMasterHost4)) { if (strlen($dmrMasterHost4) > 19) { $dmrMasterHost4 = substr($dmrMasterHost4, 0, 17) . '..'; } }
 	if (isset($dmrMasterHost5)) { if (strlen($dmrMasterHost5) > 19) { $dmrMasterHost5 = substr($dmrMasterHost5, 0, 17) . '..'; } }
+	if (isset($dmrMasterHost6)) { if (strlen($dmrMasterHost6) > 19) { $dmrMasterHost6 = substr($dmrMasterHost6, 0, 17) . '..'; } }
 }
 else {
 	while (!feof($dmrMasterFile)) {
@@ -251,6 +253,11 @@ if (getEnabled("DMR Network", $mmdvmconfigs) == 1) {
 			if (isset($configdmrgateway['DMR Network 5']['Enabled'])) {
 				if ($configdmrgateway['DMR Network 5']['Enabled'] == 1) {
 					echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost5."</td></tr>\n";
+				}
+			}
+			if (isset($configdmrgateway['DMR Network 6']['Enabled'])) {
+				if ($configdmrgateway['DMR Network 6']['Enabled'] == 1) {
+					echo "<tr><td  style=\"background: #ffffff;\" colspan=\"2\">".$dmrMasterHost6."</td></tr>\n";
 				}
 			}
 		}
