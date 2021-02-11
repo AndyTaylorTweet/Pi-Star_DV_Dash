@@ -104,7 +104,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           // Clean up...
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-      }
+      };
 
       if ($bmAPIkeyV2) { // API Key v2
         // OK this is Brandmeister, get some config and output the HTML
@@ -164,7 +164,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           // Clean up...
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-      }
+      };
     else: // Do this when we are not handling post data
       // If there is a BM API Key
       if (isset($bmAPIkey)) {
