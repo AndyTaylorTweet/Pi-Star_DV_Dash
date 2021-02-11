@@ -96,7 +96,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
+          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister APIv1: No Responce"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
@@ -132,7 +132,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           $postHeaders = array(
             'Content-Type: accept: application/json',
             'Content-Length: '.strlen($postData),
-            'Authorization: '.$bmAPIkey,
+            'Authorization: '.$bmAPIkeyV2,
             'User-Agent: Pi-Star Dashboard for '.$dmrID,
           );
 
@@ -153,7 +153,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister APIv2: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
+          if (isset($feeback)) { print "BrandMeister APIv2: ".$feeback->{'message'}; } else { print "BrandMeister APIv2: No Responce"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
