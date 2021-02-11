@@ -97,7 +97,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
             $local_tz = new DateTimeZone(date_default_timezone_get ());
             $dt = new DateTime($utc_time, $utc_tz);
             $dt->setTimeZone($local_tz);
-            $local_time = $dt->format('d-M-Y');
+            $local_time = $dt->format('Y-M-d');
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
 	    if ($hostNameInfo != "pi-star") {
