@@ -46,7 +46,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
         if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
       }
     }
-    if (substr($dmrMasterHost, 0, 2) == "BM") && (isset($bmAPIkey)) {
+    if (substr($dmrMasterHost, 0, 2) == "BM") {
         // OK this is Brandmeister, get some config and output the HTML
         $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
         if ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ): // Data has been posted for this page
