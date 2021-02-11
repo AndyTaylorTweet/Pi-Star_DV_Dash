@@ -96,14 +96,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister API: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
+          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-
-
 
       elseif ( (isset($bmAPIkeyV2)) && ( (isset($bmAPIkeyV2)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ) ): // Data has been posted for this page
           $bmAPIurl = 'https://api.brandmeister.network/v2/device/';
@@ -155,15 +153,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister API: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
+          if (isset($feeback)) { print "BrandMeister APIv2: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-      
-      
-      
+
       else: // Do this when we are not handling post data
         // If there is a BM API Key
         if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
