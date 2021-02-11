@@ -107,13 +107,13 @@ echo '<form action="" method="post">'."\n";
 		// note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
 			if (($key == "Options") || ($value)) {
-				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"3\">$value</textarea></td></tr>\n";
+				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"13\">$value</textarea></td></tr>\n";
 			}
 			elseif (($key == "Display") && ($value == '')) {
-				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"3\">$value</textarea></td></tr>\n";
+				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"13\">$value</textarea></td></tr>\n";
 			}
 			else {
-				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"3\">$value</textarea></td></tr>\n";			
+				echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><textarea name=\"{$section}[$key]\" cols=\"60\" rows=\"13\">$value</textarea></td></tr>\n";			
 			}
 		}
 		echo "</table>\n";
@@ -126,8 +126,6 @@ echo "</form>";
 
 <div class="footer">
 Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-ircDDBGateway Dashboard by Hans-J. Barthen (DL5DI),<br />
-MMDVMDash developed by Kim Huebel (DG9VH), <br />
 Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
 Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_new">here</a>.<br />
 </div>
