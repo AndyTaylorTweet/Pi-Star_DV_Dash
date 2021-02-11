@@ -103,7 +103,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
 
-      elseif ( (isset($bmAPIkey)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ): // Data has been posted for this page
+      elseif ( (isset($bmAPIkeyV2)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ): // Data has been posted for this page
           $bmAPIurl = 'https://api.brandmeister.network/v2/device/';
           // Are we a repeater
           if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
