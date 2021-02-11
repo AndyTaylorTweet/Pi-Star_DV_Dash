@@ -47,7 +47,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       }
     }
     if (substr($dmrMasterHost, 0, 2) == "BM") {
-      if ($bmAPIkey) { // API Key v1
+      if (isset($bmAPIkey)) { // API Key v1
         // OK this is Brandmeister, get some config and output the HTML
         $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
         if ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ): // Data has been posted for this page
@@ -106,7 +106,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
       };
 
-      if ($bmAPIkeyV2) { // API Key v2
+      if (isset($bmAPIkeyV2)) { // API Key v2
         // OK this is Brandmeister, get some config and output the HTML
         $bmAPIurl = 'https://api.brandmeister.network/v2/device/';
         if ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ): // Data has been posted for this page
