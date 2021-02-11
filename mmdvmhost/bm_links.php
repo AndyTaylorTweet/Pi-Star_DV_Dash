@@ -12,6 +12,9 @@ if ( $testMMDVModeDMR == 1 ) {
   $bmAPIkeyFile = '/etc/bmapi.key';
   if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) { $configBMapi = parse_ini_file($bmAPIkeyFile, true);
     $bmAPIkey = $configBMapi['key']['apikey']; }
+    // Check the BM API Key
+    if ( strlen($bmAPIkey) <= 20 ) { unset($bmAPIkey); }
+    if ( strlen($bmAPIkey) >= 200 ) { $bmAPIkeyV2 = $bmAPIkey; unset($bmAPIkey); }
   
   //Load the dmrgateway config file
   $dmrGatewayConfigFile = '/etc/dmrgateway';
@@ -45,8 +48,11 @@ if ( $testMMDVModeDMR == 1 ) {
 
   // Use BM API to get information about current TGs
   $jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
-  //$json = json_decode(@file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true, $jsonContext));
-  $json = json_decode(@file_get_contents("https://api.brandmeister.network/v2/device/$dmrID/profile", true, $jsonContext));
+  if (isset($bmAPIkeyV2)) {
+    $json = json_decode(@file_get_contents("https://api.brandmeister.network/v2/device/$dmrID/profile", true, $jsonContext));
+  } else {
+    $json = json_decode(@file_get_contents("https://api.brandmeister.network/v1.0/repeater/?action=PROFILE&q=$dmrID", true, $jsonContext));
+  }
 
   // Set some Variable
   $bmStaticTGList = "";
