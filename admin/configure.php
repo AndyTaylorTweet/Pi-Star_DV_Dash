@@ -2138,6 +2138,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['Modem']['CWIdTXLevel'])) { $configmmdvm['Modem']['CWIdTXLevel'] = "50"; }
 	if (!isset($configmmdvm['Modem']['NXDNTXLevel'])) { $configmmdvm['Modem']['NXDNTXLevel'] = "50"; }
 	if (!isset($configmmdvm['Modem']['POCSAGTXLevel'])) { $configmmdvm['Modem']['POCSAGTXLevel'] = "50"; }
+	if (!isset($configmmdvm['Modem']['FMTXLevel'])) { $configmmdvm['Modem']['FMTXLevel'] = "50"; }
+	if (!isset($configmmdvm['Modem']['UseCOSAsLockout'])) { $configmmdvm['Modem']['UseCOSAsLockout'] = "0"; }
 	if (!isset($configmmdvm['D-Star']['AckReply'])) { $configmmdvm['D-Star']['AckReply'] = "1"; }
 	if (!isset($configmmdvm['D-Star']['AckTime'])) { $configmmdvm['D-Star']['AckTime'] = "750"; }
 	if (!isset($configmmdvm['D-Star']['AckMessage'])) { $configmmdvm['D-Star']['AckMessage'] = "0"; }
@@ -2145,16 +2147,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['DMR']['BeaconInterval'])) { $configmmdvm['DMR']['BeaconInterval'] = "60"; }
 	if (!isset($configmmdvm['DMR']['BeaconDuration'])) { $configmmdvm['DMR']['BeaconDuration'] = "3"; }
 	if (!isset($configmmdvm['DMR']['OVCM'])) { $configmmdvm['DMR']['OVCM'] = "0"; }
+	if (!isset($configmmdvm['DMR Network']['Type'])) { $configmmdvm['DMR Network']['Type'] = "Direct"; }
 	if (!isset($configmmdvm['P25']['RemoteGateway'])) { $configmmdvm['P25']['RemoteGateway'] = "0"; }
+	if (!isset($configmmdvm['P25']['TXHang'])) { $configmmdvm['P25']['TXHang'] = "5"; }
 	if (!isset($configmmdvm['OLED']['Scroll'])) { $configmmdvm['OLED']['Scroll'] = "0"; }
 	if (!isset($configmmdvm['NXDN']['Enable'])) { $configmmdvm['NXDN']['Enable'] = "0"; }
 	if (!isset($configmmdvm['NXDN']['RAN'])) { $configmmdvm['NXDN']['RAN'] = "1"; }
 	if (!isset($configmmdvm['NXDN']['SelfOnly'])) { $configmmdvm['NXDN']['SelfOnly'] = "1"; }
 	if (!isset($configmmdvm['NXDN']['RemoteGateway'])) { $configmmdvm['NXDN']['RemoteGateway'] = "0"; }
+	if (!isset($configmmdvm['NXDN']['TXHang'])) { $configmmdvm['NXDN']['TXHang'] = "5"; }
 	if (!isset($configmmdvm['NXDN Network']['Enable'])) { $configmmdvm['NXDN Network']['Enable'] = "0"; }
 	if (!isset($configmmdvm['NXDN Network']['LocalPort'])) { $configmmdvm['NXDN Network']['LocalPort'] = "3300"; }
 	if (!isset($configmmdvm['NXDN Network']['GatewayAddress'])) { $configmmdvm['NXDN Network']['GatewayAddress'] = "127.0.0.1"; }
 	if (!isset($configmmdvm['NXDN Network']['GatewayPort'])) { $configmmdvm['NXDN Network']['GatewayPort'] = "4300"; }
+	if (!isset($configmmdvm['NXDN Network']['Protocol'])) { $configmmdvm['NXDN Network']['Protocol'] = "Icom"; }
 	if (!isset($configmmdvm['NXDN Network']['Debug'])) { $configmmdvm['NXDN Network']['Debug'] = "0"; }
 	if (!isset($configmmdvm['NXDN Id Lookup']['File'])) { $configmmdvm['NXDN Id Lookup']['File'] = "/usr/local/etc/NXDN.csv"; }
 	if (!isset($configmmdvm['NXDN Id Lookup']['Time'])) { $configmmdvm['NXDN Id Lookup']['Time'] = "24"; }
@@ -2169,12 +2175,48 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['OLED']['LogoScreensaver'])) { $configmmdvm['OLED']['LogoScreensaver'] = "0"; }
 	if (!isset($configmmdvm['Remote Control']['Enable'])) { $configmmdvm['Remote Control']['Enable'] = "0"; }
 	if (!isset($configmmdvm['Remote Control']['Port'])) { $configmmdvm['Remote Control']['Port'] = "7642"; }
+	if (!isset($configmmdvm['Remote Control']['Address'])) { $configmmdvm['Remote Control']['Address'] = "127.0.0.1"; }
 	if (isset($configmmdvm['TFT Serial']['Port'])) {
 		if ( $configmmdvm['TFT Serial']['Port'] == "/dev/modem" ) { $configmmdvm['TFT Serial']['Port'] = "modem"; }
 	}
 	if (isset($configmmdvm['Nextion']['Port'])) {
 		if ( $configmmdvm['Nextion']['Port'] == "/dev/modem" ) { $configmmdvm['Nextion']['Port'] = "modem"; }
 	}
+	if (!isset($configmmdvm['FM'])) {
+		$configmmdvm['FM']['Enable'] = "0";
+		$configmmdvm['FM']['Callsign'] = $newCallsignUpper;
+		$configmmdvm['FM']['CallsignSpeed'] = "20";
+		$configmmdvm['FM']['CallsignFrequency'] = "1000";
+		$configmmdvm['FM']['CallsignTime'] = "10";
+		$configmmdvm['FM']['CallsignHoldoff'] = "0";
+		$configmmdvm['FM']['CallsignHighLevel'] = "50";
+		$configmmdvm['FM']['CallsignLowLevel'] = "20";
+		$configmmdvm['FM']['CallsignAtStart'] = "1";
+		$configmmdvm['FM']['CallsignAtEnd'] = "1";
+		$configmmdvm['FM']['CallsignAtLatch'] = "0";
+		$configmmdvm['FM']['RFAck'] = "K";
+		$configmmdvm['FM']['ExtAck'] = "N";
+		$configmmdvm['FM']['AckSpeed'] = "20";
+		$configmmdvm['FM']['AckFrequency'] = "1750";
+		$configmmdvm['FM']['AckMinTime'] = "4";
+		$configmmdvm['FM']['AckDelay'] = "1000";
+		$configmmdvm['FM']['AckLevel'] = "50";
+		$configmmdvm['FM']['Timeout'] = "180";
+		$configmmdvm['FM']['TimeoutLevel'] = "80";
+		$configmmdvm['FM']['CTCSSFrequency'] = "94.8";
+		$configmmdvm['FM']['CTCSSThreshold'] = "30";
+		$configmmdvm['FM']['CTCSSHighThreshold'] = "30";
+		$configmmdvm['FM']['CTCSSLowThreshold'] = "20";
+		$configmmdvm['FM']['CTCSSLevel'] = "20";
+		$configmmdvm['FM']['KerchunkTime'] = "0";
+		$configmmdvm['FM']['HangTime'] = "7";
+		$configmmdvm['FM']['AccessMode'] = "1";
+		$configmmdvm['FM']['COSInvert'] = "0";
+		$configmmdvm['FM']['RFAudioBoost'] = "1";
+		$configmmdvm['FM']['MaxDevLevel'] = "90";
+		$configmmdvm['FM']['ExtAudioBoost'] = "1";
+	}
+	
 
 	// Add missing options to DMR2YSF
 	if (!isset($configdmr2ysf['YSF Network']['FCSRooms'])) { $configdmr2ysf['YSF Network']['FCSRooms'] = "/usr/local/etc/FCSHosts.txt"; }
