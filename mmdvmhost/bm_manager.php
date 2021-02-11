@@ -128,7 +128,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           }
           // Build the Query
           $postData = '';
-          if (isset($_POST["tgSubmit"])) { $postData = http_build_query($postDataTG); }
+          if ($_POST["TGmgr"] == "ADD") { $postData = http_build_query($postDataTG); }
           $postHeaders = array(
             'Content-Type: accept: application/json',
             'Content-Length: '.strlen($postData),
