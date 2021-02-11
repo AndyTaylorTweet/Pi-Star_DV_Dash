@@ -16,7 +16,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       $bmAPIkey = $configBMapi['key']['apikey'];
       // Check the BM API Key
       if ( strlen($bmAPIkey) <= 20 ) { unset($bmAPIkey); }
-      if ( strlen($bmAPIkey) <= 200 ) { $bmAPIkeyV2 = $bmAPIkey; unset($bmAPIkey); }
+      if ( strlen($bmAPIkey) >= 200 ) { $bmAPIkeyV2 = $bmAPIkey; unset($bmAPIkey); }
     }
 
     //Load the dmrgateway config file
