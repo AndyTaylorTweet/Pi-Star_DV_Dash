@@ -46,8 +46,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
         if ($dmrMasterHost == $dmrMasterHostF[2]) { $dmrMasterHost = str_replace('_', ' ', $dmrMasterHostF[0]); }
       }
     }
-    if (substr($dmrMasterHost, 0, 2) == "BM") {
-      
+    if (substr($dmrMasterHost, 0, 2) == "BM") && (isset($bmAPIkey)) {
         // OK this is Brandmeister, get some config and output the HTML
         $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
         if ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ): // Data has been posted for this page
@@ -104,10 +103,64 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           // Clean up...
           unset($_POST);
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-      
+    elseif (substr($dmrMasterHost, 0, 2) == "BM") && (isset($bmAPIkeyV2)) {
+        // OK this is Brandmeister, get some config and output the HTML
+        $bmAPIurl = 'https://api.brandmeister.network/v2/device/';
+        if ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ): // Data has been posted for this page
+          // Are we a repeater
+          if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
+              unset($_POST["TS"]);
+              $targetSlot = "0";
+            } else {
+              $targetSlot = $_POST["TS"];
+          }
+          // Set the API URLs
+          if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl.$dmrID."/action/dropDynamicGroups/".$targetSlot; $method = "GET"; }
+          if (isset($_POST["dropQso"])) { $bmAPIurl = $bmAPIurl.$dmrID."/action/dropCallRoute/".$targetSlot; $method = "GET"; }
+          if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
+          if ( ($_POST["TGmgr"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl.$dmrID."/talkgroup/"; $method = "POST"; }
+          if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl.$dmrID."/talkgroup/".$targetSlot."/".$targetTG; $method = "DELETE"; }
+          
+          // Build the Data
+          if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetTG) && $_POST["TGmgr"] == "ADD" ) {
+            $postDataTG = array(
+              'slot' => $targetSlot,
+              'group' => $targetTG              
+            );
+          }
+          // Build the Query
+          $postData = '';
+          if (isset($_POST["tgSubmit"])) { $postData = http_build_query($postDataTG); }
+          $postHeaders = array(
+            'Content-Type: accept: application/json',
+            'Content-Length: '.strlen($postData),
+            'Authorization: '$bmAPIkey,
+            'User-Agent: Pi-Star Dashboard for '.$dmrID,
+          );
 
-      
-
+          $opts = array(
+            'http' => array(
+            'header'  => $postHeaders,
+            'method'  => $method,
+            'content' => $postData,
+            'password' => '',
+            'success' => '',
+            'timeout' => 2,
+            ),
+          );
+          $context = stream_context_create($opts);
+          $result = @file_get_contents($bmAPIurl, false, $context);
+          $feeback=json_decode($result);
+          // Output to the browser
+          echo '<b>BrandMeister Manager</b>'."\n";
+          echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+          //echo "Sending command to BrandMeister API";
+          if (isset($feeback)) { print "BrandMeister API: ".$feeback->{'message'}; } else { print "BrandMeister API: No Responce"; }
+          echo "</td></tr>\n</table>\n";
+          echo "<br />\n";
+          // Clean up...
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
     else: // Do this when we are not handling post data
       // If there is a BM API Key
       if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
@@ -131,7 +184,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
         echo '</tr>'."\n";
         echo '  </table>'."\n";
         echo '  <br />'."\n";
-        }
+      }
     endif;
     }
   }
