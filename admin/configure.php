@@ -854,7 +854,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    unset($configs['aprsPassword']);
 	    $rollircDDBGatewayAprsPass = 'sudo sed -i "/aprsPassword/d" /etc/ircddbgateway';
 	    system($rollircDDBGatewayAprsPass);
-	    $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=1" /etc/aprsgateway';
+	    if (empty($_POST['APRSGatewayEnable']) != TRUE ) {
+	    	if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'ON' )  { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=1" /etc/aprsgateway'; }
+	    	if (escapeshellcmd($_POST['APRSGatewayEnable']) == 'OFF' ) { $rollAPRSGatewayEnable = 'sudo sed -i "/Enabled=/c\\Enabled=0" /etc/aprsgateway'; }
+	    }
 	    system($rollAPRSGatewayEnable);
 	  }
 
