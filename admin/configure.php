@@ -3059,6 +3059,7 @@ else:
 		$toggleDMR2YSFCheckboxCr		= 'onclick="toggleDMR2YSFCheckbox()"';
 		$toggleDMR2NXDNCheckboxCr		= 'onclick="toggleDMR2NXDNCheckbox()"';
 		$togglePOCSAGCheckboxCr			= 'onclick="togglePOCSAGCheckbox()"';
+		$toggleAPRSGatewayCheckboxCr		= 'onclick="toggleAPRSGatewayCheckbox()"';
 		$toggleDmrGatewayNet1EnCheckboxCr	= 'onclick="toggleDmrGatewayNet1EnCheckbox()"';
 		$toggleDmrGatewayNet2EnCheckboxCr	= 'onclick="toggleDmrGatewayNet2EnCheckbox()"';
 		$toggleDmrGatewayXlxEnCheckboxCr	= 'onclick="toggleDmrGatewayXlxEnCheckbox()"';
@@ -3082,6 +3083,7 @@ else:
 		$toggleDMR2YSFCheckboxCr		= "";
 		$toggleDMR2NXDNCheckboxCr		= "";
 		$togglePOCSAGCheckboxCr			= "";
+		$toggleAPRSGatewayCheckboxCr		= "";
 		$toggleDmrGatewayNet1EnCheckboxCr	= "";
 		$toggleDmrGatewayNet2EnCheckboxCr	= "";
 		$toggleDmrGatewayXlxEnCheckboxCr	= "";
