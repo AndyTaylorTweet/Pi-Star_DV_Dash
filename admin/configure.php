@@ -3488,8 +3488,7 @@ else:
     </tr>
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here</span></a></td>
-<?php if (file_exists('/etc/aprsgateway')) { ?>	    
-    <tr>
+<?php if (file_exists('/etc/aprsgateway')) { ?>
     <td align="left">
     <?php
 	if ( $configaprsgw['Enabled']['Enabled'] == 1 ) {
