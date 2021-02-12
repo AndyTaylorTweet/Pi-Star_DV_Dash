@@ -3500,8 +3500,8 @@ else:
 	}
     ?>
     </td>
-    <td colspan="1" style="text-align: left;"><select name="selectedAPRSHost">
-<?php } else {?>	    
+    <td style="text-align: left;"><select name="selectedAPRSHost">
+<?php } else { ?>	    
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
 <?php } 
         $testAPSRHost = $configs['aprsHostname'];
