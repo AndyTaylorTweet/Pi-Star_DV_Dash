@@ -3501,7 +3501,7 @@ else:
     }
 } ?>
 <tr>
-    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here, enabling this feature will make your location public.</span></a></td>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here.</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
 <?php 
         $testAPSRHost = $configs['aprsHostname'];
