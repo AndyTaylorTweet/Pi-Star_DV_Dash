@@ -217,7 +217,7 @@ if ( ($configPistarRelease['Pi-Star']['Version'] < 4.1) && ($configPistarRelease
   </table>
 </div>
 <?php }
-if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1 && $configmmdvm['DMR']['SelfOnly'] == 0 && strlen($configmmdvm['General']['Id'])) >= 7 && (!isset($configmmdvm['DMR']['WhiteList'])) ) {
+if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1 && $configmmdvm['DMR']['SelfOnly'] == 0 && strlen($configmmdvm['General']['Id']) >= 7 ) && (!isset($configmmdvm['DMR']['WhiteList'])) ) {
 ?>
 <div>
   <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
