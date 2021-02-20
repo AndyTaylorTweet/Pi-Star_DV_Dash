@@ -2047,9 +2047,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           $configmmdvm['DMR']['ColorCode'] = escapeshellcmd($_POST['dmrColorCode']);
 	}
 
-	// Set MMDVMHost Access List
+	// Set MMDVMHost DMR Access List
 	if (empty($_POST['confDMRWhiteList']) != TRUE ) {
-	  $configmmdvm['DMR']['WhiteList'] = escapeshellcmd($_POST['confDMRWhiteList']);
+	  $configmmdvm['DMR']['WhiteList'] = escapeshellcmd(preg_replace('/[^0-9,]/', '', $_POST['confDMRWhiteList']));
 	}
 
 	// Set Node Lock Status
