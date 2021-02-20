@@ -3491,6 +3491,12 @@ else:
     <input type="radio" name="nodeMode" value="prv"<?php if ($configmmdvm['DMR']['SelfOnly'] == 1) {echo ' checked="checked"';} ?> />Private
     <input type="radio" name="nodeMode" value="pub"<?php if ($configmmdvm['DMR']['SelfOnly'] == 0) {echo ' checked="checked"';} ?> />Public</td>
     </tr>
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1 && $configmmdvm['DMR']['SelfOnly'] == 0) { ?>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot</span></a></td>
+    <td align="left" colspan="2"><input type="text" name="confDMRWhiteList" size="30" maxlength="30" value="<?php if (isset($configmmdvm['DMR']['WhiteList'])) { echo $configmmdvm['DMR']['WhiteList']; } ?>" /></td>
+    </tr>
+<?php } ?>	    
 <?php if (file_exists('/etc/aprsgateway')) {
     echo "<tr>\n";
     echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['aprs_host']." Enable:<span><b>APRS Host Enable</b>Enabling this feature will make your location public.</span></a></td>\n";
