@@ -2048,8 +2048,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set MMDVMHost DMR Access List
+	if (isset($configmmdvm['DMR']['WhiteList'])) { unset($configmmdvm['DMR']['WhiteList']); }
 	if (empty($_POST['confDMRWhiteList']) != TRUE ) {
-	  $configmmdvm['DMR']['WhiteList'] = escapeshellcmd(preg_replace('/[^0-9,]/', '', $_POST['confDMRWhiteList']));
+	  $configmmdvm['DMR']['WhiteList'] = escapeshellcmd(preg_replace('/[^0-9\,]/', '', $_POST['confDMRWhiteList']));
 	}
 
 	// Set Node Lock Status
