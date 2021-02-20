@@ -2047,6 +2047,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           $configmmdvm['DMR']['ColorCode'] = escapeshellcmd($_POST['dmrColorCode']);
 	}
 
+	// Set MMDVMHost Access List
+	if (empty($_POST['confDMRWhiteList']) != TRUE ) {
+	  $configmmdvm['DMR']['WhiteList'] = escapeshellcmd($_POST['confDMRWhiteList']);
+	}
+
 	// Set Node Lock Status
 	if (empty($_POST['nodeMode']) != TRUE ) {
 	  if (escapeshellcmd($_POST['nodeMode']) == 'prv' ) {
@@ -3493,7 +3498,7 @@ else:
     </tr>
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1 && $configmmdvm['DMR']['SelfOnly'] == 0) { ?>
     <tr>
-    <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot</span></a></td>
+    <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot, expected comma seperated list.</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confDMRWhiteList" size="30" maxlength="30" value="<?php if (isset($configmmdvm['DMR']['WhiteList'])) { echo $configmmdvm['DMR']['WhiteList']; } ?>" /></td>
     </tr>
 <?php } ?>	    
