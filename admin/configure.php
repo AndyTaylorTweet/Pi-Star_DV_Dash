@@ -217,6 +217,16 @@ if ( ($configPistarRelease['Pi-Star']['Version'] < 4.1) && ($configPistarRelease
   </table>
 </div>
 <?php }
+if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable'] == 1 && $configmmdvm['DMR']['SelfOnly'] == 0 && strlen($configmmdvm['General']['Id'])) >= 7 && (!isset($configmmdvm['DMR']['WhiteList'])) ) {
+?>
+<div>
+  <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
+    <tr>
+    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: You are running a hotspot in public mode without an access list for DMR, this setup *could* participate in network loops!</td>
+    </tr>
+  </table>
+</div>
+<?php } 
 if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRelease['Pi-Star']['Version'] < "4.1.4") ) {
 ?>
 <div>
