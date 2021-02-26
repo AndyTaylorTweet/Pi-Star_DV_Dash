@@ -1,7 +1,7 @@
 <?php
 //
 // Catalan ES Language Pack
-// Rafa EA3BIL
+// Rafa EA3BIL, Xavi EA3W
 // 08-Mar-2018. Some updates done after linguistic expert review.
 // 15-Oct-2018 . Ortographical fixes by C31FR - Franc
 //
@@ -9,13 +9,13 @@ $lang = array (
   // Banner texts
   "digital_voice"               =>  "Veu Digital",
   "configuration"               =>  "Configuració",
-  "dashboard_for"               =>  "Panell de control de",
+  "dashboard_for"               =>  "Tauler de control de",
   // Banner links
-  "dashboard"                   =>  "Panell de Control",
+  "dashboard"                   =>  "Tauler de Control",
   "admin"                       =>  "Administrar",
   "power"                       =>  "Reiniciar/Apagar",
   "update"                      =>  "Actualitzar",
-  "backup_restore"              =>  "Fer/Restaurar copia seguretat",
+  "backup_restore"              =>  "Fer/Restaurar còpia seguretat",
   "factory_reset"               =>  "Restaurar estat de fàbrica",
   "live_logs"                   =>  "Informes-Logs",
   // Config page section headdings
@@ -29,16 +29,16 @@ $lang = array (
   "p25_config"                  =>  "Configuració de P25",
   "nxdn_config"                 =>  "Configuració de NXDN",
   "pocsag_config"               =>  "Configuració de POCSAG",
-  "mobilegps_config"            =>  "Mobile GPS Configuration",
+  "mobilegps_config"            =>  "Configuració GPS mòbil",
   "wifi_config"                 =>  "Configuració WIFI",
   "fw_config"                   =>  "Configuració del Tallafocs",
   "remote_access_pw"            =>  "Mot clau per acccés remot",
   // Config Page - Section General
-  "setting"                     =>  "Ajustaments",
+  "setting"                     =>  "Configuració",
   "value"                       =>  "Valor",
   "apply"                       =>  "Aplicar",
   // Config Page - Gateway Hardware Information
-  "hostname"                    =>  "Hostname",
+  "hostname"                    =>  "Nom de l'amfitrió",
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Plataforma",
   "cpu_load"                    =>  "Càrrega CPU",
@@ -58,23 +58,23 @@ $lang = array (
   "node_call"                   =>  "Indicatiu del Node",
   "dmr_id"                      =>  "CCS7/DMR ID",
   "radio_freq"                  =>  "Freqüència RX/TX",
-  "lattitude"                   =>  "Latitut",
-  "longitude"                   =>  "Longitut",
+  "lattitude"                   =>  "Latitud",
+  "longitude"                   =>  "Longitud",
   "town"                        =>  "Ciutat",
-  "country"                     =>  "Païs",
+  "country"                     =>  "País",
   "url"                         =>  "URL",
-  "radio_type"                  =>  "Ràdio/Tipus de modem",
+  "radio_type"                  =>  "Ràdio/Tipus de mòdem",
   "node_type"                   =>  "Tipus de Node",
   "timezone"                    =>  "Zona horària",
-  "dash_lang"                   =>  "Idioma del Panell de Control",
+  "dash_lang"                   =>  "Idioma del Tauler de Control",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR Master (MMDVMHost)",
-  "bm_master"                   =>  "Master BrandMeister",
+  "dmr_master"                  =>  "DMR màster (MMDVMHost)",
+  "bm_master"                   =>  "Màster BrandMeister",
   "bm_network"                  =>  "Xarxa BrandMeister",
-  "dmr_plus_master"             =>  "Master DMR+",
+  "dmr_plus_master"             =>  "Màster DMR+",
   "dmr_plus_network"            =>  "Xarxa DMR+",
-  "xlx_master"                  =>  "Master XLX",
-  "xlx_enable"                  =>  "Habilitar Master XLX",
+  "xlx_master"                  =>  "Màster XLX",
+  "xlx_enable"                  =>  "Habilitar màster XLX",
   "dmr_cc"                      =>  "Codi de color DMR",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
@@ -95,17 +95,17 @@ $lang = array (
   "nxdn_startup_host"            =>  "NXDN Arrencant Host",
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "MobileGPS Enable",
-  "mobilegps_port"              =>  "GPS Port",
-  "mobilegps_speed"             =>  "GPS Port Speed",
+  "mobilegps_enable"            =>  "Activació del GPS Mòbil",
+  "mobilegps_port"              =>  "Port del GPS",
+  "mobilegps_speed"             =>  "Velocitat del port del GPS",
   // Config Page - Firewall Configuration
-  "fw_dash"                     =>  "Panell d'accés",
+  "fw_dash"                     =>  "Tauler d'accés",
   "fw_irc"                      =>  "ircDDBGateway Remot",
   "fw_ssh"                      =>  "Accés per SSH",
   // Config Page - Password
   "user"                        =>  "Nom d'usuari",
-  "password"                    =>  "Mot clau",
-  "set_password"                =>  "Establir mot clau",
+  "password"                    =>  "contrasenya",
+  "set_password"                =>  "Establir contrasenya",
   // Dashboard Front Page - Repeater Info Pannel
   "modes_enabled"               =>  "Modes habilitats",
   "net_status"                  =>  "Estat de la xarxa",
@@ -114,11 +114,11 @@ $lang = array (
   "dstar_repeater"              =>  "Repetidor D-Star",
   "dstar_net"                   =>  "Xarxa D-Star",
   "dmr_repeater"                =>  "Repetidor DMR",
-  "dmr_master"                  =>  "Master DMR",
+  "dmr_master"                  =>  "Màster DMR",
   "ysf_net"                     =>  "Xarxa YSF",
   "p25_radio"                   =>  "Radio P25",
   "p25_net"                     =>  "Xarxa P25",
-  "nxdn_radio"                  =>  "Radio NXDN",
+  "nxdn_radio"                  =>  "Ràdio NXDN",
   "nxdn_net"                    =>  "Xarxa NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Hora",
@@ -130,9 +130,9 @@ $lang = array (
   "loss"                        =>  "Pèrdua",
   "ber"                         =>  "BER",
   // POCSAG Specific
-  "pocsag_list"                 =>  "DAPNET Gateway Activity",
+  "pocsag_list"                 =>  "Activitat de passarel·la DAPNET",
   "pocsag_timeslot"             =>  "Time Slot",
-  "pocsag_msg"                  =>  "Message",
+  "pocsag_msg"                  =>  "Missatge",
   // Dashboard - Extra Info
   "group"                       =>  "Grup",
   "logoff"                      =>  "Finalitzar",
@@ -141,7 +141,7 @@ $lang = array (
   "gtot"                        =>  "GTOT", 
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Últimes 20 trucades rebudes",
-  "local_tx_list"               =>  "Últimes 20 trucades rebudes via radio",
+  "local_tx_list"               =>  "Últimes 20 trucades rebudes via ràdio",
   "active_starnet_groups"       =>  "Grups actius Starnet",
   "active_starnet_members"      =>  "Membres actius grup Starnet",
   "d-star_link_manager"         =>  "Gestor d'enllaços D-Star",
