@@ -995,11 +995,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
 	  $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
 	  $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
-	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-	    $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-	    $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-	  } else {
-	    unset ($configModem['BrandMeister']['Password']);
+	  if (isset($_POST['bmHSSecurity'])) {
+		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
+			  $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+		  } else {
+			  unset ($configModem['BrandMeister']['Password']);
+		  }
 	  }
 	}
 
