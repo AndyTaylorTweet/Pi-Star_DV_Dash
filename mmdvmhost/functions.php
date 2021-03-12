@@ -139,7 +139,7 @@ function showMode($mode, $mmdvmconfigs) {
 		elseif ($mode == "DMR Network") {
 			if (getConfigItem("DMR Network", "Address", $mmdvmconfigs) == '127.0.0.1') {
 				if (isProcessRunning("DMRGateway")) {
-					if (checkDMRLogin("DMRGateway") > 0) { echo "<td style=\"background:#bb0; color:#030; width:50%;\">"; }
+					if (checkDMRLogin("DMRGateway") > 0) { echo "<td style=\"background:#ff9; color:#030; width:50%;\">"; }
 					else { echo "<td style=\"background:#0b0; color:#030; width:50%;\">"; }
 				} else {
 					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
@@ -147,7 +147,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 			else {
 				if (isProcessRunning("MMDVMHost")) {
-					if (checkDMRLogin("MMDVMHost") > 0) { echo "<td style=\"background:#bb0; color:#030; width:50%;\">"; }
+					if (checkDMRLogin("MMDVMHost") > 0) { echo "<td style=\"background:#ff9; color:#030; width:50%;\">"; }
 					else { echo "<td style=\"background:#0b0; color:#030; width:50%;\">"; }
 				} else {
 					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
