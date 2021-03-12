@@ -78,6 +78,26 @@ function getEnabled ($mode, $mmdvmconfigs) {
 	return getConfigItem($mode, "Enable", $mmdvmconfigs);
 }
 
+function checkDMRLogin ($dmrDaemon) {
+        if ($dmrDaemon == "MMDVMHost") {
+                if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
+                        $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
+                        $logCheckMMDVMHostDMRLogin = `tail -n5 $logPath | grep "Login to the master has failed" | wc -l`;
+                        return $logCheckMMDVMHostDMRLogin;
+                }
+        }
+        elseif ($dmrDaemon == "DMRGateway") {
+                if (file_exists("/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log")) {
+                        $logPath = "/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log";
+                        $logCheckDMRGatewayDMRLogin = `tail -n5 $logPath | grep "Login to the master has failed" | wc -l`;
+                        return $logCheckDMRGatewayDMRLogin;
+                }
+        }
+        else {
+                return 0;
+        }
+}
+
 function showMode($mode, $mmdvmconfigs) {
 	// shows if mode is enabled or not.
 	if (getEnabled($mode, $mmdvmconfigs) == 1) {
@@ -119,14 +139,16 @@ function showMode($mode, $mmdvmconfigs) {
 		elseif ($mode == "DMR Network") {
 			if (getConfigItem("DMR Network", "Address", $mmdvmconfigs) == '127.0.0.1') {
 				if (isProcessRunning("DMRGateway")) {
-					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+					if (checkDMRLogin("DMRGateway") > 0) { echo "<td style=\"background:#bb0; color:#030; width:50%;\">"; }
+					else { echo "<td style=\"background:#0b0; color:#030; width:50%;\">"; }
 				} else {
 					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 				}
 			}
 			else {
 				if (isProcessRunning("MMDVMHost")) {
-					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+					if (checkDMRLogin("MMDVMHost") > 0) { echo "<td style=\"background:#bb0; color:#030; width:50%;\">"; }
+					else { echo "<td style=\"background:#0b0; color:#030; width:50%;\">"; }
 				} else {
 					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 				}
