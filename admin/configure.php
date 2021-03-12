@@ -1115,11 +1115,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
 	  $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
-	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-		  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-		  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
-	  } else {
-		  unset ($configModem['BrandMeister']['Password']);
+	  if (isset($_POST['bmHSSecurity'])) {
+		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
+			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
+		  } else {
+			  unset ($configModem['BrandMeister']['Password']);
+		  }
 	  }
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
