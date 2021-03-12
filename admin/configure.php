@@ -2994,7 +2994,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                 $configModemContent .= "[".$configModemSection."]\n";
                 // append the values
                 foreach($configModemValues as $modemKey=>$modemValue) {
-                        $configModemContent .= $modemKey."=".$modemValue."\n";
+			if ($modemKey == "Password") { $configModemContent .= $modemKey."=".'"'.$modemValue.'"'."\n"; }
+			else { $configModemContent .= $modemKey."=".$modemValue."\n"; }
                         }
                         $configModemContent .= "\n";
                 }
