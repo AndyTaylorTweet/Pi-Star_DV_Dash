@@ -1132,7 +1132,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			unset ($configmmdvm['DMR Network']['Local']);
 			unset ($configysf2dmr['DMR Network']['Options']);
 			unset ($configysf2dmr['DMR Network']['Local']);
-			if (isset($configModem['BrandMeister']['Password'])) { $configmmdvm['DMR Network']['Password'] = $configModem['BrandMeister']['Password']; }
+			if (isset($configModem['BrandMeister']['Password'])) {
+				$configmmdvm['DMR Network']['Password'] = .'"'.str_replace('"', "", $configModem['BrandMeister']['Password']).'"';
+			}
 		}
 
 		// DMR Gateway
