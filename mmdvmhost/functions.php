@@ -82,15 +82,19 @@ function checkDMRLogin ($dmrDaemon) {
         if ($dmrDaemon == "MMDVMHost") {
                 if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
                         $logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
-                        $logCheckMMDVMHostDMRLogin = `tail -n5 $logPath | grep "Login to the master has failed" | wc -l`;
-                        return $logCheckMMDVMHostDMRLogin;
+			$logCheckMMDVMHostDMRLogin = `tail -n 5 $logPath | awk '/master/ && /successfully/ || /master/ && /failed/' | tail -n 1`;
+			if (strpos($logCheckMMDVMHostDMRLogin, "success")) { return 0; }
+                        elseif (strpos($logCheckMMDVMHostDMRLogin, "fail")) { return 1; }
+			else { return 0; }
                 }
         }
         elseif ($dmrDaemon == "DMRGateway") {
                 if (file_exists("/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log")) {
                         $logPath = "/var/log/pi-star/DMRGateway-".gmdate("Y-m-d").".log";
-                        $logCheckDMRGatewayDMRLogin = `tail -n5 $logPath | grep "Login to the master has failed" | wc -l`;
-                        return $logCheckDMRGatewayDMRLogin;
+			$logCheckDMRGatewayDMRLogin = `tail -n 5 $logPath | awk '/master/ && /successfully/ || /master/ && /failed/' | tail -n 1`;
+			if (strpos($logCheckDMRGatewayDMRLogin, "success")) { return 0; }
+                        elseif (strpos($logCheckDMRGatewayDMRLogin, "fail")) { return 1; }
+			else { return 0; }
                 }
         }
         else {
