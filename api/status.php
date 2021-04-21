@@ -175,7 +175,17 @@ if (file_exists('/etc/dmr2nxdn')) {
 $data = array();
 
 $data['time'] = time();
-$data['configs'] = $configs;
+//$data['configs'] = $configs;
+
+$data['Tx'] = getMHZ(getConfigItem("Info", "TXFrequency", $mmdvmconfigs));
+$data['Rx'] = getMHZ(getConfigItem("Info", "RXFrequency", $mmdvmconfigs));
+$data['Firmware'] = getDVModemFirmware();
+$data['DMR ID'] = getConfigItem("General", "Id", $mmdvmconfigs);
+$data['DMR CC'] = getConfigItem("DMR", "ColorCode", $mmdvmconfigs);
+$data['DMR TS1'] = getConfigItem("DMR Network", "Slot1", $mmdvmconfigs);
+$data['DMR TS2'] = getConfigItem("DMR Network", "Slot2", $mmdvmconfigs);
+
+
 $data = array_merge($data, checkMode("D-Star", $mmdvmconfigs));
 $data = array_merge($data, checkMode("DMR", $mmdvmconfigs));
 $data = array_merge($data, checkMode("System Fusion", $mmdvmconfigs));
