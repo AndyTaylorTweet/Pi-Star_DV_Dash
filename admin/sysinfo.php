@@ -92,7 +92,7 @@ function formatSize( $bytes ) {
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
     <script type="text/javascript" src="/jquery.min.js"></script>
-    <script type="text/javascript" src="//creativecouple.github.com/jquery-timing/jquery-timing.min.js"></script>
+    <script type="text/javascript" src="/jquery-timing.min.js"></script>
     <style>  
     .progress .bar + .bar {
       -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
