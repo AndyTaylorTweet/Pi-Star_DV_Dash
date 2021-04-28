@@ -3877,7 +3877,22 @@ else:
       <a href="https://brandmeister.network/?page=hotspot-edit&amp;id='.$configmmdvm['General']['Id'].'" target="_new" style="color: #000;">Edit Repeater (BrandMeister Selfcare)</a>
     </td>
     </tr>'."\n";}
-    if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_") || (substr($dmrMasterNow, 0, 8) == "FreeDMR_")) {
+    if (substr($dmrMasterNow, 0, 8) == "FreeDMR_") {
+      echo '    <tr>
+    <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
+    <td align="left">
+    Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="';
+	if (isset($configmmdvm['DMR Network']['Options'])) { echo $configmmdvm['DMR Network']['Options']; }
+        echo '" />
+    </td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">FreeDMR Help:<span><b>FreeDMR Help</b>FreeDMR Options Help</span></a></td>
+    <td>
+      <a href="http://www.freedmr.uk/index.php/static-talk-groups-pi-star/" target="_new" style="color: #000;">FreeDMR Options Guide</a>
+    </td>
+    </tr>'."\n";}
+    if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_")) {
       echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
     <td align="left">
