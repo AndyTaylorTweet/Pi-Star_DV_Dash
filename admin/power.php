@@ -27,7 +27,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
     <meta name="KeyWords" content="Pi-Star" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['power'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
