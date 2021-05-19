@@ -1171,7 +1171,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 
 		// Set the DMR+ / HBLink Options= line
-		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 9) == "FreeStar_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
+		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 3) == "FD_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
 			unset ($configmmdvm['DMR Network']['Local']);
 			unset ($configysf2dmr['DMR Network']['Local']);
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
