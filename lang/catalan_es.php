@@ -17,7 +17,7 @@ $lang = array (
   "update"                      =>  "Actualitzar",
   "backup_restore"              =>  "Fer/Restaurar còpia seguretat",
   "factory_reset"               =>  "Restaurar estat de fàbrica",
-  "live_logs"                   =>  "Informes-Logs",
+  "live_logs"                   =>  "Informes/Logs",
   // Config page section headdings
   "hardware_info"               =>  "Informació del maquinari",
   "control_software"            =>  "Control de programari",
@@ -39,7 +39,7 @@ $lang = array (
   "apply"                       =>  "Aplicar",
   // Config Page - Gateway Hardware Information
   "hostname"                    =>  "Nom de l'amfitrió",
-  "kernel"                      =>  "Kernel",
+  "kernel"                      =>  "Nucli",
   "platform"                    =>  "Plataforma",
   "cpu_load"                    =>  "Càrrega CPU",
   "cpu_temp"                    =>  "Temperatura CPU",
@@ -68,7 +68,7 @@ $lang = array (
   "timezone"                    =>  "Zona horària",
   "dash_lang"                   =>  "Idioma del Tauler de Control",
   // Config Page - DMR Configuration
-  "dmr_master"                  =>  "DMR màster (MMDVMHost)",
+  "dmr_master"                  =>  "Màster DMR (MMDVMHost)",
   "bm_master"                   =>  "Màster BrandMeister",
   "bm_network"                  =>  "Xarxa BrandMeister",
   "dmr_plus_master"             =>  "Màster DMR+",
@@ -95,7 +95,7 @@ $lang = array (
   "nxdn_startup_host"            =>  "NXDN Arrencant Host",
   "nxdn_ran"                     =>  "NXDN RAN",
   // Config Page - MobileGPS Configuration
-  "mobilegps_enable"            =>  "Activació del GPS Mòbil",
+  "mobilegps_enable"            =>  "Activació del GPS mòbil",
   "mobilegps_port"              =>  "Port del GPS",
   "mobilegps_speed"             =>  "Velocitat del port del GPS",
   // Config Page - Firewall Configuration
@@ -116,7 +116,7 @@ $lang = array (
   "dmr_repeater"                =>  "Repetidor DMR",
   "dmr_master"                  =>  "Màster DMR",
   "ysf_net"                     =>  "Xarxa YSF",
-  "p25_radio"                   =>  "Radio P25",
+  "p25_radio"                   =>  "Ràdio P25",
   "p25_net"                     =>  "Xarxa P25",
   "nxdn_radio"                  =>  "Ràdio NXDN",
   "nxdn_net"                    =>  "Xarxa NXDN",
