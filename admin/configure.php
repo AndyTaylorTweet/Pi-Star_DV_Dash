@@ -1865,7 +1865,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the Dashboard Public
 	if (empty($_POST['dashAccess']) != TRUE ) {
-	  $publicDashboard = 'sudo sed -i \'/$DAEMON -a $ipVar 80/c\\\t\t$DAEMON -a $ipVar 80 80 TCP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
+	  //$publicDashboard = 'sudo sed -i \'/$DAEMON -a $ipVar 80/c\\\t\t$DAEMON -a $ipVar 80 80 TCP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
+	  $publicDashboard = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 80/c\\\t\t$DAEMON -e $hostVar -a $ipVar 80 80 TCP $timeOut > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
 	  $privateDashboard = 'sudo sed -i \'/$DAEMON -a $ipVar 80/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['dashAccess']) == 'PUB' ) { system($publicDashboard); }
@@ -1874,7 +1875,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the ircDDBGateway Remote Public
 	if (empty($_POST['ircRCAccess']) != TRUE ) {
-	  $publicRCirc = 'sudo sed -i \'/$DAEMON -a $ipVar 10022/c\\\t\t$DAEMON -a $ipVar 10022 10022 UDP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
+	  //$publicRCirc = 'sudo sed -i \'/$DAEMON -a $ipVar 10022/c\\\t\t$DAEMON -a $ipVar 10022 10022 UDP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
+	  $publicRCirc = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 10022/c\\\t\t$DAEMON -e $hostVar -a $ipVar 10022 10022 UDP $timeOut > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
 	  $privateRCirc = 'sudo sed -i \'/$DAEMON -a $ipVar 10022/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['ircRCAccess']) == 'PUB' ) { system($publicRCirc); }
@@ -1883,7 +1885,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set SSH Access Public
 	if (empty($_POST['sshAccess']) != TRUE ) {
-	  $publicSSH = 'sudo sed -i \'/$DAEMON -a $ipVar 22/c\\\t\t$DAEMON -a $ipVar 22 22 TCP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
+	  //$publicSSH = 'sudo sed -i \'/$DAEMON -a $ipVar 22/c\\\t\t$DAEMON -a $ipVar 22 22 TCP > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
+	  $publicSSH = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 22/c\\\t\t$DAEMON -e $hostVar -a $ipVar 22 22 TCP $timeOut > /dev/null 2>&1 &\' /usr/local/sbin/pistar-upnp.service';
 	  $privateSSH = 'sudo sed -i \'/$DAEMON -a $ipVar 22/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['sshAccess']) == 'PUB' ) { system($publicSSH); }
