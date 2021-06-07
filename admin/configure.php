@@ -1246,7 +1246,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if ($dmrMasterHost3StartupModule == "Default") {
 	    unset($configdmrgateway['XLX Network']['Module']);
 	  } else {
-	    $configdmrgateway['XLX Network']['Module'] = $dmrMasterHost3StartupModule;
+	    $configdmrgateway['XLX Network']['Module'] = '"'.$dmrMasterHost3StartupModule.'"';
 	  }
 	}
 
