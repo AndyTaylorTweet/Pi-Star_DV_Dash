@@ -1246,7 +1246,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if ($dmrMasterHost3StartupModule == "Default") {
 	    unset($configdmrgateway['XLX Network']['Module']);
 	  } else {
-	    $configdmrgateway['XLX Network']['Module'] = '"'.$dmrMasterHost3StartupModule.'"';
+	    $configdmrgateway['XLX Network']['Module'] = $dmrMasterHost3StartupModule;
 	  }
 	}
 
@@ -3824,10 +3824,10 @@ else:
 	if ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] != "")) {
 		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
 		echo '        <option value="Default">Default</option>'."\n";
-		echo '        <option value=" ">None</option>'."\n";
-	} elseif ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] == " ")) {
+		echo '        <option value="0">None</option>'."\n";
+	} elseif ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] == "0")) {
 		echo '        <option value="Default">Default</option>'."\n";
-		echo '        <option value=" " selected="selected">None</option>'."\n";
+		echo '        <option value="0" selected="selected">None</option>'."\n";
 	} else {
 		echo '        <option value="Default" selected="selected">Default</option>'."\n";
 		echo '        <option value=" ">None</option>'."\n";
