@@ -3825,7 +3825,7 @@ else:
 		echo '        <option value="'.$configdmrgateway['XLX Network']['Module'].'" selected="selected">'.$configdmrgateway['XLX Network']['Module'].'</option>'."\n";
 		echo '        <option value="Default">Default</option>'."\n";
 		echo '        <option value=" ">None</option>'."\n";
-	} elseif ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] == "")) {
+	} elseif ((isset($configdmrgateway['XLX Network']['Module'])) && ($configdmrgateway['XLX Network']['Module'] == " ")) {
 		echo '        <option value="Default">Default</option>'."\n";
 		echo '        <option value=" " selected="selected">None</option>'."\n";
 	} else {
