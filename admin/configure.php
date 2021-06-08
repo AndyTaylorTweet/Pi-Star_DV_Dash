@@ -372,7 +372,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  exec('sudo git --work-tree=/var/www/dashboard --git-dir=/var/www/dashboard/.git reset --hard origin/master');
           echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
 	  // Make the root filesystem read-only
-          system('sudo mount -o remount,ro /');
+          system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 	  echo "<br />\n</div>\n";
           echo "<div class=\"footer\">\nPi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-".date("Y").".<br />\n";
           echo "Need help? Click <a style=\"color: #ffffff;\" href=\"https://www.facebook.com/groups/pistarusergroup/\" target=\"_new\">here for the Support Group</a><br />\n";
@@ -3083,7 +3083,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},7500);</script>';
 
 	// Make the root filesystem read-only
-	system('sudo mount -o remount,ro /');
+	system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 
 else:
 	// Output the HTML Form here
