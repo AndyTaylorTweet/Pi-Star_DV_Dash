@@ -3909,6 +3909,14 @@ else:
         echo '" />
     </td>
     </tr>'."\n";}
+    if (substr($dmrMasterNow, 0, 4) == "TGIF") {
+      echo '    <tr>
+      <td align="left"><a class="tooltip2" href="#">Hotspot Security:<span><b>Custom Password</b>Override the Password for your DMR Host with your own custom password, make sure you already configured this with your chosen DMR Host too. Empty the field to use the default.</span></a></td>
+      <td align="left">
+        <input type="password" name="tgifHSSecurity" size="30" maxlength="30" value="'; if (isset($configModem['TGIF']['Password'])) {echo $configModem['TGIF']['Password'];}; echo '"></input>
+      </td>
+    </tr>
+    <tr>'."\n";}
 ?>
 
 <?php if ($dmrMasterNow !== "DMRGateway") { ?>
