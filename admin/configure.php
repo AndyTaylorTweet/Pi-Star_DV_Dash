@@ -1132,6 +1132,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			  unset ($configModem['BrandMeister']['Password']);
 		  }
 	  }
+	  if ((isset($_POST['tgifHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 4) == "TGIF") {
+		  if (empty($_POST['tgifHSSecurity']) != TRUE ) {
+			  $configModem['TGIF']['Password'] = '"'.$_POST['tgifHSSecurity'].'"';
+			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['tgifHSSecurity'].'"'; }
+		  } else {
+			  unset ($configModem['TGIF']['Password']);
+		  }
+	  }
 
 		if (substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 			unset ($configmmdvm['DMR Network']['Options']);
