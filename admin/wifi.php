@@ -302,7 +302,7 @@ echo '<br />
 		}
 		}
 		file_put_contents('/tmp/wifidata', $config);
-		system('sudo mount -o remount,rw / && sudo cp -f /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf && sudo sync && suco sync && sudo sync && sudo mount -o remount,ro /');
+		system('sudo mount -o remount,rw / && sudo cp -f /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf && sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro /');
 		echo "Wifi Settings Updated Successfully\n";
 		// If Auto AP is on, dont restart the WiFi Card
 		if (!file_exists('/sys/class/net/wlan0_ap')) {
