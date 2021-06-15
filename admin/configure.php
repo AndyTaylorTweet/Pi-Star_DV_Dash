@@ -441,7 +441,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    }
 	  // Since we know we are running D-Star here, set random CCS host.
 	  $activeCCS = array("CCS701"=>"CCS701","CCS702"=>"CCS702","CCS704"=>"CCS704");
-	  $rollCCS = 'sudo sed -i "/ccsHost==/c\\ccsHost='.array_rand($activeCCS,1);.'" /etc/ircddbgateway';
+	  $rollCCS = 'sudo sed -i "/ccsHost==/c\\ccsHost='.array_rand($activeCCS,1).'" /etc/ircddbgateway';
 	  system($rollCCS);
 	  }
 
