@@ -901,8 +901,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		if (isset($configs['ircddbHostname']) && $configs['ircddbHostname'] == "rr.openquad.net") {
 			$rollconfircddbEnabled = 'sudo sed -i "/rcddbEnabled=/c\\ircddbEnabled=0" /etc/ircddbgateway';
 			$rollconfircddbHostname = 'sudo sed -i "/rcddbHostname=/c\\ircddbHostname=ircv4.openquad.net" /etc/ircddbgateway';
+			system($rollconfircddbHostname);
 		}
-		system($rollconfircddbHostname);
 		system($rollconfircddbEnabled);
 	}
 
