@@ -439,10 +439,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollconfDefRef = 'sudo sed -i "/reflector1=/c\\reflector1='.$targetRef.escapeshellcmd($_POST['confDefRefLtr']).'" /etc/ircddbgateway';
 	    system($rollconfDefRef);
 	    }
-	  // Since we know we are running D-Star here, set random CCS host.
-	  $activeCCS = array("CCS701"=>"CCS701","CCS702"=>"CCS702","CCS704"=>"CCS704");
-	  $rollCCS = 'sudo sed -i "/ccsHost==/c\\ccsHost='.array_rand($activeCCS,1).'" /etc/ircddbgateway';
-	  system($rollCCS);
 	  }
 
 	// Set the ircDDBGAteway Defaut Reflector Autostart
@@ -455,6 +451,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	  system($rollconfDefRefAuto);
 	  }
+
+	// Set random (working) CCS host.
+	if (configs['ccsEnabled'] == "1") {
+	  $activeCCS = array("CCS701"=>"CCS701","CCS702"=>"CCS702","CCS704"=>"CCS704");
+	  $rollCCS = 'sudo sed -i "/ccsHost==/c\\ccsHost='.array_rand($activeCCS,1).'" /etc/ircddbgateway';
+	  system($rollCCS);
+	}
 
 	// Set the Latitude
 	if (empty($_POST['confLatitude']) != TRUE ) {
