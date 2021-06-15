@@ -883,7 +883,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 
 	  system($rollGATECALL);
-	  system($rollIRCUSER);
 	  system($rollDPLUSLOGIN);
 	  system($rollDASHBOARDcall);
 	  system($rollTIMESERVERcall);
