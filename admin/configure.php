@@ -439,6 +439,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $rollconfDefRef = 'sudo sed -i "/reflector1=/c\\reflector1='.$targetRef.escapeshellcmd($_POST['confDefRefLtr']).'" /etc/ircddbgateway';
 	    system($rollconfDefRef);
 	    }
+	  // Since we know we are running D-Star here, set random CCS host.
+	  $activeCCS = array("CCS701", "CCS702", "CCS704");
+	  shuffle($activeCCS);
+	  $rollCCS = 'sudo sed -i "/ccsHost==/c\\ccsHost='.$activeCCS[1].'" /etc/ircddbgateway';
+	  system($rollCCS);
 	  }
 
 	// Set the ircDDBGAteway Defaut Reflector Autostart
