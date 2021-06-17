@@ -351,6 +351,7 @@ function getDAPNETGatewayLog() {
 // I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano_hotSPOT-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
 // I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano-Spot-v1.3.3 20180224 ADF7021 FW by CA6JAU GitID #62323e7
 // I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: Nano_DV-v1.4.3 20180716 12.2880MHz ADF7021 FW by CA6JAU GitID #6729d23
+// I: 1970-01-01 00:00:00.000 MMDVM protocol version: 1, description: SkyBridge-v1.5.2 20201108 14.7456MHz ADF7021 FW by CA6JAU GitID #89daa20
 
 function getDVModemFirmware() {
 	$logMMDVMNow = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
@@ -407,7 +408,10 @@ function getDVModemFirmware() {
 		}
 		if (strpos($logLine, 'description: OpenGD77_HS ')) {
 			$modemFirmware = "OpenGD77:".strtok(substr($logLine, 79, 12), ' ');
-		}		
+		}
+		if (strpos($logLine, 'description: SkyBridge-')) {
+			$modemFirmware = "SkyBrg:".strtok(substr($logLine, 77, 12), ' ');
+		}
 	}
 	return $modemFirmware;
 }
