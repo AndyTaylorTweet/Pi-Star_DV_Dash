@@ -410,7 +410,7 @@ function getDVModemFirmware() {
 			$modemFirmware = "OpenGD77:".strtok(substr($logLine, 79, 12), ' ');
 		}
 		if (strpos($logLine, 'description: SkyBridge-')) {
-			$modemFirmware = "SkyBrg:".strtok(substr($logLine, 77, 12), ' ');
+			$modemFirmware = "SkyBridge:".strtok(substr($logLine, 77, 12), ' ');
 		}
 	}
 	return $modemFirmware;
