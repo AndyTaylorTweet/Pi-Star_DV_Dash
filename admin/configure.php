@@ -1896,7 +1896,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Set the ircDDBGateway Remote Public
 	if (empty($_POST['ircRCAccess']) != TRUE ) {
-	  $publicRCirc = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 10022/c\\\t\t$DAEMON -u ${igdURL} -e ${hostVar}_Remote -a $ipVar 10022 10022 UDP > /dev/null 2>&1\' /usr/local/sbin/pistar-upnp.service';
+	  $publicRCirc = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 10022/c\\\t\t\t$DAEMON -u ${igdURL} -e ${hostVar}_Remote -a $ipVar 10022 10022 UDP > /dev/null 2>&1\' /usr/local/sbin/pistar-upnp.service';
 	  $privateRCirc = 'sudo sed -i \'/$DAEMON -e $hostVar -a $ipVar 10022/ s/^#*/#/\' /usr/local/sbin/pistar-upnp.service';
 
 	  if (escapeshellcmd($_POST['ircRCAccess']) == 'PUB' ) { system($publicRCirc); }
