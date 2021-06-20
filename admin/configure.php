@@ -1919,7 +1919,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $uPNPsvcOn = 'sudo systemctl enable pistar-upnp.timer';
 	  $uPNPsvcOff = 'sudo systemctl disable pistar-upnp.timer';
 	  $uPNPsvcStart = '(systemctl stop pistar-upnp.service && systemctl start pistar-upnp.service) &';
-	  $uPNPsvcStop = 'systemctl stop pistar-upnp.service';
+	  $uPNPsvcStop = '(systemctl stop pistar-upnp.service) &';
 
 	  if (escapeshellcmd($_POST['uPNP']) == 'ON' )  { system($uPNPon); system($uPNPsvcOn); system($uPNPsvcStart); }
 	  if (escapeshellcmd($_POST['uPNP']) == 'OFF' ) { system($uPNPoff); system($uPNPsvcStop); system($uPNPsvcOff); }
