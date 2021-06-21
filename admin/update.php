@@ -15,10 +15,15 @@ setlocale(LC_ALL, "LC_CTYPE=en_GB.UTF-8;LC_NUMERIC=C;LC_TIME=C;LC_COLLATE=C;LC_M
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
   if (!isset($_GET['ajax'])) {
+    if (!file_exists('/var/log/pi-star')) {
+      system('sudo mkdir -p /var/log/pi-star/');
+      system('sudo chmod 775 /var/log/pi-star/');
+      system('sudo chown root:mmdvm /var/log/pi-star/');
+    }
     system('sudo touch /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
     system('sudo echo "" > /var/log/pi-star/pi-star_update.log > /dev/null 2>&1 &');
     system('sudo /usr/local/sbin/pistar-update > /dev/null 2>&1 &');
-    }
+  }
 
   // Sanity Check Passed.
   header('Cache-Control: no-cache');
