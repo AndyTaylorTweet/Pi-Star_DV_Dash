@@ -227,7 +227,7 @@ if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable']
   </table>
 </div>
 <?php } 
-if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRelease['Pi-Star']['Version'] < "4.1.4") ) {
+if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRelease['Pi-Star']['Version'] < "4.1.5") ) {
 ?>
 <div>
   <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
