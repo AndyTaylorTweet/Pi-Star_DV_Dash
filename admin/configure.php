@@ -833,7 +833,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollSTARNETSERVERirc = 'sudo sed -i "/ircddbUsername=/c\\ircddbUsername='.$newCallsignUpperIRC.'" /etc/starnetserver';
 
 	  // Only roll ircDDBGateway Username if using OpenQuad
-	  if ($configs['ircddbHostname'] == "rr.openquad.net") {
+	  if ( ($configs['ircddbHostname'] == "rr.openquad.net") || ($configs['ircddbHostname'] == "ircv4.openquad.net") ) {
 		  $rollIRCUSER = 'sudo sed -i "/ircddbUsername=/c\\ircddbUsername='.$newCallsignUpperIRC.'" /etc/ircddbgateway';
 		  system($rollIRCUSER);
 	  }
