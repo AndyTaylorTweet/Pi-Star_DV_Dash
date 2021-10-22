@@ -1122,8 +1122,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['dmrMasterHost']) != TRUE ) {
 	  $dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
 	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
+	  $configmmdvm['DMR Network']['RemoteAddress'] = $dmrMasterHostArr[0];
 	  $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
 	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
+	  $configmmdvm['DMR Network']['RemotePort'] = $dmrMasterHostArr[2];
 	  if ($dmrMasterHostArr[0] == '127.0.0.1' && $dmrMasterHostArr[2] == '62031') {
 		  // DMR Gateway
 		  $configmmdvm['DMR Network']['Type'] = "Gateway";
@@ -1152,6 +1154,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			unset ($configmmdvm['DMR Network']['Options']);
 			unset ($configdmrgateway['DMR Network 2']['Options']);
 			unset ($configmmdvm['DMR Network']['Local']);
+			unset ($configmmdvm['DMR Network']['LocalPort']);
 			unset ($configysf2dmr['DMR Network']['Options']);
 			unset ($configysf2dmr['DMR Network']['Local']);
 			if (isset($configModem['BrandMeister']['Password'])) {
@@ -1164,6 +1167,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			unset ($configmmdvm['DMR Network']['Options']);
 			unset ($configdmrgateway['DMR Network 2']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62032";
+			$configmmdvm['DMR Network']['LocalPort'] = "62032";
 			unset ($configysf2dmr['DMR Network']['Options']);
 			$configysf2dmr['DMR Network']['Local'] = "62032";
 			if (isset($configdmr2ysf['DMR Network']['LocalAddress'])) {
@@ -1178,6 +1182,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		if ($dmrMasterHostArr[0] == '127.0.0.2' && $dmrMasterHostArr[2] == '62033') {
 			unset ($configmmdvm['DMR Network']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62034";
+			$configmmdvm['DMR Network']['LocalPort'] = "62034";
 			if (isset($configdmr2ysf['DMR Network']['LocalAddress'])) {
 				$configdmr2ysf['DMR Network']['LocalAddress'] = "127.0.0.2";
 			}
@@ -1187,6 +1192,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		if ($dmrMasterHostArr[0] == '127.0.0.3' && $dmrMasterHostArr[2] == '62035') {
 			unset ($configmmdvm['DMR Network']['Options']);
 			$configmmdvm['DMR Network']['Local'] = "62036";
+			$configmmdvm['DMR Network']['LocalPort'] = "62036";
 			if (isset($configdmr2nxdn['DMR Network']['LocalAddress'])) {
 				$configdmr2nxdn['DMR Network']['LocalAddress'] = "127.0.0.3";
 			}
@@ -1195,6 +1201,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		// Set the DMR+ / HBLink Options= line
 		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 3) == "FD_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
 			unset ($configmmdvm['DMR Network']['Local']);
+			unset ($configmmdvm['DMR Network']['LocalPort']);
 			unset ($configysf2dmr['DMR Network']['Local']);
 			if (empty($_POST['dmrNetworkOptions']) != TRUE ) {
 				$dmrOptionsLineStripped = str_replace('"', "", $_POST['dmrNetworkOptions']);
