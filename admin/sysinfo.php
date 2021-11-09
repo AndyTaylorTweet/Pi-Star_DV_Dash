@@ -190,7 +190,7 @@ if (is_executable('/usr/local/bin/P25Gateway')) {
     echo "  <tr><td align=\"left\">P25Gateway</td><td align=\"left\">".$P25Gateway_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/NXDNGateway')) {
-    $NXDNGateway_Ver = exec('/usr/local/bin/YSFGateway -v | cut -d\' \' -f 3-');
+    $NXDNGateway_Ver = exec('/usr/local/bin/NXDNGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">NXDNGateway</td><td align=\"left\">".$NXDNGateway_Ver."</td></tr>\n";
 }
 if (is_executable('/usr/local/bin/DAPNETGateway')) {
