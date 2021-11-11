@@ -71,6 +71,12 @@ if (file_exists('/etc/ysf2p25')) {
 	if (fopen($ysf2p25ConfigFile,'r')) { $configysf2p25 = parse_ini_file($ysf2p25ConfigFile, true); }
 }
 
+// Load the dgidgateway config file
+if (file_exists('/etc/dgidgateway')) {
+	$dgidgatewayConfigFile = '/etc/dgidgateway';
+	if (fopen($dgidgatewayConfigFile,'r')) { $configdgidgateway = parse_ini_file($dgidgatewayConfigFile, true); }
+}
+
 // Load the dmr2ysf config file
 if (file_exists('/etc/dmr2ysf')) {
 	$dmr2ysfConfigFile = '/etc/dmr2ysf';
@@ -3060,6 +3066,42 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
                         exec('sudo mv /tmp/dsWGR34tHRrSFFGc.tmp /etc/ysf2p25');                 // Move the file back
                         exec('sudo chmod 644 /etc/ysf2p25');                                    // Set the correct runtime permissions
                         exec('sudo chown root:root /etc/ysf2p25');                              // Set the owner
+                }
+        }
+
+	// dgidgateway config file wrangling
+        $dgidgatewayContent = "";
+        foreach($configdgidgateway as $dgidgatewaySection=>$dgidgatewayValues) {
+                // UnBreak special cases
+                $dgidgatewaySection = str_replace("_", " ", $dgidgatewaySection);
+                $dgidgatewayContent .= "[".$dgidgatewaySection."]\n";
+                // append the values
+                foreach($dgidgatewayValues as $dgidgatewayKey=>$dgidgatewayValue) {
+                        $dgidgatewayContent .= $dgidgatewayKey."=".$dgidgatewayValue."\n";
+                        }
+                        $dgidgatewayContent .= "\n";
+                }
+        if (!$handleDGIdGatewayConfig = fopen('/tmp/cu0G4tG3CA45Z9B.tmp', 'w')) {
+                return false;
+        }
+        if (!is_writable('/tmp/cu0G4tG3CA45Z9B.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+        }
+        else {
+                $success = fwrite($handleDGIdGatewayConfig, $dgidgatewayContent);
+                fclose($handleDGIdGatewayConfig);
+                if (intval(exec('cat /tmp/cu0G4tG3CA45Z9B.tmp | wc -l')) > 25 ) {
+			exec('sudo mv /tmp/cu0G4tG3CA45Z9B.tmp /etc/dgidgateway');		// Move the file back
+                        exec('sudo chmod 644 /etc/dgidgateway');				// Set the correct runtime permissions
+                        exec('sudo chown root:root /etc/dgidgateway');				// Set the owner
                 }
         }
 
