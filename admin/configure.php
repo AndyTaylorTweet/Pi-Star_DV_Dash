@@ -2590,6 +2590,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configysf2p25['YSF Network']['DT1'])) { $configysf2p25['YSF Network']['DT1'] = "1,34,97,95,43,3,17,0,0,0"; }
 	if (!isset($configysf2p25['YSF Network']['DT2'])) { $configysf2p25['YSF Network']['DT2'] = "0,0,0,0,108,32,28,32,3,8"; }
 
+	// Defaults for DGIdGateway
+	if (isset($configdgidgateway)) {
+		$configdgidgateway['Log']['DisplayLevel'] = 1; 
+		$configdgidgateway['Log']['FileLevel'] = 1;
+		$configdgidgateway['Log']['FilePath'] = "/var/log/pi-star";
+		$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
+		$configdgidgateway['Log']['FileRotate'] = 0;
+		$configdgidgateway['YSF Network']['Hosts'] = "/usr/local/etc/YSFHosts.txt";
+	}
+
 	// Clean up for NXDN Gateway
 	if (file_exists('/etc/nxdngateway')) {
 		if (isset($confignxdngateway['Network']['HostsFile'])) {
