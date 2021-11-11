@@ -1,6 +1,4 @@
 <?php
-$useragent=$_SERVER['HTTP_USER_AGENT'];
-
 if(empty($_SERVER['HTTP_USER_AGENT'])) {
   print "    <link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (min-width: 830px)\" href=\"css/pistar-css.php?version=0.95\" />\n";
   print "    <link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (max-width: 829px)\" href=\"css/pistar-css-mini.php?version=0.95\" />\n";
