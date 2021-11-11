@@ -1362,9 +1362,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set YSF Hang Timers
 	if (empty($_POST['ysfRfHangTime']) != TRUE ) {
 	  $configmmdvm['System Fusion']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
+	  if (isset($configdgidgateway)) { $configdgidgateway['General']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
+	  if (isset($configdgidgateway)) { $configdgidgateway['YSF Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
+	  if (isset($configdgidgateway)) { $configdgidgateway['FCS Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
+	  if (isset($configdgidgateway)) { $configdgidgateway['IMRS Network']['RFHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']); }
 	}
 	if (empty($_POST['ysfNetHangTime']) != TRUE ) {
 	  $configmmdvm['System Fusion Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']);
+	  if (isset($configdgidgateway)) { $configdgidgateway['General']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
+	  if (isset($configdgidgateway)) { $configdgidgateway['YSF Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
+	  if (isset($configdgidgateway)) { $configdgidgateway['FCS Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
+	  if (isset($configdgidgateway)) { $configdgidgateway['IMRS Network']['NetHangTime'] = preg_replace('/[^0-9]/', '', $_POST['ysfNetHangTime']); }
 	}
 	// Set P25 Hang Timers
 	if (empty($_POST['p25RfHangTime']) != TRUE ) {
@@ -2592,6 +2600,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// Defaults for DGIdGateway
 	if (isset($configdgidgateway)) {
+		$configdgidgateway['General']['LocalPort'] = $configmmdvm['System Fusion Network']['GatewayPort'];
+		$configdgidgateway['General']['RptPort'] =  $configmmdvm['System Fusion Network']['LocalPort'];
 		$configdgidgateway['Log']['DisplayLevel'] = 1; 
 		$configdgidgateway['Log']['FileLevel'] = 1;
 		$configdgidgateway['Log']['FilePath'] = "/var/log/pi-star";
