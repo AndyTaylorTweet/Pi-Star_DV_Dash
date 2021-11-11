@@ -3070,40 +3070,42 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         }
 
 	// dgidgateway config file wrangling
-        $dgidgatewayContent = "";
-        foreach($configdgidgateway as $dgidgatewaySection=>$dgidgatewayValues) {
-                // UnBreak special cases
-                $dgidgatewaySection = str_replace("_", " ", $dgidgatewaySection);
-                $dgidgatewayContent .= "[".$dgidgatewaySection."]\n";
-                // append the values
-                foreach($dgidgatewayValues as $dgidgatewayKey=>$dgidgatewayValue) {
-                        $dgidgatewayContent .= $dgidgatewayKey."=".$dgidgatewayValue."\n";
-                        }
-                        $dgidgatewayContent .= "\n";
-                }
-        if (!$handleDGIdGatewayConfig = fopen('/tmp/cu0G4tG3CA45Z9B.tmp', 'w')) {
-                return false;
-        }
-        if (!is_writable('/tmp/cu0G4tG3CA45Z9B.tmp')) {
-          echo "<br />\n";
-          echo "<table>\n";
-          echo "<tr><th>ERROR</th></tr>\n";
-          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
-          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
-          echo "</table>\n";
-          unset($_POST);
-          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
-          die();
-        }
-        else {
-                $success = fwrite($handleDGIdGatewayConfig, $dgidgatewayContent);
-                fclose($handleDGIdGatewayConfig);
-                if (intval(exec('cat /tmp/cu0G4tG3CA45Z9B.tmp | wc -l')) > 25 ) {
-			exec('sudo mv /tmp/cu0G4tG3CA45Z9B.tmp /etc/dgidgateway');		// Move the file back
-                        exec('sudo chmod 644 /etc/dgidgateway');				// Set the correct runtime permissions
-                        exec('sudo chown root:root /etc/dgidgateway');				// Set the owner
-                }
-        }
+	if (isset($configdgidgateway)) {
+		$dgidgatewayContent = "";
+		foreach($configdgidgateway as $dgidgatewaySection=>$dgidgatewayValues) {
+			// UnBreak special cases
+			$dgidgatewaySection = str_replace("_", " ", $dgidgatewaySection);
+			$dgidgatewayContent .= "[".$dgidgatewaySection."]\n";
+			// append the values
+			foreach($dgidgatewayValues as $dgidgatewayKey=>$dgidgatewayValue) {
+				$dgidgatewayContent .= $dgidgatewayKey."=".$dgidgatewayValue."\n";
+				}
+				$dgidgatewayContent .= "\n";
+			}
+		if (!$handleDGIdGatewayConfig = fopen('/tmp/cu0G4tG3CA45Z9B.tmp', 'w')) {
+			return false;
+		}
+		if (!is_writable('/tmp/cu0G4tG3CA45Z9B.tmp')) {
+		  echo "<br />\n";
+		  echo "<table>\n";
+		  echo "<tr><th>ERROR</th></tr>\n";
+		  echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+		  echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+		  echo "</table>\n";
+		  unset($_POST);
+		  echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+		  die();
+		}
+		else {
+			$success = fwrite($handleDGIdGatewayConfig, $dgidgatewayContent);
+			fclose($handleDGIdGatewayConfig);
+			if (intval(exec('cat /tmp/cu0G4tG3CA45Z9B.tmp | wc -l')) > 25 ) {
+				exec('sudo mv /tmp/cu0G4tG3CA45Z9B.tmp /etc/dgidgateway');		// Move the file back
+				exec('sudo chmod 644 /etc/dgidgateway');				// Set the correct runtime permissions
+				exec('sudo chown root:root /etc/dgidgateway');				// Set the owner
+			}
+		}
+	}
 
 	// dmr2ysf config file wrangling
         $dmr2ysfContent = "";
