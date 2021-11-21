@@ -7,7 +7,7 @@ require_once $dir.'/config/config.php';          // MMDVMDash Config
 include_once $dir.'/mmdvmhost/tools.php';        // MMDVMDash Tools
 require_once $dir.'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $dir.'/config/language.php';	      // Translation Code
-for($i=0; $i<60; $i+=5) {
+for($t=0; $t<60; $t+=5) {
 
     // Check if the config file exists
     if (file_exists('/etc/pistar-css.ini')) {
