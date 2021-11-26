@@ -101,6 +101,12 @@ if (file_exists('/etc/nxdngateway')) {
 	if (fopen($nxdngatewayConfigFile,'r')) { $confignxdngateway = parse_ini_file($nxdngatewayConfigFile, true); }
 }
 
+// Load the M17Gateway config file
+if (file_exists('/etc/m17gateway')) {
+	$m17gatewayConfigFile = '/etc/m17gateway';
+	if (fopen($m17gatewayConfigFile,'r')) { $configm17gateway = parse_ini_file($m17gatewayConfigFile, true); }
+}
+
 // Load the nxdn2dmr config file
 if (file_exists('/etc/nxdn2dmr')) {
 	$nxdn2dmrConfigFile = '/etc/nxdn2dmr';
@@ -348,6 +354,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
+	system('sudo systemctl stop m17gateway.service > /dev/null 2>/dev/null &');		// M17Gateway
 	system('sudo systemctl stop dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
 	system('sudo systemctl stop aprsgateway.service > /dev/null 2>/dev/null &');		// APRSGateway
 
@@ -478,6 +485,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['Info']['Latitude'] = $newConfLatitude;
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Latitude'] = $newConfLatitude; }
 	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
+	  $configm17gateway['Info']['Latitude'] = $newConfLatitude;
 	  $confignxdngateway['Info']['Latitude'] = $newConfLatitude;
 	  system($rollConfLat0);
 	  system($rollConfLat1);
@@ -495,6 +503,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2p25['Info']['Longitude'] = $newConfLongitude;
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Longitude'] = $newConfLongitude; }
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
+	  $configm17gateway['Info']['Longitude'] = $newConfLongitude;
 	  $confignxdngateway['Info']['Longitude'] = $newConfLongitude;
 	  system($rollConfLon0);
 	  system($rollConfLon1);
@@ -511,6 +520,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2nxdn['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configysf2p25['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $confignxdngateway['Info']['Name'] = '"'.$newConfDesc1.'"';
+	  $configm1ngateway['Info']['Name'] = '"'.$newConfDesc1.'"';
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
@@ -522,6 +532,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $rollDesc22 = 'sudo sed -i "/description1_2=/c\\description1_2='.$newConfDesc2.'" /etc/ircddbgateway';
           $configmmdvm['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  $configm17gateway['Info']['Description'] = '"'.$newConfDesc2.'"';
           $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
@@ -541,6 +552,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2nxdn['Info']['URL'] = $txtURL;
 	  $configysf2p25['Info']['URL'] = $txtURL;
 	  $configdmrgateway['Info']['URL'] = $txtURL;
+	  $configm17gateway['Info']['URL'] = $txtURL;
 	  system($rollURL0);
 	  }
 
@@ -641,6 +653,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQtx;
 	  $configdmrgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configdmrgateway['Info']['TXFrequency'] = $newFREQtx;
+	  $configm17gateway['Info']['RXFrequency'] = $newFREQrx;
+	  $configm17gateway['Info']['TXFrequency'] = $newFREQtx;
+	  $configm17gateway['General']['Suffix'] = "R";
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQrx;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQtx;
 	  $configysfgateway['General']['Suffix'] = "RPT";
@@ -747,6 +762,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configmmdvm['Info']['TXFrequency'] = $newFREQ;
 	  $configdmrgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configdmrgateway['Info']['TXFrequency'] = $newFREQ;
+	  $configm17gateway['Info']['RXFrequency'] = $newFREQ;
+	  $configm17gateway['Info']['TXFrequency'] = $newFREQ;
+	  $configm17gateway['General']['Suffix'] = "H";
 	  $configysfgateway['Info']['RXFrequency'] = $newFREQ;
 	  $configysfgateway['Info']['TXFrequency'] = $newFREQ;
 	  $configysfgateway['General']['Suffix'] = "ND";
@@ -873,6 +891,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $confignxdngateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $confignxdngateway['General']['Callsign'] = $newCallsignUpper;
+	  $configm17gateway['General']['Callsign'] = $newCallsignUpper;
 	  $configysfgateway['Info']['Name'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2dmr['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2nxdn['Info']['Description'] = $newCallsignUpper."_Pi-Star";
@@ -1391,6 +1410,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['nxdnNetHangTime']) != TRUE ) {
 	  $configmmdvm['NXDN Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['nxdnNetHangTime']);
 	  $confignxdngateway['Network']['NetHangTime'] = "0";
+	}
+	// Set M17 Hang Timers
+	if (empty($_POST['m17RfHangTime']) != TRUE ) {
+	  $configmmdvm['M17']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['m17RfHangTime']);
+	  $configm17gateway['Network']['RFHangTime'] = "0";
+	}
+	if (empty($_POST['m17NetHangTime']) != TRUE ) {
+	  $configmmdvm['M17 Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['m17NetHangTime']);
+	  $configm17gateway['Network']['NetHangTime'] = "0";
 	}
 
 	// Set the hardware type
@@ -2147,6 +2175,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "1"; $configysf2nxdn['Enabled']['Enabled'] = "0"; }
           if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'OFF' ) { $configmmdvm['NXDN']['Enable'] = "0"; $configmmdvm['NXDN Network']['Enable'] = "0"; }
 	}
+    
+	// Set MMDVMHost M17 Mode
+	if (empty($_POST['MMDVMModeM17']) != TRUE ) {
+          if (escapeshellcmd($_POST['MMDVMModeM17']) == 'ON' )  { $configmmdvm['M17']['Enable'] = "1"; $configmmdvm['M17 Network']['Enable'] = "1"; }
+          if (escapeshellcmd($_POST['MMDVMModeM17']) == 'OFF' ) { $configmmdvm['M17']['Enable'] = "0"; $configmmdvm['M17 Network']['Enable'] = "0"; }
+	}
 
 	// Set YSF2DMR Mode
 	if (empty($_POST['MMDVMModeYSF2DMR']) != TRUE ) {
@@ -2392,6 +2426,46 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if ( isset($configdmrgateway['DMR Network 5']['Password']) && substr($configdmrgateway['DMR Network 5']['Password'], 0, 1) !== '"' )	{ $configdmrgateway['DMR Network 5']['Password'] = '"'.$configdmrgateway['DMR Network 5']['Password'].'"'; }
 	if ( isset($configdmrgateway['DMR Network 5']['Options']) &&  substr($configdmrgateway['DMR Network 5']['Options'], 0, 1) !== '"' )	{ $configdmrgateway['DMR Network 5']['Options'] = '"'.$configdmrgateway['DMR Network 5']['Options'].'"'; }
 
+	// Add missing values to M17Gateway
+	if (!isset($configm17gateway['General']['RptAddress'])) { $configm17gateway['General']['RptAddress'] = '127.0.0.1'; }
+	if (!isset($configm17gateway['General']['RptPort'])) { $configm17gateway['General']['RptPort'] = '17011'; }
+	if (!isset($configm17gateway['General']['LocalPort'])) { $configm17gateway['General']['LocalPort'] = '17010'; }
+	if (!isset($configm17gateway['General']['Debug'])) { $configm17gateway['General']['Debug'] = '0'; }
+	if (!isset($configm17gateway['General']['Daemon'])) { $configm17gateway['General']['Daemon'] = '1'; }
+	if (!isset($configm17gateway['Info']['Power'])) { $configm17gateway['Info']['Power'] = $configmmdvm['Info']['Power']; }
+	if (!isset($configm17gateway['Info']['Height'])) { $configm17gateway['Info']['Height'] = $configmmdvm['Info']['Height']; }
+	if (!isset($configm17gateway['Network']['HostsFile1'])) { $configm17gateway['Network']['HostsFile1'] = "/usr/local/etc/M17Hosts.txt"; }
+	if (!isset($configm17gateway['Network']['HostsFile2'])) { $configm17gateway['Network']['HostsFile2'] = "/root/M17Hosts.txt"; }
+	if (!isset($configm17gateway['Network']['Port'])) { $configm17gateway['Network']['Port'] = "17000"; }
+	if (!isset($configm17gateway['Network']['ReloadTime'])) { $configm17gateway['Network']['ReloadTime'] = "60"; }
+	if (!isset($configm17gateway['Network']['HangTime'])) { $configm17gateway['Network']['HangTime'] = "60"; }
+	if (!isset($configm17gateway['Network']['Base'])) { $configm17gateway['Network']['Base'] = "64000"; }
+	if (!isset($configm17gateway['Network']['Startup'])) { $configm17gateway['Network']['Startup'] = "M17-M17_C"; }
+	if (!isset($configm17gateway['Network']['Revert'])) { $configm17gateway['Network']['Revert'] = "1"; }
+	if (!isset($configm17gateway['Network']['Debug'])) { $configm17gateway['Network']['Debug'] = "0"; }
+    if (!isset($configm17gateway['APRS'])) {
+        $configm17gateway['APRS']['Enable'] = "1";
+        $configm17gateway['APRS']['Address'] = "127.0.0.1";
+        $configm17gateway['APRS']['Port'] = "8673";
+        $configm17gateway['APRS']['Description'] = "APRS for M17Gateway";
+        $configm17gateway['APRS']['Suffix'] = "N";
+    }
+    if (!isset($configm17gateway['Remote Commands'])) {
+        $configm17gateway['Dynamic TG Control']['Enabled'] = "0";
+        $configm17gateway['Dynamic TG Control']['Port'] = "6075";
+    }
+    if (!isset($configm17gateway['Log'])) {
+        $configm17gateway['Log']['DisplayLevel'] = "0";
+        $configm17gateway['Log']['FileLevel'] = "1";
+        $configm17gateway['Log']['FilePath'] = "/var/log/pi-star";
+        $configm17gateway['Log']['FileRoot'] = "M17Gateway";
+    }
+    if (!isset($configm17gateway['Voice'])) {
+        $configm17gateway['Voice']['Enabled'] = "0";
+        //TODO language
+        //TODO directory
+    }
+    
 	// Add missing options to MMDVMHost
 	if (!isset($configmmdvm['Modem']['RFLevel'])) { $configmmdvm['Modem']['RFLevel'] = "100"; }
 	if (!isset($configmmdvm['Modem']['RXDCOffset'])) { $configmmdvm['Modem']['RXDCOffset'] = "0"; }
@@ -2953,6 +3027,44 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 	}
 
+	// M17Gateway config file wrangling
+	$m17gwContent = "";
+        foreach($configm17gateway as $m17gwSection=>$m17gwValues) {
+                // UnBreak special cases
+                $m17gwSection = str_replace("_", " ", $m17gwSection);
+                $m17gwContent .= "[".$m17gwSection."]\n";
+                // append the values
+                foreach($m17gwValues as $m17gwKey=>$m17gwValue) {
+                        $m17gwContent .= $m17gwKey."=".$m17gwValue."\n";
+                        }
+                        $m17gwContent .= "\n";
+                }
+
+        if (!$handleM17GWconfig = fopen('/tmp/Edr2FxEdr2FxEdr2Fx.tmp', 'w')) {
+                return false;
+        }
+
+	if (!is_writable('/tmp/Edr2FxEdr2FxEdr2Fx.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+	}
+	else {
+	        $success = fwrite($handleM17GWconfig, $m17gwContent);
+	        fclose($handleM17GWconfig);
+		if ( (intval(exec('cat /tmp/Edr2FxEdr2FxEdr2Fx.tmp | wc -l')) > 30 ) && (file_exists('/etc/m17gateway')) ) {
+			exec('sudo mv /tmp/Edr2FxEdr2FxEdr2Fx.tmp /etc/m17gateway');		// Move the file back
+			exec('sudo chmod 644 /etc/m17gateway');				// Set the correct runtime permissions
+			exec('sudo chown root:root /etc/m17gateway');				// Set the owner
+		}
+	}
+
 	// P25Gateway config file wrangling
 	$p25gwContent = "";
         foreach($configp25gateway as $p25gwSection=>$p25gwValues) {
@@ -3354,6 +3466,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
+	system('sudo systemctl start m17gateway.service > /dev/null 2>/dev/null &');		// M17Gateway
 	system('sudo systemctl start dapnetgateway.service > /dev/null 2>/dev/null &');		// DAPNetGateway
 	system('sudo systemctl start aprsgateway.service > /dev/null 2>/dev/null &');		// APRSGateway
 
@@ -3383,6 +3496,7 @@ else:
 		$toggleYSFCheckboxCr			= 'onclick="toggleYSFCheckbox()"';
 		$toggleP25CheckboxCr			= 'onclick="toggleP25Checkbox()"';
 		$toggleNXDNCheckboxCr			= 'onclick="toggleNXDNCheckbox()"';
+		$toggleM17CheckboxCr			= 'onclick="toggleM17Checkbox()"';
 		$toggleYSF2DMRCheckboxCr		= 'onclick="toggleYSF2DMRCheckbox()"';
 		$toggleYSF2NXDNCheckboxCr		= 'onclick="toggleYSF2NXDNCheckbox()"';
 		$toggleYSF2P25CheckboxCr		= 'onclick="toggleYSF2P25Checkbox()"';
@@ -3407,6 +3521,7 @@ else:
 		$toggleYSFCheckboxCr			= "";
 		$toggleP25CheckboxCr			= "";
 		$toggleNXDNCheckboxCr			= "";
+		$toggleM17CheckboxCr			= "";
 		$toggleYSF2DMRCheckboxCr		= "";
 		$toggleYSF2NXDNCheckboxCr		= "";
 		$toggleYSF2P25CheckboxCr		= "";
@@ -3471,6 +3586,7 @@ else:
     <input type="hidden" name="MMDVMModeFUSION" value="OFF" />
     <input type="hidden" name="MMDVMModeP25" value="OFF" />
     <input type="hidden" name="MMDVMModeNXDN" value="OFF" />
+    <input type="hidden" name="MMDVMModeM17" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2DMR" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2NXDN" value="OFF" />
     <input type="hidden" name="MMDVMModeYSF2P25" value="OFF" />
@@ -3551,6 +3667,20 @@ else:
     ?>
     <td>RF Hangtime: <input type="text" name="nxdnRfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['NXDN']['ModeHang'])) { echo $configmmdvm['NXDN']['ModeHang']; } else { echo "20"; } ?>" />
     Net Hangtime: <input type="text" name="nxdnNetHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['NXDN Network']['ModeHang'])) { echo $configmmdvm['NXDN Network']['ModeHang']; } else { echo "20"; } ?>" />
+    </td>
+    </tr>
+    <tr>
+    <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_mode'];?>:<span><b>M17 Mode</b>Turn on M17 Features</span></a></td>
+    <?php
+	if ( $configmmdvm['M17']['Enable'] == 1 ) {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-m17\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeM17\" value=\"ON\" checked=\"checked\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleM17CheckboxCr." /><label id=\"aria-toggle-m17\" role=\"checkbox\" tabindex=\"0\" aria-label=\"M17 Mode\" aria-checked=\"true\" onKeyPress=\"toggleM17Checkbox()\" onclick=\"toggleM17Checkbox()\" for=\"toggle-m17\"><font style=\"font-size:0px\">M17 Mode</font></label></div></td>\n";
+		}
+	else {
+		echo "<td align=\"left\"><div class=\"switch\"><input id=\"toggle-m17\" class=\"toggle toggle-round-flat\" type=\"checkbox\" name=\"MMDVMModeM17\" value=\"ON\" aria-hidden=\"true\" tabindex=\"-1\" ".$toggleM17CheckboxCr." /><label id=\"aria-toggle-m17\" role=\"checkbox\" tabindex=\"0\" aria-label=\"M17 Mode\" aria-checked=\"false\" onKeyPress=\"toggleM17Checkbox()\" onclick=\"toggleM17Checkbox()\" for=\"toggle-m17\"><font style=\"font-size:0px\">M17 Mode</font></label></div></td>\n";
+	}
+    ?>
+    <td>RF Hangtime: <input type="text" name="m17RfHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['M17']['ModeHang'])) { echo $configmmdvm['M17']['ModeHang']; } else { echo "20"; } ?>" />
+    Net Hangtime: <input type="text" name="m17NetHangTime" size="7" maxlength="3" value="<?php if (isset($configmmdvm['M17 Network']['ModeHang'])) { echo $configmmdvm['M17 Network']['ModeHang']; } else { echo "20"; } ?>" />
     </td>
     </tr>
     <tr>
