@@ -21,6 +21,7 @@
     <a href="edit_nxdngateway.php" style="color: #ffffff;">NXDN GW</a> |
     <a href="edit_dapnetgateway.php" style="color: #ffffff;">DAPNET GW</a><br />
     <b>Full Edit:</b>
+    <a href="fulledit_m17gateway.php" style="color: #ffffff;">M17 GW</a> |
     <a href="fulledit_dmrgateway.php" style="color: #ffffff;">DMR GW</a> |
     <a href="fulledit_pistar-remote.php" style="color: #ffffff;">PiStar-Remote</a> |
     <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi</a> |
