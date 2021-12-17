@@ -2461,9 +2461,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         $configm17gateway['Log']['FileRoot'] = "M17Gateway";
     }
     if (!isset($configm17gateway['Voice'])) {
-        $configm17gateway['Voice']['Enabled'] = "0";
-        //TODO language
-        //TODO directory
+        $configm17gateway['Voice']['Enabled'] = "1";
+        $configm17gateway['Voice']['Language'] = "en_GB";
+        $configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
     }
     
 	// Add missing options to MMDVMHost
