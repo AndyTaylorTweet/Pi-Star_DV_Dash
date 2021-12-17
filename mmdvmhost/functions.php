@@ -470,6 +470,10 @@ function getDVModemTCXOFreq() {
 // M: 2000-00-00 00:00:00.000 NXDN, received network transmission from 10999 to TG 65000
 // M: 2000-00-00 00:00:00.000 NXDN, network end of transmission, 1.8 seconds, 0% packet loss
 // M: 2000-00-00 00:00:00.000 POCSAG, transmitted 1 frame(s) of data from 1 message(s)
+// M: 2000-00-00 00:00:00.000 M17, received RF late entry voice transmission from IU5BON to INFO
+// M: 2000-00-00 00:00:00.000 M17, received RF end of transmission from IU5BON to INFO, 2.1 seconds, BER: 0.2%, RSSI: -47/-47/-47 dBm
+// M: 2000-00-00 00:00:00.000 M17, received network voice transmission from IU5BON to ECHO
+// M: 2000-00-00 00:00:00.000 M17, received network end of transmission from IU5BON to ECHO, 13.4 seconds
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
 	$heardList = array();
@@ -497,6 +501,10 @@ function getHeardList($logLines) {
         $nxdnloss	= "";
         $nxdnber	= "";
 	$nxdnrssi	= "";
+	$m17duration = "";
+	$m17loss	 = "";
+	$m17ber	 = "";
+	$m17rssi	 = "";
 	$pocsagduration	= "";
 	foreach ($logLines as $logLine) {
 		$duration	= "";
@@ -622,6 +630,12 @@ function getHeardList($logLines) {
 						$nxdnber	= $ber;
 						$nxdnrssi	= $rssi;
 						break;
+					case "M17":
+						$m17duration	= $duration;
+						$m17loss	= $loss;
+						$m17ber	= $ber;
+						$m17rssi	= $rssi;
+						break;
 					case "POCSAG":
 						$pocsagduration	= "";
 						break;
@@ -693,6 +707,12 @@ function getHeardList($logLines) {
                 		$ber		= $nxdnber;
 				$rssi		= $nxdnrssi;
                 		break;
+			case "M17":
+				$duration	= $m17duration;
+				$loss		= $m17loss;
+				$ber		= $m17ber;
+				$rssi		= $m17rssi;
+				break;
 			case "POCSAG":
 				$callsign	= "DAPNET";
 				$target		= "DAPNET User";
@@ -721,7 +741,7 @@ function getLastHeard($logLines) {
 	$heardList = getHeardList($logLines);
 	$counter = 0;
 	foreach ($heardList as $listElem) {
-		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || ($listElem[1] == "NXDN") || ($listElem[1] == "POCSAG") || (startsWith($listElem[1], "DMR")) ) {
+		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || ($listElem[1] == "NXDN") || ($listElem[1] == "M17") || ($listElem[1] == "POCSAG") || (startsWith($listElem[1], "DMR")) ) {
 			$callUuid = $listElem[2]."#".$listElem[1].$listElem[3].$listElem[5];
 			if(!(array_search($callUuid, $heardCalls) > -1)) {
 				array_push($heardCalls, $callUuid);
