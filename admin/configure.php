@@ -992,6 +992,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	}
 
+	// Set the M17 Startup Reflector
+	if (empty($_POST['m17StartupRef']) != TRUE ) {
+		$newM17StartupReflector = strtoupper(escapeshellcmd($_POST['m17StartupRef']));
+		if ($newM17StartupReflector === "NONE") {
+			if (isset($configm17gateway['Network']['Startup'])) { unset($configm17gateway['Network']['Startup']); }
+		} else {
+			$newM17StartupModule = strtoupper(escapeshellcmd($_POST['m17StartupModule']));
+			$configm17gateway['Network']['Startup'] = "${newM17StartupReflector}_${newM17StartupModule}";
+	  }
+	}
+
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
 	  $newYSFStartupHostArr = explode(',', escapeshellcmd($_POST['ysfStartupHost']));
@@ -2439,7 +2450,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configm17gateway['Network']['Port'])) { $configm17gateway['Network']['Port'] = "17000"; }
 	if (!isset($configm17gateway['Network']['ReloadTime'])) { $configm17gateway['Network']['ReloadTime'] = "60"; }
 	if (!isset($configm17gateway['Network']['HangTime'])) { $configm17gateway['Network']['HangTime'] = "240"; }
-	if (!isset($configm17gateway['Network']['Startup'])) { $configm17gateway['Network']['Startup'] = "M17-M17_C"; }
 	if (!isset($configm17gateway['Network']['Revert'])) { $configm17gateway['Network']['Revert'] = "1"; }
 	if (!isset($configm17gateway['Network']['Debug'])) { $configm17gateway['Network']['Debug'] = "0"; }
     if (!isset($configm17gateway['APRS'])) {
@@ -4947,6 +4957,90 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     <?php } ?>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
+
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['M17 Network']['Enable'] == 1 ) { ?>
+    <h2><?php echo $lang['m17_config'];?></h2>
+    <table>
+      <tr>
+        <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+        <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_startup_reflector'];?>:<span><b>Startup Reflector</b>Set your prefered M17 reflector here</span></a></td>
+        <td style="text-align: left;"><select name="m17StartupRef">
+<?php
+    function m17_reflector_options(string $hosts, string $startup) {
+        if ($hosts == "") {
+            if ($startup == "") {
+                echo "      <option value=\"none\" selected=\"selected\">None</option>\n";
+            } else {
+                echo "      <option value=\"none\">None</option>\n";
+            }
+        } else {
+            if (!file_exists($hosts)) {
+                return;
+            }
+
+            $m17Hosts = fopen($hosts, 'r');
+            while (!feof($m17Hosts)) {
+                $line = fgets($m17Hosts);
+                if ((strpos($line[0], '#') === FALSE ) && ($line[0] != '')) {
+                    $ref = substr($line, 0, 7);
+                    if ($ref == $startup) {
+                        echo "      <option value=\"$ref\" selected=\"selected\">$ref</option>\n";
+                    } else {
+                        echo "      <option value=\"$ref\">$ref</option>\n"; }
+                    }
+            }
+            fclose($m17Hosts);
+        }
+    }
+
+    if (isset($configm17gateway['Network']['Startup'])) { $testM17Host = $configm17gateway['Network']['Startup']; }
+    else { $testM17Host = ""; }
+
+    $m17_ref=substr($testM17Host, 0, 7);
+    m17_reflector_options("", $m17_ref);
+    m17_reflector_options("/usr/local/etc/M17Hosts.txt", $m17_ref);
+    m17_reflector_options("/root/M17Hosts.txt", $m17_ref);
+?>
+        </select>
+
+    <select name="m17StartupModule">
+    <?php echo "  <option value=\"".substr($testM17Host, 8)."\" selected=\"selected\">".substr($testM17Host, 8)."</option>\n"; ?>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+        <option>H</option>
+        <option>I</option>
+        <option>J</option>
+        <option>K</option>
+        <option>L</option>
+        <option>M</option>
+        <option>N</option>
+        <option>O</option>
+        <option>P</option>
+        <option>Q</option>
+        <option>R</option>
+        <option>S</option>
+        <option>T</option>
+        <option>U</option>
+        <option>V</option>
+        <option>W</option>
+        <option>X</option>
+        <option>Y</option>
+        <option>Z</option>
+    </select>
+
+              </td>
+      </tr>
+    </table>
+    <div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
 <?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?>
