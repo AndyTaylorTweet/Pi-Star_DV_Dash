@@ -120,6 +120,8 @@ $lang = array (
   "p25_net"                     =>  "P25 Network",
   "nxdn_radio"                  =>  "NXDN Radio",
   "nxdn_net"                    =>  "NXDN Network",
+  "M17_radio"                   =>  "M17 Radio",
+  "M17_net"                     =>  "M17 Network",
   // Dashboard Front Page - Calls
   "time"                        =>  "Time",
   "mode"                        =>  "Mode",
