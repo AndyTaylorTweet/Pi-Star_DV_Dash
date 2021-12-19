@@ -2175,7 +2175,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
           if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'ON' )  { $configmmdvm['NXDN']['Enable'] = "1"; $configmmdvm['NXDN Network']['Enable'] = "1"; $configysf2nxdn['Enabled']['Enabled'] = "0"; }
           if (escapeshellcmd($_POST['MMDVMModeNXDN']) == 'OFF' ) { $configmmdvm['NXDN']['Enable'] = "0"; $configmmdvm['NXDN Network']['Enable'] = "0"; }
 	}
-    
+
 	// Set MMDVMHost M17 Mode
 	if (empty($_POST['MMDVMModeM17']) != TRUE ) {
           if (escapeshellcmd($_POST['MMDVMModeM17']) == 'ON' )  { $configmmdvm['M17']['Enable'] = "1"; $configmmdvm['M17 Network']['Enable'] = "1"; }
@@ -2438,8 +2438,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configm17gateway['Network']['HostsFile2'])) { $configm17gateway['Network']['HostsFile2'] = "/root/M17Hosts.txt"; }
 	if (!isset($configm17gateway['Network']['Port'])) { $configm17gateway['Network']['Port'] = "17000"; }
 	if (!isset($configm17gateway['Network']['ReloadTime'])) { $configm17gateway['Network']['ReloadTime'] = "60"; }
-	if (!isset($configm17gateway['Network']['HangTime'])) { $configm17gateway['Network']['HangTime'] = "60"; }
-	if (!isset($configm17gateway['Network']['Base'])) { $configm17gateway['Network']['Base'] = "64000"; }
+	if (!isset($configm17gateway['Network']['HangTime'])) { $configm17gateway['Network']['HangTime'] = "240"; }
 	if (!isset($configm17gateway['Network']['Startup'])) { $configm17gateway['Network']['Startup'] = "M17-M17_C"; }
 	if (!isset($configm17gateway['Network']['Revert'])) { $configm17gateway['Network']['Revert'] = "1"; }
 	if (!isset($configm17gateway['Network']['Debug'])) { $configm17gateway['Network']['Debug'] = "0"; }
@@ -2451,7 +2450,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         $configm17gateway['APRS']['Suffix'] = "N";
     }
     if (!isset($configm17gateway['Remote Commands'])) {
-        $configm17gateway['Dynamic TG Control']['Enabled'] = "0";
+        $configm17gateway['Dynamic TG Control']['Enabled'] = "1";
         $configm17gateway['Dynamic TG Control']['Port'] = "6075";
     }
     if (!isset($configm17gateway['Log'])) {
@@ -2465,7 +2464,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
         $configm17gateway['Voice']['Language'] = "en_GB";
         $configm17gateway['Voice']['Directory'] = "/usr/local/etc/M17_Audio";
     }
-    
+
 	// Add missing options to MMDVMHost
 	if (!isset($configmmdvm['Modem']['RFLevel'])) { $configmmdvm['Modem']['RFLevel'] = "100"; }
 	if (!isset($configmmdvm['Modem']['RXDCOffset'])) { $configmmdvm['Modem']['RXDCOffset'] = "0"; }

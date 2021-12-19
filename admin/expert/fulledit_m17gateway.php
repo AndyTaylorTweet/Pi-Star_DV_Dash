@@ -47,7 +47,7 @@ if(isset($_POST['data'])) {
         exec('sudo chmod 644 /etc/m17gateway');
         exec('sudo chown root:root /etc/m17gateway');
         exec('sudo mount -o remount,ro /');
-  
+
         // Reload the affected daemon
 	exec('sudo systemctl restart mmdvmhost.service');		    // Reload MMDVMHost
 	exec('sudo systemctl restart m17gateway.service');		    // Reload M17Gateway
