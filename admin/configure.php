@@ -1359,6 +1359,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['dstarNetHangTime']) != TRUE ) {
 	  $configmmdvm['D-Star Network']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['dstarNetHangTime']);
 	}
+	if (empty($_POST['HearhamKey']) != TRUE ) {
+	    $configmmdvm['Hearham']['Secret'] = $_POST['HearhamKey'];
+	}
+	
 	// Set YSF Hang Timers
 	if (empty($_POST['ysfRfHangTime']) != TRUE ) {
 	  $configmmdvm['System Fusion']['ModeHang'] = preg_replace('/[^0-9]/', '', $_POST['ysfRfHangTime']);
@@ -3684,6 +3688,18 @@ else:
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['mode_hangtime'];?>:<span><b>Net Hang Time</b>Stay in the last mode for this many seconds</span></a></td>
     <td align="left" colspan="2"><input type="text" name="hangTime" size="13" maxlength="3" value="<?php echo $configmmdvm['General']['RFModeHang']; ?>" /> in seconds (90 secs works well for Multi-Mode)</td>
     </tr>-->
+    <tr>
+    <td align="left"><a class="tooltip2" href="#">Your Hearham key:<span><b>Hearham "Upload Secret" from hearham.live/setup:</b>Enter your station's secret key</span></a></td>
+    <?php
+	if ( isset($configmmdvm['Hearham']) ) {
+		echo "<td colspan=2 align=\"left\"><input type=\"text\" name=\"HearhamKey\" value=\"".$configmmdvm['Hearham']['Secret']."\" /></td>\n";
+		}
+	else {
+		echo "<td colspan=2 align=\"left\"><input type=\"text\" name=\"HearhamKey\" value=\"\" /></td>\n";
+	}
+    ?>
+    </tr>
+    
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
     <?php } ?>

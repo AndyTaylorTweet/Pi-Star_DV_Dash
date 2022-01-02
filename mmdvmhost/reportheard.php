@@ -1,12 +1,22 @@
 <?php
-// THIS IS YOUR hearham.live station key:
-$UPLOADKEY = 'YOURHEARHAMKEY';
-
 $dir = dirname(__DIR__);
 require_once $dir.'/config/config.php';          // MMDVMDash Config
 include_once $dir.'/mmdvmhost/tools.php';        // MMDVMDash Tools
 require_once $dir.'/mmdvmhost/functions.php';    // MMDVMDash Functions
 include_once $dir.'/config/language.php';	      // Translation Code
+
+$mmdvmConfigFile = '/etc/mmdvmhost';
+$configmmdvm = parse_ini_file($mmdvmConfigFile, true);
+if( isset($configmmdvm['Hearham'] ) ) {
+	// THIS IS YOUR hearham.live station key:
+	$secret = $configmmdvm['Hearham']['Secret'];
+	//echo "\n";
+	//echo $secret;
+	$UPLOADKEY = $secret;
+} else {
+	exit;
+}
+
 for($t=0; $t<60; $t+=5) {
 
     // Check if the config file exists
