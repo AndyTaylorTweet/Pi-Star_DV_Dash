@@ -423,3 +423,40 @@ input.toggle-round-flat:checked + label:after {
     content: "[ ]";
 }
 */
+
+/* Tooltip container */
+.hasTooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.hasTooltip .tooltipText {
+    visibility: hidden;
+    width: 120px;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.hasTooltip:hover .tooltipText {
+    visibility: visible;
+}
+
+/* Screenreader-only */
+.sr-only {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+    -webkit-clip-path: inset(50%) !important;
+        clip-path: inset(50%) !important;  /* 2 */
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;            /* 3 */
+}

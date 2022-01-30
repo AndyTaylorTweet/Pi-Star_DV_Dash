@@ -104,57 +104,87 @@ function checkDMRLogin ($dmrDaemon) {
 
 function showMode($mode, $mmdvmconfigs) {
 	// shows if mode is enabled or not.
+	// TODO: Consider localiZation
+	$states = array(
+		"ok" => "OK",
+		"stopped" => "Stopped",
+		"error" => "Connection error",
+		"disabled" => "Disabled"
+	);
+
 	if (getEnabled($mode, $mmdvmconfigs) == 1) {
 		if ($mode == "D-Star Network") {
 			if (isProcessRunning("ircddbgatewayd")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+				$state = "ok";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+				$state = "stopped";
 			}
 		}
 		elseif ($mode == "System Fusion Network") {
 			if (isProcessRunning("YSFGateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+				$state = "ok";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+				$state = "stopped";
 			}
 		}
 		elseif ($mode == "P25 Network") {
 			if (isProcessRunning("P25Gateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+				$state = "ok";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+				$state = "stopped";
 			}
 		}
 		elseif ($mode == "NXDN Network") {
 			if (isProcessRunning("NXDNGateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+				$state = "ok";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+				$state = "stopped";
 			}
 		}
 		elseif ($mode == "DAPNET Network") {
 			if (isProcessRunning("DAPNETGateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+				$state = "ok";
 			} else {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+				$state = "stopped";
 			}
 		}
 		elseif ($mode == "DMR Network") {
 			if (getConfigItem("DMR Network", "Address", $mmdvmconfigs) == '127.0.0.1') {
 				if (isProcessRunning("DMRGateway")) {
-					if (checkDMRLogin("DMRGateway") > 0) { echo "<td style=\"background:#ff9; color:#030; width:50%;\">"; }
-					else { echo "<td style=\"background:#0b0; color:#030; width:50%;\">"; }
+					if (checkDMRLogin("DMRGateway") > 0) {
+						echo "<td style=\"background:#ff9; color:#030; width:50%;\">";
+						$state = "error";
+					} else {
+						echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+						$state = "ok";
+					}
 				} else {
 					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+					$state = "stopped";
 				}
 			}
 			else {
 				if (isProcessRunning("MMDVMHost")) {
-					if (checkDMRLogin("MMDVMHost") > 0) { echo "<td style=\"background:#ff9; color:#030; width:50%;\">"; }
-					else { echo "<td style=\"background:#0b0; color:#030; width:50%;\">"; }
+					if (checkDMRLogin("MMDVMHost") > 0) {
+						echo "<td style=\"background:#ff9; color:#030; width:50%;\">";
+						$state = "error";
+					} else {
+						echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+						$state = "ok";
+					}
 				} else {
 					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+					$state = "stopped";
 				}
 			}
 		}
@@ -162,8 +192,10 @@ function showMode($mode, $mmdvmconfigs) {
 			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG") {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+					$state = "ok";
 				} else {
 					echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+					$state = "stopped";
 				}
 			}
 		}
@@ -171,60 +203,78 @@ function showMode($mode, $mmdvmconfigs) {
 	elseif ( ($mode == "YSF XMode") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if ( (isProcessRunning("MMDVMHost")) && (isProcessRunning("YSF2DMR") || isProcessRunning("YSF2NXDN") || isProcessRunning("YSF2P25")) ) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			$state = "ok";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+			$state = "disabled";
 		}
 	}
 	elseif ( ($mode == "DMR XMode") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if ( (isProcessRunning("MMDVMHost")) && (isProcessRunning("DMR2YSF") || isProcessRunning("DMR2NXDN")) ) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			$state = "ok";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+			$state = "disabled";
 		}
 	}
 	elseif ( ($mode == "YSF2DMR Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("YSF2DMR")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			$state = "ok";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+			$state = "disabled";
 		}
 	}
 	elseif ( ($mode == "YSF2NXDN Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("YSF2NXDN")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			$state = "ok";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+			$state = "disabled";
 		}
 	}
 	elseif ( ($mode == "YSF2P25 Network") && (getEnabled("System Fusion", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("YSF2P25")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			$state = "ok";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+			$state = "disabled";
 		}
 	}
 	elseif ( ($mode == "DMR2NXDN Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("DMR2NXDN")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			$state = "ok";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+			$state = "disabled";
 		}
 	}
 	elseif ( ($mode == "DMR2YSF Network") && (getEnabled("DMR", $mmdvmconfigs) == 1) ) {
 		if (isProcessRunning("DMR2YSF")) {
 			echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			$state = "ok";
 		} else {
-			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+			echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+			$state = "disabled";
 		}
 	}
 	else {
-		echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true>\">";
+		echo "<td style=\"background:#606060; color:#b0b0b0;\" aria-disabled=\"true\">";
+		$state = "disabled";
     }
     $mode = str_replace("System Fusion", "YSF", $mode);
     $mode = str_replace("Network", "Net", $mode);
     if (strpos($mode, 'YSF2') > -1) { $mode = str_replace(" Net", "", $mode); }
     if (strpos($mode, 'DMR2') > -1) { $mode = str_replace(" Net", "", $mode); }
-    echo $mode."</td>\n";
+    echo '<div class="hasTooltip">' . $mode;
+    echo '<span class="sr-only">: ' . $states[$state] . "</span>";
+    echo '<span class="tooltipText">' . $states[$state] . "</span>";
+    echo "</div></td>\n";
 }
 
 function getMMDVMLog() {
