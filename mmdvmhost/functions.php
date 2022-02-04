@@ -528,7 +528,7 @@ function getHeardList($logLines) {
                         continue;
 		}
 
-		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "ended network") || strpos($logLine, "RF user has timed out") || strpos($logLine, "transmission lost") || strpos($logLine, "POCSAG")) {
+		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "ended RF data") || strpos($logLine, "d network data") || strpos($logLine, "RF user has timed out") || strpos($logLine, "transmission lost") || strpos($logLine, "POCSAG")) {
 			$lineTokens = explode(", ",$logLine);
 			if (array_key_exists(2,$lineTokens)) {
 				$duration = strtok($lineTokens[2], " ");
@@ -540,8 +540,8 @@ function getHeardList($logLines) {
 			// This version should still show time-out when needed, AND show the time if it exists.
 			if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired")) {
 				if (array_key_exists(2,$lineTokens) && strpos($lineTokens[2], "seconds")) {
-					$duration = strtok($lineTokens[2], " "); 
-				} else { 
+					$duration = strtok($lineTokens[2], " ");
+				} else {
 					$duration = "TOut";
 				}
 				$ber = "??%";
@@ -577,7 +577,7 @@ function getHeardList($logLines) {
 				}
 			}
 
-			if (strpos($logLine,"ended RF data") || strpos($logLine,"ended network")) {
+			if (strpos($logLine,"ended RF data") || strpos($logLine,"d network data")) {
 				switch (substr($logLine, 27, strpos($logLine,",") - 27)) {
 					case "DMR Slot 1":
 						$ts1duration = "DMR Data";
