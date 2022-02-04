@@ -449,6 +449,8 @@ function getDVModemTCXOFreq() {
 // M: 2000-00-00 00:00:00.000 DMR Talker Alias (Data Format 1, Received 24/24 char): 'Hide the bottle from Ont'
 // M: 2000-00-00 00:00:00.000 0000:  07 00 20 4F 6E 74 00 00 00                         *.. Ont...*
 // M: 2000-00-00 00:00:00.000 DMR Slot 2, Embedded Talker Alias Block 3
+// M: 2000-00-00 00:00:00.000 DMR Slot 2, received network data header from 123999 to M1ABC, 0 blocks
+// M: 2000-00-00 00:00:00.000 DMR Slot 2, ended network data transmission from 123999 to M1ABC
 // M: 2000-00-00 00:00:00.000 P25, received RF transmission from M1ABC to TG 10200
 // M: 2000-00-00 00:00:00.000 Debug: P25RX: pos/neg/centre/threshold 106 -105 0 106
 // M: 2000-00-00 00:00:00.000 Debug: P25RX: sync found in Ldu pos/centre/threshold 3986 9 104
