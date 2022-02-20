@@ -154,8 +154,16 @@ echo '<form action="" method="post">'."\n";
 		  if ( $section == "Lookup" && $key == "Service" ) {
 		    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\">\n";
 		    echo "  <select name=\"{$section}[$key]\" />\n";
-		    echo "    <option value=\"RadioID\">RadioID Lookup</option>\n";
-		    echo "    <option value=\"QRZ\">QRZ Lookup</option>\n";
+		    if ($value == "RadioID") {
+		      echo "    <option value=\"RadioID\" selected=\"selected\">RadioID Callsign Lookup</option>\n";
+		    } else {
+		      echo "    <option value=\"RadioID\">RadioID Callsign Lookup</option>\n";
+		    }
+		    if ($value == "QRZ") {
+		      echo "    <option value=\"QRZ\" selected=\"selected\">QRZ Callsign Lookup</option>\n";
+		    } else {
+		      echo "    <option value=\"QRZ\">QRZ Callsign Lookup</option>\n";
+		    }
 		    echo "  </select>\n";
 		    echo "</td></tr>\n";
 		  } else {
