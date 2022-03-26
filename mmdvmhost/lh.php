@@ -92,6 +92,8 @@ for ($i = 0;  ($i <= 19); $i++) { //Last 20 calls
 			echo "<td colspan =\"3\" style=\"background:#f33;\">TX " . $duration_string . " sec</td>";
 		} else if ($listElem[6] == "DMR Data") {
 			echo "<td colspan =\"3\" style=\"background:#1d1;\">DMR Data</td>";
+		} else if ($listElem[6] == "POCSAG Data") {
+			echo "<td colspan =\"3\" style=\"background:#1d1;\">POCSAG Data</td>";
 		} else {
 			echo "<td>$listElem[6]</td>";
 

@@ -233,7 +233,7 @@ if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable']
   </table>
 </div>
 <?php } 
-if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRelease['Pi-Star']['Version'] < "4.1.5") ) {
+if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRelease['Pi-Star']['Version'] < "4.1.6") ) {
 ?>
 <div>
   <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
@@ -3970,7 +3970,7 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['dmr_plus_network'];?>:<span><b>DMR+ Network</b>Set your options= for DMR+ here</span></a></td>
     <td align="left">
-    Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="<?php if (isset($configdmrgateway['DMR Network 2']['Options'])) { echo $configdmrgateway['DMR Network 2']['Options']; } ?>" />
+    Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="250" value="<?php if (isset($configdmrgateway['DMR Network 2']['Options'])) { echo $configdmrgateway['DMR Network 2']['Options']; } ?>" />
     </td>
     </tr>
     <tr>
@@ -4130,7 +4130,7 @@ else:
       echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
     <td align="left">
-    Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="';
+    Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="250" value="';
 	if (isset($configmmdvm['DMR Network']['Options'])) { echo $configmmdvm['DMR Network']['Options']; }
         echo '" />
     </td>
@@ -4146,7 +4146,7 @@ else:
       echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
     <td align="left">
-    Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="100" value="';
+    Options=<input type="text" name="dmrNetworkOptions" size="65" maxlength="250" value="';
 	if (isset($configmmdvm['DMR Network']['Options'])) { echo $configmmdvm['DMR Network']['Options']; }
         echo '" />
     </td>

@@ -50,7 +50,7 @@ if (!file_exists('/etc/pistar-css.ini')) {
 	$fileContent .= "[Tables]\nHeadDrop=8b0000\nBgEven=f7f7f7\nBgOdd=d0d0d0\n\n";
 	$fileContent .= "[Content]\nText=000000\n\n";
 	$fileContent .= "[BannerH1]\nEnabled=0\nText=\"Some Text\"\n\n";
-	$fileContent .= "[BannerExtText]\nEnabled=0\nText=\"Some long text entry\"\n";
+	$fileContent .= "[BannerExtText]\nEnabled=0\nText=\"Some long text entry\"\n\n";
 	$fileContent .= "[Lookup]\nService=\"RadioID\"\n";
 	fwrite($outFile, $fileContent);
 	fclose($outFile);
@@ -151,7 +151,24 @@ echo '<form action="" method="post">'."\n";
 		// print all other values as input fields, so can edit. 
 		// note the name='' attribute it has both section and key
 		foreach($values as $key=>$value) {
-		  echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";			
+		  if ( $section == "Lookup" && $key == "Service" ) {
+		    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\">\n";
+		    echo "  <select name=\"{$section}[$key]\" />\n";
+		    if ($value == "RadioID") {
+		      echo "    <option value=\"RadioID\" selected=\"selected\">RadioID Callsign Lookup</option>\n";
+		    } else {
+		      echo "    <option value=\"RadioID\">RadioID Callsign Lookup</option>\n";
+		    }
+		    if ($value == "QRZ") {
+		      echo "    <option value=\"QRZ\" selected=\"selected\">QRZ Callsign Lookup</option>\n";
+		    } else {
+		      echo "    <option value=\"QRZ\">QRZ Callsign Lookup</option>\n";
+		    }
+		    echo "  </select>\n";
+		    echo "</td></tr>\n";
+		  } else {
+		    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";			
+		  }
 		}
 		echo "</table>\n";
 		echo '<input type="submit" value="'.$lang['apply'].'" />'."\n";
