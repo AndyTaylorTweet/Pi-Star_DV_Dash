@@ -410,6 +410,16 @@ input.toggle-round-flat:checked + label:after {
     }
 }
 
+/* nice-select dropdowns */
+.nice-select.small, .nice-select-dropdown li.option {
+        height: 24px !important;
+        min-height: 24px !important;
+        line-height: 24px !important;
+}
+.nice-select.small ul li:nth-of-type(2) {
+        clear: both;
+}
+
 /* Aria CSS Here
 [role="checkbox"] {
     padding:5px;
