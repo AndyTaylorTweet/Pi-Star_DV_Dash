@@ -50,6 +50,7 @@ $configPistarRelease = parse_ini_file($pistarReleaseConfig, true);
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="css/nice-select.min.css?ver=<?php echo $configPistarRelease['Pi-Star']['Version']; ?>" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard'];?></title>
 <?php include_once "config/browserdetect.php"; ?>
     <script type="text/javascript" src="/jquery.min.js"></script>
@@ -339,4 +340,15 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
 
 </div>
 </body>
+<script type="text/javascript" src="/nice-select.min.js"></script>
+<script type="text/javascript">
+    var selectize = document.querySelectorAll('select')
+    var options = {searchable: true};
+    selectize.forEach(function(select){
+        if( select.length > 30 ) {
+            select.classList.add("small", "selectize");
+            NiceSelect.bind(select, options);
+        }
+    });
+</script>
 </html>

@@ -172,6 +172,7 @@ $MYCALL=strtoupper($callsign);
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="css/nice-select.min.css?ver=<?php echo $configPistarRelease['Pi-Star']['Version']; ?>" />
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php?version=0.95" />
@@ -5001,6 +5002,17 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
 <br />
 </div>
 </div>
+<script type="text/javascript" src="/nice-select.min.js"></script>
+<script type="text/javascript">
+    var selectize = document.querySelectorAll('select')
+    var options = {searchable: true};
+    selectize.forEach(function(select){
+        if( select.length > 30 ) {
+            select.classList.add("small", "selectize");
+            NiceSelect.bind(select, options);
+        }
+    });
+</script>
 </body>
 </html>
 
@@ -5015,6 +5027,17 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
 <br />
 </div>
 </div>
+<script type="text/javascript" src="/nice-select.min.js"></script>
+<script type="text/javascript">
+    var selectize = document.querySelectorAll('select')
+    var options = {searchable: true};
+    selectize.forEach(function(select){
+        if( select.length > 30 ) {
+            select.classList.add("small", "selectize");
+            NiceSelect.bind(select, options);
+        }
+    });
+</script>
 </body>
 </html>
 <?php } ?>
