@@ -5007,7 +5007,7 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
     var selectize = document.querySelectorAll('select')
     var options = {searchable: true};
     selectize.forEach(function(select){
-        if( select.length > 30 ) {
+        if( select.length > 30 && null === select.onchange ) {
             select.classList.add("small", "selectize");
             NiceSelect.bind(select, options);
         }
@@ -5032,7 +5032,7 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
     var selectize = document.querySelectorAll('select')
     var options = {searchable: true};
     selectize.forEach(function(select){
-        if( select.length > 30 ) {
+        if( select.length > 30 && null === select.onchange ) {
             select.classList.add("small", "selectize");
             NiceSelect.bind(select, options);
         }
