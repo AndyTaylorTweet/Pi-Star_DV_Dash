@@ -442,3 +442,13 @@ input.toggle-round-flat:checked + label:after {
     width: 1px !important;
     white-space: nowrap !important;            /* 3 */
 }
+
+/* nice-select dropdowns */
+.nice-select.small, .nice-select-dropdown li.option {
+        height: 24px !important;
+        min-height: 24px !important;
+        line-height: 24px !important;
+}
+.nice-select.small ul li:nth-of-type(2) {
+        clear: both;
+}
