@@ -3971,8 +3971,8 @@ else:
     <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['bm_network'];?>:<span><b>BrandMeister Dashboards</b>Direct links to your BrandMeister Dashboards</span></a></td>
     <td>
-      <a href="https://brandmeister.network/?page=device&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Device Information</a> |
-      <a href="https://brandmeister.network/?page=device-edit&amp;id=<?php echo $configmmdvm['General']['Id']; ?>" target="_new" style="color: #000;">Edit Device (BrandMeister Selfcare)</a>
+      <a href="https://brandmeister.network/?page=device&amp;id=<?php if (isset($configdmrgateway['DMR Network 1']['Id'])) { echo $configdmrgateway['DMR Network 1']['Id']; } else { echo $configmmdvm['General']['Id']; } ?>" target="_new" style="color: #000;">Device Information</a> |
+      <a href="https://brandmeister.network/?page=device-edit&amp;id=<?php if (isset($configdmrgateway['DMR Network 1']['Id'])) { echo $configdmrgateway['DMR Network 1']['Id']; } else { echo $configmmdvm['General']['Id']; } ?>" target="_new" style="color: #000;">Edit Device (BrandMeister Selfcare)</a>
     </td>
     </tr>
     <tr>
