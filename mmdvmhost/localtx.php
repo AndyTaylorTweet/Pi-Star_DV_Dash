@@ -43,7 +43,8 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "https://www.qrz.com/db/
 <?php
 $counter = 0;
 $i = 0;
-for ($i = 0; $i < count($localTXList); $i++) {
+$TXListLim = count($localTXList);
+for ($i = 0; $i < $TXListLim; $i++) {
 		$listElem = $localTXList[$i];
 		if ($listElem[5] == "RF" && ($listElem[1] == "D-Star" || startsWith($listElem[1], "DMR") || $listElem[1] == "YSF" || $listElem[1]== "P25" || $listElem[1]== "NXDN")) {
 			if ($counter <= 19) { //last 20 calls
@@ -89,7 +90,7 @@ for ($i = 0; $i < count($localTXList); $i++) {
 				echo "<td colspan=\"3\" style=\"background:#1d1;\">DMR Data</td>";
 			} else {
 				echo"<td>$listElem[6]</td>"; //duration
-				
+
 				// Colour the BER Field
 				if (floatval($listElem[8]) == 0) { echo "<td>$listElem[8]</td>"; }
 				elseif (floatval($listElem[8]) >= 0.0 && floatval($listElem[8]) <= 1.9) { echo "<td style=\"background:#1d1;\">$listElem[8]</td>"; }
@@ -105,3 +106,4 @@ for ($i = 0; $i < count($localTXList); $i++) {
 
 ?>
   </table>
+  <br />
