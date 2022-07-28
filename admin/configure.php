@@ -5008,6 +5008,8 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
     selectize.forEach(function(select){
         if( select.length > 30 && null === select.onchange && !select.name.includes("ExtendedId") ) {
             select.classList.add("small", "selectize");
+            tabletd = select.closest('td');
+            tabletd.style.cssText = 'overflow-x:unset';
             NiceSelect.bind(select, options);
         }
     });
@@ -5033,6 +5035,8 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
     selectize.forEach(function(select){
         if( select.length > 30 && null === select.onchange && !select.name.includes("ExtendedId") ) {
             select.classList.add("small", "selectize");
+            tabletd = select.closest('td');
+            tabletd.style.cssText = 'overflow-x:unset';
             NiceSelect.bind(select, options);
         }
     });
