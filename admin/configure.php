@@ -244,6 +244,22 @@ if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRele
   </table>
 </div>
 <?php } ?>
+<?php
+$bmAPIkeyFile = '/etc/bmapi.key';
+if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
+  $configBMapi = parse_ini_file($bmAPIkeyFile, true);
+  $bmAPIkey = $configBMapi['key']['apikey'];
+  // Check the BM API Key
+  if ( strlen($bmAPIkey) <= 200 ) {
+?>
+<div>
+  <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
+    <tr>
+    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: You have a BM API v1 Key, click here for the announcement: <a href="https://news.brandmeister.network/major-code-upgrade-on-august-19th/" alt="BM API v2 - Announcement">BM API v2 - Announcement</a>.</td>
+    </tr>
+  </table>
+</div>
+<?php } } ?>
 <div class="container">
 <div class="header">
 <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / <?php echo $lang['dashboard'].": ".$version; ?></div>
