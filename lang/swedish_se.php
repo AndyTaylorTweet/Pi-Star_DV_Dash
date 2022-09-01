@@ -3,7 +3,7 @@
 // Svenska SE Språkpaket
 // Henrik Persson (SA3BPE)
 // Skapad: 02-Sep-2022
-// Uppdaterad: 01-Sep-2022
+// Uppdaterad: 02-Sep-2022
 //
 $lang = array (
   // Banner texts
