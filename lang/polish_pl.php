@@ -7,20 +7,20 @@
 //
 $lang = array (
   // Banner texts
-  "digital_voice"               =>  "Digital Voice",
+  "digital_voice"               =>  "Tryb cyfrowy",
   "configuration"               =>  "Konfiguracja",
-  "dashboard_for"               =>  "Panel zarządzający dla",
+  "dashboard_for"               =>  "Panel",
   // Banner links
-  "dashboard"                   =>  "Panel zarządzający",
+  "dashboard"                   =>  "Panel",
   "admin"                       =>  "Admin",
-  "power"                       =>  "Włącz/Wyłącz",
+  "power"                       =>  "Zasilanie",
   "update"                      =>  "Aktualizacja",
-  "backup_restore"              =>  "Backup/Przywracanie",
+  "backup_restore"              =>  "Kopia/Przywracanie",
   "factory_reset"               =>  "Resetowanie ustawień",
   "live_logs"                   =>  "Logi na żywo",
   // Config page section headdings
   "hardware_info"               =>  "Informacje o sprzęcie",
-  "control_software"            =>  "Control Software",
+  "control_software"            =>  "Oprogramowanie starujące",
   "mmdvmhost_config"            =>  "Konfiguracja MMDVMHost",
   "general_config"              =>  "Konfiguracja główna",
   "dmr_config"                  =>  "Konfiguracja DMR",
@@ -57,7 +57,7 @@ $lang = array (
   // Config Page - General Configuration
   "node_call"                   =>  "Znak krótkofalarski",
   "dmr_id"                      =>  "CCS7/DMR ID",
-  "radio_freq"                  =>  "Częstotliwość",
+  "radio_freq"                  =>  "Częstotliwość radia",
   "lattitude"                   =>  "Szerokość geograficzna",
   "longitude"                   =>  "Długość geograficzna",
   "town"                        =>  "Miejscowość",
@@ -82,18 +82,18 @@ $lang = array (
   "dstar_rpt1"                  =>  "Znak RPT1",
   "dstar_rpt2"                  =>  "Znak RPT2",
   "dstar_irc_password"          =>  "Hasło dostępu zdalnego",
-  "dstar_default_ref"           =>  "Domyśłny reflektor",
+  "dstar_default_ref"           =>  "Domyślny reflektor",
   "aprs_host"                   =>  "Host APRS",
   "dstar_irc_lang"              =>  "Język ircDDBGateway",
-  "dstar_irc_time"              =>  "Czas Announcements",           // korekta
+  "dstar_irc_time"              =>  "Czas zapowiedzi",
   // Config Page - YSF Configuration
   "ysf_startup_host"            =>  "Startowy host YSF",
   // Config Page - P25 Configuration
   "p25_startup_host"            =>  "Startowy host P25",
   "p25_nac"                     =>  "P25 NAC",
   // Config Page - NXDN Configuration
-  "nxdn_startup_host"            =>  "Startowy host NXDN",
-  "nxdn_ran"                     =>  "NXDN RAN",
+  "nxdn_startup_host"           =>  "Startowy host NXDN",
+  "nxdn_ran"                    =>  "NXDN RAN",
   // Config Page - MobileGPS Configuration
   "mobilegps_enable"            =>  "Włączanie przenośnego GPS",
   "mobilegps_port"              =>  "Port GPS",
@@ -125,8 +125,8 @@ $lang = array (
   "mode"                        =>  "Tryb",
   "callsign"                    =>  "Znak",
   "target"                      =>  "Cel",
-  "src"                         =>  "Źródło",        // Short version of "Source"
-  "dur"                         =>  "Okres",        // Short version of "Duration"
+  "src"                         =>  "Źródło",     // Short version of "Source"
+  "dur"                         =>  "Okres",      // Short version of "Duration"
   "loss"                        =>  "Straty",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
@@ -141,11 +141,11 @@ $lang = array (
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Aktywnośc bramy",
-  "local_tx_list"               =>  "Local RF Activity",      // korekta
+  "local_tx_list"               =>  "Atywność lokalna",
   "active_starnet_groups"       =>  "Aktywne grupy Starnet",
-  "active_starnet_members"      =>  "Aktywni członkowie grupy Starnet",
-  "d-star_link_manager"         =>  "D-Star Link Manager",
-  "d-star_link_status"          =>  "D-Star Link Information",
+  "active_starnet_members"      =>  "Aktywni członkowie w grupie Starnet",
+  "d-star_link_manager"         =>  "Zarządzanie D-Star Link",
+  "d-star_link_status"          =>  "Status D-Star Link",
   "service_status"              =>  "Status usługi"
 );
 ?>
