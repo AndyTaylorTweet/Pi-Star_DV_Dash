@@ -8,17 +8,17 @@ $lang = array (
   // Banner texts
   "digital_voice"               =>  "Tryb cyfrowy",
   "configuration"               =>  "Konfiguracja",
-  "dashboard_for"               =>  "Panel",
+  "dashboard_for"               =>  "Panel użytkownika",
   // Banner links
   "dashboard"                   =>  "Panel",
-  "admin"                       =>  "Admin",
+  "admin"                       =>  "Zarządzanie",
   "power"                       =>  "Zasilanie",
   "update"                      =>  "Aktualizacja",
-  "backup_restore"              =>  "Kopia zapasowa/Przywracanie",
-  "factory_reset"               =>  "Resetowanie ustawień",
+  "backup_restore"              =>  "Kopia/Przywracanie",
+  "factory_reset"               =>  "Resetowanie",
   "live_logs"                   =>  "Logi na żywo",
   // Config page section headdings
-  "hardware_info"               =>  "Informacje o sprzęcie",
+  "hardware_info"               =>  "Informacje sprzętowe bramki",
   "control_software"            =>  "Oprogramowanie sterujące",
   "mmdvmhost_config"            =>  "Konfiguracja MMDVMHost",
   "general_config"              =>  "Konfiguracja główna",
@@ -30,7 +30,7 @@ $lang = array (
   "pocsag_config"               =>  "Konfiguracja POCSAG",
   "mobilegps_config"            =>  "Konfiguracja przenośnego GPS",
   "wifi_config"                 =>  "Konfiguracja WiFi",
-  "fw_config"                   =>  "Konfiguracja Firewall",
+  "fw_config"                   =>  "Konfiguracja zapory sieciowej",
   "remote_access_pw"            =>  "Hasło dostępu zdalnego",
   // Config Page - Section General
   "setting"                     =>  "Ustawienie",
@@ -41,7 +41,7 @@ $lang = array (
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platforma",
   "cpu_load"                    =>  "Obciążenie CPU",
-  "cpu_temp"                    =>  "Temperatura CPU",
+  "cpu_temp"                    =>  "Tempertura CPU",
   // Config Page - Control Software
   "controller_software"         =>  "Oprogramowanie kontrolera",
   "controller_mode"             =>  "Tryb kontrolera",
@@ -52,18 +52,18 @@ $lang = array (
   "p25_mode"                    =>  "Tryb P25",
   "nxdn_mode"                   =>  "Tryb NXDN",
   "mmdvm_display"               =>  "Typ wyświetlacza MMDVM",
-  "mode_hangtime"               =>  "Tryb Hangtime",
+  "mode_hangtime"               =>  "Tryb czasu oczekiwania",
   // Config Page - General Configuration
-  "node_call"                   =>  "Znak krótkofalarski węzła",
+  "node_call"                   =>  "Znak krótkofalarski bramki",
   "dmr_id"                      =>  "CCS7/DMR ID",
-  "radio_freq"                  =>  "Częstotliwość radiowa",
+  "radio_freq"                  =>  "Częstotliwość radia",
   "lattitude"                   =>  "Szerokość geograficzna",
   "longitude"                   =>  "Długość geograficzna",
   "town"                        =>  "Miejscowość",
   "country"                     =>  "Państwo",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Typ radia/modemu",
-  "node_type"                   =>  "Rodzaj węzła",
+  "node_type"                   =>  "Rodzaj bramki",
   "timezone"                    =>  "Strefa czasowa",
   "dash_lang"                   =>  "Język panelu",
   // Config Page - DMR Configuration
@@ -115,9 +115,9 @@ $lang = array (
   "dmr_repeater"                =>  "Przemiennik DMR",
   "dmr_master"                  =>  "DMR Master",
   "ysf_net"                     =>  "Sieć YSF",
-  "p25_radio"                   =>  "P25 Radio",
+  "p25_radio"                   =>  "Radio P25",
   "p25_net"                     =>  "Sieć P25",
-  "nxdn_radio"                  =>  "NXDN Radio",
+  "nxdn_radio"                  =>  "Radio NXDN",
   "nxdn_net"                    =>  "Sieć NXDN",
   // Dashboard Front Page - Calls
   "time"                        =>  "Czas",
@@ -130,21 +130,21 @@ $lang = array (
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
   "pocsag_list"                 =>  "Aktywność bramy DAPNET",
-  "pocsag_timeslot"             =>  "Slot czasowy",
+  "pocsag_timeslot"             =>  "Szczelina czasowa",
   "pocsag_msg"                  =>  "Wiadomość",
   // Dashboard - Extra Info
   "group"                       =>  "Grupa",
-  "logoff"                      =>  "Wylogowanie",
+  "logoff"                      =>  "Wyloguj",
   "info"                        =>  "Informacja",
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
   "last_heard_list"             =>  "Aktywność bramki",
-  "local_tx_list"               =>  "Atywność lokalna",
+  "local_tx_list"               =>  "Atywność radiowa lokalna",
   "active_starnet_groups"       =>  "Aktywne grupy Starnet",
-  "active_starnet_members"      =>  "Aktywni członkowie w grupie Starnet",
-  "d-star_link_manager"         =>  "Zarządzanie D-Star Link",
-  "d-star_link_status"          =>  "Status D-Star Link",
-  "service_status"              =>  "Status usługi"
+  "active_starnet_members"      =>  "Aktywni członkowie grupy Starnet",
+  "d-star_link_manager"         =>  "Zarządzanie linkami D-Star",
+  "d-star_link_status"          =>  "Status linków D-Star",
+  "service_status"              =>  "Status serwisu"
 );
 ?>
