@@ -1,8 +1,7 @@
 <?php
 //
 // Polish PL Language Pack
-// Pawel SP8MDH
-// Created: 02-Sep-2022
+// Translated 02-Sep-2022 from English Language by Pawel SP8MDH
 // Edited: 02-Sep-2022
 //
 $lang = array (
@@ -15,12 +14,12 @@ $lang = array (
   "admin"                       =>  "Admin",
   "power"                       =>  "Zasilanie",
   "update"                      =>  "Aktualizacja",
-  "backup_restore"              =>  "Kopia/Przywracanie",
+  "backup_restore"              =>  "Kopia zapasowa/Przywracanie",
   "factory_reset"               =>  "Resetowanie ustawień",
   "live_logs"                   =>  "Logi na żywo",
   // Config page section headdings
   "hardware_info"               =>  "Informacje o sprzęcie",
-  "control_software"            =>  "Oprogramowanie starujące",
+  "control_software"            =>  "Oprogramowanie sterujące",
   "mmdvmhost_config"            =>  "Konfiguracja MMDVMHost",
   "general_config"              =>  "Konfiguracja główna",
   "dmr_config"                  =>  "Konfiguracja DMR",
@@ -55,18 +54,18 @@ $lang = array (
   "mmdvm_display"               =>  "Typ wyświetlacza MMDVM",
   "mode_hangtime"               =>  "Tryb Hangtime",
   // Config Page - General Configuration
-  "node_call"                   =>  "Znak krótkofalarski",
+  "node_call"                   =>  "Znak krótkofalarski węzła",
   "dmr_id"                      =>  "CCS7/DMR ID",
-  "radio_freq"                  =>  "Częstotliwość radia",
+  "radio_freq"                  =>  "Częstotliwość radiowa",
   "lattitude"                   =>  "Szerokość geograficzna",
   "longitude"                   =>  "Długość geograficzna",
   "town"                        =>  "Miejscowość",
   "country"                     =>  "Państwo",
   "url"                         =>  "URL",
   "radio_type"                  =>  "Typ radia/modemu",
-  "node_type"                   =>  "Node Type",
+  "node_type"                   =>  "Rodzaj węzła",
   "timezone"                    =>  "Strefa czasowa",
-  "dash_lang"                   =>  "Język",
+  "dash_lang"                   =>  "Język panelu",
   // Config Page - DMR Configuration
   "dmr_master"                  =>  "DMR Master (MMDVMHost)",
   "bm_master"                   =>  "BrandMeister Master",
@@ -125,8 +124,8 @@ $lang = array (
   "mode"                        =>  "Tryb",
   "callsign"                    =>  "Znak",
   "target"                      =>  "Cel",
-  "src"                         =>  "Źródło",     // Short version of "Source"
-  "dur"                         =>  "Okres",      // Short version of "Duration"
+  "src"                         =>  "Źródło",
+  "dur"                         =>  "Okres",
   "loss"                        =>  "Straty",
   "ber"                         =>  "BER",        // Short version of "Bit Error Rate"
   // POCSAG Specific
@@ -140,7 +139,7 @@ $lang = array (
   "utot"                        =>  "UTOT",       // Short for User Timeout
   "gtot"                        =>  "GTOT",       // Short for Group Timeout
   // Dashboard Front Page / Admin - Section Headders
-  "last_heard_list"             =>  "Aktywnośc bramy",
+  "last_heard_list"             =>  "Aktywność bramki",
   "local_tx_list"               =>  "Atywność lokalna",
   "active_starnet_groups"       =>  "Aktywne grupy Starnet",
   "active_starnet_members"      =>  "Aktywni członkowie w grupie Starnet",
