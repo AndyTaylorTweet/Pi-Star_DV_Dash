@@ -70,9 +70,9 @@ body, font {
 .nav {
     float : left;
     margin : 0;
-    padding : 3px 3px 3px 3px;
+    padding : 3px 3px 3px 5px;
     width : 160px;
-    background : #242d31;
+    background : #<?php echo $backgroundContent; ?>;
     font-weight : normal;
     min-height : 100%;
 }
