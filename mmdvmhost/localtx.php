@@ -43,7 +43,8 @@ if ($callsignLookupSvc == "QRZ") { $callsignLookupUrl = "https://www.qrz.com/db/
 <?php
 $counter = 0;
 $i = 0;
-for ($i = 0; $i < count($localTXList); $i++) {
+$TXListLim = count($localTXList);
+for ($i = 0; $i < $TXListLim; $i++) {
 		$listElem = $localTXList[$i];
 		if ($listElem[5] == "RF" && ($listElem[1] == "D-Star" || startsWith($listElem[1], "DMR") || $listElem[1] == "YSF" || $listElem[1]== "P25" || $listElem[1]== "NXDN")) {
 			if ($counter <= 19) { //last 20 calls
