@@ -132,7 +132,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           $postHeaders = array(
             'Content-Type: accept: application/json',
             'Content-Length: '.strlen($postData),
-            'Authorization: '.$bmAPIkeyV2,
+            'Authorization: Bearer '.$bmAPIkeyV2,
             'User-Agent: Pi-Star Dashboard for '.$dmrID,
           );
 
