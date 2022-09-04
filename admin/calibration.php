@@ -13,8 +13,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/calibration.php") {
 
   if (isset($_GET['action'])) {
     if ($_GET['action'] === 'start') {
-      system('sudo kill $(sudo lsof -t -a -c nc -i UDP:33273) > /dev/null 2>&1');
-      system('/bin/nc -dlu 33273 | sudo -i script -qfc "/usr/local/sbin/pistar-mmdvmcal" /tmp/pi-star_mmdvmcal.log > /dev/null 2>&1 &');
+      system('sudo fuser -k 33273/udp > /dev/null 2>&1');
+      system('nc -ulp 33273 | sudo -i script -qfc "/usr/local/sbin/pistar-mmdvmcal" /tmp/pi-star_mmdvmcal.log > /dev/null 2>&1 &');
     }
     else if (($_GET['action'] === 'saveoffset')) {
       if (isset($_GET['param']) && strlen($_GET['param'])) {
@@ -27,15 +27,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/calibration.php") {
   }
 
   if (isset($_GET['cmd']) && strlen($_GET['cmd'])) {
-    system('/bin/echo -ne '. escapeshellarg($_GET['cmd']) .' | nc -u -q1 -w0 -p33272 127.0.0.1 33273 > /dev/null 2>&1');
+    $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+    socket_bind($sock, '127.0.0.1', 33272) || exit();
+    socket_sendto($sock, $_GET['cmd'], strlen($_GET['cmd']), 0, '127.0.0.1', 33273);
     if (isset($_GET['param']) && strlen($_GET['param'])) {
       usleep(500*1000);
-      system('/bin/echo -ne '. escapeshellarg($_GET['param'].'\n') .' | nc -u -q1 -w0 -p33272 127.0.0.1 33273 > /dev/null 2>&1');
+      socket_sendto($sock, $_GET['param']."\n", strlen($_GET['param'])+1, 0, '127.0.0.1', 33273);
     }
     if ($_GET['cmd'] === 'q') {
       sleep(1);
-      system('/bin/echo -ne "\n" | nc -u -q1 -w0 -p33272 127.0.0.1 33273 > /dev/null 2>&1'); //send something to kill the pipe, also \n may be useful if something went wrong and mmdvmcal is waiting some param input
+      socket_sendto($sock, "\n", 1, 0, '127.0.0.1', 33273); //send something to kill the pipe, also \n may be useful if something went wrong and mmdvmcal is waiting some param input
     }
+    socket_close($sock);
     exit();
   }
 
@@ -296,7 +299,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/calibration.php") {
       </tr>
     </table></td>
 
-    <td align="center" valign="middle"><table border="0" cellspacing="0" cellpadding="4">
+    <td align="center" valign="middle"><table border="0" cellspacing="0" cellpadding="4" height="160">
       <tr>
         <td><input name="btnDStar" type="button" id="btnDStar" onclick="sendcmd('k');" value="D-Star" /></td>
         <td><img src="images/20red.png" name="ledDStar" width="20" height="20" id="ledDStar" /></td>
@@ -319,7 +322,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/calibration.php") {
         </tr>
     </table></td>
 
-    <td align="center" valign="middle"><table border="0" cellspacing="0" cellpadding="5">
+    <td align="center" valign="middle"><table border="0" cellspacing="0" cellpadding="5" height="160">
       <tr>
         <td align="left">Base Freq.:</td>
         <td colspan="3" id="lblBaseFreq"><?php echo $RXFrequency; ?> Hz</td>
@@ -344,7 +347,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/calibration.php") {
       </tr>
     </table></td>
 
-    <td align="center" valign="middle"><table border="0" cellspacing="0" cellpadding="5">
+    <td align="center" valign="middle"><table border="0" cellspacing="0" cellpadding="5" height="160">
       <tr>
         <th style="width:8ch">&nbsp;</th>
         <th style="width:9ch">Current</th>
