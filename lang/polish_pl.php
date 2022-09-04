@@ -2,7 +2,7 @@
 //
 // Polish PL Language Pack
 // Translated 02-Sep-2022 from English Language by Pawel SP8MDH
-// Edited: 02-Sep-2022
+// Edited: 04-Sep-2022
 //
 $lang = array (
   // Banner texts
@@ -41,7 +41,7 @@ $lang = array (
   "kernel"                      =>  "Kernel",
   "platform"                    =>  "Platforma",
   "cpu_load"                    =>  "Obciążenie CPU",
-  "cpu_temp"                    =>  "Tempertura CPU",
+  "cpu_temp"                    =>  "Temperatura CPU",
   // Config Page - Control Software
   "controller_software"         =>  "Oprogramowanie kontrolera",
   "controller_mode"             =>  "Tryb kontrolera",
@@ -73,7 +73,7 @@ $lang = array (
   "dmr_plus_master"             =>  "DMR+ Master",
   "dmr_plus_network"            =>  "Sieć DMR+",
   "xlx_master"                  =>  "XLX Master",
-  "xlx_enable"                  =>  "Włączanie XLX Master",
+  "xlx_enable"                  =>  "Włączony XLX Master",
   "dmr_cc"                      =>  "DMR Colour Code",
   "dmr_embeddedlconly"          =>  "DMR EmbeddedLCOnly",
   "dmr_dumptadata"              =>  "DMR DumpTAData",
