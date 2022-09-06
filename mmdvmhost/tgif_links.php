@@ -56,6 +56,7 @@ if ( $testMMDVModeDMR == 1 ) {
     }
   }
 
+  if ( $dmr ) {
   // Use TGIF API to get information about current TGs
   $jsonContext = stream_context_create(array('http'=>array('timeout' => 2, 'header' => 'User-Agent: Pi-Star Dashboard for '.$dmrID) )); // Add Timout and User Agent to include DMRID
   $json_data = file_get_contents("http://tgif.network:5040/api/sessions", false, $jsonContext);
@@ -92,5 +93,6 @@ if ( $testMMDVModeDMR == 1 ) {
     echo '  </table>'."\n";
     echo '  <br />'."\n";
   }
+ }
 }
 ?>
