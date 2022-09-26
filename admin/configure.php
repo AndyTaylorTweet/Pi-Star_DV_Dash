@@ -255,7 +255,7 @@ if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
 <div>
   <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
     <tr>
-    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: You have a BM API v1 Key, click here for the announcement: <a href="https://news.brandmeister.network/introducing-user-api-keys/" alt="BM API Keys">BM API Keys - Announcement</a>.</td>
+    <td align="center" valign="top" style="background-color: #ff9090; color: #f01010;">Alert: You have a BM API v1 Key, click here for the announcement: <a href="https://news.brandmeister.network/introducing-user-api-keys/" alt="BM API Keys">BM API Keys - Announcement</a>.</td>
     </tr>
   </table>
 </div>
