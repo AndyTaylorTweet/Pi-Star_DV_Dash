@@ -10,7 +10,10 @@ if ($_POST["Link"] == "LINK") {
 	if (preg_match('/[^A-Z]/',$_POST["Letter"])) { unset ($_POST["Letter"]);}
 	if (preg_match('/[^A-Z0-9 ]/',$_POST["Module"])) { unset ($_POST["Module"]);}
 	}
-
+if ($_POST["Link"] == "UNLINK") {
+	if (preg_match('/[^A-Z0-9 ]/',$_POST["Module"])) { unset ($_POST["Module"]);}
+	}
+	
 if (empty($_POST["RefName"]) || empty($_POST["Letter"]) || empty($_POST["Module"])) { echo "Somthing wrong with your input, try again";}
 
 
@@ -22,8 +25,7 @@ else {
 	}
 	$targetRef = $targetRef.$_POST["Letter"];
 	$targetRef = strtoupper($targetRef);
-	$module = substr($_POST["Module"], 0, 7);
-	$module = preg_replace("/[^a-zA-Z0-9]+/", "", $module);
+	$module = $_POST["Module"];
 
         if (strlen($module) != 8) {							//Fix the length of the module information
 		$moduleFixedCs = strlen($module) - 1;                                   //Length of the string, -1
