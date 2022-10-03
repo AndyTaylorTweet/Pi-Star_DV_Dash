@@ -22,7 +22,8 @@ else {
 	}
 	$targetRef = $targetRef.$_POST["Letter"];
 	$targetRef = strtoupper($targetRef);
-	$module = $_POST["Module"];
+	$module = substr($_POST["Module"], 0, 7);
+	$module = preg_replace("/[^a-zA-Z0-9]+/", "", $module);
 
         if (strlen($module) != 8) {							//Fix the length of the module information
 		$moduleFixedCs = strlen($module) - 1;                                   //Length of the string, -1
