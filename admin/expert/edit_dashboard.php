@@ -45,7 +45,7 @@ require_once('../config/version.php');
 if (!file_exists('/etc/pistar-css.ini')) {
 	//The source file does not exist, lets create it....
 	$outFile = fopen("/tmp/bW1kd4jg6b3N0DQo.tmp", "w") or die("Unable to open file!");
-	$fileContent = "[DarkMode]\nEnabled=1\n\n"
+	$fileContent = "[DarkMode]\nEnabled=1\n\n";
 	$fileContent .= "[Background]\nPage=edf0f5\nPageDark=120f0a\nContent=ffffff\nContentDark=000000\nBanners=dd4b39\nBannersDark=bb2917\n\n";
 	$fileContent .= "[Text]\nBanners=ffffff\nBannersDark=000000\nBannersDrop=303030\nBannersDropDark=303030\n\n";
 	$fileContent .= "[Tables]\nHeadDrop=8b0000\nHeadDropDark=8b0000\nBgEven=f7f7f7\nBgEvenDark=888888\nBgOdd=d0d0d0\nBgOddDark=555555\n\n";
