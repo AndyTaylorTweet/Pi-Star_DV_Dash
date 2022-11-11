@@ -103,6 +103,12 @@ if($_POST) {
 		//parse the ini file using default parse_ini_file() PHP function
 		$parsed_ini = parse_ini_file($filepath, true);
 
+		// If the Dark Mode checkbox was unset, there will be a null
+		// value in $_POST.  Set it explicitly to 0.
+		if (empty($_POST['DarkMode[Enabled]'])) {
+			$data['DarkMode'] = array('Enabled' => 0);
+		}
+
 		foreach($data as $section=>$values) {
 			// UnBreak special cases
 			$section = str_replace("_", " ", $section);

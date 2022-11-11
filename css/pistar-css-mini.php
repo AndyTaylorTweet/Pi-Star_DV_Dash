@@ -23,7 +23,10 @@ if (file_exists('/etc/pistar-css.ini')) {
     $tableRowOddBg = $piStarCss['Tables']['BgOdd'];		// Table Row BG Colour (Odd)
 
     // Any missing .ini values will be assumed to be the default.
-    $enableDarkMode = $piStarCss['DarkMode']['Enabled'] ?: 1;     // do we enable dark mode?
+    $enableDarkMode = $piStarCss['DarkMode']['Enabled']; // do we enable dark mode?
+    if ($enableDarkMode === NULL) {
+        $enableDarkMode = 1;    // enabled by default if not defined
+    }
     $backgroundPageDark = $piStarCss['Background']['PageDark'] ?: '120f0a';		// usually off-white
     $backgroundContentDark = $piStarCss['Background']['ContentDark'] ?: '000000';   // The White background in the content section
     $backgroundBannersDark = $piStarCss['Background']['BannersDark'] ?: 'bb2917';   // The ubiquitous Pi-Star Red
