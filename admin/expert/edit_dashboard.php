@@ -48,7 +48,7 @@ if (!file_exists('/etc/pistar-css.ini')) {
 	$fileContent = "[DarkMode]\nEnabled=1\n\n";
 	$fileContent .= "[Background]\nPage=edf0f5\nPageDark=120f0a\nContent=ffffff\nContentDark=000000\nBanners=dd4b39\nBannersDark=bb2917\n\n";
 	$fileContent .= "[Text]\nBanners=ffffff\nBannersDark=000000\nBannersDrop=303030\nBannersDropDark=303030\n\n";
-	$fileContent .= "[Tables]\nHeadDrop=8b0000\nHeadDropDark=8b0000\nBgEven=f7f7f7\nBgEvenDark=888888\nBgOdd=d0d0d0\nBgOddDark=555555\n\n";
+	$fileContent .= "[Tables]\nHeadDrop=8b0000\nHeadDropDark=8b0000\nBgEven=f7f7f7\nBgEvenDark=777777\nBgOdd=d0d0d0\nBgOddDark=555555\n\n";
 	$fileContent .= "[Content]\nText=000000\nTextDark=ffffff\n\n";
 	$fileContent .= "[BannerH1]\nEnabled=0\nText=\"Some Text\"\n\n";
 	$fileContent .= "[BannerExtText]\nEnabled=0\nText=\"Some long text entry\"\n\n";

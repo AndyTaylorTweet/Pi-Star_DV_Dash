@@ -22,16 +22,21 @@ if (file_exists('/etc/pistar-css.ini')) {
     $tableRowEvenBg = $piStarCss['Tables']['BgEven']; 		// Table Row BG Colour (Even)
     $tableRowOddBg = $piStarCss['Tables']['BgOdd'];		// Table Row BG Colour (Odd)
 
-    $enableDarkMode = $piStarCss['DarkMode']['Enabled'];                       // do we enable dark mode?
-    $backgroundPageDark = $piStarCss['Background']['PageDark'];		// usually off-white
-    $backgroundContentDark = $piStarCss['Background']['ContentDark'];   // The White background in the content section
-    $backgroundBannersDark = $piStarCss['Background']['BannersDark'];   // The ubiquitous Pi-Star Red
-    $textBannersDark = $piStarCss['Text']['BannersDark'];            	// Usually white
-    $bannerDropShaddowsDark = $piStarCss['Text']['BannersDropDark'];    // Banner drop shaddow colour
-    $tableHeadDropShaddowDark = $piStarCss['Tables']['HeadDropDark'];   // Table Headder drop shaddows
-    $textContentDark = $piStarCss['Content']['TextDark'];            	// Used for the section titles
-    $tableRowEvenBgDark = $piStarCss['Tables']['BgEvenDark']; 		// Table Row BG Colour (Even)
-    $tableRowOddBgDark = $piStarCss['Tables']['BgOddDark'];		// Table Row BG Colour (Odd)
+    $enableDarkMode = $piStarCss['DarkMode']['Enabled'];     // do we enable dark mode?
+    if ($emptyDarkMode === NULL) {                              // if it's not defined,
+        $enableDarkMode = 1;                                    // enable it by default (opt-out).
+    }
+    // Since dark mode values may not exist in the .ini file yet,
+    // let's assume the defaults.
+    $backgroundPageDark = $piStarCss['Background']['PageDark'] || '120f0a';		// usually off-white
+    $backgroundContentDark = $piStarCss['Background']['ContentDark'] || '000000';   // The White background in the content section
+    $backgroundBannersDark = $piStarCss['Background']['BannersDark'] || 'bb2917';   // The ubiquitous Pi-Star Red
+    $textBannersDark = $piStarCss['Text']['BannersDark'] || '000000';            	// Usually white
+    $bannerDropShaddowsDark = $piStarCss['Text']['BannersDropDark'] || '303030';    // Banner drop shaddow colour
+    $tableHeadDropShaddowDark = $piStarCss['Tables']['HeadDropDark'] || '8b0000';   // Table Headder drop shaddows
+    $textContentDark = $piStarCss['Content']['TextDark'] || 'ffffff';            	// Used for the section titles
+    $tableRowEvenBgDark = $piStarCss['Tables']['BgEvenDark'] || '777777'; 		// Table Row BG Colour (Even)
+    $tableRowOddBgDark = $piStarCss['Tables']['BgOddDark'] | '555555';		// Table Row BG Colour (Odd)
 
 } else {
     // Default values
