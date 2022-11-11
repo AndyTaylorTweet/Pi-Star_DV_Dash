@@ -45,10 +45,11 @@ require_once('../config/version.php');
 if (!file_exists('/etc/pistar-css.ini')) {
 	//The source file does not exist, lets create it....
 	$outFile = fopen("/tmp/bW1kd4jg6b3N0DQo.tmp", "w") or die("Unable to open file!");
-	$fileContent = "[Background]\nPage=edf0f5\nContent=ffffff\nBanners=dd4b39\n\n";
-	$fileContent .= "[Text]\nBanners=ffffff\nBannersDrop=303030\n\n";
-	$fileContent .= "[Tables]\nHeadDrop=8b0000\nBgEven=f7f7f7\nBgOdd=d0d0d0\n\n";
-	$fileContent .= "[Content]\nText=000000\n\n";
+	$fileContent = "[DarkMode]\nEnabled=1\n\n"
+	$fileContent .= "[Background]\nPage=edf0f5\nPageDark=120f0a\nContent=ffffff\nContentDark=000000\nBanners=dd4b39\nBannersDark=bb2917\n\n";
+	$fileContent .= "[Text]\nBanners=ffffff\nBannersDark=000000\nBannersDrop=303030\nBannersDropDark=303030\n\n";
+	$fileContent .= "[Tables]\nHeadDrop=8b0000\nHeadDropDark=8b0000\nBgEven=f7f7f7\nBgEvenDark=888888\nBgOdd=d0d0d0\nBgOddDark=555555\n\n";
+	$fileContent .= "[Content]\nText=000000\nTextDark=ffffff\n\n";
 	$fileContent .= "[BannerH1]\nEnabled=0\nText=\"Some Text\"\n\n";
 	$fileContent .= "[BannerExtText]\nEnabled=0\nText=\"Some long text entry\"\n\n";
 	$fileContent .= "[Lookup]\nService=\"RadioID\"\n";
@@ -142,6 +143,21 @@ $parsed_ini = parse_ini_file($filepath, true);
 if (isset($parsed_ini['Lookup']['popupWidth']))  { unset($parsed_ini['Lookup']['popupWidth']); }
 if (isset($parsed_ini['Lookup']['popupHeight'])) { unset($parsed_ini['Lookup']['popupHeight']); }
 
+// Dark mode was a recent addition, so values might not be present in the .ini
+// file.  If that's the case, add them in now.  Changes will be written on save.
+if (empty($parsed_ini['DarkMode'])) {
+	$parsed_ini['DarkMode']['Enabled'] = 1;
+	$parsed_ini['Background']['PageDark'] = '120f0a';
+	$parsed_ini['Background']['ContentDark'] = '000000';
+	$parsed_ini['Background']['BannersDark'] = 'bb2917';
+	$parsed_ini['Text']['BannersDark'] = '000000';
+	$parsed_ini['Text']['BannersDropDark'] = '303030';
+	$parsed_ini['Tables']['HeadDropDark'] = '8b0000';
+	$parsed_ini['Content']['TextDark'] = 'ffffff';
+	$parsed_ini['Tables']['BgEvenDark'] = '888888';
+	$parsed_ini['Tables']['BgOddDark'] = '555555';
+}
+
 echo '<form action="" method="post">'."\n";
 	foreach($parsed_ini as $section=>$values) {
 		// keep the section as hidden text so we can update once the form submitted
@@ -166,8 +182,16 @@ echo '<form action="" method="post">'."\n";
 		    }
 		    echo "  </select>\n";
 		    echo "</td></tr>\n";
+		  } elseif ($section == 'DarkMode' && $key == 'Enabled') {
+		    echo "<tr><td align=\"right\" width=\"30%\"><label for=\"{$section}[$key]\">Dark Mode Enabled</label></td><td align=\"left\"><input type=\"checkbox\" id=\"{$section}[$key]\" name=\"{$section}[$key]\" value=\"$value\"";
+			if ($value == 1 || $value === NULL) {
+				// The null check is to test for older versions of the .ini file.
+				// Dark mode is a recent addition.
+				echo ' checked="checked"';
+			}
+			echo " /></td></tr>\n";
 		  } else {
-		    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";			
+		    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
 		  }
 		}
 		echo "</table>\n";
