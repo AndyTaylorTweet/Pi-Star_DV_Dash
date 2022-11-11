@@ -176,7 +176,8 @@ $MYCALL=strtoupper($callsign);
     <meta http-equiv="Expires" content="0" />
     <title><?php echo "$MYCALL"." - ".$lang['digital_voice']." ".$lang['dashboard']." - ".$lang['configuration'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php?version=0.95" />
-    <script type="text/javascript">
+	<link rel="stylesheet" type="text/css" href="css/pistar-dark.css?version=0.95" />
+   <script type="text/javascript">
 	function disablesubmitbuttons() {
 		var inputs = document.getElementsByTagName('input');
 		for (var i = 0; i < inputs.length; i++) {

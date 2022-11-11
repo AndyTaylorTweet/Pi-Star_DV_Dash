@@ -31,6 +31,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['power'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
+    <link rel="stylesheet" type="text/css" href="css/pistar-dark.css" />
   </head>
   <body>
   <div class="container">

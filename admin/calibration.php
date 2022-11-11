@@ -98,6 +98,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/calibration.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - Calibration";?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
+    <link rel="stylesheet" type="text/css" href="css/pistar-dark.css" />
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/jquery-timing.min.js"></script>
     <script type="text/javascript" src="/plotly-basic.min.js"></script>
