@@ -152,8 +152,8 @@ fclose($dextraFile);
     </select>
     </td>
     <td role="radiogroup" aria-labelledby="lblLinkUnlink">
-	    <input id="lblLink" type="radio" name="Link" value="LINK" checked><label for="lblLink">Link</label>
-        <input id="lblUnlink" type="radio" name="Link" value="UNLINK"><label for="lblUnlink">UnLink</label>
+	    <input id="rbLink" type="radio" name="Link" value="LINK" checked><label for="rbLink">Link</label>
+        <input id="rbUnlink" type="radio" name="Link" value="UNLINK"><label for="rbUnlink">UnLink</label>
     </td>
     <td>
     <input type="submit" value="Request Change">
