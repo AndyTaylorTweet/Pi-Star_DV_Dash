@@ -33,7 +33,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/ssh_access.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - SSH";?></title>
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
-    <link rel="stylesheet" type="text/css" href="../css/pistar-dark.css" />
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/jquery-timing.min.js"></script>
   </head>

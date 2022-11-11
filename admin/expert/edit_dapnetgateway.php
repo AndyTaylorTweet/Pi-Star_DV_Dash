@@ -25,7 +25,6 @@ require_once('../config/version.php');
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - Digital Voice Dashboard - Expert Editor</title>
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
-	<link rel="stylesheet" type="text/css" href="../css/pistar-dark.css" />
   </head>
   <body>
   <div class="container">
