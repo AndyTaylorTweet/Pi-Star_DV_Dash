@@ -166,17 +166,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
         if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
           echo '<b>BrandMeister Manager</b>'."\n";
           echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
-          echo '<table>'."\n";
+          echo '<table role="presentation">'."\n";
           echo '<tr>
-            <th style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
-            <th style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
-            <th style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
+            <th aria-hidden="true" id="lblTG" style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+            <th aria-hidden="true" id="lblSlot" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
+            <th aria-hidden="true" id="addRemove" style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
             <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
           </tr>'."\n";
           echo '    <tr>';
-          echo '<td><input type="text" name="tgNr" size="10" maxlength="7" /></td>';
-          echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
-          echo '<td><input type="radio" name="TGmgr" value="ADD" checked="checked" />Add <input type="radio" name="TGmgr" value="DEL" />Delete</td>';
+          echo '<td><input aria-labelledby="lblTG" type="text" name="tgNr" size="10" maxlength="7" /></td>';
+          echo '<td role="radiogroup" aria-labelledby="lblTS"><input id="rbTS1" type="radio" name="TS" value="1" /><label for="rbTS1">TS1</label> <input id="rbTS2" type="radio" name="TS" value="2" checked="checked" /><label for="rbTS2">TS2</label></td>';
+          echo '<td role="radiogroup" aria-labelledby="lblAddRemove"><input id="rbAdd" type="radio" name="TGmgr" value="ADD" checked="checked" /><label for="rbAdd">Add</label> <input id="rbDelete" type="radio" name="TGmgr" value="DEL" /><label for="rbDelete">Delete</label></td>';
           echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /></td>';
           echo '</tr>'."\n";
           echo '    <tr>';
