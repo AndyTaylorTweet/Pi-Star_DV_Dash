@@ -105,7 +105,7 @@ if($_POST) {
 
 		// If the Dark Mode checkbox was unset, there will be a null
 		// value in $_POST.  Set it explicitly to 0.
-		if (empty($_POST['DarkMode[Enabled]'])) {
+		if (!isset($data['DarkMode']['Enabled]')) {
 			$data['DarkMode'] = array('Enabled' => 0);
 		}
 
@@ -189,15 +189,16 @@ echo '<form action="" method="post">'."\n";
 		    echo "  </select>\n";
 		    echo "</td></tr>\n";
 		  } elseif ($section == 'DarkMode' && $key == 'Enabled') {
-		    echo "<tr><td align=\"right\" width=\"30%\"><label for=\"{$section}[$key]\">Dark Mode Enabled</label></td><td align=\"left\"><input type=\"checkbox\" id=\"{$section}[$key]\" name=\"{$section}[$key]\" value=\"$value\"";
+		    echo "<tr><td align=\"right\" width=\"30%\"><label for=\"{$section}[$key]\">Automatic Dark Mode Enabled</label></td><td align=\"left\"><input type=\"checkbox\" id=\"{$section}[$key]\" name=\"{$section}[$key]\" value=\"1\"";
 			if ($value == 1 || $value === NULL) {
 				// The null check is to test for older versions of the .ini file.
 				// Dark mode is a recent addition.
 				echo ' checked="checked"';
 			}
 			echo " /></td></tr>\n";
-		  } else {
-		    echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"text\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
+		  }
+		  else {
+			echo "<tr><td align=\"right\" width=\"30%\">$key</td><td align=\"left\"><input type=\"color\" name=\"{$section}[$key]\" value=\"$value\" /></td></tr>\n";
 		  }
 		}
 		echo "</table>\n";
