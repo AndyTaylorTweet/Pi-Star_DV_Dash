@@ -255,7 +255,7 @@ if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
 <div>
   <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
     <tr>
-    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: You have a BM API v1 Key, click here for the announcement: <a href="https://news.brandmeister.network/introducing-user-api-keys/" alt="BM API Keys">BM API Keys - Announcement</a>.</td>
+    <td align="center" valign="top" style="background-color: #ff9090; color: #f01010;">Alert: You have a BM API v1 Key, click here for the announcement: <a href="https://news.brandmeister.network/introducing-user-api-keys/" alt="BM API Keys">BM API Keys - Announcement</a>.</td>
     </tr>
   </table>
 </div>
@@ -1244,7 +1244,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		}
 
 		// Set the DMR+ / HBLink Options= line
-		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 3) == "FD_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_")) {
+		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 3) == "FD_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_") || (substr($dmrMasterHostArr[3], 0, 9) == "FreeSTAR_")) {
 			unset ($configmmdvm['DMR Network']['Local']);
 			unset ($configmmdvm['DMR Network']['LocalPort']);
 			unset ($configysf2dmr['DMR Network']['Local']);
@@ -4184,7 +4184,7 @@ else:
       <a href="http://www.freedmr.uk/index.php/dashboard/options-calculator/" target="_new" style="color: #000;">FreeDMR Options Calculator</a>
     </td>
     </tr>'."\n";}
-    if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_") || (substr($dmrMasterNow, 0, 3) == "FD_")) {
+    if ((substr($dmrMasterNow, 0, 4) == "DMR+") || (substr($dmrMasterNow, 0, 3) == "HB_") || (substr($dmrMasterNow, 0, 3) == "FD_") || (substr($dmrMasterNow, 0, 9) == "FreeSTAR_")) {
       echo '    <tr>
     <td align="left"><a class="tooltip2" href="#">DMR Options:<span><b>DMR Network</b>Set your options= for DMR here</span></a></td>
     <td align="left">

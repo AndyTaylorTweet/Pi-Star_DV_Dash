@@ -26,7 +26,9 @@ if ($_POST["Link"] == "LINK") {
 	if (preg_match('/[^A-Z]/',$_POST["Letter"])) { unset ($_POST["Letter"]);}
 	if (preg_match('/[^A-Z0-9 ]/',$_POST["Module"])) { unset ($_POST["Module"]);}
 	}
-
+if ($_POST["Link"] == "UNLINK") {
+	if (preg_match('/[^A-Z0-9 ]/',$_POST["Module"])) { unset ($_POST["Module"]);}
+	}
 if (empty($_POST["RefName"]) || empty($_POST["Letter"]) || empty($_POST["Module"])) { echo "Somthing wrong with your input, try again";}
 
 
@@ -66,14 +68,14 @@ else: ?>
 <form action="//<?php echo htmlentities($_SERVER['HTTP_HOST']).htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
 <table>
   <tr>
-    <th width="150"><a class=tooltip href="#">Radio Module<span><b>Radio Module</b></span></th>
-    <th width="180"><a class=tooltip href="#">Reflector<span><b>Reflector</b></span></th>
-    <th width="150"><a class=tooltip href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></th>
+    <th id="lblModule" width="150"><a class=tooltip href="#">Radio Module<span><b>Radio Module</b></span></th>
+    <th id="lblReflector" width="180"><a class=tooltip href="#">Reflector<span><b>Reflector</b></span></th>
+    <th id="lblLinkUnlink" width="150"><a class=tooltip href="#">Link / Un-Link<span><b>Link / Un-Link</b></span></th>
     <th><a class=tooltip href="#">Action<span><b>Action</b></span></th>
   </tr>
   <tr>
     <td>
-    <select name="Module">
+    <select aria-labelledby="lblModule" name="Module">
     <?php for($i = 1;$i < 5; $i++){
       $param="repeaterBand" . $i;
       if((isset($configs[$param])) && strlen($configs[$param]) == 1) {
@@ -88,8 +90,8 @@ else: ?>
     } ?>
     </select>
     </td>
-    <td>
-    <select name="RefName">
+    <td role="group" aria-labelledby="lblReflector">
+    <select aria-label="Number" name="RefName">
 <?php
 $dcsFile = fopen("/usr/local/etc/DCS_Hosts.txt", "r");
 $dplusFile = fopen("/usr/local/etc/DPlus_Hosts.txt", "r");
@@ -120,7 +122,7 @@ fclose($dextraFile);
 
 ?>
     </select>
-    <select name="Letter">
+    <select aria-label="Module" name="Letter">
 	<option>A</option>
 	<option>B</option>
 	<option selected>C</option>
@@ -149,9 +151,9 @@ fclose($dextraFile);
 	<option>Z</option>
     </select>
     </td>
-    <td>
-        <input type="radio" name="Link" value="LINK" checked>Link
-        <input type="radio" name="Link" value="UNLINK">UnLink
+    <td role="radiogroup" aria-labelledby="lblLinkUnlink">
+	    <input id="rbLink" type="radio" name="Link" value="LINK" checked><label for="rbLink">Link</label>
+        <input id="rbUnlink" type="radio" name="Link" value="UNLINK"><label for="rbUnlink">UnLink</label>
     </td>
     <td>
     <input type="submit" value="Request Change">

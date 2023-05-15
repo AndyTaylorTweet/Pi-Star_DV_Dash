@@ -10,7 +10,10 @@ if ($_POST["Link"] == "LINK") {
 	if (preg_match('/[^A-Z]/',$_POST["Letter"])) { unset ($_POST["Letter"]);}
 	if (preg_match('/[^A-Z0-9 ]/',$_POST["Module"])) { unset ($_POST["Module"]);}
 	}
-
+if ($_POST["Link"] == "UNLINK") {
+	if (preg_match('/[^A-Z0-9 ]/',$_POST["Module"])) { unset ($_POST["Module"]);}
+	}
+	
 if (empty($_POST["RefName"]) || empty($_POST["Letter"]) || empty($_POST["Module"])) { echo "Somthing wrong with your input, try again";}
 
 

@@ -234,13 +234,13 @@ function getMMDVMLog() {
 	$logLines2 = array();
 	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
+		$logLines1 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
 	}
 	$logLines1 = array_slice($logLines1, -250);
 	if (sizeof($logLines1) < 250) {
 		if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "from|end|watchdog|lost" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
+			$logLines2 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
 		}
 	}
 	$logLines2 = array_slice($logLines2, -250);
@@ -256,15 +256,13 @@ function getYSFGatewayLog() {
 	$logLines2 = array();
 	if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath1 = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-		//$logLines1 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath1 | tail -250`);
-		$logLines1 = preg_split('/\r\n|\r|\n/', `grep -E "onnection to|onnect to|ink|isconnect|Opening YSF network" $logPath1 | sed '/Linked to MMDVM/d' | sed '/Link successful to MMDVM/d' | sed '/*Link/d' | tail -1`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(onnection to|onnect to|inked|isconnect|Opening YSF network)" $logPath1 | sed '/Linked to MMDVM/d' | sed '/Link successful to MMDVM/d' | sed '/*Link/d' | tail -1`);
 	}
 	$logLines1 = array_filter($logLines1);
 	if (sizeof($logLines1) == 0) {
 		if (file_exists(YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath2 = YSFGATEWAYLOGPATH."/".YSFGATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			//$logLines2 = explode("\n", `egrep -h "repeater|Starting|Opening YSF|Disconnect|Connect|Automatic|Disconnecting|Reverting|Linked" $logPath2 | tail -250`);
-			$logLines1 = preg_split('/\r\n|\r|\n/', `grep -E "onnection to|onnect to|ink|isconnect|Opening YSF network" $logPath2 | sed '/Linked to MMDVM/d' | sed '/Link successful to MMDVM/d' | sed '/*Link/d' | tail -1`);
+			$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(onnection to|onnect to|inked|isconnect|Opening YSF network)" $logPath2 | sed '/Linked to MMDVM/d' | sed '/Link successful to MMDVM/d' | sed '/*Link/d' | tail -1`);
 		}
 		$logLines2 = array_filter($logLines2);
 	}
@@ -279,13 +277,13 @@ function getP25GatewayLog() {
 	$logLines2 = array();
         if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath1 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath1 | cut -d" " -f2- | tail -1`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(ink|Starting|witched)" $logPath1 | cut -d" " -f2- | tail -1`);
         }
 	$logLines1 = array_filter($logLines1);
         if (sizeof($logLines1) == 0) {
                 if (file_exists(P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
                         $logPath2 = P25GATEWAYLOGPATH."/".P25GATEWAYLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath2 | cut -d" " -f2- | tail -1`);
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(ink|Starting|witched)" $logPath2 | cut -d" " -f2- | tail -1`);
                 }
 		$logLines2 = array_filter($logLines2);
         }
@@ -300,13 +298,13 @@ function getNXDNGatewayLog() {
 	$logLines2 = array();
         if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log")) {
 		$logPath1 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath1 | cut -d" " -f2- | tail -1`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(ink|Starting|witched)" $logPath1 | cut -d" " -f2- | tail -1`);
         }
 	$logLines1 = array_filter($logLines1);
         if (sizeof($logLines1) == 0) {
                 if (file_exists("/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath2 = "/var/log/pi-star/NXDNGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "ink|Starting|witched" $logPath2 | cut -d" " -f2- | tail -1`);
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(ink|Starting|witched)" $logPath2 | cut -d" " -f2- | tail -1`);
                 }
 		$logLines2 = array_filter($logLines2);
         }
@@ -321,13 +319,13 @@ function getDAPNETGatewayLog() {
 	$logLines2 = array();
         if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log")) {
 		$logPath1 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d").".log";
-		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath1 | cut -d" " -f2- | tail -n 20 | tac`);
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(Sending message)" $logPath1 | cut -d" " -f2- | tail -n 20 | tac`);
         }
 	$logLines1 = array_filter($logLines1);
         if (sizeof($logLines1) == 0) {
                 if (file_exists("/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath2 = "/var/log/pi-star/DAPNETGateway-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "Sending message" $logPath2 | cut -d" " -f2- | tail -n 20 | tac`);
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(Sending message)" $logPath2 | cut -d" " -f2- | tail -n 20 | tac`);
                 }
 		$logLines2 = array_filter($logLines2);
         }
@@ -1054,6 +1052,11 @@ function getActualLink($logLines, $mode) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
 		  $to = preg_replace('/[^0-9]/', '', $to);
 		  return "TG ".$to;
+               }
+               if (strpos($logLine,"Statically linked to reflector")) {
+                  $to = preg_replace('/[^0-9]/', '', substr($logLine, 55, 5));
+                  $to = preg_replace('/[^0-9]/', '', $to);
+                  return "TG ".$to;
                }
 	       if (strpos($logLine,"Switched to reflector")) {
 		  $to = preg_replace('/[^0-9]/', '', substr($logLine, 46, 5));
