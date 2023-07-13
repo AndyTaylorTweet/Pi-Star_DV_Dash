@@ -1243,6 +1243,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			}
 		}
 
+		// TGIF
+		if (substr($dmrMasterHostArr[3], 0, 4) == "TGIF") {
+			unset ($configmmdvm['DMR Network']['Options']);
+		}
+
 		// Set the DMR+ / HBLink Options= line
 		if ((substr($dmrMasterHostArr[3], 0, 4) == "DMR+") || (substr($dmrMasterHostArr[3], 0, 3) == "HB_") || (substr($dmrMasterHostArr[3], 0, 3) == "FD_") || (substr($dmrMasterHostArr[3], 0, 8) == "FreeDMR_") || (substr($dmrMasterHostArr[3], 0, 9) == "FreeSTAR_")) {
 			unset ($configmmdvm['DMR Network']['Local']);
