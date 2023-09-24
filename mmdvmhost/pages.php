@@ -114,6 +114,13 @@ function skyper($message, $pocsagric) {
       if (strpos($pocsag_msg, ' ') == 0 && strlen($pocsag_msg) >= 45) {
         $pocsag_msg = wordwrap($pocsag_msg, 45, ' ', true);
       }
+
+      // Sanitise the data before displaying the HTML
+      if (isset($local_time)) { $local_time = htmlspecialchars($local_time, ENT_QUOTES, 'UTF-8'); }
+      if (isset($pocsag_timeslot)) { $pocsag_timeslot = htmlspecialchars($pocsag_timeslot, ENT_QUOTES, 'UTF-8'); }
+      if (isset($pocsag_ric)) { $pocsag_ric = htmlspecialchars($pocsag_ric, ENT_QUOTES, 'UTF-8'); }
+      if (isset($pocsag_msg)) { $pocsag_msg = htmlspecialchars($pocsag_msg, ENT_QUOTES, 'UTF-8'); }
+      
 ?>
 
   <tr>
