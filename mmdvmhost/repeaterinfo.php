@@ -64,6 +64,12 @@ if (file_exists('/etc/dmr2nxdn')) {
 	$dmr2nxdnConfigFile = '/etc/dmr2nxdn';
 	if (fopen($dmr2nxdnConfigFile,'r')) { $configdmr2nxdn = parse_ini_file($dmr2nxdnConfigFile, true); }
 }
+// Load the m17gateway config file
+$m17GatewayConfigFile = '/etc/m17gateway';
+if (file_exists($m17GatewayConfigFile)) {
+	if (fopen($m17GatewayConfigFile,'r')) { $configm17gateway = parse_ini_file($m17GatewayConfigFile, true); }
+}
+
 ?>
 
 <table>
@@ -72,6 +78,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("System Fusion", $mmdvmconfigs);?><?php showMode("P25", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF XMode", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
   <tr><?php showMode("DMR XMode", $mmdvmconfigs);?><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("M17", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
@@ -82,6 +89,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?><?php showMode("YSF2P25 Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("DMR2NXDN Network", $mmdvmconfigs);?><?php showMode("DMR2YSF Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("M17 Network", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
@@ -124,6 +132,12 @@ if (isset($lastHeard[0])) {
         	        }
         	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'P25') {
         	        echo "<td style=\"background:#f9f;\">Listening P25</td>";
+        	        }
+	        elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
+        	        echo "<td style=\"background:#eb6a46;\">RX M17</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
+        	        echo "<td style=\"background:#d59e7b;\">Listening M17</td>";
         	        }
 		elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'NXDN') {
         	        echo "<td style=\"background:#4aa361;\">RX NXDN</td>";
@@ -358,6 +372,17 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">TG 65000</td></tr>\n";
 	}
 	echo "</table>\n";
+}
+
+$testMMDVModeM17 = getConfigItem("M17", "Enable", $mmdvmconfigs);
+if ( $testMMDVModeM17 == 1 ) { //Hide the M17 Reflector information when M17 Network not enabled.
+echo "<br />\n";
+echo "<table>\n";
+echo "<tr><th colspan=\"2\">".$lang['m17_repeater']."</th></tr>\n";
+echo "<tr><th>RPT</th><td style=\"background: #ffffff;\">".str_replace(' ', '&nbsp;', $configm17gateway['General']['Callsign'])."&nbsp;".str_replace(' ', '&nbsp;', $configm17gateway['General']['Suffix'])."</td></tr>\n";
+echo "<tr><th colspan=\"2\">".$lang['m17_net']."</th></tr>\n";
+echo "<tr><td colspan=\"2\" style=\"background: #ffffff;\">".getActualLink($reverseLogLinesM17Gateway, "M17")."</td></tr>\n";
+echo "</table>\n";
 }
 
 $testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
