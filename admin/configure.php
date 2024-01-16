@@ -641,9 +641,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newConfFREQrx = preg_replace('/[^0-9\.]/', '', $_POST['confFREQrx']);
 	  $newFREQtx = number_format($newConfFREQtx, 6, ".", "");
 	  $newFREQrx = number_format($newConfFREQrx, 6, ".", "");
-	  $newFREQtx = str_pad(str_replace(".", "", $newConfFREQtx), 9, "0");
+	  $newFREQtx = str_pad(str_replace(".", "", $newFREQtx), 9, "0");
 	  //$newFREQtx = mb_strimwidth($newFREQtx, 0, 9);
-	  $newFREQrx = str_pad(str_replace(".", "", $newConfFREQrx), 9, "0");
+	  $newFREQrx = str_pad(str_replace(".", "", $newFREQrx), 9, "0");
 	  //$newFREQrx = mb_strimwidth($newFREQrx, 0, 9);
 	  $newFREQirc = substr_replace($newFREQtx, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
@@ -751,7 +751,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (empty($_POST['confHardware']) != TRUE ) { $confHardware = escapeshellcmd($_POST['confHardware']); }
 	  $newConfFREQ = preg_replace('/[^0-9\.]/', '', $_POST['confFREQ']);
 	  $newFREQ = number_format($newConfFREQ, 6, ".", "");
-	  $newFREQ = str_pad(str_replace(".", "", $newConfFREQ), 9, "0");
+	  $newFREQ = str_pad(str_replace(".", "", $newFREQ), 9, "0");
 	  //$newFREQ = mb_strimwidth($newFREQ, 0, 9);
 	  $newFREQirc = substr_replace($newFREQ, '.', '3', 0);
 	  $newFREQirc = mb_strimwidth($newFREQirc, 0, 9);
