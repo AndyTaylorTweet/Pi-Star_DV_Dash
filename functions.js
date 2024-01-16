@@ -59,6 +59,7 @@ function checkFrequency(){
     // TRX Bad
     if (145.8 <= intFreqTRX && intFreqTRX <= 146) { confFREQ.style.backgroundColor = badColor; }
     if (435 <= intFreqTRX && intFreqTRX <= 438)   { confFREQ.style.backgroundColor = badColor; }
+    if (1260 <= intFreqTRX && intFreqTRX <= 1270) { confFREQ.style.backgroundColor = badColor; }
   }
   if(freqRX){
     confFREQrx.style.backgroundColor = badColor;	// Set to bad colour first, then check
@@ -72,6 +73,7 @@ function checkFrequency(){
     // RX Bad
     if (145.8 <= intFreqRX && intFreqRX <= 146) { confFREQrx.style.backgroundColor = badColor; }
     if (435 <= intFreqRX && intFreqRX <= 438)   { confFREQrx.style.backgroundColor = badColor; }
+    if (1260 <= intFreqRX && intFreqRX <= 1270) { confFREQrx.style.backgroundColor = badColor; }
   }
   if(freqTX){
     confFREQtx.style.backgroundColor = badColor;	// Set to bad colour first, then check
@@ -85,6 +87,7 @@ function checkFrequency(){
     // TX Bad
     if (145.8 <= intFreqTX && intFreqTX <= 146) { confFREQtx.style.backgroundColor = badColor; }
     if (435 <= intFreqTX && intFreqTX <= 438)   { confFREQtx.style.backgroundColor = badColor; }
+    if (1260 <= intFreqTX && intFreqTX <= 1270) { confFREQtx.style.backgroundColor = badColor; }
   }
   if(freqPOCSAG){
     pocsagFrequency.style.backgroundColor = badColor;		// Set to bad colour first, then check
