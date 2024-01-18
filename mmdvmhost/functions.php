@@ -47,6 +47,18 @@ function getNXDNGatewayConfig() {
 	return $conf;
 }
 
+function getM17GatewayConfig() {
+	// loads /etc/m17gateway into array for further use
+	$conf = array();
+	if ($configs = @fopen('/etc/m17gateway', 'r')) {
+		while ($config = fgets($configs)) {
+			array_push($conf, trim ( $config, " \t\n\r\0\x0B"));
+		}
+		fclose($configs);
+	}
+	return $conf;
+}
+
 function getDAPNETGatewayConfig() {
 	// loads /etc/dapnetgateway into array for further use
 	$conf = array();
@@ -319,6 +331,27 @@ function getNXDNGatewayLog() {
         return array_filter($logLines);
 }
 
+function getM17GatewayLog() {
+        // Open Logfile and copy loglines into LogLines-Array()
+        $logLines = array();
+	$logLines1 = array();
+	$logLines2 = array();
+        if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log")) {
+		$logPath1 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d").".log";
+		$logLines1 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(ink|Starting|witched)" $logPath1 | cut -d" " -f2- | tail -1`);
+        }
+	$logLines1 = array_filter($logLines1);
+        if (sizeof($logLines1) == 0) {
+                if (file_exists("/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log")) {
+			$logPath2 = "/var/log/pi-star/M17Gateway-".gmdate("Y-m-d", time() - 86340).".log";
+			$logLines2 = preg_split('/\r\n|\r|\n/', `egrep -h "^M.*(ink|Starting|witched)" $logPath2 | cut -d" " -f2- | tail -1`);
+                }
+		$logLines2 = array_filter($logLines2);
+        }
+	if (sizeof($logLines1) == 0) { $logLines = $logLines2; } else { $logLines = $logLines1; }
+        return array_filter($logLines);
+}
+
 function getDAPNETGatewayLog() {
         // Open Logfile and copy loglines into LogLines-Array()
         $logLines = array();
@@ -476,6 +509,10 @@ function getDVModemTCXOFreq() {
 // M: 2000-00-00 00:00:00.000 NXDN, received RF end of transmission, 0.4 seconds, BER: 0.0%
 // M: 2000-00-00 00:00:00.000 NXDN, received network transmission from 10999 to TG 65000
 // M: 2000-00-00 00:00:00.000 NXDN, network end of transmission, 1.8 seconds, 0% packet loss
+// M: 2000-00-00 00:00:00.000 M17, received RF late entry voice transmission from M1ABC to INFO
+// M: 2000-00-00 00:00:00.000 M17, received RF end of transmission from M1ABC to INFO, 2.1 seconds, BER: 0.2%, RSSI: -60/-60/-60 dBm
+// M: 2000-00-00 00:00:00.000 M17, received network voice transmission from M1ABC to ECHO
+// M: 2000-00-00 00:00:00.000 M17, received network end of transmission from M1ABC to ECHO, 0.0 seconds
 // M: 2000-00-00 00:00:00.000 POCSAG, transmitted 1 frame(s) of data from 1 message(s)
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
@@ -629,6 +666,12 @@ function getHeardList($logLines) {
 						$nxdnber	= $ber;
 						$nxdnrssi	= $rssi;
 						break;
+					case "M17":
+						$m17duration	= $duration;
+						$m17loss	= $loss;
+						$m17ber		= $ber;
+						$m17rssi	= $rssi;
+						break;
 					case "POCSAG":
 						$pocsagduration	= "POCSAG Data";
 						break;
@@ -700,6 +743,12 @@ function getHeardList($logLines) {
                 		$ber		= $nxdnber;
 				$rssi		= $nxdnrssi;
                 		break;
+			case "M17":
+				$duration	= $m17duration;
+				$loss		= $m17loss;
+				$ber		= $m17ber;
+				$rssi		= $m17rssi;
+				break;
 			case "POCSAG":
 				$callsign	= "DAPNET";
 				$target		= "DAPNET User";
@@ -726,7 +775,7 @@ function getLastHeard($logLines) {
 	$heardList = getHeardList($logLines);
 	$counter = 0;
 	foreach ($heardList as $listElem) {
-		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || ($listElem[1] == "NXDN") || ($listElem[1] == "POCSAG") || (startsWith($listElem[1], "DMR")) ) {
+		if ( ($listElem[1] == "D-Star") || ($listElem[1] == "YSF") || ($listElem[1] == "P25") || ($listElem[1] == "NXDN") || ($listElem[1] == "M17") || ($listElem[1] == "POCSAG") || (startsWith($listElem[1], "DMR")) ) {
 			$callUuid = $listElem[2]."#".$listElem[1].$listElem[3].$listElem[5];
 			if(!(array_search($callUuid, $heardCalls) > -1)) {
 				array_push($heardCalls, $callUuid);
