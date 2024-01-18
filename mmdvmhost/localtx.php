@@ -46,7 +46,7 @@ $i = 0;
 $TXListLim = count($localTXList);
 for ($i = 0; $i < $TXListLim; $i++) {
 		$listElem = $localTXList[$i];
-		if ($listElem[5] == "RF" && ($listElem[1] == "D-Star" || startsWith($listElem[1], "DMR") || $listElem[1] == "YSF" || $listElem[1]== "P25" || $listElem[1]== "NXDN")) {
+		if ($listElem[5] == "RF" && ($listElem[1] == "D-Star" || startsWith($listElem[1], "DMR") || $listElem[1] == "YSF" || $listElem[1]== "P25" || $listElem[1]== "NXDN" || $listElem[1]== "M17")) {
 			if ($counter <= 19) { //last 20 calls
 				$utc_time = $listElem[0];
                         	$utc_tz =  new DateTimeZone('UTC');
