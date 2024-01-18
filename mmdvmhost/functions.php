@@ -1086,6 +1086,33 @@ function getActualLink($logLines, $mode) {
         }
         break;
 
+    case "M17":
+	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
+	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+	if (isProcessRunning("M17Gateway")) {
+	    foreach($logLines as $logLine) {
+	        if(preg_match_all('/Linked .* reflector (M17-.{3} [A-Z])/',$logLine,$linx) > 0){
+	            return $linx[1][0];
+	        }
+	        if (strpos($logLine,"Starting M17Gateway")) {
+	            return "Not Linked";
+	        }
+	        if (strpos($logLine,"unlinking")) {
+	            return "Not Linked";
+	        }
+	        if (strpos($logLine,"Unlinking")) {
+	            return "Not Linked";
+	        }
+	        if (strpos($logLine,"Unlinked")) {
+	            return "Not Linked";
+	        }
+	    }
+	    return "Not Linked";
+	} else {
+            return "Service Not Started";
+        }
+	break;
+
     case "P25":
 	// 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
