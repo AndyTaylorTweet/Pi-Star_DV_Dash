@@ -133,6 +133,13 @@ function showMode($mode, $mmdvmconfigs) {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
 		}
+		elseif ($mode == "M17 Network") {
+			if (isProcessRunning("M17Gateway")) {
+				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
+			} else {
+				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
+			}
+		}
 		elseif ($mode == "DAPNET Network") {
 			if (isProcessRunning("DAPNETGateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
@@ -159,7 +166,7 @@ function showMode($mode, $mmdvmconfigs) {
 			}
 		}
 		else {
-			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "POCSAG") {
+			if ($mode == "D-Star" || $mode == "DMR" || $mode == "System Fusion" || $mode == "P25" || $mode == "NXDN" || $mode == "M17" || $mode == "POCSAG") {
 				if (isProcessRunning("MMDVMHost")) {
 					echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 				} else {
