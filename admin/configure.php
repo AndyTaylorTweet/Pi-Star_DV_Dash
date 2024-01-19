@@ -3424,6 +3424,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl start p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
 	system('sudo systemctl start nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl start nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
+	system('sudo systemctl start m17gateway.service > /dev/null 2>/dev/null &');		// M17Gateway
 	system('sudo systemctl start dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl start dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2NXDN
 	system('sudo systemctl start dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
@@ -3456,6 +3457,7 @@ else:
 		$toggleYSFCheckboxCr			= 'onclick="toggleYSFCheckbox()"';
 		$toggleP25CheckboxCr			= 'onclick="toggleP25Checkbox()"';
 		$toggleNXDNCheckboxCr			= 'onclick="toggleNXDNCheckbox()"';
+		$toggleM17CheckboxCr			= 'onclick="toggleM17Checkbox()"';
 		$toggleYSF2DMRCheckboxCr		= 'onclick="toggleYSF2DMRCheckbox()"';
 		$toggleYSF2NXDNCheckboxCr		= 'onclick="toggleYSF2NXDNCheckbox()"';
 		$toggleYSF2P25CheckboxCr		= 'onclick="toggleYSF2P25Checkbox()"';
@@ -3480,6 +3482,7 @@ else:
 		$toggleYSFCheckboxCr			= "";
 		$toggleP25CheckboxCr			= "";
 		$toggleNXDNCheckboxCr			= "";
+		$toggleM17CheckboxCr			= "";
 		$toggleYSF2DMRCheckboxCr		= "";
 		$toggleYSF2NXDNCheckboxCr		= "";
 		$toggleYSF2P25CheckboxCr		= "";
