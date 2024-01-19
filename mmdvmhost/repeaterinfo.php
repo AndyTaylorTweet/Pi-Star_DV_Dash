@@ -69,19 +69,21 @@ if (file_exists('/etc/dmr2nxdn')) {
 <table>
   <tr><th colspan="2"><?php echo $lang['modes_enabled'];?></th></tr>
   <tr><?php showMode("D-Star", $mmdvmconfigs);?><?php showMode("DMR", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("System Fusion", $mmdvmconfigs);?><?php showMode("P25", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("YSF XMode", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("DMR XMode", $mmdvmconfigs);?><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("M17", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("P25", $mmdvmconfigs);?><?php showMode("System Fusion", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("DMR XMode", $mmdvmconfigs);?><?php showMode("YSF XMode", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
 <table>
   <tr><th colspan="2"><?php echo $lang['net_status'];?></th></tr>
   <tr><?php showMode("D-Star Network", $mmdvmconfigs);?><?php showMode("DMR Network", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("System Fusion Network", $mmdvmconfigs);?><?php showMode("P25 Network", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?><?php showMode("YSF2P25 Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("M17 Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("P25 Network", $mmdvmconfigs);?><?php showMode("System Fusion Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("DMR2NXDN Network", $mmdvmconfigs);?><?php showMode("DMR2YSF Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("YSF2P25 Network", $mmdvmconfigs);?><?php showMode("DAPNET Network", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
