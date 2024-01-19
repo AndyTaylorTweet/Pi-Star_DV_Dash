@@ -52,7 +52,7 @@ $lang = array (
   "ysf_mode"                    =>  "Λειτουργία YSF",
   "p25_mode"                    =>  "Λειτουργία P25",
   "nxdn_mode"                   =>  "Λειτουργία NXDN",
-  "m17_mode"                    =>  "M17 Mode"
+  "m17_mode"                    =>  "M17 Mode",
   "mmdvm_display"               =>  "Τύπος Οθόνης MMDVM",
   "mode_hangtime"               =>  "Χρόνος Επαναφοράς Σάρωσης",
   // Config Page - General Configuration

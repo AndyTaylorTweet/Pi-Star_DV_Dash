@@ -52,7 +52,7 @@ $lang = array (
   "ysf_mode"                    =>  "Modo YSF",
   "p25_mode"                    =>  "Modo P25",
   "nxdn_mode"                   =>  "Modo NXDN",
-  "m17_mode"                    =>  "M17 Mode"
+  "m17_mode"                    =>  "M17 Mode",
   "mmdvm_display"               =>  "MMDVM Tipo Display",
   "mode_hangtime"               =>  "Modo tiempo de suspension",
   // Config Page - General Configuration

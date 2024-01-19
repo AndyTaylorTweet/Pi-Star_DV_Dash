@@ -52,7 +52,7 @@ $lang = array (
   "ysf_mode"                    =>  "YSF 模式",
   "p25_mode"                    =>  "P25 模式",
   "nxdn_mode"                   =>  "NXDN 模式",
-  "m17_mode"                    =>  "M17 Mode"
+  "m17_mode"                    =>  "M17 Mode",
   "mmdvm_display"               =>  "MMDVM 显示屏类型",
   "mode_hangtime"               =>  "模式停留时间",
   // Config Page - General Configuration
