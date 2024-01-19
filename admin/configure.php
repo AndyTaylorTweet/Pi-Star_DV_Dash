@@ -4965,6 +4965,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 ?>
         </select>
 	<select name="m17StartupRoom">
+	  <?php if (isset($configm17gateway['Network']['Startup'])) { echo "<option value=\"".substr($configm17gateway['Network']['Startup'], -1)."\" selected=\"selected\">".substr($configm17gateway['Network']['Startup'], -1).</option>"; } ?>
 	  <option>A</option>
 	  <option>B</option>
 	  <option>C</option>
@@ -4993,12 +4994,10 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	  <option>Z</option>
 	</select></td>
       </tr>
-    <?php if (isset($configmmdvm['M17']['CAN']) && !empty($configmmdvm['M17']['CAN'])) { ?>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_can'];?>:<span><b>M17 CAN</b>Set your CAN code here, sane values are 1-64</span></a></td>
         <td align="left"><input type="text" name="m17can" size="13" maxlength="2" value="<?php echo $configmmdvm['M17']['CAN'];?>" /></td>
       </tr>
-    <?php } ?>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
