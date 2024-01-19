@@ -75,8 +75,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				  $nxdnHostsLine = fgets($nxdnHosts);
 				  $nxdnHost = preg_split('/\s+/', $nxdnHostsLine);
 				  if ((strpos($nxdnHost[0], '#') === FALSE ) && ($nxdnHost[0] != '')) {
-					  if ($testNXDNHost == $nxdnHost[0]) { echo "      <option value=\"$nxdnHost[0]\" selected=\"selected\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
-					  else { echo "      <option value=\"$nxdnHost[0]\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
+					  if ($testNXDNHost == $nxdnHost[0]) { echo "		          <option value=\"$nxdnHost[0]\" selected=\"selected\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
+					  else { echo "		          <option value=\"$nxdnHost[0]\">$nxdnHost[0] - $nxdnHost[1]</option>\n"; }
 				  }
 			  }
 			  fclose($nxdnHosts);
@@ -86,13 +86,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				    $nxdnHostsLine2 = fgets($nxdnHosts2);
 				    $nxdnHost2 = preg_split('/\s+/', $nxdnHostsLine2);
 				    if ((strpos($nxdnHost2[0], '#') === FALSE ) && ($nxdnHost2[0] != '')) {
-					    if ($testNXDNHost == $nxdnHost2[0]) { echo "      <option value=\"$nxdnHost2[0]\" selected=\"selected\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
-					    else { echo "      <option value=\"$nxdnHost2[0]\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
+					    if ($testNXDNHost == $nxdnHost2[0]) { echo "		          <option value=\"$nxdnHost2[0]\" selected=\"selected\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
+					    else { echo "		          <option value=\"$nxdnHost2[0]\">$nxdnHost2[0] - $nxdnHost2[1]</option>\n"; }
 				    }
 		      }
 		      fclose($nxdnHosts2);
 		    }
 		    ?>
+		    </select>
 		  </td>
 		  <td>
 		    <input type="radio" name="Link" value="LINK" checked="checked" />Link
