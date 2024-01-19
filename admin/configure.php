@@ -503,7 +503,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Latitude'] = $newConfLatitude; }
 	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
 	  $confignxdngateway['Info']['Latitude'] = $newConfLatitude;
-	  if (isset($configm17gateway['Info']['Latitude']) { $configm17gateway['Info']['Latitude'] = $newConfLatitude; }
+	  if (isset($configm17gateway['Info']['Latitude'])) { $configm17gateway['Info']['Latitude'] = $newConfLatitude; }
 	  system($rollConfLat0);
 	  system($rollConfLat1);
 	  }
