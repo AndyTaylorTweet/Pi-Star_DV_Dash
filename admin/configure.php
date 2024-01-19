@@ -215,7 +215,7 @@ $MYCALL=strtoupper($callsign);
 		obj.style.height = numpix + 'px';
 	}
     </script>
-    <script type="text/javascript" src="/functions.js?version=1.711"></script>
+    <script type="text/javascript" src="/functions.js?version=1.715"></script>
 </head>
 <body onload="checkFrequency(); return false;">
 <?php
