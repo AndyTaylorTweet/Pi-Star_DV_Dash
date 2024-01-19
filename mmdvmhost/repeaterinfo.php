@@ -368,6 +368,19 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	echo "</table>\n";
 }
 
+$testMMDVModeM17 = getConfigItem("M17 Network", "Enable", $mmdvmconfigs);
+if ( $testMMDVModeM17 == 1 ) { //Hide the M17 information when P25 Network mode not enabled.
+	echo "<br />\n";
+	echo "<table>\n";
+	if (getConfigItem("M17", "CAN", $mmdvmconfigs)) {
+		echo "<tr><th colspan=\"2\">".$lang['m17_radio']."</th></tr>\n";
+		echo "<tr><th style=\"width:70px\">NAC</th><td>".getConfigItem("M17", "CAN", $mmdvmconfigs)."</td></tr>\n";
+	}
+	echo "<tr><th colspan=\"2\">".$lang['m17_net']."</th></tr>\n";
+	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesM17Gateway, "M17")."</td></tr>\n";
+	echo "</table>\n";
+}
+
 $testMMDVModePOCSAG = getConfigItem("POCSAG Network", "Enable", $mmdvmconfigs);
 if ( $testMMDVModePOCSAG == 1 ) { //Hide the POCSAG information when POCSAG Network mode not enabled.
 	echo "<br />\n";
