@@ -101,6 +101,12 @@ if (file_exists('/etc/nxdngateway')) {
 	if (fopen($nxdngatewayConfigFile,'r')) { $confignxdngateway = parse_ini_file($nxdngatewayConfigFile, true); }
 }
 
+// Load the m17gateway config file
+if (file_exists('/etc/m17gateway')) {
+	$m17gatewayConfigFile = '/etc/m17gateway';
+	if (fopen($m17gatewayConfigFile,'r')) { $configm17gateway = parse_ini_file($m17gatewayConfigFile, true); }
+}
+
 // Load the nxdn2dmr config file
 if (file_exists('/etc/nxdn2dmr')) {
 	$nxdn2dmrConfigFile = '/etc/nxdn2dmr';
@@ -2991,6 +2997,44 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 			exec('sudo mv /tmp/sJSySkheSgrelJX.tmp /etc/p25gateway');		// Move the file back
 			exec('sudo chmod 644 /etc/p25gateway');					// Set the correct runtime permissions
 			exec('sudo chown root:root /etc/p25gateway');				// Set the owner
+		}
+	}
+
+	// M17Gateway config file wrangling
+	$m17gwContent = "";
+        foreach($configm17gateway as $m17gwSection=>$m17gwValues) {
+                // UnBreak special cases
+                $m17gwSection = str_replace("_", " ", $m17gwSection);
+                $m17gwContent .= "[".$m17gwSection."]\n";
+                // append the values
+                foreach($m17gwValues as $m17gwKey=>$m17gwValue) {
+                        $m17gwContent .= $m17gwKey."=".$m17gwValue."\n";
+                        }
+                        $m17gwContent .= "\n";
+                }
+
+        if (!$handleM17GWconfig = fopen('/tmp/spNcSdRUEmySTo9.tmp', 'w')) {
+                return false;
+        }
+
+	if (!is_writable('/tmp/spNcSdRUEmySTo9.tmp')) {
+          echo "<br />\n";
+          echo "<table>\n";
+          echo "<tr><th>ERROR</th></tr>\n";
+          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+          echo "</table>\n";
+          unset($_POST);
+          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+          die();
+	}
+	else {
+	        $success = fwrite($handleM17GWconfig, $m17gwContent);
+	        fclose($handleM17GWconfig);
+		if ( (intval(exec('cat /tmp/spNcSdRUEmySTo9.tmp | wc -l')) > 30 ) && (file_exists('/etc/m17gateway')) ) {
+			exec('sudo mv /tmp/spNcSdRUEmySTo9.tmp /etc/m17gateway');		// Move the file back
+			exec('sudo chmod 644 /etc/m17gateway');					// Set the correct runtime permissions
+			exec('sudo chown root:root /etc/m17gateway');				// Set the owner
 		}
 	}
 
