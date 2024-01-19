@@ -1013,6 +1013,26 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
 	}
 
+	// Set the M17 Startup Host
+	if (empty($_POST['m17StartupHost']) != TRUE || empty($_POST['m17StartupRoom']) != TRUE) {
+	  $newM17StartupHost = strtoupper(escapeshellcmd($_POST['m17StartupHost']))."_".strtoupper(escapeshellcmd($_POST['m17StartupRoom']));
+	  if (file_exists('/etc/m17gateway')) {
+		if (strtoupper(escapeshellcmd($_POST['m17StartupHost'])) === "NONE") {
+			if (isset($configm17gateway['Network']['Startup'])) { unset($configm17gateway['Network']['Startup']); }
+		} else {
+			$configm17gateway['Network']['Startup'] = $newM17StartupHost;
+	  	}
+	  }
+	}
+
+	// Set M17 CAN
+	if (empty($_POST['m17can']) != TRUE ) {
+	  $m17canNew = strtolower(escapeshellcmd($_POST['m17can']));
+	  if (preg_match('/[a-f0-9]{3}/', $m17canNew)) {
+	    $configmmdvm['M17']['CAN'] = $m17canNew;
+	  }
+	}
+
 	// Set the YSF Startup Host
 	if (empty($_POST['ysfStartupHost']) != TRUE ) {
 	  $newYSFStartupHostArr = explode(',', escapeshellcmd($_POST['ysfStartupHost']));
@@ -4915,14 +4935,6 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
-
-
-
-
-
-
-
-
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['M17 Network']['Enable'] == 1) ) { ?>
 	<h2><?php echo $lang['m17_config'];?></h2>
     <table>
@@ -4995,22 +5007,13 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	</select></td>
       </tr>
       <tr>
-        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_can'];?>:<span><b>M17 CAN</b>Set your CAN code here, sane values are 1-64</span></a></td>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_can'];?>:<span><b>M17 CAN</b>Set your CAN code here, sane values are 0-64</span></a></td>
         <td align="left"><input type="text" name="m17can" size="13" maxlength="2" value="<?php echo $configmmdvm['M17']['CAN'];?>" /></td>
       </tr>
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
-
-
-
-
-
-
-
-
-		
 <?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?>
 	<h2><?php echo $lang['pocsag_config'];?></h2>
     <table>
