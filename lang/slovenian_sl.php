@@ -52,6 +52,7 @@ $lang = array (
   "ysf_mode"                    =>  "Način YSF",
   "p25_mode"                    =>  "Način P25",
   "nxdn_mode"                   =>  "Način NXDN",
+  "m17_mode"                    =>  "M17 Mode"
   "mmdvm_display"               =>  "Tip MMDVM zaslona",
   "mode_hangtime"               =>  "Obstanek načina",
   // Config Page - General Configuration

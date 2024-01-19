@@ -52,6 +52,7 @@ $lang = array (
   "ysf_mode"                    =>  "Tryb YSF",
   "p25_mode"                    =>  "Tryb P25",
   "nxdn_mode"                   =>  "Tryb NXDN",
+  "m17_mode"                    =>  "M17 Mode"
   "mmdvm_display"               =>  "Typ wyświetlacza MMDVM",
   "mode_hangtime"               =>  "Tryb czasu oczekiwania",
   // Config Page - General Configuration
