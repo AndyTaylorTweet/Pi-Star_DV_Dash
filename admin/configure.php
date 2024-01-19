@@ -692,7 +692,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQtx;
 	  $confignxdngateway['General']['Suffix'] = "RPT";
 	  if (isset($configm17gateway['Info']['RXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQrx; }
-	  if (isset($configm17gateway['Info']['TXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQtx; }
+	  if (isset($configm17gateway['Info']['TXFrequency'])) { $configm17gateway['Info']['TXFrequency'] = $newFREQtx; }
 	  if (isset($configm17gateway['General']['Suffix'])) { $configm17gateway['General']['Suffix'] = "R"; }
 
 	  system($rollFREQirc);
@@ -803,7 +803,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQ;
 	  $confignxdngateway['General']['Suffix'] = "ND";
 	  if (isset($configm17gateway['Info']['RXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQ; }
-	  if (isset($configm17gateway['Info']['TXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQ; }
+	  if (isset($configm17gateway['Info']['TXFrequency'])) { $configm17gateway['Info']['TXFrequency'] = $newFREQ; }
 	  if (isset($configm17gateway['General']['Suffix'])) { $configm17gateway['General']['Suffix'] = "H"; }
 
 	  system($rollFREQirc);
