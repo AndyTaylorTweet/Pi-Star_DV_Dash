@@ -4993,7 +4993,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	  <option>Z</option>
 	</select></td>
       </tr>
-    <?php if ($configmmdvm['M17']['CAN']) { ?>
+    <?php if (isset($configmmdvm['M17']['CAN']) && !empty($configmmdvm['M17']['CAN'])) { ?>
       <tr>
         <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_can'];?>:<span><b>M17 CAN</b>Set your CAN code here, sane values are 1-64</span></a></td>
         <td align="left"><input type="text" name="m17can" size="13" maxlength="2" value="<?php echo $configmmdvm['M17']['CAN'];?>" /></td>
