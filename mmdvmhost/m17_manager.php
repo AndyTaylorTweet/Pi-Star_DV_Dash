@@ -91,6 +91,35 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		      fclose($m17Hosts2);
 		    }
 		    ?>
+		    </select>
+		    <select name="m17LinkRoom">
+		      <option>A</option>
+		      <option>B</option>
+		      <option>C</option>
+		      <option>D</option>
+		      <option>E</option>
+		      <option>F</option>
+		      <option>G</option>
+		      <option>H</option>
+		      <option>I</option>
+		      <option>J</option>
+		      <option>K</option>
+		      <option>L</option>
+		      <option>M</option>
+		      <option>N</option>
+		      <option>O</option>
+		      <option>P</option>
+		      <option>Q</option>
+		      <option>R</option>
+		      <option>S</option>
+		      <option>T</option>
+		      <option>U</option>
+		      <option>V</option>
+		      <option>W</option>
+		      <option>X</option>
+		      <option>Y</option>
+		      <option>Z</option>
+		    </select>
 		  </td>
 		  <td>
 		    <input type="radio" name="Link" value="LINK" checked="checked" />Link
