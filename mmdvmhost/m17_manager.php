@@ -21,12 +21,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	      if (preg_match('/[^A-Za-z0-9]/',$_POST['m17LinkHost'])) { unset ($_POST['m17LinkHost']);}
 	      if ($_POST["Link"] == "LINK") {
 		if ($_POST['m17LinkHost'] == "none") {
-		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." unlink";
+		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector unlink";
 		} else {
-		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['m17LinkHost'];
+		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector".$_POST['m17LinkHost'];
 		}
 	      } elseif ($_POST["Link"] == "UNLINK") {
-		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." unlink";
+		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector unlink";
 	      } else {
 		echo "<b>M17 Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
@@ -80,8 +80,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				  }
 			  }
 			  fclose($m17Hosts);
-		    if (file_exists('/usr/local/etc/M17HostsLocal.txt')) {
-		      $m17Hosts2 = fopen("/usr/local/etc/M17HostsLocal.txt", "r");
+		    if (file_exists('/root/M17Hosts.txt')) {
+		      $m17Hosts2 = fopen("/root/M17Hosts.txt", "r");
 		      while (!feof($m17Hosts2)) {
 				    $m17HostsLine2 = fgets($m17Hosts2);
 				    $m17Host2 = preg_split('/\s+/', $m17HostsLine2);
