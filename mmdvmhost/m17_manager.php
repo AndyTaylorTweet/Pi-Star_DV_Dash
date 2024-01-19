@@ -67,7 +67,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    <select name="m17LinkHost">
 		    <?php
 		    $m17Hosts = fopen("/usr/local/etc/M17Hosts.txt", "r");
-		    if (isset($configm17gateway['Network']['Startup'])) { $testM17Host = $configm17gateway['Network']['Startup']; } else { $testM17Host = ""; }
+		    if (isset($configm17gateway['Network']['Startup'])) { $testM17Host = explode("_", $configm17gateway['Network']['Startup'])[0]; } else { $testM17Host = ""; }
 		    if ($testM17Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
 		    else { echo "      <option value=\".$testM17Host.\">None</option>\n"; }
 			  while (!feof($m17Hosts)) {
