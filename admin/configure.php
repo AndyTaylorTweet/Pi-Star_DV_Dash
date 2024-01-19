@@ -1028,7 +1028,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set M17 CAN
 	if (empty($_POST['m17can']) != TRUE ) {
 	  $m17canNew = strtolower(escapeshellcmd($_POST['m17can']));
-	  if (preg_match('/[a-f0-9]{3}/', $m17canNew)) {
+	  if (preg_match('/[^0-9]/', $m17canNew)) {
 	    $configmmdvm['M17']['CAN'] = $m17canNew;
 	  }
 	}
