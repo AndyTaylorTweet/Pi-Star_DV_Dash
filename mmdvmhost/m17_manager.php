@@ -19,11 +19,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	    if (!empty($_POST) && isset($_POST["m17MgrSubmit"])) {
 	      // Handle Posted Data
 	      if (preg_match('/[^A-Za-z0-9]/',$_POST['m17LinkHost'])) { unset ($_POST['m17LinkHost']);}
+	      if (preg_match('/[^A-Z]/',$_POST['m17LinkRoom'])) { unset ($_POST['m17LinkRoom']);}
 	      if ($_POST["Link"] == "LINK") {
 		if ($_POST['m17LinkHost'] == "none") {
 		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector unlink";
 		} else {
-		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector ".$_POST['m17LinkHost'];
+		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector ".$_POST['m17LinkHost']." ".$_POST['m17LinkRoom'];
 		}
 	      } elseif ($_POST["Link"] == "UNLINK") {
 		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector unlink";
