@@ -68,6 +68,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
           $output .= shell_exec("sudo cp /etc/dstarrepeater $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/dapnetgateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/p25gateway $backupDir 2>&1");
+	  $output .= shell_exec("sudo cp /etc/m17gateway $backupDir 2>&1");
           $output .= shell_exec("sudo cp /etc/ysfgateway $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/ysf2dmr $backupDir 2>&1");
 	  $output .= shell_exec("sudo cp /etc/dgidgateway $backupDir 2>&1");
@@ -168,6 +169,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl stop ysfgateway.service 2>&1');	//YSFGateway
 			shell_exec('sudo systemctl stop ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl stop p25gateway.service 2>&1');	//P25Gateway
+			shell_exec('sudo systemctl stop nxdngateway.service 2>&1');	//NXDNGateway
+			shell_exec('sudo systemctl stop m17gateway.service 2>&1');	//M17Gateway
 			shell_exec('sudo systemctl stop dapnetgateway.service 2>&1');	//DAPNETGateway
 			shell_exec('sudo systemctl stop mobilegps.service 2>&1');	//MobileGPS
 			
@@ -209,6 +212,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
 			shell_exec('sudo systemctl start ysfgateway.service 2>&1');		//YSFGateway
 			shell_exec('sudo systemctl start ysf2dmr.service 2>&1');		//YSF2DMR
 			shell_exec('sudo systemctl start p25gateway.service 2>&1');		//P25Gateway
+			shell_exec('sudo systemctl start nxdngateway.service 2>&1');		//NXDNGateway
+			shell_exec('sudo systemctl start m17gateway.service 2>&1');		//M17Gateway
 			shell_exec('sudo systemctl start dapnetgateway.service 2>&1');		//DAPNETGateway
 			shell_exec('sudo systemctl start mobilegps.service 2>&1');		//MobileGPS
 			shell_exec('sudo systemctl start cron.service 2>&1');			//Cron
