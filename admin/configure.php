@@ -4965,7 +4965,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 ?>
         </select>
 	<select name="m17StartupRoom">
-	  <?php if (isset($configm17gateway['Network']['Startup'])) { echo "<option value=\"".substr($configm17gateway['Network']['Startup'], -1)."\" selected=\"selected\">".substr($configm17gateway['Network']['Startup'], -1).</option>"; } ?>
+	  <?php if (isset($configm17gateway['Network']['Startup'])) { echo "<option value=\"".substr($configm17gateway['Network']['Startup'], -1)."\" selected=\"selected\">".substr($configm17gateway['Network']['Startup'], -1)."</option>"; } ?>
 	  <option>A</option>
 	  <option>B</option>
 	  <option>C</option>
