@@ -2810,6 +2810,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['POCSAG Network']['Debug'])) { $configmmdvm['POCSAG Network']['Debug'] = "0"; }
 	if (isset($configmmdvm['POCSAG Network']['ModeHang'])) { $configmmdvm['POCSAG Network']['ModeHang'] = "5"; }
 
+	// Fix Demon mode on M17Gateway
+	if (isset($configm17gateway['General']['Daemon'])) { $configm17gateway['General']['Daemon'] = "1"; }
+
 	// MobileGPS Setup
 	if (file_exists('/etc/mobilegps')) {
 		if (empty($_POST['mobilegps_enable']) != TRUE ) {
