@@ -21,12 +21,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	      if (preg_match('/[^A-Za-z0-9]/',$_POST['nxdnLinkHost'])) { unset ($_POST['nxdnLinkHost']);}
 	      if ($_POST["Link"] == "LINK") {
 		if ($_POST['nxdnLinkHost'] == "none") {
-		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." unlink";
+		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup unlink";
 		} else {
 		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup".$_POST['nxdnLinkHost'];
 		}
 	      } elseif ($_POST["Link"] == "UNLINK") {
-		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." unlink";
+		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup unlink";
 	      } else {
 		echo "<b>NXDN Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
