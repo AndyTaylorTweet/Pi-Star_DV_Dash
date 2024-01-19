@@ -361,6 +361,9 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
 		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
 		echo "<tr><th style=\"width:70px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
+	} else {
+		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
+		echo "<tr><th style=\"width:70px\">RAN</th><td>0</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
 	if (file_exists('/etc/nxdngateway')) {
