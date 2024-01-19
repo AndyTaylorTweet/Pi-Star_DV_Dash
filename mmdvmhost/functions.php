@@ -152,7 +152,7 @@ function showMode($mode, $mmdvmconfigs) {
 				echo "<td style=\"background:#b00; color:#500; width:50%;\">";
 			}
 		}
-		elseif ($mode == "DAPNET Network") {
+		elseif ($mode == "POCSAG Network") {
 			if (isProcessRunning("DAPNETGateway")) {
 				echo "<td style=\"background:#0b0; color:#030; width:50%;\">";
 			} else {
