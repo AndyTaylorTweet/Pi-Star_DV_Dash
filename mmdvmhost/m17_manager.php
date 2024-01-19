@@ -94,6 +94,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    ?>
 		    </select>
 		    <select name="m17LinkRoom">
+		      <?php if (isset($configm17gateway['Network']['Startup'])) { echo "<option value=\"".substr($configm17gateway['Network']['Startup'], -1)."\" selected=\"selected\">".substr($configm17gateway['Network']['Startup'], -1)."</option>"; } ?>
 		      <option>A</option>
 		      <option>B</option>
 		      <option>C</option>
