@@ -368,6 +368,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	system('sudo systemctl stop p25parrot.service > /dev/null 2>/dev/null &');		// P25Parrot
 	system('sudo systemctl stop nxdngateway.service > /dev/null 2>/dev/null &');		// NXDNGateway
 	system('sudo systemctl stop nxdnparrot.service > /dev/null 2>/dev/null &');		// NXDNParrot
+	system('sudo systemctl stop m17gateway.service > /dev/null 2>/dev/null &');		// M17Gateway
 	system('sudo systemctl stop dmr2ysf.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmr2nxdn.service > /dev/null 2>/dev/null &');		// DMR2YSF
 	system('sudo systemctl stop dmrgateway.service > /dev/null 2>/dev/null &');		// DMRGateway
@@ -502,6 +503,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Latitude'] = $newConfLatitude; }
 	  $configdmrgateway['Info']['Latitude'] = $newConfLatitude;
 	  $confignxdngateway['Info']['Latitude'] = $newConfLatitude;
+	  if (isset($configm17gateway['Info']['Latitude']) { $configm17gateway['Info']['Latitude'] = $newConfLatitude; }
 	  system($rollConfLat0);
 	  system($rollConfLat1);
 	  }
@@ -519,6 +521,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Longitude'] = $newConfLongitude; }
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
 	  $confignxdngateway['Info']['Longitude'] = $newConfLongitude;
+	  if (isset($configm17gateway['Info']['Longitude']) { $configm17gateway['Info']['Longitude'] = $newConfLongitude; }
 	  system($rollConfLon0);
 	  system($rollConfLon1);
 	  }
@@ -534,6 +537,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2nxdn['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configysf2p25['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $confignxdngateway['Info']['Name'] = '"'.$newConfDesc1.'"';
+	  if (isset($configm17gateway['Info']['Name']) { $configm17gateway['Info']['Name'] = '"'.$newConfDesc1.'"'; }
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
@@ -547,6 +551,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
           $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
+	  if (isset($configm17gateway['Info']['Description']) { $configm17gateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
 	  system($rollDesc2);
 	  system($rollDesc22);
@@ -686,6 +691,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQrx;
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQtx;
 	  $confignxdngateway['General']['Suffix'] = "RPT";
+	  if (isset($configm17gateway['Info']['RXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQrx; }
+	  if (isset($configm17gateway['Info']['TXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQtx; }
+	  if (isset($configm17gateway['General']['Suffix'])) { $configm17gateway['General']['Suffix'] = "R"; }
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -794,6 +802,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['Info']['RXFrequency'] = $newFREQ;
 	  $confignxdngateway['Info']['TXFrequency'] = $newFREQ;
 	  $confignxdngateway['General']['Suffix'] = "ND";
+	  if (isset($configm17gateway['Info']['RXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQ; }
+	  if (isset($configm17gateway['Info']['TXFrequency'])) { $configm17gateway['Info']['RXFrequency'] = $newFREQ; }
+	  if (isset($configm17gateway['General']['Suffix'])) { $configm17gateway['General']['Suffix'] = "H"; }
 
 	  system($rollFREQirc);
 	  system($rollFREQdvap);
@@ -901,6 +912,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $confignxdngateway['aprs.fi']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $confignxdngateway['aprs.fi']['Password'] = aprspass($newCallsignUpper);
 	  $confignxdngateway['General']['Callsign'] = $newCallsignUpper;
+	  if (isset($configm17gateway['General']['Callsign'])) { $configm17gateway['General']['Callsign'] = $newCallsignUpper; }
 	  $configysfgateway['Info']['Name'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2dmr['Info']['Description'] = $newCallsignUpper."_Pi-Star";
 	  $configysf2nxdn['Info']['Description'] = $newCallsignUpper."_Pi-Star";
