@@ -4915,6 +4915,103 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
 
+
+
+
+
+
+
+
+
+<?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['M17 Network']['Enable'] == 1) ) { ?>
+	<h2><?php echo $lang['m17_config'];?></h2>
+    <table>
+      <tr>
+        <th width="200"><a class="tooltip" href="#"><?php echo $lang['setting'];?><span><b>Setting</b></span></a></th>
+        <th colspan="2"><a class="tooltip" href="#"><?php echo $lang['value'];?><span><b>Value</b>The current value from the<br />configuration files</span></a></th>
+      </tr>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_startup_host'];?>:<span><b>M17 Host</b>Set your prefered M17 Host here</span></a></td>
+        <td style="text-align: left;"><select name="m17StartupHost">
+<?php
+	if (file_exists('/etc/m17gateway')) {
+		$m17Hosts = fopen("/usr/local/etc/M17Hosts.txt", "r");
+		if (isset($configm17gateway['Network']['Startup'])) { $testM17Host = $configm17gateway['Network']['Startup']; }
+		else { $testM17Host = ""; }
+		if ($testM17Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
+	        else { echo "      <option value=\"none\">None</option>\n"; }
+	        while (!feof($m17Hosts)) {
+	                $m17HostsLine = fgets($m17Hosts);
+	                $m17Host = preg_split('/\s+/', $m17HostsLine);
+	                if ((strpos($m17Host[0], '#') === FALSE ) && ($m17Host[0] != '')) {
+	                        if ($testM17Host == $m17Host[0]) { echo "      <option value=\"$m17Host[0]\" selected=\"selected\">$m17Host[0]</option>\n"; }
+	                        else { echo "      <option value=\"$m17Host[0]\">$m17Host[0]</option>\n"; }
+	                }
+	        }
+	        fclose($m17Hosts);
+		if (file_exists('/root/M17Hosts.txt')) {
+			$m17Hosts2 = fopen("/root/M17Hosts.txt", "r");
+			while (!feof($m17Hosts2)) {
+                		$m17HostsLine2 = fgets($m17Hosts2);
+                		$m17Host2 = preg_split('/\s+/', $m17HostsLine2);
+                		if ((strpos($m17Host2[0], '#') === FALSE ) && ($m17Host2[0] != '')) {
+                	        	if ($testM17Host == $m17Host2[0]) { echo "      <option value=\"$m17Host2[0]\" selected=\"selected\">$m17Host2[0]</option>\n"; }
+                	        	else { echo "      <option value=\"$m17Host2[0]\">$m17Host2[0]</option>\n"; }
+                		}
+			}
+		fclose($m17Hosts2);
+		}
+	}
+?>
+        </select>
+	<select name="m17StartupRoom">
+	  <option>A</option>
+	  <option>B</option>
+	  <option>C</option>
+	  <option>D</option>
+	  <option>E</option>
+	  <option>F</option>
+	  <option>G</option>
+	  <option>H</option>
+	  <option>I</option>
+	  <option>J</option>
+	  <option>K</option>
+	  <option>L</option>
+	  <option>M</option>
+	  <option>N</option>
+	  <option>O</option>
+	  <option>P</option>
+	  <option>Q</option>
+	  <option>R</option>
+	  <option>S</option>
+	  <option>T</option>
+	  <option>U</option>
+	  <option>V</option>
+	  <option>W</option>
+	  <option>X</option>
+	  <option>Y</option>
+	  <option>Z</option>
+	</select></td>
+      </tr>
+    <?php if ($configmmdvm['M17']['CAN']) { ?>
+      <tr>
+        <td align="left"><a class="tooltip2" href="#"><?php echo $lang['m17_can'];?>:<span><b>M17 CAN</b>Set your CAN code here, sane values are 1-64</span></a></td>
+        <td align="left"><input type="text" name="m17can" size="13" maxlength="2" value="<?php echo $configmmdvm['M17']['CAN'];?>" /></td>
+      </tr>
+    <?php } ?>
+    </table>
+	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
+<?php } ?>
+
+
+
+
+
+
+
+
+
+		
 <?php if ( $configmmdvm['POCSAG']['Enable'] == 1 ) { ?>
 	<h2><?php echo $lang['pocsag_config'];?></h2>
     <table>
