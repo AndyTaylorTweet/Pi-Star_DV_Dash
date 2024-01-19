@@ -521,7 +521,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Longitude'] = $newConfLongitude; }
 	  $configdmrgateway['Info']['Longitude'] = $newConfLongitude;
 	  $confignxdngateway['Info']['Longitude'] = $newConfLongitude;
-	  if (isset($configm17gateway['Info']['Longitude']) { $configm17gateway['Info']['Longitude'] = $newConfLongitude; }
+	  if (isset($configm17gateway['Info']['Longitude'])) { $configm17gateway['Info']['Longitude'] = $newConfLongitude; }
 	  system($rollConfLon0);
 	  system($rollConfLon1);
 	  }
@@ -537,7 +537,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configysf2nxdn['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $configysf2p25['Info']['Location'] = '"'.$newConfDesc1.'"';
 	  $confignxdngateway['Info']['Name'] = '"'.$newConfDesc1.'"';
-	  if (isset($configm17gateway['Info']['Name']) { $configm17gateway['Info']['Name'] = '"'.$newConfDesc1.'"'; }
+	  if (isset($configm17gateway['Info']['Name'])) { $configm17gateway['Info']['Name'] = '"'.$newConfDesc1.'"'; }
 	  system($rollDesc1);
 	  system($rollDesc11);
 	  }
@@ -551,7 +551,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $configdmrgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
           $configysfgateway['Info']['Description'] = '"'.$newConfDesc2.'"';
 	  $confignxdngateway['Info']['Description'] = '"'.$newConfDesc2.'"';
-	  if (isset($configm17gateway['Info']['Description']) { $configm17gateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
+	  if (isset($configm17gateway['Info']['Description'])) { $configm17gateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
 	  if (isset($configdgidgateway)) { $configdgidgateway['Info']['Description'] = '"'.$newConfDesc2.'"'; }
 	  system($rollDesc2);
 	  system($rollDesc22);
