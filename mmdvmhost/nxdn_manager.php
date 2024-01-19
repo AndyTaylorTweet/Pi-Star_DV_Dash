@@ -66,7 +66,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    <select name="nxdnLinkHost">
 		    <?php
 		    $nxdnHosts = fopen("/usr/local/etc/NXDNHosts.txt", "r");
-		    if (isset($confignxdngateway['Network']['Startup'])) { $testNXDNHost = $confignxdngateway['Network']['Startup']; } else { $testNXDNHost = ""; }
+		    if (isset($confignxdngateway['Network']['Static'])) { $testNXDNHost = $confignxdngateway['Network']['Static']; } else { $testNXDNHost = ""; }
 		    if ($testNXDNHost == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
 			  else { echo "      <option value=\"none\">None</option>\n"; }
 		    if ($testNXDNHost == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
