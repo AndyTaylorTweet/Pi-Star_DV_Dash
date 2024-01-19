@@ -69,13 +69,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		    $m17Hosts = fopen("/usr/local/etc/M17Hosts.txt", "r");
 		    if (isset($configm17gateway['Network']['Startup'])) { $testM17Host = $configm17gateway['Network']['Startup']; } else { $testM17Host = ""; }
 		    if ($testM17Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
-			  else { echo "      <option value=\"none\">None</option>\n"; }
+		    else { echo "      <option value=\".$testM17Host.\">None</option>\n"; }
 			  while (!feof($m17Hosts)) {
 				  $m17HostsLine = fgets($m17Hosts);
 				  $m17Host = preg_split('/\s+/', $m17HostsLine);
 				  if ((strpos($m17Host[0], '#') === FALSE ) && ($m17Host[0] != '')) {
-					  if ($testM17Host == $m17Host[0]) { echo "		          <option value=\"$m17Host[0]\" selected=\"selected\">$m17Host[0] - $m17Host[1]</option>\n"; }
-					  else { echo "		          <option value=\"$m17Host[0]\">$m17Host[0] - $m17Host[1]</option>\n"; }
+					  if ($testM17Host == $m17Host[0]) { echo "		          <option value=\"$m17Host[0]\" selected=\"selected\">$m17Host[0]</option>\n"; }
+					  else { echo "		          <option value=\"$m17Host[0]\">$m17Host[0]</option>\n"; }
 				  }
 			  }
 			  fclose($m17Hosts);
@@ -85,8 +85,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 				    $m17HostsLine2 = fgets($m17Hosts2);
 				    $m17Host2 = preg_split('/\s+/', $m17HostsLine2);
 				    if ((strpos($m17Host2[0], '#') === FALSE ) && ($m17Host2[0] != '')) {
-					    if ($testM17Host == $m17Host2[0]) { echo "		          <option value=\"$m17Host2[0]\" selected=\"selected\">$m17Host2[0] - $m17Host2[1]</option>\n"; }
-					    else { echo "		          <option value=\"$m17Host2[0]\">$m17Host2[0] - $m17Host2[1]</option>\n"; }
+					    if ($testM17Host == $m17Host2[0]) { echo "		          <option value=\"$m17Host2[0]\" selected=\"selected\">$m17Host2[0]</option>\n"; }
+					    else { echo "		          <option value=\"$m17Host2[0]\">$m17Host2[0]</option>\n"; }
 				    }
 		      }
 		      fclose($m17Hosts2);
