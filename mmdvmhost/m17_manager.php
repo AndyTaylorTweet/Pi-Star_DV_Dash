@@ -18,8 +18,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	    $remotePort = $configm17gateway['Remote Commands']['Port'];
 	    if (!empty($_POST) && isset($_POST["m17MgrSubmit"])) {
 	      // Handle Posted Data
-	      if (preg_match('/[^A-Za-z0-9]/',$_POST['m17LinkHost'])) { unset ($_POST['m17LinkHost']);}
-	      if (preg_match('/[^A-Z]/',$_POST['m17LinkRoom'])) { unset ($_POST['m17LinkRoom']);}
+	      if (preg_match('/[^A-Za-z0-9-]/',$_POST['m17LinkHost'])) { unset ($_POST['m17LinkHost']); unset ($_POST['m17LinkRoom']); }
+	      if (preg_match('/[^A-Z]/',$_POST['m17LinkRoom'])) { unset ($_POST['m17LinkHost']); unset ($_POST['m17LinkRoom']); }
 	      if ($_POST["Link"] == "LINK") {
 		if ($_POST['m17LinkHost'] == "none") {
 		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Reflector unlink";
