@@ -173,6 +173,10 @@ if (is_executable('/usr/local/bin/YSFGateway')) {
     $YSFGateway_Ver = exec('/usr/local/bin/YSFGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">YSFGateway</td><td align=\"left\">".$YSFGateway_Ver."</td></tr>\n";
 }
+if (is_executable('/usr/local/bin/DGIdGateway')) {
+    $DGIdGateway_Ver = exec('/usr/local/bin/DGIdGateway -v | cut -d\' \' -f 3-');
+    echo "  <tr><td align=\"left\">DGIdGateway</td><td align=\"left\">".$DGIdGateway_Ver."</td></tr>\n";
+}
 if (is_executable('/usr/local/bin/YSF2DMR')) {
     $YSF2DMR_Ver = exec('/usr/local/bin/YSF2DMR -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">YSF2DMR</td><td align=\"left\">".$YSF2DMR_Ver."</td></tr>\n";
