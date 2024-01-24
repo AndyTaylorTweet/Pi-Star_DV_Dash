@@ -193,6 +193,10 @@ if (is_executable('/usr/local/bin/NXDNGateway')) {
     $NXDNGateway_Ver = exec('/usr/local/bin/NXDNGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">NXDNGateway</td><td align=\"left\">".$NXDNGateway_Ver."</td></tr>\n";
 }
+if (is_executable('/usr/local/bin/M17Gateway')) {
+    $P25Gateway_Ver = exec('/usr/local/bin/M17Gateway -v | cut -d\' \' -f 3-');
+    echo "  <tr><td align=\"left\">M17Gateway</td><td align=\"left\">".$M17Gateway_Ver."</td></tr>\n";
+}
 if (is_executable('/usr/local/bin/DAPNETGateway')) {
     $DAPNETGateway_Ver = exec('/usr/local/bin/DAPNETGateway -v | cut -d\' \' -f 3-');
     echo "  <tr><td align=\"left\">DAPNETGateway</td><td align=\"left\">".$DAPNETGateway_Ver."</td></tr>\n";
