@@ -1,6 +1,6 @@
 <?php
 // Load the language support
-require_once('../..//config/language.php');
+require_once('../../config/language.php');
 //Load the Pi-Star Release file
 $pistarReleaseConfig = '/etc/pistar-release';
 $configPistarRelease = array();
