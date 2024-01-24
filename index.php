@@ -14,7 +14,8 @@ if ($configfile = fopen($gatewayConfigPath,'r')) {
 }
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
-$MYCALL=strtoupper($callsign);
+//$MYCALL=strtoupper($callsign);
+$MYCALL=strtoupper($configs['gatewayCallsign']);
 
 // Check if the config file exists
 if (file_exists('/etc/pistar-css.ini')) {
