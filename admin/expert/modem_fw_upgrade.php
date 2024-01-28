@@ -125,6 +125,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
   <div class="contentwide">
   <table width="100%">
   <?php if (empty($_POST['modem'])) { ?>
+  <tr><th>Modem Firmware Upgrade Utility</th></tr>
   <tr><td>
 	<br />
 	<h2>Modem Firmware Upgrade Utility</h2>
@@ -196,10 +197,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
   Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
   Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
   </div>
-  <br />
-  </div>
   </div>
   </body>
+  </html>
   <?php } else { ?>
 
   <tr><th>Modem Flash/Upgrade Output</th></tr>
