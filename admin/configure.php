@@ -1515,6 +1515,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmpid' ) {
@@ -1531,6 +1532,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmuadu' ) {
@@ -1547,6 +1549,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmuada' ) {
@@ -1563,6 +1566,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmbss' ) {
@@ -1581,6 +1585,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmbsd' ) {
@@ -1599,6 +1604,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmuagmsku' ) {
@@ -1613,6 +1619,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmuagmska' ) {
@@ -1627,6 +1634,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvrptr1' ) {
@@ -1639,6 +1647,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvrptr2' ) {
@@ -1651,6 +1660,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvrptr3' ) {
@@ -1663,6 +1673,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'gmsk_modem' ) {
@@ -1672,6 +1683,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvap' ) {
@@ -1682,6 +1694,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    system($rollRepeaterType1);
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'zumspotlibre' ) {
@@ -1694,6 +1707,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'zumspotusb' ) {
@@ -1706,6 +1720,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'lsusb' ) {
@@ -1718,6 +1733,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'zumspotgpio' ) {
@@ -1730,6 +1746,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'zumspotdualgpio' ) {
@@ -1742,6 +1759,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'zumspotduplexgpio' ) {
@@ -1753,6 +1771,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 1;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
           if ( $confHardware == 'zumradiopiusb' ) {
@@ -1847,6 +1866,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'lshshatgpio' ) {
@@ -1871,6 +1891,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mmdvmhsdualbandgpio' ) {
@@ -1883,6 +1904,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'sbhsdualbandgpio' ) {
@@ -1895,6 +1917,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'genesyshat' ) {
@@ -1907,6 +1930,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'genesysdualhat' ) {
@@ -1918,6 +1942,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 1;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mmdvmhsdualhatgpio' ) {
@@ -1929,6 +1954,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 1;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'lshsdualhatgpio' ) {
@@ -1940,6 +1966,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 1;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mmdvmhsdualhatusb' ) {
@@ -1951,6 +1978,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 1;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mmdvmrpthat' ) {
@@ -1974,6 +2002,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mmdvmvyehat' ) {
@@ -1986,6 +2015,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mmdvmvyehatdual' ) {
@@ -1997,6 +2027,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['General']['Duplex'] = 1;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mnnano-spot' ) {
@@ -2009,6 +2040,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'mnnano-teensy' ) {
@@ -2035,6 +2067,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'nanodvusb' ) {
@@ -2063,6 +2096,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmpicasths' ) {
@@ -2079,6 +2113,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  if ( $confHardware == 'dvmpicasthd' ) {
@@ -2095,6 +2130,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 	  
 	  if ( $confHardware == 'opengd77' ) {
@@ -2107,6 +2143,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['DMR Network']['Slot1'] = 0;
 	    $configmmdvm['Modem']['Protocol'] = "uart";
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
+	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
 	  // Set the Service start delay
