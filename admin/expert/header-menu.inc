@@ -30,6 +30,7 @@
     <a href="fulledit_rssidat.php" style="color: #ffffff;">RSSI Dat</a>
     &emsp;<b>Tools:</b>
     <a href="edit_dashboard.php" style="color: #ffffff;">CSS Tool</a> |
+    <a href="modem_fw_upgrade.php" style="color: #ffffff;">FW</a> |
     <a href="ssh_access.php" style="color: #ffffff;">SSH Access</a>
   </p>
   </div>
