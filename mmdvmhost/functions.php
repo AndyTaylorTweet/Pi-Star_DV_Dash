@@ -836,6 +836,18 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 		else if ($source == "Net" && $mode === "NXDN") {
 			$hangtime = getConfigItem("NXDN Network", "ModeHang", $mmdvmconfigs);
 		}
+		else if ($source == "RF" && $mode === "M17") {
+			$hangtime = getConfigItem("M17", "ModeHang", $mmdvmconfigs);
+		}
+		else if ($source == "Net" && $mode === "M17") {
+			$hangtime = getConfigItem("M17 Network", "ModeHang", $mmdvmconfigs);
+		}
+		else if ($source == "RF" && $mode === "FM") {
+			$hangtime = getConfigItem("FM", "ModeHang", $mmdvmconfigs);
+		}
+		else if ($source == "Net" && $mode === "FM") {
+			$hangtime = getConfigItem("FM Network", "ModeHang", $mmdvmconfigs);
+		}
 		else if ($source == "Net" && $mode === "POCSAG") {
 			$hangtime = getConfigItem("POCSAG Network", "ModeHang", $mmdvmconfigs);
 		}
