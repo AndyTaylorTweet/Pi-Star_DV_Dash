@@ -160,7 +160,7 @@ function aprspass ($callsign) {
 
 $progname = basename($_SERVER['SCRIPT_FILENAME'],".php");
 $rev=$version;
-$MYCALL=strtoupper($callsign);
+$MYCALL=strtoupper($configs['gatewayCallsign']);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
