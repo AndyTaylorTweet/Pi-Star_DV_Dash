@@ -72,7 +72,7 @@ if (file_exists('/etc/dmr2nxdn')) {
   <tr><?php showMode("M17", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
   <tr><?php showMode("P25", $mmdvmconfigs);?><?php showMode("System Fusion", $mmdvmconfigs);?></tr>
   <tr><?php showMode("DMR XMode", $mmdvmconfigs);?><?php showMode("YSF XMode", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("FM", $mmdvmconfigs);?><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
