@@ -139,6 +139,12 @@ if (isset($lastHeard[0])) {
         	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
         	        echo "<td style=\"background:#f9f;\">Listening M17</td>";
         	        }
+		elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'FM') {
+        	        echo "<td style=\"background:#4aa361;\">RX FM</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'FM') {
+        	        echo "<td style=\"background:#f9f;\">Listening FM</td>";
+        	        }
 		elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'POCSAG') {
         	        echo "<td style=\"background:#4aa361;\">POCSAG</td>";
         	        }
