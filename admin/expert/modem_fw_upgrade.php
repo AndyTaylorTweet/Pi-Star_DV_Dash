@@ -64,7 +64,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
    }
    if (isset($versionData['Firmware']['Version'])) {
        $fw_version = $versionData['Firmware']['Version'];
-       $fw_ver_msg = "Latest firmware version: <strong>". $fw_version. "</strong>.";
+       $fw_ver_msg = "Latest firmware version: <b>". $fw_version. "</b>.";
    } else {
        $fw_ver_msg = "Unkown (failed to retrieve firmware version).";
    }
