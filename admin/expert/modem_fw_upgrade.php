@@ -107,7 +107,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
 
     $(function() {
       $.repeat(1000, function() {
-        $.get('/admin/advanced/modem_fw_upgrade.php?ajax', function(data) {
+        $.get('/admin/expert/modem_fw_upgrade.php?ajax', function(data) {
           if (data.length < 1) return;
           var objDiv = document.getElementById("tail");
           var isScrolledToBottom = objDiv.scrollHeight - objDiv.clientHeight <= objDiv.scrollTop + 1;
