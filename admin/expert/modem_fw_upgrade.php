@@ -31,47 +31,43 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
     session_start();
 
     if (!isset($_GET['ajax'])) {
-    //unset($_SESSION['update_offset']);
-    if (file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
-      $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_modemflash.log');
-    } else {
-      $_SESSION['update_offset'] = 0;
+	if (file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
+	    $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_modemflash.log');
+	} else {
+	    $_SESSION['update_offset'] = 0;
+        }
     }
-  }
   
-  if (isset($_GET['ajax'])) {
-    //session_start();
-    if (!file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
-      exit();
+    if (isset($_GET['ajax'])) {
+        if (!file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
+            exit();
+        }
+        $handle = fopen('/var/log/pi-star/pi-star_modemflash.log', 'rb');
+        if (isset($_SESSION['update_offset'])) {
+            fseek($handle, 0, SEEK_END);
+            if ($_SESSION['update_offset'] > ftell($handle)) //log rotated/truncated
+                $_SESSION['update_offset'] = 0; //continue at beginning of the new log
+                $data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
+                $_SESSION['update_offset'] += strlen($data);
+                echo nl2br($data);
+            }
+        else {
+            fseek($handle, 0, SEEK_END);
+            $_SESSION['update_offset'] = ftell($handle);
+        } 
+        exit();
     }
-    
-    $handle = fopen('/var/log/pi-star/pi-star_modemflash.log', 'rb');
-    if (isset($_SESSION['update_offset'])) {
-      fseek($handle, 0, SEEK_END);
-      if ($_SESSION['update_offset'] > ftell($handle)) //log rotated/truncated
-        $_SESSION['update_offset'] = 0; //continue at beginning of the new log
-      $data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
-      $_SESSION['update_offset'] += strlen($data);
-      echo nl2br($data);
-      }
-    else {
-      fseek($handle, 0, SEEK_END);
-      $_SESSION['update_offset'] = ftell($handle);
-      } 
-  exit();
-  }
  
-  // Get the firmware version
-  if (file_exists('/usr/local/bin/firmware/version.txt')) {
-    $versionData = parse_ini_file('/usr/local/bin/firmware/version.txt', true);
-  }
-  if (isset($versionData['Firmware']['Version'])) {
-    $fw_version = $versionData['Firmware']['Version'];
-    $fw_ver_msg = "Latest firmware version: <strong>". $fw_version. "</strong>.";
-  
-  } else {
-	  $fw_ver_msg = "Unkown (failed to retrieve firmware version).";
-  }
+   // Get the firmware version
+   if (file_exists('/usr/local/bin/firmware/version.txt')) {
+       $versionData = parse_ini_file('/usr/local/bin/firmware/version.txt', true);
+   }
+   if (isset($versionData['Firmware']['Version'])) {
+       $fw_version = $versionData['Firmware']['Version'];
+       $fw_ver_msg = "Latest firmware version: <strong>". $fw_version. "</strong>.";
+   } else {
+       $fw_ver_msg = "Unkown (failed to retrieve firmware version).";
+   }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -206,8 +202,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
   </body>
   <?php } else { ?>
 
-  <tr><td><b>Modem Flash/Upgrade Output:</b></td></tr>
-  <tr><td align="left"><div id="tail"><h3>Starting Modem Firmware Upgrade...</h3></div></td></tr>
+  <tr><th>Modem Flash/Upgrade Output</th></tr>
+  <tr><td align="left"><div id="tail">Starting FW Upgrade, please wait...<br /></div></td></tr>
   </table>
   </div>
   <div class="footer">
