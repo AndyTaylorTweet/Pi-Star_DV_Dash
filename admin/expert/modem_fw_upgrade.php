@@ -21,59 +21,46 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
     }
 
     if (!isset($_GET['ajax'])) {
+	system('sudo touch /var/log/pi-star/pi-star_modemflash.log > /dev/null 2>&1 &');
+	system('sudo echo "" > /var/log/pi-star/pi-star_modemflash.log > /dev/null 2>&1 &');
 	system('sudo NP=1 /usr/local/sbin/pistar-modemupgrade ' . escapeshellarg($selectedOption) . ' > /dev/null 2>&1 &');
-	$_SESSION['modemupgrade-isrunning'] = 1;
     }
 
     // passed sanity chk.
     header('Cache-Control: no-cache');
+    session_start();
 
     if (!isset($_GET['ajax'])) {
-	if (file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
-	    $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_modemflash.log');
-	}
-	else {
-	    $_SESSION['update_offset'] = 0;
-	}
+    //unset($_SESSION['update_offset']);
+    if (file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
+      $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_modemflash.log');
+    } else {
+      $_SESSION['update_offset'] = 0;
+    }
+  }
+  
+  if (isset($_GET['ajax'])) {
+    //session_start();
+    if (!file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
+      exit();
     }
     
-    if (isset($_GET['ajax'])) {
-	if (!file_exists('/var/log/pi-star/pi-star_modemflash.log')) {
-	    exit();
-	}
-	
-	if (($handle = fopen('/var/log/pi-star/pi-star_modemflash.log', 'rb')) != false) {
-	    if (isset($_SESSION['update_offset'])) {
-		fseek($handle, 0, SEEK_END);
-		if ($_SESSION['update_offset'] > ftell($handle)) { //log rotated/truncated
-		    $_SESSION['update_offset'] = 0; //continue at beginning of the new log
-		}
-		
-		$data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
-		
-		$upgradeIsRunning = shell_exec('ps ax | grep "/usr/local/sbin/pistar-modemupgrade" | grep -v grep') != null ? "YES" : "NO";
-		$oldOffset = $_SESSION['update_offset'];
-		
-		$_SESSION['update_offset'] += strlen($data);
-		echo "<pre>$data</pre>";
-		
-		// we reached the end of the cmd
-		if (($oldOffset == $_SESSION['update_offset']) && (isset($_SESSION['modemupgrade-isrunning']) && ($_SESSION['modemupgrade-isrunning'] == 1)) && ($upgradeIsRunning == "NO"))
-		{
-		    unset($_SESSION['modemupgrade-isrunning']);
-		    echo "<pre>
-			</pre>";
-		}
-	    }
-	    else {
-		fseek($handle, 0, SEEK_END);
-		$_SESSION['update_offset'] = ftell($handle);
-	    }
-	}
-	exit();
-    }
-
-    
+    $handle = fopen('/var/log/pi-star/pi-star_modemflash.log', 'rb');
+    if (isset($_SESSION['update_offset'])) {
+      fseek($handle, 0, SEEK_END);
+      if ($_SESSION['update_offset'] > ftell($handle)) //log rotated/truncated
+        $_SESSION['update_offset'] = 0; //continue at beginning of the new log
+      $data = stream_get_contents($handle, -1, $_SESSION['update_offset']);
+      $_SESSION['update_offset'] += strlen($data);
+      echo nl2br($data);
+      }
+    else {
+      fseek($handle, 0, SEEK_END);
+      $_SESSION['update_offset'] = ftell($handle);
+      } 
+  exit();
+  }
+ 
   // Get the firmware version
   if (file_exists('/usr/local/bin/firmware/version.txt')) {
     $versionData = parse_ini_file('/usr/local/bin/firmware/version.txt', true);
@@ -209,7 +196,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
   </div>
   <div class="footer">
   Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-  Modem Flashing Tool &copy; Chip Cuccio (W0CHP) 2014-<?php echo date("Y");?><br />
+  Modem Flashing Tool &copy; Chip Cuccio (W0CHP) 2020-<?php echo date("Y");?><br />
   Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
   Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
   </div>
@@ -225,7 +212,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
   </div>
   <div class="footer">
   Pi-Star / Pi-Star Dashboard, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-  Modem Flashing Tool &copy; Chip Cuccio (W0CHP) 2014-<?php echo date("Y");?><br />
+  Modem Flashing Tool &copy; Chip Cuccio (W0CHP) 2020-<?php echo date("Y");?><br />
   Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
   Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
   </div>
