@@ -160,6 +160,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
       'hs_hat_generic_duplex' => 'MMDVM_HS_GENERIC_DUPLEX (14.7456MHz TCXO) GPIO',
       'hs_hat_generic_duplex-usb' => 'MMDVM_HS_GENERIC_DUPLEX (14.7456MHz TCXO) USB',
       'hs_hat_nano_hotspot' => 'Nano_hotSPOT by BI7JTA (14.7456MHz TCXO) GPIO',
+      'rpt_zum-0.9' => 'ZUM Radio MMDVM for Pi v0.9 GPIO',
+      'rpt_zum-1.0' => 'ZUM Radio MMDVM for Pi v1.0 GPIO',
+      'rpt_builder_v3' => 'Repeater Builder STM32_DVM_PiHat V3',
+      'rpt_builder_v4' => 'Repeater Builder STM32_DVM_PiHat V4',
+      'rpt_builder_v5' => 'Repeater Builder STM32_DVM_PiHat V5',
       //'mmdvm_pi-f7' => 'MMDVM Pi F7 Board 460800 baud (12.000MHz TCXO) GPIO',
       //'mmdvm_pi-f4' => 'MMDVM Pi F4 Board 460800 baud (12.000MHz TCXO) GPIO',
     ];
