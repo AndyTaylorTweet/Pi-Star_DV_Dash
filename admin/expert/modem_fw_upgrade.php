@@ -163,6 +163,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
       'hs_hat_generic_duplex-usb' => 'MMDVM_HS_GENERIC_DUPLEX (14.7456MHz TCXO) USB',
       'hs_hat_nano_hotspot' => 'Nano_hotSPOT by BI7JTA (14.7456MHz TCXO) GPIO',
       'dvmega_gpio' => 'DV-Mega Raspberry Pi Hat (Single or Dual Band) GPIO',
+      'dvmega_usb_uno' => 'DV-Mega Arduino Uno Shield USB (ttyUSB0)',
+      'dvmega_usb_mega' => 'DV-Mega Arduino Mega Shield USB (ttyUSB0)',
       'rpt_nucleo-64' => 'Repeater - Nucleo64 F446RE GPIO',
       'rpt_nucleo-144' => 'Repeater - Nucleo144 F767ZI GPIO',
       'rpt_mmdvm_hat-0.2' => 'Repeater - MMDVM_RPT_Hat 0.2 GPIO',
