@@ -62,7 +62,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
    if (file_exists('/usr/local/bin/firmware/version.txt')) {
        $versionData = parse_ini_file('/usr/local/bin/firmware/version.txt', true);
    }
-   if (isset($versionData['Firmware']['Version'])) {
+   if (isset($versionData['Firmware']['mmdvm_hs_version'])) {
        $mmdvm_hs_version = $versionData['Firmware']['mmdvm_hs_version'];
        $dvmega_fw_version = $versionData['Firmware']['dvmega_version'];
        $rpt_version = $versionData['Firmware']['rpt_version'];
