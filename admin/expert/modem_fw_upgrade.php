@@ -63,8 +63,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
        $versionData = parse_ini_file('/usr/local/bin/firmware/version.txt', true);
    }
    if (isset($versionData['Firmware']['Version'])) {
-       $fw_version = $versionData['Firmware']['Version'];
-       $fw_ver_msg = "Latest firmware version: <b>". $fw_version. "</b>.";
+       $mmdvm_hs_version = $versionData['Firmware']['mmdvm_hs_version'];
+       $dvmega_fw_version = $versionData['Firmware']['dvmega_version'];
+       $rpt_version = $versionData['Firmware']['rpt_version'];
+       $fw_ver_msg = "Latest firmware version(s): <b> Hotspot:". $mmdvm_hs_version. " DV-Mega:".$dvmega_fw_version." Repeater:".$rpt_version."</b>.";
    } else {
        $fw_ver_msg = "Unkown (failed to retrieve firmware version).";
    }
