@@ -132,10 +132,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/modem_fw_upgrade.php") {
 	<br />
 	<h2>Modem Firmware Upgrade Utility</h2>
 	<p>This tool will attempt to upgrade your selected modem to the latest version available firmware version:<br />
-	<?php echo $fw_ver_msg; ?>
+	<?php echo $fw_ver_msg; ?></p>
 	<p>When ready, select your modem type below and click, "Upgrade Modem". Do not interrupt the process or<br />
 	navigate away from the page while the process is running.</p>
-	<p><strong><i class="fa fa-exclamation-circle"></i> Please understand what you are doing, as well as the risks associated with flashing your modem.</strong></p>
+	<p><strong>Please understand what you are doing, as well as the risks associated with flashing your modem.</strong></p>
 	<p><em>(IMPORTANT: Please note, we are not firmware developers, and we offer no support for firmware.<br />
 	We provide utilities to update the firmware. For firmware support, you will need to utilise other<br />
 	support resources from the firmware developers/maintainers or the web.)</em></p>
