@@ -38,7 +38,7 @@ if ($cpuTempC >= 69) { $cpuTempHTML = "<td style=\"background: #f00\">".$cpuTemp
     <td><?php echo php_uname('n');?></td>
     <td><?php echo php_uname('r');?></td>
     <td colspan="2"><?php echo exec('/usr/local/bin/platformDetect.sh');?></td>
-    <td><?php echo $cpuLoad[0];?> / <?php echo $cpuLoad[1];?> / <?php echo $cpuLoad[2];?></td>
+    <td><?php echo number_format($cpuLoad[0],2);?> / <?php echo number_format($cpuLoad[1],2);?> / <?php echo number_format($cpuLoad[2],2);?></td>
     <?php echo $cpuTempHTML; ?>
   </tr>
   <tr>
