@@ -258,7 +258,7 @@ echo '<br />
 		if (file_exists('/lib/crda/regulatory.bin')) {
 			exec('regdbdump /lib/crda/regulatory.bin | fgrep country | cut -b 9-10', $regDomains);
 		} elseif (file_exists('/lib/crda/db.txt')) {
-			exec('regdbdump /lib/crda/db.txt | fgrep country | cut -b 9-10', $regDomains);
+			exec('cat /lib/crda/db.txt | fgrep country | cut -b 9-10', $regDomains);
 		} else {
 			$regDomains = 'JP';
 		}
