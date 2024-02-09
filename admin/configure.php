@@ -3495,8 +3495,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (empty($_POST['systemTimezone']) != TRUE ) {
 		$rollTimeZone = 'sudo timedatectl set-timezone '.escapeshellcmd($_POST['systemTimezone']);
 		system($rollTimeZone);
-		$rollTimeZoneForce = 'sudo echo "'.escapeshellcmd($_POST['systemTimezone'].'" > /etc/timezone';
-		system($rollTimeZoneForce);
+		//$rollTimeZoneForce = 'sudo echo "'.escapeshellcmd($_POST['systemTimezone'].'" > /etc/timezone';
+		//system($rollTimeZoneForce);
 		$rollTimeZoneConfig = 'sudo sed -i "/date_default_timezone_set/c\\date_default_timezone_set(\''.escapeshellcmd($_POST['systemTimezone']).'\')\;" /var/www/dashboard/config/config.php';
 		system($rollTimeZoneConfig);
 	}
