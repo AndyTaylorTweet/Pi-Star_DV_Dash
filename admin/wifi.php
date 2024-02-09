@@ -260,7 +260,7 @@ echo '<br />
 		} elseif (file_exists('/lib/crda/db.txt')) {
 			exec('cat /lib/crda/db.txt | fgrep country | cut -b 9-10', $regDomains);
 		} else {
-			$regDomains = 'JP';
+			$regDomains = array("AU","FR","DE","GB","US","JP");
 		}
 		foreach($regDomains as $regDomain) {
 			if ($regDomain == $wifiCountry) {
