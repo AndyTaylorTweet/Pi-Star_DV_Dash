@@ -3513,7 +3513,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 else:
 	// Output the HTML Form here
-	if ((file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) && !$configModem['Modem']['Hardware']) { echo "<script type\"text/javascript\">\n\talert(\"WARNING:\\nThe Modem selection section has been updated,\\nPlease re-select your modem from the list.\")\n</script>\n"; }
+	if ((file_exists('/etc/dstar-radio.mmdvmhost') || file_exists('/etc/dstar-radio.dstarrepeater')) && (!isset($configModem['Modem']['Hardware']) || !$configModem['Modem']['Hardware'])) { echo "<script type=\"text/javascript\">\n\talert(\"WARNING:\\nThe Modem selection section has been updated,\\nPlease re-select your modem from the list.\")\n</script>\n"; }
 	if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') !== false) {
 		$toggleDMRCheckboxCr			= 'onclick="toggleDMRCheckbox()"';
 		$toggleDSTARCheckboxCr			= 'onclick="toggleDSTARCheckbox()"';
