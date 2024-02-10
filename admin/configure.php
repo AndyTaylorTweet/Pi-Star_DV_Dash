@@ -3420,51 +3420,53 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 
 	// modem config file wrangling
         $configModemContent = "";
-        foreach($configModem as $configModemSection=>$configModemValues) {
-                // UnBreak special cases
-                $configModemSection = str_replace("_", " ", $configModemSection);
-                $configModemContent .= "[".$configModemSection."]\n";
-                // append the values
-                foreach($configModemValues as $modemKey=>$modemValue) {
-			if ($modemKey == "Password") { $configModemContent .= $modemKey."=".'"'.str_replace('"', "", $modemValue).'"'."\n"; }
-			else { $configModemContent .= $modemKey."=".$modemValue."\n"; }
-                        }
-                        $configModemContent .= "\n";
-                }
-
-        if (!$handleModemConfig = fopen('/tmp/sja7hFRkw4euG7.tmp', 'w')) {
-                return false;
-        }
-
-        if (!is_writable('/tmp/sja7hFRkw4euG7.tmp')) {
-          echo "<br />\n";
-          echo "<table>\n";
-          echo "<tr><th>ERROR</th></tr>\n";
-          echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
-          echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
-          echo "</table>\n";
-          unset($_POST);
-          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
-          die();
-        }
-	else {
-                $success = fwrite($handleModemConfig, $configModemContent);
-                fclose($handleModemConfig);
-		if (file_exists('/etc/dstar-radio.dstarrepeater')) {
-                    if (fopen($modemConfigFileDStarRepeater,'r')) {
-                        exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileDStarRepeater);	// Move the file back
-                        exec('sudo chmod 644 $modemConfigFileDStarRepeater');			// Set the correct runtime permissions
-                        exec('sudo chown root:root $modemConfigFileDStarRepeater');			// Set the owner
-                    }
-		}
-		if (file_exists('/etc/dstar-radio.mmdvmhost')) {
-                    if (fopen($modemConfigFileMMDVMHost,'r')) {
-                        exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileMMDVMHost);		// Move the file back
-                        exec('sudo chmod 644 $modemConfigFileMMDVMHost');				// Set the correct runtime permissions
-                        exec('sudo chown root:root $modemConfigFileMMDVMHost');			// Set the owner
-                    }
-		}
-        }
+	if (isset($configModem)) {
+	        foreach($configModem as $configModemSection=>$configModemValues) {
+	                // UnBreak special cases
+	                $configModemSection = str_replace("_", " ", $configModemSection);
+	                $configModemContent .= "[".$configModemSection."]\n";
+	                // append the values
+	                foreach($configModemValues as $modemKey=>$modemValue) {
+				if ($modemKey == "Password") { $configModemContent .= $modemKey."=".'"'.str_replace('"', "", $modemValue).'"'."\n"; }
+				else { $configModemContent .= $modemKey."=".$modemValue."\n"; }
+	                }
+	                $configModemContent .= "\n";
+	        }
+	
+	        if (!$handleModemConfig = fopen('/tmp/sja7hFRkw4euG7.tmp', 'w')) {
+	                return false;
+	        }
+	
+	        if (!is_writable('/tmp/sja7hFRkw4euG7.tmp')) {
+		        echo "<br />\n";
+		        echo "<table>\n";
+		        echo "<tr><th>ERROR</th></tr>\n";
+		        echo "<tr><td>Unable to write configuration file(s)...</td><tr>\n";
+		        echo "<tr><td>Please wait a few seconds and retry...</td></tr>\n";
+		        echo "</table>\n";
+		        unset($_POST);
+		        echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},5000);</script>';
+		        die();
+	        }
+		else {
+	                $success = fwrite($handleModemConfig, $configModemContent);
+	                fclose($handleModemConfig);
+			if (file_exists('/etc/dstar-radio.dstarrepeater')) {
+	                    if (fopen($modemConfigFileDStarRepeater,'r')) {
+	                        exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileDStarRepeater);	// Move the file back
+	                        exec('sudo chmod 644 $modemConfigFileDStarRepeater');			// Set the correct runtime permissions
+	                        exec('sudo chown root:root $modemConfigFileDStarRepeater');			// Set the owner
+	                    }
+			}
+			if (file_exists('/etc/dstar-radio.mmdvmhost')) {
+	                    if (fopen($modemConfigFileMMDVMHost,'r')) {
+	                        exec('sudo mv /tmp/sja7hFRkw4euG7.tmp '.$modemConfigFileMMDVMHost);		// Move the file back
+	                        exec('sudo chmod 644 $modemConfigFileMMDVMHost');				// Set the correct runtime permissions
+	                        exec('sudo chown root:root $modemConfigFileMMDVMHost');			// Set the owner
+	                    }
+			}
+	        }
+	}
 
 	// Start the DV Services
 	system('sudo systemctl daemon-reload > /dev/null 2>/dev/null &');			// Restart Systemd to account for any service changes
