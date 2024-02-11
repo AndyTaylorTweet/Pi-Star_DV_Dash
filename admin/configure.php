@@ -2560,6 +2560,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (isset($configmmdvm['Nextion']['Port'])) {
 		if ( $configmmdvm['Nextion']['Port'] == "/dev/modem" ) { $configmmdvm['Nextion']['Port'] = "modem"; }
 	}
+	if (!isset($configmmdvm['NextionDriver'])) {
+		$configmmdvm['NextionDriver']['Port'] = "modem";
+		$configmmdvm['NextionDriver']['LogLevel'] = "2";
+		$configmmdvm['NextionDriver']['DataFilesPath'] = "/usr/local/etc/";
+		$configmmdvm['NextionDriver']['GroupsFile'] = "nextionGroups.txt";
+		$configmmdvm['NextionDriver']['GroupsFileSrc'] = "https://www.pistar.uk/downloads/groups.txt";
+		$configmmdvm['NextionDriver']['DMRidFile'] = "nextionUsers.csv";
+		$configmmdvm['NextionDriver']['DMRidFileSrc'] = "https://www.pistar.uk/downloads/nextionUsers.csv";
+		$configmmdvm['NextionDriver']['RemoveDim'] = "0";
+		$configmmdvm['NextionDriver']['SleepWhenInactive'] = "600";
+		$configmmdvm['NextionDriver']['ShowModesStatus'] = "1";
+		$configmmdvm['NextionDriver']['WaitForLan'] = "1";
+	}	
 	if (!isset($configmmdvm['FM'])) {
 		$configmmdvm['FM']['Enable'] = "0";
 		$configmmdvm['FM']['Callsign'] = $newCallsignUpper;
@@ -2582,20 +2595,23 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['FM']['Timeout'] = "180";
 		$configmmdvm['FM']['TimeoutLevel'] = "80";
 		$configmmdvm['FM']['CTCSSFrequency'] = "94.8";
-		$configmmdvm['FM']['CTCSSThreshold'] = "30";
 		$configmmdvm['FM']['CTCSSHighThreshold'] = "30";
 		$configmmdvm['FM']['CTCSSLowThreshold'] = "20";
 		$configmmdvm['FM']['CTCSSLevel'] = "20";
 		$configmmdvm['FM']['KerchunkTime'] = "0";
 		$configmmdvm['FM']['HangTime'] = "7";
 		$configmmdvm['FM']['AccessMode'] = "1";
+		$configmmdvm['FM']['LinkMode'] = "0";
 		$configmmdvm['FM']['COSInvert'] = "0";
+		$configmmdvm['FM']['NoiseSquelch'] = "0";
+  		$configmmdvm['FM']['SquelchHighThreshold'] = "30";
+		$configmmdvm['FM']['SquelchLowThreshold'] = "20";
 		$configmmdvm['FM']['RFAudioBoost'] = "1";
 		$configmmdvm['FM']['MaxDevLevel'] = "90";
 		$configmmdvm['FM']['ExtAudioBoost'] = "1";
+		$configmmdvm['FM']['ModeHang'] = "20";
 	}
 	
-
 	// Add missing options to DMR2YSF
 	if (!isset($configdmr2ysf['YSF Network']['FCSRooms'])) { $configdmr2ysf['YSF Network']['FCSRooms'] = "/usr/local/etc/FCSHosts.txt"; }
 	if (!isset($configdmr2ysf['DMR Network']['DefaultDstTG'])) { $configdmr2ysf['DMR Network']['DefaultDstTG'] = "9"; }
