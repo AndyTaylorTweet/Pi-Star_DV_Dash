@@ -2495,7 +2495,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['Modem']['AX25TXLevel'])) { $configmmdvm['Modem']['AX25TXLevel'] = "50"; }
 	if (!isset($configmmdvm['Modem']['UseCOSAsLockout'])) { $configmmdvm['Modem']['UseCOSAsLockout'] = "0"; }
 	if (!isset($configmmdvm['Modem']['UARTSpeed'])) { $configmmdvm['Modem']['UARTSpeed'] = "115200"; }
-	if (!isset($configmmdvm['Transparent Data']['SendFrameType'])) { $configmmdvm['Transparent Data']['SendFrameType'] = "0"; )
+	if (!isset($configmmdvm['Transparent Data']['SendFrameType'])) { $configmmdvm['Transparent Data']['SendFrameType'] = "0"; )							
 	if (!isset($configmmdvm['D-Star']['AckReply'])) { $configmmdvm['D-Star']['AckReply'] = "1"; }
 	if (!isset($configmmdvm['D-Star']['AckTime'])) { $configmmdvm['D-Star']['AckTime'] = "750"; }
 	if (!isset($configmmdvm['D-Star']['AckMessage'])) { $configmmdvm['D-Star']['AckMessage'] = "0"; }
