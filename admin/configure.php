@@ -2572,6 +2572,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['NextionDriver']['SleepWhenInactive'] = "600";
 		$configmmdvm['NextionDriver']['ShowModesStatus'] = "1";
 		$configmmdvm['NextionDriver']['WaitForLan'] = "1";
+		$configmmdvm['Transparent Data']['Enable'] = "1";
+		$configmmdvm['Transparent Data']['SendFrameType'] = "1";
 	}	
 	if (!isset($configmmdvm['FM'])) {
 		$configmmdvm['FM']['Enable'] = "0";
