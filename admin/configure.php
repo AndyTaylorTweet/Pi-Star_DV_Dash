@@ -2350,10 +2350,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the MMDVMHost Display Type
 	if  (empty($_POST['mmdvmDisplayPort']) != TRUE ) {
 	  if (($_POST['mmdvmDisplayPort'] == "None") || ($_POST['mmdvmDisplayPort'] == "modem")) {
-		  $configmmdvm['TFT Serial']['Port'] = $_POST['mmdvmDisplayPort'];
 		  $configmmdvm['Nextion']['Port'] = $_POST['mmdvmDisplayPort'];
 	  } else {
-		  $configmmdvm['TFT Serial']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
 		  $configmmdvm['Nextion']['Port'] = "/dev/".$_POST['mmdvmDisplayPort'];
 	  }
 	}
