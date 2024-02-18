@@ -69,10 +69,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
               'slot' => $targetSlot,
               'group' => $targetTG              
             );
-          }
-          // Build the Query
-          $postData = '';
-          if ($_POST["TGmgr"] == "ADD") {
             $postData = json_encode($postDataTG);
             $postHeaders = array(
               'Content-Type: accept: application/json',
@@ -80,15 +76,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
               'Authorization: Bearer '.$bmAPIkeyV2,
               'User-Agent: Pi-Star Dashboard for '.$dmrID,
             );
-  
             $opts = array(
               'http' => array(
-              'header'  => $postHeaders,
-              'method'  => $method,
-              'content' => $postData,
-              'password' => '',
-              'success' => '',
-              'timeout' => 2,
+                'method'  => $method,
+                'header'  => $postHeaders,
+                'content' => $postData,
+                'password' => '',
+                'success' => '',
+                'timeout' => 2,
               ),
             );
           }
@@ -98,17 +93,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
               'Authorization: Bearer '.$bmAPIkeyV2,
               'User-Agent: Pi-Star Dashboard for '.$dmrID,
             );
-  
             $opts = array(
               'http' => array(
-              'header'  => $postHeaders,
-              'method'  => $method,
-              'password' => '',
-              'success' => '',
-              'timeout' => 2,
+                'method'  => $method,
+                'header'  => $postHeaders,
+                'password' => '',
+                'success' => '',
+                'timeout' => 2,
               ),
             );
           }
+          // Make the request
           $context = stream_context_create($opts);
           $result = @file_get_contents($bmAPIurl, false, $context);
           $feeback=json_decode($result);
