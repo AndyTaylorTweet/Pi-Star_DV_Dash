@@ -72,24 +72,43 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           }
           // Build the Query
           $postData = '';
-          if ($_POST["TGmgr"] == "ADD") { $postData = json_encode($postDataTG); }
-          $postHeaders = array(
-            'Content-Type: accept: application/json',
-            'Content-Length: '.strlen($postData),
-            'Authorization: Bearer '.$bmAPIkeyV2,
-            'User-Agent: Pi-Star Dashboard for '.$dmrID,
-          );
-
-          $opts = array(
-            'http' => array(
-            'header'  => $postHeaders,
-            'method'  => $method,
-            'content' => $postData,
-            'password' => '',
-            'success' => '',
-            'timeout' => 2,
-            ),
-          );
+          if ($_POST["TGmgr"] == "ADD") {
+            $postData = json_encode($postDataTG);
+            $postHeaders = array(
+              'Content-Type: accept: application/json',
+              'Content-Length: '.strlen($postData),
+              'Authorization: Bearer '.$bmAPIkeyV2,
+              'User-Agent: Pi-Star Dashboard for '.$dmrID,
+            );
+  
+            $opts = array(
+              'http' => array(
+              'header'  => $postHeaders,
+              'method'  => $method,
+              'content' => $postData,
+              'password' => '',
+              'success' => '',
+              'timeout' => 2,
+              ),
+            );
+          }
+          else {
+            $postHeaders = array(
+              'Content-Type: accept: application/json',
+              'Authorization: Bearer '.$bmAPIkeyV2,
+              'User-Agent: Pi-Star Dashboard for '.$dmrID,
+            );
+  
+            $opts = array(
+              'http' => array(
+              'header'  => $postHeaders,
+              'method'  => $method,
+              'password' => '',
+              'success' => '',
+              'timeout' => 2,
+              ),
+            );
+          }
           $context = stream_context_create($opts);
           $result = @file_get_contents($bmAPIurl, false, $context);
           $feeback=json_decode($result);
