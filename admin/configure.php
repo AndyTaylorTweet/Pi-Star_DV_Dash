@@ -2565,6 +2565,13 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['NextionDriver']['GroupsFileSrc'] = "https://www.pistar.uk/downloads/groups.txt";
 		$configmmdvm['NextionDriver']['DMRidFile'] = "nextionUsers.csv";
 		$configmmdvm['NextionDriver']['DMRidFileSrc'] = "https://www.pistar.uk/downloads/nextionUsers.csv";
+		$configmmdvm['NextionDriver']['DMRidDelimiter'] = ",";
+		$configmmdvm['NextionDriver']['DMRidId'] = "1";
+		$configmmdvm['NextionDriver']['DMRidCall'] = "2";
+		$configmmdvm['NextionDriver']['DMRidName'] = "3";
+		$configmmdvm['NextionDriver']['DMRidX1'] = "5";
+		$configmmdvm['NextionDriver']['DMRidX2'] = "6";
+		$configmmdvm['NextionDriver']['DMRidX3'] = "7";
 		$configmmdvm['NextionDriver']['RemoveDim'] = "0";
 		$configmmdvm['NextionDriver']['SleepWhenInactive'] = "600";
 		$configmmdvm['NextionDriver']['ShowModesStatus'] = "1";
