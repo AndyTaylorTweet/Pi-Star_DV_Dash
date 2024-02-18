@@ -62,47 +62,36 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
           if ( ($_POST["TGmgr"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl.$dmrID."/talkgroup/"; $method = "POST"; }
           if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl.$dmrID."/talkgroup/".$targetSlot."/".$targetTG; $method = "DELETE"; }
-          
+
           // Build the Data
+          $postHeaders = array(
+            'Content-Type: application/json',
+            'Accept: application/json',
+            'Authorization: Bearer '.$bmAPIkeyV2,
+            'User-Agent: Pi-Star Dashboard for '.$dmrID,
+          );
+          $opts = array(
+            'http' => array(
+              'method'  => $method,
+              //'header'  => $postHeaders,
+              'header'  => implode("\r\n", $postHeaders),
+              'password' => '',
+              'success' => '',
+              'timeout' => 2,
+            ),
+          );
+
+          // If we are adding a TG
           if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetTG) && $_POST["TGmgr"] == "ADD" ) {
             $postDataTG = array(
               'slot' => $targetSlot,
               'group' => $targetTG              
             );
             $postData = json_encode($postDataTG);
-            $postHeaders = array(
-              'Content-Type: accept: application/json',
-              'Content-Length: '.strlen($postData),
-              'Authorization: Bearer '.$bmAPIkeyV2,
-              'User-Agent: Pi-Star Dashboard for '.$dmrID,
-            );
-            $opts = array(
-              'http' => array(
-                'method'  => $method,
-                'header'  => $postHeaders,
-                'content' => $postData,
-                'password' => '',
-                'success' => '',
-                'timeout' => 2,
-              ),
-            );
+            $postHeaders[] = 'Content-Length: '.strlen($postData);
+            $opts['http']['content'] = $postData;
           }
-          else {
-            $postHeaders = array(
-              'Content-Type: accept: application/json',
-              'Authorization: Bearer '.$bmAPIkeyV2,
-              'User-Agent: Pi-Star Dashboard for '.$dmrID,
-            );
-            $opts = array(
-              'http' => array(
-                'method'  => $method,
-                'header'  => $postHeaders,
-                'password' => '',
-                'success' => '',
-                'timeout' => 2,
-              ),
-            );
-          }
+
           // Make the request
           $context = stream_context_create($opts);
           $result = @file_get_contents($bmAPIurl, false, $context);
