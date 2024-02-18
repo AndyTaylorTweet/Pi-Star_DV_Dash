@@ -96,7 +96,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister APIv1: No Responce"; }
+          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister APIv1: No Response"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
@@ -154,7 +154,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
           //echo "Sending command to BrandMeister API";
           //if (isset($feeback)) { print "BrandMeister APIv2: ".$feeback->{'message'}; } else { print "BrandMeister APIv2: No Responce"; }
-          if (isset($feeback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Responce"; }
+          if (isset($feeback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Response"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
