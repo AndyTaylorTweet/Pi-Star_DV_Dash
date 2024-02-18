@@ -47,63 +47,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       }
     }
     if (substr($dmrMasterHost, 0, 2) == "BM") {
-      if ( (isset($bmAPIkey)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ): // Data has been posted for this page
-          $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
-          // Are we a repeater
-          if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
-              unset($_POST["TS"]);
-              $targetSlot = "0";
-            } else {
-              $targetSlot = $_POST["TS"];
-          }
-          // Figure out what has been posted
-          if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl."setRepeaterTarantool.php?action=dropDynamicGroups&slot=".$targetSlot."&q=".$dmrID; }
-          if (isset($_POST["dropQso"])) { $bmAPIurl = $bmAPIurl."setRepeaterDbus.php?action=dropCallRoute&slot=".$targetSlot."&q=".$dmrID; }
-          if ( ($_POST["TGmgr"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-          if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
-          if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
-          // Build the Data
-          if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetTG) ) {
-            $postDataTG = array(
-              'talkgroup' => $targetTG,
-              'timeslot' => $targetSlot,
-            );
-          }
-          // Build the Query
-          $postData = '';
-          if (isset($_POST["tgSubmit"])) { $postData = http_build_query($postDataTG); }
-          $postHeaders = array(
-            'Content-Type: application/x-www-form-urlencoded',
-            'Content-Length: '.strlen($postData),
-            'Authorization: Basic '.base64_encode($bmAPIkey.':'),
-            'User-Agent: Pi-Star Dashboard for '.$dmrID,
-          );
-
-          $opts = array(
-            'http' => array(
-            'header'  => $postHeaders,
-            'method'  => 'POST',
-            'content' => $postData,
-            'password' => '',
-            'success' => '',
-            'timeout' => 2,
-            ),
-          );
-          $context = stream_context_create($opts);
-          $result = @file_get_contents($bmAPIurl, false, $context);
-          $feeback=json_decode($result);
-          // Output to the browser
-          echo '<b>BrandMeister Manager</b>'."\n";
-          echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-          //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister APIv1: No Response"; }
-          echo "</td></tr>\n</table>\n";
-          echo "<br />\n";
-          // Clean up...
-          unset($_POST);
-          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-
-      elseif ( (isset($bmAPIkeyV2)) && ( (isset($bmAPIkeyV2)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ) ): // Data has been posted for this page
+      if (isset($bmAPIkeyV2) && !empty($_POST) && (isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]))) : // Data has been posted for this page
           $bmAPIurl = 'https://api.brandmeister.network/v2/device/';
           // Are we a repeater
           if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
@@ -161,7 +105,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 
       else: // Do this when we are not handling post data
         // If there is a BM API Key
-        if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
+        if (isset($bmAPIkeyV2)) {
           echo '<b>BrandMeister Manager</b>'."\n";
           echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
           echo '<table role="presentation">'."\n";
