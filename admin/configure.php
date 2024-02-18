@@ -2574,7 +2574,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['NextionDriver']['DMRidX3'] = "7";
 		$configmmdvm['NextionDriver']['RemoveDim'] = "0";
 		$configmmdvm['NextionDriver']['SleepWhenInactive'] = "600";
-		$configmmdvm['NextionDriver']['ShowModesStatus'] = "1";
+		$configmmdvm['NextionDriver']['ShowModesStatus'] = "0";
 		$configmmdvm['NextionDriver']['WaitForLan'] = "1";
 		$configmmdvm['Transparent Data']['Enable'] = "1";
 		$configmmdvm['Transparent Data']['SendFrameType'] = "1";
