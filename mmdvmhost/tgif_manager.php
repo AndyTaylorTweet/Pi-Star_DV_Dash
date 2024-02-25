@@ -145,17 +145,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	  else: // Do this when we are not handling post data
 	    echo '<b>TGIF Manager</b>'."\n";
 	    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
-	    echo '<table>
+	    echo '<table role="presentation">
 	    <tr>
-	      <th style="width:25%;"><a class=tooltip href="#">Talkgroup Number<span><b>Enter the Talkgroup number</b></span></a></th>
-	      <th style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
-	      <th style="width:25%;"><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
+	      <th aria-hidden="true" id="lblTGIFTG" style="width:25%;"><a class=tooltip href="#">Talkgroup Number<span><b>Enter the Talkgroup number</b></span></a></th>
+	      <th aria-hidden="true" id="lblTGIFTS" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
+	      <th aria-hidden="true" id="TGIFLinkUnlink" style="width:25%;"><a class=tooltip href="#">Link / Unlink<span><b>Link or unlink</b></span></a></th>
 	      <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
 	    </tr>
 	    <tr>
-	      <td><input type="text" name="tgifNumber" size="10" maxlength="7" /></td>
-	      <td><input type="radio" name="tgifSlot" value="1" />TS1 <input type="radio" name="tgifSlot" value="2" checked="checked" />TS2</td>
-	      <td><input type="radio" name="tgifAction" value="LINK" />Link <input type="radio" name="tgifAction" value="UNLINK" checked="checked" />UnLink</td>
+	      <td><input aria-labelledby="lblTGIFTG" type="text" name="tgifNumber" size="10" maxlength="7" /></td>
+	      <td role="radiogroup" aria-labelledby="lblTGIFTS"><input id="rbTGIFSlot1" type="radio" name="tgifSlot" value="1" /><label for="rbTGIFSlot1">TS1</label> <input id="rbTGIFSlot2" type="radio" name="tgifSlot" value="2" checked="checked" /><label for="rbTGIFSlot2">TS2</label></td>
+	      <td role="radiogroup" aria-labelledby="TGIFLinkUnlink"><input id="rbTGIFLink" type="radio" name="tgifAction" value="LINK" /><label for="rbTGIFLink">Link</label> <input id="rbTGIFUnlink" type="radio" name="tgifAction" value="UNLINK" checked="checked" /><label for="rbTGIFUnlink">UnLink</label></td>
 	      <td><input type="submit" value="Modify Static" name="tgifSubmit" /></td>
 	    </tr>
 	    </table><br />'."\n";
