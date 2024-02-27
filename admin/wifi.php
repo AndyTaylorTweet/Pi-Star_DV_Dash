@@ -100,9 +100,9 @@ switch($page) {
 				$strBitrate = str_replace(':', '', str_replace('=', '', $result[1])); }
 				if (preg_match('/Tx-Power=([0-9]+ dBm)/i',$strWlan0,$result)) {
 				$strTxPower = $result[1]; }
-				if (preg_match('/ESSID:\"([a-zA-Z0-9-_\s]+)\"/i',$strWlan0,$result)) {
+				if (preg_match('/ESSID:\"([a-zA-Z0-9-_.\s]+)\"/i',$strWlan0,$result)) {
 				$strSSID = str_replace('"','',$result[1]); }
-				if (preg_match('/SSID:\ ([a-zA-Z0-9-_\s]+)/i',$strWlan0,$result)) {
+				if (preg_match('/SSID:\ ([a-zA-Z0-9-_.\s]+)/i',$strWlan0,$result)) {
 				$strSSID = str_replace(' freq','',$result[1]); }
 				if (preg_match('/Link Quality=([0-9]+\/[0-9]+)/i',$strWlan0,$result)) {
 				        $strLinkQuality = $result[1];
