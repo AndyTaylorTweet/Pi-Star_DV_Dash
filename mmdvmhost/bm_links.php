@@ -11,10 +11,11 @@ if ( $testMMDVModeDMR == 1 ) {
   //setup BM API Key
   $bmAPIkeyFile = '/etc/bmapi.key';
   if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) { $configBMapi = parse_ini_file($bmAPIkeyFile, true);
-    $bmAPIkey = $configBMapi['key']['apikey']; }
+    $bmAPIkey = $configBMapi['key']['apikey'];
     // Check the BM API Key
     if ( strlen($bmAPIkey) <= 20 ) { unset($bmAPIkey); }
     if ( strlen($bmAPIkey) >= 200 ) { $bmAPIkeyV2 = $bmAPIkey; unset($bmAPIkey); }
+  }
   
   //Load the dmrgateway config file
   $dmrGatewayConfigFile = '/etc/dmrgateway';

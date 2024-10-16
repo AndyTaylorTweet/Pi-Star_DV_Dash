@@ -27,6 +27,7 @@ $lang = array (
   "ysf_config"                  =>  "Configuração do Sistema Yaesu Fusion",
   "p25_config"                  =>  "Configuração do P25",
   "nxdn_config"                 =>  "Configuração do NXDN",
+  "m17_config"                  =>  "M17 Configuration",
   "pocsag_config"               =>  "Configuração do POCSAG",
   "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Configuração do Wireless",
@@ -51,6 +52,7 @@ $lang = array (
   "ysf_mode"                    =>  "Modo YSF",
   "p25_mode"                    =>  "Modo P25",
   "nxdn_mode"                   =>  "Modo NXDN",
+  "m17_mode"                    =>  "M17 Mode",
   "mmdvm_display"               =>  "Exibição MMDVM",
   "mode_hangtime"               =>  "Modo Tempo de Espera",
   // Config Page - General Configuration
@@ -93,6 +95,9 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "Servidor Inicial NXDN",
   "nxdn_ran"                     =>  "NXDN RAN",
+  // Config Page - M17 Configuration
+  "m17_startup_host"            =>  "M17 Startup Host",
+  "m17_can"                     =>  "M17 CAN",
   // Config Page - MobileGPS Configuration
   "mobilegps_enable"            =>  "MobileGPS Enable",
   "mobilegps_port"              =>  "GPS Port",
@@ -119,6 +124,8 @@ $lang = array (
   "p25_net"                     =>  "Rede P25",
   "nxdn_radio"                  =>  "Rádio NDXN",
   "nxdn_net"                    =>  "Rede NXDN",
+  "m17_radio"                   =>  "M17 Radio",
+  "m17_net"                     =>  "M17 Network",
   // Dashboard Front Page - Calls
   "time"                        =>  "Hora",
   "mode"                        =>  "Modo",

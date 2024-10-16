@@ -55,9 +55,11 @@ function checkFrequency(){
     if (220 <= intFreqTRX && intFreqTRX <= 225)   { confFREQ.style.backgroundColor = goodColor; }
     if (420 <= intFreqTRX && intFreqTRX <= 450)   { confFREQ.style.backgroundColor = goodColor; }
     if (842 <= intFreqTRX && intFreqTRX <= 950)   { confFREQ.style.backgroundColor = goodColor; }
+    if (1240 <= intFreqTRX && intFreqTRX <= 1300) { confFREQ.style.backgroundColor = goodColor; }
     // TRX Bad
     if (145.8 <= intFreqTRX && intFreqTRX <= 146) { confFREQ.style.backgroundColor = badColor; }
     if (435 <= intFreqTRX && intFreqTRX <= 438)   { confFREQ.style.backgroundColor = badColor; }
+    if (1260 <= intFreqTRX && intFreqTRX <= 1270) { confFREQ.style.backgroundColor = badColor; }
   }
   if(freqRX){
     confFREQrx.style.backgroundColor = badColor;	// Set to bad colour first, then check
@@ -67,9 +69,11 @@ function checkFrequency(){
     if (220 <= intFreqRX && intFreqRX <= 225)   { confFREQrx.style.backgroundColor = goodColor; }
     if (420 <= intFreqRX && intFreqRX <= 450)   { confFREQrx.style.backgroundColor = goodColor; }
     if (842 <= intFreqRX && intFreqRX <= 950)   { confFREQrx.style.backgroundColor = goodColor; }
+    if (1240 <= intFreqRX && intFreqRX <= 1300) { confFREQrx.style.backgroundColor = goodColor; }
     // RX Bad
     if (145.8 <= intFreqRX && intFreqRX <= 146) { confFREQrx.style.backgroundColor = badColor; }
     if (435 <= intFreqRX && intFreqRX <= 438)   { confFREQrx.style.backgroundColor = badColor; }
+    if (1260 <= intFreqRX && intFreqRX <= 1270) { confFREQrx.style.backgroundColor = badColor; }
   }
   if(freqTX){
     confFREQtx.style.backgroundColor = badColor;	// Set to bad colour first, then check
@@ -79,9 +83,11 @@ function checkFrequency(){
     if (220 <= intFreqTX && intFreqTX <= 225)   { confFREQtx.style.backgroundColor = goodColor; }
     if (420 <= intFreqTX && intFreqTX <= 450)   { confFREQtx.style.backgroundColor = goodColor; }
     if (842 <= intFreqTX && intFreqTX <= 950)   { confFREQtx.style.backgroundColor = goodColor; }
+    if (1240 <= intFreqTX && intFreqTX <= 1300) { confFREQtx.style.backgroundColor = goodColor; }
     // TX Bad
     if (145.8 <= intFreqTX && intFreqTX <= 146) { confFREQtx.style.backgroundColor = badColor; }
     if (435 <= intFreqTX && intFreqTX <= 438)   { confFREQtx.style.backgroundColor = badColor; }
+    if (1260 <= intFreqTX && intFreqTX <= 1270) { confFREQtx.style.backgroundColor = badColor; }
   }
   if(freqPOCSAG){
     pocsagFrequency.style.backgroundColor = badColor;		// Set to bad colour first, then check
@@ -160,6 +166,19 @@ function toggleNXDNCheckbox(event) {
       break;
   }
   if(event.keyCode == '32') { document.getElementById('aria-toggle-nxdn').click(); }
+}
+function toggleM17Checkbox(event) {
+  switch(document.getElementById('aria-toggle-m17').getAttribute('aria-checked')) {
+    case "true":
+      document.getElementById('aria-toggle-m17').setAttribute('aria-checked', "false");
+      //document.getElementById('toggle-m17').click();
+      break;
+    case "false":
+      document.getElementById('aria-toggle-m17').setAttribute('aria-checked', "true");
+      //document.getElementById('toggle-m17').click();
+      break;
+  }
+  if(event.keyCode == '32') { document.getElementById('aria-toggle-m17').click(); }
 }
 function toggleYSF2DMRCheckbox(event) {
   switch(document.getElementById('aria-toggle-ysf2dmr').getAttribute('aria-checked')) {

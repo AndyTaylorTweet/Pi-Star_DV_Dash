@@ -23,7 +23,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		if ($_POST['ysfLinkHost'] == "none") {
 		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";
 		} else {
-		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Link".$_POST['ysfLinkHost'];
+		  $formattedLinkTarget = preg_replace('/([a-zA-Z]+)([0-9]+)/', '$1 $2', $_POST['ysfLinkHost']);
+		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." Link".$formattedLinkTarget;
 		}
 	      } elseif ($_POST["Link"] == "UNLINK") {
 		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." UnLink";

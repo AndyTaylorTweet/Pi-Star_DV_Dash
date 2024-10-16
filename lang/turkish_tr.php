@@ -27,6 +27,7 @@ $lang = array (
   "ysf_config"                  =>  "Yaesu System Fusion Konfigürasyonu",
   "p25_config"                  =>  "P25 Konfigürasyonu",
   "nxdn_config"                 =>  "NXDN Konfigürasyonu",
+  "m17_config"                  =>  "M17 Configuration",
   "pocsag_config"               =>  "POCSAG Konfigürasyonu",
   "mobilegps_config"            =>  "Mobile GPS Configuration",
   "wifi_config"                 =>  "Kablosuz Konfigürasyonu",
@@ -51,6 +52,7 @@ $lang = array (
   "ysf_mode"                    =>  "YSF Modu",
   "p25_mode"                    =>  "P25 Modu",
   "nxdn_mode"                   =>  "NXDN Modu",
+  "m17_mode"                    =>  "M17 Mode",
   "mmdvm_display"               =>  "MMDVM Ekran Tipi",
   "mode_hangtime"               =>  "Mod Askı Süresi",
   // Config Page - General Configuration
@@ -93,6 +95,9 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN İşletme Ağı",
   "nxdn_ran"                     =>  "NXDN RAN",
+  // Config Page - M17 Configuration
+  "m17_startup_host"            =>  "M17 Startup Host",
+  "m17_can"                     =>  "M17 CAN",
   // Config Page - MobileGPS Configuration
   "mobilegps_enable"            =>  "MobileGPS Enable",
   "mobilegps_port"              =>  "GPS Port",
@@ -119,6 +124,8 @@ $lang = array (
   "p25_net"                     =>  "P25 Ağı",
   "nxdn_radio"                  =>  "NXDN Radyo",
   "nxdn_net"                    =>  "NXDN Ağı",
+  "m17_radio"                   =>  "M17 Radio",
+  "m17_net"                     =>  "M17 Network",
   // Dashboard Front Page - Calls
   "time"                        =>  "Zaman",
   "mode"                        =>  "Mod",

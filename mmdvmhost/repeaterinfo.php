@@ -69,19 +69,21 @@ if (file_exists('/etc/dmr2nxdn')) {
 <table>
   <tr><th colspan="2"><?php echo $lang['modes_enabled'];?></th></tr>
   <tr><?php showMode("D-Star", $mmdvmconfigs);?><?php showMode("DMR", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("System Fusion", $mmdvmconfigs);?><?php showMode("P25", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("YSF XMode", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("DMR XMode", $mmdvmconfigs);?><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("M17", $mmdvmconfigs);?><?php showMode("NXDN", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("P25", $mmdvmconfigs);?><?php showMode("System Fusion", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("DMR XMode", $mmdvmconfigs);?><?php showMode("YSF XMode", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("FM", $mmdvmconfigs);?><?php showMode("POCSAG", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
 <table>
   <tr><th colspan="2"><?php echo $lang['net_status'];?></th></tr>
   <tr><?php showMode("D-Star Network", $mmdvmconfigs);?><?php showMode("DMR Network", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("System Fusion Network", $mmdvmconfigs);?><?php showMode("P25 Network", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
-  <tr><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?><?php showMode("YSF2P25 Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("M17 Network", $mmdvmconfigs);?><?php showMode("NXDN Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("P25 Network", $mmdvmconfigs);?><?php showMode("System Fusion Network", $mmdvmconfigs);?></tr>
   <tr><?php showMode("DMR2NXDN Network", $mmdvmconfigs);?><?php showMode("DMR2YSF Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("YSF2DMR Network", $mmdvmconfigs);?><?php showMode("YSF2NXDN Network", $mmdvmconfigs);?></tr>
+  <tr><?php showMode("YSF2P25 Network", $mmdvmconfigs);?><?php showMode("POCSAG Network", $mmdvmconfigs);?></tr>
 </table>
 <br />
 
@@ -130,6 +132,18 @@ if (isset($lastHeard[0])) {
         	        }
         	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'NXDN') {
         	        echo "<td style=\"background:#c9f;\">Listening NXDN</td>";
+        	        }
+		elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
+        	        echo "<td style=\"background:#4aa361;\">RX M17</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'M17') {
+        	        echo "<td style=\"background:#f9f;\">Listening M17</td>";
+        	        }
+		elseif ($listElem[2] && $listElem[6] == null && getActualMode($lastHeard, $mmdvmconfigs) === 'FM') {
+        	        echo "<td style=\"background:#4aa361;\">RX FM</td>";
+        	        }
+        	elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'FM') {
+        	        echo "<td style=\"background:#f9f;\">Listening FM</td>";
         	        }
 		elseif (getActualMode($lastHeard, $mmdvmconfigs) === 'POCSAG') {
         	        echo "<td style=\"background:#4aa361;\">POCSAG</td>";
@@ -335,6 +349,9 @@ if ( $testMMDVModeP25 == 1 || $testYSF2P25 ) { //Hide the P25 information when P
 	if (getConfigItem("P25", "NAC", $mmdvmconfigs)) {
 		echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
 		echo "<tr><th style=\"width:70px\">NAC</th><td>".getConfigItem("P25", "NAC", $mmdvmconfigs)."</td></tr>\n";
+	} else {
+		echo "<tr><th colspan=\"2\">".$lang['p25_radio']."</th></tr>\n";
+		echo "<tr><th style=\"width:70px\">NAC</th><td>0</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['p25_net']."</th></tr>\n";
 	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesP25Gateway, "P25")."</td></tr>\n";
@@ -350,6 +367,9 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	if (getConfigItem("NXDN", "RAN", $mmdvmconfigs)) {
 		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
 		echo "<tr><th style=\"width:70px\">RAN</th><td>".getConfigItem("NXDN", "RAN", $mmdvmconfigs)."</td></tr>\n";
+	} else {
+		echo "<tr><th colspan=\"2\">".$lang['nxdn_radio']."</th></tr>\n";
+		echo "<tr><th style=\"width:70px\">RAN</th><td>0</td></tr>\n";
 	}
 	echo "<tr><th colspan=\"2\">".$lang['nxdn_net']."</th></tr>\n";
 	if (file_exists('/etc/nxdngateway')) {
@@ -357,6 +377,22 @@ if ( $testMMDVModeNXDN == 1 || isset($testYSF2NXDN) || isset($testDMR2NXDN) ) { 
 	} else {
 		echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">TG 65000</td></tr>\n";
 	}
+	echo "</table>\n";
+}
+
+$testMMDVModeM17 = getConfigItem("M17 Network", "Enable", $mmdvmconfigs);
+if ( $testMMDVModeM17 == 1 ) { //Hide the M17 information when P25 Network mode not enabled.
+	echo "<br />\n";
+	echo "<table>\n";
+	if (getConfigItem("M17", "CAN", $mmdvmconfigs)) {
+		echo "<tr><th colspan=\"2\">".$lang['m17_radio']."</th></tr>\n";
+		echo "<tr><th style=\"width:70px\">CAN</th><td>".getConfigItem("M17", "CAN", $mmdvmconfigs)."</td></tr>\n";
+	} else {
+		echo "<tr><th colspan=\"2\">".$lang['m17_radio']."</th></tr>\n";
+		echo "<tr><th style=\"width:70px\">CAN</th><td>0</td></tr>\n";
+	}
+	echo "<tr><th colspan=\"2\">".$lang['m17_net']."</th></tr>\n";
+	echo "<tr><td colspan=\"2\"style=\"background: #ffffff;\">".getActualLink($logLinesM17Gateway, "M17")."</td></tr>\n";
 	echo "</table>\n";
 }
 

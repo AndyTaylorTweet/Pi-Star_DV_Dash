@@ -28,6 +28,7 @@ $lang = array (
   "ysf_config"                  =>  "Configuració de Yaesu C4FM fusion",
   "p25_config"                  =>  "Configuració de P25",
   "nxdn_config"                 =>  "Configuració de NXDN",
+  "m17_config"                  =>  "M17 Configuration",
   "pocsag_config"               =>  "Configuració de POCSAG",
   "mobilegps_config"            =>  "Configuració GPS mòbil",
   "wifi_config"                 =>  "Configuració WIFI",
@@ -52,6 +53,7 @@ $lang = array (
   "ysf_mode"                    =>  "Mode YSF",
   "p25_mode"                    =>  "Mode P25",
   "nxdn_mode"                   =>  "Mode NXDN",
+  "m17_mode"                    =>  "M17 Mode",
   "mmdvm_display"               =>  "MMDVM Tipus de pantalla",
   "mode_hangtime"               =>  "Mode temps de suspensió",
   // Config Page - General Configuration
@@ -94,6 +96,9 @@ $lang = array (
   // Config Page - NXDN Configuration
   "nxdn_startup_host"            =>  "NXDN Arrencant Host",
   "nxdn_ran"                     =>  "NXDN RAN",
+  // Config Page - M17 Configuration
+  "m17_startup_host"            =>  "M17 Startup Host",
+  "m17_can"                     =>  "M17 CAN",
   // Config Page - MobileGPS Configuration
   "mobilegps_enable"            =>  "Activació del GPS mòbil",
   "mobilegps_port"              =>  "Port del GPS",
@@ -120,6 +125,8 @@ $lang = array (
   "p25_net"                     =>  "Xarxa P25",
   "nxdn_radio"                  =>  "Ràdio NXDN",
   "nxdn_net"                    =>  "Xarxa NXDN",
+  "m17_radio"                   =>  "M17 Radio",
+  "m17_net"                     =>  "M17 Network",
   // Dashboard Front Page - Calls
   "time"                        =>  "Hora",
   "mode"                        =>  "Mode",

@@ -47,63 +47,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       }
     }
     if (substr($dmrMasterHost, 0, 2) == "BM") {
-      if ( (isset($bmAPIkey)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ): // Data has been posted for this page
-          $bmAPIurl = 'https://api.brandmeister.network/v1.0/repeater/';
-          // Are we a repeater
-          if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
-              unset($_POST["TS"]);
-              $targetSlot = "0";
-            } else {
-              $targetSlot = $_POST["TS"];
-          }
-          // Figure out what has been posted
-          if (isset($_POST["dropDyn"])) { $bmAPIurl = $bmAPIurl."setRepeaterTarantool.php?action=dropDynamicGroups&slot=".$targetSlot."&q=".$dmrID; }
-          if (isset($_POST["dropQso"])) { $bmAPIurl = $bmAPIurl."setRepeaterDbus.php?action=dropCallRoute&slot=".$targetSlot."&q=".$dmrID; }
-          if ( ($_POST["TGmgr"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=ADD&id=".$dmrID; }
-          if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl."talkgroup/?action=DEL&id=".$dmrID; }
-          if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
-          // Build the Data
-          if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetTG) ) {
-            $postDataTG = array(
-              'talkgroup' => $targetTG,
-              'timeslot' => $targetSlot,
-            );
-          }
-          // Build the Query
-          $postData = '';
-          if (isset($_POST["tgSubmit"])) { $postData = http_build_query($postDataTG); }
-          $postHeaders = array(
-            'Content-Type: application/x-www-form-urlencoded',
-            'Content-Length: '.strlen($postData),
-            'Authorization: Basic '.base64_encode($bmAPIkey.':'),
-            'User-Agent: Pi-Star Dashboard for '.$dmrID,
-          );
-
-          $opts = array(
-            'http' => array(
-            'header'  => $postHeaders,
-            'method'  => 'POST',
-            'content' => $postData,
-            'password' => '',
-            'success' => '',
-            'timeout' => 2,
-            ),
-          );
-          $context = stream_context_create($opts);
-          $result = @file_get_contents($bmAPIurl, false, $context);
-          $feeback=json_decode($result);
-          // Output to the browser
-          echo '<b>BrandMeister Manager</b>'."\n";
-          echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-          //echo "Sending command to BrandMeister API";
-          if (isset($feeback)) { print "BrandMeister APIv1: ".$feeback->{'message'}; } else { print "BrandMeister APIv1: No Responce"; }
-          echo "</td></tr>\n</table>\n";
-          echo "<br />\n";
-          // Clean up...
-          unset($_POST);
-          echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
-
-      elseif ( (isset($bmAPIkeyV2)) && ( (isset($bmAPIkeyV2)) && ( !empty($_POST) && ( isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]) ) ) ) ): // Data has been posted for this page
+      if (isset($bmAPIkeyV2) && !empty($_POST) && (isset($_POST["dropDyn"]) || isset($_POST["dropQso"]) || isset($_POST["tgSubmit"]))) : // Data has been posted for this page
           $bmAPIurl = 'https://api.brandmeister.network/v2/device/';
           // Are we a repeater
           if ( getConfigItem("DMR Network", "Slot1", $mmdvmconfigs) == "0" ) {
@@ -118,43 +62,44 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           if ( (isset($_POST["tgNr"])) && (isset($_POST["tgSubmit"])) ) { $targetTG = preg_replace("/[^0-9]/", "", $_POST["tgNr"]); }
           if ( ($_POST["TGmgr"] == "ADD") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl.$dmrID."/talkgroup/"; $method = "POST"; }
           if ( ($_POST["TGmgr"] == "DEL") && (isset($_POST["tgSubmit"])) ) { $bmAPIurl = $bmAPIurl.$dmrID."/talkgroup/".$targetSlot."/".$targetTG; $method = "DELETE"; }
-          
+
           // Build the Data
+          $postHeaders = array(
+            'Content-Type: application/json',
+            'Accept: application/json',
+            'Authorization: Bearer '.$bmAPIkeyV2,
+            'User-Agent: Pi-Star Dashboard for '.$dmrID,
+          );
+          $opts = array(
+            'http' => array(
+              'method'  => $method,
+              //'header'  => $postHeaders,
+              'header'  => implode("\r\n", $postHeaders),
+              'password' => '',
+              'success' => '',
+              'timeout' => 2,
+            ),
+          );
+
+          // If we are adding a TG
           if ( (!isset($_POST["dropDyn"])) && (!isset($_POST["dropQso"])) && isset($targetTG) && $_POST["TGmgr"] == "ADD" ) {
             $postDataTG = array(
               'slot' => $targetSlot,
               'group' => $targetTG              
             );
+            $postData = json_encode($postDataTG);
+            $postHeaders[] = 'Content-Length: '.strlen($postData);
+            $opts['http']['content'] = $postData;
           }
-          // Build the Query
-          $postData = '';
-          if ($_POST["TGmgr"] == "ADD") { $postData = json_encode($postDataTG); }
-          $postHeaders = array(
-            'Content-Type: accept: application/json',
-            'Content-Length: '.strlen($postData),
-            'Authorization: '.$bmAPIkeyV2,
-            'User-Agent: Pi-Star Dashboard for '.$dmrID,
-          );
 
-          $opts = array(
-            'http' => array(
-            'header'  => $postHeaders,
-            'method'  => $method,
-            'content' => $postData,
-            'password' => '',
-            'success' => '',
-            'timeout' => 2,
-            ),
-          );
+          // Make the request
           $context = stream_context_create($opts);
           $result = @file_get_contents($bmAPIurl, false, $context);
           $feeback=json_decode($result);
           // Output to the browser
           echo '<b>BrandMeister Manager</b>'."\n";
           echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
-          //echo "Sending command to BrandMeister API";
-          //if (isset($feeback)) { print "BrandMeister APIv2: ".$feeback->{'message'}; } else { print "BrandMeister APIv2: No Responce"; }
-          if (isset($feeback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Responce"; }
+          if (isset($feeback)) { print "BrandMeister APIv2: OK"; } else { print "BrandMeister APIv2: No Response"; }
           echo "</td></tr>\n</table>\n";
           echo "<br />\n";
           // Clean up...
@@ -163,20 +108,20 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 
       else: // Do this when we are not handling post data
         // If there is a BM API Key
-        if (isset($bmAPIkey) || isset($bmAPIkeyV2)) {
+        if (isset($bmAPIkeyV2)) {
           echo '<b>BrandMeister Manager</b>'."\n";
           echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
-          echo '<table>'."\n";
+          echo '<table role="presentation">'."\n";
           echo '<tr>
-            <th style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
-            <th style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
-            <th style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
+            <th aria-hidden="true" id="lblTG" style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+            <th aria-hidden="true" id="lblSlot" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
+            <th aria-hidden="true" id="addRemove" style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
             <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
           </tr>'."\n";
           echo '    <tr>';
-          echo '<td><input type="text" name="tgNr" size="10" maxlength="7" /></td>';
-          echo '<td><input type="radio" name="TS" value="1" />TS1 <input type="radio" name="TS" value="2" checked="checked" />TS2</td>';
-          echo '<td><input type="radio" name="TGmgr" value="ADD" checked="checked" />Add <input type="radio" name="TGmgr" value="DEL" />Delete</td>';
+          echo '<td><input aria-labelledby="lblTG" type="text" name="tgNr" size="10" maxlength="7" /></td>';
+          echo '<td role="radiogroup" aria-labelledby="lblTS"><input id="rbTS1" type="radio" name="TS" value="1" /><label for="rbTS1">TS1</label> <input id="rbTS2" type="radio" name="TS" value="2" checked="checked" /><label for="rbTS2">TS2</label></td>';
+          echo '<td role="radiogroup" aria-labelledby="lblAddRemove"><input id="rbAdd" type="radio" name="TGmgr" value="ADD" checked="checked" /><label for="rbAdd">Add</label> <input id="rbDelete" type="radio" name="TGmgr" value="DEL" /><label for="rbDelete">Delete</label></td>';
           echo '<td><input type="submit" value="Modify Static" name="tgSubmit" /></td>';
           echo '</tr>'."\n";
           echo '    <tr>';

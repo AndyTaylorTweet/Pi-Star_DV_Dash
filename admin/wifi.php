@@ -100,9 +100,9 @@ switch($page) {
 				$strBitrate = str_replace(':', '', str_replace('=', '', $result[1])); }
 				if (preg_match('/Tx-Power=([0-9]+ dBm)/i',$strWlan0,$result)) {
 				$strTxPower = $result[1]; }
-				if (preg_match('/ESSID:\"([a-zA-Z0-9-_\s]+)\"/i',$strWlan0,$result)) {
+				if (preg_match('/ESSID:\"([a-zA-Z0-9-_.\s]+)\"/i',$strWlan0,$result)) {
 				$strSSID = str_replace('"','',$result[1]); }
-				if (preg_match('/SSID:\ ([a-zA-Z0-9-_\s]+)/i',$strWlan0,$result)) {
+				if (preg_match('/SSID:\ ([a-zA-Z0-9-_.\s]+)/i',$strWlan0,$result)) {
 				$strSSID = str_replace(' freq','',$result[1]); }
 				if (preg_match('/Link Quality=([0-9]+\/[0-9]+)/i',$strWlan0,$result)) {
 				        $strLinkQuality = $result[1];
@@ -255,7 +255,13 @@ echo '<br />
 <div class="network" id="networkbox">'."\n";
 		if (!isset($wifiCountry)) { $wifiCountry = "JP"; }
 		$output .= 'WiFi Regulatory Domain (Country Code) : <select name="wifiCountryCode">'."\n";
-		exec('regdbdump /lib/crda/regulatory.bin | fgrep country | cut -b 9-10', $regDomains);
+		if (file_exists('/lib/crda/regulatory.bin')) {
+			exec('regdbdump /lib/crda/regulatory.bin | fgrep country | cut -b 9-10', $regDomains);
+		} elseif (file_exists('/lib/crda/db.txt')) {
+			exec('cat /lib/crda/db.txt | fgrep country | cut -b 9-10', $regDomains);
+		} else {
+			$regDomains = array("AU","FR","DE","GB","US","JP");
+		}
 		foreach($regDomains as $regDomain) {
 			if ($regDomain == $wifiCountry) {
 				$output .= '<option value="'.$regDomain.'" selected>'.$regDomain.'</option>'."\n";
