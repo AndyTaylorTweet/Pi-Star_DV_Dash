@@ -125,7 +125,7 @@ function formatSize( $bytes ) {
   </p>
   </div>
   <div class="contentwide">
-  <table width="100%" border="0">
+  <table role="presentation" width="100%" border="0">
   <tr><th colspan="2">Pi-Star System Information</th></tr>
 <?php
 // Ram information
