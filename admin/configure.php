@@ -2578,6 +2578,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['NextionDriver']['WaitForLan'] = "1";
 		$configmmdvm['Transparent Data']['Enable'] = "1";
 		$configmmdvm['Transparent Data']['SendFrameType'] = "1";
+		$configmmdvm['Nextion']['Port'] = "/dev/ttyNextionDriver";
 	}	
 	if (!isset($configmmdvm['FM'])) {
 		$configmmdvm['FM']['Enable'] = "0";
