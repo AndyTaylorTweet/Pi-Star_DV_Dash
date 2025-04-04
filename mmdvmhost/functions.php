@@ -564,6 +564,8 @@ function getHeardList($logLines) {
                         continue;
 		} else if(strpos($logLine,"DMR Talker Alias")) {
 			continue;
+		} else if(strpos($logLine,", Talker Alias ")) {
+			continue;
 		} else if(strpos($logLine,"CSBK Preamble")) {
                         continue;
 		} else if(strpos($logLine,"Preamble CSBK")) {
