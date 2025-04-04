@@ -2579,7 +2579,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['Transparent Data']['Enable'] = "1";
 		$configmmdvm['Transparent Data']['SendFrameType'] = "1";
 		$configmmdvm['Nextion']['Port'] = "/dev/ttyNextionDriver";
-	}	
+	}
+	if (isset($configmmdvm['NextionDriver'])) {
+		if ($configmmdvm['Nextion']['Port'] == $configmmdvm['Modem']['Port']) { $configmmdvm['Nextion']['Port'] = "/dev/ttyNextionDriver"; }
+		if ($configmmdvm['Nextion']['Port'] == $configmmdvm['Modem']['UARTPort']) { $configmmdvm['Nextion']['Port'] = "/dev/ttyNextionDriver"; }
+	}
 	if (!isset($configmmdvm['FM'])) {
 		$configmmdvm['FM']['Enable'] = "0";
 		$configmmdvm['FM']['Callsign'] = $newCallsignUpper;
