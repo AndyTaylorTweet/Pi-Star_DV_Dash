@@ -593,7 +593,7 @@ function getHeardList($logLines) {
 			}
 			// The change to this code was causing all FCS traffic to always show TOut rather than the timer.
 			// This version should still show time-out when needed, AND show the time if it exists.
-			if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired")) {
+			if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired") || strpos($logLine, "Mode set")) {
 				if (array_key_exists(2,$lineTokens) && strpos($lineTokens[2], "seconds")) {
 					$duration = strtok($lineTokens[2], " ");
 				} else {
