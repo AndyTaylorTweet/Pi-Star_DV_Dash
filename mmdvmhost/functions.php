@@ -253,13 +253,13 @@ function getMMDVMLog() {
 	$logLines2 = array();
 	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
+		$logLines1 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost|Mode set)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
 	}
 	$logLines1 = array_slice($logLines1, -250);
 	if (sizeof($logLines1) < 250) {
 		if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
+			$logLines2 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost|Mode set)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
 		}
 	}
 	$logLines2 = array_slice($logLines2, -250);
@@ -476,6 +476,7 @@ function getDVModemTCXOFreq() {
 
 // 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000111111111122
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+// M: 2000-00-00 00:00:00.000 Mode set to D-Star
 // M: 2000-00-00 00:00:00.000 D-Star, received RF header from M1ABC   /ABCD to CQCQCQ  
 // M: 2000-00-00 00:00:00.000 D-Star, received RF end of transmission from M1ABC   /ABCD to CQCQCQ  , 00.0 seconds, BER: 0.0%, RSSI: -43/-43/-43 dBm
 // M: 2000-00-00 00:00:00.000 D-Star, received network header from M1ABC   /ABCD to CQCQCQ   via REF000 A
@@ -519,6 +520,7 @@ function getDVModemTCXOFreq() {
 // M: 2000-00-00 00:00:00.000 M17, received network voice transmission from M1ABC to ECHO
 // M: 2000-00-00 00:00:00.000 M17, received network end of transmission from M1ABC to ECHO, 0.0 seconds
 // M: 2000-00-00 00:00:00.000 POCSAG, transmitted 1 frame(s) of data from 1 message(s)
+// M: 2000-00-00 00:00:00.000 Mode set to Idle
 function getHeardList($logLines) {
 	//array_multisort($logLines,SORT_DESC);
 	$heardList = array();
