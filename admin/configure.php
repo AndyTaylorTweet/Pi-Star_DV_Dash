@@ -2622,7 +2622,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		$configmmdvm['FM']['ExtAudioBoost'] = "1";
 		$configmmdvm['FM']['ModeHang'] = "20";
 	}
-	
+
+	// Stop ircDDBGateway from trying to lookup rr.openquad.net (the hard coded default) all the time
+	if (!isset($configs['ircddbHostname2'])) { $configs['ircddbEnabled2'] = "0"; }
+
 	// Add missing options to DMR2YSF
 	if (!isset($configdmr2ysf['YSF Network']['FCSRooms'])) { $configdmr2ysf['YSF Network']['FCSRooms'] = "/usr/local/etc/FCSHosts.txt"; }
 	if (!isset($configdmr2ysf['DMR Network']['DefaultDstTG'])) { $configdmr2ysf['DMR Network']['DefaultDstTG'] = "9"; }
