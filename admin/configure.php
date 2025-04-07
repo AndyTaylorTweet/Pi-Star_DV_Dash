@@ -2624,7 +2624,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Stop ircDDBGateway from trying to lookup rr.openquad.net (the hard coded default) all the time
-	if (!isset($configs['ircddbHostname2'])) { $configs['ircddbEnabled2'] = "0"; }
+	if ( (!isset($configs['ircddbHostname2'])) && (!isset($configs['ircddbEnabled2'])) ) {
+		$fix2ndIRCHost = "sudo sed -i '/^ircddbEnabled=/a ircddbEnabled2=0' /etc/ircddbgateway";
+		system($fix2ndIRCHost);
+	}
 
 	// Add missing options to DMR2YSF
 	if (!isset($configdmr2ysf['YSF Network']['FCSRooms'])) { $configdmr2ysf['YSF Network']['FCSRooms'] = "/usr/local/etc/FCSHosts.txt"; }
