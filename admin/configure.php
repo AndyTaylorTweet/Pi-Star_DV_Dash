@@ -614,8 +614,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	// Set the POCSAG Frequency
 	if (empty($_POST['pocsagFrequency']) != TRUE ) {
 	  $newPocsagFREQ = preg_replace('/[^0-9\.]/', '', $_POST['pocsagFrequency']);
+	  $newPocsagFREQ = number_format($newPocsagFREQ, 6, ".", "");
 	  $newPocsagFREQ = str_pad(str_replace(".", "", $newPocsagFREQ), 9, "0");
-	  $newPocsagFREQ = mb_strimwidth($newPocsagFREQ, 0, 9);
 	  $configmmdvm['POCSAG']['Frequency'] = $newPocsagFREQ;
 	}
 
