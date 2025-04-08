@@ -65,7 +65,9 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 		  <td>
 		    <select name="p25LinkHost">
 		    <?php
-		      if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; } else { $testP25Host = "none"; }
+		      if (isset($configp25gateway['Network']['Startup'])) { $testP25Host = $configp25gateway['Network']['Startup']; }
+		      elseif (isset($configp25gateway['Network']['Static'])) { $testP25Host = $configp25gateway['Network']['Static']; }
+		      else { $testP25Host = "none"; }
 		      if ($testP25Host == "") { echo "      <option value=\"none\" selected=\"selected\">None</option>\n"; }
 		      else { echo "      <option value=\"none\">None</option>\n"; }
 		      if ($testP25Host == "10") { echo "      <option value=\"10\" selected=\"selected\">10 - Parrot</option>\n"; }
