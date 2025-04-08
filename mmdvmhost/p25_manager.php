@@ -21,12 +21,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
 	      if (preg_match('/[^A-Za-z0-9]/',$_POST['p25LinkHost'])) { unset ($_POST['p25LinkHost']);}
 	      if ($_POST["Link"] == "LINK") {
 		if ($_POST['p25LinkHost'] == "none") {
-		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup_9999";
+		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup 9999";
 		} else {
-		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup_".$_POST['p25LinkHost'];
+		  $remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup ".$_POST['p25LinkHost'];
 		}
 	      } elseif ($_POST["Link"] == "UNLINK") {
-		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup_9999";
+		$remoteCommand = "cd /var/log/pi-star && sudo /usr/local/bin/RemoteCommand ".$remotePort." TalkGroup 9999";
 	      } else {
 		echo "<b>P25 Link Manager</b>\n";
 		echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
