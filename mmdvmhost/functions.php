@@ -870,7 +870,9 @@ function getActualMode($metaLastHeard, $mmdvmconfigs) {
 		$timestamp->add(new DateInterval('PT' . $hangtime . 'S'));
 	}
 	if ($listElem[6] != null) { //if terminated, hangtime counts after end of transmission
-		$timestamp->add(new DateInterval('PT' . ceil($listElem[6]) . 'S'));
+		$seconds = is_numeric($listElem[6]) ? ceil((float)$listElem[6]) : 0;
+		$timestamp->add(new DateInterval('PT' . $seconds . 'S'));
+		//$timestamp->add(new DateInterval('PT' . ceil($listElem[6]) . 'S'));
 	} else { //if not terminated, always return mode
 		return $mode;
 	}
