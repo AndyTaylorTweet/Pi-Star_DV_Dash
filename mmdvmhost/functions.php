@@ -253,13 +253,13 @@ function getMMDVMLog() {
 	$logLines2 = array();
 	if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log")) {
 		$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d").".log";
-		$logLines1 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost|fast data)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
+		$logLines1 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost|slow data)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
 	}
 	$logLines1 = array_slice($logLines1, -250);
 	if (sizeof($logLines1) < 250) {
 		if (file_exists(MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log")) {
 			$logPath = MMDVMLOGPATH."/".MMDVMLOGPREFIX."-".gmdate("Y-m-d", time() - 86340).".log";
-			$logLines2 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost|fast data)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
+			$logLines2 = explode("\n", `egrep -h "^M.*(from|end|watchdog|lost|slow data)" $logPath | sed '/\(CSBK\|overflow\|Downlink\)/d' | tail -250`);
 		}
 	}
 	$logLines2 = array_slice($logLines2, -250);
@@ -483,6 +483,7 @@ function getDVModemTCXOFreq() {
 // M: 2000-00-00 00:00:00.000 D-Star, received network end of transmission from M1ABC   /ABCD to CQCQCQ  , 0.0 seconds, 0% packet loss, BER: 0.0%
 // M: 2000-00-00 00:00:00.000 D-Star, starting fast data mode
 // M: 2000-00-00 00:00:00.000 D-Star, leaving fast data mode
+// M: 2000-00-00 00:00:00.000 D-Star, invalid slow data header
 // M: 2000-00-00 00:00:00.000 DMR Slot 2, received network voice header from M1ABC to TG 1
 // M: 2000-00-00 00:00:00.000 DMR Slot 2, received RF voice header from M1ABC to 5000
 // M: 2000-00-00 00:00:00.000 DMR Slot 2, received RF end of voice transmission, 1.8 seconds, BER: 3.9%
@@ -583,7 +584,7 @@ function getHeardList($logLines) {
                         continue;
 		}
 
-		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "fast data") || strpos($logLine, "ended RF data") || strpos($logLine, "d network data") || strpos($logLine, "RF user has timed out") || strpos($logLine, "transmission lost") || strpos($logLine, "POCSAG")) {
+		if(strpos($logLine, "end of") || strpos($logLine, "watchdog has expired") || strpos($logLine, "invalid slow data header") || strpos($logLine, "ended RF data") || strpos($logLine, "d network data") || strpos($logLine, "RF user has timed out") || strpos($logLine, "transmission lost") || strpos($logLine, "POCSAG")) {
 			$lineTokens = explode(", ",$logLine);
 			if (array_key_exists(2,$lineTokens)) {
 				$duration = strtok($lineTokens[2], " ");
@@ -593,7 +594,7 @@ function getHeardList($logLines) {
 			}
 			// The change to this code was causing all FCS traffic to always show TOut rather than the timer.
 			// This version should still show time-out when needed, AND show the time if it exists.
-			if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired") || strpos($logLine, "fast data")) {
+			if (strpos($logLine,"RF user has timed out") || strpos($logLine,"watchdog has expired") || strpos($logLine, "invalid slow data header")) {
 				if (array_key_exists(2,$lineTokens) && strpos($lineTokens[2], "seconds")) {
 					$duration = strtok($lineTokens[2], " ");
 				} else {
