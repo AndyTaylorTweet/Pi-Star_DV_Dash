@@ -239,8 +239,8 @@ if ( (file_exists('/etc/dstar-radio.mmdvmhost') && $configmmdvm['DMR']['Enable']
     </tr>
   </table>
 </div>
-<?php } 
-if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRelease['Pi-Star']['Version'] < "4.1.7") ) {
+<?php }
+if ( version_compare($configPistarRelease['Pi-Star']['Version'], "4.1.0", ">=") && version_compare($configPistarRelease['Pi-Star']['Version'], "4.1.10", "<") ) {
 ?>
 <div>
   <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
@@ -249,8 +249,27 @@ if ( ($configPistarRelease['Pi-Star']['Version'] >= "4.1") && ($configPistarRele
     </tr>
   </table>
 </div>
-<?php } ?>
-<?php
+<?php }
+if ( version_compare($configPistarRelease['Pi-Star']['Version'], "4.2.0", ">=") && version_compare($configPistarRelease['Pi-Star']['Version'], "4.2.3", "<") ) {
+?>
+<div>
+  <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
+    <tr>
+    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: An upgrade to Pi-Star has been released, click here to upgrade now: <a href="/admin/expert/upgrade.php" alt="Upgrade Pi-Star">Upgrade Pi-Star</a>.</td>
+    </tr>
+  </table>
+</div>
+<?php }
+if ( version_compare($configPistarRelease['Pi-Star']['Version'], "4.3.0", ">=") && version_compare($configPistarRelease['Pi-Star']['Version'], "4.3.4", "<") ) {
+?>
+<div>
+  <table align="center" width="760px" style="margin: 0px 0px 10px 0px; width: 100%;">
+    <tr>
+    <td align="center" valign="top" style="background-color: #ffff90; color: #906000;">Alert: An upgrade to Pi-Star has been released, click here to upgrade now: <a href="/admin/expert/upgrade.php" alt="Upgrade Pi-Star">Upgrade Pi-Star</a>.</td>
+    </tr>
+  </table>
+</div>
+<?php }
 $bmAPIkeyFile = '/etc/bmapi.key';
 if (file_exists($bmAPIkeyFile) && fopen($bmAPIkeyFile,'r')) {
   $configBMapi = parse_ini_file($bmAPIkeyFile, true);
