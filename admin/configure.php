@@ -4110,6 +4110,12 @@ else:
 	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'nanodv') {			echo ' selected="selected"';}?> value="nanodv">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (GPIO)</option>
 	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'nanodvusb') {		echo ' selected="selected"';}?> value="nanodvusb">MMDVM_NANO_DV (BG4TGO) for NanoPi AIR (USB)</option>
 		<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'opengd77') {		echo ' selected="selected"';}?> value="opengd77">OpenGD77 DMR hotspot (USB)</option>
+		<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv1v2') {		echo ' selected="selected"';}?> value="rptrbldrv1v2">Repeater Builder v1/v2 Simplex (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv1v2dup') {		echo ' selected="selected"';}?> value="rptrbldrv1v2dup">Repeater Builder v1/v2 Duplex (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4') {		echo ' selected="selected"';}?> value="rptrbldrv3v4">Repeater Builder v3/v4 Simplex 115200 baud (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4dup') {		echo ' selected="selected"';}?> value="rptrbldrv3v4dup">Repeater Builder v3/v4 Duplex 115200 baud (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4hs') {		echo ' selected="selected"';}?> value="rptrbldrv3v4hs">Repeater Builder v3/v4 Simplex 460800 baud (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4hsdup') {	echo ' selected="selected"';}?> value="rptrbldrv3v4hsdup">Repeater Builder v3/v4 Duplex 460800 baud (GPIO)</option>
     </select></td>
     </tr>
 <?php } ?>
