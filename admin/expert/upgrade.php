@@ -91,17 +91,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
   <div class="container">
   <?php include './header-menu.inc'; ?>
   <div class="contentwide">
-  <table width="100%">
+  <table role="presentation" width="100%">
   <tr><th>Upgrade Running</th></tr>
   <tr><td align="left"><div id="tail">Starting upgrade, please wait...<br /></div></td></tr>
   </table>
   </div>
+  <footer aria-label="footer">
   <div class="footer">
   Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
   Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
   Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
   <br />
   </div>
+  </footer>
   </div>
   </body>
   </html>
