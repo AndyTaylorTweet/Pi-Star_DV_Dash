@@ -1864,7 +1864,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
 
-	  if ( $confHardware == 'rptrbldrv3v4' ) {
+	  if ( $confHardware == 'rptrbldrv3v4v5' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollMMDVMPort = 'sudo sed -i "/mmdvmPort=/c\\mmdvmPort=/dev/ttyAMA0" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -1879,7 +1879,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['Modem']['UARTSpeed'] = "115200";
 	  }
 
-	  if ( $confHardware == 'rptrbldrv3v4dup' ) {
+	  if ( $confHardware == 'rptrbldrv3v4v5dup' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollMMDVMPort = 'sudo sed -i "/mmdvmPort=/c\\mmdvmPort=/dev/ttyAMA0" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -1893,7 +1893,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['Modem']['UARTSpeed'] = "115200";
 	  }
 
-	  if ( $confHardware == 'rptrbldrv3v4hs' ) {
+	  if ( $confHardware == 'rptrbldrv3v4v5hs' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollMMDVMPort = 'sudo sed -i "/mmdvmPort=/c\\mmdvmPort=/dev/ttyAMA0" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -1908,7 +1908,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['Modem']['UARTSpeed'] = "460800";
 	  }
 
-	  if ( $confHardware == 'rptrbldrv3v4hsdup' ) {
+	  if ( $confHardware == 'rptrbldrv3v4v5hsdup' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollMMDVMPort = 'sudo sed -i "/mmdvmPort=/c\\mmdvmPort=/dev/ttyAMA0" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -4112,10 +4112,10 @@ else:
 		<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'opengd77') {		echo ' selected="selected"';}?> value="opengd77">OpenGD77 DMR hotspot (USB)</option>
 		<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv1v2') {		echo ' selected="selected"';}?> value="rptrbldrv1v2">Repeater Builder v1/v2 Simplex (GPIO)</option>
 	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv1v2dup') {		echo ' selected="selected"';}?> value="rptrbldrv1v2dup">Repeater Builder v1/v2 Duplex (GPIO)</option>
-	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4') {		echo ' selected="selected"';}?> value="rptrbldrv3v4">Repeater Builder v3/v4 Simplex 115200 baud (GPIO)</option>
-	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4dup') {		echo ' selected="selected"';}?> value="rptrbldrv3v4dup">Repeater Builder v3/v4 Duplex 115200 baud (GPIO)</option>
-	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4hs') {		echo ' selected="selected"';}?> value="rptrbldrv3v4hs">Repeater Builder v3/v4 Simplex 460800 baud (GPIO)</option>
-	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4hsdup') {	echo ' selected="selected"';}?> value="rptrbldrv3v4hsdup">Repeater Builder v3/v4 Duplex 460800 baud (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4v5') {		echo ' selected="selected"';}?> value="rptrbldrv3v4v5">Repeater Builder v3/v4/v5 Simplex 115200 baud (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4v5dup') {	echo ' selected="selected"';}?> value="rptrbldrv3v4v5dup">Repeater Builder v3/v4/v5 Duplex 115200 baud (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4v5hs') {	echo ' selected="selected"';}?> value="rptrbldrv3v4v5hs">Repeater Builder v3/v4/v5 Simplex 460800 baud (GPIO)</option>
+	    	<option<?php if (isset($configModem['Modem']['Hardware']) && $configModem['Modem']['Hardware'] === 'rptrbldrv3v4v5hsdup') {	echo ' selected="selected"';}?> value="rptrbldrv3v4v5hsdup">Repeater Builder v3/v4/v5 Duplex 460800 baud (GPIO)</option>
     </select></td>
     </tr>
 <?php } ?>
