@@ -21,7 +21,21 @@ if (file_exists('/etc/pistar-css.ini')) {
     $textContent = $piStarCss['Content']['Text'];            	// Used for the section titles
     $tableRowEvenBg = $piStarCss['Tables']['BgEven']; 		// Table Row BG Colour (Even)
     $tableRowOddBg = $piStarCss['Tables']['BgOdd'];		// Table Row BG Colour (Odd)
-    
+
+    // Any missing .ini values will be assumed to be the default.
+    $enableDarkMode = $piStarCss['DarkMode']['Enabled']; // do we enable dark mode?
+    if ($enableDarkMode === NULL) {
+        $enableDarkMode = 1;    // enabled by default if not defined
+    }
+    $backgroundPageDark = $piStarCss['Background']['PageDark'] ?: '120f0a';		// usually off-white
+    $backgroundContentDark = $piStarCss['Background']['ContentDark'] ?: '000000';   // The White background in the content section
+    $backgroundBannersDark = $piStarCss['Background']['BannersDark'] ?: 'bb2917';   // The ubiquitous Pi-Star Red
+    $textBannersDark = $piStarCss['Text']['BannersDark'] ?: '000000';            	// Usually white
+    $bannerDropShaddowsDark = $piStarCss['Text']['BannersDropDark'] ?: '303030';    // Banner drop shaddow colour
+    $tableHeadDropShaddowDark = $piStarCss['Tables']['HeadDropDark'] ?: '8b0000';   // Table Headder drop shaddows
+    $textContentDark = $piStarCss['Content']['TextDark'] ?: 'ffffff';            	// Used for the section titles
+    $tableRowEvenBgDark = $piStarCss['Tables']['BgEvenDark'] ?: '777777'; 		// Table Row BG Colour (Even)
+    $tableRowOddBgDark = $piStarCss['Tables']['BgOddDark'] ?: '555555';		// Table Row BG Colour (Odd)
 } else {
     // Default values
     $backgroundPage = "edf0f5";         // usually off-white
@@ -33,6 +47,17 @@ if (file_exists('/etc/pistar-css.ini')) {
     $textContent = "000000";            // Used for the section titles
     $tableRowEvenBg = "f7f7f7";		// Table Row BG Colour (Even)
     $tableRowOddBg = "d0d0d0";		// Table Row BG Colour (Odd)
+
+    $enableDarkMode = 1;
+    $backgroundPageDark = "120f0a";         // usually off-white
+    $backgroundContentDark = "000000";      // The White background in the content section
+    $backgroundBannersDark = "bb2917";      // The ubiquitous Pi-Star Red
+    $textBannersDark = "000000";            // Usually white
+    $bannerDropShaddowsDark = "303030";     // Banner drop shaddow colour
+    $tableHeadDropShaddowDark = "8b0000";   // Table Headder drop shaddows
+    $textContentDark = "ffffff";            // Used for the section titles
+    $tableRowEvenBgDark = "777777";		// Table Row BG Colour (Even)
+    $tableRowOddBgDark = "555555";		// Table Row BG Colour (Odd)
 }
 ?>
 .container {
@@ -415,3 +440,5 @@ input.toggle-round-flat:checked + label:after {
 .nice-select.small ul li:nth-of-type(2) {
         clear: both;
 }
+
+<?php include_once 'pistar-css-dark.php'; ?>
