@@ -1111,7 +1111,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  if (isset($_POST['bmHSSecurity'])) {
 		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
 			  $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+              $configModem['BrandMeister']['Password'] = '"'.trim($_POST['bmHSSecurity'], '"').'"';
 		  } else {
 			  unset ($configModem['BrandMeister']['Password']);
 		  }
@@ -1133,7 +1133,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	      unset($confignxdngateway['Network']['Static']);
 	    } else {
 	      $confignxdngateway['Network']['Startup'] = escapeshellcmd($_POST['ysf2nxdnStartupDstId']);
-	    }		  
+	    }
 	  }
 	}
 
@@ -1242,7 +1242,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  }
  	  if ((isset($_POST['bmHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 2) == "BM") {
 		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+              $configModem['BrandMeister']['Password'] = '"'.trim($_POST['bmHSSecurity'], '"').'"';
 			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
 		  } else {
 			  unset ($configModem['BrandMeister']['Password']);
@@ -2245,7 +2245,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	    $configmmdvm['Modem']['UARTPort'] = $configmmdvm['Modem']['Port'];
 	    if (isset($configmmdvm['FM']['Enable'])) { $configmmdvm['FM']['Enable'] = "0"; }
 	  }
-	  
+
 	  if ( $confHardware == 'opengd77' ) {
 	    $rollModemType = 'sudo sed -i "/modemType=/c\\modemType=MMDVM" /etc/dstarrepeater';
 	    $rollRepeaterType1 = 'sudo sed -i "/repeaterType1=/c\\repeaterType1=0" /etc/ircddbgateway';
@@ -2605,7 +2605,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (!isset($configmmdvm['Modem']['AX25TXLevel'])) { $configmmdvm['Modem']['AX25TXLevel'] = "50"; }
 	if (!isset($configmmdvm['Modem']['UseCOSAsLockout'])) { $configmmdvm['Modem']['UseCOSAsLockout'] = "0"; }
 	if (!isset($configmmdvm['Modem']['UARTSpeed'])) { $configmmdvm['Modem']['UARTSpeed'] = "115200"; }
-	if (!isset($configmmdvm['Transparent Data']['SendFrameType'])) { $configmmdvm['Transparent Data']['SendFrameType'] = "0"; }							
+	if (!isset($configmmdvm['Transparent Data']['SendFrameType'])) { $configmmdvm['Transparent Data']['SendFrameType'] = "0"; }
 	if (!isset($configmmdvm['D-Star']['AckReply'])) { $configmmdvm['D-Star']['AckReply'] = "1"; }
 	if (!isset($configmmdvm['D-Star']['AckTime'])) { $configmmdvm['D-Star']['AckTime'] = "750"; }
 	if (!isset($configmmdvm['D-Star']['AckMessage'])) { $configmmdvm['D-Star']['AckMessage'] = "0"; }
@@ -2839,7 +2839,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	if (isset($configdgidgateway)) {
 		$configdgidgateway['General']['LocalPort'] = $configmmdvm['System Fusion Network']['GatewayPort'];
 		$configdgidgateway['General']['RptPort'] =  $configmmdvm['System Fusion Network']['LocalPort'];
-		$configdgidgateway['Log']['DisplayLevel'] = 1; 
+		$configdgidgateway['Log']['DisplayLevel'] = 1;
 		$configdgidgateway['Log']['FileLevel'] = 1;
 		$configdgidgateway['Log']['FilePath'] = "/var/log/pi-star";
 		$configdgidgateway['Log']['FileRoot'] = "DGIdGateway";
@@ -3577,11 +3577,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	                }
 	                $configModemContent .= "\n";
 	        }
-	
+
 	        if (!$handleModemConfig = fopen('/tmp/sja7hFRkw4euG7.tmp', 'w')) {
 	                return false;
 	        }
-	
+
 	        if (!is_writable('/tmp/sja7hFRkw4euG7.tmp')) {
 		        echo "<br />\n";
 		        echo "<table>\n";
@@ -4130,7 +4130,7 @@ else:
     <td align="left"><a class="tooltip2" href="#">DMR Access List:<span><b>DMR IDs</b>Set the DMR IDs here that should have access to your hotspot, expected comma seperated list.</span></a></td>
     <td align="left" colspan="2"><input type="text" name="confDMRWhiteList" size="30" maxlength="50" value="<?php if (isset($configmmdvm['DMR']['WhiteList'])) { echo $configmmdvm['DMR']['WhiteList']; } ?>" /></td>
     </tr>
-<?php } ?>	    
+<?php } ?>
 <?php if (file_exists('/etc/aprsgateway')) {
     echo "<tr>\n";
     echo "<td align=\"left\"><a class=\"tooltip2\" href=\"#\">".$lang['aprs_host']." Enable:<span><b>APRS Host Enable</b>Enabling this feature will make your location public.</span></a></td>\n";
@@ -4143,7 +4143,7 @@ else:
 <tr>
     <td align="left"><a class="tooltip2" href="#"><?php echo $lang['aprs_host'];?>:<span><b>APRS Host</b>Set your prefered APRS host here.</span></a></td>
     <td colspan="2" style="text-align: left;"><select name="selectedAPRSHost">
-<?php 
+<?php
         $testAPSRHost = $configs['aprsHostname'];
     	$aprsHostFile = fopen("/usr/local/etc/APRSHosts.txt", "r");
         while (!feof($aprsHostFile)) {
@@ -4250,7 +4250,7 @@ else:
     <tr>
       <td align="left"><a class="tooltip2" href="#">BM Hotspot Security:<span><b>BrandMeister Password</b>Override the Password for BrandMeister with your own custom password, make sure you already configured this using BM Self Care. Empty the field to use the default.</span></a></td>
       <td align="left">
-        <input type="password" name="bmHSSecurity" size="30" maxlength="30" value="<?php if (isset($configModem['BrandMeister']['Password'])) {echo $configModem['BrandMeister']['Password'];} ?>"></input>
+        <input type="password" name="bmHSSecurity" size="30" maxlength="30" value="<?php if (isset($configModem['BrandMeister']['Password'])) {echo htmlspecialchars(trim($configModem['BrandMeister']['Password'], '\"'), ENT_QUOTES);} ?>"></input>
       </td>
     </tr>
     <tr>
@@ -4920,7 +4920,7 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </tr>
     <tr>
       <td align="left"><a class="tooltip2" href="#">DMR TG:<span><b>YSF2DMR TG</b>Enter your DMR TG here</span></a></td>
-      <td align="left" colspan="2"><input type="text" name="ysf2dmrTg" size="13" maxlength="7" value="<?php if (isset($configysf2dmr['DMR Network']['StartupDstId'])) { echo $configysf2dmr['DMR Network']['StartupDstId']; } ?>" /></td>  
+      <td align="left" colspan="2"><input type="text" name="ysf2dmrTg" size="13" maxlength="7" value="<?php if (isset($configysf2dmr['DMR Network']['StartupDstId'])) { echo $configysf2dmr['DMR Network']['StartupDstId']; } ?>" /></td>
     </tr>
     <?php } ?>
     <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && $configysf2nxdn['Enabled']['Enabled'] == 1) { ?>
@@ -5007,11 +5007,11 @@ $ysfHosts = fopen("/usr/local/etc/YSFHosts.txt", "r"); ?>
     </select></td>
     </tr>
     <?php } ?>
-	    
-	    
-	    
-	    
-	    
+
+
+
+
+
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
@@ -5068,7 +5068,7 @@ $p25Hosts = fopen("/usr/local/etc/P25Hosts.txt", "r");
     </table>
 	<div><input type="button" value="<?php echo $lang['apply'];?>" onclick="submitform()" /><br /><br /></div>
 <?php } ?>
-	
+
 <?php if (file_exists('/etc/dstar-radio.mmdvmhost') && ($configmmdvm['NXDN Network']['Enable'] == 1 || $configdmr2nxdn['Enabled']['Enabled'] == 1) ) { ?>
 	<h2><?php echo $lang['nxdn_config'];?></h2>
     <table>
