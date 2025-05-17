@@ -97,29 +97,39 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   </head>
   <body>
   <div class="container">
-  <div class="header">
-  <div style="font-size: 8px; text-align: right; padding-right: 8px;">Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?></div>
-  <h1>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></h1>
-  <p style="padding-right: 5px; text-align: right; color: #ffffff;">
-    <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
-    <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
-    <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
-    <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
-    <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
-  </p>
-  </div>
-  <div class="contentwide">
-  <table width="100%">
-  <tr><th>Update Running</th></tr>
-  <tr><td align="left"><div id="tail">Starting update, please wait...<br /></div></td></tr>
-  </table>
-  </div>
-  <div class="footer">
-  Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
-  Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
-  Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
-  <br />
-  </div>
+    <header aria-label="header">
+      <div class="header">
+        <div style="font-size: 8px; text-align: right; padding-right: 8px;">
+          Pi-Star:<?php echo $configPistarRelease['Pi-Star']['Version']?> / Dashboard:<?php echo $version; ?>
+        </div>
+        <h1>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></h1>
+        <nav aria-label="Menu">
+          <p style="padding-right: 5px; text-align: right; color: #ffffff;">
+            <a href="/" style="color: #ffffff;"><?php echo $lang['dashboard'];?></a> |
+            <a href="/admin/" style="color: #ffffff;"><?php echo $lang['admin'];?></a> |
+            <a href="/admin/power.php" style="color: #ffffff;"><?php echo $lang['power'];?></a> |
+            <a href="/admin/config_backup.php" style="color: #ffffff;"><?php echo $lang['backup_restore'];?></a> |
+            <a href="/admin/configure.php" style="color: #ffffff;"><?php echo $lang['configuration'];?></a>
+          </p>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="contentwide">
+        <table role="presentation" width="100%">
+          <tr><th>Update Running</th></tr>
+          <tr><td align="left"><div id="tail">Starting update, please wait...<br /></div></td></tr>
+        </table>
+      </div>
+    </main>
+    <footer aria-label="Footer">
+      <div class="footer">
+        Pi-Star web config, &copy; Andy Taylor (MW0MWZ) 2014-<?php echo date("Y"); ?>.<br />
+        Need help? Click <a style="color: #ffffff;" href="https://www.facebook.com/groups/pistarusergroup/" target="_new">here for the Support Group</a><br />
+        Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar.uk/downloads/" target="_blank">here</a>.<br />
+        <br />
+      </div>
+    </footer>
   </div>
   </body>
   </html>
