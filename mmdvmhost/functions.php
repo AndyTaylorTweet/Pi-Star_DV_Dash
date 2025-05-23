@@ -906,13 +906,19 @@ function getDSTARLinks() {
 // 2012-04-03 08:40:07: DPlus link - Type: Dongle Rptr: DB0ERK B Refl: REF006 D Dir: Outgoing
 // 2012-04-03 08:40:07: DCS link - Type: Repeater Rptr: DB0ERK C Refl: DCS001 C Dir: Outgoing
 			if(preg_match_all('/^(.{19}).*(D[A-Za-z]*).*Type: ([A-Za-z]*).*Rptr: (.{8}).*Refl: (.{8}).*Dir: (.{8})/',$linkLine,$linx) > 0){
-				if ($linkSource == $dstarCallsign) {
-					$linkDate	= $linx[1][0];
-					$protocol	= $linx[2][0];
-					$linkType	= $linx[3][0];
-					$linkSource	= $linx[4][0];
-					$linkDest	= $linx[5][0];
-					$linkDir	= $linx[6][0];
+				$linkDate	= $linx[1][0];
+				$protocol	= $linx[2][0];
+				$linkType	= $linx[3][0];
+				$linkSource	= $linx[4][0];
+				$linkDest	= $linx[5][0];
+				$linkDir	= $linx[6][0];
+				if ($linkSource != $dstarCallsign) {
+					$linkDate	= "&nbsp;";
+					$protocol	= "&nbsp;";
+					$linkType	= "&nbsp;";
+					$linkSource	= "&nbsp;";
+					$linkDest	= "&nbsp;";
+					$linkDir	= "&nbsp;";
 				}
 			}
 // CCS-Link, sample:
