@@ -1103,19 +1103,24 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set the YSF2DMR Master
-	if (empty($_POST['ysf2dmrMasterHost']) != TRUE ) {
-	  $ysf2dmrMasterHostArr = explode(',', escapeshellcmd($_POST['ysf2dmrMasterHost']));
-	  $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
-	  $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
-	  $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
-	  if (isset($_POST['bmHSSecurity'])) {
-		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-			  $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-		  } else {
-			  unset ($configModem['BrandMeister']['Password']);
-		  }
-	  }
+        if (empty($_POST['ysf2dmrMasterHost']) != TRUE ) {
+          $ysf2dmrMasterHostArr = explode(',', escapeshellcmd($_POST['ysf2dmrMasterHost']));
+          $configysf2dmr['DMR Network']['Address'] = $ysf2dmrMasterHostArr[0];
+          if (!isset($configysf2dmr['DMR Network']['Password'])) {
+            $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
+          }
+          $configysf2dmr['DMR Network']['Port'] = $ysf2dmrMasterHostArr[2];
+            if (isset($_POST['bmHSSecurity'])) {
+                    if (empty($_POST['bmHSSecurity']) != TRUE ) {
+                            $configysf2dmr['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+                            $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+                    } else {
+                            unset ($configModem['BrandMeister']['Password']);
+                            if (!isset($configysf2dmr['DMR Network']['Password'])) {
+                                $configysf2dmr['DMR Network']['Password'] = '"'.$ysf2dmrMasterHostArr[1].'"';
+                            }
+                    }
+            }
 	}
 
 	// Set the YSF2DMR Starting TG
@@ -1226,13 +1231,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	}
 
 	// Set DMR Master Server
-	if (empty($_POST['dmrMasterHost']) != TRUE ) {
-	  $dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
-	  $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
-	  $configmmdvm['DMR Network']['RemoteAddress'] = $dmrMasterHostArr[0];
-	  $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
-	  $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
-	  $configmmdvm['DMR Network']['RemotePort'] = $dmrMasterHostArr[2];
+        if (empty($_POST['dmrMasterHost']) != TRUE ) {
+          $dmrMasterHostArr = explode(',', escapeshellcmd($_POST['dmrMasterHost']));
+          $configmmdvm['DMR Network']['Address'] = $dmrMasterHostArr[0];
+          $configmmdvm['DMR Network']['RemoteAddress'] = $dmrMasterHostArr[0];
+          if (!isset($configmmdvm['DMR Network']['Password'])) {
+            $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
+          }
+          $configmmdvm['DMR Network']['Port'] = $dmrMasterHostArr[2];
+          $configmmdvm['DMR Network']['RemotePort'] = $dmrMasterHostArr[2];
 	  if ($dmrMasterHostArr[0] == '127.0.0.1' && $dmrMasterHostArr[2] == '62031') {
 		  // DMR Gateway
 		  $configmmdvm['DMR Network']['Type'] = "Gateway";
@@ -1240,14 +1247,19 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		  // Everything Else
 		  $configmmdvm['DMR Network']['Type'] = "Direct";
 	  }
- 	  if ((isset($_POST['bmHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 2) == "BM") {
-		  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-			  $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-			  if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
-		  } else {
-			  unset ($configModem['BrandMeister']['Password']);
-		  }
-	  }
+          if ((isset($_POST['bmHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 2) == "BM") {
+                  if (empty($_POST['bmHSSecurity']) != TRUE ) {
+                          $configModem['BrandMeister']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+                          if ($dmrMasterHostArr[0] != '127.0.0.1') { $configmmdvm['DMR Network']['Password'] = '"'.$_POST['bmHSSecurity'].'"'; }
+                  } else {
+                          unset ($configModem['BrandMeister']['Password']);
+                          if (isset($configmmdvm['DMR Network']['Password'])) {
+                              // Keep existing password
+                          } else {
+                              $configmmdvm['DMR Network']['Password'] = '"'.$dmrMasterHostArr[1].'"';
+                          }
+                  }
+          }
 	  if ((isset($_POST['tgifHSSecurity'])) && substr($dmrMasterHostArr[3], 0, 4) == "TGIF") {
 		  if (empty($_POST['tgifHSSecurity']) != TRUE ) {
 			  $configModem['TGIF']['Password'] = '"'.$_POST['tgifHSSecurity'].'"';
@@ -1331,16 +1343,18 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		unset ($configmmdvm['DMR Network']['Options']);
 		unset ($configdmrgateway['DMR Network 2']['Options']);
 	}
-	if (empty($_POST['dmrMasterHost1']) != TRUE ) {
-	  $dmrMasterHostArr1 = explode(',', escapeshellcmd($_POST['dmrMasterHost1']));
-	  $configdmrgateway['DMR Network 1']['Address'] = $dmrMasterHostArr1[0];
-	  $configdmrgateway['DMR Network 1']['Password'] = '"'.$dmrMasterHostArr1[1].'"';
-	  if (empty($_POST['bmHSSecurity']) != TRUE ) {
-	    $configdmrgateway['DMR Network 1']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
-	  }
-	  $configdmrgateway['DMR Network 1']['Port'] = $dmrMasterHostArr1[2];
-	  $configdmrgateway['DMR Network 1']['Name'] = $dmrMasterHostArr1[3];
-	}
+        if (empty($_POST['dmrMasterHost1']) != TRUE ) {
+          $dmrMasterHostArr1 = explode(',', escapeshellcmd($_POST['dmrMasterHost1']));
+          $configdmrgateway['DMR Network 1']['Address'] = $dmrMasterHostArr1[0];
+          if (!isset($configdmrgateway['DMR Network 1']['Password'])) {
+            $configdmrgateway['DMR Network 1']['Password'] = '"'.$dmrMasterHostArr1[1].'"';
+          }
+          if (empty($_POST['bmHSSecurity']) != TRUE ) {
+            $configdmrgateway['DMR Network 1']['Password'] = '"'.$_POST['bmHSSecurity'].'"';
+          }
+          $configdmrgateway['DMR Network 1']['Port'] = $dmrMasterHostArr1[2];
+          $configdmrgateway['DMR Network 1']['Name'] = $dmrMasterHostArr1[3];
+        }
 	if (empty($_POST['dmrMasterHost2']) != TRUE ) {
 	  $dmrMasterHostArr2 = explode(',', escapeshellcmd($_POST['dmrMasterHost2']));
 	  $configdmrgateway['DMR Network 2']['Address'] = $dmrMasterHostArr2[0];
