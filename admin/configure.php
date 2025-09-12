@@ -3100,9 +3100,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 		// UnBreak special cases
 		$mmdvmSection = str_replace("_", " ", $mmdvmSection);
 		$mmdvmContent .= "[".$mmdvmSection."]\n";
-                // append the values
-                foreach($mmdvmValues as $mmdvmKey=>$mmdvmValue) {
-			$mmdvmContent .= $mmdvmKey."=".$mmdvmValue."\n";
+			// append the values
+			foreach($mmdvmValues as $mmdvmKey=>$mmdvmValue) {
+				if($mmdvmKey == "Password" && ($mmdvmValue[0] != '"' || $mmdvmValue[sizeof($mmdvmValue)-1] != '"')){
+					$mmdvmValue = '"' . $mmdvmValue . '"';
+				}
+				$mmdvmContent .= $mmdvmKey."=".$mmdvmValue."\n";
 			}
 			$mmdvmContent .= "\n";
 		}
