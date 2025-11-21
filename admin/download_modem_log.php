@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/config/security_headers.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/config/security_headers.php');
 setSecurityHeaders();
 
 if ($_SERVER["PHP_SELF"] == "/admin/download_modem_log.php") {
