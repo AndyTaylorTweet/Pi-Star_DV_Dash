@@ -1,4 +1,7 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/config/security_headers.php');
+setSecurityHeaders();
+
 include('wifi/phpincs.php');
 $output = $return = 0;
 $page = $_GET['page'];
