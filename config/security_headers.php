@@ -95,4 +95,47 @@ function setEmbeddableSecurityHeaders() {
         }
     }
 }
+
+/**
+ * Set security headers for pages that embed content from different ports on same host
+ *
+ * This allows iframes from the same hostname but different ports
+ */
+function setSecurityHeadersAllowDifferentPorts() {
+    // Only set headers if they haven't been sent yet
+    if (!headers_sent()) {
+        $isHttps = isHttps();
+
+        header("X-Frame-Options: SAMEORIGIN");
+        header("X-Content-Type-Options: nosniff");
+        header("X-XSS-Protection: 1; mode=block");
+        header("Referrer-Policy: strict-origin-when-cross-origin");
+        header("Permissions-Policy: geolocation=(), microphone=(), camera=()");
+
+        // Get current hostname for frame-src
+        $hostname = $_SERVER['HTTP_HOST'];
+        // Remove port if present to get just the hostname
+        $hostnameOnly = preg_replace('/:\d+$/', '', $hostname);
+
+        // Build CSP that allows frames from same hostname on any port
+        $imgSrc = $isHttps ? "'self' data: https:" : "'self' data: http: https:";
+        $protocol = $isHttps ? "https:" : "http:";
+
+        // Allow frames from same hostname with any port (for shellinabox, etc.)
+        $csp = "default-src 'self'; " .
+               "script-src 'self' 'unsafe-inline'; " .
+               "style-src 'self' 'unsafe-inline'; " .
+               "img-src {$imgSrc}; " .
+               "connect-src 'self'; " .
+               "frame-src 'self' {$protocol}//{$hostnameOnly}:*; " .
+               "frame-ancestors 'self'";
+
+        header("Content-Security-Policy: " . $csp);
+
+        // Only add HSTS if served over HTTPS
+        if ($isHttps) {
+            header("Strict-Transport-Security: max-age=31536000");
+        }
+    }
+}
 ?>
