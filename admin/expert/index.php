@@ -1,4 +1,7 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/config/security_headers.php');
+setSecurityHeaders();
+
 // Load the language support
 require_once('../config/language.php');
 //Load the Pi-Star Release file
@@ -62,3 +65,4 @@ Get your copy of Pi-Star from <a style="color: #ffffff;" href="http://www.pistar
 </div>
 </body>
 </html>
+
