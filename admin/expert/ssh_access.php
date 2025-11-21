@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/config/security_headers.php');
-setSecurityHeaders();
+setEmbeddableSecurityHeaders();
 
 // Load the language support
 require_once('../config/language.php');
