@@ -1,4 +1,7 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/config/security_headers.php');
+setSecurityHeaders();
+
 require_once('config/version.php');
 require_once('config/ircddblocal.php');
 require_once('config/language.php');
