@@ -59,7 +59,16 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
                         <br />You will be re-directed back to the
                         <br />dashboard automatically in 90 seconds.<br /><br /><br />
                         <script language="JavaScript" type="text/javascript">
-                                setTimeout(function() { location.href = \'/index.php\'; }, 90000);
+                                var secondsLeft = 90;
+                                var countdownElement = document.getElementById("countdown");
+                                var countdownTimer = setInterval(function() {
+                                        secondsLeft--;
+                                        countdownElement.textContent = secondsLeft;
+                                        if (secondsLeft <= 0) {
+                                                clearInterval(countdownTimer);
+                                        }
+                                }, 1000);
+                                setTimeout(function() { location.href = "/index.php"; }, 90000);
                         </script>
                         </td></tr>';
                 system('sudo sync && sudo sync && sudo sync && sudo mount -o remount,ro / > /dev/null &');
