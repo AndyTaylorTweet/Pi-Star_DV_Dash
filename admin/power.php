@@ -57,7 +57,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/power.php") {
                 echo '<tr><td colspan="2" style="background: #000000; color: #00ff00;"><br /><br />Reboot command has been sent to your Pi,
                         <br />please wait up to 90 secs for it to reboot.<br />
                         <br />You will be re-directed back to the
-                        <br />dashboard automatically in 90 seconds.<br /><br /><br />
+                        <br />dashboard automatically in <span id="countdown">90</span> seconds.<br /><br /><br />
                         <script language="JavaScript" type="text/javascript">
                                 var secondsLeft = 90;
                                 var countdownElement = document.getElementById("countdown");
