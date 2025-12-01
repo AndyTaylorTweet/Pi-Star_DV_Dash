@@ -119,7 +119,6 @@ function setSecurityHeadersAllowDifferentPorts() {
 
         // Build CSP that allows frames from same hostname on any port
         $imgSrc = $isHttps ? "'self' data: https:" : "'self' data: http: https:";
-        $protocol = $isHttps ? "https:" : "http:";
 
         // Allow frames from same hostname with any port (for shellinabox, etc.)
         $csp = "default-src 'self'; " .
@@ -127,7 +126,7 @@ function setSecurityHeadersAllowDifferentPorts() {
                "style-src 'self' 'unsafe-inline'; " .
                "img-src {$imgSrc}; " .
                "connect-src 'self'; " .
-               "frame-src 'self' {$protocol}//{$hostnameOnly}:*; " .
+               "frame-src 'self' http://{$hostnameOnly}:* https://{$hostnameOnly}:*; " .
                "frame-ancestors 'self'";
 
         header("Content-Security-Policy: " . $csp);
