@@ -17,7 +17,8 @@ setlocale(LC_ALL, "LC_CTYPE=en_GB.UTF-8;LC_NUMERIC=C;LC_TIME=C;LC_COLLATE=C;LC_M
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
 
-  if (!isset($_GET['ajax'])) {
+  // Only proceed with update if user has confirmed via POST submission
+  if (!isset($_GET['ajax']) && !empty($_POST) && isset($_POST['confirm_update'])) {
     if (!file_exists('/var/log/pi-star')) {
       system('sudo mkdir -p /var/log/pi-star/');
       system('sudo chmod 775 /var/log/pi-star/');
@@ -32,7 +33,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
   header('Cache-Control: no-cache');
   session_start();
 
-  if (!isset($_GET['ajax'])) {
+  // Initialize session offset only if update has been confirmed
+  if (!isset($_GET['ajax']) && !empty($_POST) && isset($_POST['confirm_update'])) {
     //unset($_SESSION['update_offset']);
     if (file_exists('/var/log/pi-star/pi-star_update.log')) {
       $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_update.log');
@@ -81,6 +83,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></title>
     <link rel="stylesheet" type="text/css" href="css/pistar-css.php" />
+<?php if (!empty($_POST) && isset($_POST['confirm_update'])) { ?>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/jquery-timing.min.js"></script>
     <script type="text/javascript">
@@ -97,6 +100,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
       });
     });
     </script>
+<?php } ?>
   </head>
   <body>
   <div class="container">
@@ -119,10 +123,34 @@ if ($_SERVER["PHP_SELF"] == "/admin/update.php") {
     </header>
     <main>
       <div class="contentwide">
+<?php if (!empty($_POST) && isset($_POST['confirm_update'])) { ?>
         <table role="presentation" width="100%">
           <tr><th>Update Running</th></tr>
           <tr><td align="left"><div id="tail">Starting update, please wait...<br /></div></td></tr>
         </table>
+<?php } else { ?>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <table width="100%">
+          <tr>
+            <th><?php echo $lang['update'];?></th>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 20px;">
+              <p style="margin-bottom: 20px;">
+                <strong>This will update your Pi-Star installation to the latest version.</strong><br />
+                <br />
+                The update process may take several minutes to complete.<br />
+                Please do not interrupt the process or power off your system during the update.
+              </p>
+              <button style="border: none; background: none; cursor: pointer;" type="submit" name="confirm_update" value="1">
+                <img src="/images/download.png" border="0" alt="Start Update" /><br />
+                <strong>Start Update</strong>
+              </button>
+            </td>
+          </tr>
+        </table>
+        </form>
+<?php } ?>
       </div>
     </main>
     <footer aria-label="Footer">

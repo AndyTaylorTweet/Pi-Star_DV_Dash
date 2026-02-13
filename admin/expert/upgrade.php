@@ -14,7 +14,8 @@ require_once('../config/version.php');
 // Sanity Check that this file has been opened correctly
 if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
 
-  if (!isset($_GET['ajax'])) {
+  // Only proceed with upgrade if user has confirmed via POST submission
+  if (!isset($_GET['ajax']) && !empty($_POST) && isset($_POST['confirm_update'])) {
     system('sudo touch /var/log/pi-star/pi-star_upgrade.log > /dev/null 2>&1 &');
     system('sudo echo "" > /var/log/pi-star/pi-star_upgrade.log > /dev/null 2>&1 &');
     system('sudo /usr/local/sbin/pistar-upgrade > /dev/null 2>&1 &');
@@ -24,7 +25,8 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
   header('Cache-Control: no-cache');
   session_start();
 
-  if (!isset($_GET['ajax'])) {
+  // Initialize session offset only if upgrade has been confirmed
+  if (!isset($_GET['ajax']) && !empty($_POST) && isset($_POST['confirm_update'])) {
     //unset($_SESSION['update_offset']);
     if (file_exists('/var/log/pi-star/pi-star_upgrade.log')) {
       $_SESSION['update_offset'] = filesize('/var/log/pi-star/pi-star_upgrade.log');
@@ -73,6 +75,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
     <meta http-equiv="Expires" content="0" />
     <title>Pi-Star - <?php echo $lang['digital_voice']." ".$lang['dashboard']." - ".$lang['update'];?></title>
     <link rel="stylesheet" type="text/css" href="../css/pistar-css.php" />
+<?php if (!empty($_POST) && isset($_POST['confirm_update'])) { ?>
     <script type="text/javascript" src="/jquery.min.js"></script>
     <script type="text/javascript" src="/jquery-timing.min.js"></script>
     <script type="text/javascript">
@@ -89,15 +92,40 @@ if ($_SERVER["PHP_SELF"] == "/admin/expert/upgrade.php") {
       });
     });
     </script>
+<?php } ?>
   </head>
   <body>
   <div class="container">
   <?php include './header-menu.inc'; ?>
   <div class="contentwide">
+<?php if (!empty($_POST) && isset($_POST['confirm_update'])) { ?>
   <table role="presentation" width="100%">
   <tr><th>Upgrade Running</th></tr>
   <tr><td align="left"><div id="tail">Starting upgrade, please wait...<br /></div></td></tr>
   </table>
+<?php } else { ?>
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+  <table width="100%">
+    <tr>
+      <th>Upgrade</th>
+    </tr>
+    <tr>
+      <td align="center" style="padding: 20px;">
+        <p style="margin-bottom: 20px;">
+          <strong>This will upgrade your Pi-Star installation to the latest version.</strong><br />
+          <br />
+          The upgrade process may take several minutes to complete.<br />
+          Please do not interrupt the process or power off your system during the upgrade.
+        </p>
+        <button style="border: none; background: none; cursor: pointer;" type="submit" name="confirm_update" value="1">
+          <img src="/images/download.png" border="0" alt="Start Upgrade" /><br />
+          <strong>Start Upgrade</strong>
+        </button>
+      </td>
+    </tr>
+  </table>
+  </form>
+<?php } ?>
   </div>
   <footer aria-label="footer">
   <div class="footer">
