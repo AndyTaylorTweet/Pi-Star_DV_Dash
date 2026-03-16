@@ -1194,7 +1194,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/configure.php") {
 	  $newPostDmrId = preg_replace('/[^0-9]/', '', $_POST['dmrId']);
 	  $newPostDmrId = substr($newPostDmrId, 0, 7);
 	  $configmmdvm['General']['Id'] = $newPostDmrId;
-	  $configmmdvm['DMR']['Id'] = $newPostDmrId;
+	  $configmmdvm['DMR']['Id'] = $newPostDmrId . substr($configmmdvm['DMR']['Id'], 7);
 	  $configysfgateway['General']['Id'] = $newPostDmrId;
 	  $configdmrgateway['XLX Network']['Id'] = $newPostDmrId;
 	  $configdmr2ysf['DMR Network']['Id'] = $newPostDmrId;
