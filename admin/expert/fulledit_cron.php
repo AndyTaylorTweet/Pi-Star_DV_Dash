@@ -331,9 +331,22 @@ to limit the damage of stolen dashboard credentials.</p>
 preserved below &mdash; try again, or edit <code>/etc/crontab</code> directly over SSH.</p>
 </div>
 <?php } elseif ($saveOk) { ?>
-<div style="background-color: #c0f0c0; color: #106010; padding: 10px; margin: 0 0 10px 0;">
+<div id="cronSaveOk" style="background-color: #c0f0c0; color: #106010; padding: 10px; margin: 0 0 10px 0;">
 <b>Crontab saved.</b>
 </div>
+<script>
+// Auto-dismiss the success banner after 5s. The error banners are left in
+// place on purpose so a failed save can never scroll away unnoticed.
+setTimeout(function () {
+    var el = document.getElementById('cronSaveOk');
+    if (!el) { return; }
+    // Honour reduced-motion preferences: snap rather than fade.
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.style.transition = reduce ? 'none' : 'opacity 0.6s ease';
+    el.style.opacity = '0';
+    setTimeout(function () { if (el.parentNode) { el.parentNode.removeChild(el); } }, 650);
+}, 5000);
+</script>
 <?php } ?>
 <?php if ($readError) { ?>
 <div style="background-color: #ff9090; color: #f01010; padding: 10px; margin: 0 0 10px 0;">
