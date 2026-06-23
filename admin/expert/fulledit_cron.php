@@ -214,6 +214,9 @@ function pistar_cron_validate($content)
 }
 
 $cronBlockers = array();
+$saveError = false;
+$saveOk = false;
+$readError = false;
 if(isset($_POST['data'])) {
         // Normalise CRLF → LF before validation so a Windows browser's
         // submission scans byte-identical to the on-disk form.
@@ -235,17 +238,51 @@ if(isset($_POST['data'])) {
                 $filepath = tempnam('/tmp', 'pistar-edit-');
                 register_shutdown_function(function() use ($filepath) { @unlink($filepath); });
                 $fh = fopen($filepath, 'w');
-                fwrite($fh, $rawData);
-                fclose($fh);
-                // L-5: atomic install replaces the prior cp + chmod +
-                // chown triplet (rejected by the tightened sudoers —
-                // see edit_mmdvmhost.php for the full rationale).
-                exec('sudo mount -o remount,rw /');
-                exec('sudo install -m 644 -o root -g root '
-                     . escapeshellarg($filepath) . ' /etc/crontab');
-                exec('sudo mount -o remount,ro /');
+                if ($fh !== false) {
+                        fwrite($fh, $rawData);
+                        fclose($fh);
+                }
 
-                // Re-render: just-saved $rawData is what's now on disk.
+                // Write through the one sudoers-allowlisted primitive for
+                // this file: `sudo sed -i … /etc/crontab`. (The previous
+                // `install … /etc/crontab` had no matching sudoers rule and
+                // was silently rejected — saves looked successful but never
+                // touched disk.) The operator's bytes are poured over the
+                // file with sed's `1r <file>` + `d` idiom: read the staged
+                // temp file in on the first cycle, delete every original
+                // line, leaving an exact byte-for-byte copy. The operator's
+                // content never enters the sed script — only the temp file
+                // PATH does — so there is no sed/shell-injection surface.
+                // sed -i preserves the existing root:root 644 (verified on a
+                // live host), so no follow-up chown/chmod is needed.
+                // $sedOut is an unused placeholder (sed -i is silent on
+                // success); the save status we act on is the exit code $rc
+                // plus the read-back comparison below.
+                $rc = 0;
+                $sedOut = array();
+                exec('sudo mount -o remount,rw /');
+                exec('sudo sed -i -e ' . escapeshellarg('1r ' . $filepath) . ' -e d /etc/crontab', $sedOut, $rc);
+                exec('sudo mount -o remount,ro /');   // always re-protect the rootfs
+
+                // Loud-failure check. The old code unconditionally rendered
+                // "as saved", which is exactly how the broken write hid for
+                // weeks. Read /etc/crontab back (world-readable) and compare
+                // byte-for-byte: a non-zero sed exit OR any mismatch means
+                // the save did not land. This also covers the degenerate
+                // empty-crontab corner, where `1r` never fires and the file
+                // would be left empty.
+                $onDisk = @file_get_contents('/etc/crontab');
+                if ($rc !== 0 || $onDisk !== $rawData) {
+                        $saveError = true;
+                        error_log('Pi-Star fulledit_cron.php: crontab save FAILED (sed rc='
+                                . $rc . ', readback '
+                                . ($onDisk === $rawData ? 'matched' : 'MISMATCHED') . ')');
+                } else {
+                        $saveOk = true;
+                }
+
+                // Re-render the submitted content either way so a failed
+                // save never discards the operator's edits.
                 $theData = $rawData;
         }
 } else {
@@ -256,8 +293,20 @@ if(isset($_POST['data'])) {
         exec('sudo chown www-data:www-data ' . escapeshellarg($filepath));
         exec('sudo chmod 600 ' . escapeshellarg($filepath));
         $fh = fopen($filepath, 'r');
-        $theData = fread($fh, filesize($filepath));
-        fclose($fh);
+        if ($fh === false) {
+                // The privileged copy of /etc/crontab could not be staged
+                // (sudo cp/chown/chmod failed). Surface a read error and show
+                // an empty editor rather than a blank-but-editable textarea —
+                // saving from the latter would overwrite /etc/crontab with
+                // nothing.
+                $theData = '';
+                $readError = true;
+                error_log('Pi-Star fulledit_cron.php: could not stage /etc/crontab for reading');
+        } else {
+                $sz = filesize($filepath);
+                $theData = $sz > 0 ? fread($fh, $sz) : '';
+                fclose($fh);
+        }
 }
 
 ?>
@@ -273,6 +322,25 @@ if(isset($_POST['data'])) {
 If you have a legitimate need to schedule one of these patterns, use SSH and edit
 <code>/etc/crontab</code> directly &mdash; the dashboard editor enforces these checks
 to limit the damage of stolen dashboard credentials.</p>
+</div>
+<?php } ?>
+<?php if ($saveError) { ?>
+<div style="background-color: #ff9090; color: #f01010; padding: 10px; margin: 0 0 10px 0;">
+<b>Save failed &mdash; /etc/crontab was not updated.</b>
+<p style="margin: 8px 0 0 0;">The write was rejected or the file did not match after saving. Your edits are
+preserved below &mdash; try again, or edit <code>/etc/crontab</code> directly over SSH.</p>
+</div>
+<?php } elseif ($saveOk) { ?>
+<div style="background-color: #c0f0c0; color: #106010; padding: 10px; margin: 0 0 10px 0;">
+<b>Crontab saved.</b>
+</div>
+<?php } ?>
+<?php if ($readError) { ?>
+<div style="background-color: #ff9090; color: #f01010; padding: 10px; margin: 0 0 10px 0;">
+<b>Could not read /etc/crontab.</b>
+<p style="margin: 8px 0 0 0;">The current crontab could not be loaded, so the editor below is empty.
+<b>Do not save</b> &mdash; doing so would overwrite /etc/crontab with nothing. Reload the page, or edit
+<code>/etc/crontab</code> directly over SSH.</p>
 </div>
 <?php } ?>
 <form name="test" method="post" action="">
