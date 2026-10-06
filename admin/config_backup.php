@@ -116,7 +116,7 @@ function backup_files()
         // parse_ini_file() without sudo) still work post-restore.
         'bmapi.key'                   => array('/etc/bmapi.key',                              600, 'www-data', 'www-data'),
         'dapnetapi.key'               => array('/etc/dapnetapi.key',                          600, 'www-data', 'www-data'),
-        'tgif-static-api.conf'        => array('/etc/tgif-static-api.conf',                   600, 'www-data', 'www-data'),
+        'tgifapi.key'                 => array('/etc/tgifapi.key',                            600, 'www-data', 'www-data'),
         'pistar-css.ini'              => array('/etc/pistar-css.ini',                         644, 'root',     'root'),
         'RSSI.dat'                    => array('/usr/local/etc/RSSI.dat',                     644, 'root',     'root'),
         'ircddblocal.php'             => array('/var/www/dashboard/config/ircddblocal.php',   644, 'root',     'root'),

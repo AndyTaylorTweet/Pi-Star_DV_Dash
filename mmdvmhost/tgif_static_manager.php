@@ -5,7 +5,7 @@
  *
  * Complements the legacy tgif_manager.php link/unlink control. It does not
  * replace or call the TCP/5040 API. The bearer credential remains server-side
- * in /etc/tgif-static-api.conf and is never emitted into HTML.
+ * in /etc/tgifapi.key and is never emitted into HTML.
  *
  * Client contract:
  * - one GET when the admin page is rendered;
@@ -68,42 +68,34 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
         if (!is_readable($path)) {
             return "";
         }
-        $lines = file($path, FILE_IGNORE_NEW_LINES);
-        if (!is_array($lines)) {
+        // parse_ini_file() handles the [key]/apikey shape and strips any
+        // quoting itself — same read path as bm_manager.php uses for
+        // /etc/bmapi.key, so there is no hand-rolled line parser here.
+        $parsed = @parse_ini_file($path, true);
+        if (!is_array($parsed) || !isset($parsed['key']['apikey'])) {
             return "";
         }
-        foreach ($lines as $line) {
-            if (strpos($line, 'TGIF_STATIC_API_TOKEN=') !== 0) {
-                continue;
-            }
-            $value = trim(substr($line, strlen('TGIF_STATIC_API_TOKEN=')));
-            if (strlen($value) >= 2) {
-                $first = $value[0];
-                $last = $value[strlen($value) - 1];
-                if (($first === "'" && $last === "'") || ($first === '"' && $last === '"')) {
-                    $value = substr($value, 1, -1);
-                }
-            }
-            if (preg_match('/^TGIFSTG1\.[A-Fa-f0-9]{16}\.[A-Fa-f0-9]{16}\.[A-Za-z0-9_-]{40,64}$/', $value)) {
-                return $value;
-            }
-            return "";
+        $value = trim((string)$parsed['key']['apikey']);
+        if (preg_match('/^TGIFSTG1\.[A-Fa-f0-9]{16}\.[A-Fa-f0-9]{16}\.[A-Za-z0-9_-]{40,64}$/', $value)) {
+            return $value;
         }
         return "";
     }
 
-    function tgif_static_write_config($path, $token, $dmrID)
+    function tgif_static_write_config($path, $token)
     {
         if ($token !== ''
             && !preg_match('/^TGIFSTG1\.[A-Fa-f0-9]{16}\.[A-Fa-f0-9]{16}\.[A-Za-z0-9_-]{40,64}$/', $token)) {
             return 'Token format is not valid.';
         }
 
-        $content = "# TGIF Static Talkgroups API client configuration\n"
-                 . "# Managed by the Pi-Star dashboard. Do not share this file.\n"
-                 . "TGIF_STATIC_API_URL='https://api.tgif.network/v1/static-talkgroups'\n"
-                 . "TGIF_STATIC_API_TOKEN='" . $token . "'\n"
-                 . "TGIF_DMR_ID='" . $dmrID . "'\n";
+        // Same on-disk shape as /etc/bmapi.key and /etc/dapnetapi.key: an
+        // ini file holding the credential and nothing else. The API URL is
+        // a code constant (see tgif_static_api_request()), not operator
+        // configuration, and the DMR ID is derived from /etc/mmdvmhost and
+        // /etc/dmrgateway on every render by tgif_static_detect_dmr_id() —
+        // storing either here would only create a stale second copy.
+        $content = "[key]\napikey=" . ($token !== '' ? $token : 'None') . "\n";
 
         $tmp = tempnam('/tmp', 'pistar-tgif-');
         if ($tmp === false) {
@@ -233,7 +225,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
         return 'TGIF API returned HTTP ' . $status . ($error !== '' ? ' (' . $error . ')' : '') . '.';
     }
 
-    $tgifStaticConfig = '/etc/tgif-static-api.conf';
+    $tgifStaticConfig = '/etc/tgifapi.key';
     $tgifStaticDmrID = tgif_static_detect_dmr_id($mmdvmconfigs);
 
     if ($tgifStaticDmrID !== '') {
@@ -244,7 +236,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 
         if (!empty($_POST) && isset($_POST['tgifStaticSaveToken'])) {
             $candidate = trim((string)($_POST['tgifStaticToken'] ?? ''));
-            $err = tgif_static_write_config($tgifStaticConfig, $candidate, $tgifStaticDmrID);
+            $err = tgif_static_write_config($tgifStaticConfig, $candidate);
             if ($err === '') {
                 $tgifStaticToken = $candidate;
                 $tgifStaticMessage = 'TGIF Static TG API token saved.';
@@ -253,7 +245,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             }
             unset($_POST);
         } elseif (!empty($_POST) && isset($_POST['tgifStaticClearToken'])) {
-            $err = tgif_static_write_config($tgifStaticConfig, '', $tgifStaticDmrID);
+            $err = tgif_static_write_config($tgifStaticConfig, '');
             if ($err === '') {
                 $tgifStaticToken = '';
                 $tgifStaticMessage = 'TGIF Static TG API token cleared.';
