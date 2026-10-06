@@ -1,16 +1,23 @@
 <?php
 /**
- * TGIF Static Talkgroups API manager (admin-only).
+ * TGIF Static Talkgroups add/remove form (admin-only).
  * TGIF Development: Andy G7LRR.
  *
- * Complements the legacy tgif_manager.php link/unlink control. It does not
- * replace or call the TCP/5040 API. The bearer credential remains server-side
- * in /etc/tgifapi.key and is never emitted into HTML.
+ * Inline include, loaded only on the admin path. Structured exactly like
+ * bm_manager.php: the API is touched only when an operator submits the form,
+ * never during a plain page render. The read-only state display lives in the
+ * companion AJAX partial tgif_static_links.php, refreshed on the same 180
+ * second cadence bm_links.php uses.
  *
- * Client contract:
- * - one GET when the admin page is rendered;
- * - POST/DELETE only on an operator action;
- * - no polling, timer or automatic retry loop.
+ * Like bm_manager.php it offers both timeslots unconditionally and lets the
+ * API reject an unsupported one (reported as "That timeslot is not supported
+ * by this hotspot session") rather than pre-filtering on capability flags —
+ * that is what keeps the render path free of API calls.
+ *
+ * Complements the legacy tgif_manager.php link/unlink control; /index.php
+ * shows one or the other, never both. Token management is not offered here:
+ * the credential belongs to Expert > API Keys, just as /etc/bmapi.key belongs
+ * to fulledit_bmapikey.php rather than to bm_manager.php.
  */
 
 if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
@@ -18,286 +25,58 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tgif_static_common.php';
 
-    function tgif_static_detect_dmr_id($mmdvmconfigs)
-    {
-        $dmrID = "";
-        if (getConfigItem("DMR", "Enable", $mmdvmconfigs) != 1) {
-            return $dmrID;
-        }
+    // Single source of truth for whether this feature appears at all — see
+    // tgif_static_context() for the three conditions.
+    $tgifStaticContext = tgif_static_context($mmdvmconfigs);
 
-        $dmrGatewayConfigFile = '/etc/dmrgateway';
-        $configdmrgateway = array();
-        if (is_readable($dmrGatewayConfigFile)) {
-            $parsed = parse_ini_file($dmrGatewayConfigFile, true);
-            if (is_array($parsed)) {
-                $configdmrgateway = $parsed;
-            }
-        }
-
-        $dmrMasterHost = getConfigItem("DMR Network", "Address", $mmdvmconfigs);
-        if ($dmrMasterHost == '127.0.0.1') {
-            for ($network = 1; $network <= 5; $network++) {
-                $section = 'DMR Network '.$network;
-                if (!isset($configdmrgateway[$section])) {
-                    continue;
-                }
-                $cfg = $configdmrgateway[$section];
-                if (($cfg['Address'] ?? '') == 'tgif.network'
-                    && !empty($cfg['Enabled'])
-                    && isset($cfg['Id'])) {
-                    $dmrID = preg_replace('/[^0-9]/', '', (string)$cfg['Id']);
-                }
-            }
-        } elseif ($dmrMasterHost == 'tgif.network') {
-            $candidate = getConfigItem("DMR", "Id", $mmdvmconfigs);
-            if (!$candidate) {
-                $candidate = getConfigItem("General", "Id", $mmdvmconfigs);
-            }
-            $dmrID = preg_replace('/[^0-9]/', '', (string)$candidate);
-        }
-
-        if (!preg_match('/^[0-9]{6,9}$/', $dmrID)) {
-            return "";
-        }
-        return $dmrID;
-    }
-
-    function tgif_static_read_token($path)
-    {
-        if (!is_readable($path)) {
-            return "";
-        }
-        // parse_ini_file() handles the [key]/apikey shape and strips any
-        // quoting itself — same read path as bm_manager.php uses for
-        // /etc/bmapi.key, so there is no hand-rolled line parser here.
-        $parsed = @parse_ini_file($path, true);
-        if (!is_array($parsed) || !isset($parsed['key']['apikey'])) {
-            return "";
-        }
-        $value = trim((string)$parsed['key']['apikey']);
-        if (preg_match('/^TGIFSTG1\.[A-Fa-f0-9]{16}\.[A-Fa-f0-9]{16}\.[A-Za-z0-9_-]{40,64}$/', $value)) {
-            return $value;
-        }
-        return "";
-    }
-
-    function tgif_static_api_request($token, $dmrID, $method, $body = null)
-    {
-        $url = 'https://api.tgif.network/v1/static-talkgroups/' . rawurlencode($dmrID);
-        $headers = array(
-            'Accept: application/json',
-            'Authorization: Bearer ' . $token,
-            'User-Agent: Pi-Star TGIF Static TG Manager/' . $dmrID,
-        );
-
-        $http = array(
-            'method' => $method,
-            'timeout' => 5,
-            'ignore_errors' => true,
-            'follow_location' => 0,
-            'max_redirects' => 0,
-        );
-
-        if ($body !== null) {
-            $json = json_encode($body);
-            if (!is_string($json)) {
-                return array('status' => 0, 'json' => array('error' => 'json_encode_failed'));
-            }
-            $headers[] = 'Content-Type: application/json';
-            $http['content'] = $json;
-        }
-
-        $http['header'] = implode("\r\n", $headers) . "\r\n";
-
-        $context = stream_context_create(array(
-            'http' => $http,
-            'ssl' => array(
-                'verify_peer' => true,
-                'verify_peer_name' => true,
-                'allow_self_signed' => false,
-                'cafile' => '/etc/ssl/certs/ca-certificates.crt',
-                'SNI_enabled' => true,
-            ),
-        ));
-
-        $result = @file_get_contents($url, false, $context);
-        $status = 0;
-        if (isset($http_response_header) && is_array($http_response_header)) {
-            foreach ($http_response_header as $responseHeader) {
-                if (preg_match('#^HTTP/\\S+\\s+([0-9]{3})\\b#', $responseHeader, $matches)) {
-                    $status = (int)$matches[1];
-                    break;
-                }
-            }
-        }
-
-        $decoded = is_string($result) ? json_decode($result, true) : null;
-        return array(
-            'status' => $status,
-            'json' => is_array($decoded) ? $decoded : array(),
-        );
-    }
-
-    function tgif_static_error_text($response)
-    {
-        $status = (int)($response['status'] ?? 0);
-        $error = (string)($response['json']['error'] ?? '');
-
-        $friendly = array(
-            'invalid_token' => 'The Static TG API token is invalid or has been revoked.',
-            'token_device_mismatch' => 'This token was created for a different hotspot ID / ESSID.',
-            'device_not_connected' => 'The hotspot is not currently connected to TGIF.',
-            'device_not_owned' => 'TGIF does not see this hotspot as belonging to the token account.',
-            'secure_hotspot_required' => 'TGIF Hotspot Security is required for Static Talkgroups.',
-            'static_tg_not_available' => 'Static Talkgroups are not available for this account.',
-            'static_tg_disabled' => 'Static Talkgroups are currently disabled on TGIF.',
-            'unsupported_slot' => 'That timeslot is not supported by this hotspot session.',
-            'invalid_or_reserved_talkgroup' => 'That talkgroup is invalid or reserved for another TGIF function.',
-            'limit_exceeded' => 'The Static Talkgroup limit for this account has been reached.',
-            'membership_conflict' => 'The Static Talkgroup state changed at the same time. Refresh and try again.',
-        );
-
-        if (isset($friendly[$error])) {
-            return $friendly[$error];
-        }
-        if ($status === 429) {
-            return 'TGIF rate limited the request. Wait before trying again.';
-        }
-        if ($status >= 500) {
-            return 'TGIF could not complete the request. Try again later.';
-        }
-        if ($status === 0) {
-            return 'No response from the TGIF Static Talkgroups API.';
-        }
-        return 'TGIF API returned HTTP ' . $status . ($error !== '' ? ' (' . $error . ')' : '') . '.';
-    }
-
-    $tgifStaticConfig = '/etc/tgifapi.key';
-    $tgifStaticDmrID = tgif_static_detect_dmr_id($mmdvmconfigs);
-    $tgifStaticToken = tgif_static_read_token($tgifStaticConfig);
-
-    // Minimum release for the TGIF static TG feature as a whole. The token
-    // can only be set in Expert > API Keys, which needs the /etc/tgifapi.key
-    // entry in /etc/sudoers.d/pistar-dashboard, and that is only guaranteed
-    // from 4.3.9. This panel itself writes nothing - it reads the token and
-    // talks to the API - so the check is belt and braces alongside the
-    // token-present condition below.
-    $tgifStaticRelease = isset($configPistarRelease['Pi-Star']['Version'])
-        ? (string)$configPistarRelease['Pi-Star']['Version']
-        : '';
-    $tgifStaticSupported = ($tgifStaticRelease !== ''
-        && version_compare($tgifStaticRelease, '4.3.9', '>='));
-
-    // Three conditions, all required before this panel renders or touches the
-    // network: the release carries the sudoers entry; TGIF is actually a
-    // configured DMR network on this hotspot; and a valid token has been
-    // stored. The token is set in Expert > TGIF API
-    // (admin/expert/fulledit_tgifapikey.php), mirroring how bmapi.key is
-    // owned by fulledit_bmapikey.php rather than by bm_manager.php — so an
-    // operator who has not opted in pays no page-load cost at all.
-    if ($tgifStaticSupported && $tgifStaticDmrID !== '' && $tgifStaticToken !== '') {
-        // Tells index.php this panel took the TGIF slot, so the legacy
-        // link/unlink manager is skipped - only one TGIF control is shown.
-        $tgifStaticRendered = true;
-
+    // Re-checked here rather than trusted from the caller so this include is
+    // self-contained; index.php makes the same call to decide whether to show
+    // this pair or the legacy TGIF manager.
+    if ($tgifStaticContext !== false) {
         $tgifStaticMessage = '';
         $tgifStaticError = '';
-        $tgifStaticState = array();
 
         if (!empty($_POST) && isset($_POST['tgifStaticModify'])) {
-            if ($tgifStaticToken === '') {
-                $tgifStaticError = 'Configure a TGIF Static TG API token first.';
+            $slot = isset($_POST['tgifStaticSlot']) ? (int)$_POST['tgifStaticSlot'] : 0;
+            $talkgroup = preg_replace(
+                '/[^0-9]/',
+                '',
+                (string)(isset($_POST['tgifStaticTalkgroup']) ? $_POST['tgifStaticTalkgroup'] : '')
+            );
+            $action = (string)(isset($_POST['tgifStaticAction']) ? $_POST['tgifStaticAction'] : '');
+
+            if (($slot !== 1 && $slot !== 2)
+                || !preg_match('/^[0-9]{1,8}$/', $talkgroup)
+                || (int)$talkgroup < 1) {
+                $tgifStaticError = 'Enter a valid talkgroup and timeslot.';
+            } elseif ($action !== 'ADD' && $action !== 'DEL') {
+                $tgifStaticError = 'Choose Add or Remove.';
             } else {
-                $slot = (int)($_POST['tgifStaticSlot'] ?? 0);
-                $talkgroup = preg_replace('/[^0-9]/', '', (string)($_POST['tgifStaticTalkgroup'] ?? ''));
-                $action = (string)($_POST['tgifStaticAction'] ?? '');
-
-                if (($slot !== 1 && $slot !== 2) || !preg_match('/^[0-9]{1,8}$/', $talkgroup) || (int)$talkgroup < 1) {
-                    $tgifStaticError = 'Enter a valid talkgroup and timeslot.';
-                } elseif ($action !== 'ADD' && $action !== 'DEL') {
-                    $tgifStaticError = 'Choose Add or Remove.';
+                $response = tgif_static_api_request(
+                    $tgifStaticContext['token'],
+                    $tgifStaticContext['dmrID'],
+                    ($action === 'ADD') ? 'POST' : 'DELETE',
+                    array('slot' => $slot, 'talkgroup' => (int)$talkgroup)
+                );
+                if ((isset($response['status']) ? (int)$response['status'] : 0) === 200
+                    && !empty($response['json']['ok'])) {
+                    $tgifStaticMessage = ($action === 'ADD')
+                        ? 'Static Talkgroup added.'
+                        : 'Static Talkgroup removed.';
                 } else {
-                    $method = ($action === 'ADD') ? 'POST' : 'DELETE';
-                    $response = tgif_static_api_request(
-                        $tgifStaticToken,
-                        $tgifStaticDmrID,
-                        $method,
-                        array('slot' => $slot, 'talkgroup' => (int)$talkgroup)
-                    );
-                    if (($response['status'] ?? 0) === 200 && !empty($response['json']['ok'])) {
-                        $tgifStaticMessage = ($action === 'ADD')
-                            ? 'Static Talkgroup added.'
-                            : 'Static Talkgroup removed.';
-
-                        // Mutation responses do not include the capability and
-                        // limit fields used by this form. Perform one bounded
-                        // refresh after the operator-initiated write.
-                        $refresh = tgif_static_api_request(
-                            $tgifStaticToken,
-                            $tgifStaticDmrID,
-                            'GET'
-                        );
-                        if (($refresh['status'] ?? 0) === 200 && !empty($refresh['json']['ok'])) {
-                            $tgifStaticState = $refresh['json'];
-                        } else {
-                            $tgifStaticState = $response['json'];
-                        }
-                    } else {
-                        $tgifStaticError = tgif_static_error_text($response);
-                    }
+                    $tgifStaticError = tgif_static_error_text($response);
                 }
             }
             unset($_POST);
         }
 
-        if ($tgifStaticToken !== '' && empty($tgifStaticState)) {
-            $response = tgif_static_api_request($tgifStaticToken, $tgifStaticDmrID, 'GET');
-            if (($response['status'] ?? 0) === 200 && !empty($response['json']['ok'])) {
-                $tgifStaticState = $response['json'];
-            } elseif ($tgifStaticError === '') {
-                $tgifStaticError = tgif_static_error_text($response);
-            }
-        }
-
-        // Rendered to match the BrandMeister panels rather than the stacked
-        // colspan rows this started out with: a status table in the shape of
-        // bm_links.php's "Active BrandMeister Connections", then a manager
-        // form laid out horizontally with tooltip headers exactly like
-        // bm_manager.php, and a Command Output table for action feedback.
-        $memberships = isset($tgifStaticState['memberships']) && is_array($tgifStaticState['memberships'])
-            ? $tgifStaticState['memberships']
-            : array();
-        $supportsTs1 = !empty($tgifStaticState['supports_ts1']);
-        $supportsTs2 = !empty($tgifStaticState['supports_ts2']);
-        $apiEnabled = !empty($tgifStaticState['enabled']);
-        $limit = isset($tgifStaticState['limit']) ? (int)$tgifStaticState['limit'] : 0;
-
-        // Build a per-slot talkgroup list in the same "None" / comma-joined
-        // style bm_links.php uses for its static and dynamic TG cells.
-        $ts1TGs = array();
-        $ts2TGs = array();
-        foreach ($memberships as $membership) {
-            $membershipSlot = (int)($membership['slot'] ?? 0);
-            $membershipTG = (int)($membership['talkgroup'] ?? 0);
-            if ($membershipTG < 1) {
-                continue;
-            }
-            if ($membershipSlot === 1) {
-                $ts1TGs[] = $membershipTG;
-            } elseif ($membershipSlot === 2) {
-                $ts2TGs[] = $membershipTG;
-            }
-        }
-        $ts1List = $supportsTs1 ? (empty($ts1TGs) ? 'None' : implode(', ', $ts1TGs)) : 'Not supported';
-        $ts2List = $supportsTs2 ? (empty($ts2TGs) ? 'None' : implode(', ', $ts2TGs)) : 'Not supported';
-        if ($supportsTs1 && $limit > 0) { $ts1List .= ' (' . count($ts1TGs) . '/' . $limit . ')'; }
-        if ($supportsTs2 && $limit > 0) { $ts2List .= ' (' . count($ts2TGs) . '/' . $limit . ')'; }
-
-        // Command Output — same feedback table bm_manager.php prints after a
-        // submit. No setTimeout reload here: a successful Modify already
-        // re-reads the state, and reloading would spend a second API call.
         if ($tgifStaticMessage !== '' || $tgifStaticError !== '') {
+            // Command Output plus a delayed reload, exactly as bm_manager.php
+            // does after a submit. The reload re-renders the status partial,
+            // which is what picks up the new state - so this file never makes
+            // a second API call of its own.
             echo '<b>TGIF Static TG Manager</b>'."\n";
             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
             echo htmlspecialchars(
@@ -307,38 +86,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             );
             echo "</td></tr>\n</table>\n";
             echo "<br />\n";
-        }
-
-        echo '<b>TGIF Static Talkgroups</b>
-    <table>
-      <tr>
-        <th><a class=tooltip href="#">Repeater ID<span><b>The ID for this Repeater/Hotspot</b></span></a></th>
-        <th><a class=tooltip href="#">TS1 Static TGs<span><b>Statically linked talkgroups on timeslot 1</b></span></a></th>
-        <th><a class=tooltip href="#">TS2 Static TGs<span><b>Statically linked talkgroups on timeslot 2</b></span></a></th>
-      </tr>'."\n";
-        echo '    <tr>'."\n";
-        echo '      <td>'.htmlspecialchars((string)$tgifStaticDmrID, ENT_QUOTES, 'UTF-8').'</td>';
-        echo '<td>'.htmlspecialchars($ts1List, ENT_QUOTES, 'UTF-8').'</td>';
-        echo '<td>'.htmlspecialchars($ts2List, ENT_QUOTES, 'UTF-8').'</td>';
-        echo '</tr>'."\n";
-        echo '  </table>'."\n";
-        echo '  <br />'."\n";
-
-        if (!$apiEnabled && !empty($tgifStaticState)) {
-            echo '<b>TGIF Static TG Manager</b>'."\n";
-            echo "<table>\n<tr><th>Status</th></tr>\n<tr><td>Static Talkgroups are disabled by TGIF.</td></tr>\n</table>\n";
-            echo "<br />\n";
-        } elseif (!$supportsTs1 && !$supportsTs2 && !empty($tgifStaticState)) {
-            echo '<b>TGIF Static TG Manager</b>'."\n";
-            echo "<table>\n<tr><th>Status</th></tr>\n<tr><td>No supported timeslot reported for this hotspot session.</td></tr>\n</table>\n";
-            echo "<br />\n";
-        } elseif ($tgifStaticError === '') {
+            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>'."\n";
+        } else {
             // Manager form — column-for-column the same layout as
             // bm_manager.php's static TG manager, including leaving the
-            // talkgroup field without a required attribute (bm_manager.php
-            // does the same; the value is validated server-side). Token
-            // management is not offered here, matching BM: the credential
-            // belongs to Expert > API Keys.
+            // talkgroup field without a required attribute (the value is
+            // validated server-side above).
             echo '<b>TGIF Static TG Manager</b>'."\n";
             echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
             echo csrf_field_html()."\n";
@@ -351,14 +104,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             </tr>'."\n";
             echo '    <tr>';
             echo '<td><input aria-labelledby="lblTgifTG" type="text" inputmode="numeric" name="tgifStaticTalkgroup" size="10" maxlength="8" /></td>';
-            echo '<td role="radiogroup" aria-labelledby="lblTgifSlot">';
-            if ($supportsTs1) {
-                echo '<input id="rbTgifTS1" type="radio" name="tgifStaticSlot" value="1"'.(!$supportsTs2 ? ' checked="checked"' : '').' /><label for="rbTgifTS1">TS1</label> ';
-            }
-            if ($supportsTs2) {
-                echo '<input id="rbTgifTS2" type="radio" name="tgifStaticSlot" value="2" checked="checked" /><label for="rbTgifTS2">TS2</label>';
-            }
-            echo '</td>';
+            echo '<td role="radiogroup" aria-labelledby="lblTgifSlot"><input id="rbTgifTS1" type="radio" name="tgifStaticSlot" value="1" /><label for="rbTgifTS1">TS1</label> <input id="rbTgifTS2" type="radio" name="tgifStaticSlot" value="2" checked="checked" /><label for="rbTgifTS2">TS2</label></td>';
             echo '<td role="radiogroup" aria-labelledby="lblTgifAddRemove"><input id="rbTgifAdd" type="radio" name="tgifStaticAction" value="ADD" checked="checked" /><label for="rbTgifAdd">Add</label> <input id="rbTgifDel" type="radio" name="tgifStaticAction" value="DEL" /><label for="rbTgifDel">Remove</label></td>';
             echo '<td><input type="submit" value="Modify Static" name="tgifStaticModify" /></td>';
             echo '</tr>'."\n";

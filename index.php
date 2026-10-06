@@ -248,14 +248,29 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
     // flow that doesn't fit a backend-rendered hotspot dashboard.
     // The TGIF link/unlink manager below stays — its
     // /api/sessions/update/{id}/{slot}/{tg} endpoint is still alive.
-    // Only one TGIF control is shown. The static TG manager is included
-    // first and sets $tgifStaticRendered when it takes the slot (4.3.9+,
-    // TGIF configured as a DMR network, and a token stored); otherwise the
-    // legacy link/unlink manager is used instead.
+    // Only one TGIF control is shown. The static TG status partial and its
+    // manager form appear together when the feature is active (4.3.9+, TGIF
+    // configured as a DMR network, and a token stored in Expert > API Keys);
+    // otherwise the legacy link/unlink manager is used instead.
+    //
+    // The status partial is refreshed every 180 seconds, the same slow
+    // cadence bm_links.php uses — both hit a third-party HTTPS API, and
+    // keeping the read in a partial means a slow or down API delays only
+    // this div rather than the whole admin page.
     if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
-                $tgifStaticRendered = false;
-                include 'mmdvmhost/tgif_static_manager.php';     // TGIF Static TG API Manager
-                if (!$tgifStaticRendered) {
+                include_once 'mmdvmhost/tgif_static_common.php';
+                if (tgif_static_context($mmdvmconfigs) !== false) {
+                    echo '<script type="text/javascript">'."\n";
+                        echo 'function reloadtgifStaticConnections(){'."\n";
+                        echo '  $("#tgifStaticConnects").load("/mmdvmhost/tgif_static_links.php",function(){ setTimeout(reloadtgifStaticConnections,180000) });'."\n";
+                        echo '}'."\n";
+                        echo 'setTimeout(reloadtgifStaticConnections,180000);'."\n";
+                    echo '</script>'."\n";
+                    echo '<div id="tgifStaticConnects">'."\n";
+                    include 'mmdvmhost/tgif_static_links.php';   // TGIF Static TG status
+                    echo '</div>'."\n";
+                    include 'mmdvmhost/tgif_static_manager.php'; // TGIF Static TG API Manager
+                } else {
                     include 'mmdvmhost/tgif_manager.php';        // TGIF DMR Link Manager
                 }
         }
