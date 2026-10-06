@@ -82,58 +82,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
         return "";
     }
 
-    function tgif_static_write_config($path, $token)
-    {
-        if ($token !== ''
-            && !preg_match('/^TGIFSTG1\.[A-Fa-f0-9]{16}\.[A-Fa-f0-9]{16}\.[A-Za-z0-9_-]{40,64}$/', $token)) {
-            return 'Token format is not valid.';
-        }
-
-        // Same on-disk shape as /etc/bmapi.key and /etc/dapnetapi.key: an
-        // ini file holding the credential and nothing else. The API URL is
-        // a code constant (see tgif_static_api_request()), not operator
-        // configuration, and the DMR ID is derived from /etc/mmdvmhost and
-        // /etc/dmrgateway on every render by tgif_static_detect_dmr_id() —
-        // storing either here would only create a stale second copy.
-        $content = "[key]\napikey=" . ($token !== '' ? $token : 'None') . "\n";
-
-        $tmp = tempnam('/tmp', 'pistar-tgif-');
-        if ($tmp === false) {
-            return 'Could not create a temporary configuration file.';
-        }
-        @chmod($tmp, 0600);
-        if (file_put_contents($tmp, $content) === false) {
-            @unlink($tmp);
-            return 'Could not write the temporary configuration file.';
-        }
-
-        $rwRc = 0;
-        exec('sudo -n mount -o remount,rw / 2>&1', $rwOut, $rwRc);
-        if ($rwRc !== 0) {
-            @unlink($tmp);
-            return 'Could not make the Pi-Star filesystem writable.';
-        }
-
-        $installRc = 0;
-        $installOut = array();
-        exec('sudo -n install -m 600 -o www-data -g www-data '
-             . escapeshellarg($tmp) . ' ' . escapeshellarg($path)
-             . ' 2>&1', $installOut, $installRc);
-
-        @unlink($tmp);
-
-        $roRc = 0;
-        exec('sudo -n mount -o remount,ro / 2>&1', $roOut, $roRc);
-
-        if ($installRc !== 0) {
-            return 'Could not install the TGIF API configuration.';
-        }
-        if ($roRc !== 0) {
-            return 'Configuration saved, but the Pi-Star filesystem could not be returned to read-only mode.';
-        }
-        return '';
-    }
-
     function tgif_static_api_request($token, $dmrID, $method, $body = null)
     {
         $url = 'https://api.tgif.network/v1/static-talkgroups/' . rawurlencode($dmrID);
@@ -229,9 +177,12 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
     $tgifStaticDmrID = tgif_static_detect_dmr_id($mmdvmconfigs);
     $tgifStaticToken = tgif_static_read_token($tgifStaticConfig);
 
-    // Minimum release that is guaranteed to carry the /etc/tgifapi.key entry
-    // in /etc/sudoers.d/pistar-dashboard. Below this the Clear Token write
-    // would be refused by sudo, so the panel stays hidden entirely.
+    // Minimum release for the TGIF static TG feature as a whole. The token
+    // can only be set in Expert > API Keys, which needs the /etc/tgifapi.key
+    // entry in /etc/sudoers.d/pistar-dashboard, and that is only guaranteed
+    // from 4.3.9. This panel itself writes nothing - it reads the token and
+    // talks to the API - so the check is belt and braces alongside the
+    // token-present condition below.
     $tgifStaticRelease = isset($configPistarRelease['Pi-Star']['Version'])
         ? (string)$configPistarRelease['Pi-Star']['Version']
         : '';
@@ -246,20 +197,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
     // owned by fulledit_bmapikey.php rather than by bm_manager.php — so an
     // operator who has not opted in pays no page-load cost at all.
     if ($tgifStaticSupported && $tgifStaticDmrID !== '' && $tgifStaticToken !== '') {
+        // Tells index.php this panel took the TGIF slot, so the legacy
+        // link/unlink manager is skipped - only one TGIF control is shown.
+        $tgifStaticRendered = true;
+
         $tgifStaticMessage = '';
         $tgifStaticError = '';
         $tgifStaticState = array();
 
-        if (!empty($_POST) && isset($_POST['tgifStaticClearToken'])) {
-            $err = tgif_static_write_config($tgifStaticConfig, '');
-            if ($err === '') {
-                $tgifStaticToken = '';
-                $tgifStaticMessage = 'TGIF Static TG API token cleared.';
-            } else {
-                $tgifStaticError = $err;
-            }
-            unset($_POST);
-        } elseif (!empty($_POST) && isset($_POST['tgifStaticModify'])) {
+        if (!empty($_POST) && isset($_POST['tgifStaticModify'])) {
             if ($tgifStaticToken === '') {
                 $tgifStaticError = 'Configure a TGIF Static TG API token first.';
             } else {
@@ -388,12 +334,11 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             echo "<br />\n";
         } elseif ($tgifStaticError === '') {
             // Manager form — column-for-column the same layout as
-            // bm_manager.php's static TG manager. Clear Token rides in the
-            // same form as a second submit, the way bm_manager.php carries
-            // Drop QSO / Drop All Dynamic, so there is no nested form. The
-            // talkgroup field deliberately has no required attribute: it
-            // would otherwise block a Clear Token submit, and the server
-            // validates the value anyway.
+            // bm_manager.php's static TG manager, including leaving the
+            // talkgroup field without a required attribute (bm_manager.php
+            // does the same; the value is validated server-side). Token
+            // management is not offered here, matching BM: the credential
+            // belongs to Expert > API Keys.
             echo '<b>TGIF Static TG Manager</b>'."\n";
             echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
             echo csrf_field_html()."\n";
@@ -416,9 +361,6 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             echo '</td>';
             echo '<td role="radiogroup" aria-labelledby="lblTgifAddRemove"><input id="rbTgifAdd" type="radio" name="tgifStaticAction" value="ADD" checked="checked" /><label for="rbTgifAdd">Add</label> <input id="rbTgifDel" type="radio" name="tgifStaticAction" value="DEL" /><label for="rbTgifDel">Remove</label></td>';
             echo '<td><input type="submit" value="Modify Static" name="tgifStaticModify" /></td>';
-            echo '</tr>'."\n";
-            echo '    <tr>';
-            echo '<td colspan="4" style="background: #ffffff;"><a class=tooltip href="https://tgif.network/api_helper.php" target="_blank" rel="noopener noreferrer">TGIF API Help<span><b>Open the TGIF API helper</b></span></a> &nbsp; <input type="submit" value="Clear Token" name="tgifStaticClearToken" onclick="return confirm(\'Clear the saved TGIF Static TG API token?\');" /></td>';
             echo '</tr>'."\n";
             echo '  </table>'."\n";
             echo '  <br />'."\n";
