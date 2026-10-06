@@ -314,65 +314,115 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             }
         }
 
-        echo '<b>TGIF Static Talkgroups</b>'."\n";
-        echo '<table role="presentation" style="width:100%;max-width:100%;table-layout:auto;box-sizing:border-box">'."\n";
-        echo '<tr><th colspan="3">TGIF Static Talkgroups</th></tr>'."\n";
+        // Rendered to match the BrandMeister panels rather than the stacked
+        // colspan rows this started out with: a status table in the shape of
+        // bm_links.php's "Active BrandMeister Connections", then a manager
+        // form laid out horizontally with tooltip headers exactly like
+        // bm_manager.php, and a Command Output table for action feedback.
+        $memberships = isset($tgifStaticState['memberships']) && is_array($tgifStaticState['memberships'])
+            ? $tgifStaticState['memberships']
+            : array();
+        $supportsTs1 = !empty($tgifStaticState['supports_ts1']);
+        $supportsTs2 = !empty($tgifStaticState['supports_ts2']);
+        $apiEnabled = !empty($tgifStaticState['enabled']);
+        $limit = isset($tgifStaticState['limit']) ? (int)$tgifStaticState['limit'] : 0;
 
-        if ($tgifStaticMessage !== '') {
-            echo '<tr><td colspan="3" role="status"><b>' . htmlspecialchars($tgifStaticMessage, ENT_QUOTES, 'UTF-8') . '</b></td></tr>'."\n";
-        }
-        if ($tgifStaticError !== '') {
-            echo '<tr><td colspan="3" role="alert"><b>' . htmlspecialchars($tgifStaticError, ENT_QUOTES, 'UTF-8') . '</b></td></tr>'."\n";
-        }
-
-        // The token-entry form that used to live here has gone: the panel only
-        // renders once a valid token is already stored, so it was unreachable.
-        // Setting the token is Expert > TGIF API (fulledit_tgifapikey.php).
-        {
-            $memberships = isset($tgifStaticState['memberships']) && is_array($tgifStaticState['memberships']) ? $tgifStaticState['memberships'] : array();
-            $supportsTs1 = !empty($tgifStaticState['supports_ts1']);
-            $supportsTs2 = !empty($tgifStaticState['supports_ts2']);
-            $apiEnabled = !empty($tgifStaticState['enabled']);
-            $limit = isset($tgifStaticState['limit']) ? (int)$tgifStaticState['limit'] : 0;
-            $ts1Count = 0; $ts2Count = 0;
-            foreach ($memberships as $membership) {
-                $membershipSlot = (int)($membership['slot'] ?? 0);
-                if ($membershipSlot === 1) $ts1Count++;
-                if ($membershipSlot === 2) $ts2Count++;
+        // Build a per-slot talkgroup list in the same "None" / comma-joined
+        // style bm_links.php uses for its static and dynamic TG cells.
+        $ts1TGs = array();
+        $ts2TGs = array();
+        foreach ($memberships as $membership) {
+            $membershipSlot = (int)($membership['slot'] ?? 0);
+            $membershipTG = (int)($membership['talkgroup'] ?? 0);
+            if ($membershipTG < 1) {
+                continue;
             }
-
-            echo '<tr><td colspan="3">';
-            if ($supportsTs1) echo '<b>TS1: ' . $ts1Count . ($limit > 0 ? '/' . $limit : '') . '</b>' . ($supportsTs2 ? ' &nbsp; ' : '');
-            if ($supportsTs2) echo '<b>TS2: ' . $ts2Count . ($limit > 0 ? '/' . $limit : '') . '</b>';
-            echo '</td></tr>'."\n";
-
-            if (!empty($memberships)) {
-                echo '<tr><th>Slot</th><th>Talkgroup</th><th>Action</th></tr>'."\n";
-                foreach ($memberships as $membership) {
-                    $slot=(int)($membership['slot']??0); $tg=(int)($membership['talkgroup']??0);
-                    echo '<tr><td>TS'.$slot.'</td><td><b>'.$tg.'</b></td><td>';
-                    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post" style="margin:0">'.csrf_field_html();
-                    echo '<input type="hidden" name="tgifStaticTalkgroup" value="'.$tg.'" /><input type="hidden" name="tgifStaticSlot" value="'.$slot.'" /><input type="hidden" name="tgifStaticAction" value="DEL" /><input type="submit" value="Remove" name="tgifStaticModify" /></form></td></tr>'."\n";
-                }
-            } else {
-                echo '<tr><td colspan="3">No static talkgroups configured.</td></tr>'."\n";
+            if ($membershipSlot === 1) {
+                $ts1TGs[] = $membershipTG;
+            } elseif ($membershipSlot === 2) {
+                $ts2TGs[] = $membershipTG;
             }
-
-            if (!$apiEnabled && !empty($tgifStaticState)) {
-                echo '<tr><td colspan="3"><b>Static Talkgroups are disabled by TGIF.</b></td></tr>'."\n";
-            } elseif (!$supportsTs1 && !$supportsTs2 && !empty($tgifStaticState)) {
-                echo '<tr><td colspan="3"><b>No supported timeslot reported.</b></td></tr>'."\n";
-            } elseif ($tgifStaticError === '') {
-                echo '<tr><td colspan="3"><form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post" style="margin:0;white-space:normal">'.csrf_field_html();
-                echo '<label for="tgifStaticTalkgroup"><b>Talkgroup</b></label> <input id="tgifStaticTalkgroup" type="text" inputmode="numeric" name="tgifStaticTalkgroup" size="8" maxlength="8" required="required" /> ';
-                if ($supportsTs1) echo '<input id="tgifStaticTS1" type="radio" name="tgifStaticSlot" value="1"'.(!$supportsTs2?' checked="checked"':'').' /><label for="tgifStaticTS1">TS1</label> ';
-                if ($supportsTs2) echo '<input id="tgifStaticTS2" type="radio" name="tgifStaticSlot" value="2" checked="checked" /><label for="tgifStaticTS2">TS2</label> ';
-                echo '<input type="hidden" name="tgifStaticAction" value="ADD" /><input type="submit" value="Add" name="tgifStaticModify" /></form></td></tr>'."\n";
-            }
-
-            echo '<tr><td colspan="3"><small>API: <b>Connected</b> &nbsp; <a href="https://tgif.network/api_helper.php" target="_blank" rel="noopener noreferrer">Help</a> &nbsp; ';
-            echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post" style="display:inline;margin:0">'.csrf_field_html().'<input type="submit" value="Clear Token" name="tgifStaticClearToken" onclick="return confirm(\'Clear the saved TGIF Static TG API token?\');" /></form></small></td></tr>'."\n";
         }
-        echo '</table><br />'."\n";
+        $ts1List = $supportsTs1 ? (empty($ts1TGs) ? 'None' : implode(', ', $ts1TGs)) : 'Not supported';
+        $ts2List = $supportsTs2 ? (empty($ts2TGs) ? 'None' : implode(', ', $ts2TGs)) : 'Not supported';
+        if ($supportsTs1 && $limit > 0) { $ts1List .= ' (' . count($ts1TGs) . '/' . $limit . ')'; }
+        if ($supportsTs2 && $limit > 0) { $ts2List .= ' (' . count($ts2TGs) . '/' . $limit . ')'; }
+
+        // Command Output — same feedback table bm_manager.php prints after a
+        // submit. No setTimeout reload here: a successful Modify already
+        // re-reads the state, and reloading would spend a second API call.
+        if ($tgifStaticMessage !== '' || $tgifStaticError !== '') {
+            echo '<b>TGIF Static TG Manager</b>'."\n";
+            echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
+            echo htmlspecialchars(
+                $tgifStaticMessage !== '' ? $tgifStaticMessage : $tgifStaticError,
+                ENT_QUOTES,
+                'UTF-8'
+            );
+            echo "</td></tr>\n</table>\n";
+            echo "<br />\n";
+        }
+
+        echo '<b>TGIF Static Talkgroups</b>
+    <table>
+      <tr>
+        <th><a class=tooltip href="#">Repeater ID<span><b>The ID for this Repeater/Hotspot</b></span></a></th>
+        <th><a class=tooltip href="#">TS1 Static TGs<span><b>Statically linked talkgroups on timeslot 1</b></span></a></th>
+        <th><a class=tooltip href="#">TS2 Static TGs<span><b>Statically linked talkgroups on timeslot 2</b></span></a></th>
+      </tr>'."\n";
+        echo '    <tr>'."\n";
+        echo '      <td>'.htmlspecialchars((string)$tgifStaticDmrID, ENT_QUOTES, 'UTF-8').'</td>';
+        echo '<td>'.htmlspecialchars($ts1List, ENT_QUOTES, 'UTF-8').'</td>';
+        echo '<td>'.htmlspecialchars($ts2List, ENT_QUOTES, 'UTF-8').'</td>';
+        echo '</tr>'."\n";
+        echo '  </table>'."\n";
+        echo '  <br />'."\n";
+
+        if (!$apiEnabled && !empty($tgifStaticState)) {
+            echo '<b>TGIF Static TG Manager</b>'."\n";
+            echo "<table>\n<tr><th>Status</th></tr>\n<tr><td>Static Talkgroups are disabled by TGIF.</td></tr>\n</table>\n";
+            echo "<br />\n";
+        } elseif (!$supportsTs1 && !$supportsTs2 && !empty($tgifStaticState)) {
+            echo '<b>TGIF Static TG Manager</b>'."\n";
+            echo "<table>\n<tr><th>Status</th></tr>\n<tr><td>No supported timeslot reported for this hotspot session.</td></tr>\n</table>\n";
+            echo "<br />\n";
+        } elseif ($tgifStaticError === '') {
+            // Manager form — column-for-column the same layout as
+            // bm_manager.php's static TG manager. Clear Token rides in the
+            // same form as a second submit, the way bm_manager.php carries
+            // Drop QSO / Drop All Dynamic, so there is no nested form. The
+            // talkgroup field deliberately has no required attribute: it
+            // would otherwise block a Clear Token submit, and the server
+            // validates the value anyway.
+            echo '<b>TGIF Static TG Manager</b>'."\n";
+            echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+            echo csrf_field_html()."\n";
+            echo '<table role="presentation">'."\n";
+            echo '<tr>
+              <th aria-hidden="true" id="lblTgifTG" style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+              <th aria-hidden="true" id="lblTgifSlot" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to add/remove</b></span></a></th>
+              <th aria-hidden="true" id="lblTgifAddRemove" style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
+              <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
+            </tr>'."\n";
+            echo '    <tr>';
+            echo '<td><input aria-labelledby="lblTgifTG" type="text" inputmode="numeric" name="tgifStaticTalkgroup" size="10" maxlength="8" /></td>';
+            echo '<td role="radiogroup" aria-labelledby="lblTgifSlot">';
+            if ($supportsTs1) {
+                echo '<input id="rbTgifTS1" type="radio" name="tgifStaticSlot" value="1"'.(!$supportsTs2 ? ' checked="checked"' : '').' /><label for="rbTgifTS1">TS1</label> ';
+            }
+            if ($supportsTs2) {
+                echo '<input id="rbTgifTS2" type="radio" name="tgifStaticSlot" value="2" checked="checked" /><label for="rbTgifTS2">TS2</label>';
+            }
+            echo '</td>';
+            echo '<td role="radiogroup" aria-labelledby="lblTgifAddRemove"><input id="rbTgifAdd" type="radio" name="tgifStaticAction" value="ADD" checked="checked" /><label for="rbTgifAdd">Add</label> <input id="rbTgifDel" type="radio" name="tgifStaticAction" value="DEL" /><label for="rbTgifDel">Remove</label></td>';
+            echo '<td><input type="submit" value="Modify Static" name="tgifStaticModify" /></td>';
+            echo '</tr>'."\n";
+            echo '    <tr>';
+            echo '<td colspan="4" style="background: #ffffff;"><a class=tooltip href="https://tgif.network/api_helper.php" target="_blank" rel="noopener noreferrer">TGIF API Help<span><b>Open the TGIF API helper</b></span></a> &nbsp; <input type="submit" value="Clear Token" name="tgifStaticClearToken" onclick="return confirm(\'Clear the saved TGIF Static TG API token?\');" /></td>';
+            echo '</tr>'."\n";
+            echo '  </table>'."\n";
+            echo '  <br />'."\n";
+            echo '</form>'."\n";
+        }
     }
 }
