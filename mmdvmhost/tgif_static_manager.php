@@ -227,24 +227,30 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
 
     $tgifStaticConfig = '/etc/tgifapi.key';
     $tgifStaticDmrID = tgif_static_detect_dmr_id($mmdvmconfigs);
+    $tgifStaticToken = tgif_static_read_token($tgifStaticConfig);
 
-    if ($tgifStaticDmrID !== '') {
+    // Minimum release that is guaranteed to carry the /etc/tgifapi.key entry
+    // in /etc/sudoers.d/pistar-dashboard. Below this the Clear Token write
+    // would be refused by sudo, so the panel stays hidden entirely.
+    $tgifStaticRelease = isset($configPistarRelease['Pi-Star']['Version'])
+        ? (string)$configPistarRelease['Pi-Star']['Version']
+        : '';
+    $tgifStaticSupported = ($tgifStaticRelease !== ''
+        && version_compare($tgifStaticRelease, '4.3.9', '>='));
+
+    // Three conditions, all required before this panel renders or touches the
+    // network: the release carries the sudoers entry; TGIF is actually a
+    // configured DMR network on this hotspot; and a valid token has been
+    // stored. The token is set in Expert > TGIF API
+    // (admin/expert/fulledit_tgifapikey.php), mirroring how bmapi.key is
+    // owned by fulledit_bmapikey.php rather than by bm_manager.php — so an
+    // operator who has not opted in pays no page-load cost at all.
+    if ($tgifStaticSupported && $tgifStaticDmrID !== '' && $tgifStaticToken !== '') {
         $tgifStaticMessage = '';
         $tgifStaticError = '';
-        $tgifStaticToken = tgif_static_read_token($tgifStaticConfig);
         $tgifStaticState = array();
 
-        if (!empty($_POST) && isset($_POST['tgifStaticSaveToken'])) {
-            $candidate = trim((string)($_POST['tgifStaticToken'] ?? ''));
-            $err = tgif_static_write_config($tgifStaticConfig, $candidate);
-            if ($err === '') {
-                $tgifStaticToken = $candidate;
-                $tgifStaticMessage = 'TGIF Static TG API token saved.';
-            } else {
-                $tgifStaticError = $err;
-            }
-            unset($_POST);
-        } elseif (!empty($_POST) && isset($_POST['tgifStaticClearToken'])) {
+        if (!empty($_POST) && isset($_POST['tgifStaticClearToken'])) {
             $err = tgif_static_write_config($tgifStaticConfig, '');
             if ($err === '') {
                 $tgifStaticToken = '';
@@ -319,16 +325,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             echo '<tr><td colspan="3" role="alert"><b>' . htmlspecialchars($tgifStaticError, ENT_QUOTES, 'UTF-8') . '</b></td></tr>'."\n";
         }
 
-        if ($tgifStaticToken === '') {
-            echo '<tr><td colspan="3">';
-            echo '<form action="' . htmlentities($_SERVER['PHP_SELF']) . '" method="post" style="margin:0;max-width:100%">';
-            echo csrf_field_html();
-            echo '<label for="tgifStaticToken"><b>API Token</b></label> ';
-            echo '<input id="tgifStaticToken" type="password" name="tgifStaticToken" size="28" maxlength="180" autocomplete="new-password" required="required" style="max-width:55%;box-sizing:border-box" /> ';
-            echo '<input type="submit" value="Save" name="tgifStaticSaveToken" /> ';
-            echo '<a href="https://tgif.network/static_tg_api_tokens.php" target="_blank" rel="noopener noreferrer">Create token</a> | <a href="https://tgif.network/api_helper.php" target="_blank" rel="noopener noreferrer">Help</a>';
-            echo '</form></td></tr>'."\n";
-        } else {
+        // The token-entry form that used to live here has gone: the panel only
+        // renders once a valid token is already stored, so it was unreachable.
+        // Setting the token is Expert > TGIF API (fulledit_tgifapikey.php).
+        {
             $memberships = isset($tgifStaticState['memberships']) && is_array($tgifStaticState['memberships']) ? $tgifStaticState['memberships'] : array();
             $supportsTs1 = !empty($tgifStaticState['supports_ts1']);
             $supportsTs2 = !empty($tgifStaticState['supports_ts2']);

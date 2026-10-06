@@ -26,6 +26,17 @@
     <a href="fulledit_wpaconfig.php" style="color: #ffffff;">WiFi</a> |
     <a href="fulledit_bmapikey.php" style="color: #ffffff;">BM API</a> |
     <a href="fulledit_dapnetapi.php" style="color: #ffffff;">DAPNET API</a> |
+<?php
+// The TGIF API key editor depends on the /etc/tgifapi.key install entry in
+// /etc/sudoers.d/pistar-dashboard, which is only guaranteed from 4.3.9. Hide
+// the link below that release so the editor is never offered on a system
+// where saving would be denied by sudo.
+$tgifMenuRelease = isset($configPistarRelease['Pi-Star']['Version'])
+    ? (string)$configPistarRelease['Pi-Star']['Version']
+    : '';
+if ($tgifMenuRelease !== '' && version_compare($tgifMenuRelease, '4.3.9', '>=')) { ?>
+    <a href="fulledit_tgifapikey.php" style="color: #ffffff;">TGIF API</a> |
+<?php } ?>
     <a href="fulledit_cron.php" style="color: #ffffff;">System Cron</a> |
     <a href="fulledit_rssidat.php" style="color: #ffffff;">RSSI Dat</a>
     &emsp;<b>Tools:</b>
