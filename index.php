@@ -250,6 +250,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
     // /api/sessions/update/{id}/{slot}/{tg} endpoint is still alive.
     if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
                 include 'mmdvmhost/tgif_manager.php';            // TGIF DMR Link Manager
+                include 'mmdvmhost/tgif_static_manager.php';     // TGIF Static TG API Manager
         }
     $testMMDVModeYSFnet = getConfigItem("System Fusion Network", "Enable", $mmdvmconfigs);
         if ( $testMMDVModeYSFnet == 1 ) {                // If YSF network is enabled, add these extra features.
