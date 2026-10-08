@@ -1,6 +1,6 @@
 <?php
 /**
- * TGIF Static Talkgroups add/remove form (admin-only).
+ * TGIF Manager - static talkgroup add/remove form (admin-only).
  * TGIF Development: Andy G7LRR.
  *
  * Inline include, loaded only on the admin path. Structured exactly like
@@ -54,9 +54,10 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             } elseif ($action !== 'ADD' && $action !== 'DEL') {
                 $tgifStaticError = 'Choose Add or Remove.';
             } else {
-                $response = tgif_static_api_request(
+                $response = tgif_api_request(
                     $tgifStaticContext['token'],
                     $tgifStaticContext['dmrID'],
+                    'static-talkgroups',
                     ($action === 'ADD') ? 'POST' : 'DELETE',
                     array('slot' => $slot, 'talkgroup' => (int)$talkgroup)
                 );
@@ -77,7 +78,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             // does after a submit. The reload re-renders the status partial,
             // which is what picks up the new state - so this file never makes
             // a second API call of its own.
-            echo '<b>TGIF Static TG Manager</b>'."\n";
+            echo '<b>TGIF Manager</b>'."\n";
             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
             echo htmlspecialchars(
                 $tgifStaticMessage !== '' ? $tgifStaticMessage : $tgifStaticError,
@@ -92,7 +93,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             // bm_manager.php's static TG manager, including leaving the
             // talkgroup field without a required attribute (the value is
             // validated server-side above).
-            echo '<b>TGIF Static TG Manager</b>'."\n";
+            echo '<b>TGIF Manager</b>'."\n";
             echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
             echo csrf_field_html()."\n";
             echo '<table role="presentation">'."\n";

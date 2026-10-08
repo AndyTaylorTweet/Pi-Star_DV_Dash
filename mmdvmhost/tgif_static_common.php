@@ -136,26 +136,31 @@ function tgif_static_context($mmdvmconfigs)
 }
 
 /**
- * Call the TGIF Static Talkgroups API.
+ * Call the TGIF talkgroup API.
+ *
+ * One request helper for both resources — 'static-talkgroups' and
+ * 'dynamic-talkgroups' differ only in the path, so they share the auth,
+ * TLS and timeout handling rather than each carrying a copy of it.
  *
  * The 5 second timeout bounds both the connect and read phases for the http
  * stream wrapper, so a slow or blackholed endpoint cannot stall the caller
  * indefinitely.
  *
- * @param string     $token  Bearer credential.
- * @param string     $dmrID  Hotspot DMR ID, used as the resource path.
- * @param string     $method GET, POST or DELETE.
- * @param array|null $body   Optional JSON request body.
+ * @param string     $token    Bearer credential.
+ * @param string     $dmrID    Hotspot DMR ID, used as the resource path.
+ * @param string     $resource 'static-talkgroups' or 'dynamic-talkgroups'.
+ * @param string     $method   GET, POST or DELETE.
+ * @param array|null $body     Optional JSON request body.
  * @return array array('status' => int HTTP status (0 on no response),
  *               'json' => array decoded response, empty on failure).
  */
-function tgif_static_api_request($token, $dmrID, $method, $body = null)
+function tgif_api_request($token, $dmrID, $resource, $method, $body = null)
 {
-    $url = 'https://api.tgif.network/v1/static-talkgroups/' . rawurlencode($dmrID);
+    $url = 'https://api.tgif.network/v1/' . $resource . '/' . rawurlencode($dmrID);
     $headers = array(
         'Accept: application/json',
         'Authorization: Bearer ' . $token,
-        'User-Agent: Pi-Star TGIF Static TG Manager/' . $dmrID,
+        'User-Agent: Pi-Star TGIF TG Manager/' . $dmrID,
     );
 
     $http = array(
@@ -209,7 +214,7 @@ function tgif_static_api_request($token, $dmrID, $method, $body = null)
 /**
  * Turn an API response into a sentence an operator can act on.
  *
- * @param array $response As returned by tgif_static_api_request().
+ * @param array $response As returned by tgif_api_request().
  * @return string Human-readable error text.
  */
 function tgif_static_error_text($response)
@@ -241,7 +246,9 @@ function tgif_static_error_text($response)
         return 'TGIF could not complete the request. Try again later.';
     }
     if ($status === 0) {
-        return 'No response from the TGIF Static Talkgroups API.';
+        // Resource-neutral: this helper is shared by the static and dynamic
+        // paths, and callers prefix their own "Static:" / "Dynamic:" label.
+        return 'No response from the TGIF API.';
     }
     return 'TGIF API returned HTTP ' . $status . ($error !== '' ? ' (' . $error . ')' : '') . '.';
 }
