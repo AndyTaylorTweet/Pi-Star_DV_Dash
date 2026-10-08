@@ -254,9 +254,16 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
     // otherwise the legacy link/unlink manager is used instead.
     //
     // The status partial is refreshed every 180 seconds, the same slow
-    // cadence bm_links.php uses — both hit a third-party HTTPS API, and
-    // keeping the read in a partial means a slow or down API delays only
-    // this div rather than the whole admin page.
+    // cadence bm_links.php uses — both hit a third-party HTTPS API.
+    //
+    // Unlike every other panel here, the partial is NOT included inline for
+    // the first paint. The others read local files, so an inline include
+    // costs nothing; this one makes two third-party HTTPS calls of up to 5
+    // seconds each, which put ten seconds in front of the whole admin page.
+    // Instead the div ships with a placeholder and the first fetch is kicked
+    // off straight after render, so the page paints immediately and the TGIF
+    // data drops in whenever the API answers. jQuery is loaded at line 117,
+    // well before this.
     if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
                 include_once 'mmdvmhost/tgif_static_common.php';
                 if (tgif_static_context($mmdvmconfigs) !== false) {
@@ -264,10 +271,11 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
                         echo 'function reloadtgifStaticConnections(){'."\n";
                         echo '  $("#tgifStaticConnects").load("/mmdvmhost/tgif_static_links.php",function(){ setTimeout(reloadtgifStaticConnections,180000) });'."\n";
                         echo '}'."\n";
-                        echo 'setTimeout(reloadtgifStaticConnections,180000);'."\n";
+                        echo 'setTimeout(reloadtgifStaticConnections,100);'."\n";
                     echo '</script>'."\n";
                     echo '<div id="tgifStaticConnects">'."\n";
-                    include 'mmdvmhost/tgif_static_links.php';   // TGIF Static TG status
+                    echo '<b>Active TGIF Connections</b>'."\n";
+                    echo '<table><tr><th>TGIF API</th></tr><tr><td>Loading...</td></tr></table><br />'."\n";
                     echo '</div>'."\n";
                     include 'mmdvmhost/tgif_static_manager.php'; // TGIF Static TG API Manager
                 } else {
