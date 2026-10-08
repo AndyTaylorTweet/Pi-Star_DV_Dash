@@ -38,7 +38,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
         $tgifStaticMessage = '';
         $tgifStaticError = '';
 
+        // Which submit was pressed decides whether the talkgroup is applied
+        // as a static or a dynamic subscription; the Add / Remove radio still
+        // decides the direction for either kind.
+        $tgifKind = '';
         if (!empty($_POST) && isset($_POST['tgifStaticModify'])) {
+            $tgifKind = 'static';
+        } elseif (!empty($_POST) && isset($_POST['tgifDynamicModify'])) {
+            $tgifKind = 'dynamic';
+        }
+
+        if ($tgifKind !== '') {
             $slot = isset($_POST['tgifStaticSlot']) ? (int)$_POST['tgifStaticSlot'] : 0;
             $talkgroup = preg_replace(
                 '/[^0-9]/',
@@ -53,7 +63,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
                 $tgifStaticError = 'Enter a valid talkgroup and timeslot.';
             } elseif ($action !== 'ADD' && $action !== 'DEL') {
                 $tgifStaticError = 'Choose Add or Remove.';
-            } else {
+            } elseif ($tgifKind === 'static') {
                 $response = tgif_api_request(
                     $tgifStaticContext['token'],
                     $tgifStaticContext['dmrID'],
@@ -66,6 +76,27 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
                     $tgifStaticMessage = ($action === 'ADD')
                         ? 'Static Talkgroup added.'
                         : 'Static Talkgroup removed.';
+                } else {
+                    $tgifStaticError = tgif_static_error_text($response);
+                }
+            } else {
+                // The dynamic endpoint takes a single talkgroup per slot, so
+                // there is no DELETE: unlinking is a POST of TG 4000, the
+                // parking talkgroup the legacy tgif_manager.php has always
+                // used for UNLINK.
+                $dynamicTG = ($action === 'ADD') ? (int)$talkgroup : 4000;
+                $response = tgif_api_request(
+                    $tgifStaticContext['token'],
+                    $tgifStaticContext['dmrID'],
+                    'dynamic-talkgroups',
+                    'POST',
+                    array('slot' => $slot, 'talkgroup' => $dynamicTG)
+                );
+                if ((isset($response['status']) ? (int)$response['status'] : 0) === 200
+                    && !empty($response['json']['ok'])) {
+                    $tgifStaticMessage = ($action === 'ADD')
+                        ? 'Dynamic Talkgroup set.'
+                        : 'Dynamic Talkgroup unlinked.';
                 } else {
                     $tgifStaticError = tgif_static_error_text($response);
                 }
@@ -98,7 +129,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             echo csrf_field_html()."\n";
             echo '<table role="presentation">'."\n";
             echo '<tr>
-              <th aria-hidden="true" id="lblTgifTG" style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+              <th aria-hidden="true" id="lblTgifTG" style="width:25%;"><a class=tooltip href="#">Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
               <th aria-hidden="true" id="lblTgifSlot" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to add/remove</b></span></a></th>
               <th aria-hidden="true" id="lblTgifAddRemove" style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
               <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
@@ -107,7 +138,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             echo '<td><input aria-labelledby="lblTgifTG" type="text" inputmode="numeric" name="tgifStaticTalkgroup" size="10" maxlength="8" /></td>';
             echo '<td role="radiogroup" aria-labelledby="lblTgifSlot"><input id="rbTgifTS1" type="radio" name="tgifStaticSlot" value="1" /><label for="rbTgifTS1">TS1</label> <input id="rbTgifTS2" type="radio" name="tgifStaticSlot" value="2" checked="checked" /><label for="rbTgifTS2">TS2</label></td>';
             echo '<td role="radiogroup" aria-labelledby="lblTgifAddRemove"><input id="rbTgifAdd" type="radio" name="tgifStaticAction" value="ADD" checked="checked" /><label for="rbTgifAdd">Add</label> <input id="rbTgifDel" type="radio" name="tgifStaticAction" value="DEL" /><label for="rbTgifDel">Remove</label></td>';
-            echo '<td><input type="submit" value="Modify Static" name="tgifStaticModify" /></td>';
+            echo '<td><input type="submit" value="Set Static" name="tgifStaticModify" /> <input type="submit" value="Set Dynamic" name="tgifDynamicModify" /></td>';
             echo '</tr>'."\n";
             echo '  </table>'."\n";
             echo '  <br />'."\n";
