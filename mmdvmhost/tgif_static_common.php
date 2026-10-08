@@ -231,9 +231,11 @@ function tgif_static_error_text($response)
         'static_tg_not_available' => 'Static Talkgroups are not available for this account.',
         'static_tg_disabled' => 'Static Talkgroups are currently disabled on TGIF.',
         // Observed as HTTP 403 on /v1/dynamic-talkgroups with a token that
-        // works fine for /v1/static-talkgroups: dynamic control is a separate
-        // entitlement on the TGIF account, not a separate credential.
-        'dynamic_tg_permission_required' => 'This TGIF account is not permitted to manage Dynamic Talkgroups.',
+        // still reads /v1/static-talkgroups with a 200. The cause is the
+        // token's age, not the account: one issued before TGIF added dynamic
+        // support does not carry the dynamic permission, and re-creating it
+        // on tgif.network clears the error. Confirmed on hardware.
+        'dynamic_tg_permission_required' => 'This TGIF API token cannot manage Dynamic Talkgroups. Re-create the token on tgif.network, then save the new one in Expert > API Keys.',
         'unsupported_slot' => 'That timeslot is not supported by this hotspot session.',
         'invalid_or_reserved_talkgroup' => 'That talkgroup is invalid or reserved for another TGIF function.',
         'limit_exceeded' => 'The Static Talkgroup limit for this account has been reached.',
