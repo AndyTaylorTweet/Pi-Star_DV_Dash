@@ -139,7 +139,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           echo csrf_field_html()."\n";
           echo '<table role="presentation">'."\n";
           echo '<tr>
-            <th aria-hidden="true" id="lblTG" style="width:25%;"><a class=tooltip href="#">Static Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+            <th aria-hidden="true" id="lblTG" style="width:25%;"><a class=tooltip href="#">Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
             <th aria-hidden="true" id="lblSlot" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to link/unlink</b></span></a></th>
             <th aria-hidden="true" id="addRemove" style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
             <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
