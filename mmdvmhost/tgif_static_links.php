@@ -61,6 +61,7 @@ if ($tgifLinksContext !== false) {
     // Shape per the TGIF dynamic endpoint: ts1_talkgroup / ts2_talkgroup,
     // where 0 (or absent) means nothing is linked on that slot.
     $dynamicState = array();
+    $dynamicDenied = false;
     $dynamicResponse = tgif_api_request(
         $tgifLinksContext['token'],
         $tgifLinksContext['dmrID'],
@@ -71,6 +72,12 @@ if ($tgifLinksContext !== false) {
         && !empty($dynamicResponse['json']['ok'])) {
         $dynamicState = $dynamicResponse['json'];
     } else {
+        // Dynamic control is a separate entitlement on the TGIF account - a
+        // token that reads static fine can still be refused here. Call that
+        // out in the cell rather than the generic "Unavailable", which would
+        // read as an outage.
+        $dynamicDenied = (isset($dynamicResponse['json']['error'])
+            && $dynamicResponse['json']['error'] === 'dynamic_tg_permission_required');
         $tgifLinksErrors[] = 'Dynamic: ' . tgif_static_error_text($dynamicResponse);
     }
 
@@ -102,7 +109,11 @@ if ($tgifLinksContext !== false) {
     }
     $tgifDynamicTGList = wordwrap($tgifDynamicTGList, 15, "<br />\n");
     if (preg_match('/TG/', $tgifDynamicTGList) == false) {
-        $tgifDynamicTGList = empty($dynamicState) ? 'Unavailable' : 'None';
+        if ($dynamicDenied) {
+            $tgifDynamicTGList = 'Not permitted';
+        } else {
+            $tgifDynamicTGList = empty($dynamicState) ? 'Unavailable' : 'None';
+        }
     }
 
     echo '<b>Active TGIF Connections</b>

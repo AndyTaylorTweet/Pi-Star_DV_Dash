@@ -230,6 +230,10 @@ function tgif_static_error_text($response)
         'secure_hotspot_required' => 'TGIF Hotspot Security is required for Static Talkgroups.',
         'static_tg_not_available' => 'Static Talkgroups are not available for this account.',
         'static_tg_disabled' => 'Static Talkgroups are currently disabled on TGIF.',
+        // Observed as HTTP 403 on /v1/dynamic-talkgroups with a token that
+        // works fine for /v1/static-talkgroups: dynamic control is a separate
+        // entitlement on the TGIF account, not a separate credential.
+        'dynamic_tg_permission_required' => 'This TGIF account is not permitted to manage Dynamic Talkgroups.',
         'unsupported_slot' => 'That timeslot is not supported by this hotspot session.',
         'invalid_or_reserved_talkgroup' => 'That talkgroup is invalid or reserved for another TGIF function.',
         'limit_exceeded' => 'The Static Talkgroup limit for this account has been reached.',
