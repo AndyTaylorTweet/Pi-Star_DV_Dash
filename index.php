@@ -267,9 +267,21 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
     if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
                 include_once 'mmdvmhost/tgif_static_common.php';
                 if (tgif_static_context($mmdvmconfigs) !== false) {
+                    // jQuery injects the response only on success but chains the
+                    // callback via .always(), so a failed fetch leaves the
+                    // Loading placeholder in place and still schedules the next
+                    // attempt. Waiting the full 180s after a failed first fetch
+                    // would leave "Loading..." sitting there for three minutes,
+                    // so one quick 15s retry is allowed; after that it settles
+                    // to the normal cadence whether or not it succeeded.
                     echo '<script type="text/javascript">'."\n";
+                        echo 'var tgifStaticRetried = false;'."\n";
                         echo 'function reloadtgifStaticConnections(){'."\n";
-                        echo '  $("#tgifStaticConnects").load("/mmdvmhost/tgif_static_links.php",function(){ setTimeout(reloadtgifStaticConnections,180000) });'."\n";
+                        echo '  $("#tgifStaticConnects").load("/mmdvmhost/tgif_static_links.php",function(responseText,status){'."\n";
+                        echo '    var next = 180000;'."\n";
+                        echo '    if (status !== "success" && !tgifStaticRetried) { tgifStaticRetried = true; next = 15000; }'."\n";
+                        echo '    setTimeout(reloadtgifStaticConnections,next);'."\n";
+                        echo '  });'."\n";
                         echo '}'."\n";
                         echo 'setTimeout(reloadtgifStaticConnections,100);'."\n";
                     echo '</script>'."\n";
