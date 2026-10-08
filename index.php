@@ -270,6 +270,7 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
                     include 'mmdvmhost/tgif_static_links.php';   // TGIF Static TG status
                     echo '</div>'."\n";
                     include 'mmdvmhost/tgif_static_manager.php'; // TGIF Static TG API Manager
+                    include 'mmdvmhost/tgif_manager.php';        // TGIF Dynamic Link/Unlink Manager
                 } else {
                     include 'mmdvmhost/tgif_manager.php';        // TGIF DMR Link Manager
                 }

@@ -149,6 +149,101 @@ function tgif_static_context($mmdvmconfigs)
  * @return array array('status' => int HTTP status (0 on no response),
  *               'json' => array decoded response, empty on failure).
  */
+function tgif_dynamic_api_request($token, $dmrID, $slot, $talkgroup)
+{
+    $url = 'https://api.tgif.network/v1/dynamic-talkgroups/' . rawurlencode($dmrID);
+    $json = json_encode(array(
+        'slot' => (int)$slot,
+        'talkgroup' => (int)$talkgroup,
+    ));
+    if (!is_string($json)) {
+        return array('status' => 0, 'json' => array('error' => 'json_encode_failed'));
+    }
+
+    $context = stream_context_create(array(
+        'http' => array(
+            'method' => 'POST',
+            'timeout' => 5,
+            'ignore_errors' => true,
+            'follow_location' => 0,
+            'max_redirects' => 0,
+            'header' => implode("\r\n", array(
+                'Accept: application/json',
+                'Authorization: Bearer ' . $token,
+                'Content-Type: application/json',
+                'User-Agent: Pi-Star TGIF Dynamic TG Manager/' . $dmrID,
+            )) . "\r\n",
+            'content' => $json,
+        ),
+        'ssl' => array(
+            'verify_peer' => true,
+            'verify_peer_name' => true,
+            'allow_self_signed' => false,
+            'cafile' => '/etc/ssl/certs/ca-certificates.crt',
+            'SNI_enabled' => true,
+        ),
+    ));
+
+    $result = @file_get_contents($url, false, $context);
+    $status = 0;
+    if (isset($http_response_header) && is_array($http_response_header)) {
+        foreach ($http_response_header as $responseHeader) {
+            if (preg_match('#^HTTP/\S+\s+([0-9]{3})\b#', $responseHeader, $matches)) {
+                $status = (int)$matches[1];
+                break;
+            }
+        }
+    }
+
+    $decoded = is_string($result) ? json_decode($result, true) : null;
+    return array(
+        'status' => $status,
+        'json' => is_array($decoded) ? $decoded : array(),
+    );
+}
+
+function tgif_dynamic_api_state($token, $dmrID)
+{
+    $url = 'https://api.tgif.network/v1/dynamic-talkgroups/' . rawurlencode($dmrID);
+    $context = stream_context_create(array(
+        'http' => array(
+            'method' => 'GET',
+            'timeout' => 5,
+            'ignore_errors' => true,
+            'follow_location' => 0,
+            'max_redirects' => 0,
+            'header' => implode("\r\n", array(
+                'Accept: application/json',
+                'Authorization: Bearer ' . $token,
+                'User-Agent: Pi-Star TGIF Dynamic TG Manager/' . $dmrID,
+            )) . "\r\n",
+        ),
+        'ssl' => array(
+            'verify_peer' => true,
+            'verify_peer_name' => true,
+            'allow_self_signed' => false,
+            'cafile' => '/etc/ssl/certs/ca-certificates.crt',
+            'SNI_enabled' => true,
+        ),
+    ));
+
+    $result = @file_get_contents($url, false, $context);
+    $status = 0;
+    if (isset($http_response_header) && is_array($http_response_header)) {
+        foreach ($http_response_header as $responseHeader) {
+            if (preg_match('#^HTTP/\\S+\\s+([0-9]{3})\\b#', $responseHeader, $matches)) {
+                $status = (int)$matches[1];
+                break;
+            }
+        }
+    }
+    $decoded = is_string($result) ? json_decode($result, true) : null;
+    return array(
+        'status' => $status,
+        'json' => is_array($decoded) ? $decoded : array(),
+    );
+}
+
 function tgif_static_api_request($token, $dmrID, $method, $body = null)
 {
     $url = 'https://api.tgif.network/v1/static-talkgroups/' . rawurlencode($dmrID);

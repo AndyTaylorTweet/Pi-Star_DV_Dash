@@ -31,6 +31,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tools.php';        // MMDVMDash Tools
     include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/functions.php';    // MMDVMDash Functions
     include_once $_SERVER['DOCUMENT_ROOT'].'/config/language.php';        // Translation Code
+    include_once $_SERVER['DOCUMENT_ROOT'].'/mmdvmhost/tgif_static_common.php'; // TGIF HTTPS/token helpers
 
     function httpStatusText($code = 0) {
         // List of HTTP status codes.
@@ -137,6 +138,14 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
       }
     }
 
+    // Prefer the authenticated TGIF context when available. This uses the
+    // same device-ID detection as the Static TG feature without replacing
+    // the legacy detection above.
+    $tgifContext = tgif_static_context($mmdvmconfigs);
+    if (is_array($tgifContext)) {
+      $dmrID = $tgifContext['dmrID'];
+    }
+
     if ( $dmrID ) {
       // Work out if the data has been posted or not
       if ( !empty($_POST) && isset($_POST["tgifSubmit"]) ): // Data has been posted for this page
@@ -155,22 +164,56 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           $targetTG = "4000";
         }
         if ($_POST["tgifAction"] == "UNLINK") { $targetTG = "4000"; }
-        // Perform the GET request
-        $tgifApiUrl = "http://tgif.network:5040/api/sessions/update/".$dmrID."/".$targetSlot."/".$targetTG;
-        $result = file_get_contents($tgifApiUrl);
+        // Use the authenticated TGIF HTTPS API. The legacy :5040 endpoint
+        // remains available for older Pi-Star installations.
+        $result = array('status' => 0, 'json' => array('error' => 'tgif_api_key_required'));
+        if (is_array($tgifContext)) {
+          $result = tgif_dynamic_api_request(
+              $tgifContext['token'],
+              $dmrID,
+              ((int)$targetSlot) + 1,
+              $targetTG
+          );
+        }
         // Output to the browser
-        echo '<b>TGIF Manager</b>'."\n";
+        echo '<b>TGIF Dynamic Manager</b>'."\n";
         echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
         //echo "Sending command to TGIF API";
         echo "TGIF API: ";
-        echo httpStatusText($result);
+        if ((int)$result['status'] === 200 && !empty($result['json']['ok'])) {
+          echo httpStatusText(200);
+        } else {
+          $error = isset($result['json']['error']) ? (string)$result['json']['error'] : '';
+          echo httpStatusText((int)$result['status']);
+          if ($error !== '') {
+            echo ' (' . htmlentities($error) . ')';
+          }
+        }
         echo "</td></tr>\n</table>\n";
         echo "<br />\n";
         // Clean up...
         unset($_POST);
         echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>';
       else: // Do this when we are not handling post data
-        echo '<b>TGIF Manager</b>'."\n";
+        $dynamicState = array('status' => 0, 'json' => array('error' => 'tgif_api_key_required'));
+        if (is_array($tgifContext)) {
+          $dynamicState = tgif_dynamic_api_state($tgifContext['token'], $dmrID);
+        }
+        echo '<b>TGIF Dynamic Talkgroups</b>'."\n";
+        if ((int)$dynamicState['status'] === 200 && !empty($dynamicState['json']['ok'])) {
+          $ts1 = isset($dynamicState['json']['ts1_talkgroup']) ? (int)$dynamicState['json']['ts1_talkgroup'] : 0;
+          $ts2 = isset($dynamicState['json']['ts2_talkgroup']) ? (int)$dynamicState['json']['ts2_talkgroup'] : 0;
+          echo '<table><tr><th>TS1 Dynamic TG</th><th>TS2 Dynamic TG</th></tr><tr>';
+          echo '<td>' . ($ts1 > 0 ? 'TG ' . $ts1 : 'None') . '</td>';
+          echo '<td>' . ($ts2 > 0 ? 'TG ' . $ts2 : 'None') . '</td>';
+          echo '</tr></table><br />'."\n";
+        } else {
+          $error = isset($dynamicState['json']['error']) ? (string)$dynamicState['json']['error'] : '';
+          echo '<table><tr><th>Current Dynamic TG</th></tr><tr><td>Unavailable';
+          if ($error !== '') echo ' (' . htmlentities($error) . ')';
+          echo '</td></tr></table><br />'."\n";
+        }
+        echo '<b>TGIF Dynamic Manager</b>'."\n";
         echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
         echo csrf_field_html()."\n";
         echo '<table>
@@ -184,7 +227,7 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") { // Stop this working outside o
           <td><input type="text" name="tgifNumber" size="10" maxlength="7" /></td>
           <td><input type="radio" name="tgifSlot" value="1" />TS1 <input type="radio" name="tgifSlot" value="2" checked="checked" />TS2</td>
           <td><input type="radio" name="tgifAction" value="LINK" />Link <input type="radio" name="tgifAction" value="UNLINK" checked="checked" />UnLink</td>
-          <td><input type="submit" value="Modify Static" name="tgifSubmit" /></td>
+          <td><input type="submit" value="Modify Dynamic" name="tgifSubmit" /></td>
         </tr>
         </table><br />'."\n";
       endif;
