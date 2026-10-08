@@ -104,12 +104,17 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             unset($_POST);
         }
 
+        // Command Output when there is something to report, then the form -
+        // not instead of it. bm_manager.php swaps the form for the output and
+        // relies on a 3 second window.location reload to bring it back, which
+        // here meant a second full page load and a second repaint of the
+        // connections table on every action. The status partial refreshes
+        // itself a moment after this render, so no reload is needed: the
+        // result, the refreshed table and a reusable form all arrive from the
+        // one POST.
+        echo '<b>TGIF Manager</b>'."\n";
+
         if ($tgifStaticMessage !== '' || $tgifStaticError !== '') {
-            // Command Output plus a delayed reload, exactly as bm_manager.php
-            // does after a submit. The reload re-renders the status partial,
-            // which is what picks up the new state - so this file never makes
-            // a second API call of its own.
-            echo '<b>TGIF Manager</b>'."\n";
             echo "<table>\n<tr><th>Command Output</th></tr>\n<tr><td>";
             echo htmlspecialchars(
                 $tgifStaticMessage !== '' ? $tgifStaticMessage : $tgifStaticError,
@@ -118,31 +123,29 @@ if ($_SERVER["PHP_SELF"] == "/admin/index.php") {
             );
             echo "</td></tr>\n</table>\n";
             echo "<br />\n";
-            echo '<script type="text/javascript">setTimeout(function() { window.location=window.location;},3000);</script>'."\n";
-        } else {
-            // Manager form — column-for-column the same layout as
-            // bm_manager.php's static TG manager, including leaving the
-            // talkgroup field without a required attribute (the value is
-            // validated server-side above).
-            echo '<b>TGIF Manager</b>'."\n";
-            echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
-            echo csrf_field_html()."\n";
-            echo '<table role="presentation">'."\n";
-            echo '<tr>
-              <th aria-hidden="true" id="lblTgifTG" style="width:25%;"><a class=tooltip href="#">Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
-              <th aria-hidden="true" id="lblTgifSlot" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to add/remove</b></span></a></th>
-              <th aria-hidden="true" id="lblTgifAddRemove" style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
-              <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
-            </tr>'."\n";
-            echo '    <tr>';
-            echo '<td><input aria-labelledby="lblTgifTG" type="text" inputmode="numeric" name="tgifStaticTalkgroup" size="10" maxlength="8" /></td>';
-            echo '<td role="radiogroup" aria-labelledby="lblTgifSlot"><input id="rbTgifTS1" type="radio" name="tgifStaticSlot" value="1" /><label for="rbTgifTS1">TS1</label> <input id="rbTgifTS2" type="radio" name="tgifStaticSlot" value="2" checked="checked" /><label for="rbTgifTS2">TS2</label></td>';
-            echo '<td role="radiogroup" aria-labelledby="lblTgifAddRemove"><input id="rbTgifAdd" type="radio" name="tgifStaticAction" value="ADD" checked="checked" /><label for="rbTgifAdd">Add</label> <input id="rbTgifDel" type="radio" name="tgifStaticAction" value="DEL" /><label for="rbTgifDel">Remove</label></td>';
-            echo '<td><input type="submit" value="Set Static" name="tgifStaticModify" /> <input type="submit" value="Set Dynamic" name="tgifDynamicModify" /></td>';
-            echo '</tr>'."\n";
-            echo '  </table>'."\n";
-            echo '  <br />'."\n";
-            echo '</form>'."\n";
         }
+
+        // Manager form — column-for-column the same layout as
+        // bm_manager.php's static TG manager, including leaving the talkgroup
+        // field without a required attribute (the value is validated
+        // server-side above).
+        echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">'."\n";
+        echo csrf_field_html()."\n";
+        echo '<table role="presentation">'."\n";
+        echo '<tr>
+          <th aria-hidden="true" id="lblTgifTG" style="width:25%;"><a class=tooltip href="#">Talkgroup<span><b>Enter the Talkgroup number</b></span></a></th>
+          <th aria-hidden="true" id="lblTgifSlot" style="width:25%;"><a class=tooltip href="#">Slot<span><b>Where to add/remove</b></span></a></th>
+          <th aria-hidden="true" id="lblTgifAddRemove" style="width:25%;"><a class=tooltip href="#">Add / Remove<span><b>Add or Remove</b></span></a></th>
+          <th><a class=tooltip href="#">Action<span><b>Take Action</b></span></a></th>
+        </tr>'."\n";
+        echo '    <tr>';
+        echo '<td><input aria-labelledby="lblTgifTG" type="text" inputmode="numeric" name="tgifStaticTalkgroup" size="10" maxlength="8" /></td>';
+        echo '<td role="radiogroup" aria-labelledby="lblTgifSlot"><input id="rbTgifTS1" type="radio" name="tgifStaticSlot" value="1" /><label for="rbTgifTS1">TS1</label> <input id="rbTgifTS2" type="radio" name="tgifStaticSlot" value="2" checked="checked" /><label for="rbTgifTS2">TS2</label></td>';
+        echo '<td role="radiogroup" aria-labelledby="lblTgifAddRemove"><input id="rbTgifAdd" type="radio" name="tgifStaticAction" value="ADD" checked="checked" /><label for="rbTgifAdd">Add</label> <input id="rbTgifDel" type="radio" name="tgifStaticAction" value="DEL" /><label for="rbTgifDel">Remove</label></td>';
+        echo '<td><input type="submit" value="Set Static" name="tgifStaticModify" /> <input type="submit" value="Set Dynamic" name="tgifDynamicModify" /></td>';
+        echo '</tr>'."\n";
+        echo '  </table>'."\n";
+        echo '  <br />'."\n";
+        echo '</form>'."\n";
     }
 }

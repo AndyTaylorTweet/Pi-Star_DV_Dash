@@ -116,25 +116,13 @@ if ($tgifLinksContext !== false) {
         }
     }
 
-    echo '<b>Active TGIF Connections</b>
-    <table>
-      <tr>
-        <th><a class=tooltip href="#">TGIF Master<span><b>Connected Master</b></span></a></th>
-        <th><a class=tooltip href="#">Repeater ID<span><b>The ID for this Repeater/Hotspot</b></span></a></th>
-        <th><a class=tooltip href="#">Static TGs<span><b>Statically linked talkgroups</b></span></a></th>
-        <th><a class=tooltip href="#">Dynamic TGs<span><b>Dynamically linked talkgroups</b></span></a></th>
-      </tr>'."\n";
-    echo '    <tr>'."\n";
-    echo '      <td>tgif.network</td>';
-    echo '<td>'.htmlspecialchars((string)$tgifLinksContext['dmrID'], ENT_QUOTES, 'UTF-8').'</td>';
-    // The TG lists carry wordwrap-injected <br /> tags by design, so they are
-    // intentionally not escaped here; every talkgroup and slot inside them was
-    // cast to (int) above, matching the same reasoning in bm_links.php.
-    echo '<td>'.$tgifStaticTGList.'</td>';
-    echo '<td>'.$tgifDynamicTGList.'</td>';
-    echo '</tr>'."\n";
-    echo '  </table>'."\n";
-    echo '  <br />'."\n";
+    // Same markup index.php painted as a placeholder, so swapping this in
+    // changes only the two TG cells rather than reflowing the table.
+    tgif_render_connections_table(
+        $tgifLinksContext['dmrID'],
+        $tgifStaticTGList,
+        $tgifDynamicTGList
+    );
 
     if (!empty($tgifLinksErrors)) {
         echo '<table>'."\n";

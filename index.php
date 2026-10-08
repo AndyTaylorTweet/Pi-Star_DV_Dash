@@ -266,7 +266,8 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
     // well before this.
     if ($_SERVER["PHP_SELF"] == "/admin/index.php") {               // Admin Only Options
                 include_once 'mmdvmhost/tgif_static_common.php';
-                if (tgif_static_context($mmdvmconfigs) !== false) {
+                $tgifIndexContext = tgif_static_context($mmdvmconfigs);
+                if ($tgifIndexContext !== false) {
                     // jQuery injects the response only on success but chains the
                     // callback via .always(), so a failed fetch leaves the
                     // Loading placeholder in place and still schedules the next
@@ -285,9 +286,14 @@ if (file_exists('/etc/dstar-radio.mmdvmhost')) {
                         echo '}'."\n";
                         echo 'setTimeout(reloadtgifStaticConnections,100);'."\n";
                     echo '</script>'."\n";
+                    // Paint the real table shape straight away with the two
+                    // values that need no API call, and an ellipsis in the TG
+                    // cells. The AJAX fill then swaps in identical markup with
+                    // the live values, so nothing reflows and there is no
+                    // differently-shaped "Loading" block flashing on each
+                    // page load or after a manager action.
                     echo '<div id="tgifStaticConnects">'."\n";
-                    echo '<b>Active TGIF Connections</b>'."\n";
-                    echo '<table><tr><th>TGIF API</th></tr><tr><td>Loading...</td></tr></table><br />'."\n";
+                    tgif_render_connections_table($tgifIndexContext['dmrID'], '&hellip;', '&hellip;');
                     echo '</div>'."\n";
                     include 'mmdvmhost/tgif_static_manager.php'; // TGIF Static TG API Manager
                 } else {

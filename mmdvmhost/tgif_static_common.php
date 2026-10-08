@@ -136,6 +136,44 @@ function tgif_static_context($mmdvmconfigs)
 }
 
 /**
+ * Render the "Active TGIF Connections" table.
+ *
+ * Shared so index.php can paint the table immediately with placeholder TG
+ * cells and tgif_static_links.php can repaint the identical markup with real
+ * values. Keeping one copy of the markup is what stops the AJAX fill causing
+ * a layout jump: only the two TG cells change, the table shape does not.
+ *
+ * $staticList / $dynamicList are emitted unescaped because they carry
+ * wordwrap-injected <br /> tags by design; every talkgroup and slot inside
+ * them is cast to (int) by the caller, the same reasoning as bm_links.php.
+ * Callers must not pass unsanitised API text.
+ *
+ * @param string $dmrID       Hotspot DMR ID / ESSID.
+ * @param string $staticList  Pre-formatted static TG cell contents.
+ * @param string $dynamicList Pre-formatted dynamic TG cell contents.
+ * @return void
+ */
+function tgif_render_connections_table($dmrID, $staticList, $dynamicList)
+{
+    echo '<b>Active TGIF Connections</b>
+    <table>
+      <tr>
+        <th><a class=tooltip href="#">TGIF Master<span><b>Connected Master</b></span></a></th>
+        <th><a class=tooltip href="#">Repeater ID<span><b>The ID for this Repeater/Hotspot</b></span></a></th>
+        <th><a class=tooltip href="#">Static TGs<span><b>Statically linked talkgroups</b></span></a></th>
+        <th><a class=tooltip href="#">Dynamic TGs<span><b>Dynamically linked talkgroups</b></span></a></th>
+      </tr>'."\n";
+    echo '    <tr>'."\n";
+    echo '      <td>tgif.network</td>';
+    echo '<td>'.htmlspecialchars((string)$dmrID, ENT_QUOTES, 'UTF-8').'</td>';
+    echo '<td>'.$staticList.'</td>';
+    echo '<td>'.$dynamicList.'</td>';
+    echo '</tr>'."\n";
+    echo '  </table>'."\n";
+    echo '  <br />'."\n";
+}
+
+/**
  * Call the TGIF talkgroup API.
  *
  * One request helper for both resources — 'static-talkgroups' and
